@@ -2,6 +2,7 @@
 from pathlib import Path
 import hashlib,json,subprocess
 from pipeline.artifact import encode
+from evaluation.policy_evidence import curate
 
 def main():
     def read(p):return json.loads(Path(p).read_text())
@@ -27,6 +28,7 @@ def main():
         'review_message':'O-015',
     }
     result['utility_comparison']={k:data['utility_comparison'][k] for k in ['data_class','synthetic_evaluation_only','release_id','release_manifest_sha256','daily','morning_top10','error_sources','error_sources_additive','error_sources_definitions','limitations']}
+    result['policy_tradeoff']=curate(data['search'])
     result['publisher_source_commit']=read('releases/e1-aura-001/manifest.json')['source_commit']
     result['trajectory_fixed_cohort']={k:v['fixed_cohort'] for k,v in data['attack']['results'].items()}
     result['trajectory_curve_context']={k:data['attack'][k] for k in ['cohort','known_point_sampling','limitations','illustrative_original_candidate_counts']}
