@@ -8,13 +8,14 @@ from playwright.async_api import async_playwright
 
 CANARY='UNSUPPORTED_CLAIM_CANARY: 999999999 passengers independently certified.'
 
-async def review(url,public,output):
+async def review(url,public,output,browser_path=None):
     target=urlparse(url)
     if target.hostname not in ('localhost','127.0.0.1'):raise ValueError('LOCAL_REVIEW_ONLY')
     proxy='127.0.0.1:8787'
     results=[];delayed=False;completed=set();model_calls=0
     async with async_playwright() as p:
-        browser=await p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+        executable=browser_path or ('/usr/bin/chromium' if Path('/usr/bin/chromium').exists() else None)
+        browser=await p.chromium.launch(executable_path=executable,headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
         page=await browser.new_page()
         async def route(req):
             nonlocal model_calls
@@ -58,5 +59,5 @@ async def review(url,public,output):
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report));return report['passed']
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--url',required=True);p.add_argument('--public',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
-    raise SystemExit(0 if asyncio.run(review(a.url.rstrip('/'),a.public,a.output)) else 1)
+    p=argparse.ArgumentParser();p.add_argument('--url',required=True);p.add_argument('--public',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--browser');a=p.parse_args()
+    raise SystemExit(0 if asyncio.run(review(a.url.rstrip('/'),a.public,a.output,a.browser)) else 1)
