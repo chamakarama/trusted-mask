@@ -26,7 +26,7 @@ Each card counts at most 32 trips. In the synthetic test, after capping and nois
 Most are small enough to be pure noise. The planner says so (grey routes, "could be pure noise") instead of pretending.
 
 **What does the AI do? Isn't giving data to an AI risky?**
-No operator records or release counts are sent to the AI. Your typed question is sent as written, with the public area list, so don't type personal details. Claude only turns the question into one checked request (time of day, start area, how many routes). The app's own code computes the answer from the published tables. Only the typed question and the public area list are sent; the screen warns you not to type personal details. The column scanner uses rules, no AI.
+No operator records or release counts are sent to the AI. Your typed question is sent as written, with the public area list, so don't type personal details. Claude only turns the question into one checked request (time of day, start area, how many routes). The app's own code computes the answer from the published tables. The column scanner uses rules, no AI.
 
 **Is it certified or legally anonymous?**
 No. The two builder agents reviewed each other's code and ran tests (issue #3). There has been no professional audit, and the GDPR Recital 26 argument needs legal review. The release still says "pending review".
