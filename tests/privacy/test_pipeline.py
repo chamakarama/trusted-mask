@@ -106,3 +106,8 @@ def test_false_privacy_metadata_rejected(tmp_path):
 def test_public_formula_label_rejected():
     t,s=inputs();s.loc[0,'area']='=HYPERLINK("example")'
     with pytest.raises(ValueError,match='unsafe public label'):prepare(t,s)
+
+def test_unknown_reference_fields_are_not_policy_approved():
+    from pipeline.inventory import adapt
+    df=pd.DataFrame([{'dataset':'mobility','table':'stops','column':'private_contact','privacy_role':'non_sensitive','subtype':'','reason':'deliberate false-safe'}])
+    assert adapt(df)['fields'][0]['policy']['handling']=='omit'
