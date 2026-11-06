@@ -45,7 +45,10 @@ def load(input_path):
     stops=pd.read_csv(input_path/'stops.csv',dtype=str,usecols=STOP_COLS)
     return taps,stops
 
-def prepare(taps,stops):
+def prepare(taps,stops,*,evaluation_caps=None):
+    # Only evaluation calls override these; the publishing CLI always uses the fixed policy.
+    caps=CAPS if evaluation_caps is None else evaluation_caps
+    if set(caps)!=set(CAPS) or any(type(c) is not int or c<=0 for c in caps.values()): raise ValueError("UNKNOWN_POLICY")
     ts,lines=validate(taps,stops)
     t=taps[TAP_COLS].copy(); t['ts']=ts
     t['line']=t.line.where(t.line.isin(lines),'unknown')
@@ -73,7 +76,7 @@ def prepare(taps,stops):
         keys=['card','ts','stop_id','line']+cols
         keys=list(dict.fromkeys(keys))
         rank=[hashlib.sha256(('routesafe-cap-v1'+json.dumps(row,separators=(',',':'))).encode()).hexdigest() for row in frame[keys].fillna('').astype(str).itertuples(index=False,name=None)]
-        chosen=frame.assign(_rank=rank).sort_values(['card','_rank'],kind='stable').groupby('card',sort=False).head(CAPS[family])
+        chosen=frame.assign(_rank=rank).sort_values(['card','_rank'],kind='stable').groupby('card',sort=False).head(caps[family])
         bounded[family]=chosen.groupby(cols).size().reindex(domain,fill_value=0).to_numpy(dtype=int)
     geometry=[]
     for area,g in stops.groupby('area',sort=True):
