@@ -2,28 +2,32 @@
   "inventory_schema_version": "1.0",
   "scanner": "petpilot",
   "scanner_version": "0.2.0",
-  "source_commit": "8ddfa2c7f00ae6ad96ec8651cabaf3613c34b3e8+dirty",
-  "created_at": "2026-11-06T20:41:20Z",
+  "source_commit": "a202e55c2f1fb8a7c9f073cdcb68b3d9aa5f09bb+dirty",
+  "created_at": "2026-11-06T20:46:50Z",
   "analysis_mode": "rules",
   "dataset": "mobility_mini_renamed_fixture",
   "tables": [
     {
       "table": "cards",
-      "columns": 12
+      "columns": 12,
+      "rows_swept": 40
     },
     {
       "table": "stops",
-      "columns": 8
+      "columns": 8,
+      "rows_swept": 6
     },
     {
       "table": "taps",
-      "columns": 9
+      "columns": 9,
+      "rows_swept": 400
     }
   ],
   "sampling": {
     "rule": "first_n_rows",
     "rows_per_table": 5000,
-    "note": "Values outside the first rows are not inspected; absence of a match is not evidence of absence."
+    "full_column_sweep": "every row of every non-direct-identifier column is checked for e-mail, ID-code, IBAN, phone and plate shapes; hits only raise needs_review (counts, no values)",
+    "note": "Rules inspect only the first rows; absence of a match is not evidence of absence."
   },
   "certainty_meaning": "heuristic rule strength (high/medium/low); unknown = no rule matched. Not a probability.",
   "roles": [
@@ -49,7 +53,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "cards",
@@ -91,7 +99,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "cards",
@@ -105,7 +117,11 @@
       "certainty": "medium",
       "needs_review": false,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "cards",
@@ -146,7 +162,11 @@
           "type": "encoded_in",
           "column": "f03"
         }
-      ]
+      ],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "cards",
@@ -160,7 +180,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "cards",
@@ -202,7 +226,11 @@
       "certainty": "medium",
       "needs_review": true,
       "art9_hint": true,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "cards",
@@ -216,7 +244,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -231,7 +263,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -246,7 +282,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -261,7 +301,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -276,7 +320,11 @@
       "certainty": "medium",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -291,7 +339,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -306,7 +358,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -321,7 +377,11 @@
       "certainty": "medium",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "stops",
@@ -336,7 +396,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -350,7 +414,11 @@
       "certainty": "medium",
       "needs_review": false,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -364,7 +432,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -378,7 +450,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -392,7 +468,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -406,7 +486,11 @@
       "certainty": "medium",
       "needs_review": true,
       "art9_hint": true,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -420,7 +504,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -434,7 +522,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -448,7 +540,11 @@
       "certainty": "high",
       "needs_review": false,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     },
     {
       "table": "taps",
@@ -462,7 +558,11 @@
       "certainty": "unknown",
       "needs_review": true,
       "art9_hint": false,
-      "links": []
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
     }
   ],
   "summary": {
