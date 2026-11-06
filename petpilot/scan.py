@@ -4,9 +4,13 @@ Runs fully locally (no AI, no network). Signals, strongest first:
   1. value validators with checksums (HETU, IBAN, Luhn cards) and strict formats (email, phone, plate, IP, MAC...)
   2. cross-column checks (a column that is a reversible hash of another, a birth date already inside the HETU)
   3. column-name keywords in English, Finnish and Swedish
-  4. table context (a reference table of bus stops is not personal data) and column statistics
+  4. category values that reveal an age group or a special category (e.g. a disability discount)
+  5. table context (a reference table of bus stops) and column statistics
 
-Output vocabulary follows metadata/taxonomy.md so `pets-eval detect` can score it.
+Every finding carries the ids of the rules that produced it (`rule_ids`). Absence of evidence is never treated as
+evidence of safety: fallbacks, reference-table downgrades and unlinked hashes are flagged `needs_review`.
+
+Output vocabulary follows metadata/taxonomy.md so `pets-eval detect` can score the best-guess roles.
 """
 from __future__ import annotations
 
@@ -19,20 +23,43 @@ import pandas as pd
 
 from . import validators as V
 
-SAMPLE_ROWS = 5000
+SAMPLE_ROWS = 5000   # rows read per table: the scanner sees the first SAMPLE_ROWS rows only
 MATCH = 0.6          # share of non-empty values that must match a validator
+ROLE_ABBR = {"direct_identifier": "di", "quasi_identifier": "qi", "sensitive_attribute": "sa",
+             "technical_identifier": "ti", "free_text": "ft", "record_key": "rk", "non_sensitive": "ns"}
 
 
 @dataclass
 class ColumnResult:
     table: str
     column: str
-    privacy_role: str
+    privacy_role: str            # best guess in the 7-role taxonomy (used for pets-eval scoring)
     subtype: str
     reason: str
-    confidence: float = 0.8
+    confidence: float = 0.8      # heuristic, not a calibrated probability
     art9: bool = False
     links: list = field(default_factory=list)
+    rule_ids: list = field(default_factory=list)
+    fallback: bool = False       # nothing positive was found: the inventory reports role "unknown"
+    review: bool = False         # explicit reasons to review, set by rules
+
+    @property
+    def certainty(self) -> str:
+        if self.fallback:
+            return "unknown"
+        if self.confidence >= .9:
+            return "high"
+        if self.confidence >= .7:
+            return "medium"
+        return "low"
+
+    @property
+    def needs_review(self) -> bool:
+        return self.fallback or self.review or self.art9 or self.certainty in ("low", "unknown")
+
+    @property
+    def inventory_role(self) -> str:
+        return "unknown" if self.fallback else self.privacy_role
 
 
 # ------------------------------------------------------------------ column-name keywords
@@ -80,6 +107,7 @@ NAME_RULES: list[tuple[str, str, str, bool, str]] = [
     (r"occupation|job_?title|ammatti|tehtava|tehtävä|titel|profession", "quasi_identifier", "OCCUPATION", False, "name says occupation"),
     (r"employer|department|osasto|school_?(code|name)|workplace|tyopaikka|työpaikka|office|unit$|yksikko", "quasi_identifier", "ORG_NAME", False, "name says employer/department/school"),
     (r"station|(^|_)stop(_id)?$|car_?park|location|place|(^|_)site$|geo_?(city|country)|merchant_?(city|country)", "quasi_identifier", "LOCATION_NAME", False, "name says a place where a person was"),
+    (r"(^|_)(line|route|linja|reitti)$", "quasi_identifier", "CATEGORY", False, "name says the line/route used: narrows down where a person travelled"),
     # sensitive attributes (incl. GDPR Art. 9)
     (r"icd|diagnos|(^|_)dx($|_)|disease|sairaus|diagnoosi", "sensitive_attribute", "DIAGNOSIS_CODE", True, "name says diagnosis (Art. 9 health)"),
     (r"triage|disposition|readmit|admission|los_?min|length_?of_?stay|abnormal|symptom|medication|allerg|"
@@ -91,14 +119,15 @@ NAME_RULES: list[tuple[str, str, str, bool, str]] = [
      r"belief|criminal|rikos", "sensitive_attribute", "SOCIAL_DATA", True, "name says a special category (Art. 9)"),
     (r"income|salary|wage|palkka|(^|_)pay(_|$)|late_?payment|payment_?(plan|default)|debt|velka|kyc|(^|_)pep|"
      r"credit|cost_?estimate|balance|bonus", "sensitive_attribute", "FINANCIAL_DATA", False, "name says personal financial data"),
-    (r"grade|points|arvosana|unexcused|late_?arrival|(^|_)status$", "sensitive_attribute", "EDUCATION_DATA", False, "name says assessment/status"),
+    (r"grade|points|arvosana|unexcused|late_?arrival", "sensitive_attribute", "EDUCATION_DATA", False, "name says assessment results"),
     # free text
     (r"note|text|description|message|comment|reason|subject|complaint|body|kuvaus|viesti|muistiinpano|"
      r"selite|lisatieto|command_?line|file_?path|attachment|resolution|title|vapaa", "free_text", "FREE_TEXT", False, "name says free text"),
     # non-sensitive helpers (aggregates, measures)
     (r"(^|_)(count|visits|n|total|sum|device_?count)$|_count$", "non_sensitive", "AGGREGATE", False, "name says an aggregate count"),
 ]
-_NAME_RULES_RX = [(re.compile(rx), role, st, a9, why) for rx, role, st, a9, why in NAME_RULES]
+_NAME_RULES_RX = [(re.compile(rx), role, st, a9, why, f"name.{ROLE_ABBR[role]}.{st.lower()}")
+                  for rx, role, st, a9, why in NAME_RULES]
 
 ENTITY_SUBTYPE = [
     (r"student|learner|oppilas|opiskelija", "STUDENT_ID"),
@@ -112,6 +141,24 @@ ENTITY_SUBTYPE = [
 PERSONAL_ENTITIES = re.compile(r"student|learner|customer|asiakas|client|employee|staff|physician|doctor|agent|author|"
                                r"teacher|patient|potilas|card|account|user|reporter|holder|person|member|upn|mac|plate|"
                                r"meter|metering|hetu|visit|conversation|applicant")
+
+# category values that reveal a special category (GDPR Art. 9) or an age group
+ART9_VALUE_RX = re.compile(r"disab|invalid|handicap|wheelchair|blind|deaf|medical|health|illness|sick|pregnan|"
+                           r"religio|church|union|ethnic|migrant|refugee|asylum|prison|criminal|hiv|mental|psych|"
+                           r"therap|rehab|welfare|unemploy|reduced")
+AGE_VALUE_RX = re.compile(r"(?:^|_|\b)(?:child|children|kid|youth|junior|student|senior|pensioner|elder|elderly|"
+                          r"adult|lapsi|nuori|opiskelija|eläke|elake)(?:_|\b|$)")
+
+
+def _person_name_confirmed(p) -> bool:
+    """A name-like column only counts as person names if the values look like people. A bare "name" column with
+    few distinct values (stops, stations, sensors) is not confirmed, whatever its shape. A specific column such as
+    `surname` or `given_name` may hold single capitalised words ("Virtanen"), which still identify people."""
+    bare = p.norm in ("name", "nimi", "namn", "name_fi", "name_sv")
+    if bare:
+        return p.rates["person"] >= .3 and p.nunique > 20
+    single_word = float(p.values.head(2000).str.match(r"^[A-ZÅÄÖÉÜ][a-zåäöéüš'-]+$").mean()) if p.nonnull else 0.0
+    return p.rates["person"] >= .3 or single_word >= .6
 
 
 def _entity_subtype(name: str, default: str = "RECORD_ID") -> str:
@@ -186,60 +233,77 @@ def profile(col: str, s: pd.Series) -> Profile:
 
 # ------------------------------------------------------------------ classification of one column
 def _by_values(p: Profile):
-    """Strong evidence from the values themselves. Returns (role, subtype, reason, confidence) or None."""
+    """Strong evidence from the values themselves. Returns (role, subtype, reason, confidence, rule_id) or None."""
     r = p.rates
     pct = lambda k: f"{r[k]:.0%}"
     if r["hetu"] >= MATCH:
-        return "direct_identifier", "NATIONAL_ID", f"{pct('hetu')} of values are valid Finnish ID codes (checksum verified)", .99
+        return "direct_identifier", "NATIONAL_ID", f"{pct('hetu')} of values are valid Finnish ID codes (checksum verified)", .99, "val.hetu"
     if r["iban"] >= MATCH:
-        return "direct_identifier", "IBAN", f"{pct('iban')} of values are IBANs with a valid mod-97 check", .99
+        return "direct_identifier", "IBAN", f"{pct('iban')} of values are IBANs with a valid mod-97 check", .99, "val.iban"
     if r["card"] >= MATCH and r["phone"] < .3:
-        return "direct_identifier", "PAYMENT_CARD", f"{pct('card')} of values are card numbers (Luhn-valid or masked)", .95
+        return "direct_identifier", "PAYMENT_CARD", f"{pct('card')} of values are payment card numbers (Luhn-valid or masked)", .95, "val.payment_card"
     if r["email"] >= MATCH:
-        return "direct_identifier", "EMAIL", f"{pct('email')} of values are e-mail addresses", .97
+        return "direct_identifier", "EMAIL", f"{pct('email')} of values are e-mail addresses", .97, "val.email"
     if r["mac"] >= MATCH:
-        return "technical_identifier", "MAC_ADDRESS", f"{pct('mac')} of values are MAC addresses", .97
+        return "technical_identifier", "MAC_ADDRESS", f"{pct('mac')} of values are MAC addresses", .97, "val.mac"
     if r["net"] >= MATCH:
-        return "non_sensitive", "IP_ADDRESS", "values are network ranges (CIDR), not a person's device", .7
+        return "non_sensitive", "IP_ADDRESS", "values are network ranges (CIDR), not a person's device", .7, "val.ip_network"
     if r["ip"] >= MATCH:
-        return "technical_identifier", "IP_ADDRESS", f"{pct('ip')} of values are IP addresses", .95
+        return "technical_identifier", "IP_ADDRESS", f"{pct('ip')} of values are IP addresses", .95, "val.ip"
     if r["plate"] >= MATCH:
-        return "direct_identifier", "LICENSE_PLATE", f"{pct('plate')} of values look like Finnish licence plates", .9
+        return "direct_identifier", "LICENSE_PLATE", f"{pct('plate')} of values look like Finnish licence plates", .9, "val.plate"
     if r["phone"] >= MATCH and p.num_share < .95 or (r["phone"] >= .8):
-        return "direct_identifier", "PHONE", f"{pct('phone')} of values are phone numbers", .9
+        return "direct_identifier", "PHONE", f"{pct('phone')} of values are phone numbers", .9, "val.phone"
     if r["ua"] >= MATCH:
-        return "technical_identifier", "USER_AGENT", f"{pct('ua')} of values are browser user-agent strings", .9
+        return "technical_identifier", "USER_AGENT", f"{pct('ua')} of values are browser user-agent strings", .9, "val.user_agent"
     if r["url"] >= MATCH:
-        return "free_text", "URL", "full URLs: paths and query strings can carry e-mails, tokens and names", .85
+        return "free_text", "URL", "full URLs: paths and query strings can carry e-mails, tokens and names", .85, "val.url"
     if r["hash"] >= MATCH:
-        return "technical_identifier", "OTHER", f"{pct('hash')} of values look like hash digests", .6
+        return "technical_identifier", "OTHER", f"{pct('hash')} of values look like hash digests", .6, "val.hash"
     if r["ts"] >= MATCH:
-        return "quasi_identifier", "TIMESTAMP", f"{pct('ts')} of values are timestamps (exact times link to news, posts, receipts)", .9
+        return "quasi_identifier", "TIMESTAMP", f"{pct('ts')} of values are timestamps (exact times link to sightings, posts, receipts)", .9, "val.timestamp"
     if r["address"] >= MATCH:
-        return "direct_identifier", "STREET_ADDRESS", f"{pct('address')} of values are street addresses", .85
+        return "direct_identifier", "STREET_ADDRESS", f"{pct('address')} of values are street addresses", .85, "val.street_address"
     if r["person"] >= MATCH and p.uniq_ratio > .05 and p.nunique > 20:
-        return "direct_identifier", "PERSON_NAME", f"{pct('person')} of values are shaped like person names", .8
+        return "direct_identifier", "PERSON_NAME", f"{pct('person')} of values are shaped like person names", .8, "val.person_name"
     if r["date"] >= MATCH:
-        return "quasi_identifier", "DATE", f"{pct('date')} of values are calendar dates", .8
+        return "quasi_identifier", "DATE", f"{pct('date')} of values are calendar dates", .8, "val.date"
     if r["domain"] >= MATCH:
-        return "quasi_identifier", "URL", f"{pct('domain')} of values are domain names (browsing behaviour)", .75
+        return "quasi_identifier", "URL", f"{pct('domain')} of values are domain names (browsing behaviour)", .75, "val.domain"
     if r["hostname"] >= MATCH and p.uniq_ratio > .01:
-        return "technical_identifier", "HOSTNAME", f"{pct('hostname')} of values look like device host names", .7
+        return "technical_identifier", "HOSTNAME", f"{pct('hostname')} of values look like device host names", .7, "val.hostname"
     if r["lat"] >= .95 and r["decimals"] > .5:
-        return "quasi_identifier", "GPS_COORDINATE", "values are latitudes inside Finland with fine precision", .85
+        return "quasi_identifier", "GPS_COORDINATE", "values are latitudes inside Finland with fine precision", .85, "val.latitude"
     if r["lon"] >= .95 and r["decimals"] > .5 and r["lat"] < .5:
-        return "quasi_identifier", "GPS_COORDINATE", "values are longitudes inside Finland with fine precision", .85
+        return "quasi_identifier", "GPS_COORDINATE", "values are longitudes inside Finland with fine precision", .85, "val.longitude"
     if r["org"] >= MATCH:
-        return "quasi_identifier", "ORG_NAME", f"{pct('org')} of values are organisation names (employer/bank reveals affiliation)", .7
+        return "quasi_identifier", "ORG_NAME", f"{pct('org')} of values are organisation names (employer/bank reveals affiliation)", .7, "val.org_name"
     if p.mean_len >= 30 and p.space_share >= .7 and p.uniq_ratio >= .2:
-        return "free_text", "FREE_TEXT", f"long free text (avg {p.mean_len:.0f} chars) can contain anything", .85
+        return "free_text", "FREE_TEXT", f"long free text (avg {p.mean_len:.0f} chars) can contain anything", .85, "val.free_text"
     return None
 
 
 def _by_name(p: Profile):
-    for rx, role, st, a9, why in _NAME_RULES_RX:
+    for rx, role, st, a9, why, rid in _NAME_RULES_RX:
         if rx.search(p.norm):
-            return role, st, why, a9
+            return role, st, why, a9, rid
+    return None
+
+
+def _category_semantics(p: Profile):
+    """Low-cardinality text categories whose values reveal a special category or an age group."""
+    if p.nonnull == 0 or p.nunique > 60 or p.num_share > .5:
+        return None
+    vocab = pd.Series(p.values.str.lower().unique())
+    art9 = vocab[vocab.str.contains(ART9_VALUE_RX)]
+    age = vocab[vocab.str.contains(AGE_VALUE_RX)]
+    if len(art9):
+        return ("quasi_identifier", "CATEGORY", True, "val.category_art9_hint",
+                f"{len(art9)} of {len(vocab)} category values name a special-category trait (e.g. disability/health) "
+                f"or a proxy for one; review before any use")
+    if len(age):
+        return ("quasi_identifier", "CATEGORY", False, "val.category_age_proxy",
+                f"{len(age)} of {len(vocab)} category values encode an age group (child/student/senior...)")
     return None
 
 
@@ -249,9 +313,13 @@ def _small_vocab(p: Profile, vocab: set[str], share: float = .9) -> bool:
     return float(p.values.str.lower().isin(vocab).mean()) >= share
 
 
-SEX_VOCAB = {"m", "f", "n", "x", "male", "female", "mies", "nainen", "man", "kvinna", "muu", "other", "1", "2", "u"}
+SEX_VOCAB = {"m", "f", "n", "x", "male", "female", "mies", "nainen", "man", "kvinna", "muu", "other", "u"}
 LANG_VOCAB = {"fi", "sv", "en", "ru", "et", "ar", "so", "fa", "de", "fr", "es", "uk", "fin", "swe", "eng", "suomi",
               "ruotsi", "englanti", "finnish", "swedish", "english", "other", "muu"}
+
+
+def _res(ctx, p, role, st, why, conf, rules, **kw) -> ColumnResult:
+    return ColumnResult(ctx["table"], p.name, role, st, why, conf, rule_ids=list(rules), **kw)
 
 
 def classify(p: Profile, ctx: dict) -> ColumnResult:
@@ -263,64 +331,97 @@ def classify(p: Profile, ctx: dict) -> ColumnResult:
     # 1) record key: first column, unique, named like an id
     if is_first and p.uniq_ratio > .98 and re.search(r"(^|_)(id|nro|no|key|ref)$|_id$", name):
         st = _entity_subtype(name) if re.search(r"customer|card|student", name) else "RECORD_ID"
-        return ColumnResult(ctx["table"], p.name, "record_key", st, "first column, unique per row: a row key", .9)
+        return _res(ctx, p, "record_key", st, "first column, unique per row: a row key", .9, ["ctx.record_key"])
 
     # 2) strong value evidence wins for identifiers (works even with obfuscated headers)
     if vres and vres[0] in ("direct_identifier", "technical_identifier") and vres[3] >= .9:
-        role, st, why, conf = vres
-        if nres and nres[1] in ("USERNAME",) and st == "EMAIL":
-            st = "USERNAME"
-        return ColumnResult(ctx["table"], p.name, role, st, why, conf)
+        role, st, why, conf, rid = vres
+        rules = [rid]
+        if nres and nres[1] == "USERNAME" and st == "EMAIL":
+            st, rules = "USERNAME", rules + [nres[4]]
+        return _res(ctx, p, role, st, why, conf, rules)
 
     # 3) other id-like columns: foreign keys to people/records
     if re.search(r"(_id|_ref|_key|_no|_nro)$|^id_", name) and not (nres and nres[0] in ("direct_identifier",)):
-        if re.search(r"campaign|correlation|session|smtp|message", name):
-            if re.search(r"campaign", name):
-                return ColumnResult(ctx["table"], p.name, "non_sensitive", "CATEGORY", "campaign label, not about a person", .6)
-            return ColumnResult(ctx["table"], p.name, "technical_identifier", "RECORD_ID", "event/session id links events together", .6)
+        if re.search(r"campaign", name):
+            return _res(ctx, p, "non_sensitive", "CATEGORY", "campaign label, not about a person", .6,
+                        ["ctx.id_column.campaign"])
+        if re.search(r"correlation|session|smtp|message", name):
+            return _res(ctx, p, "technical_identifier", "RECORD_ID", "event/session id links events together", .6,
+                        ["ctx.id_column.session"])
         if re.search(r"stop|station|sensor|car_?park|zone", name):
-            return ColumnResult(ctx["table"], p.name, "quasi_identifier", "LOCATION_NAME", "place id: where a person was", .6)
+            return _res(ctx, p, "quasi_identifier", "LOCATION_NAME", "place id: where a person was", .7,
+                        ["ctx.id_column.place"])
         if re.search(r"vehicle|bike|ambulance", name):
-            return ColumnResult(ctx["table"], p.name, "non_sensitive", "DEVICE_ID", "shared vehicle id, not a person's device", .5)
+            return _res(ctx, p, "non_sensitive", "DEVICE_ID", "shared vehicle id, not a person's device", .5,
+                        ["ctx.id_column.shared_vehicle"])
         if re.search(r"business|y_?tunnus|org", name):
-            return ColumnResult(ctx["table"], p.name, "technical_identifier", "ORG_NAME", "business id (sole traders are people)", .5)
+            return _res(ctx, p, "technical_identifier", "ORG_NAME", "business id (sole traders are people)", .5,
+                        ["ctx.id_column.business"])
         st = _entity_subtype(name)
-        return ColumnResult(ctx["table"], p.name, "technical_identifier", st,
-                            "id that points to a person or their records: joins reveal who did what", .7)
+        why = ("persistent id that links all records of one card/account: joins reveal a history"
+               if st in ("CARD_ID", "ACCOUNT_ID", "CUSTOMER_ID", "STUDENT_ID", "PATIENT_ID", "EMPLOYEE_ID")
+               else "id that points to another record: joins reveal who did what")
+        return _res(ctx, p, "technical_identifier", st, why, .75, ["ctx.id_column.entity"])
 
-    # 4) column-name semantics (sensitive facts, QIs, text) when values are not decisive
+    # 4) column-name semantics when values are not decisive
     if nres:
-        role, st, why, a9 = nres
-        if vres and vres[0] == "free_text" and role not in ("free_text",) and role != "sensitive_attribute":
+        role, st, why, a9, rid = nres
+        rules = [rid]
+        review = False
+        if st == "PERSON_NAME" and not _person_name_confirmed(p):
+            # a column called "name" whose values do not look like people (e.g. stop names): do not guess
+            return _res(ctx, p, "non_sensitive", "CATEGORY",
+                        "name-like column whose values are not confirmed as person names (few distinct values or wrong shape); review", .4,
+                        rules + ["val.person_name.unconfirmed"], fallback=True)
+        if vres and vres[0] == "free_text" and role not in ("free_text", "sensitive_attribute"):
             role, st, why = vres[0], vres[1], vres[2]
+            rules.append(vres[4])
+        elif vres and vres[0] == role:
+            rules.append(vres[4])                 # name and values agree
+        elif role in ("sensitive_attribute", "quasi_identifier"):
+            review = True                         # name-only evidence for a sensitive or linking column
         if role == "quasi_identifier" and st in ("MUNICIPALITY", "POSTCODE", "LOCATION_NAME", "GPS_COORDINATE") and \
                 ctx["reference"]:
-            role, why = "non_sensitive", why + "; but this is a reference table about places, not people"
+            role, why, review = "non_sensitive", why + "; but this is a reference table about places, not people", True
+            rules.append("ctx.reference_table")
         if st == "AGE" and p.rates["date"] >= MATCH:
             st = "BIRTH_DATE"
-        return ColumnResult(ctx["table"], p.name, role, st, why, .75, art9=a9)
+        return _res(ctx, p, role, st, why, .75, rules, art9=a9, review=review)
 
-    # 5) remaining value evidence (QIs, text, coordinates, dates)
+    # 5) category values that reveal a special category or an age group
+    cat = _category_semantics(p)
+    if cat:
+        role, st, a9, rid, why = cat
+        return _res(ctx, p, role, st, why, .7, [rid], art9=a9, review=True)
+
+    # 6) remaining value evidence (QIs, text, coordinates, dates)
     if vres:
-        role, st, why, conf = vres
+        role, st, why, conf, rid = vres
+        rules = [rid]
         if st == "DATE" and ctx["birthlike"].get(p.name):
             st, why = "BIRTH_DATE", why + "; spread like birth dates"
-        return ColumnResult(ctx["table"], p.name, role, st, why, conf)
+            rules.append("val.date.birthlike_spread")
+        return _res(ctx, p, role, st, why, conf, rules)
 
-    # 6) small vocabularies
+    # 7) small vocabularies
     if _small_vocab(p, SEX_VOCAB) and p.nunique <= 4:
-        return ColumnResult(ctx["table"], p.name, "quasi_identifier", "SEX", "values are a sex/gender code", .7)
+        return _res(ctx, p, "quasi_identifier", "SEX", "values are a sex/gender code", .7, ["vocab.sex"])
     if _small_vocab(p, LANG_VOCAB) and p.nunique <= 12:
-        return ColumnResult(ctx["table"], p.name, "quasi_identifier", "LANGUAGE", "values are language codes", .7)
+        return _res(ctx, p, "quasi_identifier", "LANGUAGE", "values are language codes", .7, ["vocab.language"])
     if p.rates["postcode"] >= MATCH and p.nunique > 5:
-        return ColumnResult(ctx["table"], p.name, "quasi_identifier", "POSTCODE", "values are 5-digit postcodes", .7)
+        return _res(ctx, p, "quasi_identifier", "POSTCODE", "values are 5-digit postcodes", .7, ["val.postcode"])
     if p.rates["period"] >= MATCH:
-        return ColumnResult(ctx["table"], p.name, "non_sensitive", "DATE", "values are periods (month/term/year)", .5)
+        return _res(ctx, p, "non_sensitive", "DATE", "values are periods (month/term/year)", .5, ["val.period"])
 
-    # 7) fallback by shape
+    # 8) fallback by shape: nothing positive found. Reported as role "unknown" in the inventory, never as safe.
     if p.num_share > .95:
-        return ColumnResult(ctx["table"], p.name, "non_sensitive", "MEASUREMENT", "numeric measurement with no personal meaning found", .4)
-    return ColumnResult(ctx["table"], p.name, "non_sensitive", "CATEGORY", "category with no personal meaning found", .4)
+        return _res(ctx, p, "non_sensitive", "MEASUREMENT",
+                    "numbers with no recognised meaning; review (could still be salary, a health score...)", .4,
+                    ["fallback.numeric"], fallback=True)
+    return _res(ctx, p, "non_sensitive", "CATEGORY",
+                "values with no recognised meaning; review (short codes can still encode sensitive traits)", .4,
+                ["fallback.category"], fallback=True)
 
 
 # ------------------------------------------------------------------ table level
@@ -334,32 +435,42 @@ def _birthlike(p: Profile) -> bool:
     return years.min() < 1975 and years.max() < 2012 and (years.max() - years.min()) > 30
 
 
-def scan_table(df: pd.DataFrame, table: str) -> list[ColumnResult]:
-    profiles = {c: profile(c, df[c]) for c in df.columns}
-    # reference table = nothing in it can point at a person
-    person_signal = False
+def _person_signal(df: pd.DataFrame, profiles: dict) -> bool:
+    """Does anything in the table point at a person? (If not, it is treated as a reference table, with review.)"""
     for c, p in profiles.items():
         v = _by_values(p)
         n = _by_name(p)
         if v and v[0] in ("direct_identifier",) or (v and v[0] == "technical_identifier" and v[1] != "OTHER"):
-            person_signal = True
+            return True
+        if n and n[1] == "PERSON_NAME" and not _person_name_confirmed(p):
+            n = None                                   # "name" of a stop/station, not of a person
         if n and n[0] in ("direct_identifier", "technical_identifier", "sensitive_attribute", "free_text"):
-            person_signal = True
+            return True
         if n and n[1] in ("BIRTH_DATE", "AGE", "SEX", "LANGUAGE"):
-            person_signal = True
+            return True
         if c != df.columns[0] and re.search(r"_id$", p.norm) and PERSONAL_ENTITIES.search(p.norm):
-            person_signal = True
+            return True
         if p.rates["ts"] >= MATCH and c != df.columns[0] and any(
                 re.search(r"_id$", q.norm) and PERSONAL_ENTITIES.search(q.norm) for q in profiles.values()):
-            person_signal = True
-    ctx = {"table": table, "first_col": df.columns[0], "reference": not person_signal,
+            return True
+        if _category_semantics(p):
+            return True
+    return False
+
+
+def scan_table(df: pd.DataFrame, table: str) -> list[ColumnResult]:
+    profiles = {c: profile(c, df[c]) for c in df.columns}
+    ctx = {"table": table, "first_col": df.columns[0], "reference": not _person_signal(df, profiles),
            "birthlike": {c: _birthlike(p) for c, p in profiles.items()}}
     results = [classify(p, ctx) for p in profiles.values()]
     if ctx["reference"]:
         for r in results:
             if r.privacy_role != "record_key":
                 r.privacy_role = "non_sensitive"
-                r.reason += " (reference table: no column points at a person)"
+                r.reason += " (reference table: no column points at a person; review)"
+                r.review = True
+                if "ctx.reference_table" not in r.rule_ids:
+                    r.rule_ids.append("ctx.reference_table")
     _cross_column(df, profiles, results)
     return results
 
@@ -397,12 +508,17 @@ def _cross_column(df: pd.DataFrame, profiles: dict, results: list[ColumnResult])
             r.privacy_role = orow.privacy_role if orow.privacy_role in ("direct_identifier", "technical_identifier") \
                 else "technical_identifier"
             r.subtype = orow.subtype
-            r.reason = (f"reversible: {rate:.0%} of sampled values are an unsalted hash of '{other}' "
+            r.reason = (f"reversible: {rate:.0%} of the first {len(target)} values are an unsalted hash of '{other}' "
                         f"(an attacker hashes candidate values and matches them)")
-            r.confidence = .95
+            r.confidence, r.fallback = .95, False
+            r.rule_ids.append("xcol.hash_of")
             r.links.append(("hash_of", other, round(rate, 3)))
-        elif r.privacy_role == "technical_identifier" and r.subtype == "OTHER" and re.search(r"sha|md5|hash", r.column.lower()):
-            r.privacy_role, r.reason = "non_sensitive", "hash digests not linked to any person column (e.g. file hashes)"
+        else:
+            # no link found is not evidence of safety: keep it as an identifier-like column and ask for review
+            r.privacy_role, r.subtype = "technical_identifier", "OTHER"
+            r.reason = "hash-like digests; no link to another column found in the sample (that does not make them safe); review"
+            r.review = True
+            r.rule_ids.append("xcol.hash_unlinked")
     # (b) a date column that equals the birth date inside a HETU column (redundant, still a QI)
     for h in hetu_cols:
         births = df[h].astype("string").map(lambda v: V.hetu_birthdate(v) if isinstance(v, str) else None)
@@ -414,6 +530,7 @@ def _cross_column(df: pd.DataFrame, profiles: dict, results: list[ColumnResult])
             if len(both) >= 20 and (both.a == both.b).mean() > .8:
                 r.privacy_role, r.subtype = "quasi_identifier", "BIRTH_DATE"
                 r.reason = f"same as the birth date encoded in '{h}' ({(both.a == both.b).mean():.0%} match)"
+                r.rule_ids.append("xcol.encoded_in_hetu")
                 r.links.append(("encoded_in", h, round(float((both.a == both.b).mean()), 3)))
 
 
@@ -423,7 +540,7 @@ def read_csv(path: Path, nrows: int | None = SAMPLE_ROWS) -> pd.DataFrame:
 
 
 def scan_folder(data_dir: Path, only: list[str] | None = None) -> pd.DataFrame:
-    """Scan every <dataset>/<table>.csv under data_dir; returns one row per column."""
+    """Scan every <dataset>/<table>.csv under data_dir; returns one row per column (best-guess roles)."""
     rows = []
     for d in sorted(p for p in Path(data_dir).iterdir() if p.is_dir()):
         if only and d.name not in only:
@@ -433,5 +550,7 @@ def scan_folder(data_dir: Path, only: list[str] | None = None) -> pd.DataFrame:
             for r in scan_table(df, f.stem):
                 rows.append(dict(dataset=d.name, table=f.stem, column=r.column, privacy_role=r.privacy_role,
                                  subtype=r.subtype, art9=r.art9, confidence=r.confidence, reason=r.reason,
-                                 links=";".join(f"{a}:{b}" for a, b, _ in r.links)))
+                                 links=";".join(f"{a}:{b}" for a, b, _ in r.links),
+                                 rule_ids="|".join(r.rule_ids), certainty=r.certainty,
+                                 needs_review=r.needs_review, inventory_role=r.inventory_role))
     return pd.DataFrame(rows)
