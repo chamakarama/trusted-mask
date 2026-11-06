@@ -4,7 +4,7 @@ import { BANDS, BAND_LABEL, fmt, rankCorridors, weekdaysInPeriod } from "../data
 import { areaLabel, type Release } from "../data/release";
 
 export interface Intent { view: "od"; hour_band: string; origin_area: string | null; action: "rank_corridors"; limit: number }
-export type Refusal = "unsupported_breakdown" | "individual_history_unavailable" | "ai_unavailable" | "invalid_intent";
+export type Refusal = "unsupported_breakdown" | "individual_history_unavailable" | "ai_unavailable" | "invalid_intent" | "out_of_scope";
 
 export interface Evidence { n: number; result_id: string; text: string }
 export interface Answer {
@@ -39,19 +39,19 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
   const days = weekdaysInPeriod(rel);
   const def = rel.manifest.families.od.definition_id;
   const warnings = [
-    "Destinations are inferred from the next boarding, not observed.",
-    "All E1 cells are uncertain: noise intervals are not yet available, so close values may swap places.",
+    "Destinations are estimated from where the same card next starts a journey, not observed.",
+    "Numbers are protected estimates, so routes with similar numbers can swap places.",
   ];
   if (rel.manifest.fixture) warnings.unshift("Fixture release: illustrative values, not results.");
   const scope = intent.origin_area ? ` starting in ${areaLabel(intent.origin_area)}` : "";
   return {
     kind: "answer", release_id: rel.id, definition_id: def, units: "inferred weekday journeys, whole release period", source, warnings,
     summary: rows.length
-      ? `Top ${rows.length} ${BAND_LABEL[intent.hour_band].toLowerCase()} corridors${scope}, ranked by the released estimate.`
-      : `No released corridor${scope} in this band.`,
+      ? `Top ${rows.length} ${BAND_LABEL[intent.hour_band].toLowerCase()} routes${scope}:`
+      : `No published route${scope} in this time band.`,
     evidence: rows.map((c, i) => ({
       n: i + 1, result_id: c.id,
-      text: `${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} inferred weekday journeys over the period (≈ ${fmt(c.trips / days)} per weekday; ${c.evidence_status}).`,
+      text: `${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} trips (about ${fmt(c.trips / days)} per weekday)`,
     })),
   };
 }
@@ -64,14 +64,14 @@ export function refuse(kind: Refusal, rel: Release, why: string): Answer {
 export interface Preset { id: string; question: string; run: (rel: Release) => Answer }
 
 export const PRESETS: Preset[] = [
-  { id: "morning", question: "Which weekday morning corridors deserve a closer look?",
+  { id: "morning", question: "Busiest morning routes?",
     run: (rel) => execute({ view: "od", hour_band: "06-09", origin_area: null, action: "rank_corridors", limit: 3 }, rel, "preset") },
-  { id: "evening", question: "Where are the strongest evening (18–24) flows?",
+  { id: "evening", question: "Busiest evening routes?",
     run: (rel) => execute({ view: "od", hour_band: "18-24", origin_area: null, action: "rank_corridors", limit: 3 }, rel, "preset") },
-  { id: "history", question: "Show me the journeys of one passenger.",
+  { id: "history", question: "Show one passenger's trips",
     run: (rel) => refuse("individual_history_unavailable", rel,
-      "This release contains no travel cards, rows or journey chains, so no individual history can be shown. It only holds protected counts between areas. Here is what it can answer instead.") },
-  { id: "daily-od", question: "How many trips went from Turku 208 to Raisio on 15 October?",
+      "This release has no travel cards or journeys in it, only protected totals, so nobody's trips can be shown.") },
+  { id: "daily-od", question: "Trips from Turku 208 to Raisio on 15 Oct?",
     run: (rel) => refuse("unsupported_breakdown", rel,
-      "Corridors are released for the whole period only, not per day, and the daily table has no areas. Combining the two would invent a breakdown that was never measured or protected.") },
+      "Routes are only published for the whole 4 weeks, not per day. Combining tables would make up numbers that were never protected.") },
 ];

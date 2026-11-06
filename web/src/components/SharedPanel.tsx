@@ -1,69 +1,80 @@
 import { fmt } from "../data/derive";
 import { releaseUrl, type Release } from "../data/release";
+import { IconCheck, IconDownload, IconLock, IconShield } from "./Icons";
 
-const FAMILY_NAME: Record<string, string> = { od: "Corridors (area → area × time band)", line_hour: "Boardings by line × hour", daily: "Tap events per day" };
+const NICE: Record<string, string> = {
+  "od_matrix.csv": "Routes between areas (CSV)", "line_hour.csv": "Boardings per line and hour (CSV)", "daily.csv": "Taps per day (CSV)",
+  "statistics.json": "All three tables (JSON)", "public_areas.geojson": "Area centre points (GeoJSON)", "manifest.json": "How it was made (manifest)",
+  "definitions.json": "Definitions", "README.txt": "Read me", "checksums.sha256": "Checksums",
+};
 
-/** What exactly left the operator, under which protection, with downloads of the identical files. */
+/** What exactly left the bus company, in plain words, plus downloads of the identical files. */
 export function SharedPanel({ rel }: { rel: Release }) {
   const m = rel.manifest, p = m.privacy;
   const kb = (n: number) => (n > 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
+  const files = ["od_matrix.csv", "line_hour.csv", "daily.csv", "statistics.json", "public_areas.geojson", "manifest.json", "definitions.json", "README.txt", "checksums.sha256"];
   return (
-    <section className="panel wide shared" aria-labelledby="shared-title">
-      <h2 id="shared-title">What was shared?</h2>
+    <section className="panel wide" aria-labelledby="shared-title">
+      <div className="eyebrow">Release {rel.id}</div>
+      <h2 id="shared-title">What the bus company shared</h2>
+      <p className="ink2">For: transport planners outside the company, to see where and when people travel. Period: {m.period.start_date} – {m.period.end_date_inclusive}.</p>
       <div className="shared-grid">
-        <div>
-          <h3>Recipient and purpose</h3>
-          <p>{m.purpose}</p>
-          <p className="muted small">Publisher: {m.publisher}. Period {m.period.start_date} – {m.period.end_date_inclusive} ({m.period.timezone}).</p>
-          <h3>Released tables</h3>
+        <div className="shared-card">
+          <h3><IconCheck /> What's inside</h3>
           <ul className="plain">
-            {Object.entries(m.families).map(([k, f]: [string, any]) => (
-              <li key={k}><strong>{FAMILY_NAME[k] ?? k}</strong> — {rel.definitions[k]} <span className="muted">({f.availability}, {f.definition_id})</span></li>
-            ))}
+            <li><strong>Routes:</strong> trips from area to area, per time of day, added up over 4 weekday weeks</li>
+            <li><strong>Lines:</strong> people getting on each line, per hour of the day</li>
+            <li><strong>Days:</strong> total taps on each date</li>
           </ul>
-          <h3>Not in this release</h3>
-          <ul className="plain">
-            <li>No rows, travel-card numbers, timestamps, names, contact details or fare types.</li>
-            <li>No individual journeys or journey chains; destinations are inferred only inside the counts.</li>
-            <li>No daily corridors, corridors by line, capacity, crowding or optimal routes.</li>
+          <p className="small ink2">Every number has a little random noise added. Area names and points come from the public stop list.</p>
+        </div>
+        <div className="shared-card">
+          <h3><IconLock /> What's not inside</h3>
+          <ul className="plain not-list">
+            <li>no rows of taps, no travel-card numbers</li>
+            <li>no exact times (only hour bands and dates)</li>
+            <li>no names, contact details or ticket types</li>
+            <li>no single person's journeys</li>
+            <li>no routes per day or per line, no capacity or crowding</li>
           </ul>
         </div>
-        <div>
-          <h3>How it was protected</h3>
-          <dl className="kv">
-            <dt>Protected unit</dt><dd>one travel card's records over the whole period ({p.adjacency.replaceAll("_", " ")})</dd>
-            <dt>Mechanism</dt><dd>{p.families.od.mechanism} (OpenDP {p.families.od.library_version})</dd>
-            <dt>Privacy budget</dt><dd>ε = {p.epsilon_release} in total, δ = {p.delta_release}</dd>
-            {Object.entries(p.families).map(([k, f]: [string, any]) => (
-              <div key={k} className="kv-row"><dt>{FAMILY_NAME[k] ?? k}</dt><dd>each card counts at most {f.cap} times · ε {f.epsilon} · noise scale {fmt(f.scale)}</dd></div>
-            ))}
-            <dt>Status</dt><dd><span className="badge badge-warn">{p.guarantee_status.replaceAll("_", " ")}</span> not independently certified</dd>
-            <dt>Limitation</dt><dd>{p.multiple_identifier_limitation}</dd>
-          </dl>
-          <h3>Known limitations</h3>
-          <ul className="plain">{m.limitations.map((l: string) => <li key={l}>{l}</li>)}</ul>
-        </div>
-        <div>
-          <h3>Download the shared files</h3>
-          <p className="muted small">These are the exact files this page reads. Filtering here never adds new noise or queries private data.</p>
-          <ul className="downloads">
-            {["manifest.json", ...m.resources.map((r: any) => r.path), "checksums.sha256"].map((f: string) => {
-              const r = m.resources.find((x: any) => x.path === f);
-              return (
-                <li key={f}>
-                  <a href={releaseUrl(rel.id, f)} download>{f}</a>
-                  <span className="muted small"> {kb(rel.bytes[f] ?? 0)}{r ? ` · sha256 ${r.sha256.slice(0, 12)}…` : ""}</span>
-                </li>
-              );
-            })}
+        <div className="shared-card">
+          <h3><IconShield /> How it was protected</h3>
+          <ul className="plain">
+            <li>Each travel card counts at most {p.families.od.cap} trips for routes and {p.families.line_hour.cap} for lines and days.</li>
+            <li>Then random noise is added (OpenDP {p.families.od.library_version}), with a total privacy budget of ε = {p.epsilon_release}.</li>
+            <li>Published once and recorded, so it can't be quietly re-run for more detail.</li>
           </ul>
-          <p className="note small">
-            <span className="badge badge-ok">integrity verified</span> Every file's SHA-256 matches the accompanying manifest and the CSVs match the JSON, checked in your browser. Without a trusted signature this does not prove who published the files or how they were computed.
-          </p>
-          <h3>Licences</h3>
-          <ul className="plain small">{m.licenses.map((l: string) => <li key={l}>{l}</li>)}</ul>
+          <p className="small"><span className="badge badge-warn">pending review</span> not certified. Protects each card; a person with 2 cards counts as 2.</p>
         </div>
       </div>
+
+      <h3>Download exactly what was shared</h3>
+      <ul className="downloads">
+        {files.map((f) => {
+          const r = m.resources.find((x: any) => x.path === f);
+          return (
+            <li key={f}>
+              <a href={releaseUrl(rel.id, f)} download><IconDownload /> {NICE[f] ?? f}</a>
+              <span className="tiny muted">{f} · {kb(rel.bytes[f] ?? 0)}{r ? ` · sha256 ${r.sha256.slice(0, 10)}…` : ""}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <p className="note"><IconCheck /><span>Your browser checked every file against the manifest before showing anything. This shows the files weren't changed; it can't prove who made them without a signature.</span></p>
+      <details className="more">
+        <summary>Full technical details</summary>
+        <dl className="kv small">
+          <dt>Protected unit</dt><dd>one travel card's records for the whole period (add or remove one card)</dd>
+          {Object.entries(p.families).map(([k, f]: [string, any]) => (
+            <div key={k} className="kv-row"><dt>{k}</dt><dd>cap {f.cap} · ε {f.epsilon} · noise scale {fmt(f.scale)} · {f.mechanism}</dd></div>
+          ))}
+          <dt>Policy</dt><dd><code>{m.policy_version}</code> · publisher commit <code>{String(m.source_commit).slice(0, 10)}</code></dd>
+          <dt>Journey rule</dt><dd>{m.inference}</dd>
+          <dt>Limitations</dt><dd><ul className="plain">{m.limitations.map((l: string) => <li key={l}>{l}</li>)}</ul></dd>
+          <dt>Licences</dt><dd><ul className="plain">{m.licenses.map((l: string) => <li key={l}>{l}</li>)}</ul></dd>
+        </dl>
+      </details>
     </section>
   );
 }
