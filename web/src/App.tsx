@@ -179,7 +179,7 @@ export function App() {
               <div className="kpi"><div className="kpi-label"><IconShield /> Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card · lower = more private</div></div>
               <div className={`kpi ${someNoise ? "kpi-warn" : ""}`}>
                 <div className="kpi-label">{someNoise ? <IconWarn /> : check ? <IconCheck /> : <IconInfo />} Top {SHORTLIST} check</div>
-                <div className="kpi-value">{rel.manifest.fixture ? "–" : topNoise ? "Could be noise" : someNoise ? "Partly noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
+                <div className="kpi-value">{rel.manifest.fixture ? "–" : topNoise ? "Could be noise" : someNoise ? "Some could be noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
                 <div className="kpi-sub">{rel.manifest.fixture ? "test fixture: no claims" : topNoise ? "too small to tell from noise" : someNoise ? "some shortlisted routes are within the noise range" : check && level === "area" ? "re-runs gave the same top 3 (synthetic test)" : check ? "town pairs match exact data (synthetic test)" : band === "06-09" && origin ? "only the unfiltered morning top 3 was tested" : "only weekday mornings were tested"}</div>
               </div>
             </div>
