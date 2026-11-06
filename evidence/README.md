@@ -25,3 +25,5 @@ Native MOB-U1 is clipped at zero when qualifying-cell MAPE exceeds 50%; here it 
 Reproduction commands live in `../ROUTESAFE_DEVELOPMENT.md`. Additional modules: `evaluation.baselines`, `evaluation.strata`, `evaluation.inference_edges` and `evaluation.summary`. Use the locked Python environment. Re-running random experiments can change diagnostics and must not replace a release with a favorable draw. Packaging uses `pipeline.bundle` and `pipeline.offline` and performs zero noise draws.
 
 Peer review is documented in issue #3 and `e6/opus-privacy-review.json`. It is implementation review, not certification. The existing artifact's `pending_review` field remains immutable; limitations and failed utility gates remain visible.
+
+Technical answers for the demo are collected in [DEMO_FACTS.md](DEMO_FACTS.md). The new E7 fixed-neighbour membership diagnostic (`e7/membership.json`, protocol `../evaluation/E7_PROTOCOL.md`) is executed but awaiting independent review; it is not yet included in the public summary. New selected-route interval claims remain blocked on the coverage issue documented in `e6/selected-interval-review.json`. Reviewed main remains available.
