@@ -63,7 +63,8 @@ No raw values, recovered identifiers or row matches are written. `petpilot/tests
 | macro-F1 | 0.902 (B1 baseline 0.646) |
 | sensitive-column recall | 0.916 (B1 0.727) |
 | unknown rate | 25% |
-| sensitive columns missed | 25; **all 25 are flagged `needs_review`**, none is silently marked safe; no direct identifier missed |
+| sensitive columns missed | 25; **all 25 are flagged `needs_review`**, none is silently marked safe; no direct identifier labelled `non_sensitive` |
+| direct-identifier role recall | 0.987: 75 of 76; one (`cyber.identity.employee_id`) is labelled `technical_identifier`, which still gets sensitive treatment |
 
 Run on committed code `1610300` (no local edits), Python 3.12.10, pandas 3.1.1: `python -m petpilot evaluate-catalog --package <package root> --out petpilot/evidence/dev_catalog_eval.json` (the supplied toolkit must be importable, e.g. `PYTHONPATH=<package root>/toolkit`). Same numbers as the earlier run.
 
