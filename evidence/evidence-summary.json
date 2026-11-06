@@ -129,6 +129,10 @@
       "path": "evidence/e4/trajectory.json",
       "sha256": "bd89c9ee6d7ff46aacbf2d5f6f3300a6877bb407029ac3579f2e90b3dc9b5e3f"
     },
+    "baselines": {
+      "path": "evidence/e5/baselines-reproduced.json",
+      "sha256": "4051673f2e744b8ae9f4e3683c2fd6978d693713535febd1061b2bdb545750ef"
+    },
     "benchmark": {
       "path": "evidence/e5/benchmark.json",
       "sha256": "56f475df1d50209c1be447078e7c9f884b0d1f867f69e3a85daea44c5a8d4ff4"
@@ -170,8 +174,100 @@
     "reason": "No card-linked row trajectories are released; lookup attack cannot run on aggregate tables. This is not 0% re-identification.",
     "status": "not_applicable"
   },
+  "row_baseline_utility": {
+    "evaluation_scope": "native supplied MOB-U1/U2/U3 tasks on supplied synthetic data",
+    "limitations": [
+      "Baselines use the supplied field catalog, a label-informed oracle. Publisher never does.",
+      "This runs MOB-U1/U2/U3 only, not the entire nine-domain scorecard.",
+      "Toolkit scores are self-assessment, not an official competition rubric.",
+      "Row-baseline utility and trajectory risk must be considered together.",
+      "RouteSafe U2/U3 use aggregate adapters; these scores must retain their native/adapted labels. A high row-baseline utility score does not imply low disclosure risk."
+    ],
+    "results": {
+      "b0": {
+        "MOB-U1": {
+          "detail": {
+            "cells": 1163,
+            "mape": 0.0
+          },
+          "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+          "score": 1.0
+        },
+        "MOB-U2": {
+          "detail": {
+            "mape": 0.0
+          },
+          "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+          "score": 1.0
+        },
+        "MOB-U3": {
+          "detail": {
+            "mape": 0.0,
+            "r": 0.9999999999999998
+          },
+          "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+          "score": 0.9999999999999998
+        }
+      },
+      "b2": {
+        "MOB-U1": {
+          "detail": {
+            "cells": 1163,
+            "mape": 0.07710882719541051
+          },
+          "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+          "score": 0.845782345609179
+        },
+        "MOB-U2": {
+          "detail": {
+            "mape": 0.0
+          },
+          "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+          "score": 1.0
+        },
+        "MOB-U3": {
+          "detail": {
+            "mape": 0.0,
+            "r": 0.9999999999999998
+          },
+          "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+          "score": 0.9999999999999998
+        }
+      },
+      "b2k": {
+        "MOB-U1": {
+          "detail": {
+            "cells": 1163,
+            "mape": 0.8114430935476087
+          },
+          "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+          "score": 0.0
+        },
+        "MOB-U2": {
+          "detail": {
+            "mape": 0.29811906171912717
+          },
+          "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+          "score": 0.40376187656174567
+        },
+        "MOB-U3": {
+          "detail": {
+            "mape": 0.0633919580596837,
+            "r": 0.9999806718226835
+          },
+          "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+          "score": 0.7886782291270905
+        }
+      }
+    },
+    "saved_scorecard_comparison": {
+      "different_tasks": [],
+      "note": "Scores and detail objects match supplied saved scorecards exactly. B2 utility 0.9797 in the plan is the mean of eight mobility tasks; its MOB-U1 alone is 0.8457823456.",
+      "tasks_compared": 9
+    }
+  },
   "schema_version": "1.0",
-  "source_commit": "c28566183039c4748ef9c72618079dfa3606346d",
+  "source_commit": "6a63937dd1644b6e91f5dcafbcb856b619e34bf2",
   "synthetic_evaluation_only": true,
   "trajectory_curve_context": {
     "cohort": "1000 cards sampled without replacement from sorted original cards with >=4 distinct nonmissing stop/hour points; seed 20261106. Same source-card cohort for all baselines, mapping kept private.",
