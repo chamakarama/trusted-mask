@@ -2,7 +2,7 @@
 
 RouteSafe now has a working private publisher, verified static release, public planner, separate private operator workbench, and synthetic utility/risk evaluation. Start with [development and local startup](ROUTESAFE_DEVELOPMENT.md), [evidence and limitations](evidence/README.md), and the [privacy argument](privacy/README.md). Coordination and executable peer review are recorded in [issue #3](https://github.com/Chintufp/Since-AI-hackathon---WAWS/issues/3).
 
-The experimental release preserves the morning shortlist but **fails the area-level count-error target**. It provides card-level protection under the documented assumptions, not person-level anonymity or certification. The existing manifest remains labelled pending review. The assistant uses deterministic presets; no live model is connected. No public deployment or competition submission has been made.
+The experimental release preserves the morning shortlist but **fails the area-level count-error target**. It provides card-level protection under the documented assumptions, not person-level anonymity or certification. The existing manifest remains labelled pending review. The assistant supports deterministic presets and an optional local model proxy that translates questions into validated requests; answers are computed from the protected release. Astra verified the proxy boundary with mocks; Opus reported four live functional checks on the human-authorised local setup (not an accuracy evaluation). No public deployment or competition submission has been made.
 
 The original idea below is retained as planning history. Its illustrative numbers, broader capabilities and proposed demo are not implementation results; the evidence guide describes what was actually executed.
 

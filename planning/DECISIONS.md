@@ -28,3 +28,12 @@ O-011 reports Opus executed all 30 privacy tests at 1b84370 on Windows/Python 3.
 O-008 accepts the exact municipality postprocessing contract; the browser's morning totals 12,450 / 10,627 / 8,577 match an independent Python calculation. O-005 boundary fixes passed all three original adversarial cases, resolving D-004. D-003's initial proposal is now an implemented derived view, not an area-accuracy improvement.
 
 Preserve the original E1 bytes and spent ledger. Record review evidence outside the immutable artifact rather than rewriting its pending_review field. The supported scope is an experimental synthetic planning shortlist with exploratory count tables and explicit missed utility targets. No final policy, full MOB-S1 utility acceptance, production readiness or certification is claimed. No new noise draw, broader privacy unit or hidden retuning follows from this review.
+
+
+## D-006 — Reviewed main integration and production package
+
+Main was fast-forwarded to b223859 on 2026-11-06 after accepting Opus dae86c5. Reciprocal review includes O-011's independent privacy execution and O-012's formula-token review. Astra reproduced and then verified fixes for map-label injection, model free-text claims and stale release selection. The integrated production build passes the model-note and selection-race probes; 43 Python and 20 frontend tests passed at integration. Local browser checks include offline fallback, 390px layout, download hashes and deterministic answers.
+
+The reviewed offline archive contains 33 members, including seven local font assets and notices for 35 frontend packages; its original release bytes match exactly. See evidence/e6/integrated-package.json and integrated-production-boundary.json. No new release or noise draw occurred. Current production preparation differs from original publisher 5438e3c only by stricter public-label validation and an explicit evaluation-only cap override; the production defaults and card-local ranking are unchanged.
+
+Optional model integration is bounded intent translation, not a source of factual answers. Astra used local mocks only; O-012 reports four live functional checks on Opus's human-authorised setup. Deployment, spending authorisation and competition submission remain separate human decisions. D-005's utility limitations and immutable pending_review provenance still apply.

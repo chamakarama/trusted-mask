@@ -1,4 +1,4 @@
-# RouteSafe development (E1 checkpoint)
+# RouteSafe development (reviewed integration)
 
 Use a dedicated checkout; Astra uses `/workspace/routesafe-astra`. Preserve Opus's work. This cloud task is already isolated: do not create extra worktrees unless explicitly requested. Source materials and petpilot remain unchanged.
 
@@ -35,19 +35,19 @@ Additional evaluation commands: `python -m evaluation.inference`, `python -m eva
 Attribution: TrustED PETs Proving Ground 2026 synthetic data by Since AI ry (CC BY 4.0). Public stop placement uses GeoNames postcode centroids (CC BY 4.0), via github.com/zauberware/postal-codes-json-xml-csv; derived points are schematic. No TrustED or EU endorsement is implied.
 
 
-The assembled public planner is now on this feature branch. From the checkout, use the locked frontend dependencies and copy only allowlisted releases:
+The assembled public planner and private publisher were integrated into main at b223859 after reciprocal review. From the checkout, use the locked frontend dependencies and copy only allowlisted releases:
 
 ```sh
-npm ci --prefix web
+npm ci --prefix web --cache /tmp/routesafe-npm-cache
 npm run sync --prefix web -- --ref HEAD
 npm test --prefix web
 npm run build --prefix web
 .venv/bin/python -m http.server 8768 --bind 127.0.0.1 --directory web/dist
 ```
 
-Verified runtime: Node 24.22.1, npm 11.9.0. The production build runs without private publisher access and uses a local schematic SVG map, so no map tile API is required. Once loaded, filters/views work without internet; offline reload still requires a local static server and files. Free-text AI is explicitly unavailable; presets are deterministic and labelled. Do not claim a live model is connected.
+Verified runtime: Node 24.22.1, npm 11.9.0. The production build runs without private publisher access. It offers an optional street map and a local schematic SVG fallback; append `?map=schematic` for an immediate offline view. Once loaded, filters/views work without internet; offline reload still requires a local static server and files. Presets are deterministic. An optional local model proxy translates free-text questions into validated intents; all factual answers come from the release. Without that separately configured proxy the UI reports AI offline. No API key is needed to try the planner. Astra verified model boundaries with mocks, not paid calls; Opus reported four live functional checks in O-012 using the human-authorised local configuration. This is not an accuracy evaluation.
 
-Independent consumer review: all 19 tests pass with the municipality view and evidence panel at Opus 1be7d7a. The actual release, downloads, refusals, 390px layout and local-only network requests were exercised in Chromium. Review reports are under evidence/e6/. Opus independently passed the 30 privacy tests at 1b84370; subsequent local coverage has 33 privacy tests plus 10 scanner tests. Review is recorded separately from immutable release metadata.
+Independent consumer review: all 20 frontend tests pass at Opus dae86c5, integrated in b223859. The actual release, downloads, refusals, 390px layout and automatic offline fallback were exercised in Chromium. Adversarial checks confirm HTML-bearing labels are refused, model notes cannot become factual output, and stale release responses cannot replace the selected release. These checks also pass against the integrated production build. Review reports are under evidence/e6/. Opus independently passed the 30 privacy tests at 1b84370; subsequent local coverage has 33 privacy tests plus 10 scanner tests. Review is recorded separately from immutable release metadata.
 
 
 Local packaging (does not publish, deploy, or draw noise; output must be a new path):
@@ -58,3 +58,21 @@ Local packaging (does not publish, deploy, or draw noise; output must be a new p
 ```
 
 The offline package includes the synthetic-only evidence summary and exact verified release files. Never substitute real-data reference evidence. Extract it and follow README.txt; serve only its planner/ folder. The private operator view is separate: generate web/operator-data/mobility-inventory.json with pipeline.inventory, then run `npm run operator:data --prefix web`. From web/, build with `node_modules/.bin/vite build --config vite.operator.config.ts`; serve only web/dist-operator locally and never deploy it.
+
+
+## Quick local preview without Python
+
+Use a separate folder to preserve any active builder checkout. This pinned version includes the reviewed redesign and the release-switch fix:
+
+```sh
+git clone https://github.com/Chintufp/Since-AI-hackathon---WAWS.git routesafe-reviewed-ui
+cd routesafe-reviewed-ui
+git checkout b223859
+npm ci --prefix web
+npm run sync --prefix web -- --ref HEAD
+npm run dev --prefix web -- --host 127.0.0.1 --port 5175
+```
+
+Open the address printed by Vite on that same machine, adding `?map=schematic` if offline. Select `e1-aura-001`. The morning shortlist should show 5491 / 4565 / 4183; the Evidence view must also show the failed area-level error target. This requires Node/npm and Git, but no publisher, Python, model key, or new release. The optional proxy's default origin list does not include port 5175, so use deterministic presets in this isolated preview. No public URL has been deployed.
+
+The cloud's `/home/agent/.npm` cache is unwritable; the explicit `/tmp/routesafe-npm-cache` option above fixes that without disabling integrity checks. On Windows use its normal writable npm cache. Python executable paths there are `.venv/Scripts/python.exe` instead of `.venv/bin/python`.
