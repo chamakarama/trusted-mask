@@ -8,12 +8,12 @@ Bus companies hold tap data that could show planners where people really travel.
 ## What it does
 RouteSafe turns raw bus taps into an open-data release of protected counts:
 - **Scan (private):** a rule-based scanner labels every column (identifies a person, identifies in combination, sensitive, unknown) and says why. Unclear columns go to a person.
-- **Protect (private):** each travel card counts at most 32 route trips; then differential-privacy noise is added (OpenDP, ε = 1 per card for the 4 weeks). The spend is recorded once in a budget ledger.
+- **Protect (private):** trip destinations are inferred from where the same card next boards (not observed). Each travel card counts at most 32 route trips; then differential-privacy noise is added (OpenDP, ε = 1 per card for the 4 weeks). The spend is recorded once in a budget ledger.
 - **Publish and explore (public):** only three tables leave: routes between areas per time of day, boardings per line and hour, and taps per day. The planner checks every file before showing it, then shows:
   - a map and a top-3 route shortlist with noise ranges;
   - warnings where numbers could be pure noise;
   - a "rows vs RouteSafe" safety page;
-  - plain-language questions answered by Claude. Claude only picks a checked request; it never sees the data.
+  - plain-language questions answered by Claude. Claude only picks a checked request. No operator records or release counts are sent to it; the typed question is sent as written with the public area list, and the screen asks you not to type personal details.
 
 ## How we built it
 - Python publisher with OpenDP (integer Laplace) and an SQLite ledger, producing an immutable, checksummed release bundle.
@@ -24,7 +24,7 @@ RouteSafe turns raw bus taps into an open-data release of protected counts:
 
 ## Challenges we ran into
 - **Honesty about noise.** Small routes are mostly noise. Night routes looked like real demand until we added selection-valid noise ranges (±571 across all 2,205 released route cells) and "could be pure noise" warnings.
-- **The per-card cap** makes busy routes read low (the ten busiest morning routes were 8–18% below exact after capping and noise), so we show that too.
+- **The per-card cap** lowers counts. In the synthetic test, after capping and noise together, the ten busiest morning routes were 8–18% below their exact inferred counts. The noise range excludes what the cap removes, so we state that next to the numbers.
 - Our privacy wording had to be precise: what ε does and doesn't promise.
 
 ## Accomplishments that we're proud of
