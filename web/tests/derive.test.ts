@@ -64,17 +64,18 @@ it("totals add SIGNED estimates and clamp once, never a sum of already-clamped v
   expect(hourTotals(rel)).toHaveLength(24);
 });
 
-it("shortlist ranges are selection-valid: 95% for all candidate routes at once, around the signed value", () => {
+it("shortlist ranges cover ALL released route cells at once, so filtering after looking cannot narrow them", () => {
   const night = shortlistReliability(rel, rankAt(rel, "area", "00-06", null), 3);
-  expect(night.candidates).toBe(420);
-  expect(night.radius).toBe(483); // = evidence/e6 morning simultaneous radius, wider than the single-cell 161
+  expect(night.candidates).toBe(2205);
+  expect(night.radius).toBe(571); // fixed published OD domain; wider than the prechosen-morning 483 and single-cell 161
   expect(night.noiseOnly).toEqual([1, 2, 3]);
   const morning = shortlistReliability(rel, rankAt(rel, "area", "06-09", null), 3);
+  expect(morning.radius).toBe(571);
   expect(morning.noiseOnly).toEqual([]);
   const rusko = shortlistReliability(rel, rankAt(rel, "area", "06-09", "Rusko-213"), 3);
-  expect(rusko.candidates).toBe(20);
-  expect(rusko.radius).toBe(noiseRadius(rel.manifest.privacy.families.od.scale, 0.05 / 20));
+  expect(rusko.radius).toBe(571); // the same after choosing an origin
   expect(rusko.noiseOnly.length).toBeGreaterThan(0);
+  expect(noiseRadius(rel.manifest.privacy.families.od.scale, 0.05 / 420)).toBe(483);
   expect(rangeOf(341, 483)).toEqual([0, 824]);
   expect(rangeOf(-20, 161)).toEqual([0, 141]);
 });

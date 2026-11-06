@@ -86,7 +86,7 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
         <button type="submit" disabled={!q.trim() || busy}>{busy ? "…" : "Ask"}</button>
       </form>
       <p className="tiny muted ask-note">{live
-        ? "Typed questions go to Anthropic's Claude API through a helper on this computer, with the public area list. No release numbers are sent; the AI only picks a request, and the numbers come from the published tables."
+        ? "Your typed question is sent as written to Anthropic's Claude API (via a helper on this computer), with the public area list, so don't type personal details. No operator records or release numbers are included; the AI only picks a request, and the numbers come from the published tables."
         : "Typed questions need the AI helper. The suggested questions below work without it."}</p>
       <div className="presets">
         {PRESETS.map((p) => <button key={p.id} className="preset" onClick={() => show(p.run(rel))}>{p.question}</button>)}

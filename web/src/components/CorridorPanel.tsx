@@ -41,7 +41,7 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
   if (fixture) {
     status = { tone: "info", text: "Test fixture: illustrative numbers. No noise or privacy claims are made for it." };
   } else if (rely && rely.noiseOnly.length) {
-    status = { tone: "warn", text: `Could be pure noise. When the top of ${fmt(rely.candidates)} routes is picked, noise alone can lift an empty route to about ${fmt(rely.radius)} trips, and ${rely.noiseOnly.length === top.length ? "all of these are" : `#${rely.noiseOnly.join(", #")} ${rely.noiseOnly.length === 1 ? "is" : "are"}`} below that. Don't decide on ${rely.noiseOnly.length === 1 ? "it" : "these"}.` };
+    status = { tone: "warn", text: `Could be pure noise. Across all ${fmt(rely.candidates)} released route numbers, noise alone can lift an empty route to about ${fmt(rely.radius)} trips, and ${rely.noiseOnly.length === top.length ? "all of these are" : `#${rely.noiseOnly.join(", #")} ${rely.noiseOnly.length === 1 ? "is" : "are"}`} below that. Don't decide on ${rely.noiseOnly.length === 1 ? "it" : "these"}.` };
   } else if (check && level === "area") {
     status = { tone: "ok", text: `Checked: same top ${check.k} as the exact data in ${check.exact} of ${check.draws} noise re-runs (synthetic test, weekday mornings).` };
   } else if (check && level === "municipality" && check.townOverlap !== null) {
@@ -103,7 +103,7 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
       <details className="limits">
         <summary>What these numbers can't tell you</summary>
         <ul className="plain small">
-          {rely && <li><strong>Noise:</strong> each range holds for all {fmt(rely.candidates)} routes at once (95%). That is wider than one route's range, because the shortlist is picked from the noisy numbers. Ranges cover only the random noise on the capped counts.</li>}
+          {rely && <li><strong>Noise:</strong> each range holds for all {fmt(rely.candidates)} released route numbers at once (95%), so it stays valid however you filter or pick. It covers only the random noise on the capped counts.</li>}
           <li><strong>Capped:</strong> each travel card counts at most {cap} trips, so frequent riders' trips can be undercounted{capLoss !== null ? ` (the cap leaves out about ${Math.round(capLoss * 100)}% of all route trips)` : ""}.</li>
           <li><strong>Estimated destinations:</strong> where the same card next starts a journey (quick transfers removed), not observed.</li>
           <li><strong>Trips, not people:</strong> one person can make many trips.</li>
@@ -118,7 +118,7 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
             <dt>Trips (4 weeks)</dt><dd>{fmt(sel.trips)}</dd>
             <dt>Per weekday</dt><dd>about {fmt(sel.trips / days)} ({days} weekdays)</dd>
             <dt>Raw protected value</dt><dd>{fmt(sel.noisy_value)} <span className="muted">(shown as 0 if below 0)</span></dd>
-            <dt>Noise range</dt><dd>{rely ? `${fmt(rangeOf(sel.noisy_value, rely.radius)[0])}–${fmt(rangeOf(sel.noisy_value, rely.radius)[1])} (95% for all ${fmt(rely.candidates)} routes at once; noise only, on capped counts)` : fixture ? "not claimed for a test fixture" : "not shown for town totals"}</dd>
+            <dt>Noise range</dt><dd>{rely ? `${fmt(rangeOf(sel.noisy_value, rely.radius)[0])}–${fmt(rangeOf(sel.noisy_value, rely.radius)[1])} (95% for all ${fmt(rely.candidates)} released route numbers at once; noise only, on capped counts)` : fixture ? "not claimed for a test fixture" : "not shown for town totals"}</dd>
             <dt>Destination</dt><dd>estimated, not observed</dd>
           </dl>
         </details>

@@ -43,10 +43,10 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
   const warnings = [
     "Destinations are estimated from where the same card next starts a journey, not observed.",
     rely
-      ? `Noise ranges hold for all ${fmt(rely.candidates)} routes at once (95%, noise only, on capped counts). Close numbers can swap places.`
+      ? `Noise ranges hold for all ${fmt(rely.candidates)} released route numbers at once (95%, noise only, on capped counts). Close numbers can swap places.`
       : "Numbers are protected estimates, so close numbers can swap places.",
   ];
-  if (rely?.noiseOnly.length) warnings.unshift(`Could be pure noise: when the top of ${fmt(rely.candidates)} routes is picked, noise alone can lift an empty route to about ${fmt(rely.radius)} trips. Don't decide on these.`);
+  if (rely?.noiseOnly.length) warnings.unshift(`Could be pure noise: across all ${fmt(rely.candidates)} released route numbers, noise alone can lift an empty route to about ${fmt(rely.radius)} trips. Don't decide on these.`);
   if (rel.manifest.fixture) warnings.unshift("Fixture release: illustrative values, not results.");
   const scope = intent.origin_area ? ` starting in ${areaLabel(intent.origin_area)}` : "";
   return {

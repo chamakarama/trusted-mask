@@ -133,17 +133,17 @@ export const familyScale = (rel: Release, f: Family): number => Number(rel.manif
 export const cellRadius = (rel: Release, f: Family): number => noiseRadius(familyScale(rel, f));
 
 export interface Reliability {
-  radius: number;      // 95% noise-only range that holds for ALL `candidates` routes at once (Bonferroni, as in
-                       // privacy/uncertainty.py). Selection-valid: the shortlist is picked from the noisy numbers, so a
-                       // single prechosen route's range (+/-161) would be too narrow for the routes that come out on top.
-  candidates: number;
+  radius: number;      // 95% noise-only range that holds for ALL released route cells at once (Bonferroni over the fixed
+                       // published OD domain, as in privacy/uncertainty.py; 571 for 2,205 cells). Fixed, so it stays valid
+                       // however the user picks band, origin or shortlist after looking at the numbers (A-024).
+  candidates: number;  // size of that fixed family: every released OD cell
   noiseOnly: number[]; // shortlist ranks at or below the radius: noise alone could lift an empty route this high
                        // (a conservative warning, not proof that the route is empty)
 }
 
 /** How far to trust an AREA-level shortlist. Town sums mix many cells' noise, so no single-cell range applies there. */
 export function shortlistReliability(rel: Release, ranked: Corridor[], k: number): Reliability {
-  const candidates = Math.max(1, ranked.length);
+  const candidates = Math.max(1, rel.od.length);
   const radius = noiseRadius(familyScale(rel, "od"), 0.05 / candidates);
   const noiseOnly = ranked.slice(0, k).filter((c) => c.noisy_value <= radius).map((c) => c.rank);
   return { radius, candidates, noiseOnly };

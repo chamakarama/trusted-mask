@@ -116,7 +116,7 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
             <h3><IconInfo /> What's still risky</h3>
             <ul className="plain small">
               {e7 ? (
-                <li><strong>Membership test (simulated):</strong> an attacker who knew every other card's records and this card's whole history flagged {pct(e7.tprLo, 1)}–{pct(e7.tprHi, 1)} of member cards at about {pct(e7.fpr)} false alarms ({e7.n} synthetic cards). Random guessing flags {pct(e7.fpr)}. Not proof of safety.</li>
+                <li><strong>Membership test (simulated):</strong> for {e7.n} preselected synthetic cards, an attacker who knew every other card's records and the card's whole history detected {pct(e7.tprLo, 1)}–{pct(e7.tprHi, 1)} of membership cases at about {pct(e7.fpr)} false alarms (random guessing: {pct(e7.fpr)}). One specific attack, not proof of zero risk.</li>
               ) : (
                 <li>Attacks on the counts themselves are limited by ε, but we haven't tested one by experiment yet.</li>
               )}
@@ -132,7 +132,8 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
             <tbody>
               <tr><td>4-sighting test, names removed / pseudonyms / k≥5 (organisers' tool)</td><td className="num">{pct(t.b0.unicity, 1)} / {pct(t.b2.unicity, 1)} / {pct(t.b2k.unicity, 1)}</td></tr>
               <tr><td>95% noise range for one cell chosen in advance, routes / lines / days</td><td className="num">±{cellRadius(rel, "od")} / ±{cellRadius(rel, "line_hour")} / ±{fmt(cellRadius(rel, "daily"))}</td></tr>
-              <tr><td>95% for all {morningCells} morning routes at once (use this for a picked shortlist)</td><td className="num">±{noiseRadius(familyScale(rel, "od"), 0.05 / morningCells)}</td></tr>
+              <tr><td>95% for all {morningCells} morning routes at once (the prechosen morning test)</td><td className="num">±{noiseRadius(familyScale(rel, "od"), 0.05 / morningCells)}</td></tr>
+              <tr><td>95% for all {fmt(rel.od.length)} released route cells at once (the range the planner shows)</td><td className="num">±{noiseRadius(familyScale(rel, "od"), 0.05 / rel.od.length)}</td></tr>
               <tr><td>Route error over {rep.draw_count} noise draws (median)</td><td className="num">{pct(rep.wape_quantiles.od["0.5"], 1)}</td></tr>
               <tr><td>Organisers' utility scores MOB-U1 / U2 / U3 (not passing)</td><td className="num">{two(u1.score)} / {two(u2.score)} / {two(u3.score)}</td></tr>
               <tr><td>Trips removed by the per-card limit (routes / lines / days)</td><td className="num">{pct(ev.cap_loss_fraction.od, 1)} / {pct(ev.cap_loss_fraction.line_hour, 1)} / {pct(ev.cap_loss_fraction.daily, 1)}</td></tr>
