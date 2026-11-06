@@ -57,6 +57,10 @@ SWEEP_PATTERNS = {
     "plate": r"\b[A-ZÅÄÖ]{2,3}-\d{1,3}\b",
 }
 SWEEP_SKIP_ROLES = {"direct_identifier"}
+# E-mail shapes are precise enough that even one hit makes the column a direct-identifier risk (one address can name a
+# person). The other shapes (10-digit ID codes, phones, plates) also match ordinary numbers, so they only raise review.
+SWEEP_UPGRADE = {"email": "EMAIL"}
+SWEEP_UPGRADE_FROM = {"unknown", "non_sensitive", "record_key"}
 
 
 def sweep_table(path: Path, records: list[dict], chunksize: int = 200_000) -> int:
@@ -82,6 +86,11 @@ def sweep_table(path: Path, records: list[dict], chunksize: int = 200_000) -> in
             r["needs_review"] = True
             r["rule_ids"].append("sweep.identifier_shaped_values")
             r["reason"] += "; full-column sweep found " + ", ".join(f"{v} {k}-shaped value(s)" for k, v in found.items())
+            upgrade = next((SWEEP_UPGRADE[k] for k in SWEEP_UPGRADE if k in found), None)
+            if upgrade and r["role"] in SWEEP_UPGRADE_FROM:
+                r["role"], r["subtype"], r["certainty"] = "direct_identifier", upgrade, "low"
+                r["rule_ids"].append("sweep.direct_identifier")
+                r["reason"] += ": treated as a direct identifier (one address can name a person)"
     return rows
 
 
