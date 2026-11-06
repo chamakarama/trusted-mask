@@ -22,11 +22,13 @@ interface Props {
   rely: Reliability | null;
   check: ShortlistCheck | null;
   capLoss: number | null;
+  capGap?: [number, number] | null;                              // busiest morning routes vs exact (synthetic test)
+  bandCheck?: { top3_overlap: number; k?: number } | null;       // one-draw exact check of this band's shortlist
   onOrigin: (a: string | null) => void;
   onSelect: (id: string) => void;
 }
 
-export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin, ranked, shortlist, selected, rely, check, capLoss, onOrigin, onSelect }: Props) {
+export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin, ranked, shortlist, selected, rely, check, capLoss, capGap = null, bandCheck = null, onOrigin, onSelect }: Props) {
   const days = weekdaysInPeriod(rel);
   const top = ranked.slice(0, shortlist);
   const max = Math.max(1, ...top.map((c) => c.trips));
@@ -45,11 +47,14 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
     status = { tone: "ok", text: "Checked against the exact data (synthetic test, weekday mornings)." };
   } else if (check && level === "municipality" && check.townOverlap !== null) {
     status = { tone: "ok", text: `Checked once: ${check.townOverlap} of ${check.k} town pairs match the exact data (synthetic test). Town totals add up many areas' noise, so no range is shown.` };
+  } else if (bandCheck && level === "area") {
+    const k = bandCheck.k ?? 3;
+    status = { tone: bandCheck.top3_overlap === k ? "ok" : "info", text: `Checked once against the exact data: ${bandCheck.top3_overlap} of ${k} top routes match (synthetic test, this release only). Noise and the per-card cap can reorder routes.` };
   } else {
     const scope = band === "06-09" && origin ? "only the unfiltered morning top 3 was" : "only weekday mornings were";
     status = { tone: "info", text: level === "municipality"
       ? `Not tested against the exact data: ${scope}. Town totals add up the noise of many area cells, so small totals can be mostly noise; no range is shown.`
-      : `Not tested against the exact data: ${scope}. Close numbers can swap places.` };
+      : `Not tested against the exact data: ${scope}. Noise and the per-card cap can reorder routes.` };
   }
 
   return (
@@ -94,6 +99,10 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
         })}
         {!top.length && <li className="empty">Nothing here. <button className="link" onClick={() => onOrigin(null)}>Show all</button></li>}
       </ol>
+
+      {rely && <p className="tiny muted capnote">Noise ranges cover the random noise only. The per-card cap also pulls busy routes down{capGap
+        ? `: the 10 busiest morning routes came out ${Math.round(capGap[0] * 100)}–${Math.round(capGap[1] * 100)}% below their exact counts (synthetic test).`
+        : "."}</p>}
 
       <details className="limits">
         <summary>What these numbers can't tell you</summary>
