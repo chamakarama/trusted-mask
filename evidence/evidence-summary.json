@@ -45,6 +45,92 @@
     "od": 0.12147973626237363
   },
   "data_class": "supplied_synthetic",
+  "e7_membership": {
+    "calibration_absent_per_target": 4000,
+    "limitations": [
+      "Simulated neighbouring outputs, not repeated attacks on the single committed artifact.",
+      "Exact discrete-Laplace law simulated with geometric differences, not OpenDP publisher execution.",
+      "All other contributions and target bounded history are known; fixed-pair hypotheses only.",
+      "Three preselected synthetic targets do not cover all users or attacks.",
+      "Low AUC does not prove privacy; finite sample estimates are not universal bounds.",
+      "No new publication, privacy spend, policy retuning or ledger operation."
+    ],
+    "results": [
+      {
+        "auc": 0.60330516,
+        "effective_epsilon": 0.9671875,
+        "false_positive": {
+          "rate": 0.0086,
+          "successes": 86,
+          "trials": 10000,
+          "wilson_95": [
+            0.0069694684051106025,
+            0.010607925193590355
+          ]
+        },
+        "target_index": 1,
+        "true_positive": {
+          "rate": 0.0149,
+          "successes": 149,
+          "trials": 10000,
+          "wilson_95": [
+            0.012704886505102705,
+            0.017467668714127728
+          ]
+        }
+      },
+      {
+        "auc": 0.569367245,
+        "effective_epsilon": 0.753125,
+        "false_positive": {
+          "rate": 0.0093,
+          "successes": 93,
+          "trials": 10000,
+          "wilson_95": [
+            0.007598063501358216,
+            0.011378792499623794
+          ]
+        },
+        "target_index": 2,
+        "true_positive": {
+          "rate": 0.0152,
+          "successes": 152,
+          "trials": 10000,
+          "wilson_95": [
+            0.012981435254342082,
+            0.017790889565865945
+          ]
+        }
+      },
+      {
+        "auc": 0.591979615,
+        "effective_epsilon": 0.85625,
+        "false_positive": {
+          "rate": 0.0102,
+          "successes": 102,
+          "trials": 10000,
+          "wilson_95": [
+            0.00841015237783062,
+            0.012366012426084172
+          ]
+        },
+        "target_index": 3,
+        "true_positive": {
+          "rate": 0.0223,
+          "successes": 223,
+          "trials": 10000,
+          "wilson_95": [
+            0.01958415095628432,
+            0.025382721087060096
+          ]
+        }
+      }
+    ],
+    "review_message": "O-015",
+    "scope": "Three preselected synthetic card profiles; all other bounded contributions and target history known. Exact likelihood-ratio attack on simulated neighbouring releases, not repeated attacks on the one published artifact.",
+    "status": "executed; peer reviewed under fixed-pair simulation scope (O-015)",
+    "test_per_hypothesis_per_target": 10000
+  },
   "initial_policy_100_draws": {
     "decision_pass_count": 100,
     "decision_target": "at least 2/3 overlap and demand regret <=10%",
@@ -129,6 +215,10 @@
       "path": "evidence/e4/trajectory.json",
       "sha256": "bd89c9ee6d7ff46aacbf2d5f6f3300a6877bb407029ac3579f2e90b3dc9b5e3f"
     },
+    "baselines": {
+      "path": "evidence/e5/baselines-reproduced.json",
+      "sha256": "4051673f2e744b8ae9f4e3683c2fd6978d693713535febd1061b2bdb545750ef"
+    },
     "benchmark": {
       "path": "evidence/e5/benchmark.json",
       "sha256": "56f475df1d50209c1be447078e7c9f884b0d1f867f69e3a85daea44c5a8d4ff4"
@@ -149,6 +239,14 @@
       "path": "evidence/e2/inference.json",
       "sha256": "fe58504035bac2aa9d88745d0d8f701005df24a94a9f965624d5c1db8da1acfc"
     },
+    "membership": {
+      "path": "evidence/e7/membership.json",
+      "sha256": "9f9b2588b46383e254b94c469213a5d3d0701e3f99873d6d9552be0c7f744bfd"
+    },
+    "membership_review": {
+      "path": "evidence/e7/opus-review.json",
+      "sha256": "9867f9a8d5e65540e695b2bf3da37c17f8f98813cc021c8d85c52c39c23dfe27"
+    },
     "repeated": {
       "path": "evidence/e3/initial-policy-100.json",
       "sha256": "22cceaf95ac2da59de55771d4297b4b1c8f466af52dba6725de8b16d9684bc53"
@@ -160,6 +258,10 @@
     "search": {
       "path": "evidence/e3/policy-search.json",
       "sha256": "2bfc6d6fcb8163dda8f5dc35b40d7f9e1c6dc9063154a04d012b7b99f926debb"
+    },
+    "utility_comparison": {
+      "path": "evidence/e5/utility-comparison.json",
+      "sha256": "e65d4a3258fbe344fa57a66f55dfac92d34f168e13a3934fa7558b2949a1c001"
     }
   },
   "publisher_source_commit": "5438e3c12145fdca3295aa1b515d5254678cd0c1",
@@ -170,8 +272,100 @@
     "reason": "No card-linked row trajectories are released; lookup attack cannot run on aggregate tables. This is not 0% re-identification.",
     "status": "not_applicable"
   },
+  "row_baseline_utility": {
+    "evaluation_scope": "native supplied MOB-U1/U2/U3 tasks on supplied synthetic data",
+    "limitations": [
+      "Baselines use the supplied field catalog, a label-informed oracle. Publisher never does.",
+      "This runs MOB-U1/U2/U3 only, not the entire nine-domain scorecard.",
+      "Toolkit scores are self-assessment, not an official competition rubric.",
+      "Row-baseline utility and trajectory risk must be considered together.",
+      "RouteSafe U2/U3 use aggregate adapters; these scores must retain their native/adapted labels. A high row-baseline utility score does not imply low disclosure risk."
+    ],
+    "results": {
+      "b0": {
+        "MOB-U1": {
+          "detail": {
+            "cells": 1163,
+            "mape": 0.0
+          },
+          "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+          "score": 1.0
+        },
+        "MOB-U2": {
+          "detail": {
+            "mape": 0.0
+          },
+          "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+          "score": 1.0
+        },
+        "MOB-U3": {
+          "detail": {
+            "mape": 0.0,
+            "r": 0.9999999999999998
+          },
+          "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+          "score": 0.9999999999999998
+        }
+      },
+      "b2": {
+        "MOB-U1": {
+          "detail": {
+            "cells": 1163,
+            "mape": 0.07710882719541051
+          },
+          "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+          "score": 0.845782345609179
+        },
+        "MOB-U2": {
+          "detail": {
+            "mape": 0.0
+          },
+          "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+          "score": 1.0
+        },
+        "MOB-U3": {
+          "detail": {
+            "mape": 0.0,
+            "r": 0.9999999999999998
+          },
+          "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+          "score": 0.9999999999999998
+        }
+      },
+      "b2k": {
+        "MOB-U1": {
+          "detail": {
+            "cells": 1163,
+            "mape": 0.8114430935476087
+          },
+          "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+          "score": 0.0
+        },
+        "MOB-U2": {
+          "detail": {
+            "mape": 0.29811906171912717
+          },
+          "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+          "score": 0.40376187656174567
+        },
+        "MOB-U3": {
+          "detail": {
+            "mape": 0.0633919580596837,
+            "r": 0.9999806718226835
+          },
+          "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+          "score": 0.7886782291270905
+        }
+      }
+    },
+    "saved_scorecard_comparison": {
+      "different_tasks": [],
+      "note": "Scores and detail objects match supplied saved scorecards exactly. B2 utility 0.9797 in the plan is the mean of eight mobility tasks; its MOB-U1 alone is 0.8457823456.",
+      "tasks_compared": 9
+    }
+  },
   "schema_version": "1.0",
-  "source_commit": "c28566183039c4748ef9c72618079dfa3606346d",
+  "source_commit": "c5b19f046af0f0b1512bbc530836e57d41ee9d16",
   "synthetic_evaluation_only": true,
   "trajectory_curve_context": {
     "cohort": "1000 cards sampled without replacement from sorted original cards with >=4 distinct nonmissing stop/hour points; seed 20261106. Same source-card cohort for all baselines, mapping kept private.",
@@ -395,5 +589,254 @@
     "l1_difference": 0,
     "production_journeys": 516119,
     "upstream_journeys": 516119
+  },
+  "utility_comparison": {
+    "daily": [
+      {
+        "date": "2025-10-06",
+        "exact": 41075,
+        "protected": 38872
+      },
+      {
+        "date": "2025-10-07",
+        "exact": 41260,
+        "protected": 35375
+      },
+      {
+        "date": "2025-10-08",
+        "exact": 41287,
+        "protected": 37679
+      },
+      {
+        "date": "2025-10-09",
+        "exact": 41074,
+        "protected": 38624
+      },
+      {
+        "date": "2025-10-10",
+        "exact": 41261,
+        "protected": 37874
+      },
+      {
+        "date": "2025-10-11",
+        "exact": 19290,
+        "protected": 18574
+      },
+      {
+        "date": "2025-10-12",
+        "exact": 18823,
+        "protected": 17817
+      },
+      {
+        "date": "2025-10-13",
+        "exact": 34136,
+        "protected": 31486
+      },
+      {
+        "date": "2025-10-14",
+        "exact": 33407,
+        "protected": 30438
+      },
+      {
+        "date": "2025-10-15",
+        "exact": 33956,
+        "protected": 31343
+      },
+      {
+        "date": "2025-10-16",
+        "exact": 34321,
+        "protected": 31297
+      },
+      {
+        "date": "2025-10-17",
+        "exact": 33815,
+        "protected": 32589
+      },
+      {
+        "date": "2025-10-18",
+        "exact": 19217,
+        "protected": 18831
+      },
+      {
+        "date": "2025-10-19",
+        "exact": 18721,
+        "protected": 17428
+      },
+      {
+        "date": "2025-10-20",
+        "exact": 41297,
+        "protected": 37697
+      },
+      {
+        "date": "2025-10-21",
+        "exact": 40857,
+        "protected": 37336
+      },
+      {
+        "date": "2025-10-22",
+        "exact": 41712,
+        "protected": 39900
+      },
+      {
+        "date": "2025-10-23",
+        "exact": 40904,
+        "protected": 36151
+      },
+      {
+        "date": "2025-10-24",
+        "exact": 42286,
+        "protected": 39437
+      },
+      {
+        "date": "2025-10-25",
+        "exact": 19384,
+        "protected": 19231
+      },
+      {
+        "date": "2025-10-26",
+        "exact": 18833,
+        "protected": 19604
+      },
+      {
+        "date": "2025-10-27",
+        "exact": 41245,
+        "protected": 39850
+      },
+      {
+        "date": "2025-10-28",
+        "exact": 41162,
+        "protected": 37159
+      },
+      {
+        "date": "2025-10-29",
+        "exact": 41955,
+        "protected": 38602
+      },
+      {
+        "date": "2025-10-30",
+        "exact": 41337,
+        "protected": 37906
+      },
+      {
+        "date": "2025-10-31",
+        "exact": 41447,
+        "protected": 38376
+      },
+      {
+        "date": "2025-11-01",
+        "exact": 19489,
+        "protected": 18968
+      },
+      {
+        "date": "2025-11-02",
+        "exact": 19230,
+        "protected": 18049
+      }
+    ],
+    "data_class": "supplied_synthetic",
+    "error_sources": {
+      "daily": {
+        "cap": 0.07647905505096093,
+        "noise": 0.02125125476927176,
+        "total": 0.07194671933354618
+      },
+      "line_hour": {
+        "cap": 0.05566110365275595,
+        "noise": 0.15346636051011717,
+        "total": 0.14701245156487602
+      },
+      "od": {
+        "cap": 0.1214797362623736,
+        "noise": 0.26269625800304797,
+        "total": 0.2509033769343892
+      }
+    },
+    "error_sources_additive": false,
+    "error_sources_definitions": {
+      "cap": "WAPE R1 inferred/exact -> R2 bounded, denominator sum(R1)",
+      "noise": "WAPE R2 bounded -> R3 signed noisy, denominator sum(R2)",
+      "total": "WAPE R1 inferred/exact -> R4 displayed, denominator sum(R1)"
+    },
+    "limitations": [
+      "Exact references are supplied synthetic evaluation only, not protected release tables or assistant inputs. Never publish equivalent real-data references automatically.",
+      "Top ten selected by exact morning count, not by protected count; individual routes may change rank.",
+      "Stage WAPEs are separate comparisons with different denominators, not additive error components; do not stack.",
+      "No new noise draw or canonical ledger operation."
+    ],
+    "morning_top10": [
+      {
+        "destination_area": "Turku-205",
+        "exact": 6060,
+        "exact_rank": 1,
+        "origin_area": "Turku-207",
+        "protected": 5491
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 5179,
+        "exact_rank": 2,
+        "origin_area": "Turku-203",
+        "protected": 4565
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 4871,
+        "exact_rank": 3,
+        "origin_area": "Turku-208",
+        "protected": 4183
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 3846,
+        "exact_rank": 4,
+        "origin_area": "Turku-202",
+        "protected": 3382
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 3126,
+        "exact_rank": 5,
+        "origin_area": "Kaarina-207",
+        "protected": 2674
+      },
+      {
+        "destination_area": "Lieto-214",
+        "exact": 3111,
+        "exact_rank": 6,
+        "origin_area": "Turku-207",
+        "protected": 2547
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 2884,
+        "exact_rank": 7,
+        "origin_area": "Turku-209",
+        "protected": 2486
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 2785,
+        "exact_rank": 8,
+        "origin_area": "Raisio-212",
+        "protected": 2567
+      },
+      {
+        "destination_area": "Lieto-214",
+        "exact": 2755,
+        "exact_rank": 9,
+        "origin_area": "Turku-205",
+        "protected": 2309
+      },
+      {
+        "destination_area": "Turku-205",
+        "exact": 2661,
+        "exact_rank": 10,
+        "origin_area": "Turku-201",
+        "protected": 2420
+      }
+    ],
+    "release_id": "e1-aura-001",
+    "release_manifest_sha256": "bcd8b07aca896ffdbeb1a8695beea709642bafacc464e289f4e276d55f8c184d",
+    "synthetic_evaluation_only": true
   }
 }

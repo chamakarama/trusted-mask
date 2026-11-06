@@ -62,12 +62,12 @@ The offline package includes the synthetic-only evidence summary and exact verif
 
 ## Quick local preview without Python
 
-Use a separate folder to preserve any active builder checkout. This pinned version includes the reviewed redesign, release-switch fix, assistant cancellation on newer actions, and default-HEAD release sync:
+Use a separate folder to preserve any active builder checkout. This pinned version includes the reviewed fixed-domain noise ranges, synthetic membership evidence, assistant cancellation on newer actions and default-HEAD release sync:
 
 ```sh
 git clone https://github.com/Chintufp/Since-AI-hackathon---WAWS.git routesafe-reviewed-ui
 cd routesafe-reviewed-ui
-git checkout 6665cc3
+git checkout 89d7152
 npm ci --prefix web
 npm run sync --prefix web -- --ref HEAD
 npm run dev --prefix web -- --host 127.0.0.1 --port 5175
@@ -76,3 +76,5 @@ npm run dev --prefix web -- --host 127.0.0.1 --port 5175
 Open the address printed by Vite on that same machine, adding `?map=schematic` if offline. Select `e1-aura-001`. The morning shortlist should show 5491 / 4565 / 4183; the Evidence view must also show the failed area-level error target. This requires Node/npm and Git, but no publisher, Python, model key, or new release. The optional proxy's default origin list does not include port 5175, so use deterministic presets in this isolated preview. No public URL has been deployed.
 
 The cloud's `/home/agent/.npm` cache is unwritable; the explicit `/tmp/routesafe-npm-cache` option above fixes that without disabling integrity checks. On Windows use its normal writable npm cache. Python executable paths there are `.venv/Scripts/python.exe` instead of `.venv/bin/python`.
+
+Reviewed evidence integration at 89d7152 passed 44 Python tests, 25 frontend tests, TypeScript/Vite/public boundary checks, 145 browser filter comparisons and both assistant/release race regressions. O-015 accepts the fixed-pair synthetic membership diagnostic. Its AUC is .569–.603 for three selected profiles; this is not a universal privacy guarantee. OD display intervals use a fixed 571 radius across 2,205 cells, around signed counts with endpoints clamped at zero. The immutable release itself still has null intervals.
