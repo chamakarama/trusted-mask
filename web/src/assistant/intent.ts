@@ -17,6 +17,7 @@ export interface Answer {
   warnings: string[];
   alternative?: Intent;
   source: "preset" | "model";
+  request?: Intent;          // the checked request the numbers were computed from (shown as "Read as …")
 }
 
 const KEYS = ["view", "hour_band", "origin_area", "action", "limit"];
@@ -50,7 +51,7 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
   if (rel.manifest.fixture) warnings.unshift("Fixture release: illustrative values, not results.");
   const scope = intent.origin_area ? ` starting in ${areaLabel(intent.origin_area)}` : "";
   return {
-    kind: "answer", release_id: rel.id, definition_id: def, units: "inferred weekday journeys, whole release period", source, warnings,
+    kind: "answer", release_id: rel.id, definition_id: def, units: "inferred weekday journeys, whole release period", source, warnings, request: intent,
     summary: rows.length
       ? `Top ${rows.length} ${BAND_LABEL[intent.hour_band].toLowerCase()} routes${scope}:`
       : `No published route${scope} in this time band.`,

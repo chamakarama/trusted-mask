@@ -39,7 +39,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
             <h3><IconLock /> What's not inside</h3>
             <ul className="plain not-list">
               <li>no rows of taps, no travel-card numbers</li>
-              <li>no exact times (only hour bands and dates)</li>
+              <li>no exact times (only time-of-day bands, clock hours and dates)</li>
               <li>no names, contact details or ticket types</li>
               <li>no single person's journeys</li>
               <li>no routes per day or per line, no capacity or crowding</li>

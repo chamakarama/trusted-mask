@@ -84,7 +84,7 @@ export function BeforeAfter({ uc }: { uc: any }) {
   const pct = (v: number) => `${Math.round(100 * v)}%`;
   return (
     <section className="ba">
-      <h3>Exact vs protected, side by side</h3>
+      <h3>Exact vs protected, side by side <span className="tiny muted">synthetic evaluation: the exact reference is not part of the protected release</span></h3>
       <Legend />
       <div className="ba-grid">
         {!!days.length && <div><h4>Taps per day</h4><DailyCompare days={days} /></div>}
@@ -100,7 +100,7 @@ export function BeforeAfter({ uc }: { uc: any }) {
           </tbody>
         </table>
       )}
-      <p className="tiny muted">Volume-weighted errors. The cap and the noise partly cancel (the cap lowers totals, noise moves cells both ways), so they don't add up to the total. Exact numbers exist only because the data is synthetic.</p>
+      <p className="tiny muted">Volume-weighted errors, each on its own base: per-card cap = share of the exact count the cap removes; random noise = error of the released numbers against the capped counts; total = error of the released numbers against the exact counts. Different bases, and noise and clamping can partly cancel the cap, so they don't add up. Exact numbers exist only because the data is synthetic.</p>
     </section>
   );
 }
