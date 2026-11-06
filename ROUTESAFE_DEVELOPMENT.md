@@ -16,7 +16,7 @@ python -m venv .venv
 .venv/bin/python -m pipeline.inventory --data TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data --output private/mobility-inventory.json
 ```
 
-Publish one experimental supplied-synthetic release. Keep the ledger and output together. Do not delete/replace a ledger to retry or reset budget. The CLI is an operator command, not a public service. E1 policy and privacy claim remain pending cross-review.
+The committed experimental release already exists. Verify and reuse it for the demo; do not rerun publication to obtain different values. The publish command below documents the original operation and is only for a deliberately new, separately reviewed publication. New publication requires clean committed production code. Keep the ledger and output together. Do not delete/replace a ledger to retry or reset budget. The CLI is an operator command, not a public service. E1 policy and privacy claim remain pending cross-review.
 
 ```sh
 .venv/bin/python -m pipeline publish --input TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/mobility --ledger private/publisher.sqlite --release-id e1-aura-001 --output releases/e1-aura-001
@@ -47,4 +47,14 @@ npm run build --prefix web
 
 Verified runtime: Node 24.22.1, npm 11.9.0. The production build runs without private publisher access and uses a local schematic SVG map, so no map tile API is required. Once loaded, filters/views work without internet; offline reload still requires a local static server and files. Free-text AI is explicitly unavailable; presets are deterministic and labelled. Do not claim a live model is connected.
 
-Independent consumer review: all 15 tests pass after Opus's 5767fc0 boundary fixes. The actual release, downloads, refusals, 390px layout and local-only network requests were exercised in Chromium. Review reports are under evidence/e6/. Publisher reverse review remains necessary before main integration or strengthened privacy claims.
+Independent consumer review: all 19 tests pass with the municipality view and evidence panel at Opus 1be7d7a. The actual release, downloads, refusals, 390px layout and local-only network requests were exercised in Chromium. Review reports are under evidence/e6/. Publisher reverse review remains necessary before main integration or strengthened privacy claims.
+
+
+Local packaging (does not publish, deploy, or draw noise; output must be a new path):
+
+```sh
+.venv/bin/python -m pipeline.bundle --release releases/e1-aura-001 --output runtime/e1-review.zip
+.venv/bin/python -m pipeline.offline --build web/dist --output runtime/planner-review.zip
+```
+
+The offline package includes the synthetic-only evidence summary and exact verified release files. Never substitute real-data reference evidence. Extract it and follow README.txt; serve only its planner/ folder. The private operator view is separate: generate web/operator-data/mobility-inventory.json with pipeline.inventory, then run `npm run operator:data --prefix web`. From web/, build with `node_modules/.bin/vite build --config vite.operator.config.ts`; serve only web/dist-operator locally and never deploy it.

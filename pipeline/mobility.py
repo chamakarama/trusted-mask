@@ -2,6 +2,7 @@
 from __future__ import annotations
 import hashlib
 import json
+import re
 from itertools import product
 import numpy as np
 import pandas as pd
@@ -36,6 +37,7 @@ def validate(taps, stops):
     if not taps.stop_id.dropna().isin(stops.stop_id).all(): raise ValueError('DOMAIN_MISMATCH: stop')
     lines=sorted(set('|'.join(stops.lines).split('|')))
     if '' in lines: raise ValueError('DOMAIN_MISMATCH: empty public line')
+    if any(re.search(r'^[=+@\-\t\r\n]|[\r\n]',line) for line in lines): raise ValueError('INVALID_SCHEMA: unsafe public line label')
     lines=sorted(set(lines)|{'unknown'})
     return ts, lines
 
