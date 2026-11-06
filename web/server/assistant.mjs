@@ -80,9 +80,11 @@ async function propose(question) {
   const out = response.parsed_output;
   if (!out) return { kind: "invalid_intent", note: "The model did not return a valid request." };
   console.log(`[assistant] ${new Date().toISOString()} kind=${out.kind} in=${response.usage?.input_tokens} out=${response.usage?.output_tokens}`);
-  if (out.kind !== "rank_corridors") return { kind: out.kind, note: out.note };
+  // The model's free-text note stays in this local log only; the browser receives the typed request alone.
+  console.log(`[assistant] note: ${String(out.note).slice(0, 160)}`);
+  if (out.kind !== "rank_corridors") return { kind: out.kind };
   const limit = Math.min(10, Math.max(1, out.limit ?? 3));
-  return { kind: "intent", note: out.note, intent: { view: "od", hour_band: out.hour_band ?? "06-09", origin_area: out.origin_area, action: "rank_corridors", limit } };
+  return { kind: "intent", intent: { view: "od", hour_band: out.hour_band ?? "06-09", origin_area: out.origin_area, action: "rank_corridors", limit } };
 }
 
 let last = 0;

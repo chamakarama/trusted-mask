@@ -41,9 +41,8 @@ export function AssistantPanel({ rel, onEvidence, onApply }: Props) {
       if (out.kind === "intent") {
         const v = validateIntent(out.intent, rel);
         if (!v.ok) { setAnswer(refuse("invalid_intent", rel, `The AI's request was rejected by the checker (${v.reason}).`)); return; }
-        const a = execute(v.intent, rel, "model");
-        a.summary = `${out.note ? out.note + " " : ""}${a.summary}`;
-        show(a);
+        // the model's own text is discarded: only the validated, typed request is used, and the wording below is ours
+        show(execute(v.intent, rel, "model"));
       } else {
         const kind = (["individual_history_unavailable", "unsupported_breakdown", "out_of_scope", "invalid_intent"].includes(out.kind) ? out.kind : "ai_unavailable") as Answer["kind"];
         const why: Record<string, string> = {
@@ -51,7 +50,7 @@ export function AssistantPanel({ rel, onEvidence, onApply }: Props) {
           unsupported_breakdown: "Routes are only published for the whole 4 weeks and per time of day. Combining tables would make up numbers that were never protected.",
           out_of_scope: "This data only covers bus trips between areas, lines per hour and taps per day.",
         };
-        setAnswer({ ...refuse(kind as any, rel, why[kind] ?? out.note ?? "The AI helper is unavailable."), source: "model" });
+        setAnswer({ ...refuse(kind as any, rel, why[kind] ?? "The AI helper is unavailable right now. Try a suggested question."), source: "model" });
       }
     } catch {
       setLive(false);

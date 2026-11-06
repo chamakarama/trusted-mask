@@ -31,7 +31,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
           <div>
             <div className="eyebrow">Why not just share the rows?</div>
             <div className="hero-num">{pct(four.unicity, 1)}</div>
-            <p>of travel cards can be <strong>picked out from just 4 sightings</strong> (a stop and an hour), even with names removed. One picked-out card shows everywhere that person went for a month.</p>
+            <p>of travel cards can be <strong>picked out from just 4 sightings</strong> (a stop and an hour), even with names removed. A picked-out card reveals all of that card's recorded bus boardings for the month.</p>
             <p className="small ink2">RouteSafe shares no rows at all, only protected counts, so this attack has nothing to search. (That is not the same as zero risk.)</p>
           </div>
           <div>
@@ -44,10 +44,11 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
                     <rect x={92} y={y + 4} width={W - 140} height={16} rx={4} fill="var(--d100)" />
                     <rect x={92} y={y + 4} width={bw} height={16} rx={4} className="hbar" />
                     <text x={92 + bw + 6} y={y + 16} className="lbl" fontWeight={700}>{pct(c.unicity, 1)}</text>
+                    {c.wilson_95 && <text x={92 + bw + 50} y={y + 16} className="lbl" fill="var(--muted)">({pct(c.wilson_95[0], 1)}–{pct(c.wilson_95[1], 1)})</text>}
                   </g>
                 );
               })}
-              <text x={0} y={curve.length * rowH + 18} className="lbl" fill="var(--muted)">{fmt(curve[0]?.tested ?? 1000)} test cards, names removed</text>
+              <text x={0} y={curve.length * rowH + 18} className="lbl" fill="var(--muted)">{fmt(curve[0]?.tested ?? 1000)} test cards, names removed · 95% range in brackets</text>
             </svg>
           </div>
         </div>
@@ -55,7 +56,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
           <article className="ev-card">
             <h3><IconCheck /> Do planners still get the right answer?</h3>
             <p className="big">{dec.top_k_overlap} of {dec.k}</p>
-            <p className="small">top morning routes are the same as with the exact data. Tested {rep.draw_count} times with fresh random noise: same top {dec.k} every time ({rep.decision_pass_count}/{rep.draw_count}).</p>
+            <p className="small">top morning routes are the same as with the exact data. Re-run {rep.draw_count} times with fresh random noise on this synthetic data: exactly the same top {dec.k} in {rep.exact_top3_count ?? "–"} of {rep.draw_count} runs.</p>
             <ol className="plain small">{dec.selected.map((c: any) => <li key={c.origin_area + c.destination_area}>{areaLabel(c.origin_area)} → {areaLabel(c.destination_area)}</li>)}</ol>
           </article>
           <article className="ev-card">
@@ -73,7 +74,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
           </article>
           <article className="ev-card">
             <h3><IconShield /> What the protection means</h3>
-            <p className="small">Each travel card can only add a limited number of trips, then random noise is added (privacy budget ε = 1 per card for the whole month). One card cannot noticeably change any number.</p>
+            <p className="small">Each travel card can only add a limited number of trips, then random noise is added. That limits how much any one card can shift the odds of what gets published (privacy budget ε = 1 per card for the whole month). It is a mathematical limit on influence, not a promise that no number moves.</p>
             <p className="small ink2">Limit: one person with 2 cards counts as 2 cards. That's {fmt(mc.people_with_multiple_cards)} of {fmt(mc.people_in_truth)} people in this data.</p>
           </article>
         </div>
@@ -86,6 +87,8 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
               <tr><td>Organisers' utility scores MOB-U1 / U2 / U3 (not passing)</td><td className="num">{ev.native_MOB_U1.score.toFixed(2)} / {ev.adapted_MOB_U2.score.toFixed(2)} / {ev.adapted_MOB_U3.score.toFixed(2)}</td></tr>
               <tr><td>Trips removed by the per-card limit (routes / lines / days)</td><td className="num">{pct(ev.cap_loss_fraction.od, 1)} / {pct(ev.cap_loss_fraction.line_hour, 1)} / {pct(ev.cap_loss_fraction.daily, 1)}</td></tr>
               <tr><td>Release fingerprint (manifest SHA-256)</td><td className="num"><code>{ev.release_manifest_sha256.slice(0, 16)}…</code></td></tr>
+              <tr><td>Publisher commit that made the release / evidence revision</td><td className="num"><code>{String(ev.publisher_source_commit ?? "n/a").slice(0, 10)}</code> / <code>{String(ev.source_commit).slice(0, 10)}</code></td></tr>
+              <tr><td>Decision target passed (overlap + regret) / exact same top 3</td><td className="num">{rep.decision_pass_count} / {rep.exact_top3_count ?? "n/a"} of {rep.draw_count}</td></tr>
             </tbody>
           </table>
           <p className="tiny muted">{ev.trajectory_curve_context?.known_point_sampling} Each shared version is tested on its own surviving records.</p>

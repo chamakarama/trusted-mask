@@ -76,3 +76,21 @@ describe.each(releases)("release %s", (id) => {
     expect(res.errors.join()).toMatch(/disagrees with statistics.json/);
   });
 });
+
+describe("public labels cannot carry markup (A-011/A-012 regression)", () => {
+  it("refuses an HTML-bearing area label even when every hash is recomputed", async () => {
+    const files = load("fixture-only-001");
+    const dec = new TextDecoder();
+    const g = JSON.parse(dec.decode(files.get("public_areas.geojson")));
+    g.features[0].properties.name = '<img src=x onerror="window.__pwned=1">';
+    files.set("public_areas.geojson", enc.encode(JSON.stringify(g)));
+    const m = JSON.parse(dec.decode(files.get("manifest.json")));
+    for (const r of m.resources) r.sha256 = await sha(files.get(r.path)!);
+    files.set("manifest.json", enc.encode(JSON.stringify(m)));
+    const lines = [...files.entries()].filter(([k]) => k !== "checksums.sha256").sort(([a], [b]) => a.localeCompare(b));
+    files.set("checksums.sha256", enc.encode((await Promise.all(lines.map(async ([k, v]) => `${await sha(v)}  ${k}`))).join("\n") + "\n"));
+    const res = await validateRelease(files, schema, sha);
+    expect(res.ok).toBe(false);
+    expect(res.errors.join()).toMatch(/markup/);
+  });
+});

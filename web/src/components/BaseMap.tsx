@@ -85,7 +85,16 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m.on("mousemove", "arcs", (e) => {
         m.getCanvas().style.cursor = "pointer";
         const p = e.features?.[0]?.properties as any;
-        if (p) popup.setLngLat(e.lngLat).setHTML(`<b>#${p.rank} ${p.from} → ${p.to}</b><br>${p.trips} trips · protected estimate`).addTo(m);
+        if (p) {
+          // text nodes only: public labels come from a bundle and must never be parsed as HTML
+          const box = document.createElement("div");
+          const head = document.createElement("b");
+          head.textContent = `#${p.rank} ${p.from} → ${p.to}`;
+          const line = document.createElement("div");
+          line.textContent = `${p.trips} trips · protected estimate`;
+          box.append(head, line);
+          popup.setLngLat(e.lngLat).setDOMContent(box).addTo(m);
+        }
       });
       m.on("mouseleave", "arcs", () => { m.getCanvas().style.cursor = ""; popup.remove(); });
       m.on("click", "arcs", (e) => { const id = e.features?.[0]?.properties?.id; if (id) cb.current.onSelect(String(id)); });
