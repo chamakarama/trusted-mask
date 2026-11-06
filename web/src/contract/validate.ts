@@ -104,6 +104,7 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
     for (const f of Array.isArray(geo.features) ? geo.features : []) {
       if (!exact(f, ["type", "properties", "geometry"]) || f.type !== "Feature") { fail("ARTIFACT_INVALID", "feature must be exactly {type, properties, geometry}"); break; }
       if (!exact(f.properties, GEO_PROPERTIES) || GEO_PROPERTIES.some((k) => typeof f.properties[k] !== "string" || !f.properties[k])) { fail("ARTIFACT_INVALID", `feature properties must be exactly ${GEO_PROPERTIES} (non-empty strings)`); break; }
+      if (GEO_PROPERTIES.some((k) => /[<>"'`&\u0000-\u001f]|^[=+@\-\t]/.test(f.properties[k]))) { fail("ARTIFACT_INVALID", "public labels may not contain markup, quotes, control or formula characters"); break; }
       const c = f.geometry?.coordinates;
       if (!exact(f.geometry, ["type", "coordinates"]) || f.geometry.type !== "Point" || !Array.isArray(c) || c.length !== 2 ||
           !c.every((x: unknown) => typeof x === "number" && Number.isFinite(x)) || Math.abs(c[0]) > 180 || Math.abs(c[1]) > 90) { fail("ARTIFACT_INVALID", "geometry must be finite [lon, lat] points"); break; }

@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const dist = resolve(dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const MEMBERS = new Set(["manifest.json", "definitions.json", "public_areas.geojson", "od_matrix.csv", "line_hour.csv", "daily.csv", "statistics.json", "README.txt", "checksums.sha256"]);
-const ok = (p) => p === "index.html" || /^assets\/[\w.-]+\.(js|css)$/.test(p) || p === "contract/manifest.schema.json" ||
+const ok = (p) => p === "index.html" || /^assets\/[\w.-]+\.(js|css|woff2?)$/.test(p) || p === "contract/manifest.schema.json" ||
   p === "evidence/evidence-summary.json" || p === "releases/index.json" || (/^releases\/[a-z0-9][a-z0-9-]{0,63}\/([\w.]+)$/.test(p) && MEMBERS.has(p.split("/")[2]));
 const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
 const bad = [], leaks = [];
