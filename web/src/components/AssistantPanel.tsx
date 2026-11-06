@@ -37,7 +37,12 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   };
   useEffect(() => { const ctl = checkHealth(); return () => ctl.abort(); }, []);
 
-  const show = (a: Answer) => { begin(); setAnswer(a); if (a.kind === "answer" && a.evidence[0]) onEvidence(a.evidence[0].result_id); };
+  // a preset answer applies its own checked request (band AND start area, including "anywhere"), like a typed one (A-033)
+  const show = (a: Answer) => {
+    begin(); setAnswer(a);
+    if (a.kind === "answer" && a.request && onIntent) onIntent(a.request.hour_band, a.request.origin_area, a.evidence[0]?.result_id ?? null);
+    else if (a.kind === "answer" && a.evidence[0]) onEvidence(a.evidence[0].result_id);
+  };
 
   const ask = async () => {
     const question = q.trim();

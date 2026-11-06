@@ -12,7 +12,7 @@ interface Props {
   origin: string | null;
   onSelect: (id: string) => void;
   onOrigin: (area: string | null) => void;
-  muted?: boolean;             // routes too small to tell from noise: draw them grey, not as demand
+  floor?: number | null;       // routes at or below this noise floor are drawn grey and dashed, without a rank badge
   tripsMax?: number;           // release-wide maxima keep widths and dot sizes comparable across time bands
   outMax?: number;
 }
@@ -20,7 +20,8 @@ interface Props {
 const W = 760, H = 500, PAD = 46;
 
 /** Schematic map: public area points (unweighted stop centroids) and straight-line-free arcs. No basemap, no roads. */
-export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, muted = false, tripsMax, outMax }: Props) {
+export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, floor = null, tripsMax, outMax }: Props) {
+  const isMuted = (c: Corridor) => floor !== null && c.noisy_value <= floor;
   const [hover, setHover] = useState<string | null>(null);
   const proj = useMemo(() => {
     // Equirectangular, then a radial "centre-enlarged" warp (r' = r^0.5) around the median point so the dense city
@@ -90,6 +91,7 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
         {ordered.map((c) => {
           const strong = c.rank <= highlight;
           const isSel = selected === c.id;
+          const muted = isMuted(c);
           return (
             <path
               key={c.id}
@@ -109,7 +111,7 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
             </path>
           );
         })}
-        {!muted && corridors.filter((c) => c.rank <= highlight).map((c) => {
+        {corridors.filter((c) => c.rank <= highlight && !isMuted(c)).map((c) => {
           const p = badgeAt(c);
           return (
             <g key={`b-${c.id}`} className="rank-badge" aria-hidden="true">

@@ -2,6 +2,7 @@ import { cellRadius, familyScale, fmt, noiseRadius } from "../data/derive";
 import { oddsBound } from "../data/evidence";
 import { areaLabel, type Release } from "../data/release";
 import { BeforeAfter } from "./BeforeAfter";
+import { Tradeoff } from "./Tradeoff";
 import { IconCheck, IconInfo, IconShield, IconWarn } from "./Icons";
 
 const pct = (x: number, d = 0) => `${(100 * x).toFixed(d)}%`;
@@ -86,13 +87,14 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
               <tr><td>Journey rows, names removed</td><td className="num">{cohort(c0, t.b0.unicity)}</td><td className="num">{scores(rb?.b0)}</td></tr>
               <tr><td>Journey rows, fixed fake card numbers</td><td className="num">{cohort(c2, t.b2.unicity)}</td><td className="num">{scores(rb?.b2)}</td></tr>
               <tr><td>Journey rows, fake numbers, rare values suppressed (k ≥ 5)</td><td className="num">{cohort(c2k, t.b2k.unicity)}{c2k && c2k.tested < (c0?.tested ?? 0) ? <span className="tiny muted"> of {fmt(c2k.tested)} left</span> : null}</td><td className="num">{scores(rb?.b2k)}</td></tr>
-              <tr className="row-ours"><td><strong>RouteSafe: protected counts only</strong></td><td className="num">no rows to search</td><td className="num neutral">{two(u1.score)} · {two(u2.score)} · {two(u3.score)} <span className="tiny muted">not passing</span></td></tr>
+              <tr className="row-ours"><td><strong>RouteSafe: protected counts only</strong></td><td className="num">no rows to search</td><td className="num neutral">{two(u1.score)} · {two(u2.score)}* · {two(u3.score)}* <span className="tiny muted">not passing</span></td></tr>
             </tbody>
           </table>
         </div>
-        <p className="tiny muted">Same fixed group of {fmt(four.tested ?? 1000)} test cards as the curve above, stops within {t.b0.spatial_m} m and times to the hour (the organisers' own sample gives {pct(t.b0.unicity, 1)} / {pct(t.b2.unicity, 1)} / {pct(t.b2k.unicity, 1)}; see technical details). Utility: routes = native MOB-U1; for RouteSafe, lines and days use aggregate adapters of MOB-U2/U3. Row scores use the organisers' field catalogue. A high row score does not mean low risk: read both columns together.</p>
+        <p className="tiny muted">Same fixed group of {fmt(four.tested ?? 1000)} test cards as the curve above, stops within {t.b0.spatial_m} m and times to the hour (the organisers' own sample gives {pct(t.b0.unicity, 1)} / {pct(t.b2.unicity, 1)} / {pct(t.b2k.unicity, 1)}; see technical details). Utility: routes = the organisers' MOB-U1. *For RouteSafe, lines and days use our own aggregate adapters of MOB-U2/U3: the unmodified organisers' tool marks them not answerable for an aggregate release. Row scores use the organisers' field catalogue. A high row score does not mean low risk: read both columns together.</p>
 
         <BeforeAfter uc={ev.utility_comparison} />
+        <Tradeoff t={ev.policy_tradeoff} released={{ epsilon: eps, cap: rel.manifest.privacy.families.od.cap, geography: "area" }} />
 
         <div className="ev-grid">
           <article className="ev-card">
