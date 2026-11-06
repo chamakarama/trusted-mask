@@ -1,0 +1,34 @@
+{
+  "absent_from_isolated_root": [
+    "metadata",
+    "truth",
+    "adversary",
+    "holdout",
+    "evaluation",
+    "field_catalog",
+    "petpilot.evaluate"
+  ],
+  "data_class": "supplied_synthetic",
+  "experiment": "E1S scanner resource isolation",
+  "input_tables": [
+    "bike_stations.csv",
+    "bike_trips.csv",
+    "cards.csv",
+    "stops.csv",
+    "taps.csv"
+  ],
+  "observed": {
+    "evaluation_imported": false,
+    "fields": 48,
+    "review": 28,
+    "unknown": 13
+  },
+  "production_modules": {
+    "__init__.py": "228c05be9eb6cac61eede297d475bb47fd95ad1f164364dd2491fd9fc8da5510",
+    "inventory.py": "6cea9d93ca4f9283bc0fca3e4cfc03b3a171cc2557bdf0cc53f3c9764a2444e8",
+    "scan.py": "38e039826cd398eb89afec5f20ad04792d85989b78be323d8e3d900229d8e11d",
+    "validators.py": "21eef97c3c9381b21bb50a2ae5c4344da681a555912b39543c3b5d29af05faaa"
+  },
+  "same_fields_as_operator_inventory": true,
+  "scope": "Separate working root containing four production modules and supplied data only. This is a dependency check, not an operating-system sandbox or blind detector-quality test. Raw inventory remains local and private."
+}

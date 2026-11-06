@@ -1,0 +1,147 @@
+{
+  "created_at": "2026-11-06T20:38:43.303565+00:00",
+  "data_class": "team_synthetic",
+  "families": {
+    "daily": {
+      "availability": "released",
+      "definition_id": "daily-v1",
+      "dimensions": [
+        "date"
+      ],
+      "resource": "daily.csv",
+      "uncertainty": "not_available_in_e1"
+    },
+    "line_hour": {
+      "availability": "released",
+      "definition_id": "line_hour-v1",
+      "dimensions": [
+        "line",
+        "hour"
+      ],
+      "resource": "line_hour.csv",
+      "uncertainty": "not_available_in_e1"
+    },
+    "od": {
+      "availability": "released",
+      "definition_id": "od-v1",
+      "dimensions": [
+        "origin_area",
+        "destination_area",
+        "hour_band"
+      ],
+      "resource": "od_matrix.csv",
+      "uncertainty": "not_available_in_e1"
+    }
+  },
+  "fixture": true,
+  "inference": "Card/day stable time order; remove double taps and weekends; retain >60 minute gaps from previous boarding; close last to first. Tied distinct events canonically ordered by stop/line.",
+  "licenses": [
+    "TrustED PETs Proving Ground 2026 data/docs: CC BY 4.0, Since AI ry.",
+    "Public synthetic stops use upstream geography attribution; see supplied NOTICE.md.",
+    "OpenDP: MIT; upstream toolkit: MIT."
+  ],
+  "limitations": [
+    "Synthetic benchmark, not real transport findings.",
+    "Heuristic destinations are not observed.",
+    "E1 parameters are experimental, not final policy.",
+    "Mechanism intervals and ranking uncertainty not yet evaluated.",
+    "Clipping and clamping introduce bias.",
+    "All privacy claims require cross-review; fixture numbers are invented."
+  ],
+  "period": {
+    "end_date_inclusive": "2025-11-02",
+    "start_date": "2025-10-06",
+    "timestamp_ambiguity_policy": "Naive local wall clock as supplied; repeated DST hour not resolved. Weekday OD excludes the Sunday transition.",
+    "timezone": "Europe/Helsinki"
+  },
+  "policy_version": "e1-experimental-32-64-64-epsilon1-v1",
+  "postprocessing": "Integer noisy estimates clamped at zero for display; signed noisy_value retained. No reconciliation.",
+  "privacy": {
+    "accounting": "Single private publisher ledger; reserved draws count as spent; changing ledger is not a budget reset.",
+    "adjacency": "add_remove_one_card",
+    "delta_release": 0,
+    "epsilon_release": 1.0,
+    "families": {
+      "daily": {
+        "cap": 64,
+        "delta": 0,
+        "epsilon": 0.1,
+        "input_distance": 64,
+        "input_metric": "L1 integer vector",
+        "library_version": "0.16.0",
+        "mechanism": "OpenDP integer vector Laplace",
+        "scale": 640.0,
+        "selection": "card-local SHA256 rank over canonical final count units v1"
+      },
+      "line_hour": {
+        "cap": 64,
+        "delta": 0,
+        "epsilon": 0.3,
+        "input_distance": 64,
+        "input_metric": "L1 integer vector",
+        "library_version": "0.16.0",
+        "mechanism": "OpenDP integer vector Laplace",
+        "scale": 213.33333333333334,
+        "selection": "card-local SHA256 rank over canonical final count units v1"
+      },
+      "od": {
+        "cap": 32,
+        "delta": 0,
+        "epsilon": 0.6,
+        "input_distance": 32,
+        "input_metric": "L1 integer vector",
+        "library_version": "0.16.0",
+        "mechanism": "OpenDP integer vector Laplace",
+        "scale": 53.333333333333336,
+        "selection": "card-local SHA256 rank over canonical final count units v1"
+      }
+    },
+    "guarantee_status": "not_claimed",
+    "multiple_identifier_limitation": "One person can have multiple cards; no fixed person-level guarantee.",
+    "scope": "whole_release_period",
+    "unit": "card"
+  },
+  "public_domain_version": "fictional-two-area-v1",
+  "publisher": "Fictional Aura Transit; TrustED PETs Proving Ground 2026, synthetic data by Since AI ry",
+  "purpose": "External transport planning research: morning corridor shortlist, line/hour demand, daily taps; no capacity or optimal-route claim.",
+  "release_id": "fixture-only-001",
+  "resources": [
+    {
+      "media_type": "text/plain",
+      "path": "README.txt",
+      "sha256": "b43d496f52a3b450e899b821121980a39b4cc188ed3e03fdc2e9b81deb496d14"
+    },
+    {
+      "media_type": "text/csv",
+      "path": "daily.csv",
+      "sha256": "22a96124b22266a083cc3189d5f01ae581eadf1b58500cd58dfce209dc9a8d65"
+    },
+    {
+      "media_type": "application/json",
+      "path": "definitions.json",
+      "sha256": "621f29fff33e9a1821cc210b3da139b6f1d3b3263e982cfbbede4d3cd2ac4e15"
+    },
+    {
+      "media_type": "text/csv",
+      "path": "line_hour.csv",
+      "sha256": "e46b694fb3a8314f19494ce1c5d124e5c04b8abb54b89b2faf9923bbd3572631"
+    },
+    {
+      "media_type": "text/csv",
+      "path": "od_matrix.csv",
+      "sha256": "7b4f1a3e799e2fcbb8329d74b320056bd3655ebf3bb3c8b52c661e57c9b1b4e6"
+    },
+    {
+      "media_type": "application/geo+json",
+      "path": "public_areas.geojson",
+      "sha256": "51c0088f554e549c4e3da1d518f03c23111bba0acc8d6a39d119af58ab9a4d74"
+    },
+    {
+      "media_type": "application/json",
+      "path": "statistics.json",
+      "sha256": "f6b1de96420dd59e32ab161d6aada350214c4b33a135f473eb7dddfe95360c5c"
+    }
+  ],
+  "schema_version": "1.0",
+  "source_commit": "b13252b1ca2dbd428918802533f4e5420cae810c"
+}
