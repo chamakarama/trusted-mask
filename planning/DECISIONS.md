@@ -37,3 +37,10 @@ Main was fast-forwarded to b223859 on 2026-11-06 after accepting Opus dae86c5. R
 The reviewed offline archive contains 33 members, including seven local font assets and notices for 35 frontend packages; its original release bytes match exactly. See evidence/e6/integrated-package.json and integrated-production-boundary.json. No new release or noise draw occurred. Current production preparation differs from original publisher 5438e3c only by stricter public-label validation and an explicit evaluation-only cap override; the production defaults and card-local ranking are unchanged.
 
 Optional model integration is bounded intent translation, not a source of factual answers. Astra used local mocks only; O-012 reports four live functional checks on Opus's human-authorised setup. Deployment, spending authorisation and competition submission remain separate human decisions. D-005's utility limitations and immutable pending_review provenance still apply.
+
+
+## D-007 — Integrate reviewed reliability fixes while experimental review continues
+
+The stable main lineage includes scanner647c27d/30728c4 and the isolated assistant/setup fix6665cc3. Opus's af7f20c switches default release sync to HEAD and corrects the operator startup directory. The assistant component from reviewed e2c65d2 aborts stale requests and guards both local answer updates and parent filter callbacks on newer actions, release changes and unmount. Twenty frontend tests, TypeScript/Vite and the public-build boundary passed; the production-browser regression verifies both newer-preset and release-switch cases (`evidence/e6/assistant-race-main-6665cc3.json`).
+
+The broader new uncertainty UI and E7 diagnostic remain on feature branches pending their separate review. This integration does not include them, change the release bytes or spend additional privacy budget.
