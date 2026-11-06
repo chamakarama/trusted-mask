@@ -6,6 +6,11 @@ import Ajv2020 from "ajv/dist/2020";
 export const ALLOWED_MEMBERS = ["manifest.json", "definitions.json", "public_areas.geojson", "od_matrix.csv",
   "line_hour.csv", "daily.csv", "statistics.json", "README.txt", "checksums.sha256"] as const;
 export const VALUE_COLUMN: Record<string, string> = { od: "trips", line_hour: "boardings", daily: "tap_events" };
+// Consumer-side allowlist: the only dimensions and resources each family may ever have (contract v1).
+// A manifest cannot widen these, e.g. by adding a card_id "dimension".
+export const FAMILY_DIMENSIONS: Record<string, string[]> = { od: ["origin_area", "destination_area", "hour_band"], line_hour: ["line", "hour"], daily: ["date"] };
+export const FAMILY_RESOURCE: Record<string, string> = { od: "od_matrix.csv", line_hour: "line_hour.csv", daily: "daily.csv" };
+const GEO_PROPERTIES = ["area_id", "municipality", "name", "source"];
 export const EXTRA_COLUMNS = ["noisy_value", "noise_lower", "noise_upper", "evidence_status"];
 export const EVIDENCE = ["usable", "uncertain", "not_supported"];
 export const HOUR_BANDS = ["00-06", "06-09", "09-15", "15-18", "18-24"];
@@ -68,8 +73,9 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
     return { ok: false, errors, warnings };
   }
 
-  // 2. members: only allowlisted files, each listed resource present with the stated SHA-256
+  // 2. members: exactly the allowlisted files, each listed resource present with the stated SHA-256
   for (const name of files.keys()) if (!(ALLOWED_MEMBERS as readonly string[]).includes(name)) fail("ARTIFACT_INVALID", `unexpected member ${name}`);
+  for (const name of ALLOWED_MEMBERS) if (!files.has(name)) fail("ARTIFACT_INVALID", `required member ${name} missing`);
   const listed = new Set<string>();
   for (const r of manifest.resources) {
     listed.add(r.path);
@@ -93,12 +99,15 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
   let areas: string[] = [];
   try {
     const geo = JSON.parse(text("public_areas.geojson"));
-    if (geo.type !== "FeatureCollection" || !Array.isArray(geo.features)) fail("ARTIFACT_INVALID", "geometry is not a FeatureCollection");
-    for (const f of geo.features ?? []) {
-      const [lon, lat] = f?.geometry?.coordinates ?? [];
-      if (f?.geometry?.type !== "Point" || !(Math.abs(lon) <= 180 && Math.abs(lat) <= 90)) fail("ARTIFACT_INVALID", "geometry must be valid points");
-      if (!f?.properties?.area_id) fail("ARTIFACT_INVALID", "feature without area_id");
-      areas.push(f?.properties?.area_id);
+    const exact = (o: unknown, keys: string[]) => !!o && typeof o === "object" && !Array.isArray(o) && Object.keys(o).sort().join() === [...keys].sort().join();
+    if (!exact(geo, ["type", "features"]) || geo.type !== "FeatureCollection" || !Array.isArray(geo.features)) fail("ARTIFACT_INVALID", "geometry must be exactly {type: FeatureCollection, features}");
+    for (const f of Array.isArray(geo.features) ? geo.features : []) {
+      if (!exact(f, ["type", "properties", "geometry"]) || f.type !== "Feature") { fail("ARTIFACT_INVALID", "feature must be exactly {type, properties, geometry}"); break; }
+      if (!exact(f.properties, GEO_PROPERTIES) || GEO_PROPERTIES.some((k) => typeof f.properties[k] !== "string" || !f.properties[k])) { fail("ARTIFACT_INVALID", `feature properties must be exactly ${GEO_PROPERTIES} (non-empty strings)`); break; }
+      const c = f.geometry?.coordinates;
+      if (!exact(f.geometry, ["type", "coordinates"]) || f.geometry.type !== "Point" || !Array.isArray(c) || c.length !== 2 ||
+          !c.every((x: unknown) => typeof x === "number" && Number.isFinite(x)) || Math.abs(c[0]) > 180 || Math.abs(c[1]) > 90) { fail("ARTIFACT_INVALID", "geometry must be finite [lon, lat] points"); break; }
+      areas.push(f.properties.area_id);
     }
     if (new Set(areas).size !== areas.length) fail("ARTIFACT_INVALID", "duplicate area_id");
   } catch { fail("ARTIFACT_INVALID", "geometry is not JSON"); }
@@ -113,13 +122,17 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
   const dates = datesBetween(manifest.period.start_date, manifest.period.end_date_inclusive);
   for (const fam of released) {
     const rows = stats[fam] ?? [];
-    const dims: string[] = manifest.families[fam].dimensions;
     const value = VALUE_COLUMN[fam];
     if (!value) { fail("UNSUPPORTED_VERSION", `unknown family ${fam}`); continue; }
+    const dims = FAMILY_DIMENSIONS[fam];
+    if ((manifest.families[fam].dimensions ?? []).join() !== dims.join()) { fail("ARTIFACT_INVALID", `${fam}: dimensions must be exactly ${dims}`); continue; }
+    if (manifest.families[fam].resource !== FAMILY_RESOURCE[fam]) { fail("ARTIFACT_INVALID", `${fam}: resource must be ${FAMILY_RESOURCE[fam]}`); continue; }
     const cols = [...dims, value, ...EXTRA_COLUMNS].sort().join();
     const seen = new Set<string>();
     for (const r of rows) {
       if (Object.keys(r).sort().join() !== cols) { fail("ARTIFACT_INVALID", `${fam}: unexpected columns ${Object.keys(r)}`); break; }
+      const typed = dims.every((d) => (d === "hour" ? Number.isInteger(r[d]) : typeof r[d] === "string" && (r[d] as string) !== ""));
+      if (!typed) { fail("ARTIFACT_INVALID", `${fam}: dimension values have the wrong type`); break; }
       const key = dims.map((d) => r[d]).join("|");
       if (seen.has(key)) { fail("ARTIFACT_INVALID", `${fam}: duplicate cell ${key}`); break; }
       seen.add(key);
@@ -146,11 +159,14 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
       if (rows.some((r) => !dates.includes(String(r.date))) || rows.length !== dates.length) fail("DOMAIN_MISMATCH", "daily dates do not cover the release period exactly");
     }
     // 5. the CSV download must carry exactly the same values as the JSON the UI reads
-    const resource = manifest.families[fam].resource;
+    const resource = FAMILY_RESOURCE[fam];
     try {
+      const header = text(resource).split("\n", 1)[0].replace(/\r$/, "").split(",");
+      const expectedHeader = [...dims, value, ...EXTRA_COLUMNS];
+      if (header.join() !== expectedHeader.join()) { fail("ARTIFACT_INVALID", `${resource}: header must be exactly ${expectedHeader}`); continue; }
       const csv = parseCsv(text(resource));
       const asCsv = rows.map((r) => Object.fromEntries(Object.entries(r).map(([k, x]) => [k, x === null ? "" : String(x)])));
-      if (csv.length !== asCsv.length || csv.some((c, i) => Object.keys(c).some((k) => c[k] !== asCsv[i][k]))) fail("ARTIFACT_INVALID", `${resource} disagrees with statistics.json`);
+      if (csv.length !== asCsv.length || csv.some((c, i) => expectedHeader.some((k) => c[k] !== asCsv[i][k]))) fail("ARTIFACT_INVALID", `${resource} disagrees with statistics.json`);
     } catch (e) { fail("ARTIFACT_INVALID", `${resource}: ${(e as Error).message}`); }
   }
   if (manifest.fixture) warnings.push("fixture release: illustrative contract data, never performance evidence");
