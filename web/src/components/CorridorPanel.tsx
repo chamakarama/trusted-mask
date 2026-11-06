@@ -67,7 +67,7 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
         {!top.length && <li className="empty">Nothing here. <button className="link" onClick={() => onOrigin(null)}>Show all</button></li>}
       </ol>
       <p className="note"><IconWarn />
-        <span>These are protected estimates with a little noise added, so routes with similar numbers can swap places.{level === "municipality" && " Towns are the area numbers added up (nothing new is calculated)."}</span>
+        <span>These are protected estimates with random noise added, so routes with similar numbers can swap places.{level === "municipality" && " Town numbers add up the areas' signed estimates and then clamp at zero, with no new noise."}</span>
       </p>
 
       {sel && (

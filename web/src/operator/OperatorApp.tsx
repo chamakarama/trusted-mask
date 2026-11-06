@@ -66,7 +66,7 @@ export function OperatorApp() {
               <div><strong>{fields.length}</strong><span>columns scanned</span></div>
               <div><strong>{people}</strong><span>identify a person (names, e-mail, phone…)</span></div>
               <div><strong>{used.length}</strong><span>needed to make the counts</span></div>
-              <div><strong>{dropped.length}</strong><span>thrown away, never read</span></div>
+              <div><strong>{dropped.length}</strong><span>omitted from the release</span></div>
             </div>
           </li>
 
@@ -90,7 +90,7 @@ export function OperatorApp() {
           {purpose === "public" && (
             <li className="panel">
               <h2><span className="step-num">3</span>What happens to each column</h2>
-              <p className="small ink2">"Needs review" means the scanner wasn't sure. Columns that are thrown away can't leak, so only the ones that are used need a person's OK.
+              <p className="small ink2">"Needs review" means a person should check it: the column may be known sensitive or the scanner may be unsure. Omitted columns are excluded from this publisher's release, so sign-off here is asked only for columns the release uses.
                 {usedFlagged.length > 0 && <> <strong>{reviewed} of {usedFlagged.length}</strong> used columns signed off on this computer.</>}</p>
               <div className="table-wrap">
                 <table className="table optable">
@@ -111,8 +111,8 @@ export function OperatorApp() {
                 </table>
               </div>
               <details className="more">
-                <summary>{dropped.length} columns thrown away (names, e-mails, phones, card registry, bikes…)</summary>
-                <ul className="plain small">{dropped.map((f) => <li key={key(f)}><code>{f.table}.{f.column}</code> · {ROLE[f.role] ?? f.role}{f.needs_review ? " · scanner unsure, but not used" : ""}</li>)}</ul>
+                <summary>{dropped.length} columns omitted (names, e-mails, phones, card registry, bikes…)</summary>
+                <ul className="plain small">{dropped.map((f) => <li key={key(f)}><code>{f.table}.{f.column}</code> · {ROLE[f.role] ?? f.role}{f.needs_review ? " · flagged for review; excluded from this release" : ""}</li>)}</ul>
               </details>
               <p className="tiny muted">Sign-offs are stored only in this browser for the demo. Scanner findings never give a column permission to be released; the publisher only writes the fixed release tables.</p>
             </li>

@@ -31,7 +31,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
           <div>
             <div className="eyebrow">Why not just share the rows?</div>
             <div className="hero-num">{pct(four.unicity, 1)}</div>
-            <p>of travel cards can be <strong>picked out from just 4 sightings</strong> (a stop and an hour), even with names removed. A picked-out card reveals all of that card's recorded bus boardings for the month.</p>
+            <p>of travel cards can be <strong>picked out from just 4 sightings</strong> (a stop and an hour), even with names removed. A picked-out card reveals that card's recorded boardings in this dataset.</p>
             <p className="small ink2">RouteSafe shares no rows at all, only protected counts, so this attack has nothing to search. (That is not the same as zero risk.)</p>
           </div>
           <div>
@@ -74,7 +74,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
           </article>
           <article className="ev-card">
             <h3><IconShield /> What the protection means</h3>
-            <p className="small">Each travel card can only add a limited number of trips, then random noise is added. That limits how much any one card can shift the odds of what gets published (privacy budget ε = 1 per card for the whole month). It is a mathematical limit on influence, not a promise that no number moves.</p>
+            <p className="small">Each travel card can only add a limited number of trips, then random noise is added. This limits how much one card can change the probability of the published results, under the stated assumptions (privacy budget ε = 1 per card for the whole month). It is not a promise that no number moves.</p>
             <p className="small ink2">Limit: one person with 2 cards counts as 2 cards. That's {fmt(mc.people_with_multiple_cards)} of {fmt(mc.people_in_truth)} people in this data.</p>
           </article>
         </div>

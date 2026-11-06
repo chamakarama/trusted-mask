@@ -48,13 +48,16 @@ export function App() {
 
   useEffect(() => {
     if (!releaseId) return;
+    let current = true;           // a slower response for a previously selected release must never win (A-014)
     setRel(null); setError(null);
     loadRelease(releaseId).then((r) => {
+      if (!current || r.id !== releaseId) return;
       if (origin && !r.areas.some((a) => a.id === origin || a.municipality === origin)) setOrigin(null);
       setRel(r);
-    }).catch((e) => setError(e instanceof ReleaseRefused
+    }).catch((e) => current && setError(e instanceof ReleaseRefused
       ? { title: "This release was refused", lines: e.validation.errors }
       : { title: "The release could not be loaded", lines: [String(e.message ?? e)] }));
+    return () => { current = false; };
   }, [releaseId]);
 
   useEffect(() => {
@@ -130,7 +133,7 @@ export function App() {
             <div className="headline">
               <div>
                 <h1>Where do people travel in the {BAND_SHORT[band][0].toLowerCase()}?</h1>
-                <p>Weekday bus trips between areas, 6 Oct – 2 Nov 2025. Only protected counts were shared, never anyone's journeys.</p>
+                <p>Weekday bus trips between areas, 6 Oct – 2 Nov 2025. Only protected counts were shared, never anyone's journeys. Trip destinations are estimated, not observed, and counts are trips, not distinct people.</p>
               </div>
             </div>
             <div className="kpis">

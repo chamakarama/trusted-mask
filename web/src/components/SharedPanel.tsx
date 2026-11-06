@@ -26,7 +26,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
             <li><strong>Lines:</strong> people getting on each line, per hour of the day</li>
             <li><strong>Days:</strong> total taps on each date</li>
           </ul>
-          <p className="small ink2">Every number has a little random noise added. Area names and points come from the public stop list.</p>
+          <p className="small ink2">Every number has random noise added. Area names and points come from the public stop list.</p>
         </div>
         <div className="shared-card">
           <h3><IconLock /> What's not inside</h3>
@@ -61,7 +61,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
           );
         })}
       </ul>
-      <p className="note"><IconCheck /><span>Your browser checked every file against the manifest before showing anything. This shows the files weren't changed; it can't prove who made them without a signature.</span></p>
+      <p className="note"><IconCheck /><span>Your browser checked that every file matches this manifest before showing anything. Checksums do not authenticate the manifest itself: without a signature they can't prove who published it.</span></p>
       <details className="more">
         <summary>Full technical details</summary>
         <dl className="kv small">
