@@ -62,7 +62,8 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
   if (major !== SUPPORTED_MAJOR) return { ok: false, errors: [`UNSUPPORTED_VERSION: schema_version ${manifest?.schema_version}`], warnings };
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
-  if (!validate(manifest)) {
+  const schemaOk = validate(manifest as object);   // (not narrowing `manifest` itself)
+  if (!schemaOk) {
     for (const e of validate.errors ?? []) fail("ARTIFACT_INVALID", `manifest${e.instancePath} ${e.message}`);
     return { ok: false, errors, warnings };
   }
