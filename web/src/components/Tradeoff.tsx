@@ -55,7 +55,7 @@ export function Tradeoff({ t, released }: { t: any; released: { epsilon: number;
         })}
         <text x={L} y={H - 4} className="axis">per-card route cap (trips per card)</text>
       </svg>
-      <p className="tiny muted">Higher ε permits more noise reduction and a weaker privacy guarantee. A small cap drops many trips; a big cap needs more noise; 32 was the best area cap tried. {allPass ? "Every candidate met the decision target (at least 2 of 3 routes overlap and at most 10% regret) in all its noise draws. " : ""}Run on {t.development_cards ? `${Math.round(t.development_cards / 1000)}k of ${Math.round((t.all_cards ?? 0) / 1000)}k` : "half of the"} cards; these subset results are not directly comparable with the full release. No candidate met every error target.</p>
+      <p className="tiny muted">Higher ε permits more noise reduction and a weaker privacy guarantee. A small cap drops many trips; a big cap needs more noise; 32 was the best area cap tried. {allPass ? "Every candidate met the decision target (at least 2 of 3 routes overlap and at most 10% regret) in all its noise draws. " : ""}Run on {t.development_cards ? `${Math.round(t.development_cards / 1000)}k of ${Math.round((t.all_cards ?? 0) / 1000)}k` : "half of the"} cards; these subset results are not directly comparable with the full release. Town bars answer a coarser question; they do not establish area-level accuracy. No candidate met every error target.</p>
     </section>
   );
 }
