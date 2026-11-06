@@ -21,7 +21,7 @@ function useTip() {
 
 const Legend = () => (
   <p className="small ink2 ba-legend">
-    <span className="swatch" style={{ background: EXACT }} />exact (synthetic truth)
+    <span className="swatch" style={{ background: EXACT }} />exact (synthetic data, before protection)
     <span className="swatch" style={{ background: PROT, marginLeft: 12 }} />protected (what was released)
   </p>
 );
@@ -100,7 +100,7 @@ export function BeforeAfter({ uc }: { uc: any }) {
           </tbody>
         </table>
       )}
-      <p className="tiny muted">Volume-weighted errors, each on its own base: per-card cap = share of the exact count the cap removes; random noise = error of the released numbers against the capped counts; total = error of the released numbers against the exact counts. Different bases, and noise and clamping can partly cancel the cap, so they don't add up. Exact numbers exist only because the data is synthetic.</p>
+      <p className="tiny muted">Volume-weighted errors, each on its own base: per-card cap = share of the exact count the cap removes; random noise = error of the signed noisy estimates against the capped counts; total = error of the displayed counts against the exact counts. Different bases, and noise and clamping can partly cancel the cap, so they don't add up. Exact references are shown publicly only because this dataset is synthetic; real operator references stay private.</p>
     </section>
   );
 }
