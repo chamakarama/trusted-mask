@@ -62,12 +62,12 @@ The offline package includes the synthetic-only evidence summary and exact verif
 
 ## Quick local preview without Python
 
-Use a separate folder to preserve any active builder checkout. This pinned version includes the reviewed redesign and the release-switch fix:
+Use a separate folder to preserve any active builder checkout. This pinned version includes the reviewed redesign, release-switch fix, assistant cancellation on newer actions, and default-HEAD release sync:
 
 ```sh
 git clone https://github.com/Chintufp/Since-AI-hackathon---WAWS.git routesafe-reviewed-ui
 cd routesafe-reviewed-ui
-git checkout b223859
+git checkout 6665cc3
 npm ci --prefix web
 npm run sync --prefix web -- --ref HEAD
 npm run dev --prefix web -- --host 127.0.0.1 --port 5175
