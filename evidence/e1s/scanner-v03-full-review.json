@@ -1,0 +1,148 @@
+{
+  "reviewed_commit": "647c27d",
+  "scope": "eight invented columns through complete inventory and full-row sweep; adversarial development probe, not general accuracy",
+  "exact_role_matches": 6,
+  "appropriate_abstentions": 2,
+  "silent_false_safe": 0,
+  "raw_values_in_output": false,
+  "fields": [
+    {
+      "table": "ambiguous",
+      "column": "c01",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits) (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "fallback.category",
+        "ctx.reference_table"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 20,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "ambiguous",
+      "column": "c02",
+      "role": "unknown",
+      "subtype": "MEASUREMENT",
+      "reason": "numbers with no recognised meaning; review (could still be salary, a health score...) (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "fallback.numeric",
+        "ctx.reference_table"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 20,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "hash",
+      "column": "c01",
+      "role": "technical_identifier",
+      "subtype": "OTHER",
+      "reason": "hash-like digests; no link to another column found in the sample (that does not make them safe); review",
+      "rule_ids": [
+        "val.hash",
+        "ctx.reference_table",
+        "xcol.hash_unlinked"
+      ],
+      "certainty": "low",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 20,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "named",
+      "column": "email",
+      "role": "direct_identifier",
+      "subtype": "EMAIL",
+      "reason": "100% of values are e-mail addresses",
+      "rule_ids": [
+        "val.email"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "named",
+      "column": "phone",
+      "role": "direct_identifier",
+      "subtype": "PHONE",
+      "reason": "100% of values are phone numbers",
+      "rule_ids": [
+        "val.phone"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "named",
+      "column": "full_name",
+      "role": "direct_identifier",
+      "subtype": "PERSON_NAME",
+      "reason": "name says person name",
+      "rule_ids": [
+        "name.di.person_name"
+      ],
+      "certainty": "medium",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "rare",
+      "column": "c01",
+      "role": "direct_identifier",
+      "subtype": "EMAIL",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits) (reference table: no column points at a person; review); full-column sweep found 1 email-shaped value(s): treated as a direct identifier (one address can name a person)",
+      "rule_ids": [
+        "fallback.category",
+        "ctx.reference_table",
+        "sweep.identifier_shaped_values",
+        "sweep.direct_identifier"
+      ],
+      "certainty": "low",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 5001,
+        "identifier_shaped_values": {
+          "email": 1
+        }
+      }
+    },
+    {
+      "table": "renamed",
+      "column": "c01",
+      "role": "direct_identifier",
+      "subtype": "EMAIL",
+      "reason": "100% of values are e-mail addresses",
+      "rule_ids": [
+        "val.email"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    }
+  ],
+  "passed": true
+}
