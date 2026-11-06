@@ -122,3 +122,20 @@ class FullColumnSweep(unittest.TestCase):
             self.assertIn("sweep.identifier_shaped_values", remark["rule_ids"])
             self.assertEqual(remark["sweep"]["identifier_shaped_values"].get("email"), 1)
             self.assertNotIn("someone.rare", json.dumps(inv))
+            # one e-mail anywhere in the column makes it a (low-certainty) direct identifier, never "unknown"
+            self.assertEqual(remark["role"], "direct_identifier")
+            self.assertEqual(remark["subtype"], "EMAIL")
+            self.assertEqual(remark["certainty"], "low")
+            self.assertIn("sweep.direct_identifier", remark["rule_ids"])
+            code = _field(inv, "events", "code")
+            self.assertNotEqual(code["role"], "direct_identifier")
+
+    def test_phone_shaped_numbers_only_raise_review(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            rows = [f"{i},{'0401234567' if i == 4321 else str(1000 + i)}" for i in range(6000)]
+            (Path(d) / "m.csv").write_text("row,reading\n" + "\n".join(rows) + "\n", encoding="utf-8")
+            inv = build_inventory(Path(d), "sweep_fixture", sample_rows=1000)
+            reading = _field(inv, "m", "reading")
+            self.assertTrue(reading["needs_review"])
+            self.assertNotEqual(reading["role"], "direct_identifier")
