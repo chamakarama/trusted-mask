@@ -65,10 +65,24 @@ No raw values, recovered identifiers or row matches are written. `petpilot/tests
 | unknown rate | 25% |
 | sensitive columns missed | 25; **all 25 are flagged `needs_review`**, none is silently marked safe; no direct identifier missed |
 
-**Caveat:** the rules were developed with `field_catalog.csv` visible, so these are label-informed development results, not a blind test. The mystery HR file was also inspected during development, so it is not a blind test either. Independent post-freeze fixtures and Astra's E1S reproduction are the real check.
+Run on committed code `1610300` (no local edits), Python 3.12.10, pandas 3.1.1: `python -m petpilot evaluate-catalog --package <package root> --out petpilot/evidence/dev_catalog_eval.json` (the supplied toolkit must be importable, e.g. `PYTHONPATH=<package root>/toolkit`). Same numbers as the earlier run.
+
+**Caveat:** the rules were developed with `field_catalog.csv` visible, so these are label-informed development results, not a blind test. The mystery HR file was also inspected during development, so it is not a blind test either.
+
+## Independent probe (Astra's E1S, 8 adversarial columns)
+
+Astra wrote 8 columns the rules never saw: named and renamed e-mail/phone/name columns, opaque `c01`/`c02` columns holding a union-membership code and a salary, an unlinked SHA-256 column, and one e-mail hidden after row 5,000 (`evaluation/scanner_handoff.py`).
+
+| Scanner | Exactly right | "unknown, needs a person's check" | Wrongly called safe |
+|---|---|---|---|
+| `4cd1374` (first version) | 4 of 8 | 0 | 4 |
+| `87b0c06` … main `6a63937` (sample-only path, as the probe runs it) | 5 of 8 | 3 | **0** |
+| `1610300`, full inventory path with the sweep | 6 of 8 | 2 | **0** |
+
+The two remaining abstentions are the opaque union-membership and salary columns. Without a meaningful name or value pattern no rule can know what they mean, so the scanner says "unknown" and asks a person instead of guessing. The probe is adversarial, not a random sample, so it is no general accuracy figure.
 
 ## Limits
 
-- The rules see only the first 5,000 rows of each table. The `inventory` command then sweeps **every row** of every non-direct-identifier column for e-mail, ID-code, IBAN, phone and plate shapes; hits only raise `needs_review` with counts (`--no-sweep` to skip). On the full bus data the sweep takes about 30 s and finds none.
+- The rules see only the first 5,000 rows of each table. The `inventory` command then sweeps **every row** of every non-direct-identifier column for e-mail, ID-code, IBAN, phone and plate shapes; hits raise `needs_review` with counts (`--no-sweep` to skip). An e-mail hit also turns an unknown, non-sensitive or row-key column into a low-certainty `direct_identifier` (rule `sweep.direct_identifier`), because one address can name a person; ID-code, phone and plate shapes also match ordinary numbers, so they only raise review. On the full bus data the sweep takes about 30 s and finds none.
 - Without informative column names it cannot tell that plain numbers are salary or that a short code is a union.
 - Shape-based person-name detection can confuse place names with people in small tables. In that case the column is reported as unknown.
