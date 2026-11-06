@@ -19,3 +19,12 @@ Municipality aggregation of the existing signed noisy values followed by clampin
 ## D-004 — Consumer mutations block frontend integration (A-005)
 
 Independent Astra tests found that the first TypeScript consumer accepted extra geometry properties, omitted CSV columns, and arbitrary manifest dimensions with recomputed hashes. This is a schema/boundary issue, not a cryptographic hash failure. Astra tightened dimensions/resource/definition IDs in the shared schema; valid existing bundles remain compatible. Opus owns consumer geometry and CSV enforcement. Integration waits for their pushed fix and rerun of the actual mutation tests. Source fixtures are synthetic canaries, not exposed real data.
+
+
+## D-005 — Reciprocal review completed for critical paths; static E1 scope retained
+
+O-011 reports Opus executed all 30 privacy tests at 1b84370 on Windows/Python 3.12.10 in an isolated checkout and locked fresh environment, including process interruption/concurrency, contribution bounds and OpenDP checks. N1/N2 improvements were accepted. Astra executed scanner and frontend paths, reproduced the consumer boundary defects, accepted their fixes, and checked actual browser values/downloads. Later Astra coverage adds two invented-input publisher retry/interruption tests and a formula-token rejection test; total local Python suite is 43 tests including scanner tests.
+
+O-008 accepts the exact municipality postprocessing contract; the browser's morning totals 12,450 / 10,627 / 8,577 match an independent Python calculation. O-005 boundary fixes passed all three original adversarial cases, resolving D-004. D-003's initial proposal is now an implemented derived view, not an area-accuracy improvement.
+
+Preserve the original E1 bytes and spent ledger. Record review evidence outside the immutable artifact rather than rewriting its pending_review field. The supported scope is an experimental synthetic planning shortlist with exploratory count tables and explicit missed utility targets. No final policy, full MOB-S1 utility acceptance, production readiness or certification is claimed. No new noise draw, broader privacy unit or hidden retuning follows from this review.
