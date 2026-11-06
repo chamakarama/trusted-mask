@@ -344,3 +344,17 @@ code { font-family: var(--mono); font-size: .84em; }
 /* routes too small to tell from noise: grey, never demand-blue */
 .arc-muted { stroke: #b9b6ac; opacity: .85; }
 .arrow-muted { fill: #b9b6ac; }
+
+/* ---------------------------------------------------------------- before/after (synthetic exact vs protected) */
+.ba { margin: 4px 0 18px; }
+.ba h4 { margin: 4px 0 6px; font-size: .84rem; color: var(--ink-2); }
+.ba-legend { margin: 0 0 6px; }
+.ba-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; }
+.ba-routes { display: flex; flex-direction: column; gap: 5px; position: relative; }
+.ba-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 8px; align-items: center; font-size: .78rem; }
+.ba-label { color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ba-bars { display: flex; flex-direction: column; gap: 2px; }
+.ba-bars > span { display: block; height: 6px; border-radius: 0 4px 4px 0; }
+.ba-src { max-width: 560px; margin-top: 10px; }
+.ba-src tbody tr { cursor: default; }
+@media (max-width: 980px) { .ba-grid { grid-template-columns: 1fr; } }

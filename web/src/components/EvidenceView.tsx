@@ -1,6 +1,7 @@
 import { cellRadius, familyScale, fmt, noiseRadius } from "../data/derive";
 import { oddsBound } from "../data/evidence";
 import { areaLabel, type Release } from "../data/release";
+import { BeforeAfter } from "./BeforeAfter";
 import { IconCheck, IconInfo, IconShield, IconWarn } from "./Icons";
 
 const pct = (x: number, d = 0) => `${(100 * x).toFixed(d)}%`;
@@ -85,6 +86,8 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           </table>
         </div>
         <p className="tiny muted">Organisers' tools: {fmt(t.b0.n_users_tested)} test cards, stops within {t.b0.spatial_m} m and times to the hour; the curve above uses a fixed group of {fmt(four.tested ?? 1000)} cards, so its 4-sighting figure differs slightly. Utility: routes = native MOB-U1; for RouteSafe, lines and days use aggregate adapters of MOB-U2/U3. Row scores use the organisers' field catalogue. A high row score does not mean low risk: read both columns together.</p>
+
+        <BeforeAfter uc={ev.utility_comparison} />
 
         <div className="ev-grid">
           <article className="ev-card">
