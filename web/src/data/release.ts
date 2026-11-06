@@ -78,5 +78,12 @@ export async function loadRelease(id: string): Promise<Release> {
 /** "Turku-208" -> "Turku 208" (public postcode-area label), anything else unchanged. */
 export function areaLabel(id: string): string {
   const m = /^(.+)-(\d{3})$/.exec(id);
-  return m ? `${m[1]} ${m[2]}` : id;
+  return m ? `${m[1]} area ${m[2]}` : id;
+}
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** "2025-10-06" -> "6 Oct 2025" (one date style everywhere). */
+export function niceDate(iso: string, withYear = true): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} ${MONTHS[m - 1]}${withYear ? ` ${y}` : ""}`;
 }

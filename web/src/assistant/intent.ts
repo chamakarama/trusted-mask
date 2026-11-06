@@ -1,6 +1,6 @@
 // Bounded planning assistant (INTERFACES.md §5). A model may only PROPOSE an intent; this module validates it and a
 // deterministic executor answers from released values. Unsupported requests get typed refusals with an alternative.
-import { BANDS, BAND_LABEL, fmt, rankCorridors, weekdaysInPeriod } from "../data/derive";
+import { BANDS, BAND_LABEL, fmt, rankCorridors, shortlistReliability, weekdaysInPeriod } from "../data/derive";
 import { areaLabel, type Release } from "../data/release";
 
 export interface Intent { view: "od"; hour_band: string; origin_area: string | null; action: "rank_corridors"; limit: number }
@@ -35,13 +35,16 @@ export function validateIntent(x: unknown, rel: Release): { ok: true; intent: In
 }
 
 export function execute(intent: Intent, rel: Release, source: "preset" | "model"): Answer {
-  const rows = rankCorridors(rel, intent.hour_band, intent.origin_area).slice(0, intent.limit);
+  const all = rankCorridors(rel, intent.hour_band, intent.origin_area);
+  const rows = all.slice(0, intent.limit);
   const days = weekdaysInPeriod(rel);
+  const rely = shortlistReliability(rel, all, intent.limit);
   const def = rel.manifest.families.od.definition_id;
   const warnings = [
     "Destinations are estimated from where the same card next starts a journey, not observed.",
-    "Numbers are protected estimates, so routes with similar numbers can swap places.",
+    `Each route is ±${fmt(rely.radius)} trips (95%, noise only), so routes with similar numbers can swap places.`,
   ];
+  if (rely.noiseOnly.length) warnings.unshift(`Could be pure noise: with ${fmt(rely.candidates)} routes to pick from, noise alone can reach about ${fmt(rely.floor)} trips. Don't decide on these.`);
   if (rel.manifest.fixture) warnings.unshift("Fixture release: illustrative values, not results.");
   const scope = intent.origin_area ? ` starting in ${areaLabel(intent.origin_area)}` : "";
   return {
@@ -51,7 +54,7 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
       : `No published route${scope} in this time band.`,
     evidence: rows.map((c, i) => ({
       n: i + 1, result_id: c.id,
-      text: `${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} trips (about ${fmt(c.trips / days)} per weekday)`,
+      text: `${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} trips ±${fmt(rely.radius)} (about ${fmt(c.trips / days)} per weekday)`,
     })),
   };
 }
@@ -71,7 +74,7 @@ export const PRESETS: Preset[] = [
   { id: "history", question: "Show one passenger's trips",
     run: (rel) => refuse("individual_history_unavailable", rel,
       "This release has no travel cards or journeys in it, only protected totals, so nobody's trips can be shown.") },
-  { id: "daily-od", question: "Trips from Turku 208 to Raisio on 15 Oct?",
+  { id: "daily-od", question: "Trips from Turku area 208 to Raisio on 15 Oct?",
     run: (rel) => refuse("unsupported_breakdown", rel,
       "Routes are only published for the whole 4 weeks, not per day. Combining tables would make up numbers that were never protected.") },
 ];

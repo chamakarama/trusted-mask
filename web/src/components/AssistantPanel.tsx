@@ -71,6 +71,9 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
         <input id="ask-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Which evening routes from Raisio are busiest?" maxLength={400} />
         <button type="submit" disabled={!q.trim() || busy}>{busy ? "…" : "Ask"}</button>
       </form>
+      <p className="tiny muted ask-note">{live
+        ? "Typed questions go to Anthropic's Claude API through a helper on this computer, with the public area list. No release numbers are sent; the AI only picks a request, and the numbers come from the published tables."
+        : "Typed questions need the AI helper. The suggested questions below work without it."}</p>
       <div className="presets">
         {PRESETS.map((p) => <button key={p.id} className="preset" onClick={() => show(p.run(rel))}>{p.question}</button>)}
       </div>
@@ -83,6 +86,7 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
               {answer.evidence.map((e) => <li key={e.result_id}><button className="evref" onClick={() => onEvidence(e.result_id)} aria-label={`Show route ${e.n} on the map`}>{e.n}</button>{e.text}</li>)}
             </ol>
           )}
+          {!!answer.warnings.length && <ul className="plain tiny warnings">{answer.warnings.map((w) => <li key={w}>{w}</li>)}</ul>}
           {answer.alternative && (
             <button className="btn-ghost" onClick={() => { onApply(answer.alternative!.hour_band, answer.alternative!.origin_area); show(PRESETS[0].run(rel)); }}>
               Show the morning top 3 instead

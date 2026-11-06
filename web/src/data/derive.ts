@@ -3,6 +3,10 @@
 import type { DailyCell, LineHourCell, OdCell, Release } from "./release";
 
 export const BANDS = ["00-06", "06-09", "09-15", "15-18", "18-24"] as const;
+/** "Where do people travel ___?" */
+export const BAND_PHRASE: Record<string, string> = {
+  "00-06": "at night", "06-09": "in the morning", "09-15": "at midday", "15-18": "in the afternoon", "18-24": "in the evening",
+};
 export const BAND_LABEL: Record<string, string> = {
   "00-06": "Night 00–06", "06-09": "Morning 06–09", "09-15": "Midday 09–15", "15-18": "Afternoon 15–18", "18-24": "Evening 18–24",
 };
@@ -28,17 +32,24 @@ export function rankCorridors(rel: Release, band: string, origin: string | null 
     .map((c, i) => ({ ...c, rank: i + 1, id: corridorId(c) }));
 }
 
+/** Sum SIGNED released estimates per key, then clamp at zero once. Summing already-clamped values would add a
+ *  positive bias (every negative noise draw becomes 0), which made empty night hours look busy. */
+function signedSums<T>(cells: T[], key: (c: T) => string | null, value: (c: T) => number): Map<string, number> {
+  const m = new Map<string, number>();
+  for (const c of cells) { const k = key(c); if (k !== null) m.set(k, (m.get(k) ?? 0) + value(c)); }
+  for (const [k, v] of m) m.set(k, Math.max(0, v));
+  return m;
+}
+
 /** Released journeys starting in each area for one band (excluding same-area journeys); used for dot size only. */
 export function outgoingByArea(rel: Release, band: string): Map<string, number> {
-  const m = new Map<string, number>();
-  for (const c of rel.od) if (c.hour_band === band && c.origin_area !== c.destination_area) m.set(c.origin_area, (m.get(c.origin_area) ?? 0) + c.trips);
-  return m;
+  return signedSums(rel.od, (c) => (c.hour_band === band && c.origin_area !== c.destination_area ? c.origin_area : null), (c) => c.noisy_value);
 }
 
 export function lineTotals(rel: Release): { line: string; total: number; cells: LineHourCell[] }[] {
   const by = new Map<string, LineHourCell[]>();
   for (const c of rel.lineHour) by.set(c.line, [...(by.get(c.line) ?? []), c]);
-  return [...by].map(([line, cells]) => ({ line, cells: cells.sort((a, b) => a.hour - b.hour), total: cells.reduce((s, c) => s + c.boardings, 0) }))
+  return [...by].map(([line, cells]) => ({ line, cells: cells.sort((a, b) => a.hour - b.hour), total: Math.max(0, cells.reduce((s, c) => s + c.noisy_value, 0)) }))
     .sort((a, b) => (a.line === "unknown" ? 1 : b.line === "unknown" ? -1 : b.total - a.total));
 }
 
@@ -97,9 +108,58 @@ export function rankAt(rel: Release, level: Level, band: string, origin: string 
 }
 
 export function outgoingAt(rel: Release, level: Level, band: string): Map<string, number> {
-  const m = new Map<string, number>();
-  for (const c of level === "area" ? rel.od : municipalityCells(rel)) {
-    if (c.hour_band === band && c.origin_area !== c.destination_area) m.set(c.origin_area, (m.get(c.origin_area) ?? 0) + c.trips);
-  }
-  return m;
+  return signedSums(level === "area" ? rel.od : municipalityCells(rel),
+    (c) => (c.hour_band === band && c.origin_area !== c.destination_area ? c.origin_area : null), (c) => c.noisy_value);
+}
+
+/** Boardings per hour of the day over all lines (signed sum, then clamp). */
+export function hourTotals(rel: Release): number[] {
+  const m = signedSums(rel.lineHour, (c) => String(c.hour), (c) => c.noisy_value);
+  return Array.from({ length: 24 }, (_, h) => m.get(String(h)) ?? 0);
+}
+
+// ---------------------------------------------------------------- noise-only uncertainty (post-processing, no privacy spend)
+// Same rule as Astra's privacy/uncertainty.py (OpenDP discrete_laplacian_scale_to_accuracy, rounded up): with probability
+// 1 - alpha the noise added to ONE released cell is within +/- radius. It covers the noise only: the per-card cap
+// (which makes busy routes read low) and the estimated destinations are extra, separate limits.
+export function noiseRadius(scale: number, alpha = 0.05): number {
+  if (!(scale > 0) || !(alpha > 0 && alpha < 1)) throw new Error("INVALID_UNCERTAINTY_PARAMETERS");
+  return Math.ceil(scale * Math.log(2 / (alpha * (1 + Math.exp(-1 / scale)))));
+}
+
+export type Family = "od" | "line_hour" | "daily";
+export const familyScale = (rel: Release, f: Family): number => Number(rel.manifest.privacy.families[f].scale);
+/** +/- range (95%, noise only) for one released cell of a family. */
+export const cellRadius = (rel: Release, f: Family): number => noiseRadius(familyScale(rel, f));
+
+export interface Reliability {
+  radius: number;      // +/- per route (95%, noise only)
+  floor: number;       // pure noise can reach this when we pick the top of `candidates` routes (95%, all routes at once)
+  candidates: number;
+  noiseOnly: number[]; // shortlist ranks whose value is at or below the floor: could be empty routes
+  ties: [number, number][]; // neighbouring ranks (incl. the first one left out) within noise of each other
+}
+
+/** How far to trust an AREA-level shortlist. Town sums mix many cells' noise, so no single-cell range applies there. */
+export function shortlistReliability(rel: Release, ranked: Corridor[], k: number): Reliability {
+  const scale = familyScale(rel, "od");
+  const radius = noiseRadius(scale);
+  const candidates = Math.max(1, ranked.length);
+  const floor = noiseRadius(scale, 0.05 / candidates);
+  const noiseOnly = ranked.slice(0, k).filter((c) => c.noisy_value <= floor).map((c) => c.rank);
+  const ties: [number, number][] = [];
+  for (let i = 0; i + 1 < Math.min(ranked.length, k + 1); i++) if (ranked[i].trips - ranked[i + 1].trips < 2 * radius) ties.push([ranked[i].rank, ranked[i + 1].rank]);
+  return { radius, floor, candidates, noiseOnly, ties };
+}
+
+/** Most common start or end among the shown routes, for a one-line map takeaway ("8 of the 10 ... end in X"). */
+export function commonEnd(routes: Corridor[]): { side: "start" | "end"; place: string; count: number } | null {
+  const best = (pick: (c: Corridor) => string) => {
+    const n = new Map<string, number>();
+    for (const c of routes) n.set(pick(c), (n.get(pick(c)) ?? 0) + 1);
+    return [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0] ?? null;
+  };
+  const e = best((c) => c.destination_area), s = best((c) => c.origin_area);
+  const pick = !e ? null : !s || e[1] >= s[1] ? { side: "end" as const, place: e[0], count: e[1] } : { side: "start" as const, place: s[0], count: s[1] };
+  return pick && pick.count >= Math.max(3, Math.ceil(routes.length / 3)) ? pick : null;
 }
