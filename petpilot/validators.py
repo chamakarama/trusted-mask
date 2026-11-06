@@ -81,7 +81,9 @@ def luhn_ok(digits: str) -> bool:
 def is_payment_card(v: str) -> bool:
     s = re.sub(r"[\s-]", "", v)
     if re.fullmatch(r"\d{13,19}", s):
-        return luhn_ok(s)
+        # payment cards start with major-industry digit 2-6 (Mastercard 2/5, Amex 3, Visa 4, Discover/UnionPay 6).
+        # Other Luhn-valid numbers (e.g. 9xxx travel-card ids) are ids, not payment cards.
+        return s[0] in "23456" and luhn_ok(s)
     # masked forms: 411111******1111, **** **** **** 1234, XXXX-1234
     return bool(re.fullmatch(r"[\d*Xx•]{8,19}", s)) and bool(re.search(r"[*Xx•]", s)) and len(re.sub(r"\D", "", s)) >= 4
 
