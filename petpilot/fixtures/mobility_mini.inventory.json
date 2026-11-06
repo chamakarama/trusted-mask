@@ -1,0 +1,586 @@
+{
+  "inventory_schema_version": "1.0",
+  "scanner": "petpilot",
+  "scanner_version": "0.2.0",
+  "source_commit": "a202e55c2f1fb8a7c9f073cdcb68b3d9aa5f09bb",
+  "created_at": "2026-11-06T20:46:46Z",
+  "analysis_mode": "rules",
+  "dataset": "mobility_mini_fixture",
+  "tables": [
+    {
+      "table": "cards",
+      "columns": 12,
+      "rows_swept": 40
+    },
+    {
+      "table": "stops",
+      "columns": 8,
+      "rows_swept": 6
+    },
+    {
+      "table": "taps",
+      "columns": 9,
+      "rows_swept": 400
+    }
+  ],
+  "sampling": {
+    "rule": "first_n_rows",
+    "rows_per_table": 5000,
+    "full_column_sweep": "every row of every non-direct-identifier column is checked for e-mail, ID-code, IBAN, phone and plate shapes; hits only raise needs_review (counts, no values)",
+    "note": "Rules inspect only the first rows; absence of a match is not evidence of absence."
+  },
+  "certainty_meaning": "heuristic rule strength (high/medium/low); unknown = no rule matched. Not a probability.",
+  "roles": [
+    "direct_identifier",
+    "quasi_identifier",
+    "sensitive_attribute",
+    "technical_identifier",
+    "record_key",
+    "free_text",
+    "non_sensitive",
+    "unknown"
+  ],
+  "fields": [
+    {
+      "table": "cards",
+      "column": "card_id",
+      "role": "record_key",
+      "subtype": "CARD_ID",
+      "reason": "first column, unique per row: a row key",
+      "rule_ids": [
+        "ctx.record_key"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "cards",
+      "column": "card_type",
+      "role": "quasi_identifier",
+      "subtype": "CATEGORY",
+      "reason": "1 of 5 category values name a special-category trait (e.g. disability/health) or a proxy for one; review before any use",
+      "rule_ids": [
+        "val.category_art9_hint"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": true,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "cards",
+      "column": "registered",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits)",
+      "rule_ids": [
+        "fallback.category"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "cards",
+      "column": "issued_date",
+      "role": "quasi_identifier",
+      "subtype": "DATE",
+      "reason": "100% of values are calendar dates",
+      "rule_ids": [
+        "val.date"
+      ],
+      "certainty": "medium",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "cards",
+      "column": "holder_name",
+      "role": "direct_identifier",
+      "subtype": "PERSON_NAME",
+      "reason": "name says person name",
+      "rule_ids": [
+        "name.di.person_name",
+        "val.person_name"
+      ],
+      "certainty": "medium",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "cards",
+      "column": "holder_id_code",
+      "role": "direct_identifier",
+      "subtype": "NATIONAL_ID",
+      "reason": "100% of values are valid Finnish ID codes (checksum verified)",
+      "rule_ids": [
+        "val.hetu"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "cards",
+      "column": "holder_ref",
+      "role": "direct_identifier",
+      "subtype": "NATIONAL_ID",
+      "reason": "reversible: 100% of the first 30 values are an unsalted hash of 'holder_id_code' (an attacker hashes candidate values and matches them)",
+      "rule_ids": [
+        "ctx.id_column.entity",
+        "xcol.hash_of"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [
+        {
+          "type": "hash_of",
+          "column": "holder_id_code"
+        }
+      ]
+    },
+    {
+      "table": "cards",
+      "column": "holder_birth_date",
+      "role": "quasi_identifier",
+      "subtype": "BIRTH_DATE",
+      "reason": "same as the birth date encoded in 'holder_id_code' (100% match)",
+      "rule_ids": [
+        "name.qi.birth_date",
+        "val.date",
+        "xcol.encoded_in_hetu"
+      ],
+      "certainty": "medium",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [
+        {
+          "type": "encoded_in",
+          "column": "holder_id_code"
+        }
+      ],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "cards",
+      "column": "holder_email",
+      "role": "direct_identifier",
+      "subtype": "EMAIL",
+      "reason": "100% of values are e-mail addresses",
+      "rule_ids": [
+        "val.email"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "cards",
+      "column": "holder_phone",
+      "role": "direct_identifier",
+      "subtype": "PHONE",
+      "reason": "100% of values are phone numbers",
+      "rule_ids": [
+        "val.phone"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": []
+    },
+    {
+      "table": "cards",
+      "column": "segment",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits)",
+      "rule_ids": [
+        "fallback.category"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "cards",
+      "column": "status",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits)",
+      "rule_ids": [
+        "fallback.category"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 40,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "stop_id",
+      "role": "record_key",
+      "subtype": "RECORD_ID",
+      "reason": "first column, unique per row: a row key",
+      "rule_ids": [
+        "ctx.record_key"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "name",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "name-like column whose values are not confirmed as person names (few distinct values or wrong shape); review (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "name.di.person_name",
+        "val.person_name.unconfirmed",
+        "ctx.reference_table"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "lat",
+      "role": "non_sensitive",
+      "subtype": "GPS_COORDINATE",
+      "reason": "name says coordinate; but this is a reference table about places, not people (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "name.qi.gps_coordinate",
+        "val.latitude",
+        "ctx.reference_table"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "lon",
+      "role": "non_sensitive",
+      "subtype": "GPS_COORDINATE",
+      "reason": "name says coordinate; but this is a reference table about places, not people (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "name.qi.gps_coordinate",
+        "val.longitude",
+        "ctx.reference_table"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "postcode",
+      "role": "non_sensitive",
+      "subtype": "POSTCODE",
+      "reason": "name says postcode; but this is a reference table about places, not people (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "name.qi.postcode",
+        "ctx.reference_table"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "municipality",
+      "role": "non_sensitive",
+      "subtype": "MUNICIPALITY",
+      "reason": "name says municipality; but this is a reference table about places, not people (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "name.qi.municipality",
+        "ctx.reference_table"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "area",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits) (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "fallback.category",
+        "ctx.reference_table"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "stops",
+      "column": "lines",
+      "role": "unknown",
+      "subtype": "CATEGORY",
+      "reason": "values with no recognised meaning; review (short codes can still encode sensitive traits) (reference table: no column points at a person; review)",
+      "rule_ids": [
+        "fallback.category",
+        "ctx.reference_table"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 6,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "tap_id",
+      "role": "record_key",
+      "subtype": "RECORD_ID",
+      "reason": "first column, unique per row: a row key",
+      "rule_ids": [
+        "ctx.record_key"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "card_id",
+      "role": "technical_identifier",
+      "subtype": "CARD_ID",
+      "reason": "persistent id that links all records of one card/account: joins reveal a history",
+      "rule_ids": [
+        "ctx.id_column.entity"
+      ],
+      "certainty": "medium",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "ts",
+      "role": "quasi_identifier",
+      "subtype": "TIMESTAMP",
+      "reason": "100% of values are timestamps (exact times link to sightings, posts, receipts)",
+      "rule_ids": [
+        "val.timestamp"
+      ],
+      "certainty": "high",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "stop_id",
+      "role": "quasi_identifier",
+      "subtype": "LOCATION_NAME",
+      "reason": "place id: where a person was",
+      "rule_ids": [
+        "ctx.id_column.place"
+      ],
+      "certainty": "medium",
+      "needs_review": false,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "line",
+      "role": "quasi_identifier",
+      "subtype": "CATEGORY",
+      "reason": "name says the line/route used: narrows down where a person travelled",
+      "rule_ids": [
+        "name.qi.category"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "direction",
+      "role": "unknown",
+      "subtype": "MEASUREMENT",
+      "reason": "numbers with no recognised meaning; review (could still be salary, a health score...)",
+      "rule_ids": [
+        "fallback.numeric"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "vehicle_id",
+      "role": "non_sensitive",
+      "subtype": "DEVICE_ID",
+      "reason": "shared vehicle id, not a person's device",
+      "rule_ids": [
+        "ctx.id_column.shared_vehicle"
+      ],
+      "certainty": "low",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "fare_product",
+      "role": "quasi_identifier",
+      "subtype": "CATEGORY",
+      "reason": "1 of 5 category values name a special-category trait (e.g. disability/health) or a proxy for one; review before any use",
+      "rule_ids": [
+        "val.category_art9_hint"
+      ],
+      "certainty": "medium",
+      "needs_review": true,
+      "art9_hint": true,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    },
+    {
+      "table": "taps",
+      "column": "amount_eur",
+      "role": "unknown",
+      "subtype": "MEASUREMENT",
+      "reason": "numbers with no recognised meaning; review (could still be salary, a health score...)",
+      "rule_ids": [
+        "fallback.numeric"
+      ],
+      "certainty": "unknown",
+      "needs_review": true,
+      "art9_hint": false,
+      "links": [],
+      "sweep": {
+        "rows_scanned": 400,
+        "identifier_shaped_values": {}
+      }
+    }
+  ],
+  "summary": {
+    "fields": 29,
+    "unknown": 8,
+    "needs_review": 16,
+    "by_role": {
+      "direct_identifier": 5,
+      "quasi_identifier": 7,
+      "sensitive_attribute": 0,
+      "technical_identifier": 1,
+      "record_key": 3,
+      "free_text": 0,
+      "non_sensitive": 5,
+      "unknown": 8
+    }
+  }
+}

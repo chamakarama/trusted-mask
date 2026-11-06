@@ -1,0 +1,399 @@
+{
+  "actual_release_decision": {
+    "candidate_definition": "Ordered non-self area pairs, 06-09 weekdays, whole period; count proxy only.",
+    "k": 3,
+    "regret": 0.0,
+    "selected": [
+      {
+        "destination_area": "Turku-205",
+        "hour_band": "06-09",
+        "origin_area": "Turku-207",
+        "trips": 5491
+      },
+      {
+        "destination_area": "Turku-205",
+        "hour_band": "06-09",
+        "origin_area": "Turku-203",
+        "trips": 4565
+      },
+      {
+        "destination_area": "Turku-205",
+        "hour_band": "06-09",
+        "origin_area": "Turku-208",
+        "trips": 4183
+      }
+    ],
+    "top_k_overlap": 3
+  },
+  "actual_release_wape": {
+    "daily": 0.07194671933354618,
+    "line_hour": 0.14701245156487602,
+    "od": 0.2509033769343892
+  },
+  "adapted_MOB_U2": {
+    "mape": 0.5790839511381614,
+    "score": 0.0
+  },
+  "adapted_MOB_U3": {
+    "mape": 0.06708428494525051,
+    "r": 0.9941981727369555,
+    "score": 0.7718812610305112
+  },
+  "cap_loss_fraction": {
+    "daily": 0.07647905505096098,
+    "line_hour": 0.055661103652756005,
+    "od": 0.12147973626237363
+  },
+  "data_class": "supplied_synthetic",
+  "initial_policy_100_draws": {
+    "decision_pass_count": 100,
+    "decision_target": "at least 2/3 overlap and demand regret <=10%",
+    "draw_count": 100,
+    "exact_top3_count": 100,
+    "od_wape_target_pass_count": 0,
+    "wape_quantiles": {
+      "daily": {
+        "0.05": 0.07203062004855847,
+        "0.5": 0.07969135992346049,
+        "0.95": 0.08706746317543522
+      },
+      "line_hour": {
+        "0.05": 0.14329161603115118,
+        "0.5": 0.15188045988712787,
+        "0.95": 0.16067723278763624
+      },
+      "od": {
+        "0.05": 0.23344858453186182,
+        "0.5": 0.2410587480794158,
+        "0.95": 0.24858491936937024
+      }
+    }
+  },
+  "limitations": [
+    "Initial policy fails area-level OD error target; do not claim full MOB-S1 utility acceptance.",
+    "Artifact retains its original pending_review marker; executable implementation review is recorded separately.",
+    "Native and adapted toolkit results are distinct.",
+    "No universal anonymity, zero-risk, certification, real-world demand, or optimal-route claim."
+  ],
+  "multiple_cards": {
+    "active_input_cards": 22561,
+    "all_truth_records": 25141,
+    "cards": 22561,
+    "cards_per_person_histogram": {
+      "1": 21291,
+      "2": 635
+    },
+    "cards_with_person_truth": 22561,
+    "data_class": "supplied_synthetic",
+    "experiment": "multiple-card limitation",
+    "interpretation": "For m cards conservative group epsilon is m times card epsilon. Observed synthetic maximum is not a production bound or identity-resolution capability. Registry/truth is not joined by the publisher.",
+    "limitations": [
+      "Shared/replacement cards need separate identity semantics.",
+      "Synthetic truth describes this supplied benchmark only; real people remain unbounded without an authorised reliable mapping."
+    ],
+    "observed_max_cards_per_person": 2,
+    "people_in_truth": 21926,
+    "people_with_multiple_cards": 635,
+    "scope": "Only cards occurring in supplied production taps; extra truth rows excluded (may cover other package partitions).",
+    "source": "evaluation-only truth/mobility__cards.csv"
+  },
+  "municipality_postprocessing": {
+    "area_cells": 2205,
+    "data_class": "supplied_synthetic",
+    "experiment": "E3 fallback diagnostic",
+    "limitations": [
+      "Different coarser decision domain, not improved area-level fidelity.",
+      "No cell interval reuse: sums have different noise distribution.",
+      "One existing draw, not a new selected policy.",
+      "UI change requires Opus agreement."
+    ],
+    "method": "Sum already released signed noisy_value by public municipality then clamp at zero; do NOT sum separately clamped trips. No new measurement.",
+    "municipality_cells": 180,
+    "regret": 0.0,
+    "release_id": "e1-aura-001",
+    "top3_overlap": 3,
+    "wape": 0.1424477688285066
+  },
+  "native_MOB_U1": {
+    "detail": {
+      "cells": 1163,
+      "mape": 0.5566628268712305
+    },
+    "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+    "score": 0.0
+  },
+  "notice": "Contains exact synthetic reference statistics. Do not automatically publish equivalent real-data evidence. Not a protected release table or an assistant input.",
+  "policy_search_status": "no candidate passes all targets; use scoped fallback, no hidden retuning",
+  "provenance": {
+    "attack": {
+      "path": "evidence/e4/trajectory.json",
+      "sha256": "bd89c9ee6d7ff46aacbf2d5f6f3300a6877bb407029ac3579f2e90b3dc9b5e3f"
+    },
+    "benchmark": {
+      "path": "evidence/e5/benchmark.json",
+      "sha256": "56f475df1d50209c1be447078e7c9f884b0d1f867f69e3a85daea44c5a8d4ff4"
+    },
+    "coarse": {
+      "path": "evidence/e3/municipality-postprocessing.json",
+      "sha256": "222f84006bb30ca998955f1d9623a2b1377136623910283397a0c905f0a00258"
+    },
+    "e1": {
+      "path": "evidence/e1/e1.json",
+      "sha256": "ae2a9732d04844e930097d291b278c02e9d54c7b53294309c2155fa7b20f9096"
+    },
+    "identity": {
+      "path": "evidence/identity/multiple-cards.json",
+      "sha256": "5c7e09fc9b3c33238447f9fe3b7c99cf802b5ec5c8bc29ac6b8a97ac62130101"
+    },
+    "inference": {
+      "path": "evidence/e2/inference.json",
+      "sha256": "fe58504035bac2aa9d88745d0d8f701005df24a94a9f965624d5c1db8da1acfc"
+    },
+    "repeated": {
+      "path": "evidence/e3/initial-policy-100.json",
+      "sha256": "22cceaf95ac2da59de55771d4297b4b1c8f466af52dba6725de8b16d9684bc53"
+    },
+    "scanner": {
+      "path": "evidence/e1s/opus-handoff-review.json",
+      "sha256": "c360ca5acdc7c6206c9d1c6bff55f8774a2092609962983116685d5f14dc3b9b"
+    },
+    "search": {
+      "path": "evidence/e3/policy-search.json",
+      "sha256": "2bfc6d6fcb8163dda8f5dc35b40d7f9e1c6dc9063154a04d012b7b99f926debb"
+    }
+  },
+  "publisher_source_commit": "5438e3c12145fdca3295aa1b515d5254678cd0c1",
+  "release_id": "e1-aura-001",
+  "release_manifest_sha256": "bcd8b07aca896ffdbeb1a8695beea709642bafacc464e289f4e276d55f8c184d",
+  "route_safe_attack_applicability": {
+    "evaluated": false,
+    "reason": "No card-linked row trajectories are released; lookup attack cannot run on aggregate tables. This is not 0% re-identification.",
+    "status": "not_applicable"
+  },
+  "schema_version": "1.0",
+  "source_commit": "c28566183039c4748ef9c72618079dfa3606346d",
+  "synthetic_evaluation_only": true,
+  "trajectory_curve_context": {
+    "cohort": "1000 cards sampled without replacement from sorted original cards with >=4 distinct nonmissing stop/hour points; seed 20261106. Same source-card cohort for all baselines, mapping kept private.",
+    "illustrative_original_candidate_counts": [
+      4,
+      1,
+      1,
+      1
+    ],
+    "known_point_sampling": "Each representation own surviving trace, k points without replacement, seeds 20261106+k; not an attack with identically observed raw points across coarsenings.",
+    "limitations": [
+      "Singling out a card trace is not learning a person name.",
+      "Wilson intervals describe binomial sampling approximation, not privacy guarantee.",
+      "B2-k unavailable cards are explicitly excluded from conditional denominator, never counted safe.",
+      "Baselines use supplied field labels for evaluation only; production does not."
+    ]
+  },
+  "trajectory_fixed_cohort": {
+    "b0": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 700,
+        "known_points": 2,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.7,
+        "wilson_95": [
+          0.6708755915748548,
+          0.727593648990589
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 926,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.926,
+        "wilson_95": [
+          0.908094233760596,
+          0.9406452486437995
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 975,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.975,
+        "wilson_95": [
+          0.9633544581334902,
+          0.9830099882094389
+        ]
+      }
+    ],
+    "b2": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 700,
+        "known_points": 2,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.7,
+        "wilson_95": [
+          0.6708755915748548,
+          0.727593648990589
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 926,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.926,
+        "wilson_95": [
+          0.908094233760596,
+          0.9406452486437995
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 975,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.975,
+        "wilson_95": [
+          0.9633544581334902,
+          0.9830099882094389
+        ]
+      }
+    ],
+    "b2k": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 375,
+        "known_points": 2,
+        "median_candidates": 2.0,
+        "tested": 981,
+        "unavailable": 19,
+        "unicity": 0.382262996941896,
+        "wilson_95": [
+          0.3523689835699814,
+          0.41307553055289886
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 732,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 955,
+        "unavailable": 45,
+        "unicity": 0.7664921465968586,
+        "wilson_95": [
+          0.7386246073957157,
+          0.7922242835994184
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 806,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 922,
+        "unavailable": 78,
+        "unicity": 0.8741865509761388,
+        "wilson_95": [
+          0.8512150281909735,
+          0.8940528448447597
+        ]
+      }
+    ],
+    "original": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 700,
+        "known_points": 2,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.7,
+        "wilson_95": [
+          0.6708755915748548,
+          0.727593648990589
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 926,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.926,
+        "wilson_95": [
+          0.908094233760596,
+          0.9406452486437995
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 975,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.975,
+        "wilson_95": [
+          0.9633544581334902,
+          0.9830099882094389
+        ]
+      }
+    ]
+  },
+  "trajectory_native_four_point": {
+    "b0": {
+      "evaluated": true,
+      "n_users_tested": 1000,
+      "p": 4,
+      "spatial_m": 500,
+      "temporal": "1h",
+      "unicity": 0.97
+    },
+    "b2": {
+      "evaluated": true,
+      "n_users_tested": 1000,
+      "p": 4,
+      "spatial_m": 500,
+      "temporal": "1h",
+      "unicity": 0.974
+    },
+    "b2k": {
+      "evaluated": true,
+      "n_users_tested": 1000,
+      "p": 4,
+      "spatial_m": 500,
+      "temporal": "1h",
+      "unicity": 0.904
+    },
+    "original": {
+      "evaluated": true,
+      "n_users_tested": 1000,
+      "p": 4,
+      "spatial_m": 500,
+      "temporal": "1h",
+      "unicity": 0.97
+    }
+  },
+  "upstream_inference_exact_parity": {
+    "different_cells": 0,
+    "exact_vector_equal": true,
+    "l1_difference": 0,
+    "production_journeys": 516119,
+    "upstream_journeys": 516119
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "command": "python -m evaluation.baselines",
+  "data_class": "supplied_synthetic",
+  "evaluator_sha256": "8d8cf2fce81a73a755eaf8db2277d93673b04cc7a4e5e2026274eae0d7fa775e",
+  "experiment": "E5 reproduced row baselines",
+  "git_head_at_run": "dcfe9e9c0ebcd4be94e154b3a4942fbab2ae5b4c",
+  "limitations": [
+    "Baselines use the supplied field catalog, a label-informed oracle. Publisher never does.",
+    "This runs MOB-U1/U2/U3 only, not the entire nine-domain scorecard.",
+    "Toolkit scores are self-assessment, not an official competition rubric.",
+    "Row-baseline utility and trajectory risk must be considered together."
+  ],
+  "package_manifest_sha256": "3dce561248f90d8196ce739569f80ffcf7e9525c58d706e0c0f47c5bcaa15ac9",
+  "results": {
+    "b0": {
+      "MOB-U1": {
+        "detail": {
+          "cells": 1163,
+          "mape": 0.0
+        },
+        "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+        "score": 1.0
+      },
+      "MOB-U2": {
+        "detail": {
+          "mape": 0.0
+        },
+        "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+        "score": 1.0
+      },
+      "MOB-U3": {
+        "detail": {
+          "mape": 0.0,
+          "r": 0.9999999999999998
+        },
+        "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+        "score": 0.9999999999999998
+      }
+    },
+    "b2": {
+      "MOB-U1": {
+        "detail": {
+          "cells": 1163,
+          "mape": 0.07710882719541051
+        },
+        "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+        "score": 0.845782345609179
+      },
+      "MOB-U2": {
+        "detail": {
+          "mape": 0.0
+        },
+        "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+        "score": 1.0
+      },
+      "MOB-U3": {
+        "detail": {
+          "mape": 0.0,
+          "r": 0.9999999999999998
+        },
+        "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+        "score": 0.9999999999999998
+      }
+    },
+    "b2k": {
+      "MOB-U1": {
+        "detail": {
+          "cells": 1163,
+          "mape": 0.8114430935476087
+        },
+        "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+        "score": 0.0
+      },
+      "MOB-U2": {
+        "detail": {
+          "mape": 0.29811906171912717
+        },
+        "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+        "score": 0.40376187656174567
+      },
+      "MOB-U3": {
+        "detail": {
+          "mape": 0.0633919580596837,
+          "r": 0.9999806718226835
+        },
+        "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+        "score": 0.7886782291270905
+      }
+    },
+    "original": {
+      "MOB-U1": {
+        "detail": {
+          "cells": 1163,
+          "mape": 0.0
+        },
+        "metric": "1 - MAPE/0.5 over OD cells with >=20 journeys",
+        "score": 1.0
+      },
+      "MOB-U2": {
+        "detail": {
+          "mape": 0.0
+        },
+        "metric": "1 - MAPE/0.5 over line x hour cells with >=50 boardings",
+        "score": 1.0
+      },
+      "MOB-U3": {
+        "detail": {
+          "mape": 0.0,
+          "r": 0.9999999999999998
+        },
+        "metric": "(1 - MAPE/0.3) x Pearson r of daily boardings",
+        "score": 0.9999999999999998
+      }
+    }
+  },
+  "saved_scorecard_comparison": {
+    "different_tasks": [],
+    "note": "Scores and detail objects match supplied saved scorecards exactly. B2 utility 0.9797 in the plan is the mean of eight mobility tasks; its MOB-U1 alone is 0.8457823456.",
+    "tasks_compared": 9
+  },
+  "status": "executed unmodified baseline protection and native task functions",
+  "versions": {
+    "numpy": "2.5.4",
+    "opendp": "0.16.0",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1"
+  }
+}

@@ -108,20 +108,20 @@ Remote: https://github.com/Chintufp/Since-AI-hackathon---WAWS
 Authoritative integrated branch: main
 Source package: TRUSTED_PETS_PROVING_GROUND_2026; verify MANIFEST.json
 Contract version: proposed 1.0; ratified SHA = <fill>
-Coordination issue: <actual URL>
-Astra status issue: <actual URL>
-Opus status issue: <actual URL>
-Active transport: <GitHub issues OR ops mailboxes>
-Integrator: Astra; handover method = <explicit human OR tested lease>
-Astra environment/runtime: <fill without credentials>
-Opus environment/runtime: <fill without credentials>
+Coordination issue: https://github.com/Chintufp/Since-AI-hackathon---WAWS/issues/3
+Astra status issue: https://github.com/Chintufp/Since-AI-hackathon---WAWS/issues/1
+Opus status issue: https://github.com/Chintufp/Since-AI-hackathon---WAWS/issues/2
+Active transport: issue #3 authoritative; Astra API blocked, so ops/astra mailbox is relayed by Opus. O-004 / A-004 confirm this bridge.
+Integrator: Astra; explicit human handoff, no automated lease
+Astra environment/runtime: isolated routesafe-astra cloud checkout, Python 3.12, OpenDP 0.16.0; requirements-routesafe.lock
+Opus environment/runtime: isolated routesafe-opus checkout, Windows 11, Python 3.14.5, Node 26.13; Opus reports these in O-001
 Raw input path per machine: <local configuration, not a shared path>
-Publisher of record / ledger location: <one private environment>
+Publisher of record / ledger location: Astra private/publisher.sqlite; retained private state, never substitute another machine ledger
 Human submission owner: <fill>
 Published deadline: 2026-11-08 10:00 EET / 08:00 UTC
-Latest operational deadline check: <source and time>
+Latest operational deadline check: published deadline from build plan; authenticated/onsite schedule still requires human confirmation
 Target submission: 2026-11-08 08:00 EET / 06:00 UTC
-Deployment/video destinations and approvals: <fill>
+Deployment/video destinations and approvals: none; no public deployment or submission authorised
 ```
 
 ### Agent status — one writer each
