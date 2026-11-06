@@ -10,8 +10,8 @@ The recording shows the working product, not slides. Every number on screen come
 | 46–58 s | Operator step 2: click the consultancy option | "Ask for row-level histories, and it refuses and offers statistics instead." | `UNSUPPORTED_SHARING_SCENARIO` |
 | 58–68 s | Operator step 4 | "It publishes once: each card is capped, then calibrated noise is added. ε = 1, recorded in a ledger." | "previously generated release e1-aura-001"; pending review |
 | 68–92 s | Planner → Corridors, morning band; click shortlist #1; ask a preset | "The planner sees only the published tables. Morning demand converges on the centre; here are the three corridors worth a closer look." | Top 3 = 5,491 / 4,565 / 4,183; "inferred · uncertain" labels; refusal for a passenger history |
-| 92–106 s | Evidence → decision + error | "Did protection change the decision? The same three corridors in 100 out of 100 noise draws. Counts are noisy, about 25% at area level, so we say so." | 3/3, 100/100, 25.1% with the missed target shown |
-| 106–115 s | What was shared? → download | "Everything shared is downloadable and checked against its manifest. No rows, no card numbers, no timestamps." | Download list; limitations |
+| 92–106 s | Evidence → decision + error | "Did protection change the decision? The same top three in 100 out of 100 noise draws. Single counts are noisy, about 25% at area level, so we say so." | 3/3, 100/100, 25.1% with the missed target shown |
+| 106–115 s | What was shared? → download | "Everything shared is downloadable and checked against its manifest. No rows, no card numbers, no exact times." | Download list; limitations |
 
 Optional (only if the core fits in time; otherwise Q&A backup, ≤ 10 s): scanner on the mystery HR file finds the ID column hidden as a hash (inspected development example, not a blind test).
 
