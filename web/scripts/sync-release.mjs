@@ -50,6 +50,14 @@ for (const rel of paths) {
     guarantee_status: manifest.privacy?.guarantee_status, created_at: manifest.created_at });
   console.log(`synced ${id} (${manifest.resources.length + 2} files) from ${ref}:${rel}`);
 }
+// The one reviewed, synthetic-only evidence file the public UI may read (INTERFACES.md §7); never the evaluation dir.
+try {
+  const ev = show("evidence/evidence-summary.json");
+  JSON.parse(ev.toString("utf8"));
+  mkdirSync(join(out, "evidence"), { recursive: true });
+  writeFileSync(join(out, "evidence", "evidence-summary.json"), ev);
+  console.log("synced evidence/evidence-summary.json");
+} catch { console.log("no evidence/evidence-summary.json at this ref (evidence view will say so)"); }
 mkdirSync(join(out, "contract"), { recursive: true });
 writeFileSync(join(out, "contract", "manifest.schema.json"), show("contracts/manifest.schema.json"));
 // real releases first, fixtures last

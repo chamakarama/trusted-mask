@@ -42,7 +42,7 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
         <button role="radio" aria-checked={level === "municipality"} className={`seg-btn ${level === "municipality" ? "seg-on" : ""}`} onClick={() => onLevel("municipality")}>{new Set(rel.areas.map((a) => a.municipality)).size} municipalities <span className="muted">· derived</span></button>
       </div>
       {level === "municipality" && (
-        <p className="note small">Derived view: each municipality pair is the sum of the released signed area estimates, clamped at zero after summing. It is computed in your browser from the same files; no new data or noise is involved.</p>
+        <p className="note small" title="Whole-period inferred weekday journeys by ordered origin municipality, destination municipality and hour band. Sum signed released area-pair noisy_value across ALL matching public area pairs, then clamp the municipality sum once at zero. Includes same-area pairs when forming municipality totals; exclude same-municipality pairs only for the inter-municipality shortlist. This is postprocessing of the existing release, not a new measurement or observed destinations."><span className="badge">derived · od-municipality-postprocess-v1</span> Each municipality pair sums the released signed estimates of all its area pairs, then clamps once at zero. Computed in your browser from the same files: no new measurement, no new noise. Same-municipality pairs are left out of the shortlist.</p>
       )}
       <label className="field">
         <span>{level === "area" ? "Origin area" : "Origin municipality"}</span>

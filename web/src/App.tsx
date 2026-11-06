@@ -2,14 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { AssistantPanel } from "./components/AssistantPanel";
 import { CorridorPanel } from "./components/CorridorPanel";
 import { DailyView, LineHourView } from "./components/DemandViews";
+import { EvidenceView } from "./components/EvidenceView";
 import { MapView } from "./components/MapView";
 import { SharedPanel } from "./components/SharedPanel";
 import { BANDS, outgoingAt, points, rankAt, type Level } from "./data/derive";
 import { loadIndex, loadRelease, ReleaseRefused, type Release, type ReleaseIndexEntry } from "./data/release";
 
-type View = "corridors" | "lines" | "daily" | "shared";
+type View = "corridors" | "lines" | "daily" | "shared" | "evidence";
 const VIEWS: { id: View; label: string }[] = [
-  { id: "corridors", label: "Corridors" }, { id: "lines", label: "Lines by hour" }, { id: "daily", label: "Daily taps" }, { id: "shared", label: "What was shared?" },
+  { id: "corridors", label: "Corridors" }, { id: "lines", label: "Lines by hour" }, { id: "daily", label: "Daily taps" }, { id: "shared", label: "What was shared?" }, { id: "evidence", label: "Evidence" },
 ];
 const SHORTLIST = 3, ON_MAP = 10;
 
@@ -138,6 +139,7 @@ export function App() {
           {view === "lines" && <LineHourView rel={rel} />}
           {view === "daily" && <DailyView rel={rel} />}
           {view === "shared" && <SharedPanel rel={rel} />}
+          {view === "evidence" && <EvidenceView releaseId={rel.id} />}
         </main>
       )}
 
