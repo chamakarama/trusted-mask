@@ -6,18 +6,20 @@
 
 ```bash
 npm ci
-npm run sync            # copy allowlisted release files + schema + evidence summary (default ref origin/astra/e1-publisher)
+npm run sync            # copy allowlisted release files + schema + evidence summary from HEAD (main has the reviewed release)
 npm test                # contract validator, adversarial review cases, derived views
 npm run dev             # public planner on http://localhost:5173
 npm run build           # type-check, build dist/, then check the public build boundary (allowlist + private-data shapes)
 
 # operator workbench (local only)
-python -m pipeline.inventory --data ../TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data --output operator-data/mobility-inventory.json   # run in a checkout that has pipeline/
+# from the REPOSITORY ROOT (pipeline/ must be importable), in the Python env from requirements-routesafe.lock:
+#   python -m pipeline.inventory --data TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data --output web/operator-data/mobility-inventory.json
+# then, in web/:
 npm run operator:data   # assemble operator-public/
 npm run operator        # http://localhost:5174/operator.html
 ```
 
-After PR #5 lands on main, run `npm run sync -- --ref HEAD`.
+To read another commit's release: `npm run sync -- --ref <git ref>`.
 
 Views:
 - **Corridors:** a schematic map with a stated centre-enlarged warp, a shortlist per time band, and a 21-area / 6-municipality derived toggle.
