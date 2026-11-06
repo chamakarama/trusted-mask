@@ -45,6 +45,92 @@
     "od": 0.12147973626237363
   },
   "data_class": "supplied_synthetic",
+  "e7_membership": {
+    "calibration_absent_per_target": 4000,
+    "limitations": [
+      "Simulated neighbouring outputs, not repeated attacks on the single committed artifact.",
+      "Exact discrete-Laplace law simulated with geometric differences, not OpenDP publisher execution.",
+      "All other contributions and target bounded history are known; fixed-pair hypotheses only.",
+      "Three preselected synthetic targets do not cover all users or attacks.",
+      "Low AUC does not prove privacy; finite sample estimates are not universal bounds.",
+      "No new publication, privacy spend, policy retuning or ledger operation."
+    ],
+    "results": [
+      {
+        "auc": 0.60330516,
+        "effective_epsilon": 0.9671875,
+        "false_positive": {
+          "rate": 0.0086,
+          "successes": 86,
+          "trials": 10000,
+          "wilson_95": [
+            0.0069694684051106025,
+            0.010607925193590355
+          ]
+        },
+        "target_index": 1,
+        "true_positive": {
+          "rate": 0.0149,
+          "successes": 149,
+          "trials": 10000,
+          "wilson_95": [
+            0.012704886505102705,
+            0.017467668714127728
+          ]
+        }
+      },
+      {
+        "auc": 0.569367245,
+        "effective_epsilon": 0.753125,
+        "false_positive": {
+          "rate": 0.0093,
+          "successes": 93,
+          "trials": 10000,
+          "wilson_95": [
+            0.007598063501358216,
+            0.011378792499623794
+          ]
+        },
+        "target_index": 2,
+        "true_positive": {
+          "rate": 0.0152,
+          "successes": 152,
+          "trials": 10000,
+          "wilson_95": [
+            0.012981435254342082,
+            0.017790889565865945
+          ]
+        }
+      },
+      {
+        "auc": 0.591979615,
+        "effective_epsilon": 0.85625,
+        "false_positive": {
+          "rate": 0.0102,
+          "successes": 102,
+          "trials": 10000,
+          "wilson_95": [
+            0.00841015237783062,
+            0.012366012426084172
+          ]
+        },
+        "target_index": 3,
+        "true_positive": {
+          "rate": 0.0223,
+          "successes": 223,
+          "trials": 10000,
+          "wilson_95": [
+            0.01958415095628432,
+            0.025382721087060096
+          ]
+        }
+      }
+    ],
+    "review_message": "O-015",
+    "scope": "Three preselected synthetic card profiles; all other bounded contributions and target history known. Exact likelihood-ratio attack on simulated neighbouring releases, not repeated attacks on the one published artifact.",
+    "status": "executed; peer reviewed under fixed-pair simulation scope (O-015)",
+    "test_per_hypothesis_per_target": 10000
+  },
   "initial_policy_100_draws": {
     "decision_pass_count": 100,
     "decision_target": "at least 2/3 overlap and demand regret <=10%",
@@ -152,6 +238,14 @@
     "inference": {
       "path": "evidence/e2/inference.json",
       "sha256": "fe58504035bac2aa9d88745d0d8f701005df24a94a9f965624d5c1db8da1acfc"
+    },
+    "membership": {
+      "path": "evidence/e7/membership.json",
+      "sha256": "9f9b2588b46383e254b94c469213a5d3d0701e3f99873d6d9552be0c7f744bfd"
+    },
+    "membership_review": {
+      "path": "evidence/e7/opus-review.json",
+      "sha256": "9867f9a8d5e65540e695b2bf3da37c17f8f98813cc021c8d85c52c39c23dfe27"
     },
     "repeated": {
       "path": "evidence/e3/initial-policy-100.json",
@@ -267,7 +361,7 @@
     }
   },
   "schema_version": "1.0",
-  "source_commit": "6a63937dd1644b6e91f5dcafbcb856b619e34bf2",
+  "source_commit": "1aecb1064ab1a2d0582d4312bdd153eb91d816ce",
   "synthetic_evaluation_only": true,
   "trajectory_curve_context": {
     "cohort": "1000 cards sampled without replacement from sorted original cards with >=4 distinct nonmissing stop/hour points; seed 20261106. Same source-card cohort for all baselines, mapping kept private.",
