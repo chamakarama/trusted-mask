@@ -25,5 +25,10 @@ def test_offline_packager_rejects_unlisted_build_data(tmp_path):
     (root/'contract/manifest.schema.json').write_text('{}')
     (root/'index.html').write_text('<html>fixture</html>');(root/'assets/index-test.js').write_text('console.log("fixture")')
     receipt=package(root,tmp_path/'okay.zip');assert receipt['noise_draws']==0
+    (root/'evidence').mkdir()
+    (root/'evidence/evidence-summary.json').write_text(json.dumps({'data_class':'real','synthetic_evaluation_only':False,'release_id':'fixture-only-001'}))
+    with pytest.raises(ValueError,match='UNAPPROVED_EVIDENCE'):package(root,tmp_path/'private-evidence.zip')
+    (root/'evidence/evidence-summary.json').write_text(json.dumps({'data_class':'supplied_synthetic','synthetic_evaluation_only':True,'release_id':'fixture-only-001'}))
+    package(root,tmp_path/'synthetic-evidence.zip')
     (root/'releases/raw.csv').write_text('private_canary\nNEVER_COPY\n')
     with pytest.raises(ValueError,match='UNEXPECTED_BUILD_PATH'):package(root,tmp_path/'bad.zip')

@@ -22,6 +22,12 @@ def package(build:Path,output:Path):
     allowed={'index.html','releases/index.json','contract/manifest.schema.json'}
     for name in receipts:
         allowed|={f'releases/{name}/{member}' for member in PAYLOADS|{'manifest.json','checksums.sha256'}}
+    evidence=build/'evidence/evidence-summary.json'
+    if evidence.exists():
+        summary=json.loads(evidence.read_text())
+        if summary.get('data_class')!='supplied_synthetic' or summary.get('synthetic_evaluation_only') is not True or summary.get('release_id') not in receipts:
+            raise ValueError('UNAPPROVED_EVIDENCE')
+        allowed.add('evidence/evidence-summary.json')
     members=[('README.txt',README.encode())]
     for path in sorted(build.rglob('*')):
         if path.is_symlink():raise ValueError('SYMLINK_IN_BUILD')
