@@ -71,14 +71,22 @@ export function OperatorApp() {
           <li className="panel">
             <h2><span className="step-num">1</span>What's in the bus data?</h2>
             <p className="small ink2">The scanner read every column (rules, no AI, nothing leaves this computer) and swept every row for things like e-mails and ID numbers.</p>
-            <div className="kpis-op">
-              <div><strong>{fields.length}</strong><span>columns scanned</span></div>
-              <div><strong>{people}</strong><span>point straight to a person</span></div>
-              <div><strong>{combined}</strong><span>can identify someone when combined</span></div>
-              <div><strong>{used.length}</strong><span>used for the counts</span></div>
-              <div><strong>{dropped.length}</strong><span>left out of the release</span></div>
+            <div className="kpis-groups">
+              <div className="kpis-group"><span className="kpis-group-label">Scanner found</span>
+                <div className="kpis-op">
+                  <div><strong>{fields.length}</strong><span>columns scanned</span></div>
+                  <div><strong>{people}</strong><span>point straight to a person</span></div>
+                  <div><strong>{combined}</strong><span>can identify someone when combined</span></div>
+                </div>
+              </div>
+              <div className="kpis-group"><span className="kpis-group-label">Release uses</span>
+                <div className="kpis-op">
+                  <div><strong>{used.length}</strong><span>columns, inside only</span></div>
+                  <div><strong>{dropped.length}</strong><span>columns left out</span></div>
+                </div>
+              </div>
             </div>
-            <p className="tiny muted">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.probeTotal} tricky test columns written by our teammate's agent, it labelled {SCANNER_CHECK.probeRight} exactly right and marked {SCANNER_CHECK.probeUnknown} "unknown" (codes with meaningless names). None was wrongly called safe. That's why {unclear} unclear columns here are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
+            <p className="tiny muted">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.probeTotal} tricky new test columns the rules never saw, it labelled {SCANNER_CHECK.probeRight} exactly right and marked {SCANNER_CHECK.probeUnknown} "unknown" (codes with meaningless names). None was wrongly called safe. That's why {unclear} unclear columns here are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
           </li>
 
           <li className="panel">
@@ -115,7 +123,7 @@ export function OperatorApp() {
                         <td className="small">{USE[key(f)] ?? (f.table === "stops" ? STOP_USE : f.policy.handling)}</td>
                         <td>{f.needs_review
                           ? <label className={`check ${reviews[key(f)] ? "check-done" : "check-todo"}`}><input type="checkbox" checked={!!reviews[key(f)]} onChange={() => toggle(key(f))} /> {reviews[key(f)] ? "checked by a person" : "needs a person's OK"}</label>
-                          : <span className="badge">not needed</span>}</td>
+                          : <span className="badge">handled by release policy</span>}</td>
                       </tr>
                     ))}
                   </tbody>

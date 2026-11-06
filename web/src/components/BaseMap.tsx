@@ -21,6 +21,8 @@ interface Props {
   onOrigin: (area: string | null) => void;
   onFail: () => void;
   muted?: boolean;   // routes too small to tell from noise: grey, not demand-blue
+  tripsMax?: number; // release-wide maxima keep widths and glow comparable across time bands
+  outMax?: number;
 }
 
 function curve(a: [number, number], b: [number, number], n = 40): [number, number][] {
@@ -37,7 +39,7 @@ function curve(a: [number, number], b: [number, number], n = 40): [number, numbe
   return out;
 }
 
-export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, onFail, muted = false }: Props) {
+export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, onFail, muted = false, tripsMax, outMax }: Props) {
   const box = useRef<HTMLDivElement>(null);
   const map = useRef<MLMap | null>(null);
   const [ready, setReady] = useState(false);
@@ -77,7 +79,8 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m.addLayer({ id: "arcs-casing", type: "line", source: "arcs", layout: { "line-cap": "round", "line-join": "round" },
         paint: { "line-color": "#fcfcfb", "line-width": ["+", ["get", "w"], 3], "line-opacity": 0.9 } });
       m.addLayer({ id: "arcs", type: "line", source: "arcs", layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": ["case", ["get", "muted"], "#a8a59c", ["get", "sel"], BLUE[700], ["get", "strong"], BLUE[650], BLUE[250]], "line-width": ["get", "w"], "line-opacity": ["case", ["get", "strong"], 0.95, 0.5] } });
+        paint: { "line-color": ["case", ["get", "sel"], "#12171f", ["get", "muted"], "#a8a59c", ["get", "strong"], BLUE[650], BLUE[250]], "line-width": ["get", "w"],
+          "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, ["get", "strong"], 0.95, 0.5] } });
       m.addLayer({ id: "pts", type: "circle", source: "pts", paint: {
         "circle-radius": ["get", "r"], "circle-color": ["case", ["get", "origin"], BLUE[650], ["get", "involved"], "#3b4250", "#8f8c84"],
         "circle-stroke-color": "#fcfcfb", "circle-stroke-width": 2 } });
@@ -128,8 +131,10 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       for (const p of pts) if (!keep.length || keep.includes(p.id)) b.extend([p.lon, p.lat]);
       if (!b.isEmpty()) m.fitBounds(b, { padding: { top: 110, bottom: 70, left: 90, right: 90 }, duration: first ? 0 : 600, maxZoom: 12.6 });
     }
-    const maxOut = Math.max(1, ...outgoing.values());
-    const maxTrips = Math.max(1, ...corridors.map((c) => c.trips));
+    const maxOut = outMax ?? Math.max(1, ...outgoing.values());
+    const maxTrips = tripsMax ?? Math.max(1, ...corridors.map((c) => c.trips));
+    m.setPaintProperty("arcs", "line-dasharray", muted ? [2, 1.6] : undefined);
+    for (const id of ["rank-dots", "rank-text"]) m.setLayoutProperty(id, "visibility", muted ? "none" : "visible");
     const involved = new Set(corridors.flatMap((c) => [c.origin_area, c.destination_area]));
     (m.getSource("heat") as GeoJSONSource).setData({ type: "FeatureCollection", features: pts.map((p) => ({
       type: "Feature", properties: { w: (outgoing.get(p.id) ?? 0) / maxOut }, geometry: { type: "Point", coordinates: [p.lon, p.lat] } })) });
@@ -138,7 +143,8 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       const a = byId.get(c.origin_area), d = byId.get(c.destination_area);
       if (!a || !d) return [];
       return [{ type: "Feature" as const, properties: { id: c.id, rank: c.rank, trips: fmt(c.trips), from: areaLabel(c.origin_area), to: areaLabel(c.destination_area),
-        strong: c.rank <= highlight, sel: selected === c.id, muted, w: c.rank <= highlight ? 4 + 4 * (c.trips / maxTrips) : 1.5 + 1.5 * (c.trips / maxTrips) },
+        strong: c.rank <= highlight, sel: selected === c.id, dim: !!selected && selected !== c.id, muted,
+        w: (c.rank <= highlight ? 4 + 4 * (c.trips / maxTrips) : 1.5 + 1.5 * (c.trips / maxTrips)) + (selected === c.id ? 3 : 0) },
         geometry: { type: "LineString" as const, coordinates: curve([a.lon, a.lat], [d.lon, d.lat]) } }];
     }) });
     (m.getSource("ranks") as GeoJSONSource).setData({ type: "FeatureCollection", features: corridors.filter((c) => c.rank <= highlight).flatMap((c) => {
@@ -150,7 +156,7 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
     (m.getSource("pts") as GeoJSONSource).setData({ type: "FeatureCollection", features: pts.map((p) => ({
       type: "Feature", properties: { id: p.id, label: areaLabel(p.label), r: 3.5 + 6 * Math.sqrt((outgoing.get(p.id) ?? 0) / maxOut), involved: involved.has(p.id), origin: origin === p.id },
       geometry: { type: "Point", coordinates: [p.lon, p.lat] } })) });
-  }, [ready, pts, outgoing, corridors, highlight, selected, origin, muted]);
+  }, [ready, pts, outgoing, corridors, highlight, selected, origin, muted, tripsMax, outMax]);
 
   return <div ref={box} className="maplibre" role="img" aria-label="Map of the strongest released bus routes for the selected time band. The same routes are listed next to the map." />;
 }

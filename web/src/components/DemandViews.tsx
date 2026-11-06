@@ -133,7 +133,7 @@ export function WhenView({ rel }: { rel: Release }) {
       <div className="headline">
         <div>
           <h1>Boardings peak at {hh(am)}–{hh(am + 1)} and {hh(pm)}–{hh(pm + 1)}{busiest ? `; Line ${busiest.line} is the busiest` : ""}</h1>
-          <p>Weekday boardings per line and hour, and all taps per day, {niceDate(rel.manifest.period.start_date, false)} – {niceDate(rel.manifest.period.end_date_inclusive)}. Protected counts with random noise.</p>
+          <p>A boarding is one weekday tap when getting on a bus (double taps removed); taps per day count every recorded tap. {niceDate(rel.manifest.period.start_date, false)} – {niceDate(rel.manifest.period.end_date_inclusive)} · protected counts with random noise.</p>
         </div>
       </div>
       <LineHourView rel={rel} />
