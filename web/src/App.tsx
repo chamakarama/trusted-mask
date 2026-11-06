@@ -202,7 +202,7 @@ export function App() {
       </main>
 
       <footer className="foot">
-        Synthetic data: TrustED PETs Proving Ground 2026 by Since AI ry (CC BY 4.0). Not real Turku travel. This page can only show, sort and add up the published numbers; it has no access to the bus company's records.
+        Synthetic data: TrustED PETs Proving Ground 2026 by Since AI ry (CC BY 4.0); area points derive from GeoNames postcode centroids (CC BY 4.0). Not real Turku travel. This page can only show, sort and add up the published numbers; it has no access to the bus company's records.
       </footer>
     </div>
   );

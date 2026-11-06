@@ -22,7 +22,8 @@ const STOP_USE = "Public stop list: supplies the area names, towns, map points a
 
 // Scanner accuracy, from committed evaluation files (see petpilot/README.md): development catalogue (rules were tuned on it,
 // so it is not a blind test) and Astra's independent E1S fixtures (new columns the rules never saw).
-const SCANNER_CHECK = { devRecall: 0.916, devDatasets: 9, heldOutRight: 4, heldOutTotal: 8 };
+// Probe numbers are for the scanner on main (6a63937): 5 exactly right, 3 "unknown", 0 wrongly called safe.
+const SCANNER_CHECK = { devRecall: 0.916, devDatasets: 9, probeRight: 5, probeUnknown: 3, probeTotal: 8 };
 
 const cap = (t: string) => (t ? t.charAt(0).toUpperCase() + t.slice(1) : t);
 const KEY = "routesafe-operator-review-v1";
@@ -77,7 +78,7 @@ export function OperatorApp() {
               <div><strong>{used.length}</strong><span>used for the counts</span></div>
               <div><strong>{dropped.length}</strong><span>left out of the release</span></div>
             </div>
-            <p className="tiny muted">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.heldOutTotal} new test columns it got {SCANNER_CHECK.heldOutRight} right: columns with meaningless names and plain values slip through. That's why {unclear} unclear columns are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
+            <p className="tiny muted">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.probeTotal} tricky test columns written by our teammate's agent, it labelled {SCANNER_CHECK.probeRight} exactly right and marked {SCANNER_CHECK.probeUnknown} "unknown" (codes with meaningless names). None was wrongly called safe. That's why {unclear} unclear columns here are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
           </li>
 
           <li className="panel">
