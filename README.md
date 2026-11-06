@@ -26,7 +26,7 @@ A separate **operator workbench** (private, never published) shows the scanner's
 | Question | Answer | Evidence |
 |---|---|---|
 | Do planners still get the right shortlist? | Morning top 3 routes = the exact data's (3/3); same top 3 in **100 of 100** noise re-runs. Only weekday mornings were tested. | `evidence/evidence-summary.json` |
-| How exact are the numbers? | Every route number in the planner carries a noise range of ±571 trips (95% for all 2,205 released route cells at once, so it holds however you filter). Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. The per-card cap leaves out 12% of route trips (from cards with more than 32), so totals run low. | same |
+| How exact are the numbers? | Each area-level route cell in the planner carries a noise range of ±571 trips (95% for all 2,205 released route cells at once, so it holds however you filter). Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. The per-card cap leaves out 12% of route trips (from cards with more than 32), so totals run low. | same |
 | Organisers' strict utility scores | RouteSafe: routes 0.00 (native MOB-U1), lines 0.00 and days 0.77 (adapted MOB-U2/U3): **not passing**, because small cells are mostly noise. For comparison, sharing de-named rows scores 1.00 / 1.00 / 1.00 but exposes 97% of cards. | same |
 | How good is the scanner? | Development (rules tuned on the samples, not blind): macro-F1 0.90, sensitive recall 0.92. Tricky probe: 0 sensitive columns wrongly called safe. | `petpilot/README.md` |
 
