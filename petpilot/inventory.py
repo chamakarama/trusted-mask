@@ -48,7 +48,45 @@ def field_records(results) -> list[dict]:
     return out
 
 
-def build_inventory(data_dir: Path, dataset: str, tables: list[str] | None = None) -> dict:
+# Full-column sweep: cheap patterns for direct identifiers, run over EVERY row (the rules only see a sample).
+SWEEP_PATTERNS = {
+    "email": r"[\w.+-]+@[\w-]+\.[\w.-]+",
+    "national_id": r"\b\d{6}[-+A-FU-Y]?\d{3}[0-9A-Y]\b",
+    "iban": r"\b[A-Z]{2}\d{2}(?: ?[0-9A-Z]{4}){3,7}\b",
+    "phone": r"(?:\+358|\b0)\d{1,2}[ -]?\d{3}[ -]?\d{3,4}\b",
+    "plate": r"\b[A-ZÅÄÖ]{2,3}-\d{1,3}\b",
+}
+SWEEP_SKIP_ROLES = {"direct_identifier"}
+
+
+def sweep_table(path: Path, records: list[dict], chunksize: int = 200_000) -> int:
+    """Count identifier-shaped values in every row of every non-direct-identifier column.
+    Raises needs_review (with counts only, never values) where any are found. Returns rows scanned."""
+    import pandas as pd
+    todo = [r for r in records if r["role"] not in SWEEP_SKIP_ROLES]
+    counts = {r["column"]: {k: 0 for k in SWEEP_PATTERNS} for r in todo}
+    rows = 0
+    for chunk in pd.read_csv(path, dtype=str, keep_default_na=False, chunksize=chunksize, encoding="utf-8"):
+        rows += len(chunk)
+        for r in todo:
+            s = chunk[r["column"]]
+            s = s[s.str.len() > 5]
+            if s.empty:
+                continue
+            for kind, rx in SWEEP_PATTERNS.items():
+                counts[r["column"]][kind] += int(s.str.contains(rx, regex=True).sum())
+    for r in todo:
+        found = {k: v for k, v in counts[r["column"]].items() if v}
+        r["sweep"] = {"rows_scanned": rows, "identifier_shaped_values": found}
+        if found:
+            r["needs_review"] = True
+            r["rule_ids"].append("sweep.identifier_shaped_values")
+            r["reason"] += "; full-column sweep found " + ", ".join(f"{v} {k}-shaped value(s)" for k, v in found.items())
+    return rows
+
+
+def build_inventory(data_dir: Path, dataset: str, tables: list[str] | None = None, sweep: bool = True,
+                    sample_rows: int = SAMPLE_ROWS) -> dict:
     """Scan <data_dir>/*.csv (one dataset folder) into the private inventory envelope."""
     data_dir = Path(data_dir)
     files = sorted(data_dir.glob("*.csv"))
@@ -58,9 +96,11 @@ def build_inventory(data_dir: Path, dataset: str, tables: list[str] | None = Non
         raise SystemExit(f"no CSV tables found in {data_dir}")
     fields, table_ids = [], []
     for f in files:
-        df = read_csv(f)
-        table_ids.append({"table": f.stem, "columns": len(df.columns)})
-        fields.extend(field_records(scan_table(df, f.stem)))
+        df = read_csv(f, nrows=sample_rows)
+        recs = field_records(scan_table(df, f.stem))
+        rows = sweep_table(f, recs) if sweep else None
+        table_ids.append({"table": f.stem, "columns": len(df.columns), "rows_swept": rows})
+        fields.extend(recs)
     keys = [(x["table"], x["column"]) for x in fields]
     assert len(keys) == len(set(keys)), "every (table, column) must appear exactly once"
     return {
@@ -74,8 +114,11 @@ def build_inventory(data_dir: Path, dataset: str, tables: list[str] | None = Non
         "tables": table_ids,
         "sampling": {
             "rule": "first_n_rows",
-            "rows_per_table": SAMPLE_ROWS,
-            "note": "Values outside the first rows are not inspected; absence of a match is not evidence of absence.",
+            "rows_per_table": sample_rows,
+            "full_column_sweep": "every row of every non-direct-identifier column is checked for e-mail, ID-code, "
+                                 "IBAN, phone and plate shapes; hits only raise needs_review (counts, no values)"
+                                 if sweep else "disabled",
+            "note": "Rules inspect only the first rows; absence of a match is not evidence of absence.",
         },
         "certainty_meaning": "heuristic rule strength (high/medium/low); unknown = no rule matched. Not a probability.",
         "roles": ROLES,

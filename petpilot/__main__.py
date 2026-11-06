@@ -23,6 +23,7 @@ def main() -> None:
     i.add_argument("--data", required=True, help="one dataset folder, e.g. .../data/mobility")
     i.add_argument("--dataset", required=True, help="dataset identifier recorded in the envelope")
     i.add_argument("--tables", nargs="*", help="restrict to these table names")
+    i.add_argument("--no-sweep", action="store_true", help="skip the full-column identifier sweep")
     i.add_argument("--out", required=True)
     a = sub.add_parser("scan", help="best-guess labels for every <dataset>/<table>.csv in a folder (catalog format)")
     a.add_argument("--data", required=True)
@@ -38,7 +39,7 @@ def main() -> None:
 
     if args.cmd == "inventory":
         from .inventory import build_inventory, write_inventory
-        inv = build_inventory(Path(args.data), args.dataset, args.tables)
+        inv = build_inventory(Path(args.data), args.dataset, args.tables, sweep=not args.no_sweep)
         write_inventory(inv, Path(args.out))
         s = inv["summary"]
         print(f"wrote {s['fields']} fields ({s['unknown']} unknown, {s['needs_review']} need review) -> {args.out}")

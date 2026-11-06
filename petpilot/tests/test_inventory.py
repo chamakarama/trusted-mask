@@ -108,3 +108,17 @@ class InventoryContract(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FullColumnSweep(unittest.TestCase):
+    def test_rare_identifier_beyond_the_sample_is_flagged(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            rows = [f"T{i:05d},{'ok' if i != 4321 else 'someone.rare@fixture.example'},{i % 7}" for i in range(6000)]
+            (Path(d) / "events.csv").write_text("event_id,remark,code\n" + "\n".join(rows) + "\n", encoding="utf-8")
+            inv = build_inventory(Path(d), "sweep_fixture", sample_rows=1000)
+            remark = _field(inv, "events", "remark")
+            self.assertTrue(remark["needs_review"])
+            self.assertIn("sweep.identifier_shaped_values", remark["rule_ids"])
+            self.assertEqual(remark["sweep"]["identifier_shaped_values"].get("email"), 1)
+            self.assertNotIn("someone.rare", json.dumps(inv))
