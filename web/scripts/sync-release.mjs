@@ -2,7 +2,7 @@
 // Verifies every file against the release manifest's SHA-256 before copying. Never copies anything else.
 //
 // usage: node scripts/sync-release.mjs [--ref <git ref>] [release-path ...]
-//   default ref: origin/astra/e1-publisher (until Astra's branch is integrated; then use HEAD)
+//   default ref: HEAD (the reviewed release is on main since b223859; pass --ref to read another commit)
 //   default releases: releases/e1-aura-001 fixtures/protected-v1
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -14,7 +14,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "..", "..");
 const out = resolve(here, "..", "public");
 const args = process.argv.slice(2);
-let ref = "origin/astra/e1-publisher";
+let ref = "HEAD";
 const paths = [];
 for (let i = 0; i < args.length; i++) {
   if (args[i] === "--ref") ref = args[++i];
