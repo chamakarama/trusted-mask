@@ -100,8 +100,8 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
         {!top.length && <li className="empty">Nothing here. <button className="link" onClick={() => onOrigin(null)}>Show all</button></li>}
       </ol>
 
-      {rely && <p className="tiny muted capnote">Noise ranges cover the random noise only. The per-card cap also pulls busy routes down{capGap
-        ? `: the 10 busiest morning routes came out ${Math.round(capGap[0] * 100)}–${Math.round(capGap[1] * 100)}% below their exact counts (synthetic test).`
+      {rely && <p className="tiny muted capnote">Noise ranges cover the random noise only. The per-card cap can reduce counts{capGap
+        ? `. After capping and noise, the 10 busiest exact-ranked morning routes came out ${Math.round(capGap[0] * 100)}–${Math.round(capGap[1] * 100)}% below their exact inferred counts (synthetic test).`
         : "."}</p>}
 
       <details className="limits">

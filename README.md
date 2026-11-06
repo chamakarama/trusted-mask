@@ -4,7 +4,7 @@
 
 ## The problem in one number
 
-Deleting names is not enough. In a test on 1,000 synthetic travel cards, **4 sightings (a stop and an hour) pick out 97.5% of cards** in de-named tap records, and still 87% with k ≥ 5 suppression (the organisers' own sample gives 97.0% and 90.4%). So RouteSafe shares **no rows at all**.
+Deleting names is not enough. In a test on 1,000 synthetic travel cards, **4 sightings (a stop and an hour) pick out 97.5% of cards** in de-named tap records, and still 87.4% of the 922 eligible cards with k ≥ 5 suppression (the organisers' own sample gives 97.0% and 90.4%). So RouteSafe shares **no rows at all**.
 
 ## What RouteSafe does
 
@@ -26,7 +26,7 @@ A separate **operator workbench** (private, never published) shows the scanner's
 | Question | Answer | Evidence |
 |---|---|---|
 | Do planners still get the right shortlist? | Morning top 3 routes = the exact data's (3/3); same top 3 in **100 of 100** noise re-runs. Only weekday mornings were tested. | `evidence/evidence-summary.json` |
-| How exact are the numbers? | Each area-level route cell in the planner carries a ±571-trip range for the random noise (95% for all 2,205 released route cells at once). The range does not cover the per-card cap, which pulls busy routes down: the 10 busiest morning routes came out 8–18% below their exact counts. Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. | same |
+| How exact are the numbers? | Each area-level route cell in the planner carries a ±571-trip range for the random noise (95% for all 2,205 released route cells at once). The range does not cover the per-card cap. After capping and noise, the ten busiest exact-ranked morning routes came out 8–18% below their exact inferred counts. Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. | same |
 | Organisers' strict utility scores | RouteSafe: routes 0.00 (native MOB-U1), lines 0.00 and days 0.77 (adapted MOB-U2/U3): **not passing**, because small cells are mostly noise. For comparison, sharing de-named rows scores 1.00 / 1.00 / 1.00 but exposes 97% of cards. | same |
 | How good is the scanner? | Development (rules tuned on the samples, not blind): macro-F1 0.90, sensitive recall 0.92. Tricky probe: 0 sensitive columns wrongly called safe. | `petpilot/README.md` |
 
