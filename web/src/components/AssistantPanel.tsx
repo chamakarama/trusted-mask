@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { execute, PRESETS, refuse, validateIntent, type Answer } from "../assistant/intent";
-import type { Release } from "../data/release";
+import { BAND_LABEL } from "../data/derive";
+import { areaLabel, type Release } from "../data/release";
 import { IconSpark, IconWarn } from "./Icons";
 
 interface Props { rel: Release; onEvidence: (resultId: string) => void; onApply: (band: string, origin: string | null) => void; onIntent?: (band: string, origin: string | null, firstId: string | null) => void }
@@ -27,14 +28,21 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   const begin = () => { pending.current?.abort(); pending.current = null; setBusy(false); return ++gen.current; };
   useEffect(() => () => { gen.current++; pending.current?.abort(); }, [rel.id]); // release change or unmount
 
-  useEffect(() => {
+  const checkHealth = () => {
     const ctl = new AbortController();
     const t = window.setTimeout(() => ctl.abort(), 1500);
+    setLive(null);
     fetch(`${ASSIST}/health`, { signal: ctl.signal }).then((r) => r.json()).then((h) => setLive(!!h.ok)).catch(() => setLive(false)).finally(() => window.clearTimeout(t));
-    return () => ctl.abort();
-  }, []);
+    return ctl;
+  };
+  useEffect(() => { const ctl = checkHealth(); return () => ctl.abort(); }, []);
 
-  const show = (a: Answer) => { begin(); setAnswer(a); if (a.kind === "answer" && a.evidence[0]) onEvidence(a.evidence[0].result_id); };
+  // a preset answer applies its own checked request (band AND start area, including "anywhere"), like a typed one (A-033)
+  const show = (a: Answer) => {
+    begin(); setAnswer(a);
+    if (a.kind === "answer" && a.request && onIntent) onIntent(a.request.hour_band, a.request.origin_area, a.evidence[0]?.result_id ?? null);
+    else if (a.kind === "answer" && a.evidence[0]) onEvidence(a.evidence[0].result_id);
+  };
 
   const ask = async () => {
     const question = q.trim();
@@ -80,20 +88,27 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
         <div><div className="eyebrow">Ask the data</div><h2 id="assist-title">Ask a question</h2></div>
         <span className={`badge ${live ? "badge-ok" : ""}`}><IconSpark /> {live === null ? "checking AI…" : live ? "AI on" : "AI offline"}</span>
       </div>
-      <form className="ask" onSubmit={(e) => { e.preventDefault(); void ask(); }}>
-        <label className="sr-only" htmlFor="ask-input">Question</label>
-        <input id="ask-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Which evening routes from Raisio are busiest?" maxLength={400} />
-        <button type="submit" disabled={!q.trim() || busy}>{busy ? "…" : "Ask"}</button>
-      </form>
-      <p className="tiny muted ask-note">{live
-        ? "Your typed question is sent as written to Anthropic's Claude API (via a helper on this computer), with the public area list, so don't type personal details. No operator records or release numbers are included; the AI only picks a request, and the numbers come from the published tables."
-        : "Typed questions need the AI helper. The suggested questions below work without it."}</p>
+      {live !== false ? (
+        <>
+          <form className="ask" onSubmit={(e) => { e.preventDefault(); void ask(); }}>
+            <label className="sr-only" htmlFor="ask-input">Question</label>
+            <input id="ask-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Busiest evening routes from Turku area 208?" maxLength={400} />
+            <button type="submit" disabled={!q.trim() || busy || !live}>{busy ? "…" : "Ask"}</button>
+          </form>
+          <p className="tiny muted ask-note">Your question is sent as written to Anthropic's Claude API (through a helper on this computer), so don't type personal details. Claude only turns it into a request: no operator records or release numbers are sent, and every number comes from the published tables.</p>
+        </>
+      ) : (
+        <p className="tiny muted ask-note">Typed questions need the AI helper on this computer. The suggested questions below work without it. <button className="link" onClick={() => checkHealth()}>Check again</button></p>
+      )}
       <div className="presets">
         {PRESETS.map((p) => <button key={p.id} className="preset" onClick={() => show(p.run(rel))}>{p.question}</button>)}
       </div>
       {answer && (
         <div className={`answer ${answer.kind === "answer" ? "" : "answer-refusal"}`} aria-live="polite">
           {answer.kind !== "answer" && <h3><IconWarn /> {TITLE[answer.kind]}</h3>}
+          {answer.source === "model" && answer.request && (
+            <p className="tiny readas">Read as: {BAND_LABEL[answer.request.hour_band]} · from {answer.request.origin_area ? areaLabel(answer.request.origin_area) : "anywhere"} · top {answer.request.limit}</p>
+          )}
           <p>{answer.summary}</p>
           {!!answer.evidence.length && (
             <ol className="evidence">
@@ -107,7 +122,7 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
             </button>
           )}
           <p className="source tiny">
-            {answer.source === "preset" ? "Suggested question · answered directly from the published numbers" : "AI read the question; the numbers come from the published release"} · {answer.release_id}
+            {answer.kind !== "answer" ? "No numbers shown" : answer.source === "preset" ? "Suggested question · answered directly from the published numbers" : "Claude read the question; the numbers come from the published release"} · {answer.release_id}
           </p>
         </div>
       )}

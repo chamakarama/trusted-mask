@@ -1,6 +1,8 @@
 import { cellRadius, familyScale, fmt, noiseRadius } from "../data/derive";
 import { oddsBound } from "../data/evidence";
 import { areaLabel, type Release } from "../data/release";
+import { BeforeAfter } from "./BeforeAfter";
+import { Tradeoff } from "./Tradeoff";
 import { IconCheck, IconInfo, IconShield, IconWarn } from "./Icons";
 
 const pct = (x: number, d = 0) => `${(100 * x).toFixed(d)}%`;
@@ -28,6 +30,11 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
     fpr: e7r.reduce((s, r) => s + r.false_positive.rate, 0) / e7r.length,
   }; // Astra's reviewed native MOB-U scores for the row baselines
   const scores = (r: any) => (r ? `${two(r["MOB-U1"].score)} · ${two(r["MOB-U2"].score)} · ${two(r["MOB-U3"].score)}` : "–");
+  // same fixed group of cards as the hero curve, so the table and the big number agree
+  const at4 = (rows: any[] | undefined) => rows?.find((c) => c.known_points === 4) ?? null;
+  const fc = ev.trajectory_fixed_cohort ?? {};
+  const c0 = at4(fc.b0), c2 = at4(fc.b2), c2k = at4(fc.b2k);
+  const cohort = (c: any, native: number) => (c ? pct(c.unicity, 1) : pct(native, 1));
   const cap = rel.manifest.privacy.families.od.cap;
   const morningCells = rel.od.filter((c) => c.hour_band === "06-09" && c.origin_area !== c.destination_area).length;
   const W = 460, rowH = 34, LBL = 92, BAR = W - LBL - 150;
@@ -52,14 +59,14 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
                 return (
                   <g key={c.known_points}>
                     <text x={0} y={y + 16} className="lbl">{c.known_points} sightings</text>
-                    <rect x={LBL} y={y + 4} width={BAR} height={16} rx={4} fill="var(--d100)" />
+                    <rect x={LBL} y={y + 4} width={BAR} height={16} rx={4} fill="var(--surface-3)" />
                     <rect x={LBL} y={y + 4} width={bw} height={16} rx={4} className="hbar-bad" />
                     <text x={LBL + BAR + 8} y={y + 16} className="lbl" fontWeight={700}>{pct(c.unicity, 1)}</text>
                     {c.wilson_95 && <text x={LBL + BAR + 54} y={y + 16} className="lbl" fill="var(--muted)">{(100 * c.wilson_95[0]).toFixed(1)}–{(100 * c.wilson_95[1]).toFixed(1)}%</text>}
                   </g>
                 );
               })}
-              <text x={0} y={curve.length * rowH + 18} className="lbl" fill="var(--muted)">{fmt(curve[0]?.tested ?? 1000)} test cards, names removed · grey = 95% range</text>
+              <text x={0} y={curve.length * rowH + 18} className="lbl" fill="var(--muted)">{fmt(curve[0]?.tested ?? 1000)} test cards, names removed · 95% range after each value</text>
             </svg>
           </article>
           <article className="vs-card vs-good">
@@ -77,14 +84,17 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           <table className="table small compare">
             <thead><tr><th scope="col">What is shared</th><th scope="col" className="num">Cards picked out by 4 sightings</th><th scope="col" className="num">Organisers' utility scores<br /><span className="tiny muted">routes · lines · days (1 = perfect)</span></th></tr></thead>
             <tbody>
-              <tr><td>Journey rows, names removed</td><td className="num">{pct(t.b0.unicity, 1)}</td><td className="num">{scores(rb?.b0)}</td></tr>
-              <tr><td>Journey rows, fixed fake card numbers</td><td className="num">{pct(t.b2.unicity, 1)}</td><td className="num">{scores(rb?.b2)}</td></tr>
-              <tr><td>Journey rows, fake numbers, rare values suppressed (k ≥ 5)</td><td className="num">{pct(t.b2k.unicity, 1)}</td><td className="num">{scores(rb?.b2k)}</td></tr>
-              <tr className="row-ours"><td><strong>RouteSafe: protected counts only</strong></td><td className="num">no rows to search</td><td className="num">{two(u1.score)} · {two(u2.score)} · {two(u3.score)}</td></tr>
+              <tr><td>Journey rows, names removed</td><td className="num">{cohort(c0, t.b0.unicity)}</td><td className="num">{scores(rb?.b0)}</td></tr>
+              <tr><td>Journey rows, fixed fake card numbers</td><td className="num">{cohort(c2, t.b2.unicity)}</td><td className="num">{scores(rb?.b2)}</td></tr>
+              <tr><td>Journey rows, fake numbers, rare values suppressed (k ≥ 5)</td><td className="num">{cohort(c2k, t.b2k.unicity)}{c2k && c2k.tested < (c0?.tested ?? 0) ? <span className="tiny muted"> of {fmt(c2k.tested)} left</span> : null}</td><td className="num">{scores(rb?.b2k)}</td></tr>
+              <tr className="row-ours"><td><strong>RouteSafe: protected counts only</strong></td><td className="num">no rows to search</td><td className="num neutral">{two(u1.score)} · {two(u2.score)}* · {two(u3.score)}* <span className="tiny muted">not passing</span></td></tr>
             </tbody>
           </table>
         </div>
-        <p className="tiny muted">Organisers' tools: {fmt(t.b0.n_users_tested)} test cards, stops within {t.b0.spatial_m} m and times to the hour; the curve above uses a fixed group of {fmt(four.tested ?? 1000)} cards, so its 4-sighting figure differs slightly. Utility: routes = native MOB-U1; for RouteSafe, lines and days use aggregate adapters of MOB-U2/U3. Row scores use the organisers' field catalogue. A high row score does not mean low risk: read both columns together.</p>
+        <p className="tiny muted">Same fixed group of {fmt(four.tested ?? 1000)} test cards as the curve above, stops within {t.b0.spatial_m} m and times to the hour (the organisers' own sample gives {pct(t.b0.unicity, 1)} / {pct(t.b2.unicity, 1)} / {pct(t.b2k.unicity, 1)}; see technical details). Utility: routes = the organisers' MOB-U1. *For RouteSafe, lines and days use our own aggregate adapters of MOB-U2/U3: the unmodified organisers' tool marks them not answerable for an aggregate release. Row scores use the organisers' field catalogue. A high row score does not mean low risk: read both columns together.</p>
+
+        <BeforeAfter uc={ev.utility_comparison} />
+        <Tradeoff t={ev.policy_tradeoff} released={{ epsilon: eps, cap: rel.manifest.privacy.families.od.cap, geography: "area" }} />
 
         <div className="ev-grid">
           <article className="ev-card">

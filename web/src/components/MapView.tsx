@@ -12,13 +12,16 @@ interface Props {
   origin: string | null;
   onSelect: (id: string) => void;
   onOrigin: (area: string | null) => void;
-  muted?: boolean;             // routes too small to tell from noise: draw them grey, not as demand
+  floor?: number | null;       // routes at or below this noise floor are drawn grey and dashed, without a rank badge
+  tripsMax?: number;           // release-wide maxima keep widths and dot sizes comparable across time bands
+  outMax?: number;
 }
 
 const W = 760, H = 500, PAD = 46;
 
 /** Schematic map: public area points (unweighted stop centroids) and straight-line-free arcs. No basemap, no roads. */
-export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, muted = false }: Props) {
+export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, floor = null, tripsMax, outMax }: Props) {
+  const isMuted = (c: Corridor) => floor !== null && c.noisy_value <= floor;
   const [hover, setHover] = useState<string | null>(null);
   const proj = useMemo(() => {
     // Equirectangular, then a radial "centre-enlarged" warp (r' = r^0.5) around the median point so the dense city
@@ -42,17 +45,24 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
     return new Map(pts.map((a, i) => [a.id, { x: ox + (warped[i][0] - x0) * s, y: oy + (warped[i][1] - y0) * s }]));
   }, [pts]);
   const out = outgoing;
-  const maxOut = Math.max(1, ...out.values());
-  const maxTrips = Math.max(1, ...corridors.map((c) => c.trips));
+  const maxOut = outMax ?? Math.max(1, ...out.values());
+  const maxTrips = tripsMax ?? Math.max(1, ...corridors.map((c) => c.trips));
   const involved = new Set(corridors.flatMap((c) => [c.origin_area, c.destination_area]));
   // only the shortlist's ends (and the chosen start) get a printed name: the dense centre stays readable
   const named = new Set([...corridors.filter((c) => c.rank <= highlight).flatMap((c) => [c.origin_area, c.destination_area]), ...(origin ? [origin] : [])]);
 
-  const arc = (c: Corridor) => {
+  const ctrl = (c: Corridor) => {
     const a = proj.get(c.origin_area)!, b = proj.get(c.destination_area)!;
     const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
     const k = Math.max(0.22 * len, 14);                       // bend to the left of the travel direction: A→B and B→A stay apart
-    const cx = (a.x + b.x) / 2 - (dy / len) * k, cy = (a.y + b.y) / 2 + (dx / len) * k;
+    return { a, b, cx: (a.x + b.x) / 2 - (dy / len) * k, cy: (a.y + b.y) / 2 + (dx / len) * k };
+  };
+  const badgeAt = (c: Corridor, t = 0.3) => {
+    const { a, b, cx, cy } = ctrl(c), u = 1 - t;
+    return { x: u * u * a.x + 2 * u * t * cx + t * t * b.x, y: u * u * a.y + 2 * u * t * cy + t * t * b.y };
+  };
+  const arc = (c: Corridor) => {
+    const { a, b, cx, cy } = ctrl(c);
     // stop short of the destination dot so the arrow head stays visible
     const ex = b.x - ((b.x - cx) / Math.hypot(b.x - cx, b.y - cy)) * 9, ey = b.y - ((b.y - cy) / Math.hypot(b.x - cx, b.y - cy)) * 9;
     return `M${a.x.toFixed(1)},${a.y.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;
@@ -81,12 +91,13 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
         {ordered.map((c) => {
           const strong = c.rank <= highlight;
           const isSel = selected === c.id;
+          const muted = isMuted(c);
           return (
             <path
               key={c.id}
               d={arc(c)}
-              className={`arc ${muted ? "arc-muted" : strong ? "arc-strong" : "arc-weak"} ${isSel ? "arc-selected" : ""} ${hover === c.id ? "arc-hover" : ""}`}
-              strokeWidth={strong ? 4 + 4 * (c.trips / maxTrips) : 1.5 + 1.5 * (c.trips / maxTrips)}
+              className={`arc ${muted ? "arc-muted" : strong ? "arc-strong" : "arc-weak"} ${isSel ? "arc-selected" : ""} ${selected && !isSel ? "arc-dim" : ""} ${hover === c.id ? "arc-hover" : ""}`}
+              strokeWidth={(strong ? 4 + 4 * (c.trips / maxTrips) : 1.5 + 1.5 * (c.trips / maxTrips)) + (isSel ? 3 : 0)}
               markerEnd={`url(#${muted ? "arrow-muted" : strong ? "arrow-strong" : "arrow-weak"})`}
               tabIndex={0}
               role="button"
@@ -98,6 +109,14 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
             >
               <title>{`#${c.rank} ${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} inferred journeys (uncertain)`}</title>
             </path>
+          );
+        })}
+        {corridors.filter((c) => c.rank <= highlight && !isMuted(c)).map((c) => {
+          const p = badgeAt(c);
+          return (
+            <g key={`b-${c.id}`} className="rank-badge" aria-hidden="true">
+              <circle cx={p.x} cy={p.y} r={9} /><text x={p.x} y={p.y + 4} textAnchor="middle">{c.rank}</text>
+            </g>
           );
         })}
         {pts.map((a) => {

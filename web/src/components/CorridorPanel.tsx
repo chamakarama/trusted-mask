@@ -1,4 +1,4 @@
-import { BANDS, fmt, rangeOf, weekdaysInPeriod, type Corridor, type Level, type Point, type Reliability } from "../data/derive";
+import { fmt, rangeOf, weekdaysInPeriod, type Corridor, type Level, type Point, type Reliability } from "../data/derive";
 import { areaLabel, type Release } from "../data/release";
 import { IconArrow, IconCheck, IconInfo, IconWarn } from "./Icons";
 
@@ -22,12 +22,13 @@ interface Props {
   rely: Reliability | null;
   check: ShortlistCheck | null;
   capLoss: number | null;
-  onBand: (b: string) => void;
+  capGap?: [number, number] | null;                              // busiest morning routes vs exact (synthetic test)
+  bandCheck?: { top3_overlap: number; k?: number } | null;       // one-draw exact check of this band's shortlist
   onOrigin: (a: string | null) => void;
   onSelect: (id: string) => void;
 }
 
-export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin, ranked, shortlist, selected, rely, check, capLoss, onBand, onOrigin, onSelect }: Props) {
+export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin, ranked, shortlist, selected, rely, check, capLoss, capGap = null, bandCheck = null, onOrigin, onSelect }: Props) {
   const days = weekdaysInPeriod(rel);
   const top = ranked.slice(0, shortlist);
   const max = Math.max(1, ...top.map((c) => c.trips));
@@ -41,26 +42,25 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
   if (fixture) {
     status = { tone: "info", text: "Test fixture: illustrative numbers. No noise or privacy claims are made for it." };
   } else if (rely && rely.noiseOnly.length) {
-    status = { tone: "warn", text: `Could be pure noise. Across all ${fmt(rely.candidates)} released route numbers, noise alone can lift an empty route to about ${fmt(rely.radius)} trips, and ${rely.noiseOnly.length === top.length ? "all of these are" : `#${rely.noiseOnly.join(", #")} ${rely.noiseOnly.length === 1 ? "is" : "are"}`} below that. Don't decide on ${rely.noiseOnly.length === 1 ? "it" : "these"}.` };
+    status = { tone: "warn", text: `Could be pure noise: noise alone can reach about ${fmt(rely.radius)} trips here, and ${rely.noiseOnly.length === top.length ? `all ${top.length} are` : `#${rely.noiseOnly.join(", #")} ${rely.noiseOnly.length === 1 ? "is" : "are"}`} below that. Don't decide on ${rely.noiseOnly.length === 1 ? "it" : "these"}.` };
   } else if (check && level === "area") {
-    status = { tone: "ok", text: `Checked: same top ${check.k} as the exact data in ${check.exact} of ${check.draws} noise re-runs (synthetic test, weekday mornings).` };
+    status = { tone: "ok", text: "Checked against the exact data (synthetic test, weekday mornings)." };
   } else if (check && level === "municipality" && check.townOverlap !== null) {
     status = { tone: "ok", text: `Checked once: ${check.townOverlap} of ${check.k} town pairs match the exact data (synthetic test). Town totals add up many areas' noise, so no range is shown.` };
+  } else if (bandCheck && level === "area") {
+    const k = bandCheck.k ?? 3;
+    status = { tone: bandCheck.top3_overlap === k ? "ok" : "info", text: `Checked once against the exact data: ${bandCheck.top3_overlap} of ${k} top routes match (synthetic test, this release only). Noise and the per-card cap can reorder routes.` };
   } else {
-    status = { tone: "info", text: `Not tested against the exact data: only weekday mornings were. Close numbers can swap places.${level === "municipality" ? " Town totals add up many areas' noise, so no range is shown." : ""}` };
+    const scope = band === "06-09" && origin ? "only the unfiltered morning top 3 was" : "only weekday mornings were";
+    status = { tone: "info", text: level === "municipality"
+      ? `Not tested against the exact data: ${scope}. Town totals add up the noise of many area cells, so small totals can be mostly noise; no range is shown.`
+      : `Not tested against the exact data: ${scope}. Noise and the per-card cap can reorder routes.` };
   }
 
   return (
     <section className="panel" aria-labelledby="decision-title">
       <div className="eyebrow">Shortlist</div>
       <h2 id="decision-title">Top {shortlist} routes to look at</h2>
-      <div className="bandbar" role="radiogroup" aria-label="Time of day">
-        {BANDS.map((b) => (
-          <button key={b} role="radio" aria-checked={b === band} className={`band ${b === band ? "band-on" : ""}`} onClick={() => onBand(b)}>
-            {BAND_SHORT[b][0]}<small>{BAND_SHORT[b][1]}</small>
-          </button>
-        ))}
-      </div>
       <div className="controls">
         <div className="seg" role="radiogroup" aria-label="Detail level">
           <button role="radio" aria-checked={level === "area"} className={`seg-btn ${level === "area" ? "seg-on" : ""}`} onClick={() => onLevel("area")}>Areas</button>
@@ -99,6 +99,10 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
         })}
         {!top.length && <li className="empty">Nothing here. <button className="link" onClick={() => onOrigin(null)}>Show all</button></li>}
       </ol>
+
+      {rely && <p className="tiny muted capnote">Noise ranges cover only the random noise around the capped counts. The per-card cap can reduce counts.{capGap
+        ? ` In the synthetic test, after capping and noise, the ten busiest exact-ranked morning routes were ${Math.round(capGap[0] * 100)}–${Math.round(capGap[1] * 100)}% below their exact inferred counts.`
+        : ""}</p>}
 
       <details className="limits">
         <summary>What these numbers can't tell you</summary>

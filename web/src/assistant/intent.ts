@@ -17,6 +17,7 @@ export interface Answer {
   warnings: string[];
   alternative?: Intent;
   source: "preset" | "model";
+  request?: Intent;          // the checked request the numbers were computed from (shown as "Read as …")
 }
 
 const KEYS = ["view", "hour_band", "origin_area", "action", "limit"];
@@ -43,14 +44,14 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
   const warnings = [
     "Destinations are estimated from where the same card next starts a journey, not observed.",
     rely
-      ? `Noise ranges hold for all ${fmt(rely.candidates)} released route numbers at once (95%, noise only, on capped counts). Close numbers can swap places.`
+      ? `Noise ranges hold for all ${fmt(rely.candidates)} released route numbers at once (95%, only the noise around the capped counts). The per-card cap can reduce counts, and noise and the cap can reorder routes.`
       : "Numbers are protected estimates, so close numbers can swap places.",
   ];
   if (rely?.noiseOnly.length) warnings.unshift(`Could be pure noise: across all ${fmt(rely.candidates)} released route numbers, noise alone can lift an empty route to about ${fmt(rely.radius)} trips. Don't decide on these.`);
   if (rel.manifest.fixture) warnings.unshift("Fixture release: illustrative values, not results.");
   const scope = intent.origin_area ? ` starting in ${areaLabel(intent.origin_area)}` : "";
   return {
-    kind: "answer", release_id: rel.id, definition_id: def, units: "inferred weekday journeys, whole release period", source, warnings,
+    kind: "answer", release_id: rel.id, definition_id: def, units: "inferred weekday journeys, whole release period", source, warnings, request: intent,
     summary: rows.length
       ? `Top ${rows.length} ${BAND_LABEL[intent.hour_band].toLowerCase()} routes${scope}:`
       : `No published route${scope} in this time band.`,
