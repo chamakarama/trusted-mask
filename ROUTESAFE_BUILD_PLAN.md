@@ -15,7 +15,21 @@ The demonstration has one clear causal story:
 3. The planner can still identify promising corridors for a service review.
 4. We show how much that decision and the underlying statistics changed, including uncertainty and limitations.
 
-The distinctive work is the connection between the attack, a correctly bounded release, a useful decision, and evidence a judge can inspect. Differential privacy and maps are established techniques; do not claim their invention. Avoid a general-purpose privacy dashboard with an impressive-looking but unexplained score.
+The distinctive work is the connection between the attack, an explainable field scanner, a correctly bounded release, a useful decision, and evidence a judge can inspect. Differential privacy and maps are established techniques; do not claim their invention. Avoid a general-purpose privacy dashboard with an impressive-looking but unexplained score.
+
+### Accepted scanner integration
+
+The team's [combined proposal](COMBINED_IDEA.md) is adopted with the following scope decisions. These decisions govern where that proposal differs from this plan; its original text remains a record of the suggestion.
+
+* **Reuse the local rule-based scanner as RouteSafe's first operator step.** Vaishnav/Opus owns its code under `petpilot/`, its field inventory and operator presentation. Astra owns validation of the handoff, the approved transformation policy and independent evaluation. Do not build a competing generic detector in `pipeline/`.
+* **Make selection visible and purpose-specific.** Each field's detected role and reason connects to the public-planning purpose and a concrete handling decision: omit, internal grouping only, public-reference mapping, time binning, or bounded aggregation followed by DP. Classification informs the explanation; it does not authorise a field to leave the operator.
+* **Ship MOB-S1 aggregate publication, not the proposed MOB-S2 row export.** Weekly rotating pseudonyms and rounded times do not establish that travel histories are safe to share. A consultancy request may show “row-level sharing unsupported in this prototype” and offer aggregate statistics. Do not build a second transformation engine or a misleading “safe for consultants” switch. A second release mode requires a separate threat model, access controls, evaluation and scope decision after the core is complete.
+* **Keep the mystery-file scene optional.** It can demonstrate scanner portability or a synthetic hashed-identifier risk, but must not replace utility evidence or exceed the video limit. It is already inspected by the teammate, so it is no longer an unseen test for this team's scanner. Do not say it “understands any dataset.”
+* **The scanner is not AI.** Preserve the bounded planner assistant as the primary AI feature. Optional AI classification hints remain advisory and local or strictly metadata-only; a short category code may still encode salary, union membership or health information and is not automatically safe to send to a cloud model.
+
+The proposal reports macro-F1 0.87 and sensitive-column recall 92%, versus supplied baseline figures of 0.65 and 73%, and 2,111/2,818 synthetic identifier-hash matches. These are **teammate-reported development results, not independently reproduced results**. The proposal says labels were visible during rule development and that some sensitive attributes remain missed. Retrieve code, commands and results before adopting any number. Report observed generalisation performance when measured; do not assume its magnitude in advance. A matched hash illustrates recoverability with a specified candidate source, not arbitrary inversion of SHA-256.
+
+**Code availability update:** the teammate subsequently pushed `petpilot/` in commit `4cd1374`. Its README, CLI and relevant classification logic have been inspected for this integration; its accuracy has not been rerun. Use the existing CLI and adapt its output rather than rewriting it. E1S must specifically challenge two observed heuristics: treating a table as non-sensitive when no person signal is detected, and treating a hash as non-sensitive when no link is found. Neither absence is evidence that hidden sensitive attributes are safe. The hashed-column detector samples candidate matches; the reported full-file recovery count needs its own reproducible evaluation command.
 
 **Recommended first architecture:** a Python private publishing CLI/workbench, a versioned static release bundle, and a TypeScript public explorer. Use OpenDP for the noise mechanism after a small compatibility experiment. No live private-data query API is needed. A release ledger prevents accidental repeated spending. This is simpler to audit and more reliable to demonstrate than a distributed cryptographic system.
 
@@ -48,7 +62,7 @@ The public event submission page requires a working prototype or testing route, 
 
 | Required element | What the product demonstrates | Evidence and acceptance | Initial owner |
 |---|---|---|---|
-| R1 Identify data types | Data inventory distinguishes direct identifiers, persistent keys, spatiotemporal quasi-identifiers, sensitive attributes, categories, measurements, and public reference data | Field-level classification with reasons and handling; unknown fields fail closed; detection evaluated separately from transformation | Astra; Opus presents |
+| R1 Identify data types | Local scanner distinguishes direct identifiers, persistent keys, spatiotemporal quasi-identifiers, sensitive attributes, categories, measurements, and public reference data | Field inventory with reasons and unknowns; field catalog used for evaluation only; scanner results independently reproduced | Vaishnav/Opus; Astra evaluates |
 | R2 Explain PET choices | Omission of unnecessary attributes, temporal/spatial aggregation, bounded contributions, DP counts, safe post-processing | Per-field and per-statistic rationale; privacy unit, adjacency, caps, budget, library/version, assumptions | Astra; Opus reviews explanation |
 | R3 Show protected output | Planner map, aggregate table, release manifest, downloadable bundle | Actual released values; no row histories or identifiers; download matches what powers UI | Opus; Astra validates |
 | R4 Compare usefulness | Raw-derived reference, prepared/clipped counts, protected counts and planning shortlist | Numerical errors, contribution-loss analysis, repeat-run distribution, decision retention, supplied baseline comparison | Astra; Opus presents |
@@ -125,7 +139,7 @@ A local demonstration can switch between these surfaces. Mark the switch “Oper
 ### Release pipeline
 
 1. **Validate:** strict required columns and types, timestamps, nonempty card IDs, unique reference keys, valid stop joins, finite coordinates, permitted date range and category domain. Preserve source counts and rejection reasons in the private report. Reject ambiguous schemas, many-to-many stop joins, and unrecognised policy revisions. Handle missing IDs explicitly; do not collapse all missing cards into one person or treat each as a fresh person.
-2. **Classify:** deterministic schema and pattern rules with confidence/reason codes. Use the supplied field catalog as evaluation labels, not a runtime oracle disguised as detection. Known mobility schema can be an explicitly declared supported adapter. Unknown columns are excluded until classified; an LLM suggestion cannot automatically permit publication.
+2. **Classify:** consume the local `petpilot/` scanner's versioned field inventory, with pattern/schema reasons and explicit unknowns. Use the supplied field catalog as evaluation labels, not a runtime oracle disguised as detection. Known mobility schema can be an explicitly declared supported adapter. Unknown columns are excluded until classified; an LLM suggestion cannot automatically permit publication. The publisher validates required analytical fields independently and exports only the approved aggregate schema, even if the scanner mistakenly labels a sensitive field non-sensitive. See the private scanner contract in `planning/INTERFACES.md`.
 3. **Minimise:** core analysis does not need names, birth dates, emails, phones, card type, exact fares or vehicle identifiers. Do not load/join the full registry merely to count boardings. Public stop geography is not private passenger geography.
 4. **Prepare:** resolve timestamps in the documented local-time convention; report the 26 October DST ambiguity rather than guessing precise elapsed journeys across repeated clock times. Apply deterministic duplicate and transfer rules within each card. Do not use population-derived “home” locations. Preserve a benchmark-compatible inference path and compare an improved path if tested.
 5. **Aggregate with bounded contributions:** build fixed-domain statistics. Bound each card across the entire stated release period and each measurement family. Apply the cap to the final count-contributing units after inference, so the sensitivity proof concerns the actual published statistic.
@@ -225,6 +239,7 @@ Run these before committing to an elaborate UI or privacy method. Timeboxes are 
 |---|---|---|---|
 | E0 — both, 30 min | Can both machines obtain the same source data and exchange code/messages? Compare package manifest, make a trivial branch/PR round trip, record runtime versions, confirm deadline/platform access. | Both identify the same input version; remote fetch/push and coordination issue readable; a named integrator and submission owner exist. | If remote access fails, use local contract fixtures and the manual handoff protocol. Do not spend hours configuring infrastructure. |
 | E1 — Astra + Opus, 90 min | End-to-end feasibility: parse a subset, construct a bounded fixed-domain vector, apply OpenDP, export one protected bundle; render it in the public app and compute one utility comparison privately. | One command produces a schema-valid artifact; frontend displays actual protected values; privacy-map check agrees with declared cap/budget; no raw files in browser requests or build. Full input processing gets an initial timing. | This is the first vertical slice. If graphics fail, use table/SVG. If library integration fails, simplify to the vector API. Do not build the full console before this passes. |
+| E1S — Opus handoff; Astra evaluation, 90 min total alongside E1 | Can the existing scanner be reused and its claims reproduced? Obtain pushed code and exact commands; run without label/truth directories; compare taxonomy and denominators to B1. Freeze rules, then test independently generated fixtures, renamed/reordered columns and ambiguous sensitive categories. | Inventory covers every input column or marks it unknown; reported development metrics reproduced or discrepancies documented; targeted fixtures flag all planted direct-ID types, while ambiguous semantics may abstain. Held-out recall/F1, unknown rate and sensitive false negatives reported separately. A false “safe” classification cannot bypass the export allowlist. | No attempt to force the development score onto a new test. If code/handoff is unavailable after 30 minutes, continue the vertical slice with a clearly labelled known-schema inventory. Limit scanner integration to 90 minutes before returning Opus to the map; general detector expansion waits. |
 | E2 — Astra, 2 h; Opus critique | Does trip chaining support a defensible planning story? Reproduce upstream heuristic; test it on known-truth synthetic journeys, transfers, one-tap days, missing stops, midnight/DST and duplicate events. Compare “close last to first” against withholding unknown last destinations. | Exact parity with upstream on its intended path; edge cases have specified results; every inferred/unknown class is counted privately. Primary shortlist has at least 2/3 overlap between defensible inference variants and demand regret ≤10%, or the affected corridors are labelled unstable. | If destinations drive contradictory priorities, make recorded origin/line demand the product's primary decision. Keep OD as a clearly experimental secondary view, or omit it. Do not call heuristic agreement actual destination accuracy. |
 | E3 — Astra, 2.5 h | Can card-level protection retain useful demand? Cache raw/prepared/bounded vectors. Try at most eight predeclared policy combinations spanning caps, budget and geography; 20 draws each for development, then 100 fresh draws for the selected policy. | Initial target: OD WAPE ≤20% against the same unbounded inference reference; top-three shortlist retains at least two corridors and regret ≤10% in ≥90/100 draws. Aim for line-hour WAPE ≤15%, daily WAPE ≤10%. Report all native task metrics even when they miss these targets. | First remove unnecessary granularity or coarsen publicly; then simplify the workload. Never quietly change privacy unit or increase epsilon beyond the declared search. Freeze the policy after one evaluation pass; if it fails, take the named fallback. |
 | E4 — Astra; Opus checks narrative, 90 min | Is the attack vivid and representative? Re-run the supplied trajectory procedure for 2, 3 and 4 known points on a fixed cohort of eligible cards, original/B0/B2/B2-k. Show an illustrative candidate-set collapse. | Reproducible parameters, denominator and sampling policy; at least one genuine four-point isolation example for the teaching scene; aggregate rate with uncertainty across sampled cards. Reconcile material differences from saved baseline results. | If a selected example does not isolate, show the actual candidate count. Do not fake success. For RouteSafe, report “no row trajectories released; this lookup is not applicable,” not “0% re-identification.” |
@@ -284,7 +299,7 @@ The public planner can:
 
 Every filter is constrained to information already released. OD has whole-period weekday/time-band detail, not daily OD or arbitrary timestamps. The daily series has dates, not route-by-date detail. Do not invent an unsupported joint breakdown by joining independent marginal tables. Selecting a date may update the daily chart only; disable or explain unavailable cross-filtering.
 
-The private operator surface shows input classification, proposed handling, release policy, validation status and generation result. Evaluation views use a shared-axis comparison of raw-derived, bounded and protected counts. Include a clear “Synthetic benchmark evaluation” banner so raw-reference figures are not mistaken for part of a real public export.
+The private operator surface starts with a compact scanner inventory: field → detected type → reason → why needed for this purpose → handling. Show unknowns and sensitive attributes that need review, not an all-green verdict. For `card_id`, say “links this card's records,” not “identifies one person.” Selecting the public-planner purpose explains the approved aggregate policy; a row-history request is explicitly unsupported. Then show release policy, validation status and generation result. Evaluation views use a shared-axis comparison of raw-derived, bounded and protected counts. Include a clear “Synthetic benchmark evaluation” banner so raw-reference figures are not mistaken for part of a real public export.
 
 ### Visual design constraints
 
@@ -319,7 +334,7 @@ Aim for **110–115 seconds**, leaving room for a title/end card within the two-
 |---|---|---|
 | 0–12 s | “A city needs to understand demand. A passenger should not have to publish their week.” Establish operator→planner purpose. | Synthetic dataset and period labels; actual dataset inventory |
 | 12–32 s | Operator workbench: add known sightings; candidate histories narrow to one illustrative card. | Real set-intersection attack on supplied synthetic data, or clearly labelled known-truth teaching fixture; counts computed by the attack code, never invented |
-| 32–48 s | Explain why removing names was insufficient; show identified fields and the selected handling. | Classification report and policy table; persistent IDs omitted, area/time bins, card contribution cap and DP mechanism visible |
+| 32–48 s | Scanner identifies fields and explains their risk; choose public planning and show how that purpose determines handling. | Actual `petpilot/` inventory joined to the approved policy: card ID internal only, exact time binned, identity/contact fields omitted, aggregate contribution cap and DP visible |
 | 48–66 s | “We publish statistics instead of histories.” Generate or open the reviewed release. | A real publish command/result; if precomputed, label it “Previously generated release” and show its run receipt. Do not animate a fake live computation. |
 | 66–91 s | Switch to recipient view. Select morning demand, inspect three corridors and ask the bounded AI planning question if reliable. | Public explorer uses the released artifact only; answer grounded in those values; inferred destination and uncertainty labels |
 | 91–106 s | Show measured information loss and retained planning priority, separating clipping from noise. | Real repeated-run evaluation and the shown release's actual result; no numeric script before results exist |
@@ -327,19 +342,22 @@ Aim for **110–115 seconds**, leaving room for a title/end card within the two-
 
 Record the strongest stable path once by Saturday evening, then improve only if it remains reliable. Save the final video locally, a public hosted version, a release-tagged offline app, screenshots and a one-page evidence summary. Test the public link in a logged-out browser and its duration with media metadata. Keep a local player copy for onsite playback. If internet fails, play the recorded interaction and open the offline planner. Do not imply the recording is live.
 
+Only if the core story is already clear, test a 10-second mystery-file insert by shortening the introduction/attack narration—not the usefulness evidence or limitations. Keep the total at 110–115 seconds. Prefer it as a technical Q&A backup or separate evidence clip if it distracts from transport planning. Show only synthetic examples; a hash demonstration must state its candidate source and use measured results. It demonstrates a known inspected test case, not blind generalisation.
+
 ### Technical questions to be ready for
 
 Have links from the evidence page to: the sensitivity argument; final caps/budget and cumulative accounting; library lockfiles; input provenance; benchmark command/result files; error by volume/time/geography; multiple-card analysis; inference assumptions; repeated-release tests; public-build/network audit; and a record of changes from this plan. Be ready to explain why aggregate DP was chosen over row-level pseudonymisation and why an attack metric is not a proof of anonymity.
 
 ## 9. Build ownership and acceptance
 
-Paths below are proposed build paths, not files already implemented. Keep the supplied package unchanged. Astra initially owns `pipeline/`, `privacy/`, `evaluation/`, `tests/privacy/` and release generation. Opus owns `web/`, `demo/`, presentation assets and UI tests. Shared contracts require both reviewers. Astra integrates approved PRs; Opus is the named backup. The human lead owns event accounts, participant/team facts, onsite clarification and final submission confirmation.
+Paths below define target ownership. The existing `petpilot/` scanner is available; the integrated pipeline and public product are still build tasks. Keep the supplied package unchanged. Astra initially owns `pipeline/`, `privacy/`, `evaluation/`, `tests/privacy/` and release generation. Vaishnav/Opus owns the existing scanner under `petpilot/`, its operator inventory/policy presentation, `web/`, `demo/`, presentation assets and UI tests. Astra reviews and enforces policy semantics. Shared contracts require both reviewers. Astra integrates approved PRs; Opus is the named backup. The human lead owns event accounts, participant/team facts, onsite clarification and final submission confirmation.
 
 | Task | Owner / reviewer | Depends on | Acceptance criterion |
 |---|---|---|---|
 | T0 Bootstrap and scope confirmation | Both / human for event facts | None | E0 complete; git remote, input location, owner paths, deadline and message channel recorded |
 | T1 Versioned release contract and fixture | Astra + Opus | T0, interface proposal | Both validate the same tiny fictional protected fixture; no UI waits for full data |
-| T2 Ingestion, inventory, inference | Astra / Opus | T1 | E2; classification with reasons; production command works without evaluation labels/truth |
+| T2S Scanner handoff and inventory | Vaishnav/Opus / Astra | T1 private inventory contract | E1S; code/command/fixture pushed under `petpilot/`, every column labelled or unknown, reproducible metrics with contamination caveat; publisher remains functional without evaluation labels |
+| T2 Ingestion, policy validation, inference | Astra / Opus | T1; T2S or declared known-schema fallback | E2; consumes inventory without trusting it as export permission; independent required-field validation; production works without labels/truth |
 | T3 Public shell, map, table, state | Opus / Astra | T1 | Fixture-driven complete planner path, honest geometry/time filters, accessible fallback |
 | T4 Bounded mechanism and ledger | Astra / Opus | E1, T2 | E3 policy selected, sensitivity rationale reviewed, retry/crash/concurrency handling tested |
 | T5 Attack and evidence pipeline | Astra / Opus | T2, supplied baseline code | E4/E5; original/bounded/noisy metrics and planning fidelity saved with provenance |
@@ -372,6 +390,8 @@ Planning time is approximately Friday 6 November, 21:00–22:00 EET. Roughly 36 
 | Sun 10:00 | Published hard deadline; follow any earlier authoritative event schedule |
 
 If kickoff slips by more than two hours, shorten optional work immediately. If the first vertical slice is not working by Sat 03:00, use the static release/table-first fallback and cut AI beyond the smallest bounded interaction. Never borrow the final two-hour submission margin for stretch features.
+
+Scanner integration uses E1S alongside the initial vertical slice; it does not extend these checkpoints. Vaishnav supplies the existing implementation instead of Opus rebuilding it. Once the inventory handoff works, Opus prioritises the public explorer. Reserve no three-hour budget for MOB-S2; its row-export proposal is deferred. The mystery-file scene gets at most 30 minutes after core acceptance, otherwise use it only in Q&A.
 
 ### Scope tiers
 
@@ -413,12 +433,14 @@ Stop a failing experiment at its timebox, write its finding, take the predefined
 - [ ] Public planner answers the defined decision with an actual released artifact, and every filter has supported semantics.
 - [ ] Map, table, AI answer and export agree on counts, period, units and release ID.
 - [ ] All five R1–R5 demonstration elements have a visible screen and an evidence file.
+- [ ] Scanner inventory and purpose-specific handling are visible; unsupported recipient requests cannot enable row exports.
 - [ ] The product says “synthetic,” “inferred,” “precomputed” and “illustrative” wherever those distinctions affect interpretation.
 
 ### Privacy and claim accuracy
 
 - [ ] Privacy unit, adjacency, period, caps, fixed domains, all family budgets and cumulative budget are documented.
 - [ ] Contribution bounds are enforced; raw/truth/labels are not hidden production inputs; reference joins cannot amplify a card's contribution unexpectedly.
+- [ ] A deliberately misclassified sensitive field cannot enter a release; unknown fields stay excluded; cloud AI receives no unreviewed category samples or scanner findings containing private values.
 - [ ] Mechanism privacy map and custom sensitivity argument are independently reviewed.
 - [ ] Multiple-card/person limitation is explicit; no universal anonymity, zero-risk, automatic legal compliance or certification claim.
 - [ ] Public build/container, requests, logs and download contain no raw records, rowmaps, private identifiers, private exact summaries or secret seeds.
@@ -429,6 +451,7 @@ Stop a failing experiment at its timebox, write its finding, take the predefined
 ### Utility and scientific evidence
 
 - [ ] Supplied baseline results labelled supplied; reproduced results have commands, versions, scope and seed policy.
+- [ ] Scanner development results, label exposure, independent fixtures and already-inspected mystery-file results are distinguished; no universal-dataset or blind-test claim.
 - [ ] Preprocessing/inference, clipping, noise and display effects are separated.
 - [ ] Numerical error and actual planning-decision fidelity are measured; low-volume and temporal biases are visible.
 - [ ] Final policy tested across 100 draws or the reduced count disclosed with reason; no lucky-run selection.
@@ -466,6 +489,7 @@ The plan is based on the challenge PDF, detailed DOCX brief, partner video/trans
 | Methods and limitations | Package `docs/PET_PLAYBOOK.md`, `THREAT_MODEL.md`, `GLOSSARY.md`, `LIMITATIONS.md`, `EVALUATION.md`, attack specs and PII guidelines |
 | Evaluator and references | Package `toolkit/pets_eval/utility/mobility.py`, `privacy.py`, `attacks.py`, `scorecard.py`, parsing/check/detection helpers; `baselines/` and examples/tests |
 | Saved benchmark evidence | Package `docs/BENCHMARK.md`, `results/benchmark.json`, `results/{b0,b2,b2k}/mobility/scorecard.json`; these precede RouteSafe |
+| Teammate integration proposal | `COMBINED_IDEA.md`, added in commit `0a8a7f7`; scanner capabilities/results are reported there, pending code inspection and reproduction under E1S |
 | Current external sources | Event rules/submission page, TrustED site, OpenDP, DP Mobility Report, MapLibre and deck.gl documentation linked above; checked 6 November 2026 |
 
 Use code under its supplied MIT terms and data/docs under their CC BY 4.0 terms. Include attribution such as “TrustED PETs Proving Ground 2026, synthetic data by Since AI ry (CC BY 4.0)” and retain upstream geography attribution as required by the package. Re-check exact notices when packaging third-party assets. Do not imply TrustED endorses RouteSafe or that its staff reviewed the implementation.

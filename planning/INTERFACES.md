@@ -141,6 +141,42 @@ Unsupported requests return a typed `unsupported_breakdown` or `individual_histo
 
 ## 6. Private command boundaries
 
+### Scanner and policy handoff
+
+Vaishnav/Opus supplies `petpilot/` as a local scanner, not a second publisher. Astra consumes its inventory through an adapter. Agree the callable/CLI entrypoint in T1 after inspecting the existing implementation; do not require a rewrite to match an invented command. `routesafe inspect` may delegate to it. The minimum handoff is pushed code, dependency requirements, an exact run command, a small synthetic fixture and the inventory produced from it.
+
+The scanner is now available in commit `4cd1374`. Its inspected CLI supports this mobility-only invocation (to be executed and validated during E1S):
+
+```sh
+python -m petpilot scan --data TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data --only mobility --out private/mobility_labels.csv
+```
+
+The current folder-scan CSV is `dataset, table, column, privacy_role, subtype, art9, confidence, reason, links`. Adapt `privacy_role` to the contract's `role`; retain the original heuristic `confidence` privately without presenting it as a calibrated probability. Map `links` as column relationships, not passenger identities. Treat `art9` as a scanner hint requiring review, not a legal determination. The single-file CLI lacks dataset/table fields, so its adapter must supply them explicitly. The scanner samples rows: include the sampling rule/limit in private provenance and test rare values outside the sample. Absence of a match cannot imply absence of sensitive information.
+
+Use an independent `inventory_schema_version` initially `1.0`. The private inventory envelope includes `scanner_version`, source commit, dataset/table identifiers, analysis mode (`rules` or explicitly declared `known_schema`), and a list of fields. Include every column exactly once, including unknowns. Do not include raw example values, recovered identifiers or row-level matches in the shared fixture or operator-summary contract.
+
+| Field record | Contract |
+|---|---|
+| `table`, `column` | Exact input identifiers; unique together |
+| `role` | Declared taxonomy: direct identifier, quasi-identifier, sensitive attribute, technical identifier, record key, free text, non-sensitive, or unknown; use stable machine enum spellings |
+| `subtype` | Optional semantic type, e.g. `persistent_card_id`, `timestamp`, `email`; not an assertion of person-level identity |
+| `reason` | Short explanation tied to detected structure or a named schema rule; no private values |
+| `rule_ids` | Rules that produced the finding, for reproducibility and review |
+| `certainty` | `high`, `medium`, `low`, or `unknown`; heuristic confidence, not a calibrated probability |
+| `needs_review` | Boolean; ambiguity remains visible rather than being forced into non-sensitive |
+
+The existing CSV does not yet emit rule IDs or review flags. Allow an empty `rule_ids` list with an explicit evidence-unavailable marker during adaptation, and default ambiguous/unmapped findings to review. Do not invent detector evidence to satisfy the schema. Ratify these defaults with both builders in T1.
+
+Astra's separate, versioned policy mapping associates each field with `purpose_id`, `handling`, `rationale`, `required_for_analysis` and `review_status`. Initial purpose is public aggregate mobility planning. Handling is an allowlisted operation such as `omit`, `internal_grouping_only`, `public_reference_lookup`, `time_bin`, or `aggregate_input`. Contribution bounds and noise parameters live in the approved family policy, not in an LLM-generated field suggestion. A scanner reason and a policy rationale are different facts and should appear separately in the operator view.
+
+The publisher independently validates required fields, public reference joins and the exact release schema. Neither `role: non_sensitive` nor high certainty is permission to export a column. Inject a deliberately false-safe finding in a test and verify no extra field reaches the release. Unknown optional columns are excluded; a missing/invalid required analytical field blocks preparation with an actionable error. An unavailable scanner can use the explicitly labelled known-schema fallback so the vertical slice continues, with no generic-detection claim.
+
+Inventory and policy discussion are private workbench artifacts. The public release may contain a reviewed, value-free explanation of handling, not the whole scanner report. An unsupported request for consultancy row histories returns `UNSUPPORTED_SHARING_SCENARIO`; it never activates rotating-pseudonym export. If AI hints are added, default to local inference or approved schema metadata only. Category values are not safe merely because they look like short codes.
+
+Scanner evaluation files record the taxonomy, labelled column set, commands, macro-F1, sensitive-column recall, unknown rate and per-role errors. Separate label-informed development results from independently designed post-freeze fixtures. The already-inspected mystery file cannot be labelled a blind test. Hash-recovery demonstrations record the synthetic candidate source and measured matches in evaluation, not recovered values in the public inventory.
+
+### Pipeline commands
+
 Implement equivalent commands; these names are proposed, not existing CLI promises:
 
 ```text

@@ -1,6 +1,6 @@
 # RouteSafe plans and supplied materials
 
-Start with [ROUTESAFE_BUILD_PLAN.md](ROUTESAFE_BUILD_PLAN.md), then [the interface contract](planning/INTERFACES.md) and [the coordination guide and agent launch prompts](planning/COORDINATION.md). These are planning documents; implementation has not begun. The existing README is preserved as the teammate's earlier ideation.
+Start with [ROUTESAFE_BUILD_PLAN.md](ROUTESAFE_BUILD_PLAN.md), then [the interface contract](planning/INTERFACES.md) and [the coordination guide and agent launch prompts](planning/COORDINATION.md). These are planning documents. The teammate's existing scanner is available under [petpilot](petpilot/README.md); the integrated RouteSafe product remains to be built and validated. The root README is preserved as the teammate's earlier ideation, and the build plan records the accepted scope from [the combined proposal](COMBINED_IDEA.md).
 
 The complete supplied `TRUSTED_SinceAI2026_FINAL/` folder is included, with its original ZIP, extracted dataset/toolkit, challenge PDF, detailed brief, and partner video/transcript. Source files are preserved byte for byte. Large files are stored with Git LFS; small source and documentation files remain ordinary Git files.
 
