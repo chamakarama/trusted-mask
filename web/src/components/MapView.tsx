@@ -17,7 +17,7 @@ interface Props {
 const W = 760, H = 500, PAD = 46;
 
 /** Schematic map: public area points (unweighted stop centroids) and straight-line-free arcs. No basemap, no roads. */
-export function MapView({ pts, outgoing, derived, corridors, highlight, selected, origin, onSelect, onOrigin }: Props) {
+export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin }: Props) {
   const [hover, setHover] = useState<string | null>(null);
   const proj = useMemo(() => {
     // Equirectangular, then a radial "centre-enlarged" warp (r' = r^0.5) around the median point so the dense city
@@ -58,7 +58,7 @@ export function MapView({ pts, outgoing, derived, corridors, highlight, selected
   // draw weak arcs first, shortlist last (on top)
   const ordered = [...corridors].sort((a, b) => b.rank - a.rank);
   return (
-    <figure className="map">
+    <figure className="map" style={{ margin: 0, height: "100%" }}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="map-title map-desc">
         <title id="map-title">Schematic corridor map</title>
         <desc id="map-desc">
@@ -109,12 +109,6 @@ export function MapView({ pts, outgoing, derived, corridors, highlight, selected
           );
         })}
       </svg>
-      <figcaption>
-        <span className="legend-line" aria-hidden="true" /> arc thickness = released estimate&nbsp;&nbsp;
-        <span className="legend-dot" aria-hidden="true" /> dot size = released journeys starting there&nbsp;&nbsp;·&nbsp;&nbsp;
-        {derived && <><span className="badge">derived view</span> municipality totals of released estimates · </>}
-        Schematic, centre enlarged: points are unweighted centroids of public stops, directions are kept but distances are not to scale, and arcs are not road paths. Click an area to filter by origin.
-      </figcaption>
     </figure>
   );
 }

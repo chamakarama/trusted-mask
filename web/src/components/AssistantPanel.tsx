@@ -3,7 +3,7 @@ import { execute, PRESETS, refuse, validateIntent, type Answer } from "../assist
 import type { Release } from "../data/release";
 import { IconSpark, IconWarn } from "./Icons";
 
-interface Props { rel: Release; onEvidence: (resultId: string) => void; onApply: (band: string, origin: string | null) => void }
+interface Props { rel: Release; onEvidence: (resultId: string) => void; onApply: (band: string, origin: string | null) => void; onIntent?: (band: string, origin: string | null, firstId: string | null) => void }
 
 const ASSIST = (import.meta.env.VITE_ASSISTANT_URL as string | undefined) ?? "http://127.0.0.1:8787";
 const TITLE: Record<string, string> = {
@@ -15,7 +15,7 @@ const TITLE: Record<string, string> = {
 };
 
 /** Ask the release: a model may only propose a typed request; every number comes from the published tables. */
-export function AssistantPanel({ rel, onEvidence, onApply }: Props) {
+export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [q, setQ] = useState("");
   const [live, setLive] = useState<boolean | null>(null);
@@ -42,7 +42,9 @@ export function AssistantPanel({ rel, onEvidence, onApply }: Props) {
         const v = validateIntent(out.intent, rel);
         if (!v.ok) { setAnswer(refuse("invalid_intent", rel, `The AI's request was rejected by the checker (${v.reason}).`)); return; }
         // the model's own text is discarded: only the validated, typed request is used, and the wording below is ours
-        show(execute(v.intent, rel, "model"));
+        const a = execute(v.intent, rel, "model");
+        setAnswer(a);
+        onIntent?.(v.intent.hour_band, v.intent.origin_area, a.evidence[0]?.result_id ?? null);
       } else {
         const kind = (["individual_history_unavailable", "unsupported_breakdown", "out_of_scope", "invalid_intent"].includes(out.kind) ? out.kind : "ai_unavailable") as Answer["kind"];
         const why: Record<string, string> = {

@@ -51,11 +51,14 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m = new maplibregl.Map({ container: box.current, style: STYLE, center: [22.27, 60.45], zoom: 10.3, attributionControl: { compact: true }, cooperativeGestures: false });
     } catch { fail(); return; }
     map.current = m;
-    const timer = window.setTimeout(() => { if (!m.isStyleLoaded()) fail(); }, 9000);
-    m.on("error", (e) => { if (!m.isStyleLoaded() && String(e?.error?.message ?? "").length) fail(); });
+    // Slow tiles are not a failure (a hidden tab may not render for a while): fall back only when the style itself
+    // cannot load, e.g. offline or blocked. Tile errors after load just leave the released layers on a blank base.
+    let loaded = false;
+    const timer = 0;
+    m.on("error", (e) => { if (!loaded && /style|fetch|network|Failed/i.test(String(e?.error?.message ?? ""))) fail(); });
     m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
     m.on("load", () => {
-      window.clearTimeout(timer);
+      loaded = true;
       const empty = { type: "FeatureCollection" as const, features: [] };
       m.addSource("heat", { type: "geojson", data: empty });
       m.addSource("arcs", { type: "geojson", data: empty });
@@ -108,7 +111,8 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m.fitBounds(b, { padding: { top: 90, bottom: 50, left: 60, right: 60 }, duration: 0, maxZoom: 12.4 });
       setReady(true);
     });
-    return () => { window.clearTimeout(timer); m.remove(); map.current = null; };
+    void timer;
+    return () => { m.remove(); map.current = null; };
   }, []);
 
   useEffect(() => {

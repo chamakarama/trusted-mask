@@ -170,7 +170,8 @@ export function App() {
                 <CorridorPanel rel={rel} level={level} originOptions={pts} onLevel={(l) => { setLevel(l); setOrigin(null); setSelected(null); }} band={band} origin={origin}
                   ranked={ranked} shortlist={SHORTLIST} selected={selected}
                   onBand={(b) => { setBand(b); setSelected(null); }} onOrigin={(a) => { setOrigin(a); setSelected(null); }} onSelect={setSelected} />
-                <AssistantPanel rel={rel} onEvidence={selectCorridor} onApply={(b, o) => { setBand(b); setOrigin(o); setSelected(null); }} />
+                <AssistantPanel rel={rel} onEvidence={selectCorridor} onApply={(b, o) => { setBand(b); setOrigin(o); setSelected(null); }}
+                  onIntent={(b, o, id) => { setLevel("area"); setBand(b); setOrigin(o); setSelected(id); }} />
               </aside>
             </div>
           </>
