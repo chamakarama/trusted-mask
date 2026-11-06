@@ -1,8 +1,11 @@
-import { BANDS, BAND_LABEL, fmt, weekdaysInPeriod, type Corridor } from "../data/derive";
+import { BANDS, BAND_LABEL, fmt, weekdaysInPeriod, type Corridor, type Level, type Point } from "../data/derive";
 import { areaLabel, type Release } from "../data/release";
 
 interface Props {
   rel: Release;
+  level: Level;
+  originOptions: Point[];
+  onLevel: (l: Level) => void;
   band: string;
   origin: string | null;
   ranked: Corridor[];
@@ -17,7 +20,7 @@ export function UncertainBadge() {
   return <span className="badge badge-warn" title="Noise intervals are not yet available for this release; the value is an estimate, not a count.">uncertain · interval n/a</span>;
 }
 
-export function CorridorPanel({ rel, band, origin, ranked, shortlist, selected, onBand, onOrigin, onSelect }: Props) {
+export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin, ranked, shortlist, selected, onBand, onOrigin, onSelect }: Props) {
   const days = weekdaysInPeriod(rel);
   const top = ranked.slice(0, shortlist);
   const sel = ranked.find((c) => c.id === selected) ?? null;
@@ -34,11 +37,18 @@ export function CorridorPanel({ rel, band, origin, ranked, shortlist, selected, 
           </button>
         ))}
       </div>
+      <div className="seg" role="radiogroup" aria-label="Geography">
+        <button role="radio" aria-checked={level === "area"} className={`seg-btn ${level === "area" ? "seg-on" : ""}`} onClick={() => onLevel("area")}>{rel.areas.length} areas</button>
+        <button role="radio" aria-checked={level === "municipality"} className={`seg-btn ${level === "municipality" ? "seg-on" : ""}`} onClick={() => onLevel("municipality")}>{new Set(rel.areas.map((a) => a.municipality)).size} municipalities <span className="muted">· derived</span></button>
+      </div>
+      {level === "municipality" && (
+        <p className="note small" title="Whole-period inferred weekday journeys by ordered origin municipality, destination municipality and hour band. Sum signed released area-pair noisy_value across ALL matching public area pairs, then clamp the municipality sum once at zero. Includes same-area pairs when forming municipality totals; exclude same-municipality pairs only for the inter-municipality shortlist. This is postprocessing of the existing release, not a new measurement or observed destinations."><span className="badge">derived · od-municipality-postprocess-v1</span> Each municipality pair sums the released signed estimates of all its area pairs, then clamps once at zero. Computed in your browser from the same files: no new measurement, no new noise. Same-municipality pairs are left out of the shortlist.</p>
+      )}
       <label className="field">
-        <span>Origin area</span>
+        <span>{level === "area" ? "Origin area" : "Origin municipality"}</span>
         <select value={origin ?? ""} onChange={(e) => onOrigin(e.target.value || null)}>
-          <option value="">All areas</option>
-          {[...rel.areas].sort((a, b) => a.id.localeCompare(b.id)).map((a) => <option key={a.id} value={a.id}>{areaLabel(a.id)}</option>)}
+          <option value="">{level === "area" ? "All areas" : "All municipalities"}</option>
+          {[...originOptions].sort((a, b) => a.id.localeCompare(b.id)).map((a) => <option key={a.id} value={a.id}>{areaLabel(a.id)}</option>)}
         </select>
       </label>
 
@@ -66,7 +76,7 @@ export function CorridorPanel({ rel, band, origin, ranked, shortlist, selected, 
           <dl>
             <dt>Released estimate (display)</dt><dd>{fmt(sel.trips)} inferred journeys</dd>
             <dt>Per weekday</dt><dd>≈ {fmt(sel.trips / days)} (÷ {days} weekdays in the period)</dd>
-            <dt>Signed mechanism estimate</dt><dd>{fmt(sel.noisy_value)} <span className="muted">(display value is this, clamped at zero)</span></dd>
+            <dt>{level === "area" ? "Signed mechanism estimate" : "Sum of released signed estimates"}</dt><dd>{fmt(sel.noisy_value)} <span className="muted">(display value is this, clamped at zero)</span></dd>
             <dt>Interval</dt><dd>{sel.noise_lower === null ? "not available in this release (null, not zero)" : `${fmt(sel.noise_lower)} – ${fmt(sel.noise_upper!)}`}</dd>
             <dt>Destination</dt><dd><span className="badge">inferred</span> next boarding of the same card, not observed</dd>
             <dt>Rank</dt><dd>{sel.rank} of {ranked.length} corridors in this band</dd>

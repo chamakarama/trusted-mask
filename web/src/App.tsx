@@ -2,14 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { AssistantPanel } from "./components/AssistantPanel";
 import { CorridorPanel } from "./components/CorridorPanel";
 import { DailyView, LineHourView } from "./components/DemandViews";
+import { EvidenceView } from "./components/EvidenceView";
 import { MapView } from "./components/MapView";
 import { SharedPanel } from "./components/SharedPanel";
-import { BANDS, rankCorridors } from "./data/derive";
+import { BANDS, outgoingAt, points, rankAt, type Level } from "./data/derive";
 import { loadIndex, loadRelease, ReleaseRefused, type Release, type ReleaseIndexEntry } from "./data/release";
 
-type View = "corridors" | "lines" | "daily" | "shared";
+type View = "corridors" | "lines" | "daily" | "shared" | "evidence";
 const VIEWS: { id: View; label: string }[] = [
-  { id: "corridors", label: "Corridors" }, { id: "lines", label: "Lines by hour" }, { id: "daily", label: "Daily taps" }, { id: "shared", label: "What was shared?" },
+  { id: "corridors", label: "Corridors" }, { id: "lines", label: "Lines by hour" }, { id: "daily", label: "Daily taps" }, { id: "shared", label: "What was shared?" }, { id: "evidence", label: "Evidence" },
 ];
 const SHORTLIST = 3, ON_MAP = 10;
 
@@ -17,7 +18,8 @@ function readUrl() {
   const u = new URLSearchParams(location.search);
   const view = (VIEWS.some((v) => v.id === u.get("view")) ? u.get("view") : "corridors") as View;
   const band = BANDS.includes(u.get("band") as any) ? (u.get("band") as string) : "06-09";
-  return { release: u.get("release"), view, band, origin: u.get("origin"), corridor: u.get("corridor") };
+  const level = (u.get("geo") === "municipality" ? "municipality" : "area") as Level;
+  return { release: u.get("release"), view, band, level, origin: u.get("origin"), corridor: u.get("corridor") };
 }
 
 export function App() {
@@ -28,6 +30,7 @@ export function App() {
   const [error, setError] = useState<{ title: string; lines: string[] } | null>(null);
   const [view, setView] = useState<View>(init.view);
   const [band, setBand] = useState(init.band);
+  const [level, setLevel] = useState<Level>(init.level);
   const [origin, setOrigin] = useState<string | null>(init.origin);
   const [selected, setSelected] = useState<string | null>(init.corridor);
 
@@ -42,7 +45,7 @@ export function App() {
     if (!releaseId) return;
     setRel(null); setError(null);
     loadRelease(releaseId).then((r) => {
-      if (origin && !r.areas.some((a) => a.id === origin)) setOrigin(null);
+      if (origin && !r.areas.some((a) => a.id === origin || a.municipality === origin)) setOrigin(null);
       setRel(r);
     }).catch((e) => setError(e instanceof ReleaseRefused
       ? { title: "This release was refused", lines: e.validation.errors }
@@ -53,12 +56,15 @@ export function App() {
     const u = new URLSearchParams();
     if (releaseId) u.set("release", releaseId);
     u.set("view", view); u.set("band", band);
+    if (level !== "area") u.set("geo", level);
     if (origin) u.set("origin", origin);
     if (selected) u.set("corridor", selected);
     history.replaceState(null, "", `?${u}`);
-  }, [releaseId, view, band, origin, selected]);
+  }, [releaseId, view, band, level, origin, selected]);
 
-  const ranked = useMemo(() => (rel ? rankCorridors(rel, band, origin) : []), [rel, band, origin]);
+  const ranked = useMemo(() => (rel ? rankAt(rel, level, band, origin) : []), [rel, level, band, origin]);
+  const pts = useMemo(() => (rel ? points(rel, level) : []), [rel, level]);
+  const outgoing = useMemo(() => (rel ? outgoingAt(rel, level, band) : new Map<string, number>()), [rel, level, band]);
   useEffect(() => {
     if (rel && selected && !ranked.some((c) => c.id === selected)) setSelected(null);
   }, [ranked]);
@@ -66,8 +72,9 @@ export function App() {
   const entry = index?.find((r) => r.release_id === releaseId);
   const selectCorridor = (id: string) => {
     if (!rel) return;
-    const m = /^od:(.+)>(.+)@(.+)$/.exec(id);
+    const m = /^odm?:(.+)>(.+)@(.+)$/.exec(id);
     if (m && m[3] !== band) setBand(m[3]);
+    if (id.startsWith("od:") && level !== "area") { setLevel("area"); setOrigin(null); }
     setView("corridors");
     setSelected(id);
   };
@@ -119,11 +126,11 @@ export function App() {
           {view === "corridors" && (
             <>
               <section className="mapcol" aria-label="Corridor map">
-                <MapView rel={rel} band={band} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST} selected={selected} origin={origin}
+                <MapView pts={pts} outgoing={outgoing} derived={level === "municipality"} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST} selected={selected} origin={origin}
                   onSelect={setSelected} onOrigin={(a) => { setOrigin(a); setSelected(null); }} />
               </section>
               <aside className="side">
-                <CorridorPanel rel={rel} band={band} origin={origin} ranked={ranked} shortlist={SHORTLIST} selected={selected}
+                <CorridorPanel rel={rel} level={level} originOptions={pts} onLevel={(l) => { setLevel(l); setOrigin(null); setSelected(null); }} band={band} origin={origin} ranked={ranked} shortlist={SHORTLIST} selected={selected}
                   onBand={(b) => { setBand(b); setSelected(null); }} onOrigin={(a) => { setOrigin(a); setSelected(null); }} onSelect={setSelected} />
                 <AssistantPanel rel={rel} onEvidence={selectCorridor} onApply={(b, o) => { setBand(b); setOrigin(o); setSelected(null); }} />
               </aside>
@@ -132,6 +139,7 @@ export function App() {
           {view === "lines" && <LineHourView rel={rel} />}
           {view === "daily" && <DailyView rel={rel} />}
           {view === "shared" && <SharedPanel rel={rel} />}
+          {view === "evidence" && <EvidenceView releaseId={rel.id} />}
         </main>
       )}
 

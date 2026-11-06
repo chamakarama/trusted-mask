@@ -58,7 +58,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
             })}
           </ul>
           <p className="note small">
-            <span className="badge badge-ok">integrity verified</span> Every file's SHA-256 matched the manifest and the CSVs match the JSON, checked in your browser. A checksum proves the files were not altered after publishing. It does not prove how they were computed.
+            <span className="badge badge-ok">integrity verified</span> Every file's SHA-256 matches the accompanying manifest and the CSVs match the JSON, checked in your browser. Without a trusted signature this does not prove who published the files or how they were computed.
           </p>
           <h3>Licences</h3>
           <ul className="plain small">{m.licenses.map((l: string) => <li key={l}>{l}</li>)}</ul>

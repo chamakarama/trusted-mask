@@ -8,7 +8,9 @@
     "sync": "node scripts/sync-release.mjs",
     "dev": "vite",
     "operator": "vite --config vite.operator.config.ts",
-    "build": "tsc --noEmit && vite build",
+    "operator:data": "node scripts/operator-public.mjs --inventory operator-data/mobility-inventory.json",
+    "build": "tsc --noEmit && vite build && node scripts/check-public-build.mjs",
+    "check:public": "node scripts/check-public-build.mjs",
     "preview": "vite preview",
     "test": "vitest run"
   },

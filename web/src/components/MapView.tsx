@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
-import { fmt, outgoingByArea, type Corridor } from "../data/derive";
-import { areaLabel, type Release } from "../data/release";
+import { fmt, type Corridor, type Point } from "../data/derive";
+import { areaLabel } from "../data/release";
 
 interface Props {
-  rel: Release;
-  band: string;
+  pts: Point[];
+  outgoing: Map<string, number>;
+  derived: boolean;
   corridors: Corridor[];       // already ranked and limited
   highlight: number;           // how many of them are the shortlist
   selected: string | null;
@@ -16,16 +17,16 @@ interface Props {
 const W = 760, H = 500, PAD = 46;
 
 /** Schematic map: public area points (unweighted stop centroids) and straight-line-free arcs. No basemap, no roads. */
-export function MapView({ rel, band, corridors, highlight, selected, origin, onSelect, onOrigin }: Props) {
+export function MapView({ pts, outgoing, derived, corridors, highlight, selected, origin, onSelect, onOrigin }: Props) {
   const [hover, setHover] = useState<string | null>(null);
   const proj = useMemo(() => {
     // Equirectangular, then a radial "centre-enlarged" warp (r' = r^0.5) around the median point so the dense city
     // centre is readable. Directions are kept; distances are deliberately not to scale (stated in the caption).
-    const lat0 = rel.areas.reduce((s, a) => s + a.lat, 0) / rel.areas.length;
+    const lat0 = pts.reduce((s, a) => s + a.lat, 0) / pts.length;
     const kx = Math.cos((lat0 * Math.PI) / 180);
     const med = (v: number[]) => [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)];
-    const cx = med(rel.areas.map((a) => a.lon * kx)), cy = med(rel.areas.map((a) => -a.lat));
-    const raw = rel.areas.map((a) => [a.lon * kx - cx, -a.lat - cy]);
+    const cx = med(pts.map((a) => a.lon * kx)), cy = med(pts.map((a) => -a.lat));
+    const raw = pts.map((a) => [a.lon * kx - cx, -a.lat - cy]);
     const rmax = Math.max(...raw.map(([x, y]) => Math.hypot(x, y))) || 1;
     const warped = raw.map(([x, y]) => {
       const r = Math.hypot(x, y);
@@ -37,9 +38,9 @@ export function MapView({ rel, band, corridors, highlight, selected, origin, onS
     const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
     const s = Math.min((W - 2 * PAD - 90) / (x1 - x0 || 1), (H - 2 * PAD) / (y1 - y0 || 1));
     const ox = (W - 90 - s * (x1 - x0)) / 2, oy = (H - s * (y1 - y0)) / 2;
-    return new Map(rel.areas.map((a, i) => [a.id, { x: ox + (warped[i][0] - x0) * s, y: oy + (warped[i][1] - y0) * s }]));
-  }, [rel]);
-  const out = useMemo(() => outgoingByArea(rel, band), [rel, band]);
+    return new Map(pts.map((a, i) => [a.id, { x: ox + (warped[i][0] - x0) * s, y: oy + (warped[i][1] - y0) * s }]));
+  }, [pts]);
+  const out = outgoing;
   const maxOut = Math.max(1, ...out.values());
   const maxTrips = Math.max(1, ...corridors.map((c) => c.trips));
   const involved = new Set(corridors.flatMap((c) => [c.origin_area, c.destination_area]));
@@ -93,7 +94,7 @@ export function MapView({ rel, band, corridors, highlight, selected, origin, onS
             </path>
           );
         })}
-        {rel.areas.map((a) => {
+        {pts.map((a) => {
           const p = proj.get(a.id)!;
           const r = 3 + 7 * Math.sqrt((out.get(a.id) ?? 0) / maxOut);
           const isOrigin = origin === a.id;
@@ -111,6 +112,7 @@ export function MapView({ rel, band, corridors, highlight, selected, origin, onS
       <figcaption>
         <span className="legend-line" aria-hidden="true" /> arc thickness = released estimate&nbsp;&nbsp;
         <span className="legend-dot" aria-hidden="true" /> dot size = released journeys starting there&nbsp;&nbsp;·&nbsp;&nbsp;
+        {derived && <><span className="badge">derived view</span> municipality totals of released estimates · </>}
         Schematic, centre enlarged: points are unweighted centroids of public stops, directions are kept but distances are not to scale, and arcs are not road paths. Click an area to filter by origin.
       </figcaption>
     </figure>

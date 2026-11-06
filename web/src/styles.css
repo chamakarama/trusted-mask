@@ -171,3 +171,42 @@ code { font-family: var(--mono); font-size: .85em; }
   .strip { justify-content: flex-start; }
   h1 { font-size: 1.15rem; }
 }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; margin: 2px 0 8px; }
+.seg-btn { border: 0; background: var(--surface-2); padding: 5px 11px; font-size: .82rem; cursor: pointer; }
+.seg-btn + .seg-btn { border-left: 1px solid var(--line); }
+.seg-on { background: var(--ink); color: #fff; }
+.seg-on .muted { color: #d9dde3; }
+
+.banner { background: #eef1f7; border: 1px solid #cfd7e6; border-radius: 8px; padding: 8px 10px; font-size: .86rem; margin: 0 0 12px; }
+.ev-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ev-card { border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; background: var(--surface-2); }
+.ev-card h3 { margin-top: 0; }
+.big { font-size: 2rem; font-weight: 800; margin: 0; color: var(--demand-strong); letter-spacing: -0.02em; }
+.warn { color: var(--warn); background: var(--warn-bg); border-radius: 6px; padding: 6px 8px; }
+@media (max-width: 1100px) { .ev-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) {
+  .ev-grid { grid-template-columns: 1fr; }
+  .tabs { flex-wrap: wrap; overflow-x: visible; }
+  .tab { padding: 7px 10px; }
+  .area text { font-size: 15px; }
+}
+
+/* operator workbench (private) */
+.operator { --private: #5b3a8c; }
+.logo-private { background: var(--private); }
+.badge-private { background: #efe8f7; border-color: #d8c8ec; color: var(--private); }
+.steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.kpis { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.kpis div { border: 1px solid var(--line); border-radius: 9px; padding: 8px 12px; min-width: 120px; background: var(--surface-2); display: flex; flex-direction: column; }
+.kpis strong { font-size: 1.5rem; line-height: 1.1; }
+.kpis span { font-size: .8rem; color: var(--muted); }
+.kpi-warn { border-color: #f1d3a5 !important; background: var(--warn-bg) !important; }
+.table-wrap { overflow-x: auto; }
+.optable td { vertical-align: top; }
+.optable tbody tr { cursor: default; }
+.row-review td:first-child { box-shadow: inset 3px 0 0 #e0a24a; }
+.role { display: inline-block; font-weight: 700; font-size: .8rem; margin-right: 4px; }
+.role-direct_identifier { color: #a3261f; }
+.role-quasi_identifier, .role-technical_identifier { color: #8a5200; }
+.role-unknown { color: var(--muted); }
+.tiny { font-size: .72rem; }
