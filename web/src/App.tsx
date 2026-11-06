@@ -166,10 +166,10 @@ export function App() {
                   {schematic
                     ? <div className="map" style={{ position: "absolute", inset: 0 }}>
                         <MapView pts={pts} outgoing={outgoing} derived={level === "municipality"} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST}
-                          selected={selected} origin={origin} onSelect={setSelected} onOrigin={(a) => { setOrigin(a); setSelected(null); }} />
+                          selected={selected} origin={origin} onSelect={setSelected} onOrigin={(a) => { setOrigin(a); setSelected(null); }} muted={unreliable} />
                       </div>
                     : <BaseMap key={level} pts={pts} outgoing={outgoing} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST} selected={selected} origin={origin}
-                        onSelect={setSelected} onOrigin={(a) => { setOrigin((o) => (o === a ? null : a)); setSelected(null); }} onFail={() => setSchematic(true)} />}
+                        onSelect={setSelected} onOrigin={(a) => { setOrigin((o) => (o === a ? null : a)); setSelected(null); }} onFail={() => setSchematic(true)} muted={unreliable} />}
                   <div className="map-overlay">
                     <div className="glass">
                       <strong>{unreliable ? `${BAND_SHORT[band][0]}: too few trips to read` : takeaway

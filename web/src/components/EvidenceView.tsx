@@ -19,7 +19,14 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
   const u1 = ev.native_MOB_U1, u2 = ev.adapted_MOB_U2, u3 = ev.adapted_MOB_U3;
   const eps = Number(rel.manifest.privacy.epsilon_release);
   const inOut = oddsBound(eps), history = oddsBound(2 * eps);
-  const rb = ev.row_baseline_utility?.results ?? null; // Astra's reviewed native MOB-U scores for the row baselines
+  const rb = ev.row_baseline_utility?.results ?? null;
+  // E7 fixed-pair membership diagnostic, shown only once it is in Astra's reviewed summary
+  const e7r: any[] | null = Array.isArray(ev.e7_membership?.results) && ev.e7_membership.results.length ? ev.e7_membership.results : null;
+  const e7 = e7r && {
+    n: e7r.length,
+    tprLo: Math.min(...e7r.map((r) => r.true_positive.rate)), tprHi: Math.max(...e7r.map((r) => r.true_positive.rate)),
+    fpr: e7r.reduce((s, r) => s + r.false_positive.rate, 0) / e7r.length,
+  }; // Astra's reviewed native MOB-U scores for the row baselines
   const scores = (r: any) => (r ? `${two(r["MOB-U1"].score)} · ${two(r["MOB-U2"].score)} · ${two(r["MOB-U3"].score)}` : "–");
   const cap = rel.manifest.privacy.families.od.cap;
   const morningCells = rel.od.filter((c) => c.hour_band === "06-09" && c.origin_area !== c.destination_area).length;
@@ -108,7 +115,11 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           <article className="ev-card">
             <h3><IconInfo /> What's still risky</h3>
             <ul className="plain small">
-              <li>Attacks on the counts themselves are limited by ε, but we haven't tested one by experiment yet.</li>
+              {e7 ? (
+                <li><strong>Membership test (simulated):</strong> an attacker who knew every other card's records and this card's whole history flagged {pct(e7.tprLo, 1)}–{pct(e7.tprHi, 1)} of member cards at about {pct(e7.fpr)} false alarms ({e7.n} synthetic cards). Random guessing flags {pct(e7.fpr)}. Not proof of safety.</li>
+              ) : (
+                <li>Attacks on the counts themselves are limited by ε, but we haven't tested one by experiment yet.</li>
+              )}
               <li>Every new release spends more budget: 12 monthly releases add up to ε = {12 * eps} for a card in all of them.</li>
               <li>The budget ledger is a local file: it stops accidental re-runs, not a dishonest publisher.</li>
               <li>Pending review: not yet independently audited.</li>

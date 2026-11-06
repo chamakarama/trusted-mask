@@ -12,12 +12,13 @@ interface Props {
   origin: string | null;
   onSelect: (id: string) => void;
   onOrigin: (area: string | null) => void;
+  muted?: boolean;             // routes too small to tell from noise: draw them grey, not as demand
 }
 
 const W = 760, H = 500, PAD = 46;
 
 /** Schematic map: public area points (unweighted stop centroids) and straight-line-free arcs. No basemap, no roads. */
-export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin }: Props) {
+export function MapView({ pts, outgoing, corridors, highlight, selected, origin, onSelect, onOrigin, muted = false }: Props) {
   const [hover, setHover] = useState<string | null>(null);
   const proj = useMemo(() => {
     // Equirectangular, then a radial "centre-enlarged" warp (r' = r^0.5) around the median point so the dense city
@@ -44,6 +45,8 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
   const maxOut = Math.max(1, ...out.values());
   const maxTrips = Math.max(1, ...corridors.map((c) => c.trips));
   const involved = new Set(corridors.flatMap((c) => [c.origin_area, c.destination_area]));
+  // only the shortlist's ends (and the chosen start) get a printed name: the dense centre stays readable
+  const named = new Set([...corridors.filter((c) => c.rank <= highlight).flatMap((c) => [c.origin_area, c.destination_area]), ...(origin ? [origin] : [])]);
 
   const arc = (c: Corridor) => {
     const a = proj.get(c.origin_area)!, b = proj.get(c.destination_area)!;
@@ -71,6 +74,9 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
           <marker id="arrow-weak" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
             <path d="M0,0 L10,5 L0,10 z" className="arrow-weak" />
           </marker>
+          <marker id="arrow-muted" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" className="arrow-muted" />
+          </marker>
         </defs>
         {ordered.map((c) => {
           const strong = c.rank <= highlight;
@@ -79,9 +85,9 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
             <path
               key={c.id}
               d={arc(c)}
-              className={`arc ${strong ? "arc-strong" : "arc-weak"} ${isSel ? "arc-selected" : ""} ${hover === c.id ? "arc-hover" : ""}`}
-              strokeWidth={1.5 + 6.5 * (c.trips / maxTrips)}
-              markerEnd={`url(#${strong ? "arrow-strong" : "arrow-weak"})`}
+              className={`arc ${muted ? "arc-muted" : strong ? "arc-strong" : "arc-weak"} ${isSel ? "arc-selected" : ""} ${hover === c.id ? "arc-hover" : ""}`}
+              strokeWidth={strong ? 4 + 4 * (c.trips / maxTrips) : 1.5 + 1.5 * (c.trips / maxTrips)}
+              markerEnd={`url(#${muted ? "arrow-muted" : strong ? "arrow-strong" : "arrow-weak"})`}
               tabIndex={0}
               role="button"
               aria-label={`Rank ${c.rank}: ${areaLabel(c.origin_area)} to ${areaLabel(c.destination_area)}, ${fmt(c.trips)} inferred journeys`}
@@ -103,8 +109,9 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
               onClick={() => onOrigin(isOrigin ? null : a.id)} role="button" tabIndex={0}
               aria-label={`${areaLabel(a.id)}: ${fmt(out.get(a.id) ?? 0)} released journeys start here in this band. Activate to filter by origin.`}
               onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onOrigin(isOrigin ? null : a.id))}>
+              <title>{areaLabel(a.id)}</title>
               <circle cx={p.x} cy={p.y} r={r} />
-              <text x={p.x + r + 4} y={p.y + 4}>{areaLabel(a.id)}</text>
+              {named.has(a.id) && <text x={p.x + r + 4} y={p.y + 4}>{areaLabel(a.id)}</text>}
             </g>
           );
         })}
