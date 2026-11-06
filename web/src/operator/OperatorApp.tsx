@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IconCheck, IconLock, IconWarn, Logo } from "../components/Icons";
+import { niceDate } from "../data/release";
 
 // PRIVATE operator workbench: scanner (petpilot) findings -> purpose -> approved handling (Astra's policy) -> release.
 // The scanner explains; it never authorises export. The publisher's own allowlist decides what is released.
@@ -19,6 +20,12 @@ const USE: Record<string, string> = {
 };
 const STOP_USE = "Public stop list: supplies the area names, towns, map points and line list that appear in the release.";
 
+// Scanner accuracy, from committed evaluation files (see petpilot/README.md): development catalogue (rules were tuned on it,
+// so it is not a blind test) and Astra's independent E1S fixtures (new columns the rules never saw).
+// Probe numbers are for the scanner on main (6a63937): 5 exactly right, 3 "unknown", 0 wrongly called safe.
+const SCANNER_CHECK = { devRecall: 0.916, devDatasets: 9, probeRight: 5, probeUnknown: 3, probeTotal: 8 };
+
+const cap = (t: string) => (t ? t.charAt(0).toUpperCase() + t.slice(1) : t);
 const KEY = "routesafe-operator-review-v1";
 const loadReviews = (): Record<string, boolean> => { try { return JSON.parse(localStorage.getItem(KEY) ?? "{}"); } catch { return {}; } };
 
@@ -46,6 +53,8 @@ export function OperatorApp() {
   const usedFlagged = used.filter((f) => f.needs_review);
   const reviewed = usedFlagged.filter((f) => reviews[key(f)]).length;
   const people = fields.filter((f) => f.role === "direct_identifier").length;
+  const combined = fields.filter((f) => f.role === "quasi_identifier" || f.role === "technical_identifier").length;
+  const unclear = fields.filter((f) => f.role === "unknown").length;
 
   return (
     <div className="app operator">
@@ -53,35 +62,37 @@ export function OperatorApp() {
         <div className="topbar-inner">
           <div className="brand"><span className="logo"><Logo /></span><div className="wordmark">RouteSafe operator<small>Private · runs inside the bus company · never published</small></div></div>
           <div />
-          <div className="release-box"><div className="chips"><span className="chip-dark"><IconLock /> private workbench</span><span className="chip-dark"><span className="dot dot-warn" />policy pending review</span></div></div>
+          <div className="release-box"><div className="chips"><span className="chip-dark"><IconLock /> private workbench</span><span className="chip-dark"><span className="dot dot-warn" />not yet independently audited</span></div></div>
         </div>
       </header>
       <main className="page">
-        <div className="headline"><div><h1>From raw taps to a safe release</h1><p>Four steps. The scanner explains each column; the policy decides; only protected counts leave.</p></div></div>
+        <div className="headline"><div><h1>From raw taps to a protected release</h1><p>Four steps. The scanner explains each column; the release policy decides; only protected counts leave.</p></div></div>
         <ol className="steps">
           <li className="panel">
             <h2><span className="step-num">1</span>What's in the bus data?</h2>
-            <p className="small ink2">The scanner read every column (rule-based, no AI) and swept every row for things like e-mails and ID numbers.</p>
+            <p className="small ink2">The scanner read every column (rules, no AI, nothing leaves this computer) and swept every row for things like e-mails and ID numbers.</p>
             <div className="kpis-op">
               <div><strong>{fields.length}</strong><span>columns scanned</span></div>
-              <div><strong>{people}</strong><span>identify a person (names, e-mail, phone…)</span></div>
-              <div><strong>{used.length}</strong><span>needed to make the counts</span></div>
-              <div><strong>{dropped.length}</strong><span>omitted from the release</span></div>
+              <div><strong>{people}</strong><span>point straight to a person</span></div>
+              <div><strong>{combined}</strong><span>can identify someone when combined</span></div>
+              <div><strong>{used.length}</strong><span>used for the counts</span></div>
+              <div><strong>{dropped.length}</strong><span>left out of the release</span></div>
             </div>
+            <p className="tiny muted">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.probeTotal} tricky test columns written by our teammate's agent, it labelled {SCANNER_CHECK.probeRight} exactly right and marked {SCANNER_CHECK.probeUnknown} "unknown" (codes with meaningless names). None was wrongly called safe. That's why {unclear} unclear columns here are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
           </li>
 
           <li className="panel">
             <h2><span className="step-num">2</span>Who gets the data?</h2>
             <div className="seg" role="radiogroup" aria-label="Who receives the data">
-              <button role="radio" aria-checked={purpose === "public"} className={`seg-btn ${purpose === "public" ? "seg-on" : ""}`} onClick={() => setPurpose("public")}>Outside planners: demand statistics</button>
-              <button role="radio" aria-checked={purpose === "rows"} className={`seg-btn ${purpose === "rows" ? "seg-on" : ""}`} onClick={() => setPurpose("rows")}>A consultancy: everyone's journeys</button>
+              <button role="radio" aria-checked={purpose === "public"} className={`seg-btn ${purpose === "public" ? "seg-on" : ""}`} onClick={() => setPurpose("public")}>Anyone: open demand statistics</button>
+              <button role="radio" aria-checked={purpose === "rows"} className={`seg-btn ${purpose === "rows" ? "seg-on" : ""}`} onClick={() => setPurpose("rows")}>A consultancy: everyone's journey rows</button>
             </div>
             {purpose === "public" ? (
-              <p className="small" style={{ marginTop: 10 }}><IconCheck /> Supported: {manifest?.purpose ?? "public aggregate mobility planning"}</p>
+              <p className="small" style={{ marginTop: 10 }}><IconCheck /> Supported: protected counts that anyone may download (open data). No rows, no card numbers.</p>
             ) : (
               <div className="answer answer-refusal" role="alert">
                 <h3><IconWarn /> Not supported <code className="tiny">UNSUPPORTED_SHARING_SCENARIO</code></h3>
-                <p>Sharing journey rows isn't safe even with fake card numbers and rounded times: 4 known sightings still pick out about 97% of cards. Offer the demand statistics instead.</p>
+                <p>Journey rows are not offered. With fixed fake card numbers and times rounded to the hour, 4 known sightings still pick out about 97% of cards. Rows with changing fake numbers were not tested, so they are not offered either. Offer the demand statistics instead.</p>
                 <button className="btn-ghost" onClick={() => setPurpose("public")}>Use demand statistics</button>
               </div>
             )}
@@ -90,31 +101,31 @@ export function OperatorApp() {
           {purpose === "public" && (
             <li className="panel">
               <h2><span className="step-num">3</span>What happens to each column</h2>
-              <p className="small ink2">"Needs review" means a person should check it: the column may be known sensitive or the scanner may be unsure. Omitted columns are excluded from this publisher's release, so sign-off here is asked only for columns the release uses.
-                {usedFlagged.length > 0 && <> <strong>{reviewed} of {usedFlagged.length}</strong> used columns signed off on this computer.</>}</p>
+              <p className="small ink2">"Needs a person's OK" means a human check: the column may be known sensitive or the scanner may be unsure. Left-out columns are excluded from this publisher's release, so the check is asked only for columns the release uses.
+                {usedFlagged.length > 0 && <> <strong>{reviewed} of {usedFlagged.length}</strong> used columns checked on this computer.</>}</p>
               <div className="table-wrap">
                 <table className="table optable">
-                  <thead><tr><th>Column</th><th>Scanner says</th><th>What happens</th><th>OK?</th></tr></thead>
+                  <thead><tr><th>Column</th><th>Scanner says</th><th>What happens</th><th>Person check</th></tr></thead>
                   <tbody>
                     {used.map((f) => (
                       <tr key={key(f)} className={f.needs_review && !reviews[key(f)] ? "row-review" : ""}>
                         <td><code>{f.table}.{f.column}</code></td>
                         <td><span className={`role role-${f.role}`}>{ROLE[f.role] ?? f.role}</span>{f.art9_hint && <span className="badge badge-warn"><IconWarn /> may reveal health</span>}
-                          <div className="tiny muted">{f.reason}</div></td>
+                          <div className="tiny muted">{cap(f.reason)}</div></td>
                         <td className="small">{USE[key(f)] ?? (f.table === "stops" ? STOP_USE : f.policy.handling)}</td>
                         <td>{f.needs_review
-                          ? <label className="small" style={{ display: "flex", gap: 6, alignItems: "center", whiteSpace: "nowrap" }}><input type="checkbox" checked={!!reviews[key(f)]} onChange={() => toggle(key(f))} /> {reviews[key(f)] ? "reviewed" : "needs OK"}</label>
-                          : <span className="badge badge-ok"><IconCheck /> clear</span>}</td>
+                          ? <label className={`check ${reviews[key(f)] ? "check-done" : "check-todo"}`}><input type="checkbox" checked={!!reviews[key(f)]} onChange={() => toggle(key(f))} /> {reviews[key(f)] ? "checked by a person" : "needs a person's OK"}</label>
+                          : <span className="badge">not needed</span>}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
               <details className="more">
-                <summary>{dropped.length} columns omitted (names, e-mails, phones, card registry, bikes…)</summary>
-                <ul className="plain small">{dropped.map((f) => <li key={key(f)}><code>{f.table}.{f.column}</code> · {ROLE[f.role] ?? f.role}{f.needs_review ? " · flagged for review; excluded from this release" : ""}</li>)}</ul>
+                <summary>{dropped.length} columns left out (names, e-mails, phones, card registry, bikes…)</summary>
+                <ul className="plain small">{dropped.map((f) => <li key={key(f)}><code>{f.table}.{f.column}</code> · {ROLE[f.role] ?? f.role}{f.needs_review ? " · flagged for a person's check; excluded from this release" : ""}</li>)}</ul>
               </details>
-              <p className="tiny muted">Sign-offs are stored only in this browser for the demo. Scanner findings never give a column permission to be released; the publisher only writes the fixed release tables.</p>
+              <p className="tiny muted">Checks are stored only in this browser for the demo. Scanner findings never give a column permission to be released; the publisher only writes the fixed release tables.</p>
             </li>
           )}
 
@@ -122,11 +133,11 @@ export function OperatorApp() {
             <li className="panel">
               <h2><span className="step-num">4</span>What gets published</h2>
               <ul className="plain">
-                <li><strong>Routes</strong> (area → area, per time of day), <strong>lines per hour</strong> and <strong>taps per day</strong>, for {manifest.period.start_date} – {manifest.period.end_date_inclusive}.</li>
+                <li><strong>Routes</strong> (area → area, per time of day), <strong>lines per hour</strong> and <strong>taps per day</strong>, for {niceDate(manifest.period.start_date, false)} – {niceDate(manifest.period.end_date_inclusive)}.</li>
                 <li>Each card counts at most {manifest.privacy.families.od.cap} route trips and {manifest.privacy.families.line_hour.cap} boardings or taps, then random noise is added: privacy budget ε = {manifest.privacy.epsilon_release}, recorded once in the publisher's ledger.</li>
                 <li>No tap rows, card numbers, exact times or ticket types are ever written to the release.</li>
               </ul>
-              <p className="small"><span className="badge badge-warn">pending review</span> Release <code>{manifest.release_id}</code> · {manifest.privacy.multiple_identifier_limitation}</p>
+              <p className="small"><span className="badge badge-warn"><IconWarn /> pending review</span> Not yet independently audited. Release <code>{manifest.release_id}</code> · {manifest.privacy.multiple_identifier_limitation}</p>
             </li>
           )}
         </ol>
