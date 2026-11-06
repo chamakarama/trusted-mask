@@ -1,0 +1,115 @@
+{
+  "artifact_manifest_sha256": "bcd8b07aca896ffdbeb1a8695beea709642bafacc464e289f4e276d55f8c184d",
+  "command": "python -m evaluation.e1 --input <mobility> --release <release> --output <evidence>",
+  "data_class": "supplied_synthetic",
+  "decision": {
+    "candidate_definition": "Ordered non-self area pairs, 06-09 weekdays, whole period; count proxy only.",
+    "k": 3,
+    "regret": 0.0,
+    "selected": [
+      {
+        "destination_area": "Turku-205",
+        "hour_band": "06-09",
+        "origin_area": "Turku-207",
+        "trips": 5491
+      },
+      {
+        "destination_area": "Turku-205",
+        "hour_band": "06-09",
+        "origin_area": "Turku-203",
+        "trips": 4565
+      },
+      {
+        "destination_area": "Turku-205",
+        "hour_band": "06-09",
+        "origin_area": "Turku-208",
+        "trips": 4183
+      }
+    ],
+    "top_k_overlap": 3
+  },
+  "draws": 1,
+  "elapsed_seconds": 18.17612705600004,
+  "experiment": "E1",
+  "limitations": [
+    "No independent cross-review yet.",
+    "Single release, no repeated-run acceptance claim.",
+    "No real destination truth.",
+    "Native benchmark adapter/attack evaluation not completed by E1."
+  ],
+  "metrics": {
+    "daily": {
+      "R1_to_R2_clipping": {
+        "compared_total": 870678.0,
+        "mae": 2575.1071428571427,
+        "reference_total": 942781.0,
+        "wape": 0.07647905505096093
+      },
+      "R1_to_R4_total": {
+        "compared_total": 876493.0,
+        "mae": 2422.5,
+        "reference_total": 942781.0,
+        "wape": 0.07194671933354618
+      },
+      "R2_to_R3_noise": {
+        "compared_total": 876493.0,
+        "mae": 660.8214285714286,
+        "reference_total": 870678.0,
+        "wape": 0.02125125476927176
+      },
+      "R3_to_R4_clamping": {
+        "added_count": 0
+      }
+    },
+    "line_hour": {
+      "R1_to_R2_clipping": {
+        "compared_total": 742104.0,
+        "mae": 79.2409420289855,
+        "reference_total": 785845.0,
+        "wape": 0.05566110365275595
+      },
+      "R1_to_R4_total": {
+        "compared_total": 770940.0,
+        "mae": 209.29166666666666,
+        "reference_total": 785845.0,
+        "wape": 0.14701245156487602
+      },
+      "R2_to_R3_noise": {
+        "compared_total": 746282.0,
+        "mae": 206.31884057971016,
+        "reference_total": 742104.0,
+        "wape": 0.15346636051011717
+      },
+      "R3_to_R4_clamping": {
+        "added_count": 24658
+      }
+    },
+    "od": {
+      "R1_to_R2_clipping": {
+        "compared_total": 453421.0,
+        "mae": 28.434467120181406,
+        "reference_total": 516119.0,
+        "wape": 0.1214797362623736
+      },
+      "R1_to_R4_total": {
+        "compared_total": 488481.0,
+        "mae": 58.72834467120182,
+        "reference_total": 516119.0,
+        "wape": 0.2509033769343892
+      },
+      "R2_to_R3_noise": {
+        "compared_total": 459335.0,
+        "mae": 54.01904761904762,
+        "reference_total": 453421.0,
+        "wape": 0.26269625800304797
+      },
+      "R3_to_R4_clamping": {
+        "added_count": 29146
+      }
+    }
+  },
+  "release_id": "e1-aura-001",
+  "seed_policy": "OpenDP secure randomness; no public or fixed noise seed; first draw retained",
+  "source_commit": "5438e3c12145fdca3295aa1b515d5254678cd0c1",
+  "status": "actual first release, not E3 policy validation"
+}

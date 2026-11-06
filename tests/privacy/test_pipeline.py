@@ -75,3 +75,23 @@ def test_concurrent_reservation_serializes(tmp_path):
     with ThreadPoolExecutor(2) as pool:results=list(pool.map(call,[1,2]))
     assert results.count(None)==1
     assert sum('BUDGET' in str(x) for x in results)==1
+
+def test_inference_edges():
+    t,s=inputs()
+    t=t.iloc[:3].copy();t['card_id']='one';t['ts']=['2025-10-06 07:00:00','2025-10-06 07:30:00','2025-10-06 09:00:00'];t['stop_id']=['s1','s2','s2']
+    domain,raw,_,_=prepare(t,s)
+    assert raw['od'][domain['od'].index(('a','b','06-09'))]==1
+    assert raw['od'][domain['od'].index(('b','a','09-15'))]==1
+    assert raw['od'].sum()==2
+    domain,raw,_,_=prepare(t.iloc[:1],s)
+    assert raw['od'][domain['od'].index(('a','a','06-09'))]==1
+    t['ts']=['2025-10-26 03:00:00']*3
+    _,raw,_,_=prepare(t,s)
+    assert raw['od'].sum()==0 and raw['line_hour'].sum()==0 and raw['daily'].sum()==3
+
+def test_inventory_false_safe_does_not_change_handling():
+    from pipeline.inventory import adapt
+    df=pd.DataFrame([{'dataset':'mobility','table':'taps','column':'card_id','privacy_role':'non_sensitive','subtype':'','reason':'deliberate false-safe'}])
+    field=adapt(df)['fields'][0]
+    assert field['policy']['handling']=='internal_grouping_only'
+    assert field['needs_review'] is True
