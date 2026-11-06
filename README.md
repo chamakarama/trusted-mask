@@ -4,7 +4,7 @@
 
 ## The problem in one number
 
-Deleting names is not enough. In the organisers' own test, **4 sightings (a stop and an hour) pick out 97% of travel cards** in de-named tap records, and still 90% with k ≥ 5 grouping. So RouteSafe shares **no rows at all**.
+Deleting names is not enough. In the organisers' own test, **4 sightings (a stop and an hour) pick out 97% of travel cards** in de-named tap records, and still 90% with k ≥ 5 suppression. So RouteSafe shares **no rows at all**.
 
 ## What RouteSafe does
 
@@ -26,8 +26,8 @@ A separate **operator workbench** (private, never published) shows the scanner's
 | Question | Answer | Evidence |
 |---|---|---|
 | Do planners still get the right shortlist? | Morning top 3 routes = the exact data's (3/3); same top 3 in **100 of 100** noise re-runs. Only weekday mornings were tested. | `evidence/evidence-summary.json` |
-| How exact are the numbers? | ±161 trips per route (95%, noise only). Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. Busy routes read low because of the per-card cap (12% of trips left out). | same |
-| Organisers' strict utility scores | MOB-U1 0.00, MOB-U2 0.00, MOB-U3 0.77: **not passing**. Small cells are mostly noise. | same |
+| How exact are the numbers? | Shortlisted routes carry a noise range of ±483 trips (95% for all 420 morning routes at once). Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. The per-card cap leaves out 12% of route trips (from cards with more than 32), so totals run low. | same |
+| Organisers' strict utility scores | RouteSafe: routes 0.00 (native MOB-U1), lines 0.00 and days 0.77 (adapted MOB-U2/U3): **not passing**, because small cells are mostly noise. For comparison, sharing de-named rows scores 1.00 / 1.00 / 1.00 but exposes 97% of cards. | same |
 | How good is the scanner? | Development (rules tuned on the samples, not blind): macro-F1 0.90, sensitive recall 0.92. Tricky probe: 0 sensitive columns wrongly called safe. | `petpilot/README.md` |
 
 The protection is per travel card for this one 4-week release, under stated assumptions. It is not person-level anonymity: a person with 2 cards counts twice. The manifest says **pending review**, and it has not been independently audited.
