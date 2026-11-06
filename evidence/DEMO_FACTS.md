@@ -20,7 +20,7 @@ This is a technical reference for Opus's storyboard/submission work, not a final
 
 ## New results awaiting review
 
-E7 (`e7/membership.json`) simulates exact discrete-Laplace outputs for three preselected fixed neighbouring dataset pairs with all other contributions known. Likelihood-ratio AUC .603/.569/.592; true-positive rates 1.65%/1.52%/2.30% at separately calibrated thresholds with actual false-positive rates .92%/.93%/1.07%. This is not an attack on repeated copies of the original artifact, a general attacker benchmark or a zero-risk proof. Keep it out of final UI claims until reviewed.
+E7 (`e7/membership.json`) simulates exact discrete-Laplace outputs for three preselected fixed neighbouring dataset pairs with all other contributions known. Likelihood-ratio AUC .603/.569/.592; true-positive rates 1.49%/1.52%/2.23% at separately calibrated thresholds with actual false-positive rates .86%/.93%/1.02%. This is not an attack on repeated copies of the original artifact, a general attacker benchmark or a zero-risk proof. Keep it out of final UI claims until reviewed.
 
 The new uncertainty UI at Opus 14d7874 also awaits corrections and review. A marginal ±161 bound for a prechosen OD cell does not give 95% coverage for a top-ranked cell selected using the noisy data. Simultaneous bounds or an explicit selection-aware treatment are needed; see `e6/selected-interval-review.json`. Preserve the reviewed UI's unavailable-interval fallback until this is resolved.
 
