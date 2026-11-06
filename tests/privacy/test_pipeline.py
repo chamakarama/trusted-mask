@@ -95,3 +95,14 @@ def test_inventory_false_safe_does_not_change_handling():
     field=adapt(df)['fields'][0]
     assert field['policy']['handling']=='internal_grouping_only'
     assert field['needs_review'] is True
+
+def test_false_privacy_metadata_rejected(tmp_path):
+    import jsonschema
+    from pipeline.artifact import SCHEMA
+    t,s=inputs();dom,_,v,geo=prepare(t,s);payload=build('test','a'*40,dom,{f:x.tolist() for f,x in v.items()},geo)
+    m=json.loads(payload['manifest.json']);m['privacy']['families']['od']['cap']=1
+    with pytest.raises(jsonschema.ValidationError):jsonschema.validate(m,json.loads(SCHEMA.read_text()))
+
+def test_public_formula_label_rejected():
+    t,s=inputs();s.loc[0,'area']='=HYPERLINK("example")'
+    with pytest.raises(ValueError,match='unsafe public label'):prepare(t,s)

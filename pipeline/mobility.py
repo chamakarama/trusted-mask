@@ -23,6 +23,7 @@ def validate(taps, stops):
     if not len(stops): raise ValueError('INVALID_SCHEMA: empty public domain')
     for col in ('stop_id','area','municipality','lines'):
         if stops[col].str.strip().eq('').any(): raise ValueError('INVALID_SCHEMA: empty reference field')
+        if stops[col].str.contains(r'^[=+@\-\t\r\n]|[\r\n]',regex=True).any(): raise ValueError('INVALID_SCHEMA: unsafe public label')
     if taps.card_id.str.strip().eq('').any(): raise ValueError('INVALID_SCHEMA: missing card ID')
     for col,lo,hi in [('lat',-90,90),('lon',-180,180)]:
         v=pd.to_numeric(stops[col],errors='coerce')
