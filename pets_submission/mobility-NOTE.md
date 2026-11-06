@@ -1,6 +1,6 @@
 # RouteSafe mobility release (aggregate, MOB-S1)
 
-These are byte-identical copies of `releases/e1-aura-001/`: `od_matrix.csv`, `line_hour.csv`, `daily.csv`, `manifest.json` and `definitions.json`. Check them against `releases/e1-aura-001/checksums.sha256`.
+These are byte-identical copies of `releases/e1-aura-001/`: all nine canonical files, including manifest, checksums, definitions, statistics and public geometry. From the repository root run `.venv/bin/python -m pipeline verify-release --release pets_submission/mobility`. No new noise was drawn or privacy budget spent.
 
 - Aggregate counts only: route trips per area pair and time band, boardings per line and hour, taps per day. Every value has differentially private noise (OpenDP integer Laplace); each card's contribution is capped first.
 - No rows, no card ids, no exact timestamps, and **no row map**. Row-linkage and lookup attacks do not apply.
