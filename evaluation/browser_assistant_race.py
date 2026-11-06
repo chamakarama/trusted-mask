@@ -36,6 +36,17 @@ async def main(url, output, revision):
   await asyncio.wait_for(finished.wait(),10);await asyncio.sleep(.2)
   last=await page.locator('.answer').inner_text()
   result={'review_target':revision,'scope':'local Chromium and delayed mock intent only; no real model call','case':'older pending model response overwrites newer preset refusal','refusal_visible_before_response':True,'refusal_retained_after_response':"Can't show one person's trips" in last,'page_url_after_response':page.url,'passed':"Can't show one person's trips" in last}
+  # A callback from an unmounted release must not change the new release's filters.
+  await page.get_by_role('radio',name=__import__('re').compile('^Morning')).click()
+  started.clear();finished.clear()
+  await page.get_by_role('textbox',name='Question',exact=True).fill('Evening routes?')
+  await page.get_by_role('button',name='Ask',exact=True).click();await asyncio.wait_for(started.wait(),10)
+  await page.get_by_role('combobox',name='Release',exact=True).select_option('fixture-only-001')
+  await asyncio.wait_for(finished.wait(),10);await asyncio.sleep(.2)
+  await page.get_by_text('files verified',exact=False).wait_for()
+  result['release_switch_preserves_filter']='band=06-09' in page.url
+  result['fixture_has_no_stale_answer']=await page.locator('.answer').count()==0
+  result['passed']=result['passed'] and result['release_switch_preserves_filter'] and result['fixture_has_no_stale_answer']
   output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result));await b.close();return result['passed']
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--url',required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--revision',required=True);a=p.parse_args()
