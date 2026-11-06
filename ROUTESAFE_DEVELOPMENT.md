@@ -33,3 +33,18 @@ Issue #3 is the authoritative coordination channel. Astra reads its public HTML 
 Additional evaluation commands: `python -m evaluation.inference`, `python -m evaluation.repeated`, `python -m evaluation.policy_search`, `python -m evaluation.attacks`, `python -m evaluation.benchmark`, and `python -m evaluation.identity_scope`. Use `.venv/bin/python` from this checkout. These are explicitly synthetic-only experiments. The policy search found no all-target winner. Do not interpret experimental draws as free real-data publication or reset the publisher ledger. The reviewed Opus scanner was integrated into main at 4c563b1. Publisher/privacy and frontend integration await reverse review and fixes recorded in issue #3.
 
 Attribution: TrustED PETs Proving Ground 2026 synthetic data by Since AI ry (CC BY 4.0). Public stop placement uses GeoNames postcode centroids (CC BY 4.0), via github.com/zauberware/postal-codes-json-xml-csv; derived points are schematic. No TrustED or EU endorsement is implied.
+
+
+The assembled public planner is now on this feature branch. From the checkout, use the locked frontend dependencies and copy only allowlisted releases:
+
+```sh
+npm ci --prefix web
+npm run sync --prefix web -- --ref HEAD
+npm test --prefix web
+npm run build --prefix web
+.venv/bin/python -m http.server 8768 --bind 127.0.0.1 --directory web/dist
+```
+
+Verified runtime: Node 24.22.1, npm 11.9.0. The production build runs without private publisher access and uses a local schematic SVG map, so no map tile API is required. Once loaded, filters/views work without internet; offline reload still requires a local static server and files. Free-text AI is explicitly unavailable; presets are deterministic and labelled. Do not claim a live model is connected.
+
+Independent consumer review: all 15 tests pass after Opus's 5767fc0 boundary fixes. The actual release, downloads, refusals, 390px layout and local-only network requests were exercised in Chromium. Review reports are under evidence/e6/. Publisher reverse review remains necessary before main integration or strengthened privacy claims.
