@@ -1,11 +1,11 @@
 # RouteSafe continuation checkpoint
 
-Reviewed application baseline: **main b223859** (6 November 2026). Later documentation/evidence commits do not redraw the release. This is a working experimental foundation, not a prediction of competition placement.
+Reviewed public UI baseline: **b223859**; main advanced to **647c27d** with the independently reviewed scanner email sweep (6 November 2026). Later documentation/evidence commits do not redraw the release. This is a working experimental foundation, not a prediction of competition placement.
 
 ## Resume safely
 
 1. Inspect the existing dedicated checkout and `git status` before editing. Astra uses `/workspace/routesafe-astra`; preserve Opus's separate checkout and the original supplied clone. Fetch origin, inspect new commits, and read issue #3 plus `ops/astra:coordination/astra.md` before assuming work is unstarted.
-2. Follow ROUTESAFE_DEVELOPMENT.md for dependencies and local startup. Use `npm run sync --prefix web -- --ref HEAD` explicitly; the old script default still points at Astra's feature branch until Opus updates it. No API key is needed for presets, charts or downloads.
+2. Follow ROUTESAFE_DEVELOPMENT.md for dependencies and local startup. Use `npm run sync --prefix web -- --ref HEAD` explicitly on this main baseline. Opus's reviewed default-HEAD change af7f20c has been cherry-picked onto Astra's feature branch. No API key is needed for presets, charts or downloads.
 3. Reuse `releases/e1-aura-001`. Preserve `private/publisher.sqlite` where present. If the private ledger is absent in a new machine, use the committed static bundle; do not create a replacement ledger to republish the same population.
 4. Poll coordination every five minutes while active, post meaningful status every 30 minutes and push checkpoints at least every 45 minutes. Git works; Astra's GitHub API requests fail with `CONNECT tunnel failed, response 403`. Use the agreed Git mailbox, not a network-policy bypass.
 
@@ -20,7 +20,7 @@ Reviewed application baseline: **main b223859** (6 November 2026). Later documen
 
 ## Next useful work, in order
 
-1. Opus: acknowledge integrated main in issue #3; switch sync default to HEAD and review fresh-launch web instructions. New frontend code still needs Astra review before integration.
+1. Review the latest coordination messages A-018 through A-022. Astra feature includes E7 protocol, exact-score simulation and results awaiting Opus review; do not integrate those claims without review. Opus planner14d7874 passes 25 tests and 145 independent browser numeric cases, but selected-route interval coverage and posterior-odds wording need A-018 corrections. A-022 adds a reproduced stale model response overriding a newer preset; guard callbacks and cancel superseded requests. Keep reviewed main available.
 2. Opus-owned `opus/submission` at be8dcff contains the technically corrected narrative, but remains a draft outside main. Before recording, update final UI tab names, distinguish optional AI intent translation from offline presets, record completed independent code review separately from the immutable `pending_review` marker, and expand licence attribution for MapLibre/Inter/GeoNames. Astra reviews the resulting technical wording. Do not submit the draft.
 3. Rehearse the <=120-second storyboard against the actual UI. Keep the original artifact, synthetic-data label, per-card privacy unit, inferred destinations, failed count-accuracy target and non-applicable row-linkage caveat visible. Prefer the working schematic/preset fallback if optional services fail.
 4. Human lead: confirm participant/team/account facts, recording and final submission details. Public deployment, actual competition submission and new paid commitments require separate authorization. Local verification and documentation do not.
@@ -34,3 +34,5 @@ Astra made no real model calls. Opus O-012 reports four live functional checks u
 ## Session continuity
 
 No guaranteed runtime lease, token balance or automatic overnight restart is exposed. A stopped chat does not keep executing. To continue, resume this task with: **“Continue RouteSafe from planning/CONTINUATION.md, inspect main and issue #3, preserve the release and ledger, and complete the next reviewed integration and demo checkpoint.”** Local servers must restart in a new environment. No human action currently blocks the reviewed static foundation.
+
+Latest independent checks: scanner11 tests plus privacy33 =44 passed; clean current scanner catalog score reproduced without +dirty. Actual Node assistant proxy and SDK pass a loopback-provider check for origin rejection, free-text note stripping, typed intent and rate limiting, without a real provider call (`evidence/e6/assistant-proxy-local.json`).
