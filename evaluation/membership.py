@@ -4,6 +4,7 @@ import hashlib
 import importlib.metadata as metadata
 import json
 import math
+from fractions import Fraction
 import subprocess
 import numpy as np
 from scipy.stats import rankdata
@@ -12,6 +13,8 @@ from pipeline.artifact import encode
 
 ROOT = Path('TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026')
 SEED, CALIBRATION, TEST = 20261106, 4000, 10000
+RATES = {f: Fraction(str(EPS[f])) / CAPS[f] for f in CAPS}
+DENOMINATOR = math.lcm(*(r.denominator for r in RATES.values()))
 
 
 def auc(negative, positive):
@@ -29,12 +32,14 @@ def rate(successes, n):
             'wilson_95': [max(0., centre-radius), min(1., centre+radius)]}
 
 
-def scores(rng, vector, scales, present, n):
+def scores(rng, vector, scales, weights, present, n):
     # Difference of geometric variables has pmf proportional to exp(-abs(z)/scale).
     p = -np.expm1(-1 / scales)
     noise = rng.geometric(p, size=(n, len(vector))) - rng.geometric(p, size=(n, len(vector)))
     y = noise + (vector if present else 0)
-    return ((np.abs(y) - np.abs(y-vector)) / scales).sum(axis=1)
+    # The policy has rational inverse scales. Sum integer numerators first so
+    # mathematically identical scores remain ties for AUC and thresholding.
+    return ((np.abs(y) - np.abs(y-vector)) * weights).sum(axis=1) / DENOMINATOR
 
 
 def main():
@@ -50,11 +55,12 @@ def main():
         assert all(0 <= totals[f] <= CAPS[f] for f in CAPS)
         vector = np.concatenate([v[v != 0] for v in bounded.values()])
         scales = np.concatenate([np.full(np.count_nonzero(v), CAPS[f]/EPS[f]) for f, v in bounded.items()])
-        effective_epsilon = float((vector/scales).sum())
-        calibration = scores(rng, vector, scales, False, CALIBRATION)
+        weights = np.concatenate([np.full(np.count_nonzero(v), int(RATES[f]*DENOMINATOR), dtype=np.int64) for f, v in bounded.items()])
+        effective_epsilon = float((vector*weights).sum() / DENOMINATOR)
+        calibration = scores(rng, vector, scales, weights, False, CALIBRATION)
         threshold = float(np.quantile(calibration, .99, method='higher'))
-        negative = scores(rng, vector, scales, False, TEST)
-        positive = scores(rng, vector, scales, True, TEST)
+        negative = scores(rng, vector, scales, weights, False, TEST)
+        positive = scores(rng, vector, scales, weights, True, TEST)
         maximum = float(max(np.abs(calibration).max(), np.abs(negative).max(), np.abs(positive).max()))
         assert maximum <= effective_epsilon + 1e-10 and effective_epsilon <= 1 + 1e-10
         result = {'target_index': index, 'bounded_totals': totals, 'affected_coordinates': len(vector),
@@ -68,6 +74,7 @@ def main():
     report = {'experiment': 'E7 fixed-neighbour membership likelihood-ratio diagnostic',
               'data_class': 'supplied_synthetic', 'status': 'executed; pending independent review',
               'command': 'python -m evaluation.membership', 'seed': SEED,
+              'likelihood_score_arithmetic': 'integer numerator with common denominator '+str(DENOMINATOR)+'; exact policy-rational ties',
               'calibration_absent_per_target': CALIBRATION, 'test_per_hypothesis_per_target': TEST,
               'protocol_sha256': hashlib.sha256(protocol.read_bytes()).hexdigest(),
               'evaluator_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
