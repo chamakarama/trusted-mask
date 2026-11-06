@@ -45,7 +45,7 @@ export function Tradeoff({ t, released }: { t: any; released: { epsilon: number;
                   <g key={e}>
                     <path d={path} fill={ei === 0 ? E1 : E2} stroke={isReleased ? "var(--ink)" : "none"} strokeWidth={isReleased ? 2 : 0} />
                     <text x={x + bw / 2} y={y(0) - h - 4} className="axis" textAnchor="middle">{pct(r.median_wape.od)}</text>
-                    {isReleased && <text x={x + bw / 2} y={y(0) - h - 16} className="axis" textAnchor="middle" fontWeight={700}>released</text>}
+                    {isReleased && <text x={x + bw / 2} y={y(0) - h - 16} className="axis" textAnchor="middle" fontWeight={700}>same policy</text>}
                   </g>
                 );
               })}
@@ -55,7 +55,7 @@ export function Tradeoff({ t, released }: { t: any; released: { epsilon: number;
         })}
         <text x={L} y={H - 4} className="axis">per-card route cap (trips per card)</text>
       </svg>
-      <p className="tiny muted">Higher ε means less privacy and less error. A small cap drops many trips; a big cap needs more noise; 32 was the best area cap tried. {allPass ? "Every candidate kept the morning top 3 in all its noise draws. " : ""}Run on {t.development_cards ? `${Math.round(t.development_cards / 1000)}k of ${Math.round((t.all_cards ?? 0) / 1000)}k` : "half of the"} cards, so errors are higher than for the full release. No candidate met every error target.</p>
+      <p className="tiny muted">Higher ε permits more noise reduction and a weaker privacy guarantee. A small cap drops many trips; a big cap needs more noise; 32 was the best area cap tried. {allPass ? "Every candidate met the decision target (at least 2 of 3 routes overlap and at most 10% regret) in all its noise draws. " : ""}Run on {t.development_cards ? `${Math.round(t.development_cards / 1000)}k of ${Math.round((t.all_cards ?? 0) / 1000)}k` : "half of the"} cards; these subset results are not directly comparable with the full release. No candidate met every error target.</p>
     </section>
   );
 }
