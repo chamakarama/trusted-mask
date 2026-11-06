@@ -5,9 +5,10 @@ from pipeline.artifact import verify,PAYLOADS
 
 README='''RouteSafe E1 offline planner — synthetic benchmark, pending privacy review.
 Extract and run: python -m http.server 8768 --bind 127.0.0.1 --directory planner
-Then open the local server in a browser. No internet is needed for the schematic map or deterministic presets. No live AI is connected. Never serve the source repository or private publisher directory.
+Then open the local server in a browser with ?map=schematic for immediate offline mode. No internet is needed for the schematic map or deterministic presets. No live AI is connected. Never serve the source repository or private publisher directory.
 Data/docs: TrustED PETs Proving Ground 2026, Since AI ry, CC BY 4.0.
 Public geography: GeoNames (CC BY 4.0), via github.com/zauberware/postal-codes-json-xml-csv; points are schematic public-stop centroids, not road geometry.
+Frontend dependency and font notices are in THIRD_PARTY_NOTICES.txt when bundled.
 This is an internal review artifact, not a deployed site or submitted competition entry. Review manifest/definitions and the explicit utility limitations before making claims.
 '''
 
@@ -29,11 +30,13 @@ def package(build:Path,output:Path):
             raise ValueError('UNAPPROVED_EVIDENCE')
         allowed.add('evidence/evidence-summary.json')
     members=[('README.txt',README.encode())]
+    notices=Path(__file__).resolve().parents[1]/'licenses/frontend-third-party.txt'
+    if notices.exists():members.append(('THIRD_PARTY_NOTICES.txt',notices.read_bytes()))
     for path in sorted(build.rglob('*')):
         if path.is_symlink():raise ValueError('SYMLINK_IN_BUILD')
         if not path.is_file():continue
         name=path.relative_to(build).as_posix()
-        if name not in allowed and not re.fullmatch(r'assets/[A-Za-z0-9_-]+\.(js|css)',name):raise ValueError('UNEXPECTED_BUILD_PATH')
+        if name not in allowed and not re.fullmatch(r'assets/[A-Za-z0-9_-]+\.(js|css|woff2)',name):raise ValueError('UNEXPECTED_BUILD_PATH')
         members.append(('planner/'+name,path.read_bytes()))
     output.parent.mkdir(parents=True,exist_ok=True)
     with output.open('xb') as fp:
