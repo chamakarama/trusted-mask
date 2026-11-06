@@ -1,109 +1,62 @@
-# RouteSafe implementation
+# RouteSafe
 
-RouteSafe now has a working private publisher, verified static release, public planner, separate private operator workbench, and synthetic utility/risk evaluation. Start with [development and local startup](ROUTESAFE_DEVELOPMENT.md), [evidence and limitations](evidence/README.md), and the [privacy argument](privacy/README.md). Coordination and executable peer review are recorded in [issue #3](https://github.com/Chintufp/Since-AI-hackathon---WAWS/issues/3).
+**Bus demand without passenger histories.** RouteSafe lets a transport operator publish where and when people travel as open data, without publishing anyone's journeys. Built for the TrustED *PETs Transformer* challenge at Since AI Hackathon 2026 (scenario MOB-S1, synthetic Turku-region data).
 
-The experimental release preserves the morning shortlist but **fails the area-level count-error target**. It provides card-level protection under the documented assumptions, not person-level anonymity or certification. The existing manifest remains labelled pending review. The assistant supports deterministic presets and an optional local model proxy that translates questions into validated requests; answers are computed from the protected release. Astra verified the proxy boundary with mocks; Opus reported four live functional checks on the human-authorised local setup (not an accuracy evaluation). No public deployment or competition submission has been made.
+## The problem in one number
 
-The original idea below is retained as planning history. Its illustrative numbers, broader capabilities and proposed demo are not implementation results; the evidence guide describes what was actually executed.
+Deleting names is not enough. In the organisers' own test, **4 sightings (a stop and an hour) pick out 97% of travel cards** in de-named tap records, and still 90% with k ≥ 5 grouping. So RouteSafe shares **no rows at all**.
 
----
+## What RouteSafe does
 
-# TrustED Challenge: Our Idea
+1. **Scan (private).** The `petpilot` scanner reads every column of the operator's data and says what it is (identifies a person / identifies in combination / sensitive / unknown) and why. It uses rules, no AI, and nothing leaves the machine. Unclear columns go to a person.
+2. **Protect (private).** The publisher counts trips per route, boardings per line-hour and taps per day. Each travel card counts at most 32 / 64 / 64, then OpenDP adds random noise (differential privacy, total ε = 1 per card). The spend is written once to a budget ledger.
+3. **Publish and explore (public).** Only three tables of protected counts leave, as a checksummed bundle. The planner checks every file in the browser before it shows anything.
 
-## The challenge in one line
+## What you see in the planner
 
-**Make sensitive data safe to share, and prove with numbers that it's both safe and still useful.**
+- **Where people go:** map and shortlist of the busiest routes per time of day, each with its ±noise range. It says when routes are too small to trust ("could be pure noise", e.g. at night). You can also ask in plain words: Claude only picks one typed request, and every number comes from the published tables.
+- **When people travel:** boardings per line and hour (cells inside the noise are grey), and taps per day.
+- **Is it safe?:** sharing rows vs RouteSafe, the exact-data checks, the organisers' scores, and what ε = 1 means in plain words.
+- **What's shared:** who it is for, what it is and isn't fit for, our assumptions, and downloads of the exact files.
 
-Hospitals, cities and transport companies hold data that could power AI and better services, but they can't share it because it's personal.
+A separate **operator workbench** (private, never published) shows the scanner's findings, the per-column handling, and the refusal of row-level sharing.
 
-- **Remove too little** and people get re-identified anyway. Deleting names isn't enough: ZIP code + birth date + gender alone singles out about 87% of Americans.
-- **Remove too much** and the data becomes useless.
+## Results (synthetic data, honest version)
 
-The brief says "think beyond simple anonymisation". Just blacking out names won't win.
-
-## What the judges want (straight from the brief)
-
-- The system **understands different kinds of sensitive information**
-- It **chooses the right transformation** for each kind
-- It **shows what analytical value remains** afterwards
-- **Risk analysis**: how easy is it to re-identify people?
-- **Transparent, measurable trade-offs** between privacy and usefulness
-- **Concrete, testable proof** of why the transformed data can be trusted
-
-## The idea: a privacy autopilot that proves its own work
-
-```
-raw data → DETECT → ASK PURPOSE → TRANSFORM → ATTACK → MEASURE USEFULNESS → REPORT
-```
-
-1. **Detect.** Scan every column/field and sort it into: direct identifier, quasi-identifier, sensitive value or safe.
-2. **Ask the purpose.** The user says what the data is for, e.g. *"predict flu hospitalisations by age and region"*.
-3. **Transform.** Pick a treatment for each field. Protect everything the purpose doesn't need more heavily, and keep what it does need as precise as possible. Explain every choice.
-4. **Attack.** Try to re-identify people in our own output: match records against a fake "public" dataset, and let an LLM detective guess who people are. This gives a risk score before vs after.
-5. **Measure usefulness.** Run the purpose analysis (e.g. train the prediction model) on the original and the transformed data, and compare the results.
-6. **Report.** A privacy-vs-usefulness slider/chart and a trust report: what was found, what was done and why, risk score, usefulness kept, allowed uses.
-
-### The toolbox
-
-| Kind of info | Example | Typical treatment |
+| Question | Answer | Evidence |
 |---|---|---|
-| Direct identifiers | name, hetu, phone | Remove, or swap for a consistent fake |
-| Quasi-identifiers (harmless alone, identifying together) | age, postcode, gender, dates | Make vaguer: 34 → 30–39, 00100 → Helsinki |
-| Sensitive values | diagnosis, income | Keep the patterns, add statistical noise (differential privacy) |
-| Whole dataset | — | Synthetic data: fake rows with the same patterns |
+| Do planners still get the right shortlist? | Morning top 3 routes = the exact data's (3/3); same top 3 in **100 of 100** noise re-runs. Only weekday mornings were tested. | `evidence/evidence-summary.json` |
+| How exact are the numbers? | ±161 trips per route (95%, noise only). Volume-weighted error: routes 25% (**misses our 20% target**), lines 15%, days 7%. Busy routes read low because of the per-card cap (12% of trips left out). | same |
+| Organisers' strict utility scores | MOB-U1 0.00, MOB-U2 0.00, MOB-U3 0.77: **not passing**. Small cells are mostly noise. | same |
+| How good is the scanner? | Development (rules tuned on the samples, not blind): macro-F1 0.90, sensitive recall 0.92. Tricky probe: 0 sensitive columns wrongly called safe. | `petpilot/README.md` |
 
-## Demo flow (~3 min)
+The protection is per travel card for this one 4-week release, under stated assumptions. It is not person-level anonymity: a person with 2 cards counts twice. The manifest says **pending review**, and it has not been independently audited.
 
-1. Upload a raw dataset. The system tags every column.
-2. Type the purpose.
-3. Run the attacker on the **raw** data: it re-identifies most people.
-4. Run the autopilot. Run the attacker again: it mostly fails, and the prediction model barely changes.
-5. Drag the slider to show the privacy-vs-usefulness trade-off.
-6. Download the trust report.
+## Run it
 
-The pitch line would sound like: *"Before, our attacker identified 80% of patients. After, 3%. The model lost 1% accuracy."* (Example numbers. We'd measure the real ones.)
+```sh
+cd web
+npm ci
+npm run sync    # copy the reviewed release from this commit
+npm run dev     # planner on http://localhost:5173
+```
 
-## What makes it stand out
+The suggested questions work without any key. The typed-question helper (`npm run assistant`) needs an Anthropic API key in the environment. Full setup, publisher, tests and evidence commands: [ROUTESAFE_DEVELOPMENT.md](ROUTESAFE_DEVELOPMENT.md) · [web/README.md](web/README.md) · [petpilot/README.md](petpilot/README.md).
 
-- **Purpose-aware:** "useful" is defined by what the data will actually be used for, not guessed.
-- **Proves itself:** it attacks its own output instead of just claiming the data is safe.
-- **Explains itself:** every choice comes with a reason a human can read.
+## Repository map
 
-## Which data does it run on? (depends on the material)
+| Path | What |
+|---|---|
+| `petpilot/` | column scanner (inventory, rules, evaluation) |
+| `pipeline/`, `privacy/` | private publisher, DP mechanism, budget ledger, privacy argument |
+| `releases/e1-aura-001/` | the published release (immutable) |
+| `evaluation/`, `evidence/` | synthetic-only checks and their results ([evidence/README.md](evidence/README.md)) |
+| `web/` | public planner and private operator workbench |
+| `contracts/`, `planning/` | release schema, interfaces, decisions, coordination |
+| `SUBMISSION.md`, `demo/` | submission draft and the 2-minute demo script |
 
-The pipeline stays the same. Only the input changes.
+Coordination and the executable peer review between the two builder agents are recorded in [issue #3](https://github.com/Chintufp/Since-AI-hackathon---WAWS/issues/3). The pre-build idea is kept as [planning history](planning/ORIGINAL_IDEA.md); its features and numbers are not results.
 
-**A table** (likely, since TrustED's pilots use hospital data): run it as described above.
+## Credits
 
-**Call recordings** (the call idea):
-
-- **Detect:**
-  - details said out loud (name, hetu, card number)
-  - indirect clues ("I'm the only dentist in Inkoo")
-  - sensitive topics (health, debt)
-  - **the voice itself**: a voice works like a fingerprint, so voice recognition can identify a caller even with every name bleeped
-- **Transform:**
-  - names → consistent fake names
-  - addresses → city only
-  - numbers → fakes in the same format
-  - voice, from weakest to strongest: pitch shift → voice conversion (new voice, same emotion) → full computer-voice re-synthesis (safest, but the emotion is lost)
-- **Attack:** voice matching before and after, plus an LLM detective on what's left.
-- **Measure usefulness:** does analysis of the anonymised calls (why they called, sentiment, was the problem solved) still agree with the originals?
-- **Data:** generate fake calls (an LLM writes scripts with planted personal details, text-to-speech voices them). We know exactly what should be caught, so the measurements are honest.
-- **Risks:**
-  - we might be required to use the official material
-  - audio pipelines are fiddly
-  - spotting personal details is harder in Finnish than in English
-
-**Decision:** wait for the material, then pick table or calls.
-
-## Background: TrustED
-
-An EU research project (Horizon Europe, led by Gradiant in Spain, with Fraunhofer, InfoCert, a hospital in Coimbra, and Sestek, a call-centre speech-analytics company) about trustworthy data sharing. It uses differential privacy, encryption, zero-knowledge proofs and federated learning. Its pilots: a hospital training AI to predict flu/COVID/RSV without moving patient data, and a digital ID wallet.
-
-## Questions for when the material drops
-
-- What type of data is it: a table, text or audio?
-- Do we have to use the provided data, or can we bring our own?
-- What are the judging criteria?
-- Are there tools or credits we can use (e.g. ElevenLabs, LUMI)?
+Synthetic data: TrustED PETs Proving Ground 2026 by Since AI ry (CC BY 4.0); postcode centroids from GeoNames (CC BY 4.0). OpenDP (MIT). Map: MapLibre GL JS, OpenFreeMap tiles, © OpenMapTiles, © OpenStreetMap contributors; the tile server never receives release data. Font: Inter (SIL OFL). Notices: `licenses/frontend-third-party.txt`. No TrustED or EU endorsement is implied.
