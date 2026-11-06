@@ -1,6 +1,6 @@
 """Strict aggregate boundary shared by CLI, fixture, and consumer tests."""
 from __future__ import annotations
-import csv,hashlib,io,json,re
+import csv,hashlib,io,json,re,math
 from datetime import datetime,timezone
 from pathlib import Path
 import jsonschema
@@ -41,7 +41,7 @@ def build(release_id,source_commit,domains,noisy,geometry,fixture=False):
         'publisher':'Fictional Aura Transit; TrustED PETs Proving Ground 2026, synthetic data by Since AI ry',
         'purpose':'External transport planning research: morning corridor shortlist, line/hour demand, daily taps; no capacity or optimal-route claim.',
         'policy_version':'e1-experimental-32-64-64-epsilon1-v1','source_commit':source_commit,
-        'privacy':{'unit':'card','scope':'whole_release_period','adjacency':'add_remove_one_card','epsilon_release':1.0,'delta_release':0,'guarantee_status':'not_claimed' if fixture else 'pending_review','families':parameters,'multiple_identifier_limitation':'One person can have multiple cards; no fixed person-level guarantee.','accounting':'Single private publisher ledger; reserved draws count as spent; changing ledger is not a budget reset.'},
+        'privacy':{'unit':'card','scope':'whole_release_period','adjacency':'add_remove_one_card','epsilon_release':math.fsum(EPS.values()),'delta_release':0,'guarantee_status':'not_claimed' if fixture else 'pending_review','families':parameters,'multiple_identifier_limitation':'One person can have multiple cards; no fixed person-level guarantee.','accounting':'Single private publisher ledger; reserved draws count as spent; changing ledger is not a budget reset.'},
         'families':families,'public_domain_version':'fictional-two-area-v1' if fixture else 'supplied-public-stops-calendar-v1',
         'inference':'Card/day stable time order; remove double taps and weekends; retain >60 minute gaps from previous boarding; close last to first. Tied distinct events canonically ordered by stop/line.',
         'postprocessing':'Integer noisy estimates clamped at zero for display; signed noisy_value retained. No reconciliation.',

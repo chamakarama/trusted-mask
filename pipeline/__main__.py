@@ -1,22 +1,26 @@
 """Run with python -m pipeline. Private publisher and public verifier are separate commands."""
 from pathlib import Path
-import argparse, hashlib, json, os, shutil, subprocess, tempfile
+import argparse, hashlib, json, math, os, shutil, subprocess, tempfile
 from pipeline import artifact
-from pipeline.mobility import load,prepare
+from pipeline.mobility import load,prepare,EPS
 from privacy.mechanism import draw
 from privacy.ledger import reserve,commit
+from privacy.provenance import publisher_revision,runtime_identity
 
 POLICY='e1-experimental-32-64-64-epsilon1-v1'
 def publish(input_path,output,ledger,release_id):
+    code=publisher_revision()
+    runtime=runtime_identity()
     domains,raw,bounded,geo=prepare(*load(input_path))
-    code=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     # Full input digest stays private. One request identity includes code/policy/input.
-    h=hashlib.sha256((POLICY+code).encode())
+    h=hashlib.sha256((POLICY+code+json.dumps(runtime,sort_keys=True)).encode())
     for name in ('taps.csv','stops.csv'):
         with (input_path/name).open('rb') as f:
             for chunk in iter(lambda:f.read(1024*1024),b''): h.update(chunk)
     identity=h.hexdigest()
-    receipt=reserve(ledger,release_id,identity)
+    epsilon=math.fsum(EPS.values())
+    if epsilon!=1.0: raise ValueError('UNKNOWN_POLICY: E1 schema requires total epsilon 1')
+    receipt=reserve(ledger,release_id,identity,epsilon=epsilon)
     if receipt:
         if artifact.verify(output)!=receipt: raise ValueError('ARTIFACT_INVALID: committed receipt')
         return {'release_id':release_id,'reused':True,'manifest_sha256':receipt}

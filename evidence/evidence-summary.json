@@ -168,8 +168,190 @@
     "status": "not_applicable"
   },
   "schema_version": "1.0",
-  "source_commit": "62c916c1786e0ee717679d00b2ca992b510cd90a",
+  "source_commit": "dcfe9e9c0ebcd4be94e154b3a4942fbab2ae5b4c",
   "synthetic_evaluation_only": true,
+  "trajectory_curve_context": {
+    "cohort": "1000 cards sampled without replacement from sorted original cards with >=4 distinct nonmissing stop/hour points; seed 20261106. Same source-card cohort for all baselines, mapping kept private.",
+    "illustrative_original_candidate_counts": [
+      4,
+      1,
+      1,
+      1
+    ],
+    "known_point_sampling": "Each representation own surviving trace, k points without replacement, seeds 20261106+k; not an attack with identically observed raw points across coarsenings.",
+    "limitations": [
+      "Singling out a card trace is not learning a person name.",
+      "Wilson intervals describe binomial sampling approximation, not privacy guarantee.",
+      "B2-k unavailable cards are explicitly excluded from conditional denominator, never counted safe.",
+      "Baselines use supplied field labels for evaluation only; production does not."
+    ]
+  },
+  "trajectory_fixed_cohort": {
+    "b0": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 700,
+        "known_points": 2,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.7,
+        "wilson_95": [
+          0.6708755915748548,
+          0.727593648990589
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 926,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.926,
+        "wilson_95": [
+          0.908094233760596,
+          0.9406452486437995
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 975,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.975,
+        "wilson_95": [
+          0.9633544581334902,
+          0.9830099882094389
+        ]
+      }
+    ],
+    "b2": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 700,
+        "known_points": 2,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.7,
+        "wilson_95": [
+          0.6708755915748548,
+          0.727593648990589
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 926,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.926,
+        "wilson_95": [
+          0.908094233760596,
+          0.9406452486437995
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 975,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.975,
+        "wilson_95": [
+          0.9633544581334902,
+          0.9830099882094389
+        ]
+      }
+    ],
+    "b2k": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 375,
+        "known_points": 2,
+        "median_candidates": 2.0,
+        "tested": 981,
+        "unavailable": 19,
+        "unicity": 0.382262996941896,
+        "wilson_95": [
+          0.3523689835699814,
+          0.41307553055289886
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 732,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 955,
+        "unavailable": 45,
+        "unicity": 0.7664921465968586,
+        "wilson_95": [
+          0.7386246073957157,
+          0.7922242835994184
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 806,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 922,
+        "unavailable": 78,
+        "unicity": 0.8741865509761388,
+        "wilson_95": [
+          0.8512150281909735,
+          0.8940528448447597
+        ]
+      }
+    ],
+    "original": [
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 700,
+        "known_points": 2,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.7,
+        "wilson_95": [
+          0.6708755915748548,
+          0.727593648990589
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 926,
+        "known_points": 3,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.926,
+        "wilson_95": [
+          0.908094233760596,
+          0.9406452486437995
+        ]
+      },
+      {
+        "fixed_cohort_size": 1000,
+        "isolated": 975,
+        "known_points": 4,
+        "median_candidates": 1.0,
+        "tested": 1000,
+        "unavailable": 0,
+        "unicity": 0.975,
+        "wilson_95": [
+          0.9633544581334902,
+          0.9830099882094389
+        ]
+      }
+    ]
+  },
   "trajectory_native_four_point": {
     "b0": {
       "evaluated": true,

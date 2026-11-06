@@ -1,5 +1,6 @@
 """Conservative single-publisher ledger. A reservation survives any failed draw/export."""
 import sqlite3
+import math
 from contextlib import contextmanager
 
 @contextmanager
@@ -12,6 +13,7 @@ def connect(path):
     finally: con.close()
 
 def reserve(path, release_id, identity, epsilon=1.0, limit=1.0):
+    if not math.isfinite(epsilon) or epsilon<=0 or not math.isfinite(limit) or limit<0: raise ValueError('INVALID_BUDGET')
     with connect(path) as con:
         con.execute('BEGIN IMMEDIATE')
         row=con.execute('SELECT identity,state,artifact_hash FROM releases WHERE id=?',(release_id,)).fetchone()
