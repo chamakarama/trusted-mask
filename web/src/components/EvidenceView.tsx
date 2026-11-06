@@ -19,6 +19,8 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
   const u1 = ev.native_MOB_U1, u2 = ev.adapted_MOB_U2, u3 = ev.adapted_MOB_U3;
   const eps = Number(rel.manifest.privacy.epsilon_release);
   const inOut = oddsBound(eps), history = oddsBound(2 * eps);
+  const rb = ev.row_baseline_utility?.results ?? null; // Astra's reviewed native MOB-U scores for the row baselines
+  const scores = (r: any) => (r ? `${two(r["MOB-U1"].score)} · ${two(r["MOB-U2"].score)} · ${two(r["MOB-U3"].score)}` : "–");
   const cap = rel.manifest.privacy.families.od.cap;
   const morningCells = rel.od.filter((c) => c.hour_band === "06-09" && c.origin_area !== c.destination_area).length;
   const W = 460, rowH = 34, LBL = 92, BAR = W - LBL - 150;
@@ -66,16 +68,16 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
         <h3>Before and after</h3>
         <div className="table-wrap">
           <table className="table small compare">
-            <thead><tr><th scope="col">What is shared</th><th scope="col" className="num">Cards picked out by 4 sightings</th><th scope="col">Detail for planners</th></tr></thead>
+            <thead><tr><th scope="col">What is shared</th><th scope="col" className="num">Cards picked out by 4 sightings</th><th scope="col" className="num">Organisers' utility scores<br /><span className="tiny muted">routes · lines · days (1 = perfect)</span></th></tr></thead>
             <tbody>
-              <tr><td>Journey rows, names removed</td><td className="num">{pct(t.b0.unicity, 1)}</td><td>every trip</td></tr>
-              <tr><td>Journey rows, fake card numbers</td><td className="num">{pct(t.b2.unicity, 1)}</td><td>every trip</td></tr>
-              <tr><td>Journey rows, fake numbers, rare places grouped (k ≥ 5)</td><td className="num">{pct(t.b2k.unicity, 1)}</td><td>most trips</td></tr>
-              <tr className="row-ours"><td><strong>RouteSafe: protected counts only</strong></td><td className="num">no rows to search</td><td>busy routes, lines and days; not small or night routes</td></tr>
+              <tr><td>Journey rows, names removed</td><td className="num">{pct(t.b0.unicity, 1)}</td><td className="num">{scores(rb?.b0)}</td></tr>
+              <tr><td>Journey rows, fixed fake card numbers</td><td className="num">{pct(t.b2.unicity, 1)}</td><td className="num">{scores(rb?.b2)}</td></tr>
+              <tr><td>Journey rows, fake numbers, rare values suppressed (k ≥ 5)</td><td className="num">{pct(t.b2k.unicity, 1)}</td><td className="num">{scores(rb?.b2k)}</td></tr>
+              <tr className="row-ours"><td><strong>RouteSafe: protected counts only</strong></td><td className="num">no rows to search</td><td className="num">{two(u1.score)} · {two(u2.score)} · {two(u3.score)}</td></tr>
             </tbody>
           </table>
         </div>
-        <p className="tiny muted">Organisers' tool, {fmt(t.b0.n_users_tested)} test cards, stops within {t.b0.spatial_m} m and times to the hour. The curve above uses a fixed group of {fmt(four.tested ?? 1000)} cards, so its 4-sighting figure differs slightly.</p>
+        <p className="tiny muted">Organisers' tools: {fmt(t.b0.n_users_tested)} test cards, stops within {t.b0.spatial_m} m and times to the hour; the curve above uses a fixed group of {fmt(four.tested ?? 1000)} cards, so its 4-sighting figure differs slightly. Utility: routes = native MOB-U1; for RouteSafe, lines and days use aggregate adapters of MOB-U2/U3. Row scores use the organisers' field catalogue. A high row score does not mean low risk: read both columns together.</p>
 
         <div className="ev-grid">
           <article className="ev-card">
@@ -89,18 +91,19 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
                 <tr><td>Taps per day</td><td className="num">{pct(w.daily)}</td></tr>
               </tbody>
             </table>
-            <p className="small">Big cells count more in this error. The <strong>organisers' scores</strong> average every cell instead: routes {two(u1.score)}, lines {two(u2.score)}, days {two(u3.score)} (not passing). Averaged over all {fmt(u1.detail.cells)} route cells with 20+ trips, the error is {pct(u1.detail.mape)}: most of those cells are small, and noise dominates them.</p>
-            <p className="small">Each card counts at most {cap} trips, which leaves out {pct(ev.cap_loss_fraction.od)} of all trips (mostly daily commuters), so busy routes read low.</p>
+            <p className="small">Big cells count more in this error. The <strong>organisers' scores</strong> average every cell instead: routes {two(u1.score)} (native MOB-U1), lines {two(u2.score)} and days {two(u3.score)} (adapted MOB-U2/U3), not passing. Averaged over all {fmt(u1.detail.cells)} route cells with 20+ trips, the error is {pct(u1.detail.mape)}: most of those cells are small, and noise dominates them.</p>
+            <p className="small">Each card counts at most {cap} trips. That leaves out {pct(ev.cap_loss_fraction.od)} of all route trips (the trips of cards with more than {cap}), so route totals run low.</p>
             <p className="warnbox"><IconWarn /><span>Area-level routes miss our own 20% target, so this is not a final setting yet. Use the shortlist, not single numbers.</span></p>
           </article>
           <article className="ev-card">
             <h3><IconShield /> What ε = {eps} means</h3>
             <ul className="plain small">
-              <li><strong>Is this card in the data?</strong> Whatever someone knew before, this release can change their odds by at most {inOut.factor.toFixed(1)}×. A 50% guess can rise to at most {pct(inOut.posterior)}.</li>
-              <li><strong>Which of two trip histories did this card make?</strong> At most {history.factor.toFixed(1)}×: 50% can rise to {pct(history.posterior)}.</li>
+              <li><strong>Card in or out?</strong> Take two versions of the data that differ only by one card, with everyone else's records the same. Any result the release could show is at most {inOut.factor.toFixed(1)}× more likely under one version than the other.</li>
+              <li><strong>Example:</strong> someone who knew all the other records and was 50/50 on whether this card is in can get to at most {pct(inOut.posterior)}.</li>
+              <li><strong>Two possible trip histories for the same card:</strong> at most {history.factor.toFixed(1)}× (50/50 can reach {pct(history.posterior)}).</li>
               <li><strong>One person, 2 cards:</strong> counts as 2 cards, so ε doubles for them. That's {fmt(mc.people_with_multiple_cards)} of {fmt(mc.people_in_truth)} people in this data.</li>
             </ul>
-            <p className="tiny muted">Holds under the stated assumptions: one card's records for the whole 4-week period, one release, total budget ε = {eps}.</p>
+            <p className="tiny muted">This compares two fixed versions of the data. It does not cover what data about related people (family, colleagues) might reveal. Assumes one card's records for the whole 4-week period, this one release, total budget ε = {eps}.</p>
           </article>
           <article className="ev-card">
             <h3><IconInfo /> What's still risky</h3>
@@ -117,8 +120,8 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           <table className="table small">
             <tbody>
               <tr><td>4-sighting test, names removed / pseudonyms / k≥5 (organisers' tool)</td><td className="num">{pct(t.b0.unicity, 1)} / {pct(t.b2.unicity, 1)} / {pct(t.b2k.unicity, 1)}</td></tr>
-              <tr><td>95% noise range per cell, routes / lines / days (noise only)</td><td className="num">±{cellRadius(rel, "od")} / ±{cellRadius(rel, "line_hour")} / ±{fmt(cellRadius(rel, "daily"))}</td></tr>
-              <tr><td>Same, for all {morningCells} morning routes at once</td><td className="num">±{noiseRadius(familyScale(rel, "od"), 0.05 / morningCells)}</td></tr>
+              <tr><td>95% noise range for one cell chosen in advance, routes / lines / days</td><td className="num">±{cellRadius(rel, "od")} / ±{cellRadius(rel, "line_hour")} / ±{fmt(cellRadius(rel, "daily"))}</td></tr>
+              <tr><td>95% for all {morningCells} morning routes at once (use this for a picked shortlist)</td><td className="num">±{noiseRadius(familyScale(rel, "od"), 0.05 / morningCells)}</td></tr>
               <tr><td>Route error over {rep.draw_count} noise draws (median)</td><td className="num">{pct(rep.wape_quantiles.od["0.5"], 1)}</td></tr>
               <tr><td>Organisers' utility scores MOB-U1 / U2 / U3 (not passing)</td><td className="num">{two(u1.score)} / {two(u2.score)} / {two(u3.score)}</td></tr>
               <tr><td>Trips removed by the per-card limit (routes / lines / days)</td><td className="num">{pct(ev.cap_loss_fraction.od, 1)} / {pct(ev.cap_loss_fraction.line_hour, 1)} / {pct(ev.cap_loss_fraction.daily, 1)}</td></tr>

@@ -28,14 +28,15 @@ export function LineHourView({ rel }: { rel: Release }) {
   const max = Math.max(1, ...rel.lineHour.map((c) => c.boardings));
   const { show, hide, el } = useTip();
   const label = (l: string) => (l === "unknown" ? "Other lines" : `Line ${l}`);
-  const real = (v: number) => v > r;
+  const fixture = !!rel.manifest.fixture;
+  const real = (v: number) => fixture || v > r;
   return (
     <section className="panel wide" aria-labelledby="lh-title">
       <div className="panel-head">
         <div>
           <div className="eyebrow">Heatmap</div>
           <h2 id="lh-title">Busiest bus lines by hour</h2>
-          <p className="small ink2">Weekday boardings over the 4 weeks. Darker = more boardings. <span className="swatch sw-noise" />Grey = under {fmt(r)}: too small to tell apart from noise.</p>
+          <p className="small ink2">Weekday boardings over the 4 weeks. Darker = more boardings.{!fixture && <> <span className="swatch sw-noise" />Grey = within {fmt(r)} of zero, so it could be zero. Coloured cells can still be noise.</>}</p>
         </div>
         <Noise />
       </div>
@@ -53,8 +54,8 @@ export function LineHourView({ rel }: { rel: Release }) {
                   <th scope="row">{label(line)}</th>
                   {cells.map((c) => (
                     <td key={c.hour} className={real(c.noisy_value) ? "" : "cell-noise"} style={real(c.noisy_value) ? { background: shade(Math.sqrt(c.boardings / max)) } : undefined}
-                      onMouseMove={(e) => show(e, <><b>{label(line)}</b> · {hh(c.hour)}:00–{hh(c.hour + 1)}:00<br />{fmt(c.boardings)} boardings ±{fmt(r)}{real(c.noisy_value) ? "" : " · could be zero"}</>)}>
-                      <span className="sr-only">{fmt(c.boardings)}{real(c.noisy_value) ? "" : " (within noise)"}</span>
+                      onMouseMove={(e) => show(e, <><b>{label(line)}</b> · {hh(c.hour)}:00–{hh(c.hour + 1)}:00<br />{fmt(c.boardings)} boardings{fixture ? "" : real(c.noisy_value) ? ` · ±${fmt(r)} for this cell alone` : " · could be zero"}</>)}>
+                      <span className="sr-only">{fmt(c.boardings)}{real(c.noisy_value) ? "" : " (could be zero)"}</span>
                     </td>
                   ))}
                   <td className={`num ${allNoise ? "muted" : ""}`}>{fmt(total)}</td>
@@ -65,8 +66,8 @@ export function LineHourView({ rel }: { rel: Release }) {
         </table>
         {el}
       </div>
-      <div className="scale"><span className="swatch sw-noise" /><span>within noise</span><span className="scale-bar" aria-hidden="true" /><span>more boardings</span></div>
-      <p className="tiny muted">Each cell is ±{fmt(r)} (95% range, noise only). With {fmt(rel.lineHour.length)} cells, a few empty ones can still show up to about {fmt(reach)}. Totals add the signed estimates, then clamp at zero. “Other lines” = lines missing from the public line list. Routes per line and dates per line are not part of this release.</p>
+      <div className="scale">{!fixture && <><span className="swatch sw-noise" /><span>could be zero</span></>}<span className="scale-bar" aria-hidden="true" /><span>more boardings</span></div>
+      <p className="tiny muted">{fixture ? "Test fixture: illustrative numbers, no noise claims. " : `Each cell on its own is ±${fmt(r)} (95%, noise only). Across all ${fmt(rel.lineHour.length)} cells at once the range is ±${fmt(reach)}, so a few empty cells can still look busy. `}Totals add the signed estimates, then clamp at zero. “Other lines” = lines missing from the public line list. Routes per line and dates per line are not part of this release.</p>
     </section>
   );
 }
@@ -74,7 +75,8 @@ export function LineHourView({ rel }: { rel: Release }) {
 /** Recorded tap events per calendar date (bars <=24px, 4px rounded data end), with the 95% noise range as a whisker. */
 export function DailyView({ rel }: { rel: Release }) {
   const days = dailySeries(rel);
-  const r = cellRadius(rel, "daily");
+  const fixture = !!rel.manifest.fixture;
+  const r = fixture ? 0 : cellRadius(rel, "daily");
   const max = Math.max(1, ...days.map((d) => d.tap_events + r));
   const top = Math.ceil(max / 10000) * 10000;
   const W = 960, H = 280, L = 52, B = 30, T = 14, R = 8;
@@ -87,7 +89,7 @@ export function DailyView({ rel }: { rel: Release }) {
         <div>
           <div className="eyebrow">Daily</div>
           <h2 id="daily-title">Taps per day</h2>
-          <p className="small ink2"><span className="swatch sw-weekday" />weekdays <span className="swatch sw-weekend" style={{ marginLeft: 10 }} />weekends <span className="whisker-key" style={{ marginLeft: 10 }} />±{fmt(r)} noise range</p>
+          <p className="small ink2"><span className="swatch sw-weekday" />weekdays <span className="swatch sw-weekend" style={{ marginLeft: 10 }} />weekends{!fixture && <> <span className="whisker-key" style={{ marginLeft: 10 }} />±{fmt(r)} noise range for each day on its own</>}</p>
         </div>
         <Noise />
       </div>
@@ -102,11 +104,13 @@ export function DailyView({ rel }: { rel: Release }) {
             const path = `M${x},${y(0)} V${y(0) - h + rr} Q${x},${y(0) - h} ${x + rr},${y(0) - h} H${x + bw - rr} Q${x + bw},${y(0) - h} ${x + bw},${y(0) - h + rr} V${y(0)} Z`;
             const cx = x + bw / 2;
             return (
-              <g key={d.date} onMouseMove={(e) => show(e, <><b>{DOW[d.weekday]} {niceDate(d.date, false)}</b><br />{fmt(d.tap_events)} taps ±{fmt(r)}</>)}>
+              <g key={d.date} onMouseMove={(e) => show(e, <><b>{DOW[d.weekday]} {niceDate(d.date, false)}</b><br />{fmt(d.tap_events)} taps{fixture ? "" : ` ±${fmt(r)}`}</>)}>
                 <path d={path} className={weekend ? "bar bar-weekend" : "bar"} />
-                <line x1={cx} x2={cx} y1={y(d.noisy_value + r)} y2={y(d.noisy_value - r)} className="whisker" />
-                <line x1={cx - 3} x2={cx + 3} y1={y(d.noisy_value + r)} y2={y(d.noisy_value + r)} className="whisker" />
-                <line x1={cx - 3} x2={cx + 3} y1={y(d.noisy_value - r)} y2={y(d.noisy_value - r)} className="whisker" />
+                {!fixture && <>
+                  <line x1={cx} x2={cx} y1={y(d.noisy_value + r)} y2={y(d.noisy_value - r)} className="whisker" />
+                  <line x1={cx - 3} x2={cx + 3} y1={y(d.noisy_value + r)} y2={y(d.noisy_value + r)} className="whisker" />
+                  <line x1={cx - 3} x2={cx + 3} y1={y(d.noisy_value - r)} y2={y(d.noisy_value - r)} className="whisker" />
+                </>}
                 {d.weekday === 1 && <text x={cx} y={H - 10} className="axis" textAnchor="middle">Mon {niceDate(d.date, false)}</text>}
               </g>
             );
@@ -114,7 +118,7 @@ export function DailyView({ rel }: { rel: Release }) {
         </svg>
         {el}
       </div>
-      <p className="tiny muted">All recorded taps, including weekends. Whiskers show the 95% noise range (noise only). The clock change on 26 Oct is not adjusted.</p>
+      <p className="tiny muted">All recorded taps, including weekends.{fixture ? "" : " Whiskers: 95% noise range for each day on its own (not for all days at once)."} The clock change on 26 Oct is not adjusted.</p>
     </section>
   );
 }

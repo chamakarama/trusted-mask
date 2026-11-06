@@ -80,7 +80,8 @@ export function App() {
   const entry = index?.find((r) => r.release_id === releaseId);
   const ev = useEvidence();
   const evFor = ev && rel && ev.release_id === rel.id ? ev : null;
-  const rely = useMemo(() => (rel && level === "area" ? shortlistReliability(rel, ranked, SHORTLIST) : null), [rel, level, ranked]);
+  // noise claims only for a real release at area level (a fixture's illustrative parameters carry no claims)
+  const rely = useMemo(() => (rel && level === "area" && !rel.manifest.fixture ? shortlistReliability(rel, ranked, SHORTLIST) : null), [rel, level, ranked]);
   // the exact-data test covered weekday mornings with any start area (area level: 100 re-runs; towns: one run)
   const check = evFor && band === "06-09" && !origin
     ? { exact: evFor.initial_policy_100_draws.exact_top3_count, draws: evFor.initial_policy_100_draws.draw_count, townOverlap: evFor.municipality_postprocessing?.top3_overlap ?? null, k: evFor.actual_release_decision.k }
@@ -150,13 +151,13 @@ export function App() {
             <div className="kpis">
               <div className="kpi"><div className="kpi-label">Busiest route ({BAND_SHORT[band][1]})</div>
                 <div className="kpi-value">{best ? `${areaLabel(best.origin_area)} → ${areaLabel(best.destination_area)}` : "–"}</div>
-                <div className="kpi-sub">{best ? `${fmt(best.trips)} trips${rely ? ` ±${fmt(rely.radius)}` : ""}${unreliable ? " · could be noise" : " over 4 weeks"}` : ""}</div></div>
+                <div className="kpi-sub">{best ? `${fmt(best.trips)} trips${unreliable ? " · could be noise" : " over 4 weeks"}` : ""}</div></div>
               <div className="kpi"><div className="kpi-label"><IconLock /> Passenger records shared</div><div className="kpi-value">0</div><div className="kpi-sub">no card numbers, no exact times</div></div>
               <div className="kpi"><div className="kpi-label"><IconShield /> Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card · lower = more private</div></div>
               <div className={`kpi ${unreliable ? "kpi-warn" : ""}`}>
                 <div className="kpi-label">{unreliable ? <IconWarn /> : check ? <IconCheck /> : <IconInfo />} Top {SHORTLIST} check</div>
-                <div className="kpi-value">{unreliable ? "Could be noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
-                <div className="kpi-sub">{unreliable ? "too small to tell from noise" : check && level === "area" ? "re-runs gave the same top 3 (synthetic test)" : check ? "town pairs match exact data (synthetic test)" : "only weekday mornings were tested"}</div>
+                <div className="kpi-value">{rel.manifest.fixture ? "–" : unreliable ? "Could be noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
+                <div className="kpi-sub">{rel.manifest.fixture ? "test fixture: no claims" : unreliable ? "too small to tell from noise" : check && level === "area" ? "re-runs gave the same top 3 (synthetic test)" : check ? "town pairs match exact data (synthetic test)" : "only weekday mornings were tested"}</div>
               </div>
             </div>
             <div className="layout layout-corridors">

@@ -1,6 +1,6 @@
 // Bounded planning assistant (INTERFACES.md §5). A model may only PROPOSE an intent; this module validates it and a
 // deterministic executor answers from released values. Unsupported requests get typed refusals with an alternative.
-import { BANDS, BAND_LABEL, fmt, rankCorridors, shortlistReliability, weekdaysInPeriod } from "../data/derive";
+import { BANDS, BAND_LABEL, fmt, rangeOf, rankCorridors, shortlistReliability, weekdaysInPeriod } from "../data/derive";
 import { areaLabel, type Release } from "../data/release";
 
 export interface Intent { view: "od"; hour_band: string; origin_area: string | null; action: "rank_corridors"; limit: number }
@@ -38,13 +38,15 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
   const all = rankCorridors(rel, intent.hour_band, intent.origin_area);
   const rows = all.slice(0, intent.limit);
   const days = weekdaysInPeriod(rel);
-  const rely = shortlistReliability(rel, all, intent.limit);
+  const rely = rel.manifest.fixture ? null : shortlistReliability(rel, all, intent.limit);
   const def = rel.manifest.families.od.definition_id;
   const warnings = [
     "Destinations are estimated from where the same card next starts a journey, not observed.",
-    `Each route is ±${fmt(rely.radius)} trips (95%, noise only), so routes with similar numbers can swap places.`,
+    rely
+      ? `Noise ranges hold for all ${fmt(rely.candidates)} routes at once (95%, noise only, on capped counts). Close numbers can swap places.`
+      : "Numbers are protected estimates, so close numbers can swap places.",
   ];
-  if (rely.noiseOnly.length) warnings.unshift(`Could be pure noise: with ${fmt(rely.candidates)} routes to pick from, noise alone can reach about ${fmt(rely.floor)} trips. Don't decide on these.`);
+  if (rely?.noiseOnly.length) warnings.unshift(`Could be pure noise: when the top of ${fmt(rely.candidates)} routes is picked, noise alone can lift an empty route to about ${fmt(rely.radius)} trips. Don't decide on these.`);
   if (rel.manifest.fixture) warnings.unshift("Fixture release: illustrative values, not results.");
   const scope = intent.origin_area ? ` starting in ${areaLabel(intent.origin_area)}` : "";
   return {
@@ -54,7 +56,7 @@ export function execute(intent: Intent, rel: Release, source: "preset" | "model"
       : `No published route${scope} in this time band.`,
     evidence: rows.map((c, i) => ({
       n: i + 1, result_id: c.id,
-      text: `${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} trips ±${fmt(rely.radius)} (about ${fmt(c.trips / days)} per weekday)`,
+      text: `${areaLabel(c.origin_area)} → ${areaLabel(c.destination_area)}: ${fmt(c.trips)} trips${rely ? `, noise range ${fmt(rangeOf(c.noisy_value, rely.radius)[0])}–${fmt(rangeOf(c.noisy_value, rely.radius)[1])}` : ""} (about ${fmt(c.trips / days)} per weekday)`,
     })),
   };
 }

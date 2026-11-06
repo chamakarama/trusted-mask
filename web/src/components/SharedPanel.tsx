@@ -1,4 +1,4 @@
-import { cellRadius, fmt } from "../data/derive";
+import { fmt } from "../data/derive";
 import { niceDate, releaseUrl, type Release } from "../data/release";
 import { IconCheck, IconDownload, IconInfo, IconLock, IconShield, IconWarn } from "./Icons";
 
@@ -69,8 +69,8 @@ export function SharedPanel({ rel }: { rel: Release }) {
           <div className="fit-card">
             <h4><IconWarn /> Not good for</h4>
             <ul className="plain small">
-              <li>Small or night routes: many are within the ±{cellRadius(rel, "od")} noise range</li>
-              <li>Exact numbers: busy routes read low because of the per-card cap</li>
+              <li>Small or night routes: many are small enough to be pure noise</li>
+              <li>Exact counts: the per-card cap can undercount frequent riders' trips</li>
               <li>Weekly or daily route counts: only the 4-week total is published. The scenario asks for weekly flows, but weekly cells would hold a quarter of the trips with the same noise.</li>
               <li>Crowding, capacity or the roads people take</li>
             </ul>

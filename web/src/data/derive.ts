@@ -133,24 +133,24 @@ export const familyScale = (rel: Release, f: Family): number => Number(rel.manif
 export const cellRadius = (rel: Release, f: Family): number => noiseRadius(familyScale(rel, f));
 
 export interface Reliability {
-  radius: number;      // +/- per route (95%, noise only)
-  floor: number;       // pure noise can reach this when we pick the top of `candidates` routes (95%, all routes at once)
+  radius: number;      // 95% noise-only range that holds for ALL `candidates` routes at once (Bonferroni, as in
+                       // privacy/uncertainty.py). Selection-valid: the shortlist is picked from the noisy numbers, so a
+                       // single prechosen route's range (+/-161) would be too narrow for the routes that come out on top.
   candidates: number;
-  noiseOnly: number[]; // shortlist ranks whose value is at or below the floor: could be empty routes
-  ties: [number, number][]; // neighbouring ranks (incl. the first one left out) within noise of each other
+  noiseOnly: number[]; // shortlist ranks at or below the radius: noise alone could lift an empty route this high
+                       // (a conservative warning, not proof that the route is empty)
 }
 
 /** How far to trust an AREA-level shortlist. Town sums mix many cells' noise, so no single-cell range applies there. */
 export function shortlistReliability(rel: Release, ranked: Corridor[], k: number): Reliability {
-  const scale = familyScale(rel, "od");
-  const radius = noiseRadius(scale);
   const candidates = Math.max(1, ranked.length);
-  const floor = noiseRadius(scale, 0.05 / candidates);
-  const noiseOnly = ranked.slice(0, k).filter((c) => c.noisy_value <= floor).map((c) => c.rank);
-  const ties: [number, number][] = [];
-  for (let i = 0; i + 1 < Math.min(ranked.length, k + 1); i++) if (ranked[i].trips - ranked[i + 1].trips < 2 * radius) ties.push([ranked[i].rank, ranked[i + 1].rank]);
-  return { radius, floor, candidates, noiseOnly, ties };
+  const radius = noiseRadius(familyScale(rel, "od"), 0.05 / candidates);
+  const noiseOnly = ranked.slice(0, k).filter((c) => c.noisy_value <= radius).map((c) => c.rank);
+  return { radius, candidates, noiseOnly };
 }
+
+/** Range around the SIGNED released estimate, endpoints clamped at zero (never display value +/- radius). */
+export const rangeOf = (noisy: number, radius: number): [number, number] => [Math.max(0, noisy - radius), Math.max(0, noisy + radius)];
 
 /** Most common start or end among the shown routes, for a one-line map takeaway ("8 of the 10 ... end in X"). */
 export function commonEnd(routes: Corridor[]): { side: "start" | "end"; place: string; count: number } | null {

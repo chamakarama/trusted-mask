@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { execute, PRESETS, refuse, validateIntent, type Answer } from "../assistant/intent";
 import type { Release } from "../data/release";
 import { IconSpark, IconWarn } from "./Icons";
@@ -20,6 +20,12 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   const [q, setQ] = useState("");
   const [live, setLive] = useState<boolean | null>(null);
   const [busy, setBusy] = useState(false);
+  // Every action (typed question, preset, "instead" button) starts a new generation and aborts the pending request.
+  // A response may only touch the answer or the parent's filters if it is still the latest action (A-022).
+  const gen = useRef(0);
+  const pending = useRef<AbortController | null>(null);
+  const begin = () => { pending.current?.abort(); pending.current = null; setBusy(false); return ++gen.current; };
+  useEffect(() => () => { gen.current++; pending.current?.abort(); }, [rel.id]); // release change or unmount
 
   useEffect(() => {
     const ctl = new AbortController();
@@ -28,16 +34,21 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
     return () => ctl.abort();
   }, []);
 
-  const show = (a: Answer) => { setAnswer(a); if (a.kind === "answer" && a.evidence[0]) onEvidence(a.evidence[0].result_id); };
+  const show = (a: Answer) => { begin(); setAnswer(a); if (a.kind === "answer" && a.evidence[0]) onEvidence(a.evidence[0].result_id); };
 
   const ask = async () => {
     const question = q.trim();
     if (!question) return;
+    const my = begin();
     if (!live) { setAnswer(refuse("ai_unavailable", rel, "The AI helper isn't running on this computer, so typed questions can't be read. Try one of the suggested questions: those are answered straight from the published numbers.")); return; }
+    const ctl = new AbortController();
+    pending.current = ctl;
+    const current = () => my === gen.current && !ctl.signal.aborted;
     setBusy(true);
     try {
-      const r = await fetch(`${ASSIST}/intent`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ question }) });
+      const r = await fetch(`${ASSIST}/intent`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ question }), signal: ctl.signal });
       const out = await r.json();
+      if (!current()) return; // a newer action won: this response must not change the answer or the filters
       if (out.kind === "intent") {
         const v = validateIntent(out.intent, rel);
         if (!v.ok) { setAnswer(refuse("invalid_intent", rel, `The AI's request was rejected by the checker (${v.reason}).`)); return; }
@@ -55,9 +66,12 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
         setAnswer({ ...refuse(kind as any, rel, why[kind] ?? "The AI helper is unavailable right now. Try a suggested question."), source: "model" });
       }
     } catch {
+      if (!current()) return; // aborted on purpose by a newer action
       setLive(false);
       setAnswer(refuse("ai_unavailable", rel, "The AI helper stopped responding. Try a suggested question instead."));
-    } finally { setBusy(false); }
+    } finally {
+      if (my === gen.current) { setBusy(false); pending.current = null; }
+    }
   };
 
   return (

@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, it } from "vitest";
-import { cellRadius, commonEnd, hourTotals, lineTotals, municipalityCells, noiseRadius, outgoingAt, rankAt, shortlistReliability, weekdaysInPeriod } from "../src/data/derive";
+import { cellRadius, commonEnd, hourTotals, lineTotals, municipalityCells, noiseRadius, outgoingAt, rangeOf, rankAt, shortlistReliability, weekdaysInPeriod } from "../src/data/derive";
 import { oddsBound } from "../src/data/evidence";
 import type { Release } from "../src/data/release";
 
@@ -64,17 +64,19 @@ it("totals add SIGNED estimates and clamp once, never a sum of already-clamped v
   expect(hourTotals(rel)).toHaveLength(24);
 });
 
-it("shortlist reliability: night routes are flagged as possible pure noise, the morning top 3 is not", () => {
+it("shortlist ranges are selection-valid: 95% for all candidate routes at once, around the signed value", () => {
   const night = shortlistReliability(rel, rankAt(rel, "area", "00-06", null), 3);
-  expect(night.floor).toBe(483);
+  expect(night.candidates).toBe(420);
+  expect(night.radius).toBe(483); // = evidence/e6 morning simultaneous radius, wider than the single-cell 161
   expect(night.noiseOnly).toEqual([1, 2, 3]);
   const morning = shortlistReliability(rel, rankAt(rel, "area", "06-09", null), 3);
   expect(morning.noiseOnly).toEqual([]);
-  expect(morning.ties).toEqual([]);
-  const midday = shortlistReliability(rel, rankAt(rel, "area", "09-15", null), 3);
-  expect(midday.ties).toContainEqual([3, 4]); // 2,527 vs 2,506: within noise of each other
   const rusko = shortlistReliability(rel, rankAt(rel, "area", "06-09", "Rusko-213"), 3);
+  expect(rusko.candidates).toBe(20);
+  expect(rusko.radius).toBe(noiseRadius(rel.manifest.privacy.families.od.scale, 0.05 / 20));
   expect(rusko.noiseOnly.length).toBeGreaterThan(0);
+  expect(rangeOf(341, 483)).toEqual([0, 824]);
+  expect(rangeOf(-20, 161)).toEqual([0, 141]);
 });
 
 it("map takeaway names the most common end of the busiest morning routes", () => {
