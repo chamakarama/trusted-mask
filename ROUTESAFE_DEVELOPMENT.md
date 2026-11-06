@@ -16,7 +16,7 @@ python -m venv .venv
 .venv/bin/python -m pipeline.inventory --data TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data --output private/mobility-inventory.json
 ```
 
-The committed experimental release already exists. Verify and reuse it for the demo; do not rerun publication to obtain different values. The publish command below documents the original operation and is only for a deliberately new, separately reviewed publication. New publication requires clean committed production code. Keep the ledger and output together. Do not delete/replace a ledger to retry or reset budget. The CLI is an operator command, not a public service. E1 policy and privacy claim remain pending cross-review.
+The committed experimental release already exists. Verify and reuse it for the demo; do not rerun publication to obtain different values. The publish command below documents the original operation and is only for a deliberately new, separately reviewed publication. New publication requires clean committed production code. Keep the ledger and output together. Do not delete/replace a ledger to retry or reset budget. The CLI is an operator command, not a public service. Opus executed the critical privacy tests in O-011; the immutable E1 manifest retains its original pending_review marker. This is not final utility-policy acceptance or certification.
 
 ```sh
 .venv/bin/python -m pipeline publish --input TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/mobility --ledger private/publisher.sqlite --release-id e1-aura-001 --output releases/e1-aura-001
@@ -30,7 +30,7 @@ The diagnostic chart is `evidence/e1/protected-output.html`. It contains only th
 
 Issue #3 is the authoritative coordination channel. Astra reads its public HTML and writes `ops/astra:coordination/astra.md`; Opus relays those outbound messages into #3. The latest O-004/A-004 decision supersedes the initial mailbox-only arrangement. GitHub API blocked in Astra's environment, Git writes verified using the exact `.git` remote URL. Poll every five minutes while active, post every 30 minutes, push working checkpoints at least every 45 minutes. No autonomous execution occurs after the chat stops. Public deployment and submission need human authorization.
 
-Additional evaluation commands: `python -m evaluation.inference`, `python -m evaluation.repeated`, `python -m evaluation.policy_search`, `python -m evaluation.attacks`, `python -m evaluation.benchmark`, and `python -m evaluation.identity_scope`. Use `.venv/bin/python` from this checkout. These are explicitly synthetic-only experiments. The policy search found no all-target winner. Do not interpret experimental draws as free real-data publication or reset the publisher ledger. The reviewed Opus scanner was integrated into main at 4c563b1. Publisher/privacy and frontend integration await reverse review and fixes recorded in issue #3.
+Additional evaluation commands: `python -m evaluation.inference`, `python -m evaluation.repeated`, `python -m evaluation.policy_search`, `python -m evaluation.attacks`, `python -m evaluation.benchmark`, and `python -m evaluation.identity_scope`. Use `.venv/bin/python` from this checkout. These are explicitly synthetic-only experiments. The policy search found no all-target winner. Do not interpret experimental draws as free real-data publication or reset the publisher ledger. The reviewed Opus scanner was integrated into main at 4c563b1. Executable reverse privacy review is complete (O-011); current integration decisions and consumer wording fixes are recorded in issue #3.
 
 Attribution: TrustED PETs Proving Ground 2026 synthetic data by Since AI ry (CC BY 4.0). Public stop placement uses GeoNames postcode centroids (CC BY 4.0), via github.com/zauberware/postal-codes-json-xml-csv; derived points are schematic. No TrustED or EU endorsement is implied.
 
@@ -47,7 +47,7 @@ npm run build --prefix web
 
 Verified runtime: Node 24.22.1, npm 11.9.0. The production build runs without private publisher access and uses a local schematic SVG map, so no map tile API is required. Once loaded, filters/views work without internet; offline reload still requires a local static server and files. Free-text AI is explicitly unavailable; presets are deterministic and labelled. Do not claim a live model is connected.
 
-Independent consumer review: all 19 tests pass with the municipality view and evidence panel at Opus 1be7d7a. The actual release, downloads, refusals, 390px layout and local-only network requests were exercised in Chromium. Review reports are under evidence/e6/. Publisher reverse review remains necessary before main integration or strengthened privacy claims.
+Independent consumer review: all 19 tests pass with the municipality view and evidence panel at Opus 1be7d7a. The actual release, downloads, refusals, 390px layout and local-only network requests were exercised in Chromium. Review reports are under evidence/e6/. Opus independently passed the 30 privacy tests at 1b84370; subsequent local coverage has 33 privacy tests plus 10 scanner tests. Review is recorded separately from immutable release metadata.
 
 
 Local packaging (does not publish, deploy, or draw noise; output must be a new path):
