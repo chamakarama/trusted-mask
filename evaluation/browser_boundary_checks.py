@@ -36,7 +36,7 @@ async def review(url,public,output,browser_path=None):
         await page.route('**/*',route)
         await page.goto(url+'?map=schematic',wait_until='networkidle')
         await page.get_by_text('files verified',exact=False).wait_for()
-        await page.get_by_text('AI on',exact=False).wait_for()
+        await page.get_by_text('AI on',exact=True).wait_for()
         await page.get_by_role('textbox',name='Question',exact=True).fill('Busiest morning routes?')
         await page.get_by_role('button',name='Ask',exact=True).click()
         await page.locator('.answer').wait_for()
