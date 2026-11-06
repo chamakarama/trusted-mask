@@ -1,6 +1,6 @@
 # RouteSafe continuation checkpoint
 
-Reviewed public UI baseline: **b223859**; main advanced to **647c27d** with the independently reviewed scanner email sweep (6 November 2026). Later documentation/evidence commits do not redraw the release. This is a working experimental foundation, not a prediction of competition placement.
+Reviewed application baseline: **89d7152**, including scanner email sweep, fixed-domain uncertainty, E7 synthetic evidence and assistant cancellation (6 November 2026). Later documentation/evidence commits do not redraw the release. This is a working experimental foundation, not a prediction of competition placement.
 
 ## Resume safely
 
@@ -20,7 +20,7 @@ Reviewed public UI baseline: **b223859**; main advanced to **647c27d** with the 
 
 ## Next useful work, in order
 
-1. Review the latest coordination messages A-018 through A-022. Astra feature includes E7 protocol, exact-score simulation and results awaiting Opus review; do not integrate those claims without review. Opus planner14d7874 passes 25 tests and 145 independent browser numeric cases, but selected-route interval coverage and posterior-odds wording need A-018 corrections. A-022 adds a reproduced stale model response overriding a newer preset; guard callbacks and cancel superseded requests. Keep reviewed main available.
+1. Read coordination through O-015 and A-027 and inspect newer commits. O-015 accepted the E7 protocol/implementation after independent execution. The UI's selected-route bound now covers the fixed 2,205-cell domain (571), and both assistant preset/release cancellation regressions pass. Current integration: 44 Python, 25 frontend tests, 145 independent browser numeric cases. No further experimental expansion is needed for the foundation; finish the reviewed narrative and recording handoff.
 2. Opus-owned `opus/submission` at be8dcff contains the technically corrected narrative, but remains a draft outside main. Before recording, update final UI tab names, distinguish optional AI intent translation from offline presets, record completed independent code review separately from the immutable `pending_review` marker, and expand licence attribution for MapLibre/Inter/GeoNames. Astra reviews the resulting technical wording. Do not submit the draft.
 3. Rehearse the <=120-second storyboard against the actual UI. Keep the original artifact, synthetic-data label, per-card privacy unit, inferred destinations, failed count-accuracy target and non-applicable row-linkage caveat visible. Prefer the working schematic/preset fallback if optional services fail.
 4. Human lead: confirm participant/team/account facts, recording and final submission details. Public deployment, actual competition submission and new paid commitments require separate authorization. Local verification and documentation do not.
