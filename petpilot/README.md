@@ -69,6 +69,6 @@ No raw values, recovered identifiers or row matches are written. `petpilot/tests
 
 ## Limits
 
-- It sees only the first 5,000 rows of each table.
+- The rules see only the first 5,000 rows of each table. The `inventory` command then sweeps **every row** of every non-direct-identifier column for e-mail, ID-code, IBAN, phone and plate shapes; hits only raise `needs_review` with counts (`--no-sweep` to skip). On the full bus data the sweep takes about 30 s and finds none.
 - Without informative column names it cannot tell that plain numbers are salary or that a short code is a union.
 - Shape-based person-name detection can confuse place names with people in small tables. In that case the column is reported as unknown.
