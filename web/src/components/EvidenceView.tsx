@@ -30,7 +30,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
         <div className="ev-hero">
           <div>
             <div className="eyebrow">Why not just share the rows?</div>
-            <div className="hero-num">{pct(four.unicity)}</div>
+            <div className="hero-num">{pct(four.unicity, 1)}</div>
             <p>of travel cards can be <strong>picked out from just 4 sightings</strong> (a stop and an hour), even with names removed. One picked-out card shows everywhere that person went for a month.</p>
             <p className="small ink2">RouteSafe shares no rows at all, only protected counts, so this attack has nothing to search. (That is not the same as zero risk.)</p>
           </div>
@@ -43,7 +43,7 @@ export function EvidenceView({ releaseId }: { releaseId: string }) {
                     <text x={0} y={y + 16} className="lbl">{c.known_points} sightings</text>
                     <rect x={92} y={y + 4} width={W - 140} height={16} rx={4} fill="var(--d100)" />
                     <rect x={92} y={y + 4} width={bw} height={16} rx={4} className="hbar" />
-                    <text x={92 + bw + 6} y={y + 16} className="lbl" fontWeight={700}>{pct(c.unicity)}</text>
+                    <text x={92 + bw + 6} y={y + 16} className="lbl" fontWeight={700}>{pct(c.unicity, 1)}</text>
                   </g>
                 );
               })}
