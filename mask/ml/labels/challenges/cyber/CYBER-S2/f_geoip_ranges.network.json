@@ -1,0 +1,15 @@
+{
+ "taskId": "CYBER-S2::f:geoip_ranges.network",
+ "agrees": false,
+ "objections": [
+  "The reference table includes Meridian's own corporate egress ranges (office and warehouse /27 blocks) and the internal 10.0.0.0/8 range; keeping CIDRs exact discloses internal network layout, which the threat model puts out of scope.",
+  "No utility task or required field uses geoip_ranges.network: attacker IPs are shared exactly through src_ip in the log tables, and CERT members have their own geolocation data, so suppressing loses little."
+ ],
+ "counterChoice": {
+  "key": "suppress"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

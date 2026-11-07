@@ -1,0 +1,17 @@
+{
+ "taskId": "FIN-S3::f:card_transactions.amount_eur",
+ "chosen": {
+  "key": "keep"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_numeric_bin@topCode=0,width=10"
+  }
+ ],
+ "rationale": "Spend sums by category, region and month need the amount; public output is aggregate with cell-size and noise rules applied downstream, so row values are not released. Binning would blur sums.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

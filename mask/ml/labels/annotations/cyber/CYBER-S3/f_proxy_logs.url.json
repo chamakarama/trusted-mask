@@ -1,0 +1,17 @@
+{
+ "taskId": "CYBER-S3::f:proxy_logs.url",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "redact_text"
+  }
+ ],
+ "rationale": "URLs leak e-mails, session ids, tokens and a live API key in query strings. Domain is kept separately for detection, so remove the URL; redaction is a riskier alternative.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

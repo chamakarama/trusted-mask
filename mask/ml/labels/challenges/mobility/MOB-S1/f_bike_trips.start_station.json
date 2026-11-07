@@ -1,0 +1,15 @@
+{
+ "taskId": "MOB-S1::f:bike_trips.start_station",
+ "agrees": false,
+ "objections": [
+  "Rationale is wrong: the OD flows are built from taps, not bike trips, so the zone is not needed. All utility tasks (MOB-U1..U3) run on taps; bike_trips is not needed, and the scenario targets no row-level data in a public release.",
+  "minGroup=10 over 20,000 rows and 75 zones merges almost nothing; morning start zones point at home areas, which a neighbour can confirm."
+ ],
+ "counterChoice": {
+  "key": "suppress"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

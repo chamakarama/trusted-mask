@@ -1,0 +1,17 @@
+{
+ "taskId": "CYBER-S1::f:vpn_logs.session_id",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [
+  {
+   "key": "keep"
+  }
+ ],
+ "rationale": "Session GUID is a technical identifier linking paired connect/disconnect rows. A keyed token keeps that pairing while hiding the raw GUID; it is not needed in clear for any listed task.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

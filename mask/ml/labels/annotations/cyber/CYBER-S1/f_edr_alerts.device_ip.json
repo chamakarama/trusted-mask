@@ -1,0 +1,17 @@
+{
+  "taskId": "CYBER-S1::f:edr_alerts.device_ip",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Endpoint IPs are internal identifiers. Keyed pseudonyms keep consistency with VPN and DNS logs for lateral-movement correlation without exposing real addresses.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

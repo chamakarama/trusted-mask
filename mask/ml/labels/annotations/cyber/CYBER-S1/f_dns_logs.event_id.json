@@ -1,0 +1,20 @@
+{
+  "taskId": "CYBER-S1::f:dns_logs.event_id",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    },
+    {
+      "key": "keep"
+    }
+  ],
+  "rationale": "Record key not needed for detection logic and has no analytic role; a keyed token preserves row references without exposing source identifiers.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "taskId": "CYBER-S1::f:vpn_logs.assigned_ip",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Internal VPN address joins VPN users to proxy, DNS and EDR events; a consistent keyed token preserves cross-log joins while hiding real internal addressing.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

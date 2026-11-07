@@ -1,0 +1,20 @@
+{
+  "taskId": "CYBER-S1::f:incident_tickets.created_utc",
+  "chosen": {
+    "key": "keep"
+  },
+  "acceptable": [
+    {
+      "key": "generalize_datetime@resolution=15min"
+    },
+    {
+      "key": "generalize_datetime@resolution=hour"
+    }
+  ],
+  "rationale": "Ticket time is not tied to a person once reporter fields are pseudonymised, and exact times help the MSSP correlate tickets with alerts during investigation. Coarser rounding is acceptable but gains little.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

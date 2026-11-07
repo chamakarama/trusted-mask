@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S3::f:vpn_logs.bytes_out",
+ "chosen": {
+  "key": "keep"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_numeric_bin@topCode=0,width=10"
+  }
+ ],
+ "rationale": "The 4.4 GB exfiltration outlier is the insider signal and must stay detectable. Byte counts are not identifying by themselves.",
+ "unresolved": [
+  "Could the outlier single out a user when joined with other columns?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

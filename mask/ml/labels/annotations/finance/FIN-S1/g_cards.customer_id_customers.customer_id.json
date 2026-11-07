@@ -1,0 +1,19 @@
+{
+  "taskId": "FIN-S1::g:cards.customer_id+customers.customer_id",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    }
+  ],
+  "rationale": "Customer number is a cross-bank linkage key. A consistent keyed token lets the consortium count and join per customer across cards and customers without the real identifier.",
+  "unresolved": [
+    "Is the real customer number known outside the bank (would keep leak)?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

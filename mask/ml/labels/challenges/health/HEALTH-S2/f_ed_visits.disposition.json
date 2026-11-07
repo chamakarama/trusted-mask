@@ -1,0 +1,15 @@
+{
+ "taskId": "HEALTH-S2::f:ed_visits.disposition",
+ "agrees": false,
+ "objections": [
+  "Lost utility: the H-DP workload (metadata/dp_query_workload_health.json) needs disposition for the nine HQ-ADM queries (share admitted = admitted_ward or icu, by age band) and for the row exclusion disposition == cancelled_duplicate; removing the column breaks both.",
+  "Disclosure is handled by aggregate-only DP output; row values never reach the public. minGroup=5 keeps every category (smallest has about 8 rows), whereas minGroup=10 could merge cancelled_duplicate or icu into an other bucket and distort the workload."
+ ],
+ "counterChoice": {
+  "key": "generalize_category_rare@minGroup=5"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

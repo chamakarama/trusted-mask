@@ -1,0 +1,20 @@
+{
+ "taskId": "CYBER-S3::s:incident_tickets.description:PERSON",
+ "chosen": {
+  "key": "redact_typed"
+ },
+ "acceptable": [
+  {
+   "key": "suppress"
+  },
+  {
+   "key": "redact_surrogate@consistency=conversation"
+  }
+ ],
+ "rationale": "Names are direct identifiers and no ticket text is needed. Typed redaction covers nearly every ticket; surrogates would add fake-name risk with no benefit.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

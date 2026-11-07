@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S2::g:edr_alerts.upn+identity.upn+proxy_logs.upn+signin_logs.upn+vpn_logs.upn",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "tokenize_keyed@format=token,scope=dataset"
+  }
+ ],
+ "rationale": "UPNs are work emails containing staff names; the threat model puts staff out of scope and upn is not a required field. Spray detection counts accounts per /24 but a keyed token would suffice only if needed; suppress minimises disclosure.",
+ "unresolved": [
+  "Does spray detection by recipients require distinct-account counts (then token)?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

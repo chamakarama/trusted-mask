@@ -1,0 +1,15 @@
+{
+  "taskId": "FIN-S3::f:transfers.booking_ts",
+  "chosen": {
+    "key": "generalize_datetime@resolution=day"
+  },
+  "acceptable": [],
+  "rationale": "The payday effect needs spend by day of month, so month rounding would break that task. Day resolution is released only inside aggregates with at least 10 cardholders; anything finer adds risk without need.",
+  "unresolved": [
+    "Can the payday tables use day-of-month only rather than full dates?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

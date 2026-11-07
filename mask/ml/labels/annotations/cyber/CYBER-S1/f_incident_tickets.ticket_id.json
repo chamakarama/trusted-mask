@@ -1,0 +1,17 @@
+{
+  "taskId": "CYBER-S1::f:incident_tickets.ticket_id",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    }
+  ],
+  "rationale": "Row key with no personal content, but a keyed token lets the MSSP refer to tickets while only the company can map back to the service desk. Keeping it as is would also be low risk.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

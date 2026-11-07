@@ -1,0 +1,13 @@
+{
+ "taskId": "CYBER-S2::f:proxy_logs.src_ip",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [],
+ "rationale": "Internal client IPs reveal network layout and staff devices, out of scope. U4 needs grouping per source, so a consistent token preserves it. Attacker IPs elsewhere stay exact.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

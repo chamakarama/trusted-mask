@@ -1,0 +1,19 @@
+{
+  "taskId": "MOB-S2::f:taps.ts",
+  "chosen": {
+    "key": "generalize_datetime@resolution=15min"
+  },
+  "acceptable": [
+    {
+      "key": "generalize_datetime@resolution=hour"
+    }
+  ],
+  "rationale": "Exact boarding seconds plus stop single out a card and link to check-ins. Transfers, OD by hour band and line x hour only need 15-minute resolution, which still orders trips within a day. Hour is coarser but weakens transfer chaining.",
+  "unresolved": [
+    "Does transfer detection need finer than hourly ordering within a card-day?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

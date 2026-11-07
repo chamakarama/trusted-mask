@@ -1,0 +1,17 @@
+{
+  "taskId": "CYBER-S1::f:identity.identity_id",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Directory row key, unique per person. Nothing needs the raw value; a keyed token keeps row distinctness without exposing the source system id. Suppress also acceptable.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

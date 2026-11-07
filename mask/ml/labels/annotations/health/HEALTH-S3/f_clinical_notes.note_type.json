@@ -1,0 +1,20 @@
+{
+ "taskId": "HEALTH-S3::f:clinical_notes.note_type",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "keep"
+  },
+  {
+   "key": "generalize_category_rare@minGroup=10"
+  }
+ ],
+ "rationale": "Not sensitive, but the notes table adds nothing to the listed ED-visit utility tasks. Removing it with the other note columns is simplest; keeping it would be low risk.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

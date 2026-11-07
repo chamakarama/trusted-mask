@@ -1,0 +1,15 @@
+{
+ "taskId": "MOB-S3::f:taps.stop_id",
+ "agrees": false,
+ "objections": [
+  "The keyed token gives no real protection: stops.stop_id is tokenised with the same dataset-scope key, and the stops table carries exact lat/lon, so a token joins straight back to the exact boarding location. Disclosure is effectively the same as keep, contrary to the rationale.",
+  "Merging low-traffic stops (fewer than 10 taps) pools the rarely used stops that most narrowly point to a home (first boarding of the day) while keeping common stops for mode-choice analysis; stops.stop_id would then need raw or consistently merged ids so the join still works."
+ ],
+ "counterChoice": {
+  "key": "generalize_category_rare@minGroup=10"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

@@ -1,0 +1,15 @@
+{
+  "taskId": "HEALTH-S1::f:clinical_notes.language",
+  "agrees": false,
+  "objections": [
+    "generalize_category_rare@minGroup=5 is a no-op here: all three categories exceed 2.8% share (rareCategoryCount 0), so the output equals keep and the claimed protection does not exist.",
+    "No utility task (H-U2/U4/U6/U7/U8) uses note language, while sv/en notes narrow the patient population and correlate with municipality, a listed linkage QI; data minimisation favours removal."
+  ],
+  "counterChoice": {
+    "key": "suppress"
+  },
+  "challenger": {
+    "model": "claude-opus-5-5",
+    "promptVersion": "challenger-1"
+  }
+}

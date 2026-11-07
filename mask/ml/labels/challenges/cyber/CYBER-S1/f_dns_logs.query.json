@@ -1,0 +1,17 @@
+{
+  "taskId": "CYBER-S1::f:dns_logs.query",
+  "agrees": false,
+  "objections": [
+    "Rare-category merge with minGroup=5 is close to a no-op here: of 32 distinct names only the two singletons (the _ldap SRV lookup and upload.nimbusdrive.example) fall below 5, so srk.example (66, religious body, Art. 9), liitto.example (100, union), ajanvaraus.terveyspalvelu.example and apteekki.example (health) and tyopaikat.example (job search) all survive verbatim.",
+    "Combined with the consistent client_hostname/client_ip pseudonyms, the MSSP analyst gets a per-employee profile of union, religious, health and job-search lookups, which is exactly the browsing disclosure the threat model names and is disproportionate under Finnish working-life privacy law.",
+    "It also coarsens in the wrong direction for security: the singletons it merges (an LDAP SRV recon-style lookup and an upload domain) are the more security-relevant rows, while sensitive high-volume names stay.",
+    "A dataset-scoped keyed token keeps per-domain frequency, beaconing and cross-table consistency for correlation without exposing names; no listed utility task (U1-U11) depends on DNS name lexical content."
+  ],
+  "counterChoice": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "challenger": {
+    "model": "claude-opus-5-5",
+    "promptVersion": "challenger-1"
+  }
+}

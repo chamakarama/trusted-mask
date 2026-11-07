@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S3::f:proxy_logs.src_ip",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_category_rare@minGroup=10"
+  }
+ ],
+ "rationale": "Internal client IPs identify laptops or VPN users and can be linked via breach/OSINT data. Phishing joins in this release cannot use pseudonyms (public), and the spray task uses sign-in logs, so remove it.",
+ "unresolved": [
+  "Is a prefix-preserving anonymised IP available outside these candidates?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

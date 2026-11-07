@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S3::f:signin_logs.ts_utc",
+ "chosen": {
+  "key": "generalize_datetime@resolution=15min"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=hour"
+  }
+ ],
+ "rationale": "Detections need ordering within minutes-scale windows (30 min fatigue, hourly spray); goal states 15 min resolution. Coarsening to 15 min reduces work-rhythm fingerprinting while keeping hourly volumes and campaigns.",
+ "unresolved": [
+  "Does 15 min break the 30-minute MFA-fatigue count window?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

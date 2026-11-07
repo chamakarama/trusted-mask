@@ -1,0 +1,19 @@
+{
+ "taskId": "FIN-S1::f:customers.employer",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "tokenize_keyed@format=token,scope=dataset"
+  }
+ ],
+ "rationale": "Small employers combined with city and age are often unique and no listed task needs employer. Remove; a token would only add re-identification surface.",
+ "unresolved": [
+  "Would employer-level salary patterns be needed for AML rules?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

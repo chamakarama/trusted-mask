@@ -1,0 +1,15 @@
+{
+ "taskId": "CYBER-S1::g:edr_alerts.upn+identity.upn+proxy_logs.upn+signin_logs.upn+vpn_logs.upn",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [],
+ "rationale": "UPN is readable firstname.lastname work email, so it must not stay clear, yet every cross-log detection and the join-consistency task need the same pseudonym in all five tables. Dataset-scoped keyed token meets both; suppress breaks them.",
+ "unresolved": [
+  "Is the key held only by the data controller?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

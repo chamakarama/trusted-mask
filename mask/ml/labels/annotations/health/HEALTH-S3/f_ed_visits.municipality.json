@@ -1,0 +1,22 @@
+{
+  "taskId": "HEALTH-S3::f:ed_visits.municipality",
+  "chosen": {
+    "key": "generalize_category_rare@minGroup=10"
+  },
+  "acceptable": [
+    {
+      "key": "generalize_category_rare@minGroup=5"
+    },
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Home area is a weak quasi-identifier; model needs little of it. Merging groups under 10 handles rare and non-resident values while keeping coarse regional signal.",
+  "unresolved": [
+    "Does admission depend on residence area?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

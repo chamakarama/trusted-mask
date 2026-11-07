@@ -1,0 +1,22 @@
+{
+  "taskId": "HEALTH-S1::f:ed_visits.disposition",
+  "chosen": {
+    "key": "generalize_category_rare@minGroup=5"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    },
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Outcome helps interpret LOS and filter cancelled_duplicate double registrations, which would bias revisits. Rare-merging limits singling out of rare outcomes such as death.",
+  "unresolved": [
+    "Is disposition needed in scope for analysis?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+ "taskId": "HEALTH-S2::f:ed_visits.los_minutes",
+ "agrees": false,
+ "objections": [
+  "Lost utility: the H-DP workload includes five HQ-LOS queries (mean length of stay by triage, bounds 0-2880) that read los_minutes; discharge_ts is also suppressed, so suppression leaves no source for LOS.",
+  "10-minute bins keep the bounded mean nearly exact while only feeding an aggregate DP release, so the extra disclosure is negligible."
+ ],
+ "counterChoice": {
+  "key": "generalize_numeric_bin@topCode=0,width=10"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

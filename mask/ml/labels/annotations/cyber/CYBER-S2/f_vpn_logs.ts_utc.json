@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S2::f:vpn_logs.ts_utc",
+ "chosen": {
+  "key": "keep"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=15min"
+  }
+ ],
+ "rationale": "Goal needs exact time: spray detection per hour, exfiltration windows of 4 h, and timestamps are listed as shareable IoC context. Event time alone does not identify staff.",
+ "unresolved": [
+  "Could 15-minute rounding still support the hourly and 4 h detections?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "taskId": "MOB-S2::f:bike_trips.end_ts",
+ "chosen": {
+  "key": "generalize_datetime@resolution=15min"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=hour"
+  },
+  {
+   "key": "generalize_datetime@resolution=day"
+  }
+ ],
+ "rationale": "Goal resolution is 15 minutes. Exact end timestamps are near-unique and, with social check-ins, can single out riders. Rounding keeps time bands.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

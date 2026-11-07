@@ -1,0 +1,17 @@
+{
+  "taskId": "FIN-S1::g:card_transactions.card_pan+cards.card_pan",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "PCI DSS forbids clear PANs, but the same card must link across transactions and banks. A consistent keyed token across both tables preserves card-level patterns and joins.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

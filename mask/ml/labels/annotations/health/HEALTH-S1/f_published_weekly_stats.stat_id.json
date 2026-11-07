@@ -1,0 +1,17 @@
+{
+  "taskId": "HEALTH-S1::f:published_weekly_stats.stat_id",
+  "chosen": {
+    "key": "suppress"
+  },
+  "acceptable": [
+    {
+      "key": "tokenize_keyed@format=token,scope=dataset"
+    }
+  ],
+  "rationale": "Row id of a published statistics table has no join partner and no utility task uses it. Dropping it discloses least; a keyed token is also safe if row references are wanted.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "taskId": "HEALTH-S1::f:ed_visits.arrival_ts",
+  "chosen": {
+    "key": "generalize_datetime@resolution=hour"
+  },
+  "acceptable": [
+    {
+      "key": "generalize_datetime@resolution=day"
+    },
+    {
+      "key": "generalize_datetime@resolution=week"
+    }
+  ],
+  "rationale": "The hour-of-day arrival curve needs hour resolution, while minutes link to news and social posts. Hour is the coarsest level keeping the curve; week would break that task.",
+  "unresolved": [
+    "Does hour resolution still meet k>=5 on arrival week?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

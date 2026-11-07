@@ -1,0 +1,19 @@
+{
+  "taskId": "HEALTH-S1::f:clinical_notes.note_text",
+  "chosen": {
+    "key": "redact_text"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Free text holds names, phones, addresses and identity codes, yet topic content may be useful (text need topic_only). Span-level redaction keeps topic while removing identifiers; suppress is the safe fallback.",
+  "unresolved": [
+    "Are per-span decisions strong enough to reach the recall target?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

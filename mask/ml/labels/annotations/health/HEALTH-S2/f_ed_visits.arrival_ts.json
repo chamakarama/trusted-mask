@@ -1,0 +1,17 @@
+{
+ "taskId": "HEALTH-S2::f:ed_visits.arrival_ts",
+ "chosen": {
+  "key": "generalize_datetime@resolution=hour"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=week"
+  }
+ ],
+ "rationale": "Hour-of-day arrival curve needs hour resolution, and weekly trends can be derived from it. Minute precision links to news clips, so round to hour rather than keep.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

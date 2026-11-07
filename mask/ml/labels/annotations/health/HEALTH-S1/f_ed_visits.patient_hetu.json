@@ -1,0 +1,19 @@
+{
+ "taskId": "HEALTH-S1::f:ed_visits.patient_hetu",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [
+  {
+   "key": "derive_hetu@ageBandYears=10,referenceDate=2025-12-31"
+  }
+ ],
+ "rationale": "Direct identifier. Revisit analysis needs a stable patient pseudonym, so a keyed token keeps repeat visits linkable while hiding the code. Age band comes from date_of_birth handling; deriving band and sex would lose the patient link.",
+ "unresolved": [
+  "Is age band supplied from date_of_birth separately?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}
