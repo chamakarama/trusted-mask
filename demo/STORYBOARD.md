@@ -1,3 +1,7 @@
+# Current recording version
+
+Use **Latest full-day cut and protection message** below for `kupittaa-day-v2`. Earlier cuts document previous releases; their counts and evaluation results do not apply to v2.
+
 # RouteSafe — current city-map video cut
 
 Project-lead update, 7 November 2026: participants also judge from videos. Most are beginners; each participant chooses between two videos 20 times. Do not assume they read the repository or know differential privacy. Scoring weights are not established by this information.
@@ -8,7 +12,7 @@ Target a clear 100–115 second cut within the existing 120-second project limit
 |---|---|---|
 | 0–7 s | Open the city **route-demand** view, morning. Show the map immediately. | “Where should we investigate adding more buses? Start with travel demand, without exposing individual journeys.” |
 | 7–18 s | Data owner: choose the generated dataset; show the private-to-public boundary. | A data owner has journeys. A planner needs useful patterns. |
-| 18–35 s | Show four key fields, the aggregate-planning purpose, then the four protection steps. | Identifiers stay inside; contributions are limited; calibrated noise protects the shared counts. |
+| 18–35 s | Show four key fields, the aggregate-planning purpose, then the three protection steps. | Identifiers stay inside; contributions are limited; calibrated noise protects the shared counts. |
 | 35–45 s | Show the actual result, its failed accuracy target and the limited-use acknowledgement. Open the exact release. | These are measured results, with limits. |
 | 45–70 s | Select a bright street segment. Inspect a contributing connection. Switch morning/afternoon and show the changed pattern. | Where demand concentrates, how places connect, and when it changes. |
 | 70–88 s | Save a connection and another area; open the shortlist; export the planning summary. | A concrete output for further investigation. |
@@ -62,3 +66,11 @@ The planner's present decision is “investigate service here.” To say “add 
 5. Manually attach only the protected JSON in a fresh ChatGPT conversation. Ask the supplied commuter question, then the aggregate-demand question. Show its actual response; do not promise a particular refusal or treat it as proof of privacy.
 
 On-screen label: **“Since AI at Kupittaa · fictional scale test”**. The 10,000 attendees and October 2025 weekdays are invented and deliberately exaggerated, not actual event attendance/dates. The uploaded raw ZIP remains private; the downloaded protected JSON is the recipient artifact. See [scenario and evidence](../evidence/kupittaa-hackathon/README.md). Do not mix earlier city 300-draw results with this new scenario.
+
+## Latest full-day cut and protection message
+
+Use `kupittaa-day-v2`, with the large destination pin removed. Click **Follow the day** and move through arrivals, lunch, departures, fictional Alko shopping-area trips and afterparty returns. The mode visibly changes the selected direction/area; **show whole city** exits it. Night retains an uncertainty warning. The unchanged heat scale makes differences comparable.
+
+Keep the short demo focused. **Do not add an IDs-removed comparison screen or file.** Show three compact protection steps instead: **Group journeys → Limit each card's contribution → Add calibrated noise**. Suggested narration: “Individual journeys become protected patterns. We limit each card’s influence and add noise, while keeping the city-wide demand useful.”
+
+“Where did people go after the hackathon?” is an aggregate question: the protected file should still support the fictional Alko pattern. A question about a specific card illustrates missing individual records, not the extra privacy guarantee. Never portray ChatGPT's refusal as proof of differential privacy or promise that inference is impossible.

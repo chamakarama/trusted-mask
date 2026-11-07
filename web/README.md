@@ -74,3 +74,21 @@ The private page (`http://127.0.0.1:8792/operator.html`) now accepts the registe
 After the five-stage review, **Download protected data** returns one portable JSON. The separate planner (`http://127.0.0.1:8791/?release=kupittaa-hackathon-v1`) opens that file locally through **Open protected file**. It verifies the embedded release, never posts file bytes, and does not use the convenience aggregate summary as a map input. The same protected JSON can be manually uploaded into a fresh external AI chat. The workbench supplies questions but does not send anything externally.
 
 **Bus lines** exposes named Föli routes and searchable public stops, with the existing modelled demand on their shared street segments. It is not a line-load or live-service measurement. See [Kupittaa evidence](../evidence/kupittaa-hackathon/README.md) for the frozen scenario, exact limits and measured spike.
+
+## Latest full-day demo: kupittaa-day-v2
+
+The latest recording scenario adds fictional lunch, afternoon departure, evening shopping and night return patterns. Generate its input only if the directory does not already exist:
+
+```sh
+.venv/bin/python -m simulation.hackathon_day
+npm --prefix web run sync
+npm --prefix web run build
+npm --prefix web run build:operator
+.venv/bin/python -m pipeline.workflow --city-input simulation/private/kupittaa-day-v2 --runtime private/kupittaa-day-demo --port 8792
+```
+
+Use the existing static server on port 8791 and open `http://127.0.0.1:8791/?release=kupittaa-day-v2`. The owner page is `http://127.0.0.1:8792/operator.html`. Upload the registered raw ZIP, complete the review, download the protected JSON, then open it locally in the planner. Click **Follow the day** and use the five time bands. The selected area and From/To direction change visibly; **show whole city** returns to exploration. The large event pin has been removed.
+
+The generator, independent invented population and criteria were frozen at `ff8fb0d` before the single publication. Existing city and v1 releases remain immutable. All five deliberately large target patterns rank first in this draw, but the night lower noise bound is zero and fine-pair count error is 52.8%. See [full-day evidence](../evidence/kupittaa-day-v2/README.md). This does not establish real-world planning utility.
+
+Keep the optional ChatGPT segment: show actual answers to an aggregate planning question and a specific commuter question in a fresh chat. Explain **grouping, contribution limits and calibrated noise**. Do not add an IDs-removed comparison or use a model refusal as privacy proof.

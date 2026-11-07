@@ -21,6 +21,7 @@ for (let i = 0; i < args.length; i++) {
   else paths.push(args[i]);
 }
 if (!paths.length) {
+  try { execFileSync("git",["cat-file","-e",`${ref}:releases/kupittaa-day-v2/manifest.json`],{cwd:repo,stdio:"ignore"}); paths.push("releases/kupittaa-day-v2"); } catch {}
   try { execFileSync("git",["cat-file","-e",`${ref}:releases/kupittaa-hackathon-v1/manifest.json`],{cwd:repo,stdio:"ignore"}); paths.push("releases/kupittaa-hackathon-v1"); } catch {}
   paths.push("releases/e1-aura-001", "fixtures/protected-v1");
   try { execFileSync("git",["cat-file","-e",`${ref}:releases/city-turku-v1/manifest.json`],{cwd:repo,stdio:"ignore"}); paths.push("releases/city-turku-v1"); } catch { /* Older refs have the original benchmark only. */ }
@@ -71,6 +72,7 @@ try {
   const summary=show("evidence/kupittaa-hackathon/public-summary.json");JSON.parse(summary.toString("utf8"));
   mkdirSync(join(out,"evidence"),{recursive:true});writeFileSync(join(out,"evidence","kupittaa-summary.json"),summary);
 } catch {}
+try { const summary=show("evidence/kupittaa-day-v2/public-summary.json");JSON.parse(summary.toString("utf8"));mkdirSync(join(out,"evidence"),{recursive:true});writeFileSync(join(out,"evidence","kupittaa-day-summary.json"),summary); } catch {}
 mkdirSync(join(out, "contract"), { recursive: true });
 for (const name of ["manifest.schema.json", "manifest-city.schema.json"]) {
   try { writeFileSync(join(out,"contract",name),show(`contracts/${name}`)); }

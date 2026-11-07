@@ -7,7 +7,7 @@ export function BoundaryPreview({privateRows,recipient,error}:Props){
   </article><div className="boundary-arrow" aria-hidden="true">→</div>
   <article className="boundary-recipient"><div className="boundary-label">RECIPIENT OUTPUT</div><h2>Protected patterns</h2><p className="boundary-caption">Actual rows from the verified release</p>
    {recipient?<><div className="boundary-table"><table><thead><tr><th>Connection</th><th>Time band</th><th>Period trips</th></tr></thead><tbody>{recipient.records.map((r:any,i:number)=><tr key={i}><td>{r.origin_area} → {r.destination_area}</td><td>{r.hour_band}</td><td>{r.trips.toLocaleString()}</td></tr>)}</tbody></table></div><p className="boundary-caption">{recipient.release_id} · {recipient.source_file}</p><details><summary>Inspect the exact recipient JSON</summary><pre>{JSON.stringify(recipient,null,2)}</pre></details></>:<p className="boundary-empty">{error||'Create or verify the protected result to see the actual shared data.'}</p>}
-   <div className="boundary-proof">No card IDs · no individual timestamps · no passenger histories</div>
+   <div className="boundary-proof">Area/time aggregates · contribution limits · calibrated noise</div>
   </article>
  </section>;
 }

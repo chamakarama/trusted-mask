@@ -1,3 +1,4 @@
+import {DAY_RELEASE,DAY_LABELS} from './dayStory';
 import type { Release, OdCell } from '../data/release';
 import { BANDS, weekdaysInPeriod, noiseRadius, familyScale } from '../data/derive';
 
@@ -26,7 +27,7 @@ export function stableMaximum(rel: Release, direction: Direction, anchor: string
 export function profile(rel: Release, direction: Direction, anchor: string, peer: string|null) {
   return BANDS.map(band=>({band,...estimate(rel,selectedCells(rel,band,direction,anchor,peer),band)}));
 }
-export function label(rel: Release,id: string) {if(rel.id==='kupittaa-hackathon-v1'&&id==='TRK-G14')return 'Kupittaa';return /^TRK-G\d{2}$/.test(id)?`Zone ${id.slice(-2)}`:rel.areas.find(a=>a.id===id)?.name ?? id;}
+export function label(rel: Release,id: string) {if(rel.id===DAY_RELEASE&&DAY_LABELS[id])return DAY_LABELS[id];if(rel.id==='kupittaa-hackathon-v1'&&id==='TRK-G14')return 'Kupittaa';return /^TRK-G\d{2}$/.test(id)?`Zone ${id.slice(-2)}`:rel.areas.find(a=>a.id===id)?.name ?? id;}
 export const number = (x: number) => new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(x);
 export const itemKey = (x:SavedItem)=>[x.release,x.direction,x.anchor,x.peer??''].join('|');
 export function itemLabel(rel:Release,x:SavedItem) {return x.peer ? x.direction==='starts' ? `${label(rel,x.anchor)} → ${label(rel,x.peer)}` : `${label(rel,x.peer)} → ${label(rel,x.anchor)}` : `${label(rel,x.anchor)} · trip ${x.direction}`;}

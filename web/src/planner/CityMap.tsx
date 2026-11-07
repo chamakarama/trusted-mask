@@ -32,7 +32,6 @@ export default function CityMap({busLine,busStops,focusStop,rel,values,maximum,a
       const empty:any={type:'FeatureCollection',features:[]};
       m.addSource('bus-track',{type:'geojson',data:empty});
       m.addSource('bus-stops',{type:'geojson',data:empty});
-      m.addSource('event-place',{type:'geojson',data:empty});
       m.addSource('flows',{type:'geojson',data:empty});
       m.addSource('zones',{type:'geojson',data:empty});m.addSource('centres',{type:'geojson',data:empty});m.addSource('connection',{type:'geojson',data:empty});
       const colour:any=['interpolate',['linear'],['get','intensity'],0,'#edf3f2',.2,'#b9d9d1',.5,'#6eafa2',.8,'#267d71',1,'#07574d'];
@@ -49,8 +48,6 @@ export default function CityMap({busLine,busStops,focusStop,rel,values,maximum,a
       m.addLayer({id:'connection-line',type:'line',source:'connection',paint:{'line-color':'#ffffff','line-width':4,'line-opacity':.9}});
       m.addLayer({id:'bus-stop-dots',type:'circle',source:'bus-stops',paint:{'circle-radius':['case',['get','focused'],7,4],'circle-color':'#ffffff','circle-stroke-width':2,'circle-stroke-color':'#387a98'}});
       m.addLayer({id:'bus-stop-names',type:'symbol',source:'bus-stops',minzoom:13,layout:{'text-field':['get','name'],'text-size':11,'text-font':['Noto Sans Regular'],'text-offset':[0,1.4],'text-anchor':'top'},paint:{'text-color':'#ffffff','text-halo-color':'#13232d','text-halo-width':2}});
-      m.addLayer({id:'event-dot',type:'circle',source:'event-place',paint:{'circle-radius':9,'circle-color':'#ffcf54','circle-stroke-color':'#fff','circle-stroke-width':2}});
-      m.addLayer({id:'event-name',type:'symbol',source:'event-place',layout:{'text-field':'Kupittaa · demo area','text-size':14,'text-font':['Noto Sans Regular'],'text-offset':[0,1.5],'text-anchor':'top','text-allow-overlap':true},paint:{'text-color':'#ffdf83','text-halo-color':'#152128','text-halo-width':3}});
       m.on('click',event=>{
         const flow=m.queryRenderedFeatures(event.point,{layers:['flow-hit']})[0]?.properties;
         if(flow&&Number.isInteger(Number(flow.id))){segmentCallback.current(Number(flow.id));return;}
@@ -85,8 +82,6 @@ export default function CityMap({busLine,busStops,focusStop,rel,values,maximum,a
     const edges=network&&busLine?network.edges.filter(e=>e.lines.includes(busLine)):[];
     (m.getSource('bus-track') as GeoJSONSource).setData({type:'FeatureCollection',features:edges.map(e=>({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:[network!.nodes[e.a],network!.nodes[e.b]]}}))} as any);
     (m.getSource('bus-stops') as GeoJSONSource).setData({type:'FeatureCollection',features:busStops.map(s=>({type:'Feature',properties:{name:s.name,focused:s.id===focusStop?.id},geometry:{type:'Point',coordinates:[s.lon,s.lat]}}))} as any);
-    const event=rel.id==='kupittaa-hackathon-v1'?rel.areas.find(a=>a.id==='TRK-G14'):null;
-    (m.getSource('event-place') as GeoJSONSource).setData({type:'FeatureCollection',features:event?[{type:'Feature',properties:{},geometry:{type:'Point',coordinates:[event.lon,event.lat]}}]:[]} as any);
   },[ready,network,busLine,busStops,focusStop,rel]);
   useEffect(()=>{if(ready&&map.current&&focusStop)map.current.flyTo({center:[focusStop.lon,focusStop.lat],zoom:14,duration:window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:650});},[ready,focusStop]);
   useEffect(()=>{if(!ready||!map.current||!network||!busLine)return;const coords=network.edges.filter(e=>e.lines.includes(busLine)).flatMap(e=>[network.nodes[e.a],network.nodes[e.b]]);if(!coords.length)return;map.current.fitBounds([[Math.min(...coords.map(p=>p[0])),Math.min(...coords.map(p=>p[1]))],[Math.max(...coords.map(p=>p[0])),Math.max(...coords.map(p=>p[1]))]],{padding:70,maxZoom:13,duration:0});},[ready,network,busLine]);
