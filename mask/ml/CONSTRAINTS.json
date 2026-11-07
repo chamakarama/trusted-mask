@@ -1,7 +1,8 @@
 {
-  "version": "constraints-1",
+  "version": "constraints-2",
   "frozenAt": "2026-11-07",
   "note": "Predeclared before any plan is benchmarked. A plan qualifies only if every applicable constraint is 'evaluated' and satisfied (or 'not_applicable' where allowed). Missing, unsupported or failed tests never count as satisfied. Change only with a new version id; select_targets records the version in every target.",
+  "changes": ["constraints-2 (2026-11-07, benchmark adapter, before any plan was benchmarked): match patterns narrowed to the adapter's stable test ids. C1 matched every residual_check (including the informational regex scan residual_check.<table> and k_anonymity.<table>, which carry no direct-identifier metric) and now matches only direct_identifiers_retained.<table>. C2 matches text_leakage.<table>.<column> (public-gold rows), not text_leakage.<table>.<column>.eval_split, which is always unsupported locally because eval-split gold is organiser-held; that coverage gap is reported in every BenchmarkReport instead of blocking every plan. C3 matches linkage.<table>.<adversary>. Thresholds, metrics and status rules unchanged."],
   "metricAliases": {
     "directIdentifiersRetained": ["direct_identifiers_retained", "retained_direct_identifiers", "retained"],
     "hardLabelLeaks": ["hard_label_leaks", "hard_leak_count", "leaked_hard_spans", "hard_label_leak_rate"],
@@ -13,7 +14,7 @@
       "id": "C1-direct-identifiers",
       "description": "No direct identifier survives in the output",
       "trustLevels": ["contractual", "controlled_research", "public"],
-      "match": { "kind": "residual_check", "idPattern": "direct|identifier|residual" },
+      "match": { "kind": "residual_check", "idPattern": "^direct_identifiers_retained\\." },
       "metric": "directIdentifiersRetained", "op": "==", "threshold": 0,
       "notApplicablePasses": false
     },
@@ -21,7 +22,7 @@
       "id": "C2-text-hard-labels",
       "description": "No hard-label span (national id, email, phone, IBAN, card, secret, ...) leaks in free text",
       "trustLevels": ["internal", "contractual", "controlled_research", "public"],
-      "match": { "kind": "text_leakage" },
+      "match": { "kind": "text_leakage", "idPattern": "^text_leakage\\.[^.\\s]+\\.[^.\\s]+\\s" },
       "metric": "hardLabelLeaks", "op": "==", "threshold": 0,
       "notApplicablePasses": true
     },
@@ -29,7 +30,7 @@
       "id": "C3-linkage",
       "description": "Linkage attack re-identification rate at or below the trust-level threshold",
       "trustLevels": ["internal", "contractual", "controlled_research", "public"],
-      "match": { "kind": "attack", "idPattern": "link|reid|join|mosaic" },
+      "match": { "kind": "attack", "idPattern": "^linkage\\." },
       "metric": "reidentificationRate", "op": "<=",
       "thresholdByTrust": { "internal": 1.0, "controlled_research": 0.10, "contractual": 0.05, "public": 0.01 },
       "notApplicablePasses": true

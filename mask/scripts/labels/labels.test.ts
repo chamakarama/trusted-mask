@@ -66,10 +66,10 @@ describe("select_targets", () => {
     version: 1, reportId: `rep-${hash}`, adapterVersion: "t", toolkit: { name: "pets-eval", version: "t", commandLog: [] }, dataset: "health", scenarioId: "HEALTH-S1",
     split: "train", inputHash: "in", goalId: "g", planHash: hash, outputHash: "o", representation: {}, createdAt: "now", durationMs: 1, notes: [], privateArtifacts: [],
     tests: [
-      { id: "residual.direct_identifiers", kind: "residual_check", name: "direct identifiers", source: "residual", status: "evaluated", scope: "all", metrics: { direct_identifiers_retained: retained }, denominators: {}, assumptions: [], covers: [] },
-      { id: "text.leakage", kind: "text_leakage", name: "text leakage", source: "pii_spans", status: "evaluated", scope: "free text", metrics: { hard_label_leaks: 0 }, denominators: {}, assumptions: [], covers: [] },
-      { id: "attack.linkage", kind: "attack", name: "linkage", source: "attack_specs", status, scope: "all", metrics: { reidentification_rate: 0.01 }, denominators: {}, assumptions: [], covers: [] },
-      ...sc.utility_requirements.map((u) => ({ id: `utility.${u}`, kind: "utility" as const, name: u, source: u, status: "evaluated" as const, scope: "t", metrics: { utility_ratio: util }, denominators: {}, assumptions: [], covers: [] })),
+      { id: "direct_identifiers_retained.t", kind: "residual_check", name: "direct identifiers", source: "residual", status: "evaluated", scope: "all", metrics: { direct_identifiers_retained: retained }, denominators: {}, assumptions: [], covers: [] },
+      { id: "text_leakage.t.text", kind: "text_leakage", name: "text leakage", source: "pii_spans", status: "evaluated", scope: "free text", metrics: { hard_label_leaks: 0 }, denominators: {}, assumptions: [], covers: [] },
+      { id: "linkage.t.adversary", kind: "attack", name: "linkage", source: "attack_specs", status, scope: "all", metrics: { reidentification_rate: 0.01 }, denominators: {}, assumptions: [], covers: [] },
+      ...sc.utility_requirements.map((u) => ({ id: `utility.${u}`, kind: "utility" as const, name: u, source: u, status: "evaluated" as const, scope: "t", metrics: { score: util }, denominators: {}, assumptions: [], covers: [] })),
     ],
   });
   it("never counts a missing or unsupported test as satisfied", () => {
