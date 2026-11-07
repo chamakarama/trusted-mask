@@ -1,5 +1,7 @@
 # RouteSafe
 
+**Current priorities:** [Project direction and things to do](planning/PROJECT_TODO.md). The next work connects input understanding, purpose-aware protection choices and measured retained utility. The current upload/download demo and setup are described in [web/README.md](web/README.md); benchmark results below refer to the original Aura release.
+
 **Bus demand without passenger histories.** RouteSafe lets a transport operator publish where and when people travel as open data, without publishing anyone's journeys. Built for the TrustED *PETs Transformer* challenge at Since AI Hackathon 2026 (scenario MOB-S1, synthetic Turku-region data).
 
 ## The problem in one number
