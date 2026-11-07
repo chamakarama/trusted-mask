@@ -76,6 +76,20 @@ Use a small classifier over frozen embeddings and structured features first. Com
 
 Mask incompatible methods before softmax. Abstain when all candidates are invalid or the input is unsupported. A high score is not an anonymity guarantee. Check the proposed complete plan, preserve failed checks, and choose a deterministic validated proposal instead of sampling methods for export.
 
+## Active-build addition: adversarial benchmark adapter
+
+Implement the [required benchmark integration in the technical plan](MASK_PLAN.md#required-adversarial-benchmark-integration) as part of the functional workstream. The supplied package provides attacker knowledge, attack code, utility tasks and reference baselines. Connect these to real transformed outputs; a model confidence score or LLM judgement is not an attack result.
+
+The development loop is: **generate candidate complete plans → execute → run attacks and utility tasks → review qualifying plans → create training targets → train the softmax selector**. No differentiation through the attack code is required. Retain plan context when creating per-field labels, because risks depend on combined choices.
+
+The pipeline owner builds private benchmark staging, correct row mappings and a versioned adapter. The ML owner uses development results for supervision and reserves independent held-out evaluation. The UX owner displays test coverage, measured risk and retained utility separately from recipe preference. Implement this against the current application architecture without replacing work already underway merely to match an illustrative stack choice.
+
+For the first customer-service demo, combine the supplied customer-table linkage attack with text-leakage checks and relevant task-utility tests. The customer-table attack does not establish safety of transcripts or all joins. Expose missing coverage and record `evaluated`, `not_applicable`, `unsupported` and `failed` distinctly; missing tests are never zero risk.
+
+Keep truth, attacker inputs and scoring rowmaps out of production features and shareable artifacts. Preserve correct toolkit representation handling so a transformed row-level table is not accidentally scored as synthetic. Ordinary uploads may lack ground truth: report unavailable measurements honestly. Optional organiser-hidden attacks are future independent checks, not results we already possess.
+
+Acceptance: execute multiple candidate plans on a new supported synthetic input, produce reproducible privacy/utility reports and reviewed targets, compare on frozen held-out cases, and verify export isolation. Include a deliberately leaky candidate, a utility-destroying candidate and a failed/unsupported test to prove the reporting behaves correctly. See the technical plan for source links and the full protocol.
+
 ## Training labels with ChatGPT or Claude agents
 
 Yes: use agents to accelerate annotation and goal/scenario generation on synthetic development data. Treat their output as **candidate supervision**, not verified truth.
@@ -122,7 +136,7 @@ Model UI states explicitly: empty, importing, profiling, needs input, proposing,
 
 1. **Agree contracts and first demonstration.** Use customer-service structured/text data and two concrete purposes. Define recipes, evaluators and split boundaries.
 2. **Deliver a real vertical slice.** Import → goal → deterministic proposal → actual transformed preview → confirm → download. Establish the white two-pane design and smooth state transitions now.
-3. **Produce reviewed training examples.** Run agent annotation, schema validation, execution/evaluation and human audits. Freeze evaluation before tuning.
+3. **Produce reviewed training examples.** Run agent annotation, schema validation, actual candidate-plan execution through the adversarial/utility benchmark adapter, and human audits. Freeze evaluation before tuning.
 4. **Integrate the learned selector.** Replace the baseline behind the same API. Compare against fixed policies and a goal-agnostic selector on held-out data. Report failures and abstentions.
 5. **Finish experience and evidence.** Test new supported inputs, goal changes, altered parameters, rare/unknown fields, cross-field risks, broken joins, stale requests and exact preview/export consistency.
 
