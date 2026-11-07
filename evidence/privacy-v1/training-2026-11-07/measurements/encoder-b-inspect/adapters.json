@@ -1,0 +1,2848 @@
+[
+  {
+    "file": "fixture-01.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My neighbour, Nkiru Okafor, checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.\n\nMy separate note about the flat says that the rent is 815 euros each month.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My neighbour, Nkiru Okafor, checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.\n\nMy separate note about the flat says that the rent is 815 euros each month.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 14,
+          "end": 26,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 14,
+          "end": 26,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 57,
+          "end": 116,
+          "label": "HEALTH",
+          "reason": "essential_fact"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 281,
+          "end": 355,
+          "label": "FINANCIAL",
+          "reason": "essential_fact"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 57,
+          "end": 116,
+          "label": "HEALTH",
+          "reason": "essential_fact"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 281,
+          "end": 355,
+          "label": "FINANCIAL",
+          "reason": "essential_fact"
+        }
+      ],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 28,
+          "end": 38,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 42,
+          "end": 55,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 180,
+          "end": 188,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 28,
+          "end": 38,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 42,
+          "end": 55,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 180,
+          "end": 188,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.\n\nMy separate note about the flat says that the rent is 815 euros each month.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.\n\nMy separate note about the flat says that the rent is 815 euros each month.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.",
+      "B3": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.",
+        "actual": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.\n\nMy separate note about the flat says that the rent is 815 euros each month."
+      },
+      "B3": {
+        "expected": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.",
+        "actual": "My neighbour, [PERSON_1], checked on me after my walk. Since Tuesday I have had a dry cough at night, but no fever. I think the wheezing started before I changed the air filter, although I am not certain. I would like to describe the timing accurately without assuming a cause.\n\nMy separate note about the flat says that the rent is 815 euros each month."
+      }
+    }
+  },
+  {
+    "file": "fixture-02.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, Darya Petrenko, offered to meet me at the station if her shift ends on time.\n\nMy unrelated medical note says that I have migraines twice a month.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, Darya Petrenko, offered to meet me at the station if her shift ends on time.\n\nMy unrelated medical note says that I have migraines twice a month.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 210,
+          "end": 224,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 210,
+          "end": 224,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 80,
+          "end": 88,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 166,
+          "end": 174,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 324,
+          "end": 354,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 80,
+          "end": 88,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 166,
+          "end": 174,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 324,
+          "end": 354,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.\n\nMy unrelated medical note says that I have migraines twice a month.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.\n\nMy unrelated medical note says that I have migraines twice a month.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.",
+      "B3": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.",
+        "actual": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.\n\nMy unrelated medical note says that I have migraines twice a month."
+      },
+      "B3": {
+        "expected": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.",
+        "actual": "I am comparing two train tickets for a weekend visit. The flexible ticket costs 64 euros and can be refunded until the day before departure. The cheaper ticket costs 41 euros but cannot be refunded. My sister, [PERSON_1], offered to meet me at the station if her shift ends on time.\n\nMy unrelated medical note says that I have migraines twice a month."
+      }
+    }
+  },
+  {
+    "file": "fixture-03.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.\n\nFor a different task, my credit card number is 4111 1111 1111 1111.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.\n\nFor a different task, my credit card number is 4111 1111 1111 1111.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 335,
+          "end": 354,
+          "label": "PAYMENT_CARD",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 335,
+          "end": 354,
+          "label": "PAYMENT_CARD",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.\n\nFor a different task, my credit card number is [PAYMENT_CARD].",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.\n\nFor a different task, my credit card number is [PAYMENT_CARD].",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.",
+      "B3": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.",
+        "actual": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.\n\nFor a different task, my credit card number is [PAYMENT_CARD]."
+      },
+      "B3": {
+        "expected": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.",
+        "actual": "Please help me plan a simple vegetable garden on my balcony. It gets direct sun for about four hours in the afternoon, and the railing has room for three narrow planters. I can water most mornings, except when I travel for work. I prefer herbs and salad leaves rather than large plants.\n\nFor a different task, my credit card number is [PAYMENT_CARD]."
+      }
+    }
+  },
+  {
+    "file": "fixture-04.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am writing to a shop about a kettle that stopped heating after two weeks. The power light comes on, but the water stays cold. I still have the receipt and would prefer a replacement if one is available. My contact address is mina.rahman@example.invalid. Please keep the message polite and ask what proof they need before I return it.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am writing to a shop about a kettle that stopped heating after two weeks. The power light comes on, but the water stays cold. I still have the receipt and would prefer a replacement if one is available. My contact address is mina.rahman@example.invalid. Please keep the message polite and ask what proof they need before I return it.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 227,
+          "end": 254,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 227,
+          "end": 254,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am writing to a shop about a kettle that stopped heating after two weeks. The power light comes on, but the water stays cold. I still have the receipt and would prefer a replacement if one is available. My contact address is [EMAIL]. Please keep the message polite and ask what proof they need before I return it.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am writing to a shop about a kettle that stopped heating after two weeks. The power light comes on, but the water stays cold. I still have the receipt and would prefer a replacement if one is available. My contact address is [EMAIL]. Please keep the message polite and ask what proof they need before I return it.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I am writing to a shop about a kettle that stopped heating after two weeks. The power light comes on, but the water stays cold. I still have the receipt and would prefer a replacement if one is available. My contact address is [EMAIL]. Please keep the message polite and ask what proof they need before I return it.",
+      "B3": "I am writing to a shop about a kettle that stopped heating after two weeks. The power light comes on, but the water stays cold. I still have the receipt and would prefer a replacement if one is available. My contact address is [EMAIL]. Please keep the message polite and ask what proof they need before I return it.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-05.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I want to understand a household budget before choosing a savings target. My take-home pay is about 2,400 euros per month, and my fixed bills total 1,350 euros. I think groceries cost around 300 euros, but that is only an estimate. I have not included travel or irregular expenses yet. Please do not treat the remainder as guaranteed savings.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I want to understand a household budget before choosing a savings target. My take-home pay is about 2,400 euros per month, and my fixed bills total 1,350 euros. I think groceries cost around 300 euros, but that is only an estimate. I have not included travel or irregular expenses yet. Please do not treat the remainder as guaranteed savings.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 94,
+          "end": 121,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 148,
+          "end": 159,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 191,
+          "end": 200,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 94,
+          "end": 121,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 148,
+          "end": 159,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 191,
+          "end": 200,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I want to understand a household budget before choosing a savings target. My take-home pay is about 2,400 euros per month, and my fixed bills total 1,350 euros. I think groceries cost around 300 euros, but that is only an estimate. I have not included travel or irregular expenses yet. Please do not treat the remainder as guaranteed savings.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I want to understand a household budget before choosing a savings target. My take-home pay is about 2,400 euros per month, and my fixed bills total 1,350 euros. I think groceries cost around 300 euros, but that is only an estimate. I have not included travel or irregular expenses yet. Please do not treat the remainder as guaranteed savings.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I want to understand a household budget before choosing a savings target. My take-home pay is about 2,400 euros per month, and my fixed bills total 1,350 euros. I think groceries cost around 300 euros, but that is only an estimate. I have not included travel or irregular expenses yet. Please do not treat the remainder as guaranteed savings.",
+      "B3": "I want to understand a household budget before choosing a savings target. My take-home pay is about 2,400 euros per month, and my fixed bills total 1,350 euros. I think groceries cost around 300 euros, but that is only an estimate. I have not included travel or irregular expenses yet. Please do not treat the remainder as guaranteed savings.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-06.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "Could you suggest a reading schedule for a 240-page novel? I have five evenings available and usually read for 30 minutes at a time. I would like to finish on the fifth evening while leaving a little time to write down questions. The book is a library copy, so I cannot mark the pages. I do not know my reading speed yet.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "Could you suggest a reading schedule for a 240-page novel? I have five evenings available and usually read for 30 minutes at a time. I would like to finish on the fifth evening while leaving a little time to write down questions. The book is a library copy, so I cannot mark the pages. I do not know my reading speed yet.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "Could you suggest a reading schedule for a 240-page novel? I have five evenings available and usually read for 30 minutes at a time. I would like to finish on the fifth evening while leaving a little time to write down questions. The book is a library copy, so I cannot mark the pages. I do not know my reading speed yet.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "Could you suggest a reading schedule for a 240-page novel? I have five evenings available and usually read for 30 minutes at a time. I would like to finish on the fifth evening while leaving a little time to write down questions. The book is a library copy, so I cannot mark the pages. I do not know my reading speed yet.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "Could you suggest a reading schedule for a 240-page novel? I have five evenings available and usually read for 30 minutes at a time. I would like to finish on the fifth evening while leaving a little time to write down questions. The book is a library copy, so I cannot mark the pages. I do not know my reading speed yet.",
+      "B3": "Could you suggest a reading schedule for a 240-page novel? I have five evenings available and usually read for 30 minutes at a time. I would like to finish on the fifth evening while leaving a little time to write down questions. The book is a library copy, so I cannot mark the pages. I do not know my reading speed yet.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-07.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I need a checklist for packing a small carry-on for a four-day trip. The forecast says rain on two days, and I will have access to a washing machine once. I plan to walk a lot, so comfortable shoes matter more than formal clothes. Please include a reminder to check the airline liquid limit, but do not assume a specific allowance.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I need a checklist for packing a small carry-on for a four-day trip. The forecast says rain on two days, and I will have access to a washing machine once. I plan to walk a lot, so comfortable shoes matter more than formal clothes. Please include a reminder to check the airline liquid limit, but do not assume a specific allowance.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I need a checklist for packing a small carry-on for a four-day trip. The forecast says rain on two days, and I will have access to a washing machine once. I plan to walk a lot, so comfortable shoes matter more than formal clothes. Please include a reminder to check the airline liquid limit, but do not assume a specific allowance.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I need a checklist for packing a small carry-on for a four-day trip. The forecast says rain on two days, and I will have access to a washing machine once. I plan to walk a lot, so comfortable shoes matter more than formal clothes. Please include a reminder to check the airline liquid limit, but do not assume a specific allowance.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I need a checklist for packing a small carry-on for a four-day trip. The forecast says rain on two days, and I will have access to a washing machine once. I plan to walk a lot, so comfortable shoes matter more than formal clothes. Please include a reminder to check the airline liquid limit, but do not assume a specific allowance.",
+      "B3": "I need a checklist for packing a small carry-on for a four-day trip. The forecast says rain on two days, and I will have access to a washing machine once. I plan to walk a lot, so comfortable shoes matter more than formal clothes. Please include a reminder to check the airline liquid limit, but do not assume a specific allowance.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-08.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am trying to adjust a soup recipe for six people. The original serves four and uses 800 grams of tomatoes, two onions and 600 millilitres of stock. I want to keep the same proportions, but I will add salt gradually after tasting. One guest avoids dairy, so please do not suggest cream as a garnish.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am trying to adjust a soup recipe for six people. The original serves four and uses 800 grams of tomatoes, two onions and 600 millilitres of stock. I want to keep the same proportions, but I will add salt gradually after tasting. One guest avoids dairy, so please do not suggest cream as a garnish.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am trying to adjust a soup recipe for six people. The original serves four and uses 800 grams of tomatoes, two onions and 600 millilitres of stock. I want to keep the same proportions, but I will add salt gradually after tasting. One guest avoids dairy, so please do not suggest cream as a garnish.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am trying to adjust a soup recipe for six people. The original serves four and uses 800 grams of tomatoes, two onions and 600 millilitres of stock. I want to keep the same proportions, but I will add salt gradually after tasting. One guest avoids dairy, so please do not suggest cream as a garnish.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I am trying to adjust a soup recipe for six people. The original serves four and uses 800 grams of tomatoes, two onions and 600 millilitres of stock. I want to keep the same proportions, but I will add salt gradually after tasting. One guest avoids dairy, so please do not suggest cream as a garnish.",
+      "B3": "I am trying to adjust a soup recipe for six people. The original serves four and uses 800 grams of tomatoes, two onions and 600 millilitres of stock. I want to keep the same proportions, but I will add salt gradually after tasting. One guest avoids dairy, so please do not suggest cream as a garnish.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-09.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My father, Youssef Haddad, and I are organising a family lunch. He can bring a vegetarian main dish, but only if we confirm by Friday. I will bring a salad and ask everyone about allergies before shopping. We expect eight people, although two have not replied. Please turn this into a short checklist without treating the headcount as final.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My father, Youssef Haddad, and I are organising a family lunch. He can bring a vegetarian main dish, but only if we confirm by Friday. I will bring a salad and ask everyone about allergies before shopping. We expect eight people, although two have not replied. Please turn this into a short checklist without treating the headcount as final.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 11,
+          "end": 25,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 11,
+          "end": 25,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "section_requires_explicit_drop",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 0,
+          "end": 62,
+          "label": "FAMILY",
+          "reason": "section_requires_explicit_drop"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 135,
+          "end": 204,
+          "label": "HEALTH",
+          "reason": "essential_fact"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 0,
+          "end": 62,
+          "label": "FAMILY",
+          "reason": "essential_fact"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 135,
+          "end": 204,
+          "label": "HEALTH",
+          "reason": "essential_fact"
+        }
+      ],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My father, [PERSON_1], and I are organising a family lunch. He can bring a vegetarian main dish, but only if we confirm by Friday. I will bring a salad and ask everyone about allergies before shopping. We expect eight people, although two have not replied. Please turn this into a short checklist without treating the headcount as final.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My father, [PERSON_1], and I are organising a family lunch. He can bring a vegetarian main dish, but only if we confirm by Friday. I will bring a salad and ask everyone about allergies before shopping. We expect eight people, although two have not replied. Please turn this into a short checklist without treating the headcount as final.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "My father, [PERSON_1], and I are organising a family lunch. He can bring a vegetarian main dish, but only if we confirm by Friday. I will bring a salad and ask everyone about allergies before shopping. We expect eight people, although two have not replied. Please turn this into a short checklist without treating the headcount as final.",
+      "B3": "My father, [PERSON_1], and I are organising a family lunch. He can bring a vegetarian main dish, but only if we confirm by Friday. I will bring a salad and ask everyone about allergies before shopping. We expect eight people, although two have not replied. Please turn this into a short checklist without treating the headcount as final.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-10.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "For an external AI writing assistant: our account manager, Amina Diallo, spoke with the prospective customer Juniper Forge. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is 72,500 euros. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "For an external AI writing assistant: our account manager, Amina Diallo, spoke with the prospective customer Juniper Forge. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is 72,500 euros. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 59,
+          "end": 71,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 59,
+          "end": 71,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 309,
+          "end": 321,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 309,
+          "end": 321,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer Juniper Forge. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is 72,500 euros. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer Juniper Forge. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is 72,500 euros. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer [ORG]. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is [FINANCIAL]. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+      "B3": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer [ORG]. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is [FINANCIAL]. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer [ORG]. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is [FINANCIAL]. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+        "actual": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer Juniper Forge. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is 72,500 euros. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price."
+      },
+      "B3": {
+        "expected": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer [ORG]. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is [FINANCIAL]. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price.",
+        "actual": "For an external AI writing assistant: our account manager, [PERSON_1], spoke with the prospective customer Juniper Forge. Their identity is private until the contract is signed. They asked for a two-week onboarding outline and a named point of contact; do not promise a launch date. Our unapproved offer is 72,500 euros. Please draft a generic follow-up that focuses on the onboarding questions and avoids the price."
+      }
+    }
+  },
+  {
+    "file": "fixture-11.xlsx",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am troubleshooting an application with an external AI. The test request returns HTTP 403 after the client connects successfully. The log says permission denied for the requested resource; the same request worked before a configuration change. My password is synthetic-demo-7Xq! and should not be shared. Please suggest generic checks for permissions and configuration without assuming which change caused the error.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am troubleshooting an application with an external AI. The test request returns HTTP 403 after the client connects successfully. The log says permission denied for the requested resource; the same request worked before a configuration change. My password is synthetic-demo-7Xq! and should not be shared. Please suggest generic checks for permissions and configuration without assuming which change caused the error.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 260,
+          "end": 279,
+          "label": "SECRET",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 260,
+          "end": 279,
+          "label": "SECRET",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I am troubleshooting an application with an external AI. The test request returns HTTP 403 after the client connects successfully. The log says permission denied for the requested resource; the same request worked before a configuration change. My password is [SECRET] and should not be shared. Please suggest generic checks for permissions and configuration without assuming which change caused the error.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I am troubleshooting an application with an external AI. The test request returns HTTP 403 after the client connects successfully. The log says permission denied for the requested resource; the same request worked before a configuration change. My password is [SECRET] and should not be shared. Please suggest generic checks for permissions and configuration without assuming which change caused the error.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I am troubleshooting an application with an external AI. The test request returns HTTP 403 after the client connects successfully. The log says permission denied for the requested resource; the same request worked before a configuration change. My password is [SECRET] and should not be shared. Please suggest generic checks for permissions and configuration without assuming which change caused the error.",
+      "B3": "I am troubleshooting an application with an external AI. The test request returns HTTP 403 after the client connects successfully. The log says permission denied for the requested resource; the same request worked before a configuration change. My password is [SECRET] and should not be shared. Please suggest generic checks for permissions and configuration without assuming which change caused the error.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-12.xlsx",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I need help wording an external response to a support ticket. The customer, Leila Bako, says the export stops at 90 percent and no file appears. Her email is leila.bako@example.invalid and the internal account reference is ACCT-8K42. Ask her to retry once and describe the time of the failure; do not claim that her data is lost. The support team has not yet reproduced the problem.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I need help wording an external response to a support ticket. The customer, Leila Bako, says the export stops at 90 percent and no file appears. Her email is leila.bako@example.invalid and the internal account reference is ACCT-8K42. Ask her to retry once and describe the time of the failure; do not claim that her data is lost. The support team has not yet reproduced the problem.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 76,
+          "end": 86,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 158,
+          "end": 184,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 223,
+          "end": 232,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 76,
+          "end": 86,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 158,
+          "end": 184,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 223,
+          "end": 232,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "I need help wording an external response to a support ticket. The customer, [PERSON_1], says the export stops at 90 percent and no file appears. Her email is [EMAIL] and the internal account reference is [ACCOUNT_ID]. Ask her to retry once and describe the time of the failure; do not claim that her data is lost. The support team has not yet reproduced the problem.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "I need help wording an external response to a support ticket. The customer, [PERSON_1], says the export stops at 90 percent and no file appears. Her email is [EMAIL] and the internal account reference is [ACCOUNT_ID]. Ask her to retry once and describe the time of the failure; do not claim that her data is lost. The support team has not yet reproduced the problem.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "I need help wording an external response to a support ticket. The customer, [PERSON_1], says the export stops at 90 percent and no file appears. Her email is [EMAIL] and the internal account reference is [ACCOUNT_ID]. Ask her to retry once and describe the time of the failure; do not claim that her data is lost. The support team has not yet reproduced the problem.",
+      "B3": "I need help wording an external response to a support ticket. The customer, [PERSON_1], says the export stops at 90 percent and no file appears. Her email is [EMAIL] and the internal account reference is [ACCOUNT_ID]. Ask her to retry once and describe the time of the failure; do not claim that her data is lost. The support team has not yet reproduced the problem.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {}
+  },
+  {
+    "file": "fixture-13.xlsx",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.\n\nA separate internal HR note says that employee Sora Kim received a proposed salary of 84,000 euros and is on medical leave.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.\n\nA separate internal HR note says that employee Sora Kim received a proposed salary of 84,000 euros and is on medical leave.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 277,
+          "end": 285,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 277,
+          "end": 285,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "section_requires_explicit_drop",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 230,
+          "end": 352,
+          "label": "FINANCIAL",
+          "reason": "section_requires_explicit_drop"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 230,
+          "end": 352,
+          "label": "FINANCIAL",
+          "reason": "section_requires_explicit_drop"
+        }
+      ],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.\n\nA separate internal HR note says that employee [PERSON_1] received a proposed salary of 84,000 euros and is on medical leave.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.\n\nA separate internal HR note says that employee [PERSON_1] received a proposed salary of 84,000 euros and is on medical leave.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.",
+      "B3": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.",
+        "actual": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.\n\nA separate internal HR note says that employee [PERSON_1] received a proposed salary of 84,000 euros and is on medical leave."
+      },
+      "B3": {
+        "expected": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.",
+        "actual": "For an external writing tool, turn these meeting notes into a general request for applicants. The team needs someone who can explain technical decisions clearly and work with designers. The role can be remote within the country.\n\nA separate internal HR note says that employee [PERSON_1] received a proposed salary of 84,000 euros and is on medical leave."
+      }
+    }
+  },
+  {
+    "file": "fixture-14.xlsx",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My sister, Nkiru Okafor, checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nMy unrelated savings balance is 2,300 euros.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My sister, Nkiru Okafor, checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nMy unrelated savings balance is 2,300 euros.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 11,
+          "end": 23,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 11,
+          "end": 23,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 25,
+          "end": 278,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 279,
+          "end": 290,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 25,
+          "end": 278,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 279,
+          "end": 290,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nMy unrelated savings balance is 2,300 euros.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nMy unrelated savings balance is 2,300 euros.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+      "B3": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+        "actual": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nMy unrelated savings balance is 2,300 euros.\n\nThe club meets on Thursday; I need to ask to move it to Friday."
+      },
+      "B3": {
+        "expected": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nThe club meets on Thursday; I need to ask to move it to Friday.",
+        "actual": "My sister, [PERSON_1], checked my temperature after lunch. It was 38.1 C on Tuesday and 37.4 C on Wednesday. I had a sore throat but no cough. I have not taken any fever medicine. I want to keep the timing straight before I speak to the nurse.\n\nMy unrelated savings balance is 2,300 euros.\n\nThe club meets on Thursday; I need to ask to move it to Friday."
+      }
+    }
+  },
+  {
+    "file": "fixture-15.xlsx",
+    "training_derived": true,
+    "before": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My flatmate, Eren Aydin, says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.\n\nI also owe 1,240 euros on a personal loan.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My flatmate, Eren Aydin, says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.\n\nI also owe 1,240 euros on a personal loan.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 13,
+          "end": 23,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 13,
+          "end": 23,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 1,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 1,
+          "source_column": 4,
+          "start": 0,
+          "end": 5,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 280,
+          "end": 298,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 310,
+          "end": 314,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 280,
+          "end": 298,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 310,
+          "end": 314,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 10,
+        "total_nonempty_cells": 10,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 3,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "kind",
+      "B1": "message",
+      "C1": "note",
+      "D1": "blank",
+      "A2": "primary",
+      "B2": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.\n\nI also owe 1,240 euros on a personal loan.",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "B3": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.\n\nI also owe 1,240 euros on a personal loan.",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "expected": {
+      "B2": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.",
+      "B3": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.",
+      "A2": "primary",
+      "C2": "café, north",
+      "D2": "",
+      "A3": "repeat",
+      "C3": "ordinary",
+      "D3": ""
+    },
+    "mismatches": {
+      "B2": {
+        "expected": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.",
+        "actual": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.\n\nI also owe 1,240 euros on a personal loan."
+      },
+      "B3": {
+        "expected": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.",
+        "actual": "My flatmate, [PERSON_1], says the kitchen tap has dripped since Friday. We put a bowl underneath and it filled halfway overnight. The shutoff valve still turns, but the handle is stiff. Please ask the landlord to arrange a repair and mention that weekday afternoons work.\n\nI also owe 1,240 euros on a personal loan."
+      }
+    }
+  },
+  {
+    "file": "video-support.csv",
+    "training_derived": true,
+    "before": {
+      "A1": "customer_id",
+      "B1": "customer_name",
+      "C1": "email",
+      "D1": "complaint",
+      "A2": "C-1042",
+      "B2": "Emma Wilson",
+      "C2": "emma.wilson@example.com",
+      "D2": "I was charged twice for the same order. Please refund the extra payment.",
+      "A3": "C-2087",
+      "B3": "Oliver Davis",
+      "C3": "oliver.davis@example.com",
+      "D3": "I returned my order two weeks ago and still haven’t received my refund. Please send an update to oliver.davis@example.com.",
+      "A4": "C-3156",
+      "B4": "Sofia Martin",
+      "C4": "sofia.martin@example.com",
+      "D4": "The password-reset email never arrives, so I can’t get into my account.",
+      "A5": "C-4093",
+      "B5": "Noah Taylor",
+      "C5": "noah.taylor@example.com",
+      "D5": "My payment failed on screen, so I tried again. Now I can see two charges for one order.",
+      "A6": "C-5028",
+      "B6": "Amelia Brown",
+      "C6": "amelia.brown@example.com",
+      "D6": "Support confirmed my refund ten days ago, but the money still hasn’t arrived.",
+      "A7": "C-6074",
+      "B7": "Lucas Harris",
+      "C7": "lucas.harris@example.com",
+      "D7": "Hi, Lucas Harris here. I’ve been billed twice for a single purchase and need the duplicate charge reversed."
+    },
+    "report": {
+      "status": "needs_review",
+      "model_version": "encoder-b-pilot",
+      "edits": [
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 1,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 1,
+          "start": 0,
+          "end": 6,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 2,
+          "start": 0,
+          "end": 11,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 2,
+          "column": 3,
+          "source_sheet": 1,
+          "source_row": 2,
+          "source_column": 3,
+          "start": 0,
+          "end": 23,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 1,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 1,
+          "start": 0,
+          "end": 6,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 2,
+          "start": 0,
+          "end": 12,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 3,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 3,
+          "start": 0,
+          "end": 24,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 3,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 3,
+          "source_column": 4,
+          "start": 97,
+          "end": 121,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 4,
+          "column": 1,
+          "source_sheet": 1,
+          "source_row": 4,
+          "source_column": 1,
+          "start": 0,
+          "end": 6,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 4,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 4,
+          "source_column": 2,
+          "start": 0,
+          "end": 12,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 4,
+          "column": 3,
+          "source_sheet": 1,
+          "source_row": 4,
+          "source_column": 3,
+          "start": 0,
+          "end": 24,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 5,
+          "column": 1,
+          "source_sheet": 1,
+          "source_row": 5,
+          "source_column": 1,
+          "start": 0,
+          "end": 6,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 5,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 5,
+          "source_column": 2,
+          "start": 0,
+          "end": 11,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 5,
+          "column": 3,
+          "source_sheet": 1,
+          "source_row": 5,
+          "source_column": 3,
+          "start": 0,
+          "end": 23,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 6,
+          "column": 1,
+          "source_sheet": 1,
+          "source_row": 6,
+          "source_column": 1,
+          "start": 0,
+          "end": 6,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 6,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 6,
+          "source_column": 2,
+          "start": 0,
+          "end": 12,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 6,
+          "column": 3,
+          "source_sheet": 1,
+          "source_row": 6,
+          "source_column": 3,
+          "start": 0,
+          "end": 24,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 7,
+          "column": 1,
+          "source_sheet": 1,
+          "source_row": 7,
+          "source_column": 1,
+          "start": 0,
+          "end": 6,
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 7,
+          "column": 2,
+          "source_sheet": 1,
+          "source_row": 7,
+          "source_column": 2,
+          "start": 0,
+          "end": 12,
+          "label": "PERSON",
+          "action": "ALIAS",
+          "reason": "direct_identifier_policy"
+        },
+        {
+          "sheet": 1,
+          "row": 7,
+          "column": 3,
+          "source_sheet": 1,
+          "source_row": 7,
+          "source_column": 3,
+          "start": 0,
+          "end": 24,
+          "label": "EMAIL",
+          "action": "PLACEHOLDER",
+          "reason": "direct_identifier_policy"
+        }
+      ],
+      "review_reasons": [
+        "cross_field_inference_not_validated",
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [],
+      "pending_reviews": [
+        {
+          "sheet": 1,
+          "row": 7,
+          "column": 4,
+          "source_sheet": 1,
+          "source_row": 7,
+          "source_column": 4,
+          "start": 4,
+          "end": 21,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ],
+      "runtime_versions": {
+        "pipeline": "privacy-edit-pipeline.2",
+        "policy": "consumer-v1-pilot.2",
+        "model_training_policy": "consumer-v1-pilot.2",
+        "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+      },
+      "coverage": {
+        "complete": true,
+        "scanned_nonempty_cells": 28,
+        "total_nonempty_cells": 28,
+        "sheets": [
+          {
+            "sheet": 1,
+            "output_name": "Sheet1",
+            "rows": 7,
+            "columns": 4,
+            "source_sheet": 1,
+            "sheet_name_scanned": true,
+            "source_rows": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "source_columns": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "hidden_sheets_omitted": 0,
+        "hidden_rows_omitted": 0,
+        "hidden_columns_omitted": 0
+      },
+      "metadata": "new_values_only_file"
+    },
+    "after": {
+      "A1": "customer_id",
+      "B1": "customer_name",
+      "C1": "email",
+      "D1": "complaint",
+      "A2": "[ACCOUNT_ID]",
+      "B2": "[PERSON_1]",
+      "C2": "[EMAIL]",
+      "D2": "I was charged twice for the same order. Please refund the extra payment.",
+      "A3": "[ACCOUNT_ID]",
+      "B3": "[PERSON_2]",
+      "C3": "[EMAIL]",
+      "D3": "I returned my order two weeks ago and still haven’t received my refund. Please send an update to [EMAIL].",
+      "A4": "[ACCOUNT_ID]",
+      "B4": "[PERSON_3]",
+      "C4": "[EMAIL]",
+      "D4": "The password-reset email never arrives, so I can’t get into my account.",
+      "A5": "[ACCOUNT_ID]",
+      "B5": "[PERSON_4]",
+      "C5": "[EMAIL]",
+      "D5": "My payment failed on screen, so I tried again. Now I can see two charges for one order.",
+      "A6": "[ACCOUNT_ID]",
+      "B6": "[PERSON_5]",
+      "C6": "[EMAIL]",
+      "D6": "Support confirmed my refund ten days ago, but the money still hasn’t arrived.",
+      "A7": "[ACCOUNT_ID]",
+      "B7": "[PERSON_6]",
+      "C7": "[EMAIL]",
+      "D7": "Hi, Lucas Harris here. I’ve been billed twice for a single purchase and need the duplicate charge reversed."
+    },
+    "expected": {
+      "A1": "customer_id",
+      "B1": "customer_name",
+      "C1": "email",
+      "D1": "complaint",
+      "A2": "[ACCOUNT_ID]",
+      "B2": "[PERSON_1]",
+      "C2": "[EMAIL]",
+      "D2": "I was charged twice for the same order. Please refund the extra payment.",
+      "A3": "[ACCOUNT_ID]",
+      "B3": "[PERSON_2]",
+      "C3": "[EMAIL]",
+      "D3": "I returned my order two weeks ago and still haven’t received my refund. Please send an update to [EMAIL].",
+      "A4": "[ACCOUNT_ID]",
+      "B4": "[PERSON_3]",
+      "C4": "[EMAIL]",
+      "D4": "The password-reset email never arrives, so I can’t get into my account.",
+      "A5": "[ACCOUNT_ID]",
+      "B5": "[PERSON_4]",
+      "C5": "[EMAIL]",
+      "D5": "My payment failed on screen, so I tried again. Now I can see two charges for one order.",
+      "A6": "[ACCOUNT_ID]",
+      "B6": "[PERSON_5]",
+      "C6": "[EMAIL]",
+      "D6": "Support confirmed my refund ten days ago, but the money still hasn’t arrived.",
+      "A7": "[ACCOUNT_ID]",
+      "B7": "[PERSON_6]",
+      "C7": "[EMAIL]",
+      "D7": "Hi, [PERSON_6] here. I’ve been billed twice for a single purchase and need the duplicate charge reversed."
+    },
+    "mismatches": {
+      "D7": {
+        "expected": "Hi, [PERSON_6] here. I’ve been billed twice for a single purchase and need the duplicate charge reversed.",
+        "actual": "Hi, Lucas Harris here. I’ve been billed twice for a single purchase and need the duplicate charge reversed."
+      }
+    }
+  }
+]

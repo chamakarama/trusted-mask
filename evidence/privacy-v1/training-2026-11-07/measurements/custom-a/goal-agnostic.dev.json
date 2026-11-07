@@ -1,0 +1,65 @@
+{
+  "counts": {
+    "records": 50,
+    "gold_spans": 61,
+    "gold_detection_spans": 63,
+    "detected_gold_exact": 28,
+    "gold_action_correct": 58,
+    "gold_relevance_correct": 52,
+    "required_removal": 46,
+    "required_removed": 29,
+    "direct_required": 30,
+    "direct_removed": 28,
+    "required_facts": 182,
+    "facts_retained": 181,
+    "ready": 0,
+    "unsupported": 0,
+    "predicted_spans": 34,
+    "benign_characters": 15592,
+    "benign_characters_changed": 161,
+    "required_section_drops": 9,
+    "sections_dropped": 1,
+    "gold_keep_characters": 799,
+    "gold_keep_characters_changed": 28
+  },
+  "gold_span_action_accuracy_diagnostic": 0.9508196721311475,
+  "exact_detector_recall": 0.4444444444444444,
+  "exact_detector_precision": 0.8235294117647058,
+  "draft_benign_character_change_rate": 0.010325808106721396,
+  "gold_span_relevance_accuracy_diagnostic": 0.8524590163934426,
+  "draft_required_removal_coverage": 0.6304347826086957,
+  "draft_direct_removal_coverage": 0.9333333333333333,
+  "draft_exact_fact_retention": 0.9945054945054945,
+  "draft_privacy_misses": 17,
+  "draft_section_drop_recall": 0.1111111111111111,
+  "draft_keep_character_change_rate": 0.03504380475594493,
+  "automatic_coverage": 0.0,
+  "latency_seconds": {
+    "median": 0.005033491999995476,
+    "p95": 0.00651534499996842
+  },
+  "runtime_versions": {
+    "pipeline": "privacy-edit-pipeline.2",
+    "policy": "consumer-v1-pilot.2",
+    "model_training_policy": "consumer-v1-pilot.2",
+    "model_bundle_sha256": "d176c5bc71b7e65b2fe739dce0fd84cf0ff131bea847b1f907c570693fbbb132"
+  },
+  "release_pass": false,
+  "independent_evidence": false,
+  "limitations": [
+    "Model-reviewed short dev records; no human audit or independent final test",
+    "draft metrics include review outputs and are not successful automatic exports",
+    "gold-span classification is diagnostic, not end-to-end privacy",
+    "span coverage does not measure inference attacks or downstream utility"
+  ],
+  "context_sensitivity": {
+    "task_swap_groups": 7,
+    "groups_with_changed_output": 0
+  },
+  "reporting_metadata_correction": {
+    "previous_sha256": "ba6d8ca965de5fee8ac7781d569cb33d749354b85baf40399f58811d68560213",
+    "previous_limitation": "50 model-reviewed short dev records; no human audit or independent final test",
+    "metrics_and_predictions_unchanged": true
+  },
+  "evaluation_role": "dev"
+}

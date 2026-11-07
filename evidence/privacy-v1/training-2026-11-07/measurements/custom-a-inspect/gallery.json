@@ -1,0 +1,65 @@
+{
+  "counts": {
+    "records": 6,
+    "gold_spans": 58,
+    "gold_detection_spans": 58,
+    "detected_gold_exact": 38,
+    "gold_action_correct": 58,
+    "gold_relevance_correct": 58,
+    "required_removal": 47,
+    "required_removed": 38,
+    "direct_required": 42,
+    "direct_removed": 38,
+    "required_facts": 24,
+    "facts_retained": 24,
+    "ready": 0,
+    "unsupported": 0,
+    "predicted_spans": 46,
+    "benign_characters": 2388,
+    "benign_characters_changed": 0,
+    "required_section_drops": 4,
+    "sections_dropped": 0,
+    "gold_keep_characters": 659,
+    "gold_keep_characters_changed": 0
+  },
+  "gold_span_action_accuracy_diagnostic": 1.0,
+  "exact_detector_recall": 0.6551724137931034,
+  "exact_detector_precision": 0.8260869565217391,
+  "draft_benign_character_change_rate": 0.0,
+  "gold_span_relevance_accuracy_diagnostic": 1.0,
+  "draft_required_removal_coverage": 0.8085106382978723,
+  "draft_direct_removal_coverage": 0.9047619047619048,
+  "draft_exact_fact_retention": 1.0,
+  "draft_privacy_misses": 9,
+  "draft_section_drop_recall": 0.0,
+  "draft_keep_character_change_rate": 0.0,
+  "automatic_coverage": 0.0,
+  "latency_seconds": {
+    "median": 0.010395922000043356,
+    "p95": 0.015083470000035959
+  },
+  "runtime_versions": {
+    "pipeline": "privacy-edit-pipeline.2",
+    "policy": "consumer-v1-pilot.2",
+    "model_training_policy": "consumer-v1-pilot.2",
+    "model_bundle_sha256": "d176c5bc71b7e65b2fe739dce0fd84cf0ff131bea847b1f907c570693fbbb132"
+  },
+  "release_pass": false,
+  "independent_evidence": false,
+  "limitations": [
+    "Training demonstrations; not held-out generalisation evidence",
+    "draft metrics include review outputs and are not successful automatic exports",
+    "gold-span classification is diagnostic, not end-to-end privacy",
+    "span coverage does not measure inference attacks or downstream utility"
+  ],
+  "context_sensitivity": {
+    "task_swap_groups": 0,
+    "groups_with_changed_output": 0
+  },
+  "reporting_metadata_correction": {
+    "previous_sha256": "5d5308fa5caf330f719af908b55bd945e52d694653047a202857b438e7601275",
+    "previous_limitation": "50 model-reviewed short dev records; no human audit or independent final test",
+    "metrics_and_predictions_unchanged": true
+  },
+  "evaluation_role": "training_demonstration"
+}

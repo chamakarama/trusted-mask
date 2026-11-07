@@ -1,5 +1,7 @@
 # Mask Local — executable A/B pilot
 
+The **7 November 2026 reviewed-data training comparison** adds a DeBERTa challenger alongside custom-a and pinned MiniLM. See the [campaign report](../../../evidence/privacy-v1/training-2026-11-07/COMPARISON.md) for selected bundles, reproducible commands, dataset hashes, measured failures and artifact retrieval. These experiments do not replace the live demo or the historical pilot bundles described below.
+
 This package implements the first engineering milestone of [the local model plan](../../../planning/LOCAL_MODEL_PLAN.md): **two trained local prototypes sharing policy, exact-offset edits, message handling and basic table adapters**. It is not a validated privacy release. All draft outputs remain `needs_review`; unsupported inputs return no protected text/file. Raw softmax scores are not calibrated certainty.
 
 ## Implemented
