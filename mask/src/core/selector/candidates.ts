@@ -107,6 +107,19 @@ function hardConstraintProblems(recipe: RecipeDef, unit: DecisionUnit, ctx: Sele
   return problems;
 }
 
+/** Parameter-dependent validity: a transformation that would change nothing is not a protection. */
+function paramProblems(recipe: RecipeDef, params: RecipeParams, unit: DecisionUnit, ctx: SelectionContext): string[] {
+  if (recipe.id !== "generalize_category_rare" || unit.kind === "span_class") return [];
+  const minGroup = Number(params.minGroup);
+  for (const ref of unit.refs) {
+    const { column } = statsFor(ctx, ref.table, ref.column);
+    const s = column.stats;
+    const smallest = s.minCategoryShare !== undefined ? s.minCategoryShare * s.nonEmpty : undefined;
+    if (smallest !== undefined && smallest >= minGroup) return [`no category has fewer than ${minGroup} rows: merging would change nothing (same as keep)`];
+  }
+  return [];
+}
+
 /** All candidates for a unit, each marked valid or not with reasons. Deterministic order. */
 export function enumerateCandidates(unit: DecisionUnit, ctx: SelectionContext): Candidate[] {
   const dets = detectionFor(ctx, unit);
@@ -115,7 +128,7 @@ export function enumerateCandidates(unit: DecisionUnit, ctx: SelectionContext): 
   for (const recipe of RECIPES) {
     if (!recipe.scope.includes(unit.kind)) continue;
     for (const params of paramBundles(recipe, det)) {
-      const problems = [...preconditionProblems(recipe, unit, ctx, det), ...hardConstraintProblems(recipe, unit, ctx, det)];
+      const problems = [...preconditionProblems(recipe, unit, ctx, det), ...hardConstraintProblems(recipe, unit, ctx, det), ...paramProblems(recipe, params, unit, ctx)];
       out.push({ recipeId: recipe.id, params, valid: problems.length === 0, invalidReasons: problems, label: candidateLabel(recipe.id, params) });
     }
   }
