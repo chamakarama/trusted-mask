@@ -1,0 +1,167 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "edb79ce33dab4721814675c087183792",
+  "id": "edb79ce33dab4721814675c087183792:id-009",
+  "family_id": "edb79ce33dab4721814675c087183792:fam-cornwall-voucher-refusal",
+  "persona_id": "edb79ce33dab4721814675c087183792:per-cornwall-voucher-refusal",
+  "source_id": "edb79ce33dab4721814675c087183792:src-cornwall-voucher-refusal",
+  "template_id": "edb79ce33dab4721814675c087183792:tpl-cornwall-voucher-refusal",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a firm message asking for a full refund and mentioning the amount owed to our friend.",
+  "text": "Forwarding my holiday rental thread so you can help me reply. We booked a cottage in Cornwall for 5 nights from 12 July, 940 pounds in total, under the name Oluwaseun Adeyemi, booking ID CORN-5530-18. The owner, Mrs Gwen Treloar, cancelled 3 days before arrival because of a burst pipe and offered a 30% voucher instead of a refund. Our friend Hamid Rahimi has already paid 200 pounds towards the booking, so he wants his share back first. Gwen says formal notices must go to her letting agent at 14 Quay Lane, Falmouth TR11 3AA. We do not want the voucher. Please draft a firm message asking for a full refund of the 940 pounds within 7 days, and mention the 200 pounds owed to Hamid.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "booker",
+    "label": "PERSON",
+    "quote": "Oluwaseun Adeyemi"
+   },
+   {
+    "id": "m2",
+    "entity_id": "bookid",
+    "label": "ACCOUNT_ID",
+    "quote": "CORN-5530-18"
+   },
+   {
+    "id": "m3",
+    "entity_id": "owner",
+    "label": "PERSON",
+    "quote": "Gwen Treloar"
+   },
+   {
+    "id": "m5",
+    "entity_id": "friend",
+    "label": "PERSON",
+    "quote": "Hamid Rahimi"
+   },
+   {
+    "id": "m4",
+    "entity_id": "owner",
+    "label": "PERSON",
+    "quote": "Gwen",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "agent-address",
+    "label": "ADDRESS",
+    "quote": "14 Quay Lane, Falmouth TR11 3AA"
+   },
+   {
+    "id": "m6",
+    "entity_id": "friend",
+    "label": "PERSON",
+    "quote": "Hamid",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "booker",
+    "quote": "Oluwaseun Adeyemi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "bookid",
+    "quote": "CORN-5530-18",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The refund request should cite the booking ID; the exact value is hidden so the user must re-insert it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "owner",
+    "quote": "Gwen Treloar",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "friend",
+    "quote": "Hamid Rahimi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "owner",
+    "quote": "Gwen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "agent-address",
+    "quote": "14 Quay Lane, Falmouth TR11 3AA",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The refund message does not need the letting agent's street address; nothing is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "friend",
+    "quote": "Hamid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "We booked a cottage in Cornwall for 5 nights from 12 July, 940 pounds in total,"
+   },
+   {
+    "quote": "under the name"
+   },
+   {
+    "quote": "The owner, Mrs"
+   },
+   {
+    "quote": ", cancelled 3 days before arrival because of a burst pipe and offered a 30% voucher instead of a refund."
+   },
+   {
+    "quote": "Our friend"
+   },
+   {
+    "quote": "has already paid 200 pounds towards the booking, so he wants his share back first."
+   },
+   {
+    "quote": "says formal notices must go to her letting agent at"
+   },
+   {
+    "quote": "We do not want the voucher."
+   }
+  ],
+  "approved_output": "Forwarding my holiday rental thread so you can help me reply. We booked a cottage in Cornwall for 5 nights from 12 July, 940 pounds in total, under the name [PERSON_1], booking ID [ACCOUNT_ID]. The owner, Mrs [PERSON_2], cancelled 3 days before arrival because of a burst pipe and offered a 30% voucher instead of a refund. Our friend [PERSON_3] has already paid 200 pounds towards the booking, so he wants his share back first. [PERSON_2] says formal notices must go to her letting agent at [ADDRESS]. We do not want the voucher. Please draft a firm message asking for a full refund of the 940 pounds within 7 days, and mention the 200 pounds owed to [PERSON_3].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "edb79ce33dab4721814675c087183792:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

@@ -1,0 +1,1417 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:id-001",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-cardfraud-ridecharges",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-cardfraud-ridecharges",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-cardfraud-ridecharges",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-cardfraud-ridecharges",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a clear dispute message to my bank's fraud team listing the payments I didn't make and asking how the ride-app charges will be handled.",
+  "text": "Hi, I need help writing to my bank's fraud team. On 3 October I noticed four card payments I never made: 89.99 euros to an online electronics shop, then three charges of 24.50 euros each to a ride app I don't even have installed. The statement shows the full card number, 4000 1234 5678 9010, and I've already blocked that card in the app. My husband, Nguyen Van Duc, has his own card on the same account and his payments look normal. The branch adviser, Mrs Oyelaran, told me on the phone that disputes must be filed within 13 months, but she wasn't sure whether the ride-app charges count as one dispute or three. Replies can go to lan.nguyen@example.com or 07700 900418.\n\nThanks,\nNguyen Thi Lan",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4000 1234 5678 9010"
+   },
+   {
+    "id": "m2",
+    "entity_id": "husband",
+    "label": "PERSON",
+    "quote": "Nguyen Van Duc"
+   },
+   {
+    "id": "m3",
+    "entity_id": "adviser",
+    "label": "PERSON",
+    "quote": "Oyelaran"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "lan.nguyen@example.com"
+   },
+   {
+    "id": "m5",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "07700 900418"
+   },
+   {
+    "id": "m6",
+    "entity_id": "self",
+    "label": "PERSON",
+    "quote": "Nguyen Thi Lan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "card",
+    "quote": "4000 1234 5678 9010",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A full card number enables misuse; the dispute can refer to the blocked card and the user adds the number when sending."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "husband",
+    "quote": "Nguyen Van Duc",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "adviser",
+    "quote": "Oyelaran",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "lan.nguyen@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The contact address identifies the account holder and is not needed to draft the dispute wording."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "phone",
+    "quote": "07700 900418",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The phone number identifies the account holder and is not needed to draft the dispute wording."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "self",
+    "quote": "Nguyen Thi Lan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "On 3 October I noticed four card payments I never made: 89.99 euros to an online electronics shop, then three charges of 24.50 euros each to a ride app I don't even have installed."
+   },
+   {
+    "quote": "and I've already blocked that card in the app."
+   },
+   {
+    "quote": "My husband,"
+   },
+   {
+    "quote": "has his own card on the same account and his payments look normal."
+   },
+   {
+    "quote": "told me on the phone that disputes must be filed within 13 months, but she wasn't sure whether the ride-app charges count as one dispute or three."
+   }
+  ],
+  "approved_output": "Hi, I need help writing to my bank's fraud team. On 3 October I noticed four card payments I never made: 89.99 euros to an online electronics shop, then three charges of 24.50 euros each to a ride app I don't even have installed. The statement shows the full card number, [PAYMENT_CARD], and I've already blocked that card in the app. My husband, [PERSON_1], has his own card on the same account and his payments look normal. The branch adviser, Mrs [PERSON_2], told me on the phone that disputes must be filed within 13 months, but she wasn't sure whether the ride-app charges count as one dispute or three. Replies can go to [EMAIL] or [PHONE].\n\nThanks,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:id-002",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-carclaim-rearend",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-carclaim-rearend",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-carclaim-rearend",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-carclaim-rearend",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me turn this into a firm but polite claim summary for my insurer that explains who was at fault and what I'm asking them to cover.",
+  "text": "Subject: claim for rear-end collision, policy MTR-55-208-417\n\nHello, I'm writing about the accident on 14 September at roughly 17:40 on the ring road roundabout. The other driver, Kaveh Rostami, drove into the back of my car while I was stopped at the give-way line; he admitted at the scene that he was looking at his phone. His insurer's reference is 88-QX-30917. My rear bumper and the parking sensors were damaged, and the garage quoted 1,860 euros, not including the hire car. A witness, Ilse Vermeulen, said she'd confirm what she saw, though she only saw the impact, not the moment before. Ilse's statement isn't written yet. Please send any forms to 12 Kestrel Row, Lindmouth LM4 7QT, not to my old address. My excess is 300 euros.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "MTR-55-208-417"
+   },
+   {
+    "id": "m2",
+    "entity_id": "kaveh",
+    "label": "PERSON",
+    "quote": "Kaveh Rostami"
+   },
+   {
+    "id": "m3",
+    "entity_id": "otherref",
+    "label": "ACCOUNT_ID",
+    "quote": "88-QX-30917"
+   },
+   {
+    "id": "m4",
+    "entity_id": "ilse",
+    "label": "PERSON",
+    "quote": "Ilse Vermeulen"
+   },
+   {
+    "id": "m5",
+    "entity_id": "ilse",
+    "label": "PERSON",
+    "quote": "Ilse",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "address",
+    "label": "ADDRESS",
+    "quote": "12 Kestrel Row, Lindmouth LM4 7QT"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "policy",
+    "quote": "MTR-55-208-417",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The policy number links the claim to the policyholder; the summary only needs to reference it, so exact verification is lost and the user re-adds it when sending."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "kaveh",
+    "quote": "Kaveh Rostami",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "otherref",
+    "quote": "88-QX-30917",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The third party's insurer reference identifies another policyholder and is not needed to explain fault or costs."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "ilse",
+    "quote": "Ilse Vermeulen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "ilse",
+    "quote": "Ilse",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "address",
+    "quote": "12 Kestrel Row, Lindmouth LM4 7QT",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The home address identifies the claimant; the summary only needs to say forms should go to the current address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm writing about the accident on 14 September at roughly 17:40 on the ring road roundabout."
+   },
+   {
+    "quote": "The other driver,"
+   },
+   {
+    "quote": "drove into the back of my car while I was stopped at the give-way line; he admitted at the scene that he was looking at his phone."
+   },
+   {
+    "quote": "My rear bumper and the parking sensors were damaged, and the garage quoted 1,860 euros, not including the hire car."
+   },
+   {
+    "quote": "A witness,"
+   },
+   {
+    "quote": "said she'd confirm what she saw, though she only saw the impact, not the moment before."
+   },
+   {
+    "quote": "'s statement isn't written yet."
+   },
+   {
+    "quote": "My excess is 300 euros."
+   }
+  ],
+  "approved_output": "Subject: claim for rear-end collision, policy [ACCOUNT_ID]\n\nHello, I'm writing about the accident on 14 September at roughly 17:40 on the ring road roundabout. The other driver, [PERSON_1], drove into the back of my car while I was stopped at the give-way line; he admitted at the scene that he was looking at his phone. His insurer's reference is [ACCOUNT_ID]. My rear bumper and the parking sensors were damaged, and the garage quoted 1,860 euros, not including the hire car. A witness, [PERSON_2], said she'd confirm what she saw, though she only saw the impact, not the moment before. [PERSON_2]'s statement isn't written yet. Please send any forms to [ADDRESS], not to my old address. My excess is 300 euros.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:id-003",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-cabinsplit-groupchat",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-cabinsplit-groupchat",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-cabinsplit-groupchat",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-cabinsplit-groupchat",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out who owes whom and how much for our cabin weekend so everyone ends up even, and show the sums.",
+  "text": "Cabin weekend money, pasted from our group chat:\nMarta Szczepańska: final numbers! Cabin was 640 euros for two nights and I paid it all upfront.\nTane Ngata: I did groceries, 118.40, receipt is in the album\nJoonas: I booked the sauna, 45 euros. But I left Saturday morning so I shouldn't pay for Saturday's dinner (96 euros, Marta paid)\nMarta: fair. You still pay a full third of the cabin though, we agreed that\nJoonas: yes ok, a full third of the cabin. Correction though, sauna was 54 not 45, I misread the email\nTane Ngata: can someone just do the maths before Sunday\nMarta: send whatever you owe to FI49 5000 9420 0287 30 or MobilePay 040 555 0172, either works",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "marta",
+    "label": "PERSON",
+    "quote": "Marta Szczepańska"
+   },
+   {
+    "id": "m2",
+    "entity_id": "tane",
+    "label": "PERSON",
+    "quote": "Tane Ngata",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "joonas",
+    "label": "PERSON",
+    "quote": "Joonas",
+    "occurrence": 1
+   },
+   {
+    "id": "m4",
+    "entity_id": "marta",
+    "label": "PERSON",
+    "quote": "Marta",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "marta",
+    "label": "PERSON",
+    "quote": "Marta",
+    "occurrence": 3
+   },
+   {
+    "id": "m6",
+    "entity_id": "joonas",
+    "label": "PERSON",
+    "quote": "Joonas",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "tane",
+    "label": "PERSON",
+    "quote": "Tane Ngata",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "marta",
+    "label": "PERSON",
+    "quote": "Marta",
+    "occurrence": 4
+   },
+   {
+    "id": "m9",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "FI49 5000 9420 0287 30"
+   },
+   {
+    "id": "m10",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "040 555 0172"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "marta",
+    "quote": "Marta Szczepańska",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "tane",
+    "quote": "Tane Ngata",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "joonas",
+    "quote": "Joonas",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "marta",
+    "quote": "Marta",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "marta",
+    "quote": "Marta",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "joonas",
+    "quote": "Joonas",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "tane",
+    "quote": "Tane Ngata",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "marta",
+    "quote": "Marta",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 4
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "iban",
+    "quote": "FI49 5000 9420 0287 30",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bank account number identifies the payee and is not needed to calculate the split."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "phone",
+    "quote": "040 555 0172",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The payment phone number identifies the payee and is not needed to calculate the split."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Cabin was 640 euros for two nights and I paid it all upfront."
+   },
+   {
+    "quote": "I did groceries, 118.40, receipt is in the album"
+   },
+   {
+    "quote": "But I left Saturday morning so I shouldn't pay for Saturday's dinner (96 euros,"
+   },
+   {
+    "quote": "paid)"
+   },
+   {
+    "quote": "You still pay a full third of the cabin though, we agreed that"
+   },
+   {
+    "quote": "Correction though, sauna was 54 not 45, I misread the email"
+   }
+  ],
+  "approved_output": "Cabin weekend money, pasted from our group chat:\n[PERSON_1]: final numbers! Cabin was 640 euros for two nights and I paid it all upfront.\n[PERSON_2]: I did groceries, 118.40, receipt is in the album\n[PERSON_3]: I booked the sauna, 45 euros. But I left Saturday morning so I shouldn't pay for Saturday's dinner (96 euros, [PERSON_1] paid)\n[PERSON_1]: fair. You still pay a full third of the cabin though, we agreed that\n[PERSON_3]: yes ok, a full third of the cabin. Correction though, sauna was 54 not 45, I misread the email\n[PERSON_2]: can someone just do the maths before Sunday\n[PERSON_1]: send whatever you owe to [IBAN] or MobilePay [PHONE], either works",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:id-004",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-taxletter-deposit",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-taxletter-deposit",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-taxletter-deposit",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-taxletter-deposit",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain what this tax letter is claiming and draft a reply disputing the part that wasn't income.",
+  "text": "My accountant, Hemi Walker, is on holiday until the 20th, so I'm trying to understand this tax letter myself. It's addressed to me, Aleksandra Wiśniewska, tax ID 7710-4482-93X, and says I underreported rental income for 2024 by 2,350 euros. That's partly right: I forgot one tenant's December payment of 850 euros, but the other 1,500 is the deposit I returned to her in January, so it was never income. They want a response by 30 November or they'll add a 5% surcharge. Hemi told me before he left that a returned deposit usually isn't taxable at all, but he said \"usually\" and wanted to see the tenancy agreement first. The letter also lists my address as Flat 3, 41 Orchard Lane, Brayford BR2 9LX, which is correct.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "hemi",
+    "label": "PERSON",
+    "quote": "Hemi Walker"
+   },
+   {
+    "id": "m2",
+    "entity_id": "self",
+    "label": "PERSON",
+    "quote": "Aleksandra Wiśniewska"
+   },
+   {
+    "id": "m3",
+    "entity_id": "taxid",
+    "label": "NATIONAL_ID",
+    "quote": "7710-4482-93X"
+   },
+   {
+    "id": "m4",
+    "entity_id": "owed",
+    "label": "FINANCIAL",
+    "quote": "says I underreported rental income for 2024 by 2,350 euros."
+   },
+   {
+    "id": "m5",
+    "entity_id": "hemi",
+    "label": "PERSON",
+    "quote": "Hemi",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "address",
+    "label": "ADDRESS",
+    "quote": "Flat 3, 41 Orchard Lane, Brayford BR2 9LX"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "hemi",
+    "quote": "Hemi Walker",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "self",
+    "quote": "Aleksandra Wiśniewska",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "taxid",
+    "quote": "7710-4482-93X",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The tax identification number is a government identifier; the explanation and draft reply can leave it for the user to add."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "owed",
+    "quote": "says I underreported rental income for 2024 by 2,350 euros.",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "hemi",
+    "quote": "Hemi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "address",
+    "quote": "Flat 3, 41 Orchard Lane, Brayford BR2 9LX",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The home address identifies the taxpayer and only needs to be confirmed as correct, not repeated."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "says I underreported rental income for 2024 by 2,350 euros."
+   },
+   {
+    "quote": "That's partly right: I forgot one tenant's December payment of 850 euros, but the other 1,500 is the deposit I returned to her in January, so it was never income."
+   },
+   {
+    "quote": "They want a response by 30 November or they'll add a 5% surcharge."
+   },
+   {
+    "quote": "told me before he left that a returned deposit usually isn't taxable at all, but he said \"usually\" and wanted to see the tenancy agreement first."
+   }
+  ],
+  "approved_output": "My accountant, [PERSON_1], is on holiday until the 20th, so I'm trying to understand this tax letter myself. It's addressed to me, [PERSON_2], tax ID [NATIONAL_ID], and says I underreported rental income for 2024 by 2,350 euros. That's partly right: I forgot one tenant's December payment of 850 euros, but the other 1,500 is the deposit I returned to her in January, so it was never income. They want a response by 30 November or they'll add a 5% surcharge. [PERSON_1] told me before he left that a returned deposit usually isn't taxable at all, but he said \"usually\" and wanted to see the tenancy agreement first. The letter also lists my address as [ADDRESS], which is correct.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:id-005",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-bundle-doublecharge",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-bundle-doublecharge",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-bundle-doublecharge",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-bundle-doublecharge",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tighten this complaint so it's firm and clear about the repeated charges and what I expect, without sounding aggressive.",
+  "text": "Support ticket draft (streaming + fitness bundle)\nUsername: rkapoor_runs\nOrder ref: SUB-7741-0092\n\nI cancelled the annual bundle on 2 August, within the 14-day cooling-off window, and got a confirmation email at riya.kapoor@example.net. Despite that, I was charged 119 euros on 1 September and again on 1 October, so 238 euros total. Your chat agent, Benedikt, said on 4 October the refund \"should\" arrive in 5-7 working days; nothing has. I don't want a voucher or a free month, I want the money back to the original card. My flatmate, Soo-ah Park, uses a separate account on the same plan and was not charged after cancelling, so it isn't a general billing delay. If this isn't fixed by 31 October I'll raise a chargeback.\nRiya Kapoor",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "user",
+    "label": "USERNAME",
+    "quote": "rkapoor_runs"
+   },
+   {
+    "id": "m2",
+    "entity_id": "order",
+    "label": "ACCOUNT_ID",
+    "quote": "SUB-7741-0092"
+   },
+   {
+    "id": "m3",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "riya.kapoor@example.net"
+   },
+   {
+    "id": "m4",
+    "entity_id": "agent",
+    "label": "PERSON",
+    "quote": "Benedikt"
+   },
+   {
+    "id": "m5",
+    "entity_id": "flatmate",
+    "label": "PERSON",
+    "quote": "Soo-ah Park"
+   },
+   {
+    "id": "m6",
+    "entity_id": "self",
+    "label": "PERSON",
+    "quote": "Riya Kapoor"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "user",
+    "quote": "rkapoor_runs",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The account username identifies the customer and is not needed to improve the complaint wording."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "order",
+    "quote": "SUB-7741-0092",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The order reference ties the complaint to the customer's account; the rewrite only needs a reference line, so the exact value is lost and re-added before sending."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "email",
+    "quote": "riya.kapoor@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The email address identifies the customer; the complaint only needs to say a cancellation confirmation was received."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "agent",
+    "quote": "Benedikt",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "flatmate",
+    "quote": "Soo-ah Park",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "self",
+    "quote": "Riya Kapoor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I cancelled the annual bundle on 2 August, within the 14-day cooling-off window,"
+   },
+   {
+    "quote": "Despite that, I was charged 119 euros on 1 September and again on 1 October, so 238 euros total."
+   },
+   {
+    "quote": "said on 4 October the refund \"should\" arrive in 5-7 working days; nothing has."
+   },
+   {
+    "quote": "I don't want a voucher or a free month, I want the money back to the original card."
+   },
+   {
+    "quote": "uses a separate account on the same plan and was not charged after cancelling, so it isn't a general billing delay."
+   },
+   {
+    "quote": "If this isn't fixed by 31 October I'll raise a chargeback."
+   }
+  ],
+  "approved_output": "Support ticket draft (streaming + fitness bundle)\nUsername: [USERNAME]\nOrder ref: [ACCOUNT_ID]\n\nI cancelled the annual bundle on 2 August, within the 14-day cooling-off window, and got a confirmation email at [EMAIL]. Despite that, I was charged 119 euros on 1 September and again on 1 October, so 238 euros total. Your chat agent, [PERSON_1], said on 4 October the refund \"should\" arrive in 5-7 working days; nothing has. I don't want a voucher or a free month, I want the money back to the original card. My flatmate, [PERSON_2], uses a separate account on the same plan and was not charged after cancelling, so it isn't a general billing delay. If this isn't fixed by 31 October I'll raise a chargeback.\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:id-006",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-expensequeue-tradefair",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-expensequeue-tradefair",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-expensequeue-tradefair",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-expensequeue-tradefair",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Summarise these expense claims for the finance lead with an approve, query or reject recommendation for each line, and flag the bank-detail request.",
+  "text": "Hi Marjut,\n\nThree expense claims from the Rotterdam trade fair are stuck in my approval queue and I'd like your view before month-end close on the 28th.\n1. Oluwaseun Adeyemi: hotel 412.00 euros (3 nights) and taxi 38.50. Hotel is within the 150-per-night cap; the taxi has no receipt, only a card slip.\n2. Freya Lindqvist: client dinner 286.70 for four people. Policy allows 60 per head, so it's 46.70 over unless the guest list changes things.\n3. Oluwaseun again: a 19.99 software subscription that I don't think belongs on a travel claim at all.\n\nFreya asked for her reimbursement to go to a new IBAN, NL07 TEST 0418 2290 55, instead of payroll. Can you confirm that's allowed? She's reachable on +31 6 5550 1934 if you need her.\n\nThanks,\nDariusz",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "marjut",
+    "label": "PERSON",
+    "quote": "Marjut"
+   },
+   {
+    "id": "m2",
+    "entity_id": "olu",
+    "label": "PERSON",
+    "quote": "Oluwaseun Adeyemi"
+   },
+   {
+    "id": "m3",
+    "entity_id": "freya",
+    "label": "PERSON",
+    "quote": "Freya Lindqvist"
+   },
+   {
+    "id": "m4",
+    "entity_id": "olu",
+    "label": "PERSON",
+    "quote": "Oluwaseun",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "freya",
+    "label": "PERSON",
+    "quote": "Freya",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "NL07 TEST 0418 2290 55"
+   },
+   {
+    "id": "m7",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+31 6 5550 1934"
+   },
+   {
+    "id": "m8",
+    "entity_id": "dariusz",
+    "label": "PERSON",
+    "quote": "Dariusz"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "marjut",
+    "quote": "Marjut",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "olu",
+    "quote": "Oluwaseun Adeyemi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "freya",
+    "quote": "Freya Lindqvist",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "olu",
+    "quote": "Oluwaseun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "freya",
+    "quote": "Freya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "iban",
+    "quote": "NL07 TEST 0418 2290 55",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The employee's new bank account number is a direct identifier; the summary only needs to flag that a bank-detail change was requested."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "phone",
+    "quote": "+31 6 5550 1934",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The employee's mobile number is not needed to recommend approval decisions."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "dariusz",
+    "quote": "Dariusz",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "before month-end close on the 28th."
+   },
+   {
+    "quote": "hotel 412.00 euros (3 nights) and taxi 38.50. Hotel is within the 150-per-night cap; the taxi has no receipt, only a card slip."
+   },
+   {
+    "quote": "client dinner 286.70 for four people. Policy allows 60 per head, so it's 46.70 over unless the guest list changes things."
+   },
+   {
+    "quote": "again: a 19.99 software subscription that I don't think belongs on a travel claim at all."
+   },
+   {
+    "quote": "asked for her reimbursement to go to a new IBAN,"
+   },
+   {
+    "quote": "instead of payroll. Can you confirm that's allowed?"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nThree expense claims from the Rotterdam trade fair are stuck in my approval queue and I'd like your view before month-end close on the 28th.\n1. [PERSON_2]: hotel 412.00 euros (3 nights) and taxi 38.50. Hotel is within the 150-per-night cap; the taxi has no receipt, only a card slip.\n2. [PERSON_3]: client dinner 286.70 for four people. Policy allows 60 per head, so it's 46.70 over unless the guest list changes things.\n3. [PERSON_2] again: a 19.99 software subscription that I don't think belongs on a travel claim at all.\n\n[PERSON_3] asked for her reimbursement to go to a new IBAN, [IBAN], instead of payroll. Can you confirm that's allowed? She's reachable on [PHONE] if you need her.\n\nThanks,\n[PERSON_4]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:pres-001",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-carrepair-familyloan",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-carrepair-familyloan",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-carrepair-familyloan",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-carrepair-familyloan",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out how much I still owe my brother, by when, and what changes if I'm late, so I can message him.",
+  "text": "Can you help me get this straight before I message my brother? Last spring my brother, Emeka Obi, lent me 2,000 euros for the car repair. Correction to what I told you yesterday: I've repaid 1,200 of it, not 1,400. The 200 I sent in July went to his partner, Chiamaka, for the concert tickets, not toward the loan. Emeka said I don't owe any interest, but only if the rest is cleared by the end of December; after that he wants 3% on whatever is left. Separately, my friend Lior Ben-David owes me 150 euros, and he thinks he might be able to pay it in two halves, maybe 75 in November and 75 in January. Until Lior actually pays, I'm not counting that money towards what I owe my brother.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "emeka",
+    "label": "PERSON",
+    "quote": "Emeka Obi"
+   },
+   {
+    "id": "m2",
+    "entity_id": "chiamaka",
+    "label": "PERSON",
+    "quote": "Chiamaka"
+   },
+   {
+    "id": "m3",
+    "entity_id": "emeka",
+    "label": "PERSON",
+    "quote": "Emeka",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "lior",
+    "label": "PERSON",
+    "quote": "Lior Ben-David"
+   },
+   {
+    "id": "m5",
+    "entity_id": "lior",
+    "label": "PERSON",
+    "quote": "Lior",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "emeka",
+    "quote": "Emeka Obi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "chiamaka",
+    "quote": "Chiamaka",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "emeka",
+    "quote": "Emeka",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "lior",
+    "quote": "Lior Ben-David",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "lior",
+    "quote": "Lior",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Last spring my brother,"
+   },
+   {
+    "quote": "lent me 2,000 euros for the car repair."
+   },
+   {
+    "quote": "Correction to what I told you yesterday: I've repaid 1,200 of it, not 1,400."
+   },
+   {
+    "quote": "200 I sent in July went to his partner,"
+   },
+   {
+    "quote": "for the concert tickets, not toward the loan."
+   },
+   {
+    "quote": "said I don't owe any interest, but only if the rest is cleared by the end of December; after that he wants 3% on whatever is left."
+   },
+   {
+    "quote": "owes me 150 euros, and he thinks he might be able to pay it in two halves, maybe 75 in November and 75 in January."
+   },
+   {
+    "quote": "actually pays, I'm not counting that money towards what I owe my brother."
+   }
+  ],
+  "approved_output": "Can you help me get this straight before I message my brother? Last spring my brother, [PERSON_1], lent me 2,000 euros for the car repair. Correction to what I told you yesterday: I've repaid 1,200 of it, not 1,400. The 200 I sent in July went to his partner, [PERSON_2], for the concert tickets, not toward the loan. [PERSON_1] said I don't owe any interest, but only if the rest is cleared by the end of December; after that he wants 3% on whatever is left. Separately, my friend [PERSON_3] owes me 150 euros, and he thinks he might be able to pay it in two halves, maybe 75 in November and 75 in January. Until [PERSON_3] actually pays, I'm not counting that money towards what I owe my brother.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:pres-002",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-auditprep-q3samples",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-auditprep-q3samples",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-auditprep-q3samples",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-auditprep-q3samples",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a short status update for the audit team lead, keeping who owns what and anything still unconfirmed.",
+  "text": "Audit prep sync, Tuesday\n- Anneli Kask (controller) confirmed the external auditors now want 25 invoice samples from Q3, not 40 as in the kickoff email.\n- Rangi Parata will pull the samples, but only once the AP export is fixed; if it isn't fixed by Thursday he'll pull them manually from the scanned PDFs, which takes about two days.\n- Kask doesn't think the September accruals are reconciled yet, but she hasn't checked the last two cost centres, so treat that as unconfirmed.\n- Sunita Rao said she approved the three late vendor credits herself; Rangi did not approve them and shouldn't be listed as approver.\n- Fieldwork starts 2 December. Nothing goes to the auditors without Anneli's sign-off.\nAction: someone needs to send the auditors a status note by Friday.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "anneli",
+    "label": "PERSON",
+    "quote": "Anneli Kask"
+   },
+   {
+    "id": "m2",
+    "entity_id": "rangi",
+    "label": "PERSON",
+    "quote": "Rangi Parata"
+   },
+   {
+    "id": "m3",
+    "entity_id": "anneli",
+    "label": "PERSON",
+    "quote": "Kask",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita Rao"
+   },
+   {
+    "id": "m5",
+    "entity_id": "rangi",
+    "label": "PERSON",
+    "quote": "Rangi",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "anneli",
+    "label": "PERSON",
+    "quote": "Anneli",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "anneli",
+    "quote": "Anneli Kask",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "rangi",
+    "quote": "Rangi Parata",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "anneli",
+    "quote": "Kask",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "sunita",
+    "quote": "Sunita Rao",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rangi",
+    "quote": "Rangi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "anneli",
+    "quote": "Anneli",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "(controller) confirmed the external auditors now want 25 invoice samples from Q3, not 40 as in the kickoff email."
+   },
+   {
+    "quote": "will pull the samples, but only once the AP export is fixed; if it isn't fixed by Thursday he'll pull them manually from the scanned PDFs, which takes about two days."
+   },
+   {
+    "quote": "doesn't think the September accruals are reconciled yet, but she hasn't checked the last two cost centres, so treat that as unconfirmed."
+   },
+   {
+    "quote": "said she approved the three late vendor credits herself;"
+   },
+   {
+    "quote": "did not approve them and shouldn't be listed as approver."
+   },
+   {
+    "quote": "Fieldwork starts 2 December. Nothing goes to the auditors without"
+   },
+   {
+    "quote": "'s sign-off."
+   },
+   {
+    "quote": "Action: someone needs to send the auditors a status note by Friday."
+   }
+  ],
+  "approved_output": "Audit prep sync, Tuesday\n- [PERSON_1] (controller) confirmed the external auditors now want 25 invoice samples from Q3, not 40 as in the kickoff email.\n- [PERSON_2] will pull the samples, but only once the AP export is fixed; if it isn't fixed by Thursday he'll pull them manually from the scanned PDFs, which takes about two days.\n- [PERSON_1] doesn't think the September accruals are reconciled yet, but she hasn't checked the last two cost centres, so treat that as unconfirmed.\n- [PERSON_3] said she approved the three late vendor credits herself; [PERSON_2] did not approve them and shouldn't be listed as approver.\n- Fieldwork starts 2 December. Nothing goes to the auditors without [PERSON_1]'s sign-off.\nAction: someone needs to send the auditors a status note by Friday.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:ben-001",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-budgetsheet-pmt",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-budgetsheet-pmt",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-budgetsheet-pmt",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-budgetsheet-pmt",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me fix the loan formulas in my budget sheet and add a total-interest column.",
+  "text": "Quick question about a budgeting spreadsheet. I'm loosely following the 50/30/20 rule that Elizabeth Warren and Amelia Warren Tyagi popularised in All Your Worth, and I'm adding a loan tab in Google Sheets. My formula is =PMT(0.06/12, 60, -10000) for a hypothetical 10,000 loan at 6% over five years, and it returns 193.33, which matches the loan calculator on the MoneyHelper website. But when the term cell contains text like \"5 years\" I get #VALUE!, and when I test a 0% rate in my homemade version, =P*r/(1-(1+r)^-n), it shows #DIV/0!. Is there a clean way to make the formula handle a zero rate, and should I use an IF with a simple division for that case? I'd also like a column showing total interest paid over the term. Please explain it as if I'm comfortable with spreadsheets but not with finance jargon.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "My formula is =PMT(0.06/12, 60, -10000) for a hypothetical 10,000 loan at 6% over five years, and it returns 193.33,"
+   },
+   {
+    "quote": "But when the term cell contains text like \"5 years\" I get #VALUE!, and when I test a 0% rate in my homemade version, =P*r/(1-(1+r)^-n), it shows #DIV/0!."
+   },
+   {
+    "quote": "I'd also like a column showing total interest paid over the term."
+   }
+  ],
+  "approved_output": "Quick question about a budgeting spreadsheet. I'm loosely following the 50/30/20 rule that Elizabeth Warren and Amelia Warren Tyagi popularised in All Your Worth, and I'm adding a loan tab in Google Sheets. My formula is =PMT(0.06/12, 60, -10000) for a hypothetical 10,000 loan at 6% over five years, and it returns 193.33, which matches the loan calculator on the MoneyHelper website. But when the term cell contains text like \"5 years\" I get #VALUE!, and when I test a 0% rate in my homemade version, =P*r/(1-(1+r)^-n), it shows #DIV/0!. Is there a clean way to make the formula handle a zero rate, and should I use an IF with a simple division for that case? I'd also like a column showing total interest paid over the term. Please explain it as if I'm comfortable with spreadsheets but not with finance jargon.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ae64d1a237104214801e0267d24e9b70",
+  "id": "ae64d1a237104214801e0267d24e9b70:cred-001",
+  "family_id": "ae64d1a237104214801e0267d24e9b70:fam-w4-ledgersync-401",
+  "persona_id": "ae64d1a237104214801e0267d24e9b70:persona-w4-ledgersync-401",
+  "source_id": "ae64d1a237104214801e0267d24e9b70:src-w4-ledgersync-401",
+  "template_id": "ae64d1a237104214801e0267d24e9b70:tpl-w4-ledgersync-401",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me figure out why the ledger sync is failing and whether auth failures should be retried automatically.",
+  "text": "Our nightly job that pushes approved invoices from the AP tool into the ledger failed again at 02:15. Log excerpt:\n\n[02:15:07] sync_invoices: batch 118 (Halvorsen Maritime, 47 invoices, total 214,600.00 EUR)\n[02:15:09] POST /v2/journal-entries -> 401 Unauthorized: token expired or revoked\n[02:15:09] retry 1/3 skipped: auth errors are not retried\n\nConfig (ledger.yaml):\n  base_url: https://ledger.finops.test/api\n  auth_token: tok-demo-7Qm2Vx9LrT\n  db_user: ap_sync\n  db_password: Copper#Heron77\n  timeout_s: 30\n\nIT rotated the token on Monday, but I don't know if this file was updated. Halvorsen is our biggest account this quarter, so finance wants the batch posted before the 10:00 close. What's the safest way to confirm whether the token is the problem, and should failed auth batches be retried automatically?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Halvorsen Maritime"
+   },
+   {
+    "id": "m2",
+    "entity_id": "total",
+    "label": "FINANCIAL",
+    "quote": "214,600.00 EUR"
+   },
+   {
+    "id": "m3",
+    "entity_id": "token",
+    "label": "SECRET",
+    "quote": "tok-demo-7Qm2Vx9LrT"
+   },
+   {
+    "id": "m4",
+    "entity_id": "dbuser",
+    "label": "USERNAME",
+    "quote": "ap_sync"
+   },
+   {
+    "id": "m5",
+    "entity_id": "dbpw",
+    "label": "SECRET",
+    "quote": "Copper#Heron77"
+   },
+   {
+    "id": "m6",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Halvorsen",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "client",
+    "quote": "Halvorsen Maritime",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The client's identity is confidential business information and debugging the auth failure does not depend on which client the batch belongs to."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "total",
+    "quote": "214,600.00 EUR",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The batch invoice total is a nonpublic commercial figure and is not needed to diagnose a 401 token error."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "token",
+    "quote": "tok-demo-7Qm2Vx9LrT",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A live API token grants ledger access; diagnosing expiry needs only the fact that a token is configured, not its value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "dbuser",
+    "quote": "ap_sync",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The database service account name is part of the credential pair and not needed to debug the token error."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "dbpw",
+    "quote": "Copper#Heron77",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The database password grants access to the ledger database and is irrelevant to the API 401."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "client",
+    "quote": "Halvorsen",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "occurrence": 2,
+    "reason": "The client's identity is confidential business information and debugging the auth failure does not depend on which client the batch belongs to."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "failed again at 02:15."
+   },
+   {
+    "quote": "[02:15:09] POST /v2/journal-entries -> 401 Unauthorized: token expired or revoked"
+   },
+   {
+    "quote": "[02:15:09] retry 1/3 skipped: auth errors are not retried"
+   },
+   {
+    "quote": "IT rotated the token on Monday, but I don't know if this file was updated."
+   },
+   {
+    "quote": "so finance wants the batch posted before the 10:00 close."
+   }
+  ],
+  "approved_output": "Our nightly job that pushes approved invoices from the AP tool into the ledger failed again at 02:15. Log excerpt:\n\n[02:15:07] sync_invoices: batch 118 ([ORG], 47 invoices, total [FINANCIAL])\n[02:15:09] POST /v2/journal-entries -> 401 Unauthorized: token expired or revoked\n[02:15:09] retry 1/3 skipped: auth errors are not retried\n\nConfig (ledger.yaml):\n  base_url: https://ledger.finops.test/api\n  auth_token: [SECRET]\n  db_user: [USERNAME]\n  db_password: [SECRET]\n  timeout_s: 30\n\nIT rotated the token on Monday, but I don't know if this file was updated. [ORG] is our biggest account this quarter, so finance wants the batch posted before the 10:00 close. What's the safest way to confirm whether the token is the problem, and should failed auth batches be retried automatically?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ae64d1a237104214801e0267d24e9b70:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

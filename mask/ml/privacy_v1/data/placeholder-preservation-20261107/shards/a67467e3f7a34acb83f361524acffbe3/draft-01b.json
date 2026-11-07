@@ -1,0 +1,236 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-004",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-004",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-004",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-004",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-004",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Rewrite this rota update so it's easier to scan, as a short list of changes and open asks.",
+    "text": "Hi all, rota update for the Saturday shifts at the Northgate food bank. Aino Tauriainen can't do 9-12 on the 16th any more, so Nguyen Thi Lan is swapping with her and Aino will take Lan's 1-4 slot on the 23rd instead. Dev Raghunathan is still on the van run both weeks, but he's asked for a second person to help lift because the crates are about 18 kg each. If anyone can join Dev, text him on 07700 900233 rather than replying here. New volunteers need to finish the 20-minute food hygiene video before their first shift; Lan has the link. Aino's number has changed to 07700 900871, so please update your contacts. We're short 2 people for the 30th, and we can't open the second distribution table unless we have at least 6 volunteers.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "aino",
+        "label": "PERSON",
+        "quote": "Aino Tauriainen"
+      },
+      {
+        "id": "m2",
+        "entity_id": "lan",
+        "label": "PERSON",
+        "quote": "Nguyen Thi Lan"
+      },
+      {
+        "id": "m3",
+        "entity_id": "aino",
+        "label": "PERSON",
+        "quote": "Aino",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "lan",
+        "label": "PERSON",
+        "quote": "Lan",
+        "occurrence": 2
+      },
+      {
+        "id": "m5",
+        "entity_id": "dev",
+        "label": "PERSON",
+        "quote": "Dev Raghunathan"
+      },
+      {
+        "id": "m6",
+        "entity_id": "dev",
+        "label": "PERSON",
+        "quote": "Dev",
+        "occurrence": 2
+      },
+      {
+        "id": "m7",
+        "entity_id": "dev-phone",
+        "label": "PHONE",
+        "quote": "07700 900233"
+      },
+      {
+        "id": "m8",
+        "entity_id": "lan",
+        "label": "PERSON",
+        "quote": "Lan",
+        "occurrence": 3
+      },
+      {
+        "id": "m9",
+        "entity_id": "aino",
+        "label": "PERSON",
+        "quote": "Aino",
+        "occurrence": 3
+      },
+      {
+        "id": "m10",
+        "entity_id": "aino-phone",
+        "label": "PHONE",
+        "quote": "07700 900871"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "aino",
+        "quote": "Aino Tauriainen",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "lan",
+        "quote": "Nguyen Thi Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "aino",
+        "quote": "Aino",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "lan",
+        "quote": "Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "dev",
+        "quote": "Dev Raghunathan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "dev",
+        "quote": "Dev",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "dev-phone",
+        "quote": "07700 900233",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The rewritten rota must pass on how to reach this volunteer, but a private mobile number should not go to an external AI; the output keeps a [PHONE] slot after ', text him on' and the user re-inserts the number."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "lan",
+        "quote": "Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "aino",
+        "quote": "Aino",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m10",
+        "entity_id": "aino-phone",
+        "quote": "07700 900871",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The rewritten rota must pass on this volunteer's new number, but it should not go to an external AI; the output keeps a [PHONE] slot after \"'s number has changed to\", which tells it apart from the other [PHONE], and the user re-inserts the number."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "rota update for the Saturday shifts at the Northgate food bank."
+      },
+      {
+        "quote": "can't do 9-12 on the 16th any more, so"
+      },
+      {
+        "quote": "is swapping with her and"
+      },
+      {
+        "quote": "will take"
+      },
+      {
+        "quote": "'s 1-4 slot on the 23rd instead."
+      },
+      {
+        "quote": "is still on the van run both weeks, but he's asked for a second person to help lift because the crates are about 18 kg each."
+      },
+      {
+        "quote": "If anyone can join"
+      },
+      {
+        "quote": ", text him on"
+      },
+      {
+        "quote": "rather than replying here."
+      },
+      {
+        "quote": "New volunteers need to finish the 20-minute food hygiene video before their first shift;"
+      },
+      {
+        "quote": "has the link."
+      },
+      {
+        "quote": "'s number has changed to"
+      },
+      {
+        "quote": ", so please update your contacts."
+      },
+      {
+        "quote": "We're short 2 people for the 30th, and we can't open the second distribution table unless we have at least 6 volunteers."
+      }
+    ],
+    "approved_output": "Hi all, rota update for the Saturday shifts at the Northgate food bank. [PERSON_1] can't do 9-12 on the 16th any more, so [PERSON_2] is swapping with her and [PERSON_1] will take [PERSON_2]'s 1-4 slot on the 23rd instead. [PERSON_3] is still on the van run both weeks, but he's asked for a second person to help lift because the crates are about 18 kg each. If anyone can join [PERSON_3], text him on [PHONE] rather than replying here. New volunteers need to finish the 20-minute food hygiene video before their first shift; [PERSON_2] has the link. [PERSON_1]'s number has changed to [PHONE], so please update your contacts. We're short 2 people for the 30th, and we can't open the second distribution table unless we have at least 6 volunteers.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  }
+]

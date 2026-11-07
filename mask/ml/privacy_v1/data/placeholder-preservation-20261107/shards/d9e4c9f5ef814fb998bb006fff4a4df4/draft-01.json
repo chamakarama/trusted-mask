@@ -1,0 +1,2735 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-001",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-octavia-deposit",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-octavia-deposit",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-octavia-deposit",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-octavia-deposit",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me write a reply to the seller that accepts the car subject to an inspection and asks for the clutch invoice.",
+  "text": "Hi, I'm buying a 2016 Skoda Octavia estate from a private seller, Tadeusz Wrona, listed at 7,450 pounds. I viewed it on Saturday and the clutch felt slightly heavy, but he says it was replaced at 82,000 miles and that the full service history is in the glovebox. Tadeusz asked for a 300-pound deposit by bank transfer to IBAN GB71 TEST 0012 3498 7650 21 before I collect it next Friday, and said he will only hold the car if the deposit arrives within 48 hours. His mobile is 07700 900412 and his email is t.wrona@example.com. My dad, Rohan Pillai, says I should not pay anything until a mechanic has checked the clutch. Please help me write the reply.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "seller",
+    "label": "PERSON",
+    "quote": "Tadeusz Wrona"
+   },
+   {
+    "id": "m2",
+    "entity_id": "seller",
+    "label": "PERSON",
+    "quote": "Tadeusz",
+    "occurrence": 2
+   },
+   {
+    "id": "m3",
+    "entity_id": "seller-iban",
+    "label": "IBAN",
+    "quote": "GB71 TEST 0012 3498 7650 21"
+   },
+   {
+    "id": "m4",
+    "entity_id": "seller-phone",
+    "label": "PHONE",
+    "quote": "07700 900412"
+   },
+   {
+    "id": "m5",
+    "entity_id": "seller-email",
+    "label": "EMAIL",
+    "quote": "t.wrona@example.com"
+   },
+   {
+    "id": "m6",
+    "entity_id": "dad",
+    "label": "PERSON",
+    "quote": "Rohan Pillai"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "seller",
+    "quote": "Tadeusz Wrona",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "seller",
+    "quote": "Tadeusz",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "seller-iban",
+    "quote": "GB71 TEST 0012 3498 7650 21",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The seller's bank account is not needed to write the reply; the draft only needs to refer to the deposit."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "seller-phone",
+    "quote": "07700 900412",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The seller's phone number is not needed for a reply by message."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "seller-email",
+    "quote": "t.wrona@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The reply does not need the seller's exact email address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "dad",
+    "quote": "Rohan Pillai",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm buying a 2016 Skoda Octavia estate from a private seller,"
+   },
+   {
+    "quote": "listed at 7,450 pounds."
+   },
+   {
+    "quote": "I viewed it on Saturday and the clutch felt slightly heavy, but he says it was replaced at 82,000 miles and that the full service history is in the glovebox."
+   },
+   {
+    "quote": "asked for a 300-pound deposit by bank transfer to IBAN"
+   },
+   {
+    "quote": "before I collect it next Friday, and said he will only hold the car if the deposit arrives within 48 hours."
+   },
+   {
+    "quote": "My dad,"
+   },
+   {
+    "quote": "says I should not pay anything until a mechanic has checked the clutch."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi, I'm buying a 2016 Skoda Octavia estate from a private seller, [PERSON_1], listed at 7,450 pounds. I viewed it on Saturday and the clutch felt slightly heavy, but he says it was replaced at 82,000 miles and that the full service history is in the glovebox. [PERSON_1] asked for a 300-pound deposit by bank transfer to IBAN [IBAN] before I collect it next Friday, and said he will only hold the car if the deposit arrives within 48 hours. His mobile is [PHONE] and his email is [EMAIL]. My dad, [PERSON_2], says I should not pay anything until a mechanic has checked the clutch. Please help me write the reply."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-002",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-fiesta-dealer",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-fiesta-dealer",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-fiesta-dealer",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-fiesta-dealer",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a short list of questions to ask the dealer and decisions we still have to make.",
+  "text": "Notes from the dealership visit. The salesman, Kwabena Mensah, quoted 11,200 euros for the 2018 Ford Fiesta with 46,000 km, not the 10,500 shown online. Kwabena said the price drops to 10,900 only if I pay cash and skip the 12-month warranty. The dealer's 600-euro trade-in offer for my old Corsa stands only if I buy this week. For the reservation I gave him my email, fiesta.hunt@example.org, and my mobile, 07700 900254, and he gave me reservation number RSV-55820, valid until Thursday. My partner, Isabela Ferreira, thinks the cambelt has not been changed, and the logbook shows the last service at 31,000 km. I need to decide by Thursday.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sales",
+    "label": "PERSON",
+    "quote": "Kwabena Mensah"
+   },
+   {
+    "id": "m2",
+    "entity_id": "sales",
+    "label": "PERSON",
+    "quote": "Kwabena",
+    "occurrence": 2
+   },
+   {
+    "id": "m3",
+    "entity_id": "my-email",
+    "label": "EMAIL",
+    "quote": "fiesta.hunt@example.org"
+   },
+   {
+    "id": "m4",
+    "entity_id": "my-phone",
+    "label": "PHONE",
+    "quote": "07700 900254"
+   },
+   {
+    "id": "m5",
+    "entity_id": "resv",
+    "label": "ACCOUNT_ID",
+    "quote": "RSV-55820"
+   },
+   {
+    "id": "m6",
+    "entity_id": "partner",
+    "label": "PERSON",
+    "quote": "Isabela Ferreira"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sales",
+    "quote": "Kwabena Mensah",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "sales",
+    "quote": "Kwabena",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "my-email",
+    "quote": "fiesta.hunt@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The list of questions does not need my email address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "my-phone",
+    "quote": "07700 900254",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The list of questions does not need my phone number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "resv",
+    "quote": "RSV-55820",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot cite the exact reservation number; the user re-inserts it when contacting the dealer."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "partner",
+    "quote": "Isabela Ferreira",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The salesman,"
+   },
+   {
+    "quote": "quoted 11,200 euros for the 2018 Ford Fiesta with 46,000 km, not the 10,500 shown online."
+   },
+   {
+    "quote": "said the price drops to 10,900 only if I pay cash and skip the 12-month warranty."
+   },
+   {
+    "quote": "The dealer's 600-euro trade-in offer for my old Corsa stands only if I buy this week."
+   },
+   {
+    "quote": "and he gave me reservation number"
+   },
+   {
+    "quote": ", valid until Thursday."
+   },
+   {
+    "quote": "My partner,"
+   },
+   {
+    "quote": "thinks the cambelt has not been changed, and the logbook shows the last service at 31,000 km."
+   },
+   {
+    "quote": "I need to decide by Thursday."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes from the dealership visit. The salesman, [PERSON_1], quoted 11,200 euros for the 2018 Ford Fiesta with 46,000 km, not the 10,500 shown online. [PERSON_1] said the price drops to 10,900 only if I pay cash and skip the 12-month warranty. The dealer's 600-euro trade-in offer for my old Corsa stands only if I buy this week. For the reservation I gave him my email, [EMAIL], and my mobile, [PHONE], and he gave me reservation number [ACCOUNT_ID], valid until Thursday. My partner, [PERSON_2], thinks the cambelt has not been changed, and the logbook shows the last service at 31,000 km. I need to decide by Thursday."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-003",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-roundabout-claim",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-roundabout-claim",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-roundabout-claim",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-roundabout-claim",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a firm but polite follow-up email to my insurer asking for a written decision on liability within 10 working days.",
+  "text": "I had a minor accident on Tuesday evening. I was stopped at a roundabout when the other driver, Jarkko Lehtonen, rolled into my rear bumper. No injuries, damage is a cracked bumper and a broken parking sensor, estimate from the garage is 640 pounds. My policy no. is PN-4471-882 and the claim reference the insurer gave me is CLM-90317. The handler, Mei-Ling Cheng, told me on the phone that my excess is 250 pounds and that I keep my no-claims discount only if Jarkko's insurer accepts liability. Jarkko admitted fault at the scene, but he has not sent me his insurance details. You can reach me at r.dunmore.claims@example.com.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "other",
+    "label": "PERSON",
+    "quote": "Jarkko Lehtonen"
+   },
+   {
+    "id": "m2",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "PN-4471-882"
+   },
+   {
+    "id": "m3",
+    "entity_id": "claim",
+    "label": "ACCOUNT_ID",
+    "quote": "CLM-90317"
+   },
+   {
+    "id": "m4",
+    "entity_id": "handler",
+    "label": "PERSON",
+    "quote": "Mei-Ling Cheng"
+   },
+   {
+    "id": "m5",
+    "entity_id": "other",
+    "label": "PERSON",
+    "quote": "Jarkko",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "other",
+    "label": "PERSON",
+    "quote": "Jarkko",
+    "occurrence": 3
+   },
+   {
+    "id": "m7",
+    "entity_id": "my-email",
+    "label": "EMAIL",
+    "quote": "r.dunmore.claims@example.com"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "other",
+    "quote": "Jarkko Lehtonen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "policy",
+    "quote": "PN-4471-882",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot cite the exact policy number; the user re-inserts it before sending."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "claim",
+    "quote": "CLM-90317",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot cite the exact claim reference; the user re-inserts it before sending. Same-type placeholders are told apart by the labels policy no. and claim reference."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "handler",
+    "quote": "Mei-Ling Cheng",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "other",
+    "quote": "Jarkko",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "other",
+    "quote": "Jarkko",
+    "occurrence": 3,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "my-email",
+    "quote": "r.dunmore.claims@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The draft email does not need my exact address; it is added when sending."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I was stopped at a roundabout when the other driver,"
+   },
+   {
+    "quote": "rolled into my rear bumper."
+   },
+   {
+    "quote": "No injuries, damage is a cracked bumper and a broken parking sensor, estimate from the garage is 640 pounds."
+   },
+   {
+    "quote": "My policy no. is"
+   },
+   {
+    "quote": "and the claim reference the insurer gave me is"
+   },
+   {
+    "quote": "The handler,"
+   },
+   {
+    "quote": "told me on the phone that my excess is 250 pounds and that I keep my no-claims discount only if"
+   },
+   {
+    "quote": "'s insurer accepts liability."
+   },
+   {
+    "quote": "admitted fault at the scene, but he has not sent me his insurance details."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I had a minor accident on Tuesday evening. I was stopped at a roundabout when the other driver, [PERSON_1], rolled into my rear bumper. No injuries, damage is a cracked bumper and a broken parking sensor, estimate from the garage is 640 pounds. My policy no. is [ACCOUNT_ID] and the claim reference the insurer gave me is [ACCOUNT_ID]. The handler, [PERSON_2], told me on the phone that my excess is 250 pounds and that I keep my no-claims discount only if [PERSON_1]'s insurer accepts liability. [PERSON_1] admitted fault at the scene, but he has not sent me his insurance details. You can reach me at [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-004",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-double-excess-charge",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-double-excess-charge",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-double-excess-charge",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-double-excess-charge",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short dispute message to my card issuer about the duplicate charge.",
+  "text": "The insurer's online portal charged the 250-pound accident excess twice to my card 4111 1111 1111 1111 on Monday, once at 09:14 and again at 09:16. My repair authorisation from Marcus Oyebanji at the garage only mentions one payment. Marcus told me he will refund nothing because the money went to the insurer, not to him. My portal account number is ACC-7730914 and my username is nk_fiesta_22. The first charge cleared the same day, but the second is still pending and I need it reversed before the 1st, when my rent goes out. The card issuer says I have 60 days from the statement date to dispute it. Please keep it factual. Thanks, Nadia Karimi",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4111 1111 1111 1111"
+   },
+   {
+    "id": "m2",
+    "entity_id": "garage",
+    "label": "PERSON",
+    "quote": "Marcus Oyebanji"
+   },
+   {
+    "id": "m3",
+    "entity_id": "garage",
+    "label": "PERSON",
+    "quote": "Marcus",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "portal",
+    "label": "ACCOUNT_ID",
+    "quote": "ACC-7730914"
+   },
+   {
+    "id": "m5",
+    "entity_id": "portal-user",
+    "label": "USERNAME",
+    "quote": "nk_fiesta_22"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Nadia Karimi"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "card",
+    "quote": "4111 1111 1111 1111",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot cite the exact card number; the issuer already knows it and the user re-inserts it if needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "garage",
+    "quote": "Marcus Oyebanji",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "garage",
+    "quote": "Marcus",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "portal",
+    "quote": "ACC-7730914",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The dispute does not need the portal account number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "portal-user",
+    "quote": "nk_fiesta_22",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The dispute does not need the portal username."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me",
+    "quote": "Nadia Karimi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "charged the 250-pound accident excess twice to my card"
+   },
+   {
+    "quote": "on Monday, once at 09:14 and again at 09:16."
+   },
+   {
+    "quote": "My repair authorisation from"
+   },
+   {
+    "quote": "at the garage only mentions one payment."
+   },
+   {
+    "quote": "told me he will refund nothing because the money went to the insurer, not to him."
+   },
+   {
+    "quote": "The first charge cleared the same day, but the second is still pending and I need it reversed before the 1st, when my rent goes out."
+   },
+   {
+    "quote": "The card issuer says I have 60 days from the statement date to dispute it."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "The insurer's online portal charged the 250-pound accident excess twice to my card [PAYMENT_CARD] on Monday, once at 09:14 and again at 09:16. My repair authorisation from [PERSON_1] at the garage only mentions one payment. [PERSON_1] told me he will refund nothing because the money went to the insurer, not to him. My portal account number is [ACCOUNT_ID] and my username is [USERNAME]. The first charge cleared the same day, but the second is still pending and I need it reversed before the 1st, when my rent goes out. The card issuer says I have 60 days from the statement date to dispute it. Please keep it factual. Thanks, [PERSON_2]"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-005",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-loading-bay-pcn",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-loading-bay-pcn",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-loading-bay-pcn",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-loading-bay-pcn",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a clear appeal letter to the council covering the facts and the deadline.",
+  "text": "I got penalty charge notice LB41020877 dated 3 October for 70 pounds, reduced to 35 pounds if paid within 14 days. The warden, Ásgeir Jónsson, says I overstayed by 40 minutes in the pay bay outside 22 Mill Lane, Kettering NN16 8XZ, but my ticket shows I paid until 16:20 and I was back at 16:05. The signs were hidden behind a delivery van. My neighbour, Ayesha Rahman, took photos and can confirm it. Mr Jónsson will not review it unless the appeal is submitted within 28 days, so the deadline is 31 October. Please reach me at appeals.mt@example.com or on 07700 900318.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "pcn",
+    "label": "ACCOUNT_ID",
+    "quote": "LB41020877"
+   },
+   {
+    "id": "m2",
+    "entity_id": "warden",
+    "label": "PERSON",
+    "quote": "Ásgeir Jónsson"
+   },
+   {
+    "id": "m3",
+    "entity_id": "street",
+    "label": "ADDRESS",
+    "quote": "22 Mill Lane, Kettering NN16 8XZ"
+   },
+   {
+    "id": "m4",
+    "entity_id": "neighbour",
+    "label": "PERSON",
+    "quote": "Ayesha Rahman"
+   },
+   {
+    "id": "m5",
+    "entity_id": "warden",
+    "label": "PERSON",
+    "quote": "Jónsson",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "my-email",
+    "label": "EMAIL",
+    "quote": "appeals.mt@example.com"
+   },
+   {
+    "id": "m7",
+    "entity_id": "my-phone",
+    "label": "PHONE",
+    "quote": "07700 900318"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "pcn",
+    "quote": "LB41020877",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot cite the exact notice number; the appeal letter needs it, so the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "warden",
+    "quote": "Ásgeir Jónsson",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "street",
+    "quote": "22 Mill Lane, Kettering NN16 8XZ",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The street address pins down my location; the appeal facts do not depend on the exact address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "neighbour",
+    "quote": "Ayesha Rahman",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "warden",
+    "quote": "Jónsson",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "my-email",
+    "quote": "appeals.mt@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The letter does not need my exact email address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "my-phone",
+    "quote": "07700 900318",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The letter does not need my phone number."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I got penalty charge notice"
+   },
+   {
+    "quote": "dated 3 October for 70 pounds, reduced to 35 pounds if paid within 14 days."
+   },
+   {
+    "quote": "The warden,"
+   },
+   {
+    "quote": "says I overstayed by 40 minutes in the pay bay outside"
+   },
+   {
+    "quote": ", but my ticket shows I paid until 16:20 and I was back at 16:05."
+   },
+   {
+    "quote": "The signs were hidden behind a delivery van."
+   },
+   {
+    "quote": "My neighbour,"
+   },
+   {
+    "quote": "took photos and can confirm it."
+   },
+   {
+    "quote": "will not review it unless the appeal is submitted within 28 days, so the deadline is 31 October."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I got penalty charge notice [ACCOUNT_ID] dated 3 October for 70 pounds, reduced to 35 pounds if paid within 14 days. The warden, [PERSON_1], says I overstayed by 40 minutes in the pay bay outside [ADDRESS], but my ticket shows I paid until 16:20 and I was back at 16:05. The signs were hidden behind a delivery van. My neighbour, [PERSON_2], took photos and can confirm it. Mr [PERSON_1] will not review it unless the appeal is submitted within 28 days, so the deadline is 31 October. Please reach me at [EMAIL] or on [PHONE]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-006",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-retail-park-tribunal",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-retail-park-tribunal",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-retail-park-tribunal",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-retail-park-tribunal",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a dated timeline for the independent appeal form.",
+  "text": "Timeline for my parking appeal. 12 September: my brother-in-law, Dimitri Papadakis, borrowed the car and parked at the retail park. 19 September: the operator's letter arrived addressed to Hyun-woo Park, demanding 100 pounds. 24 September: I appealed online. 2 October: the operator rejected it, saying the barrier camera recorded 3 hours 12 minutes against a 2-hour limit. Dimitri says he left after 1 hour 50 minutes, and his café receipt backs that up. I have until 30 October to go to the independent tribunal, appeal reference IAS-558201. Dimitri can give a statement on 07700 900633, and the tribunal can write to me at h.park.parking@example.net.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "bil",
+    "label": "PERSON",
+    "quote": "Dimitri Papadakis"
+   },
+   {
+    "id": "m2",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Hyun-woo Park"
+   },
+   {
+    "id": "m3",
+    "entity_id": "bil",
+    "label": "PERSON",
+    "quote": "Dimitri",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "appeal-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "IAS-558201"
+   },
+   {
+    "id": "m5",
+    "entity_id": "bil",
+    "label": "PERSON",
+    "quote": "Dimitri",
+    "occurrence": 3
+   },
+   {
+    "id": "m6",
+    "entity_id": "bil-phone",
+    "label": "PHONE",
+    "quote": "07700 900633"
+   },
+   {
+    "id": "m7",
+    "entity_id": "my-email",
+    "label": "EMAIL",
+    "quote": "h.park.parking@example.net"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "bil",
+    "quote": "Dimitri Papadakis",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "me",
+    "quote": "Hyun-woo Park",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "bil",
+    "quote": "Dimitri",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "appeal-ref",
+    "quote": "IAS-558201",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The timeline cannot show the exact appeal reference; the user re-inserts it on the form."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "bil",
+    "quote": "Dimitri",
+    "occurrence": 3,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "bil-phone",
+    "quote": "07700 900633",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The timeline does not need his phone number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "my-email",
+    "quote": "h.park.parking@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The timeline does not need my email address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "12 September: my brother-in-law,"
+   },
+   {
+    "quote": "borrowed the car and parked at the retail park."
+   },
+   {
+    "quote": "19 September: the operator's letter arrived addressed to"
+   },
+   {
+    "quote": ", demanding 100 pounds."
+   },
+   {
+    "quote": "24 September: I appealed online."
+   },
+   {
+    "quote": "2 October: the operator rejected it, saying the barrier camera recorded 3 hours 12 minutes against a 2-hour limit."
+   },
+   {
+    "quote": "says he left after 1 hour 50 minutes, and his café receipt backs that up."
+   },
+   {
+    "quote": "I have until 30 October to go to the independent tribunal, appeal reference"
+   },
+   {
+    "quote": "can give a statement on"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Timeline for my parking appeal. 12 September: my brother-in-law, [PERSON_1], borrowed the car and parked at the retail park. 19 September: the operator's letter arrived addressed to [PERSON_2], demanding 100 pounds. 24 September: I appealed online. 2 October: the operator rejected it, saying the barrier camera recorded 3 hours 12 minutes against a 2-hour limit. [PERSON_1] says he left after 1 hour 50 minutes, and his café receipt backs that up. I have until 30 October to go to the independent tribunal, appeal reference [ACCOUNT_ID]. [PERSON_1] can give a statement on [PHONE], and the tribunal can write to me at [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-007",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-lesson-block-reschedule",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-lesson-block-reschedule",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-lesson-block-reschedule",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-lesson-block-reschedule",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a polite message asking to move lesson 5 and checking whether the refund notice rule applies to a reschedule.",
+  "text": "Hi, it's about my block of 10 driving lessons with Wanjiru Kamau, 45 pounds each, paid 450 pounds upfront. I have used 4 so far. Lesson 5 on Thursday at 15:30 clashes with my exam shift, so I would move it to Saturday morning if she has a gap. Wanjiru said last week that unused lessons are refundable only with 7 days' notice, and I am not sure that applies to a reschedule. My theory test is on 14 November and my mum, Sunita Rao, is paying the 62-pound practical test fee. My provisional licence number is NDLOV861203R93AB and my booking reference with the school is DS-20418.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "instr",
+    "label": "PERSON",
+    "quote": "Wanjiru Kamau"
+   },
+   {
+    "id": "m2",
+    "entity_id": "instr",
+    "label": "PERSON",
+    "quote": "Wanjiru",
+    "occurrence": 2
+   },
+   {
+    "id": "m3",
+    "entity_id": "mum",
+    "label": "PERSON",
+    "quote": "Sunita Rao"
+   },
+   {
+    "id": "m4",
+    "entity_id": "licence",
+    "label": "NATIONAL_ID",
+    "quote": "NDLOV861203R93AB"
+   },
+   {
+    "id": "m5",
+    "entity_id": "booking",
+    "label": "ACCOUNT_ID",
+    "quote": "DS-20418"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "instr",
+    "quote": "Wanjiru Kamau",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "instr",
+    "quote": "Wanjiru",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mum",
+    "quote": "Sunita Rao",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "licence",
+    "quote": "NDLOV861203R93AB",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The message does not need my licence number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "booking",
+    "quote": "DS-20418",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot cite the exact booking reference; the user re-inserts it so the school can find the booking."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my block of 10 driving lessons with"
+   },
+   {
+    "quote": ", 45 pounds each, paid 450 pounds upfront. I have used 4 so far."
+   },
+   {
+    "quote": "Lesson 5 on Thursday at 15:30 clashes with my exam shift, so I would move it to Saturday morning if she has a gap."
+   },
+   {
+    "quote": "said last week that unused lessons are refundable only with 7 days' notice, and I am not sure that applies to a reschedule."
+   },
+   {
+    "quote": "My theory test is on 14 November and my mum,"
+   },
+   {
+    "quote": "is paying the 62-pound practical test fee."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi, it's about my block of 10 driving lessons with [PERSON_1], 45 pounds each, paid 450 pounds upfront. I have used 4 so far. Lesson 5 on Thursday at 15:30 clashes with my exam shift, so I would move it to Saturday morning if she has a gap. [PERSON_1] said last week that unused lessons are refundable only with 7 days' notice, and I am not sure that applies to a reschedule. My theory test is on 14 November and my mum, [PERSON_2], is paying the 62-pound practical test fee. My provisional licence number is [NATIONAL_ID] and my booking reference with the school is [ACCOUNT_ID]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-008",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-late-instructor-credit",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-late-instructor-credit",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-late-instructor-credit",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-late-instructor-credit",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a firm, courteous complaint email to the driving school.",
+  "text": "I am writing as the parent of a learner. Our instructor, Oskar Lindqvist, arrived late to three of the last five lessons: 10 minutes on 9 October, 25 minutes on 16 October and 15 minutes on 23 October. My daughter, Freya Holm, pays 40 pounds per hour, and each lesson was shortened rather than extended. We would like the 50 minutes credited to her next lesson, not refunded, as Freya wants to keep Oskar as her instructor. If the school cannot credit the time, we will ask for a refund to IBAN FI21 0000 1234 5600 07 instead. Our school account number is SD-66012 and you can ring me on 07700 900561. Regards, Karin Holm",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "instr",
+    "label": "PERSON",
+    "quote": "Oskar Lindqvist"
+   },
+   {
+    "id": "m2",
+    "entity_id": "kid",
+    "label": "PERSON",
+    "quote": "Freya Holm"
+   },
+   {
+    "id": "m3",
+    "entity_id": "kid",
+    "label": "PERSON",
+    "quote": "Freya",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "instr",
+    "label": "PERSON",
+    "quote": "Oskar",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "my-iban",
+    "label": "IBAN",
+    "quote": "FI21 0000 1234 5600 07"
+   },
+   {
+    "id": "m6",
+    "entity_id": "school-acct",
+    "label": "ACCOUNT_ID",
+    "quote": "SD-66012"
+   },
+   {
+    "id": "m7",
+    "entity_id": "my-phone",
+    "label": "PHONE",
+    "quote": "07700 900561"
+   },
+   {
+    "id": "m8",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Karin Holm"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "instr",
+    "quote": "Oskar Lindqvist",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "kid",
+    "quote": "Freya Holm",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "kid",
+    "quote": "Freya",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "instr",
+    "quote": "Oskar",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "my-iban",
+    "quote": "FI21 0000 1234 5600 07",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The email cannot show the exact refund account; the user re-inserts it if the refund is requested."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "school-acct",
+    "quote": "SD-66012",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The complaint does not need the school account number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "my-phone",
+    "quote": "07700 900561",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The email does not need my phone number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "me",
+    "quote": "Karin Holm",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our instructor,"
+   },
+   {
+    "quote": "arrived late to three of the last five lessons: 10 minutes on 9 October, 25 minutes on 16 October and 15 minutes on 23 October."
+   },
+   {
+    "quote": "My daughter,"
+   },
+   {
+    "quote": "pays 40 pounds per hour, and each lesson was shortened rather than extended."
+   },
+   {
+    "quote": "We would like the 50 minutes credited to her next lesson, not refunded, as"
+   },
+   {
+    "quote": "wants to keep"
+   },
+   {
+    "quote": "as her instructor."
+   },
+   {
+    "quote": "If the school cannot credit the time, we will ask for a refund to IBAN"
+   },
+   {
+    "quote": "instead."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I am writing as the parent of a learner. Our instructor, [PERSON_1], arrived late to three of the last five lessons: 10 minutes on 9 October, 25 minutes on 16 October and 15 minutes on 23 October. My daughter, [PERSON_2], pays 40 pounds per hour, and each lesson was shortened rather than extended. We would like the 50 minutes credited to her next lesson, not refunded, as [PERSON_2] wants to keep [PERSON_1] as her instructor. If the school cannot credit the time, we will ask for a refund to IBAN [IBAN] instead. Our school account number is [ACCOUNT_ID] and you can ring me on [PHONE]. Regards, [PERSON_3]"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-009",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-peugeot-fuel-split",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-peugeot-fuel-split",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-peugeot-fuel-split",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-peugeot-fuel-split",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out each person's fuel share and write a short reminder for the group chat.",
+  "text": "October car-share costs for the three of us who share the Peugeot. Lukas Bauer drove 120 km, Oksana Melnyk drove 85 km and I drove 45 km. Fuel came to 58.50 euros, and we split it by distance. Insurance of 30 euros each is already paid. I paid the fuel at the pump, so the other two owe me their shares. I will receive Lukas's share through the app under the username lukas_b_17, but Oksana wants to send hers by bank transfer to my IBAN DE00 5001 0517 0648 4898 90 and not through the app. Our neighbour on the ground floor, Hemi Tāwhiri, may join in December if he gets a parking permit, and he would then pay one quarter of the fuel.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "lukas",
+    "label": "PERSON",
+    "quote": "Lukas Bauer"
+   },
+   {
+    "id": "m2",
+    "entity_id": "oksana",
+    "label": "PERSON",
+    "quote": "Oksana Melnyk"
+   },
+   {
+    "id": "m3",
+    "entity_id": "lukas",
+    "label": "PERSON",
+    "quote": "Lukas",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "app-user",
+    "label": "USERNAME",
+    "quote": "lukas_b_17"
+   },
+   {
+    "id": "m5",
+    "entity_id": "oksana",
+    "label": "PERSON",
+    "quote": "Oksana",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "my-iban",
+    "label": "IBAN",
+    "quote": "DE00 5001 0517 0648 4898 90"
+   },
+   {
+    "id": "m7",
+    "entity_id": "hemi",
+    "label": "PERSON",
+    "quote": "Hemi Tāwhiri"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "lukas",
+    "quote": "Lukas Bauer",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "oksana",
+    "quote": "Oksana Melnyk",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "lukas",
+    "quote": "Lukas",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "app-user",
+    "quote": "lukas_b_17",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The reminder cannot show the exact app username; the user re-inserts it for the payment instruction."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "oksana",
+    "quote": "Oksana",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "my-iban",
+    "quote": "DE00 5001 0517 0648 4898 90",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The reminder cannot show the exact IBAN; the user re-inserts it for the payment instruction."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "hemi",
+    "quote": "Hemi Tāwhiri",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "drove 120 km,"
+   },
+   {
+    "quote": "drove 85 km and I drove 45 km."
+   },
+   {
+    "quote": "Fuel came to 58.50 euros, and we split it by distance."
+   },
+   {
+    "quote": "Insurance of 30 euros each is already paid."
+   },
+   {
+    "quote": "I paid the fuel at the pump, so the other two owe me their shares."
+   },
+   {
+    "quote": "I will receive"
+   },
+   {
+    "quote": "'s share through the app under the username"
+   },
+   {
+    "quote": ", but"
+   },
+   {
+    "quote": "wants to send hers by bank transfer to my IBAN"
+   },
+   {
+    "quote": "and not through the app."
+   },
+   {
+    "quote": "Our neighbour on the ground floor,"
+   },
+   {
+    "quote": "may join in December if he gets a parking permit, and he would then pay one quarter of the fuel."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "October car-share costs for the three of us who share the Peugeot. [PERSON_1] drove 120 km, [PERSON_2] drove 85 km and I drove 45 km. Fuel came to 58.50 euros, and we split it by distance. Insurance of 30 euros each is already paid. I paid the fuel at the pump, so the other two owe me their shares. I will receive [PERSON_1]'s share through the app under the username [USERNAME], but [PERSON_2] wants to send hers by bank transfer to my IBAN [IBAN] and not through the app. Our neighbour on the ground floor, [PERSON_3], may join in December if he gets a parking permit, and he would then pay one quarter of the fuel."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-010",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-spring-agency-brief",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-spring-agency-brief",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-spring-agency-brief",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-spring-agency-brief",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a one-page agency brief outline with owners and deadlines.",
+  "text": "Kick-off notes for the spring campaign brief. Our brand lead is Ingibjörg Sigurdardóttir and the agency account director is Pham Quoc Bao. Bao will send the creative routes by 12 March, and Ingibjörg signs off only if all three routes include a 15-second cut-down. The launch is 28 April with paid social starting 14 April. Deliverables: one hero film, six social cut-downs, and a landing page. The tone should be playful but never sarcastic about competitors, and the agency must not subcontract the film shoot without our written approval. Questions about fees go to procurement, not to the creative team. The agency purchase order is PO-884201. Send questions to bao.pham@brightkite.example or call 555-0142.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "lead",
+    "label": "PERSON",
+    "quote": "Ingibjörg Sigurdardóttir"
+   },
+   {
+    "id": "m2",
+    "entity_id": "ad",
+    "label": "PERSON",
+    "quote": "Pham Quoc Bao"
+   },
+   {
+    "id": "m3",
+    "entity_id": "ad",
+    "label": "PERSON",
+    "quote": "Bao",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "lead",
+    "label": "PERSON",
+    "quote": "Ingibjörg",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "po",
+    "label": "ACCOUNT_ID",
+    "quote": "PO-884201"
+   },
+   {
+    "id": "m6",
+    "entity_id": "ad-email",
+    "label": "EMAIL",
+    "quote": "bao.pham@brightkite.example"
+   },
+   {
+    "id": "m7",
+    "entity_id": "ad-phone",
+    "label": "PHONE",
+    "quote": "555-0142"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "lead",
+    "quote": "Ingibjörg Sigurdardóttir",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "ad",
+    "quote": "Pham Quoc Bao",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "ad",
+    "quote": "Bao",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "lead",
+    "quote": "Ingibjörg",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "po",
+    "quote": "PO-884201",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The brief outline does not need the purchase order number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "ad-email",
+    "quote": "bao.pham@brightkite.example",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The outline does not need the agency contact email."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "ad-phone",
+    "quote": "555-0142",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The outline does not need the agency phone number."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our brand lead is"
+   },
+   {
+    "quote": "and the agency account director is"
+   },
+   {
+    "quote": "will send the creative routes by 12 March, and"
+   },
+   {
+    "quote": "signs off only if all three routes include a 15-second cut-down."
+   },
+   {
+    "quote": "The launch is 28 April with paid social starting 14 April."
+   },
+   {
+    "quote": "Deliverables: one hero film, six social cut-downs, and a landing page."
+   },
+   {
+    "quote": "The tone should be playful but never sarcastic about competitors, and the agency must not subcontract the film shoot without our written approval."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Kick-off notes for the spring campaign brief. Our brand lead is [PERSON_1] and the agency account director is [PERSON_2]. [PERSON_2] will send the creative routes by 12 March, and [PERSON_1] signs off only if all three routes include a 15-second cut-down. The launch is 28 April with paid social starting 14 April. Deliverables: one hero film, six social cut-downs, and a landing page. The tone should be playful but never sarcastic about competitors, and the agency must not subcontract the film shoot without our written approval. Questions about fees go to procurement, not to the creative team. The agency purchase order is [ACCOUNT_ID]. Send questions to [EMAIL] or call [PHONE]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-011",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-creator-contract-summary",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-creator-contract-summary",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-creator-contract-summary",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-creator-contract-summary",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check this contract summary for gaps and list what is still unconfirmed.",
+  "text": "Summary of the influencer contract for the summer launch. Creator Temitope Adeyemi (handle @temi.cooks) has agreed to three Reels, two Stories and one livestream between 3 June and 30 June. Her manager, Reza Hosseini, insisted on a 30-day exclusivity period that starts on the first post, not on signing. We approve every caption 48 hours before posting, and Temitope must disclose the partnership with #ad in the first line. Payment is in two instalments, the first on signature and the second within 14 days of the final post, to IBAN NL00 TEST 0123 4567 89. Reza can be reached at reza.h@creatorco.example for schedule changes.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "cr",
+    "label": "PERSON",
+    "quote": "Temitope Adeyemi"
+   },
+   {
+    "id": "m2",
+    "entity_id": "handle",
+    "label": "USERNAME",
+    "quote": "@temi.cooks"
+   },
+   {
+    "id": "m3",
+    "entity_id": "mgr",
+    "label": "PERSON",
+    "quote": "Reza Hosseini"
+   },
+   {
+    "id": "m4",
+    "entity_id": "cr",
+    "label": "PERSON",
+    "quote": "Temitope",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "cr-iban",
+    "label": "IBAN",
+    "quote": "NL00 TEST 0123 4567 89"
+   },
+   {
+    "id": "m6",
+    "entity_id": "mgr",
+    "label": "PERSON",
+    "quote": "Reza",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "mgr-email",
+    "label": "EMAIL",
+    "quote": "reza.h@creatorco.example"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "cr",
+    "quote": "Temitope Adeyemi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "handle",
+    "quote": "@temi.cooks",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The gap check does not need the creator's social handle."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mgr",
+    "quote": "Reza Hosseini",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "cr",
+    "quote": "Temitope",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "cr-iban",
+    "quote": "NL00 TEST 0123 4567 89",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The gap check does not need the payee's bank account."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "mgr",
+    "quote": "Reza",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "mgr-email",
+    "quote": "reza.h@creatorco.example",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The gap check does not need the manager's email address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "has agreed to three Reels, two Stories and one livestream between 3 June and 30 June."
+   },
+   {
+    "quote": "Her manager,"
+   },
+   {
+    "quote": "insisted on a 30-day exclusivity period that starts on the first post, not on signing."
+   },
+   {
+    "quote": "We approve every caption 48 hours before posting, and"
+   },
+   {
+    "quote": "must disclose the partnership with #ad in the first line."
+   },
+   {
+    "quote": "Payment is in two instalments, the first on signature and the second within 14 days of the final post, to IBAN"
+   },
+   {
+    "quote": "can be reached at"
+   },
+   {
+    "quote": "for schedule changes."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Summary of the influencer contract for the summer launch. Creator [PERSON_1] (handle [USERNAME]) has agreed to three Reels, two Stories and one livestream between 3 June and 30 June. Her manager, [PERSON_2], insisted on a 30-day exclusivity period that starts on the first post, not on signing. We approve every caption 48 hours before posting, and [PERSON_1] must disclose the partnership with #ad in the first line. Payment is in two instalments, the first on signature and the second within 14 days of the final post, to IBAN [IBAN]. [PERSON_2] can be reached at [EMAIL] for schedule changes."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:id-012",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-ballroom-showcase",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-ballroom-showcase",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-ballroom-showcase",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-ballroom-showcase",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Convert this into a run-of-show checklist with the cutoffs highlighted.",
+  "text": "Event ops update for the product showcase on 19 June. The venue coordinator, Zsófia Horváth, confirmed the ballroom from 14:00 for setup with doors at 18:30 and a hard stop at 23:00. Our booking reference is VB-2026-5531. Catering is for 140 guests, with 12 vegetarian and 6 vegan meals, and Zsófia said numbers must be final by 5 June or the deposit is not refundable. Our producer, Callum Reid, is on site from 10:00. The loading dock fits two vans at a time, so deliveries are staggered in 30-minute slots from 12:00 to 13:30, and the sound check at 16:30 must finish before doors. For load-in questions ring 555-0177; for contract queries email events.desk@venuehall.example.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "venue",
+    "label": "PERSON",
+    "quote": "Zsófia Horváth"
+   },
+   {
+    "id": "m2",
+    "entity_id": "booking",
+    "label": "ACCOUNT_ID",
+    "quote": "VB-2026-5531"
+   },
+   {
+    "id": "m3",
+    "entity_id": "venue",
+    "label": "PERSON",
+    "quote": "Zsófia",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "prod",
+    "label": "PERSON",
+    "quote": "Callum Reid"
+   },
+   {
+    "id": "m5",
+    "entity_id": "venue-phone",
+    "label": "PHONE",
+    "quote": "555-0177"
+   },
+   {
+    "id": "m6",
+    "entity_id": "venue-email",
+    "label": "EMAIL",
+    "quote": "events.desk@venuehall.example"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "venue",
+    "quote": "Zsófia Horváth",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "booking",
+    "quote": "VB-2026-5531",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The checklist does not need the booking reference."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "venue",
+    "quote": "Zsófia",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "prod",
+    "quote": "Callum Reid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "venue-phone",
+    "quote": "555-0177",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The checklist does not need the venue phone number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "venue-email",
+    "quote": "events.desk@venuehall.example",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The checklist does not need the venue contract email."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The venue coordinator,"
+   },
+   {
+    "quote": "confirmed the ballroom from 14:00 for setup with doors at 18:30 and a hard stop at 23:00."
+   },
+   {
+    "quote": "Catering is for 140 guests, with 12 vegetarian and 6 vegan meals, and"
+   },
+   {
+    "quote": "said numbers must be final by 5 June or the deposit is not refundable."
+   },
+   {
+    "quote": "Our producer,"
+   },
+   {
+    "quote": "is on site from 10:00."
+   },
+   {
+    "quote": "The loading dock fits two vans at a time, so deliveries are staggered in 30-minute slots from 12:00 to 13:30, and the sound check at 16:30 must finish before doors."
+   },
+   {
+    "quote": "For load-in questions ring"
+   },
+   {
+    "quote": "; for contract queries email"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Event ops update for the product showcase on 19 June. The venue coordinator, [PERSON_1], confirmed the ballroom from 14:00 for setup with doors at 18:30 and a hard stop at 23:00. Our booking reference is [ACCOUNT_ID]. Catering is for 140 guests, with 12 vegetarian and 6 vegan meals, and [PERSON_1] said numbers must be final by 5 June or the deposit is not refundable. Our producer, [PERSON_2], is on site from 10:00. The loading dock fits two vans at a time, so deliveries are staggered in 30-minute slots from 12:00 to 13:30, and the sound check at 16:30 must finish before doors. For load-in questions ring [PHONE]; for contract queries email [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:pres-001",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-van-who-pays",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-van-who-pays",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-van-who-pays",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-van-who-pays",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Summarise who pays what, under which conditions, and what is still uncertain.",
+  "text": "Quick recap before I forget what we agreed on the used van. Dagny Haraldsdóttir is selling it for 6,900 euros, not the 7,400 in the advert, because the MOT runs out in 5 weeks. My brother, Ejike Nwosu, will pay half only if the van passes a pre-purchase inspection, and he said he is not paying anything towards the 180-euro inspection itself. Tarek Mansour, the mechanic, thinks the gearbox might need work, but he has not opened it up yet, so the estimate of 400 to 900 euros is only a guess. I will cover the inspection fee and the transfer tax of 120 euros. Dagny gave me until Friday evening to confirm.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sel",
+    "label": "PERSON",
+    "quote": "Dagny Haraldsdóttir"
+   },
+   {
+    "id": "m2",
+    "entity_id": "bro",
+    "label": "PERSON",
+    "quote": "Ejike Nwosu"
+   },
+   {
+    "id": "m3",
+    "entity_id": "mech",
+    "label": "PERSON",
+    "quote": "Tarek Mansour"
+   },
+   {
+    "id": "m4",
+    "entity_id": "sel",
+    "label": "PERSON",
+    "quote": "Dagny",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sel",
+    "quote": "Dagny Haraldsdóttir",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "bro",
+    "quote": "Ejike Nwosu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mech",
+    "quote": "Tarek Mansour",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "sel",
+    "quote": "Dagny",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "is selling it for 6,900 euros, not the 7,400 in the advert, because the MOT runs out in 5 weeks."
+   },
+   {
+    "quote": "My brother,"
+   },
+   {
+    "quote": "will pay half only if the van passes a pre-purchase inspection, and he said he is not paying anything towards the 180-euro inspection itself."
+   },
+   {
+    "quote": ", the mechanic, thinks the gearbox might need work, but he has not opened it up yet, so the estimate of 400 to 900 euros is only a guess."
+   },
+   {
+    "quote": "I will cover the inspection fee and the transfer tax of 120 euros."
+   },
+   {
+    "quote": "gave me until Friday evening to confirm."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Quick recap before I forget what we agreed on the used van. [PERSON_1] is selling it for 6,900 euros, not the 7,400 in the advert, because the MOT runs out in 5 weeks. My brother, [PERSON_2], will pay half only if the van passes a pre-purchase inspection, and he said he is not paying anything towards the 180-euro inspection itself. [PERSON_3], the mechanic, thinks the gearbox might need work, but he has not opened it up yet, so the estimate of 400 to 900 euros is only a guess. I will cover the inspection fee and the transfer tax of 120 euros. [PERSON_1] gave me until Friday evening to confirm."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:pres-002",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-bumper-positions",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-bumper-positions",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-bumper-positions",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-bumper-positions",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short summary of each person's position and the open questions for my broker.",
+  "text": "Notes on who said what about the claim for my bumper. The adjuster, Lindiwe Zulu, said the repair would be covered in full only if the report from the other driver arrives by 20 November; otherwise I pay the 300-pound excess. The other driver, Henrik Aaltonen, first said I reversed into him, then corrected himself: he rolled forward, not me, though he still denies being at fault. My neighbour, Gustavo Pires, saw it from the window and might be willing to write a statement, but he has not promised anything. I think the garage estimate is 780 pounds, not 870, but I will check the invoice.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "adj",
+    "label": "PERSON",
+    "quote": "Lindiwe Zulu"
+   },
+   {
+    "id": "m2",
+    "entity_id": "other",
+    "label": "PERSON",
+    "quote": "Henrik Aaltonen"
+   },
+   {
+    "id": "m3",
+    "entity_id": "witness",
+    "label": "PERSON",
+    "quote": "Gustavo Pires"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "adj",
+    "quote": "Lindiwe Zulu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "other",
+    "quote": "Henrik Aaltonen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "witness",
+    "quote": "Gustavo Pires",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The adjuster,"
+   },
+   {
+    "quote": "said the repair would be covered in full only if the report from the other driver arrives by 20 November; otherwise I pay the 300-pound excess."
+   },
+   {
+    "quote": "The other driver,"
+   },
+   {
+    "quote": "first said I reversed into him, then corrected himself: he rolled forward, not me, though he still denies being at fault."
+   },
+   {
+    "quote": "My neighbour,"
+   },
+   {
+    "quote": "saw it from the window and might be willing to write a statement, but he has not promised anything."
+   },
+   {
+    "quote": "I think the garage estimate is 780 pounds, not 870, but I will check the invoice."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes on who said what about the claim for my bumper. The adjuster, [PERSON_1], said the repair would be covered in full only if the report from the other driver arrives by 20 November; otherwise I pay the 300-pound excess. The other driver, [PERSON_2], first said I reversed into him, then corrected himself: he rolled forward, not me, though he still denies being at fault. My neighbour, [PERSON_3], saw it from the window and might be willing to write a statement, but he has not promised anything. I think the garage estimate is 780 pounds, not 870, but I will check the invoice."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:pres-003",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-shared-car-fine",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-shared-car-fine",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-shared-car-fine",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-shared-car-fine",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short note for the group chat stating who has agreed to pay what, and which parts are guesses.",
+  "text": "The 65-euro parking fine from 4 October is not mine, even though the car is registered to me. Marit Solberg says she parked it, but the ticket time of 14:40 is when she was at work, so Chinedu Okafor probably drove it, though he says he was not in the car at all. Our other neighbour, Beatrix Kovács, thinks Chinedu borrowed it that afternoon, and she will confirm only if nobody names her in the appeal. Marit has offered to pay 20 euros if the appeal fails, and I will cover the remaining 45 euros only if the ticket is proven to be from the car-share booking. I am not paying the late fee of 30 euros that starts on 18 October.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "a",
+    "label": "PERSON",
+    "quote": "Marit Solberg"
+   },
+   {
+    "id": "m2",
+    "entity_id": "b",
+    "label": "PERSON",
+    "quote": "Chinedu Okafor"
+   },
+   {
+    "id": "m3",
+    "entity_id": "c",
+    "label": "PERSON",
+    "quote": "Beatrix Kovács"
+   },
+   {
+    "id": "m4",
+    "entity_id": "b",
+    "label": "PERSON",
+    "quote": "Chinedu",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "a",
+    "label": "PERSON",
+    "quote": "Marit",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "a",
+    "quote": "Marit Solberg",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "b",
+    "quote": "Chinedu Okafor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "c",
+    "quote": "Beatrix Kovács",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "b",
+    "quote": "Chinedu",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "a",
+    "quote": "Marit",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The 65-euro parking fine from 4 October is not mine, even though the car is registered to me."
+   },
+   {
+    "quote": "says she parked it, but the ticket time of 14:40 is when she was at work, so"
+   },
+   {
+    "quote": "probably drove it, though he says he was not in the car at all."
+   },
+   {
+    "quote": "Our other neighbour,"
+   },
+   {
+    "quote": "thinks"
+   },
+   {
+    "quote": "borrowed it that afternoon, and she will confirm only if nobody names her in the appeal."
+   },
+   {
+    "quote": "has offered to pay 20 euros if the appeal fails, and I will cover the remaining 45 euros only if the ticket is proven to be from the car-share booking."
+   },
+   {
+    "quote": "I am not paying the late fee of 30 euros that starts on 18 October."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "The 65-euro parking fine from 4 October is not mine, even though the car is registered to me. [PERSON_1] says she parked it, but the ticket time of 14:40 is when she was at work, so [PERSON_2] probably drove it, though he says he was not in the car at all. Our other neighbour, [PERSON_3], thinks [PERSON_2] borrowed it that afternoon, and she will confirm only if nobody names her in the appeal. [PERSON_1] has offered to pay 20 euros if the appeal fails, and I will cover the remaining 45 euros only if the ticket is proven to be from the car-share booking. I am not paying the late fee of 30 euros that starts on 18 October."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:pres-004",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-launch-rota-changes",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-launch-rota-changes",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-launch-rota-changes",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-launch-rota-changes",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clear rota with the conditions listed separately.",
+  "text": "Rota changes for the product launch event on 12 November. Ines Carvalho will run registration, not Mustafa Demir, who is moved to the speaker green room. If Anneliese Voigt's flight is delayed beyond 14:00, Mustafa will give the welcome talk, and Ines will take the green room only if the registration desk has two volunteers. Folasade Bello from the agency said she might bring a third volunteer, but she has not confirmed. The doors open at 17:30, not 18:00, because the sponsor asked for an earlier start. The bag-check team stays at four people, not five, unless the sponsor sends the final guest list before Friday.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "a",
+    "label": "PERSON",
+    "quote": "Ines Carvalho"
+   },
+   {
+    "id": "m2",
+    "entity_id": "b",
+    "label": "PERSON",
+    "quote": "Mustafa Demir"
+   },
+   {
+    "id": "m3",
+    "entity_id": "c",
+    "label": "PERSON",
+    "quote": "Anneliese Voigt"
+   },
+   {
+    "id": "m4",
+    "entity_id": "b",
+    "label": "PERSON",
+    "quote": "Mustafa",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "a",
+    "label": "PERSON",
+    "quote": "Ines",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "d",
+    "label": "PERSON",
+    "quote": "Folasade Bello"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "a",
+    "quote": "Ines Carvalho",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "b",
+    "quote": "Mustafa Demir",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "c",
+    "quote": "Anneliese Voigt",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "b",
+    "quote": "Mustafa",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "a",
+    "quote": "Ines",
+    "occurrence": 2,
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d",
+    "quote": "Folasade Bello",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "will run registration, not"
+   },
+   {
+    "quote": ", who is moved to the speaker green room. If"
+   },
+   {
+    "quote": "'s flight is delayed beyond 14:00,"
+   },
+   {
+    "quote": "will give the welcome talk, and"
+   },
+   {
+    "quote": "will take the green room only if the registration desk has two volunteers."
+   },
+   {
+    "quote": "from the agency said she might bring a third volunteer, but she has not confirmed."
+   },
+   {
+    "quote": "The doors open at 17:30, not 18:00, because the sponsor asked for an earlier start."
+   },
+   {
+    "quote": "The bag-check team stays at four people, not five, unless the sponsor sends the final guest list before Friday."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Rota changes for the product launch event on 12 November. [PERSON_1] will run registration, not [PERSON_2], who is moved to the speaker green room. If [PERSON_3]'s flight is delayed beyond 14:00, [PERSON_2] will give the welcome talk, and [PERSON_1] will take the green room only if the registration desk has two volunteers. [PERSON_4] from the agency said she might bring a third volunteer, but she has not confirmed. The doors open at 17:30, not 18:00, because the sponsor asked for an earlier start. The bag-check team stays at four people, not five, unless the sponsor sends the final guest list before Friday."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:ben-001",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-stopping-distances",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-stopping-distances",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-stopping-distances",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-stopping-distances",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain the stopping-distance figures simply and suggest a way to memorise the 60 and 70 mph values.",
+  "text": "I'm revising for my driving theory test and a few things confuse me. The Highway Code, rule 126, gives typical stopping distances: 23 metres at 30 mph, 36 metres at 40 mph and 53 metres at 50 mph. I think it says 73 metres at 60 mph and 96 metres at 70 mph, but I keep mixing them up. It also splits each total into thinking distance and braking distance, which is 9 metres plus 14 metres at 30 mph. Separately, the car-share app shows error 403 when I try to unlock a car, and my app version is 5.2.1, so I wonder whether the old release causes it. Please check my figures and keep the explanation short.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I'm revising for my driving theory test and a few things confuse me. The Highway Code, rule 126, gives typical stopping distances: 23 metres at 30 mph, 36 metres at 40 mph and 53 metres at 50 mph. I think it says 73 metres at 60 mph and 96 metres at 70 mph, but I keep mixing them up. It also splits each total into thinking distance and braking distance, which is 9 metres plus 14 metres at 30 mph. Separately, the car-share app shows error 403 when I try to unlock a car, and my app version is 5.2.1, so I wonder whether the old release causes it. Please check my figures and keep the explanation short."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:ben-002",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-landing-redirect",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-landing-redirect",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-landing-redirect",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-landing-redirect",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short checklist for the developer covering the redirect, the tracking parameters and the consent banner.",
+  "text": "We are fixing the campaign landing page before the spring push. The old path /spring-offer now returns HTTP 404, and it should send a 301 redirect to /spring instead. The utm_source, utm_medium and utm_campaign parameters must survive the redirect, because Google Analytics 4 uses them to attribute traffic. The consent banner wording should follow GDPR Article 7, and influencer posts that link to the page need the disclosure labels described in the ASA CAP Code. Meta Pixel version 2.0 loads on the page and must not fire before consent. Contrast on the buttons should meet WCAG 2.1 level AA. The staging site runs on port 8443 and the build is version 3.14.2. Please keep the checklist to eight items or fewer.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "We are fixing the campaign landing page before the spring push. The old path /spring-offer now returns HTTP 404, and it should send a 301 redirect to /spring instead. The utm_source, utm_medium and utm_campaign parameters must survive the redirect, because Google Analytics 4 uses them to attribute traffic. The consent banner wording should follow GDPR Article 7, and influencer posts that link to the page need the disclosure labels described in the ASA CAP Code. Meta Pixel version 2.0 loads on the page and must not fire before consent. Contrast on the buttons should meet WCAG 2.1 level AA. The staging site runs on port 8443 and the build is version 3.14.2. Please keep the checklist to eight items or fewer."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:cred-001",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-garage-keypad-note",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-garage-keypad-note",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-garage-keypad-note",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-garage-keypad-note",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a clear, friendly step-by-step note for my neighbour.",
+  "text": "Hi Bohdan, thanks for looking after the Corsa from 3 to 10 December. It is parked in the garage behind our building. The garage door keypad code is 7392#, then wait for the green light before driving in or out. The spare key is in the grey lockbox on the left wall and the lockbox code is 0418. To unlock the car with the car-share app, sign in as the shared account with the password Maple!Quay58 and do not change it. Please fill the tank to at least half before you hand it back, and park it nose-in. If anything goes wrong my other neighbour, Siew Ling Tan, has a second set of keys and lives on the first floor.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "nb",
+    "label": "PERSON",
+    "quote": "Bohdan"
+   },
+   {
+    "id": "m2",
+    "entity_id": "keypad",
+    "label": "SECRET",
+    "quote": "7392#"
+   },
+   {
+    "id": "m3",
+    "entity_id": "lockbox",
+    "label": "SECRET",
+    "quote": "0418"
+   },
+   {
+    "id": "m4",
+    "entity_id": "app-pw",
+    "label": "SECRET",
+    "quote": "Maple!Quay58"
+   },
+   {
+    "id": "m5",
+    "entity_id": "other",
+    "label": "PERSON",
+    "quote": "Siew Ling Tan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "nb",
+    "quote": "Bohdan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "keypad",
+    "quote": "7392#",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot repeat the keypad code; the user re-inserts it in the final note."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "lockbox",
+    "quote": "0418",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot repeat the lockbox code; the user re-inserts it. Same-type placeholders are told apart by the labels keypad code, lockbox code and password."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "app-pw",
+    "quote": "Maple!Quay58",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agent cannot repeat the shared account password; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "other",
+    "quote": "Siew Ling Tan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "thanks for looking after the Corsa from 3 to 10 December."
+   },
+   {
+    "quote": "It is parked in the garage behind our building."
+   },
+   {
+    "quote": "The garage door keypad code is"
+   },
+   {
+    "quote": ", then wait for the green light before driving in or out."
+   },
+   {
+    "quote": "The spare key is in the grey lockbox on the left wall and the lockbox code is"
+   },
+   {
+    "quote": "To unlock the car with the car-share app, sign in as the shared account with the password"
+   },
+   {
+    "quote": "and do not change it."
+   },
+   {
+    "quote": "Please fill the tank to at least half before you hand it back, and park it nose-in."
+   },
+   {
+    "quote": "If anything goes wrong my other neighbour,"
+   },
+   {
+    "quote": "has a second set of keys and lives on the first floor."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi [PERSON_1], thanks for looking after the Corsa from 3 to 10 December. It is parked in the garage behind our building. The garage door keypad code is [SECRET], then wait for the green light before driving in or out. The spare key is in the grey lockbox on the left wall and the lockbox code is [SECRET]. To unlock the car with the car-share app, sign in as the shared account with the password [SECRET] and do not change it. Please fill the tank to at least half before you hand it back, and park it nose-in. If anything goes wrong my other neighbour, [PERSON_2], has a second set of keys and lives on the first floor."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "d9e4c9f5ef814fb998bb006fff4a4df4",
+  "id": "d9e4c9f5ef814fb998bb006fff4a4df4:cred-002",
+  "family_id": "d9e4c9f5ef814fb998bb006fff4a4df4:fam-events-desk-handover",
+  "persona_id": "d9e4c9f5ef814fb998bb006fff4a4df4:per-events-desk-handover",
+  "source_id": "d9e4c9f5ef814fb998bb006fff4a4df4:src-events-desk-handover",
+  "template_id": "d9e4c9f5ef814fb998bb006fff4a4df4:tpl-events-desk-handover",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a numbered handover checklist for my stand-in, keeping the dates and escalation steps.",
+  "text": "Handover note for the events coordinator role while I am on leave from 24 November. For the venue booking portal, log in with the shared events-desk account and the password Birch#Tulip731; the portal is at portal.venuehub.test. Our biggest pending job is the product dinner for Marlowe & Finch, who are under NDA, so please do not mention them outside the team. The approved launch budget is 2.4 million pounds and the venue deposit is due on 1 December. Hand questions about the agency contract to Elin Berglund, who signs off any change, and to Kiran Desai for supplier invoices. If the portal locks you out after three attempts, call the venue's help desk and ask for a reset; do not create a second account.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "portal-pw",
+    "label": "SECRET",
+    "quote": "Birch#Tulip731"
+   },
+   {
+    "id": "m2",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Marlowe & Finch"
+   },
+   {
+    "id": "m3",
+    "entity_id": "budget",
+    "label": "FINANCIAL",
+    "quote": "2.4 million pounds"
+   },
+   {
+    "id": "m4",
+    "entity_id": "legal",
+    "label": "PERSON",
+    "quote": "Elin Berglund"
+   },
+   {
+    "id": "m5",
+    "entity_id": "pm",
+    "label": "PERSON",
+    "quote": "Kiran Desai"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "portal-pw",
+    "quote": "Birch#Tulip731",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The portal password is a shared credential and the checklist only needs to say the login exists."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "client",
+    "quote": "Marlowe & Finch",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The client is under NDA and the checklist does not need the client name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "budget",
+    "quote": "2.4 million pounds",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The launch budget is nonpublic commercial information and the checklist does not need the figure."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "legal",
+    "quote": "Elin Berglund",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "pm",
+    "quote": "Kiran Desai",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Handover note for the events coordinator role while I am on leave from 24 November."
+   },
+   {
+    "quote": "log in with the shared events-desk account and the password"
+   },
+   {
+    "quote": "Our biggest pending job is the product dinner for"
+   },
+   {
+    "quote": ", who are under NDA, so please do not mention them outside the team."
+   },
+   {
+    "quote": "and the venue deposit is due on 1 December."
+   },
+   {
+    "quote": "Hand questions about the agency contract to"
+   },
+   {
+    "quote": ", who signs off any change, and to"
+   },
+   {
+    "quote": "for supplier invoices."
+   },
+   {
+    "quote": "If the portal locks you out after three attempts, call the venue's help desk and ask for a reset; do not create a second account."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "d9e4c9f5ef814fb998bb006fff4a4df4:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Handover note for the events coordinator role while I am on leave from 24 November. For the venue booking portal, log in with the shared events-desk account and the password [SECRET]; the portal is at portal.venuehub.test. Our biggest pending job is the product dinner for [ORG], who are under NDA, so please do not mention them outside the team. The approved launch budget is [FINANCIAL] and the venue deposit is due on 1 December. Hand questions about the agency contract to [PERSON_1], who signs off any change, and to [PERSON_2] for supplier invoices. If the portal locks you out after three attempts, call the venue's help desk and ask for a reset; do not create a second account."
+ }
+]

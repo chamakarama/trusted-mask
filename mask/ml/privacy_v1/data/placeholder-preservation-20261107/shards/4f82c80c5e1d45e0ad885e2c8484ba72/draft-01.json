@@ -1,0 +1,1692 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-001",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-school-trip-consent-wetland",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-school-trip-consent-wetland",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-school-trip-consent-wetland",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-school-trip-consent-wetland",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me turn this into a short, polite follow-up to the trip teacher so the medical and seating notes don't get lost.",
+    "text": "Hi Mr Okonkwo-Hale,\n\nFollowing up on the Year 5 trip to the Wetland Centre on 14 November. My daughter Saoirse Tauriainen's consent form went back in her book bag on Monday, but the office says it never arrived. I've signed a second copy and can drop it at reception before 8:40 tomorrow. Two things the form didn't have room for: Saoirse carries an adrenaline auto-injector for a peanut allergy, and she gets travel sick on coaches longer than about 40 minutes, so a seat near the front would help. The £18 trip payment was made through the parent portal under account ref PP-55821-TAU. If anything else is missing, please email me at h.tauriainen@example.com or call 07700 900417 after 3pm.\n\nThanks,\nHenna Tauriainen",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "teacher",
+        "label": "PERSON",
+        "quote": "Okonkwo-Hale"
+      },
+      {
+        "id": "m2",
+        "entity_id": "child",
+        "label": "PERSON",
+        "quote": "Saoirse Tauriainen"
+      },
+      {
+        "id": "m3",
+        "entity_id": "child",
+        "label": "PERSON",
+        "quote": "Saoirse",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "allergy",
+        "label": "HEALTH",
+        "quote": "carries an adrenaline auto-injector for a peanut allergy"
+      },
+      {
+        "id": "m5",
+        "entity_id": "travel-sickness",
+        "label": "HEALTH",
+        "quote": "she gets travel sick on coaches longer than about 40 minutes"
+      },
+      {
+        "id": "m6",
+        "entity_id": "portal-ref",
+        "label": "ACCOUNT_ID",
+        "quote": "PP-55821-TAU"
+      },
+      {
+        "id": "m7",
+        "entity_id": "parent-email",
+        "label": "EMAIL",
+        "quote": "h.tauriainen@example.com"
+      },
+      {
+        "id": "m8",
+        "entity_id": "parent-phone",
+        "label": "PHONE",
+        "quote": "07700 900417"
+      },
+      {
+        "id": "m9",
+        "entity_id": "parent",
+        "label": "PERSON",
+        "quote": "Henna Tauriainen"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "teacher",
+        "quote": "Okonkwo-Hale",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "child",
+        "quote": "Saoirse Tauriainen",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "child",
+        "quote": "Saoirse",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "allergy",
+        "quote": "carries an adrenaline auto-injector for a peanut allergy",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "travel-sickness",
+        "quote": "she gets travel sick on coaches longer than about 40 minutes",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "portal-ref",
+        "quote": "PP-55821-TAU",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The parent-portal reference identifies the family's account; the follow-up only needs to say the payment was made online."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "parent-email",
+        "quote": "h.tauriainen@example.com",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The parent's personal email is a direct contact identifier and the drafted note only needs to say she can be emailed."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "parent-phone",
+        "quote": "07700 900417",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The parent's mobile number is a direct contact identifier; the draft can keep the 'call after 3pm' detail without it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "parent",
+        "quote": "Henna Tauriainen",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Following up on the Year 5 trip to the Wetland Centre on 14 November."
+      },
+      {
+        "quote": "My daughter"
+      },
+      {
+        "quote": "consent form went back in her book bag on Monday, but the office says it never arrived."
+      },
+      {
+        "quote": "I've signed a second copy and can drop it at reception before 8:40 tomorrow."
+      },
+      {
+        "quote": "carries an adrenaline auto-injector for a peanut allergy"
+      },
+      {
+        "quote": "she gets travel sick on coaches longer than about 40 minutes, so a seat near the front would help."
+      },
+      {
+        "quote": "The £18 trip payment was made through the parent portal under account ref"
+      }
+    ],
+    "approved_output": "Hi Mr [PERSON_1],\n\nFollowing up on the Year 5 trip to the Wetland Centre on 14 November. My daughter [PERSON_2]'s consent form went back in her book bag on Monday, but the office says it never arrived. I've signed a second copy and can drop it at reception before 8:40 tomorrow. Two things the form didn't have room for: [PERSON_2] carries an adrenaline auto-injector for a peanut allergy, and she gets travel sick on coaches longer than about 40 minutes, so a seat near the front would help. The £18 trip payment was made through the parent portal under account ref [ACCOUNT_ID]. If anything else is missing, please email me at [EMAIL] or call [PHONE] after 3pm.\n\nThanks,\n[PERSON_3]",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-002",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-custody-handover-grandma-pickup",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-custody-handover-grandma-pickup",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-custody-handover-grandma-pickup",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-custody-handover-grandma-pickup",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Draft a calm, short text to my ex confirming who's collecting the kids this Friday and where Sunday's handover happens.",
+    "text": "Can you help me reply to Dariusz? Context: our handover schedule changed after the mediation session on 2 October. Under the new arrangement Kacper and Ola are with me from Friday after school until Sunday 5pm, every other weekend, and Dariusz has them midweek. This Friday I'm stuck at work until 6:30, so my mum, Grażyna Wierzbicka, will collect them from school instead. Dariusz texted from 07700 900662 saying he's 'not comfortable' with that unless I send him her number first, which is fair. Her mobile is 07700 900318. Handover back on Sunday stays at the leisure centre car park on Ashdown Road, not his flat, at 5pm sharp. I don't want to argue, I just want it clear and short, and I'd rather not mention the mediation at all.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "ex",
+        "label": "PERSON",
+        "quote": "Dariusz",
+        "occurrence": 1
+      },
+      {
+        "id": "m2",
+        "entity_id": "son",
+        "label": "PERSON",
+        "quote": "Kacper"
+      },
+      {
+        "id": "m3",
+        "entity_id": "daughter",
+        "label": "PERSON",
+        "quote": "Ola"
+      },
+      {
+        "id": "m4",
+        "entity_id": "custody",
+        "label": "FAMILY",
+        "quote": "are with me from Friday after school until Sunday 5pm, every other weekend"
+      },
+      {
+        "id": "m5",
+        "entity_id": "ex",
+        "label": "PERSON",
+        "quote": "Dariusz",
+        "occurrence": 2
+      },
+      {
+        "id": "m6",
+        "entity_id": "grandmother",
+        "label": "PERSON",
+        "quote": "Grażyna Wierzbicka"
+      },
+      {
+        "id": "m7",
+        "entity_id": "ex",
+        "label": "PERSON",
+        "quote": "Dariusz",
+        "occurrence": 3
+      },
+      {
+        "id": "m8",
+        "entity_id": "ex-phone",
+        "label": "PHONE",
+        "quote": "07700 900662"
+      },
+      {
+        "id": "m9",
+        "entity_id": "grandmother-phone",
+        "label": "PHONE",
+        "quote": "07700 900318"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "ex",
+        "quote": "Dariusz",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 1
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "son",
+        "quote": "Kacper",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "daughter",
+        "quote": "Ola",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "custody",
+        "quote": "are with me from Friday after school until Sunday 5pm, every other weekend",
+        "label": "FAMILY",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "ex",
+        "quote": "Dariusz",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "grandmother",
+        "quote": "Grażyna Wierzbicka",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "ex",
+        "quote": "Dariusz",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "ex-phone",
+        "quote": "07700 900662",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The ex-partner's number is a direct identifier and is not needed to word a reply to him."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "grandmother-phone",
+        "quote": "07700 900318",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The reply must pass on the grandmother's number, but the agent cannot see it; the user re-inserts the real number locally."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "our handover schedule changed after the mediation session on 2 October."
+      },
+      {
+        "quote": "are with me from Friday after school until Sunday 5pm, every other weekend"
+      },
+      {
+        "quote": "has them midweek."
+      },
+      {
+        "quote": "This Friday I'm stuck at work until 6:30, so my mum,"
+      },
+      {
+        "quote": "will collect them from school instead."
+      },
+      {
+        "quote": "saying he's 'not comfortable' with that unless I send him her number first, which is fair."
+      },
+      {
+        "quote": "Handover back on Sunday stays at the leisure centre car park on Ashdown Road, not his flat, at 5pm sharp."
+      },
+      {
+        "quote": "I'd rather not mention the mediation at all."
+      }
+    ],
+    "approved_output": "Can you help me reply to [PERSON_1]? Context: our handover schedule changed after the mediation session on 2 October. Under the new arrangement [PERSON_2] and [PERSON_3] are with me from Friday after school until Sunday 5pm, every other weekend, and [PERSON_1] has them midweek. This Friday I'm stuck at work until 6:30, so my mum, [PERSON_4], will collect them from school instead. [PERSON_1] texted from [PHONE] saying he's 'not comfortable' with that unless I send him her number first, which is fair. Her mobile is [PHONE]. Handover back on Sunday stays at the leisure centre car park on Ashdown Road, not his flat, at 5pm sharp. I don't want to argue, I just want it clear and short, and I'd rather not mention the mediation at all.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-003",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-youth-hockey-injury-refund",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-youth-hockey-injury-refund",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-youth-hockey-injury-refund",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-youth-hockey-injury-refund",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Check whether this refund request fits the rule I quoted and tighten the wording before I send it to the club treasurer.",
+    "text": "Hi Ingrid,\n\nTamati won't be able to play in the U11 indoor hockey tournament on 23 November. He fractured his left wrist at school on Thursday and the fracture clinic says no contact sport for at least six weeks. Coach Ngata already knows and has taken him off the squad sheet.\n\nWe paid the £35 tournament entry on 30 October. The club handbook says entries are refundable in full if withdrawal is for injury and notified more than 14 days before the event, which I think this is, but correct me if the date counts differently. Please send the refund to our joint account, IBAN GB00 TEST 0000 0000 1234 56, reference U11-REFUND. His membership number is HHC-2291 if you need it for the spreadsheet.\n\nKia ora,\nAroha Pomare",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "treasurer",
+        "label": "PERSON",
+        "quote": "Ingrid"
+      },
+      {
+        "id": "m2",
+        "entity_id": "player",
+        "label": "PERSON",
+        "quote": "Tamati"
+      },
+      {
+        "id": "m3",
+        "entity_id": "injury",
+        "label": "HEALTH",
+        "quote": "He fractured his left wrist at school on Thursday and the fracture clinic says no contact sport for at least six weeks."
+      },
+      {
+        "id": "m4",
+        "entity_id": "coach",
+        "label": "PERSON",
+        "quote": "Ngata"
+      },
+      {
+        "id": "m5",
+        "entity_id": "refund-iban",
+        "label": "IBAN",
+        "quote": "GB00 TEST 0000 0000 1234 56"
+      },
+      {
+        "id": "m6",
+        "entity_id": "membership",
+        "label": "ACCOUNT_ID",
+        "quote": "HHC-2291"
+      },
+      {
+        "id": "m7",
+        "entity_id": "parent",
+        "label": "PERSON",
+        "quote": "Aroha Pomare"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "treasurer",
+        "quote": "Ingrid",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "player",
+        "quote": "Tamati",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "injury",
+        "quote": "He fractured his left wrist at school on Thursday and the fracture clinic says no contact sport for at least six weeks.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "coach",
+        "quote": "Ngata",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "refund-iban",
+        "quote": "GB00 TEST 0000 0000 1234 56",
+        "label": "IBAN",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The family's bank account number is a direct financial identifier; checking the refund rule and wording does not need it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "membership",
+        "quote": "HHC-2291",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The child's club membership number identifies him in club records and is irrelevant to whether the refund rule applies."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "parent",
+        "quote": "Aroha Pomare",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "won't be able to play in the U11 indoor hockey tournament on 23 November."
+      },
+      {
+        "quote": "He fractured his left wrist at school on Thursday and the fracture clinic says no contact sport for at least six weeks."
+      },
+      {
+        "quote": "already knows and has taken him off the squad sheet."
+      },
+      {
+        "quote": "We paid the £35 tournament entry on 30 October."
+      },
+      {
+        "quote": "The club handbook says entries are refundable in full if withdrawal is for injury and notified more than 14 days before the event, which I think this is, but correct me if the date counts differently."
+      }
+    ],
+    "approved_output": "Hi [PERSON_1],\n\n[PERSON_2] won't be able to play in the U11 indoor hockey tournament on 23 November. He fractured his left wrist at school on Thursday and the fracture clinic says no contact sport for at least six weeks. Coach [PERSON_3] already knows and has taken him off the squad sheet.\n\nWe paid the £35 tournament entry on 30 October. The club handbook says entries are refundable in full if withdrawal is for injury and notified more than 14 days before the event, which I think this is, but correct me if the date counts differently. Please send the refund to our joint account, IBAN [IBAN], reference U11-REFUND. His membership number is [ACCOUNT_ID] if you need it for the spreadsheet.\n\nKia ora,\n[PERSON_4]",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-004",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-gcse-tutor-day-change",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-gcse-tutor-day-change",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-gcse-tutor-day-change",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-gcse-tutor-day-change",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Turn these notes into a short message to the tutor agreeing the new day and asking about the extra session.",
+    "text": "Notes for sorting out Nguyen Thi Lan's tutoring before half term:\n- Tutor: Mr Adebayo Oyelaran, GCSE maths, Tuesdays 4:30-5:30 at our flat (14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX).\n- He wants to move to Wednesdays from 19 November because of his own college timetable. Wednesdays only work for Lan if it starts at 5:00, not 4:30, because of netball.\n- Rate stays £32 per hour; he confirmed no increase until January.\n- Booking and payment go through the TutorLink app. His handle is @ade_oyelaran_maths, ours is @lanfamily_hf3.\n- Lan's mock exam is 3 December. She's working at a grade 5 and aiming for a 6; she says algebra and ratio are the weak spots.\n- Mr Oyelaran mentioned he could add a 30-minute top-up session the week before the mock if we book by 26 November.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "student",
+        "label": "PERSON",
+        "quote": "Nguyen Thi Lan"
+      },
+      {
+        "id": "m2",
+        "entity_id": "tutor",
+        "label": "PERSON",
+        "quote": "Adebayo Oyelaran"
+      },
+      {
+        "id": "m3",
+        "entity_id": "home",
+        "label": "ADDRESS",
+        "quote": "14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX"
+      },
+      {
+        "id": "m4",
+        "entity_id": "student",
+        "label": "PERSON",
+        "quote": "Lan",
+        "occurrence": 3
+      },
+      {
+        "id": "m5",
+        "entity_id": "tutor-handle",
+        "label": "USERNAME",
+        "quote": "@ade_oyelaran_maths"
+      },
+      {
+        "id": "m6",
+        "entity_id": "family-handle",
+        "label": "USERNAME",
+        "quote": "@lanfamily_hf3"
+      },
+      {
+        "id": "m7",
+        "entity_id": "student",
+        "label": "PERSON",
+        "quote": "Lan",
+        "occurrence": 4
+      },
+      {
+        "id": "m8",
+        "entity_id": "tutor",
+        "label": "PERSON",
+        "quote": "Oyelaran",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "student",
+        "quote": "Nguyen Thi Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "tutor",
+        "quote": "Adebayo Oyelaran",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "home",
+        "quote": "14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX",
+        "label": "ADDRESS",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The family's home address is a direct identifier; the tutor already knows where sessions happen and the message does not need it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "student",
+        "quote": "Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "tutor-handle",
+        "quote": "@ade_oyelaran_maths",
+        "label": "USERNAME",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The tutor's app handle links to his real profile and is not needed to agree a new day."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "family-handle",
+        "quote": "@lanfamily_hf3",
+        "label": "USERNAME",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The family's app handle embeds the child's name and postcode area; the message does not need it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "student",
+        "quote": "Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 4
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "tutor",
+        "quote": "Oyelaran",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "GCSE maths, Tuesdays 4:30-5:30 at our flat"
+      },
+      {
+        "quote": "He wants to move to Wednesdays from 19 November because of his own college timetable."
+      },
+      {
+        "quote": "Wednesdays only work for"
+      },
+      {
+        "quote": "if it starts at 5:00, not 4:30, because of netball."
+      },
+      {
+        "quote": "Rate stays £32 per hour; he confirmed no increase until January."
+      },
+      {
+        "quote": "mock exam is 3 December."
+      },
+      {
+        "quote": "mentioned he could add a 30-minute top-up session the week before the mock if we book by 26 November."
+      }
+    ],
+    "approved_output": "Notes for sorting out [PERSON_1]'s tutoring before half term:\n- Tutor: Mr [PERSON_2], GCSE maths, Tuesdays 4:30-5:30 at our flat ([ADDRESS]).\n- He wants to move to Wednesdays from 19 November because of his own college timetable. Wednesdays only work for [PERSON_1] if it starts at 5:00, not 4:30, because of netball.\n- Rate stays £32 per hour; he confirmed no increase until January.\n- Booking and payment go through the TutorLink app. His handle is [USERNAME], ours is [USERNAME].\n- [PERSON_1]'s mock exam is 3 December. She's working at a grade 5 and aiming for a 6; she says algebra and ratio are the weak spots.\n- Mr [PERSON_2] mentioned he could add a 30-minute top-up session the week before the mock if we book by 26 November.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-005",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-nursery-asthma-medication-form",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-nursery-asthma-medication-form",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-nursery-asthma-medication-form",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-nursery-asthma-medication-form",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me fill in the two free-text sections of this nursery medication form accurately.",
+    "text": "I'm filling in the medication consent form for my son's nursery and want the wording right before Monday. Details:\nChild: Idris Al-Mansouri, date of birth 11/03/2022\nNHS number: 999 000 4417\nGP: Dr Folasade Ige\nCondition: mild asthma, diagnosed in August. Uses a blue salbutamol inhaler with a spacer, 2 puffs when wheezy, no more than every 4 hours. He has never needed it at nursery so far, but cold weather usually sets him off. He does NOT take a preventer inhaler any more; Dr Ige stopped it in September.\nEmergency contacts: me (Yasmin Al-Mansouri, 07700 900755) and his grandad, Tariq Haddad, 07700 900281.\nThe form asks for 'circumstances in which medication should be given' and 'action if no improvement'. I'm not sure what to write for the second one.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "child",
+        "label": "PERSON",
+        "quote": "Idris Al-Mansouri"
+      },
+      {
+        "id": "m2",
+        "entity_id": "child-dob",
+        "label": "DATE",
+        "quote": "11/03/2022"
+      },
+      {
+        "id": "m3",
+        "entity_id": "nhs-number",
+        "label": "NATIONAL_ID",
+        "quote": "999 000 4417"
+      },
+      {
+        "id": "m4",
+        "entity_id": "gp",
+        "label": "PERSON",
+        "quote": "Folasade Ige"
+      },
+      {
+        "id": "m5",
+        "entity_id": "diagnosis",
+        "label": "HEALTH",
+        "quote": "mild asthma, diagnosed in August."
+      },
+      {
+        "id": "m6",
+        "entity_id": "reliever",
+        "label": "HEALTH",
+        "quote": "Uses a blue salbutamol inhaler with a spacer, 2 puffs when wheezy, no more than every 4 hours."
+      },
+      {
+        "id": "m7",
+        "entity_id": "triggers",
+        "label": "HEALTH",
+        "quote": "He has never needed it at nursery so far, but cold weather usually sets him off."
+      },
+      {
+        "id": "m8",
+        "entity_id": "preventer",
+        "label": "HEALTH",
+        "quote": "He does NOT take a preventer inhaler any more;"
+      },
+      {
+        "id": "m9",
+        "entity_id": "gp",
+        "label": "PERSON",
+        "quote": "Ige",
+        "occurrence": 2
+      },
+      {
+        "id": "m10",
+        "entity_id": "parent",
+        "label": "PERSON",
+        "quote": "Yasmin Al-Mansouri"
+      },
+      {
+        "id": "m11",
+        "entity_id": "parent-phone",
+        "label": "PHONE",
+        "quote": "07700 900755"
+      },
+      {
+        "id": "m12",
+        "entity_id": "grandad",
+        "label": "PERSON",
+        "quote": "Tariq Haddad"
+      },
+      {
+        "id": "m13",
+        "entity_id": "grandad-phone",
+        "label": "PHONE",
+        "quote": "07700 900281"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "child",
+        "quote": "Idris Al-Mansouri",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "child-dob",
+        "quote": "11/03/2022",
+        "label": "DATE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The child's exact date of birth is identifying and the two free-text answers do not depend on it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "nhs-number",
+        "quote": "999 000 4417",
+        "label": "NATIONAL_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The NHS number is a national health identifier; the user copies it onto the form herself and the wording help does not need it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "gp",
+        "quote": "Folasade Ige",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "diagnosis",
+        "quote": "mild asthma, diagnosed in August.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "reliever",
+        "quote": "Uses a blue salbutamol inhaler with a spacer, 2 puffs when wheezy, no more than every 4 hours.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "triggers",
+        "quote": "He has never needed it at nursery so far, but cold weather usually sets him off.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "preventer",
+        "quote": "He does NOT take a preventer inhaler any more;",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "gp",
+        "quote": "Ige",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m10",
+        "entity_id": "parent",
+        "quote": "Yasmin Al-Mansouri",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m11",
+        "entity_id": "parent-phone",
+        "quote": "07700 900755",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The mother's mobile is a direct contact identifier and is not part of the two free-text answers."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m12",
+        "entity_id": "grandad",
+        "quote": "Tariq Haddad",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m13",
+        "entity_id": "grandad-phone",
+        "quote": "07700 900281",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The grandfather's mobile is a direct contact identifier and is not part of the two free-text answers."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "mild asthma, diagnosed in August."
+      },
+      {
+        "quote": "Uses a blue salbutamol inhaler with a spacer, 2 puffs when wheezy, no more than every 4 hours."
+      },
+      {
+        "quote": "He has never needed it at nursery so far, but cold weather usually sets him off."
+      },
+      {
+        "quote": "He does NOT take a preventer inhaler any more;"
+      },
+      {
+        "quote": "stopped it in September."
+      },
+      {
+        "quote": "The form asks for 'circumstances in which medication should be given' and 'action if no improvement'."
+      }
+    ],
+    "approved_output": "I'm filling in the medication consent form for my son's nursery and want the wording right before Monday. Details:\nChild: [PERSON_1], date of birth [DATE]\nNHS number: [NATIONAL_ID]\nGP: Dr [PERSON_2]\nCondition: mild asthma, diagnosed in August. Uses a blue salbutamol inhaler with a spacer, 2 puffs when wheezy, no more than every 4 hours. He has never needed it at nursery so far, but cold weather usually sets him off. He does NOT take a preventer inhaler any more; Dr [PERSON_2] stopped it in September.\nEmergency contacts: me ([PERSON_3], [PHONE]) and his grandad, [PERSON_4], [PHONE].\nThe form asks for 'circumstances in which medication should be given' and 'action if no improvement'. I'm not sure what to write for the second one.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-006",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-support-duplicate-charge-escalation",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-support-duplicate-charge-escalation",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-support-duplicate-charge-escalation",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-support-duplicate-charge-escalation",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Rewrite this escalation into a clear summary for the Tier 2 billing team with recommended next steps.",
+    "text": "Escalation to Tier 2 billing\n\nCustomer: Benedikt Szczepański (b.szczepanski@example.net), order ORD-7731-0925.\nSummary: Customer was charged €129.90 twice on 4 November for a single order of the Halden standing desk frame. His bank statement screenshot shows both debits; our payment log shows one capture and one authorisation that should have dropped after 7 days but didn't. He is not asking for compensation, only the duplicate €129.90 back. He did say he'd file a chargeback if nothing happens by 15 November.\nHe also requested a replacement leg bracket (arrived bent). Ship to his delivery address on file, 27 Rue des Tilleuls, 4410 Verbrecht, not the billing one.\nHandled by: Mireille Oduya, Tier 1. Mr Szczepański prefers email over phone; his number on the account is +44 7700 900128 but he asked us not to call.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "customer",
+        "label": "PERSON",
+        "quote": "Benedikt Szczepański"
+      },
+      {
+        "id": "m2",
+        "entity_id": "customer-email",
+        "label": "EMAIL",
+        "quote": "b.szczepanski@example.net"
+      },
+      {
+        "id": "m3",
+        "entity_id": "order",
+        "label": "ACCOUNT_ID",
+        "quote": "ORD-7731-0925"
+      },
+      {
+        "id": "m4",
+        "entity_id": "delivery-address",
+        "label": "ADDRESS",
+        "quote": "27 Rue des Tilleuls, 4410 Verbrecht"
+      },
+      {
+        "id": "m5",
+        "entity_id": "agent",
+        "label": "PERSON",
+        "quote": "Mireille Oduya"
+      },
+      {
+        "id": "m6",
+        "entity_id": "customer",
+        "label": "PERSON",
+        "quote": "Szczepański",
+        "occurrence": 2
+      },
+      {
+        "id": "m7",
+        "entity_id": "customer-phone",
+        "label": "PHONE",
+        "quote": "+44 7700 900128"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "customer",
+        "quote": "Benedikt Szczepański",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "customer-email",
+        "quote": "b.szczepanski@example.net",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The customer's email is a direct identifier; Tier 2 can find it from the order record and the summary does not need it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "order",
+        "quote": "ORD-7731-0925",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "Tier 2 needs the order number to act, but the external AI does not; the agent re-inserts it when posting the summary."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "delivery-address",
+        "quote": "27 Rue des Tilleuls, 4410 Verbrecht",
+        "label": "ADDRESS",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The customer's home address is a direct identifier; the summary only needs 'delivery address on file, not billing'."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "agent",
+        "quote": "Mireille Oduya",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "customer",
+        "quote": "Szczepański",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "customer-phone",
+        "quote": "+44 7700 900128",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The customer's phone number is a direct identifier and he asked not to be called, so the summary does not need it."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Summary: Customer was charged €129.90 twice on 4 November for a single order of the Halden standing desk frame."
+      },
+      {
+        "quote": "our payment log shows one capture and one authorisation that should have dropped after 7 days but didn't."
+      },
+      {
+        "quote": "He is not asking for compensation, only the duplicate €129.90 back."
+      },
+      {
+        "quote": "He did say he'd file a chargeback if nothing happens by 15 November."
+      },
+      {
+        "quote": "He also requested a replacement leg bracket (arrived bent). Ship to his delivery address on file,"
+      },
+      {
+        "quote": ", not the billing one."
+      },
+      {
+        "quote": "prefers email over phone;"
+      },
+      {
+        "quote": "but he asked us not to call."
+      }
+    ],
+    "approved_output": "Escalation to Tier 2 billing\n\nCustomer: [PERSON_1] ([EMAIL]), order [ACCOUNT_ID].\nSummary: Customer was charged €129.90 twice on 4 November for a single order of the Halden standing desk frame. His bank statement screenshot shows both debits; our payment log shows one capture and one authorisation that should have dropped after 7 days but didn't. He is not asking for compensation, only the duplicate €129.90 back. He did say he'd file a chargeback if nothing happens by 15 November.\nHe also requested a replacement leg bracket (arrived bent). Ship to his delivery address on file, [ADDRESS], not the billing one.\nHandled by: [PERSON_2], Tier 1. Mr [PERSON_1] prefers email over phone; his number on the account is [PHONE] but he asked us not to call.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:pres-001",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-school-run-carpool-rota",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-school-run-carpool-rota",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-school-run-carpool-rota",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-school-run-carpool-rota",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Turn this into a clear weekly school-run rota that keeps every exception and condition.",
+    "text": "Recap of the carpool chat so nobody gets confused (I'm Fenna):\n- Kaveh drives Mondays and Wednesdays. He said Thursdays too at first, but corrected himself: Thursday is Ilse, not him.\n- Ilse can only do Thursdays if her shift finishes before 3:15; if it doesn't, Kaveh's partner might cover, but she hasn't confirmed.\n- Fridays are mine. I can't do the Friday after half term (22 November) because of a work trip, so we swap: Ilse takes that Friday and I do her Thursday the week after.\n- Petrol: we agreed £12 a week each to whoever drives most, which is Kaveh, not split three ways by mileage like Ilse suggested.\n- Max four kids in Kaveh's car, not five, because the third booster seat doesn't fit.\nCan someone check I haven't got anything wrong?",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "sender",
+        "label": "PERSON",
+        "quote": "Fenna"
+      },
+      {
+        "id": "m2",
+        "entity_id": "kaveh",
+        "label": "PERSON",
+        "quote": "Kaveh",
+        "occurrence": 1
+      },
+      {
+        "id": "m3",
+        "entity_id": "ilse",
+        "label": "PERSON",
+        "quote": "Ilse",
+        "occurrence": 1
+      },
+      {
+        "id": "m4",
+        "entity_id": "ilse",
+        "label": "PERSON",
+        "quote": "Ilse",
+        "occurrence": 2
+      },
+      {
+        "id": "m5",
+        "entity_id": "kaveh",
+        "label": "PERSON",
+        "quote": "Kaveh",
+        "occurrence": 2
+      },
+      {
+        "id": "m6",
+        "entity_id": "ilse",
+        "label": "PERSON",
+        "quote": "Ilse",
+        "occurrence": 3
+      },
+      {
+        "id": "m7",
+        "entity_id": "kaveh",
+        "label": "PERSON",
+        "quote": "Kaveh",
+        "occurrence": 3
+      },
+      {
+        "id": "m8",
+        "entity_id": "ilse",
+        "label": "PERSON",
+        "quote": "Ilse",
+        "occurrence": 4
+      },
+      {
+        "id": "m9",
+        "entity_id": "kaveh",
+        "label": "PERSON",
+        "quote": "Kaveh",
+        "occurrence": 4
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "sender",
+        "quote": "Fenna",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "kaveh",
+        "quote": "Kaveh",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 1
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "ilse",
+        "quote": "Ilse",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 1
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "ilse",
+        "quote": "Ilse",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "kaveh",
+        "quote": "Kaveh",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "ilse",
+        "quote": "Ilse",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "kaveh",
+        "quote": "Kaveh",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "ilse",
+        "quote": "Ilse",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 4
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "kaveh",
+        "quote": "Kaveh",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 4
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "drives Mondays and Wednesdays. He said Thursdays too at first, but corrected himself: Thursday is"
+      },
+      {
+        "quote": ", not him."
+      },
+      {
+        "quote": "can only do Thursdays if her shift finishes before 3:15; if it doesn't,"
+      },
+      {
+        "quote": "partner might cover, but she hasn't confirmed."
+      },
+      {
+        "quote": "Fridays are mine. I can't do the Friday after half term (22 November) because of a work trip, so we swap:"
+      },
+      {
+        "quote": "takes that Friday and I do her Thursday the week after."
+      },
+      {
+        "quote": "Petrol: we agreed £12 a week each to whoever drives most, which is"
+      },
+      {
+        "quote": ", not split three ways by mileage like"
+      },
+      {
+        "quote": "Max four kids in"
+      },
+      {
+        "quote": "car, not five, because the third booster seat doesn't fit."
+      }
+    ],
+    "approved_output": "Recap of the carpool chat so nobody gets confused (I'm [PERSON_1]):\n- [PERSON_2] drives Mondays and Wednesdays. He said Thursdays too at first, but corrected himself: Thursday is [PERSON_3], not him.\n- [PERSON_3] can only do Thursdays if her shift finishes before 3:15; if it doesn't, [PERSON_2]'s partner might cover, but she hasn't confirmed.\n- Fridays are mine. I can't do the Friday after half term (22 November) because of a work trip, so we swap: [PERSON_3] takes that Friday and I do her Thursday the week after.\n- Petrol: we agreed £12 a week each to whoever drives most, which is [PERSON_2], not split three ways by mileage like [PERSON_3] suggested.\n- Max four kids in [PERSON_2]'s car, not five, because the third booster seat doesn't fit.\nCan someone check I haven't got anything wrong?",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:pres-002",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-support-kettle-refund-handover",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-support-kettle-refund-handover",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-support-kettle-refund-handover",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-support-kettle-refund-handover",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Summarise this for the next agent as a short checklist, keeping who decided what.",
+    "text": "Handover for the late shift, re the kettle complaint:\nAkosua took the first call. The customer, Mrs Liesel Brandvold, reported the kettle stopped heating after 9 days, not 19 as the ticket form says (typo on our side). Akosua offered a replacement; Mrs Brandvold declined and wants a refund instead.\nCorrection from Tomasz this afternoon: the refund is €44.10, not €49.00, because she used a 10% loyalty voucher. We refund only what she actually paid.\nPolicy check: full refund only if she returns the base as well as the jug. She thinks she may have thrown the box away; that's fine, packaging isn't required.\nTomasz has NOT issued anything yet. He wants whoever picks this up to confirm the return label was sent before approving. If she calls back upset, don't offer a goodwill credit unless Akosua or Tomasz signs it off.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "agent-a",
+        "label": "PERSON",
+        "quote": "Akosua",
+        "occurrence": 1
+      },
+      {
+        "id": "m2",
+        "entity_id": "customer",
+        "label": "PERSON",
+        "quote": "Liesel Brandvold"
+      },
+      {
+        "id": "m3",
+        "entity_id": "agent-a",
+        "label": "PERSON",
+        "quote": "Akosua",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "customer",
+        "label": "PERSON",
+        "quote": "Brandvold",
+        "occurrence": 2
+      },
+      {
+        "id": "m5",
+        "entity_id": "lead-t",
+        "label": "PERSON",
+        "quote": "Tomasz",
+        "occurrence": 1
+      },
+      {
+        "id": "m6",
+        "entity_id": "lead-t",
+        "label": "PERSON",
+        "quote": "Tomasz",
+        "occurrence": 2
+      },
+      {
+        "id": "m7",
+        "entity_id": "agent-a",
+        "label": "PERSON",
+        "quote": "Akosua",
+        "occurrence": 3
+      },
+      {
+        "id": "m8",
+        "entity_id": "lead-t",
+        "label": "PERSON",
+        "quote": "Tomasz",
+        "occurrence": 3
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "agent-a",
+        "quote": "Akosua",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 1
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "customer",
+        "quote": "Liesel Brandvold",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "agent-a",
+        "quote": "Akosua",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "customer",
+        "quote": "Brandvold",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "lead-t",
+        "quote": "Tomasz",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 1
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "lead-t",
+        "quote": "Tomasz",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "agent-a",
+        "quote": "Akosua",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "lead-t",
+        "quote": "Tomasz",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "took the first call."
+      },
+      {
+        "quote": "reported the kettle stopped heating after 9 days, not 19 as the ticket form says (typo on our side)."
+      },
+      {
+        "quote": "offered a replacement; Mrs"
+      },
+      {
+        "quote": "declined and wants a refund instead."
+      },
+      {
+        "quote": "this afternoon: the refund is €44.10, not €49.00, because she used a 10% loyalty voucher. We refund only what she actually paid."
+      },
+      {
+        "quote": "Policy check: full refund only if she returns the base as well as the jug. She thinks she may have thrown the box away; that's fine, packaging isn't required."
+      },
+      {
+        "quote": "has NOT issued anything yet. He wants whoever picks this up to confirm the return label was sent before approving."
+      },
+      {
+        "quote": "calls back upset, don't offer a goodwill credit unless"
+      },
+      {
+        "quote": "signs it off."
+      }
+    ],
+    "approved_output": "Handover for the late shift, re the kettle complaint:\n[PERSON_1] took the first call. The customer, Mrs [PERSON_2], reported the kettle stopped heating after 9 days, not 19 as the ticket form says (typo on our side). [PERSON_1] offered a replacement; Mrs [PERSON_2] declined and wants a refund instead.\nCorrection from [PERSON_3] this afternoon: the refund is €44.10, not €49.00, because she used a 10% loyalty voucher. We refund only what she actually paid.\nPolicy check: full refund only if she returns the base as well as the jug. She thinks she may have thrown the box away; that's fine, packaging isn't required.\n[PERSON_3] has NOT issued anything yet. He wants whoever picks this up to confirm the return label was sent before approving. If she calls back upset, don't offer a goodwill credit unless [PERSON_1] or [PERSON_3] signs it off.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:ben-001",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-holes-reading-project-steps",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-holes-reading-project-steps",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-holes-reading-project-steps",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-holes-reading-project-steps",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Break this homework into small steps my son can tick off over four evenings.",
+    "text": "My son's Year 6 class is doing a reading project on Holes by Louis Sachar, and each child has to compare the book with the 2003 Disney film. The school list gives one specific paperback edition, but our library copy is a different printing and the page numbers on the homework sheet don't match: the sheet says the yellow-spotted lizards are first described on page 102, and in ours it's somewhere around page 96. He also has to cite one source, and his teacher suggested BBC Bitesize or the author's official website. He gets overwhelmed by long instructions. The comparison is due on Friday and should be about 300 words, with two paragraphs on plot changes and one on characters (Stanley Yelnats and Zero). He has already watched the film once but hasn't finished the last five chapters of the book.",
+    "entities": [],
+    "decisions": [],
+    "required_facts": [],
+    "approved_output": "My son's Year 6 class is doing a reading project on Holes by Louis Sachar, and each child has to compare the book with the 2003 Disney film. The school list gives one specific paperback edition, but our library copy is a different printing and the page numbers on the homework sheet don't match: the sheet says the yellow-spotted lizards are first described on page 102, and in ours it's somewhere around page 96. He also has to cite one source, and his teacher suggested BBC Bitesize or the author's official website. He gets overwhelmed by long instructions. The comparison is due on Friday and should be about 300 words, with two paragraphs on plot changes and one on characters (Stanley Yelnats and Zero). He has already watched the film once but hasn't finished the last five chapters of the book.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f82c80c5e1d45e0ad885e2c8484ba72",
+    "id": "4f82c80c5e1d45e0ad885e2c8484ba72:cred-001",
+    "family_id": "4f82c80c5e1d45e0ad885e2c8484ba72:fam-helpdesk-webhook-signature-401",
+    "persona_id": "4f82c80c5e1d45e0ad885e2c8484ba72:per-helpdesk-webhook-signature-401",
+    "source_id": "4f82c80c5e1d45e0ad885e2c8484ba72:src-helpdesk-webhook-signature-401",
+    "template_id": "4f82c80c5e1d45e0ad885e2c8484ba72:tpl-helpdesk-webhook-signature-401",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "What's the most likely cause of this webhook failure, and in what order should I check things?",
+    "text": "Our support desk stopped creating tickets from the CRM webhook last night. Every delivery gets 'HTTP 401: signature mismatch' in the integration log. Config excerpt:\n\nhelpdesk:\n  base_url: https://support.internal.example\n  api_token: tok-demo-9Vq2Lm7XcR4t\n  webhook_secret: hooksig-31d8b0e7a2-fake\n  retry: 3\n  timeout_s: 20\n\nNothing changed in the YAML, but Mattias rotated the webhook secret on the CRM side at about 23:10. Tickets created through the web form still arrive fine. The only customer affected so far is Halvorsen Freight, our largest enterprise account; their contract has a service credit of 18,500 euros per breached day if P1 tickets aren't logged within 30 minutes, so this is urgent.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "api-token",
+        "label": "SECRET",
+        "quote": "tok-demo-9Vq2Lm7XcR4t"
+      },
+      {
+        "id": "m2",
+        "entity_id": "webhook-secret",
+        "label": "SECRET",
+        "quote": "hooksig-31d8b0e7a2-fake"
+      },
+      {
+        "id": "m3",
+        "entity_id": "engineer",
+        "label": "PERSON",
+        "quote": "Mattias"
+      },
+      {
+        "id": "m4",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Halvorsen Freight"
+      },
+      {
+        "id": "m5",
+        "entity_id": "service-credit",
+        "label": "FINANCIAL",
+        "quote": "18,500 euros per breached day"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "api-token",
+        "quote": "tok-demo-9Vq2Lm7XcR4t",
+        "label": "SECRET",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A live helpdesk API token must never leave the company; diagnosing a signature mismatch only needs to know a token is configured."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "webhook-secret",
+        "quote": "hooksig-31d8b0e7a2-fake",
+        "label": "SECRET",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The webhook signing secret is an access credential; the diagnosis only needs to know which secret field exists, not its value."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "engineer",
+        "quote": "Mattias",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "client",
+        "quote": "Halvorsen Freight",
+        "label": "ORG",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The affected enterprise client's identity is confidential and does not change the debugging steps."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "service-credit",
+        "quote": "18,500 euros per breached day",
+        "label": "FINANCIAL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The nonpublic contract penalty is confidential commercial information; the urgency is clear without the exact amount."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Our support desk stopped creating tickets from the CRM webhook last night."
+      },
+      {
+        "quote": "Every delivery gets 'HTTP 401: signature mismatch' in the integration log."
+      },
+      {
+        "quote": "Nothing changed in the YAML, but"
+      },
+      {
+        "quote": "rotated the webhook secret on the CRM side at about 23:10."
+      },
+      {
+        "quote": "Tickets created through the web form still arrive fine."
+      },
+      {
+        "quote": "if P1 tickets aren't logged within 30 minutes, so this is urgent."
+      }
+    ],
+    "approved_output": "Our support desk stopped creating tickets from the CRM webhook last night. Every delivery gets 'HTTP 401: signature mismatch' in the integration log. Config excerpt:\n\nhelpdesk:\n  base_url: https://support.internal.example\n  api_token: [SECRET]\n  webhook_secret: [SECRET]\n  retry: 3\n  timeout_s: 20\n\nNothing changed in the YAML, but [PERSON_1] rotated the webhook secret on the CRM side at about 23:10. Tickets created through the web form still arrive fine. The only customer affected so far is [ORG], our largest enterprise account; their contract has a service credit of [FINANCIAL] if P1 tickets aren't logged within 30 minutes, so this is urgent.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f82c80c5e1d45e0ad885e2c8484ba72:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  }
+]

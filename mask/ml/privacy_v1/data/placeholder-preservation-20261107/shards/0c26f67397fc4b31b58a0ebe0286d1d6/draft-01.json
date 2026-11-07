@@ -1,0 +1,2482 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-001",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-001-kitchen-extension",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-001-kitchen-extension",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-001-kitchen-extension",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-001-kitchen-extension",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a calm but firm email to the builder about the delay and the withheld payment, keeping the amounts and conditions exactly as I stated them.",
+  "text": "Hi, I need help writing a firm but polite message to my builder. Our kitchen extension was due to finish on 14 March but the roof is still not on. Tadeusz Wrona quoted 18,500 pounds and I have already paid 12,000 pounds in two instalments. Tadeusz says the delay is because his bricklayer, Ayodele Fashola, fell ill for two weeks, which I accept, but I won't pay the next 3,000-pound stage until the roof is on. You can reach me on 07700 900314 or at imani.reyes@example.com. My job reference with his firm is JOB-55291. Please keep the tone calm and say that I'm happy to meet on site on Friday.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "builder",
+    "quote": "Tadeusz Wrona",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "builder",
+    "quote": "Tadeusz",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m3",
+    "entity_id": "bricklayer",
+    "quote": "Ayodele Fashola",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "phone",
+    "quote": "07700 900314",
+    "label": "PHONE"
+   },
+   {
+    "id": "m5",
+    "entity_id": "email",
+    "quote": "imani.reyes@example.com",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "jobref",
+    "quote": "JOB-55291",
+    "label": "ACCOUNT_ID"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "builder",
+    "quote": "Tadeusz Wrona",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "builder",
+    "quote": "Tadeusz",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "bricklayer",
+    "quote": "Ayodele Fashola",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "phone",
+    "quote": "07700 900314",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The builder already has the customer's phone number; the email only needs the tone and payment terms, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "email",
+    "quote": "imani.reyes@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A direct email address is not needed to draft the message; the user adds contact details when sending."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "jobref",
+    "quote": "JOB-55291",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The draft should cite the job reference but the exact value is not needed to write it; the user re-inserts it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our kitchen extension was due to finish on 14 March but the roof is still not on."
+   },
+   {
+    "quote": "quoted 18,500 pounds and I have already paid 12,000 pounds in two instalments."
+   },
+   {
+    "quote": "says the delay is because his bricklayer,"
+   },
+   {
+    "quote": "fell ill for two weeks, which I accept, but I won't pay the next 3,000-pound stage until the roof is on."
+   },
+   {
+    "quote": "I'm happy to meet on site on Friday."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi, I need help writing a firm but polite message to my builder. Our kitchen extension was due to finish on 14 March but the roof is still not on. [PERSON_1] quoted 18,500 pounds and I have already paid 12,000 pounds in two instalments. [PERSON_1] says the delay is because his bricklayer, [PERSON_2], fell ill for two weeks, which I accept, but I won't pay the next 3,000-pound stage until the roof is on. You can reach me on [PHONE] or at [EMAIL]. My job reference with his firm is [ACCOUNT_ID]. Please keep the tone calm and say that I'm happy to meet on site on Friday."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-002",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-002-loft-planning",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-002-loft-planning",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-002-loft-planning",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-002-loft-planning",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short, courteous reply to the council case officer that corrects the distance the objector gave and notes the decision date.",
+  "text": "My neighbour, Halldóra Sigurðardóttir, has lodged an objection to our planning application for a loft conversion. Her letter says the dormer would overlook her garden and cut light to her kitchen. The council case officer, Mr Parminder Gill, told us the decision is due by 28 May and that the application number is PA/2026/0417. Our architect, Bui Thi Hanh, thinks the objection is weak because the dormer sits 2.5 metres back from the boundary, not 1.5 metres as Halldóra claims. I can be reached on 07700 900462 and the address on the form is 14 Alder Rise, Kettering. Please help me draft a short reply to the case officer that corrects the distance and does not sound hostile.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "neighbour",
+    "quote": "Halldóra Sigurðardóttir",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "officer",
+    "quote": "Parminder Gill",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "appno",
+    "quote": "PA/2026/0417",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m4",
+    "entity_id": "architect",
+    "quote": "Bui Thi Hanh",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "neighbour",
+    "quote": "Halldóra",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900462",
+    "label": "PHONE"
+   },
+   {
+    "id": "m7",
+    "entity_id": "addr",
+    "quote": "14 Alder Rise, Kettering",
+    "label": "ADDRESS"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "neighbour",
+    "quote": "Halldóra Sigurðardóttir",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "officer",
+    "quote": "Parminder Gill",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "appno",
+    "quote": "PA/2026/0417",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The reply must cite the application number but the exact value is not needed to word it; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "architect",
+    "quote": "Bui Thi Hanh",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "neighbour",
+    "quote": "Halldóra",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900462",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact number is not needed to draft the reply."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "addr",
+    "quote": "14 Alder Rise, Kettering",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The home address is a direct identifier and the reply only needs the dormer distance, not the location."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My neighbour,"
+   },
+   {
+    "quote": "has lodged an objection to our planning application for a loft conversion."
+   },
+   {
+    "quote": "Her letter says the dormer would overlook her garden and cut light to her kitchen."
+   },
+   {
+    "quote": "The council case officer, Mr"
+   },
+   {
+    "quote": "told us the decision is due by 28 May and that the application number is"
+   },
+   {
+    "quote": "Our architect,"
+   },
+   {
+    "quote": "thinks the objection is weak because the dormer sits 2.5 metres back from the boundary, not 1.5 metres as"
+   },
+   {
+    "quote": "claims."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "My neighbour, [PERSON_1], has lodged an objection to our planning application for a loft conversion. Her letter says the dormer would overlook her garden and cut light to her kitchen. The council case officer, Mr [PERSON_2], told us the decision is due by 28 May and that the application number is [ACCOUNT_ID]. Our architect, [PERSON_3], thinks the objection is weak because the dormer sits 2.5 metres back from the boundary, not 1.5 metres as [PERSON_1] claims. I can be reached on [PHONE] and the address on the form is [ADDRESS]. Please help me draft a short reply to the case officer that corrects the distance and does not sound hostile."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-003",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-003-energy-switch",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-003-energy-switch",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-003-energy-switch",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-003-energy-switch",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Give me a checklist for completing the switch, plus a short final-reading email to the old supplier that uses my readings and the deadline.",
+  "text": "I'm switching energy suppliers and want to check I'm not missing a step. My current supplier is Brightleaf Energy and my account number is BL-7720-4491. My meter readings on 3 November were 48,215 kWh for electricity and 6,830 cubic metres for gas. The new supplier, Cinder Power, promised a fixed rate of 24.1p per kWh for 12 months with no exit fee, but only if the switch completes before 30 November. My housemate, Sapna Kulkarni, is the named account holder, so she has to approve the switch by phone on 07700 900228. Her email for the paperwork is sapna.k@example.net. I would also like to know whether I should photograph both meters on the day the switch goes through.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "acct",
+    "quote": "BL-7720-4491",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m2",
+    "entity_id": "housemate",
+    "quote": "Sapna Kulkarni",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "phone",
+    "quote": "07700 900228",
+    "label": "PHONE"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "quote": "sapna.k@example.net",
+    "label": "EMAIL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "acct",
+    "quote": "BL-7720-4491",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The final-reading email cites the account number but the exact value is not needed to word it; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "housemate",
+    "quote": "Sapna Kulkarni",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "phone",
+    "quote": "07700 900228",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The housemate's number is not needed for a checklist or the email."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "sapna.k@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The housemate's email is not needed to draft the checklist or the email."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My meter readings on 3 November were 48,215 kWh for electricity and 6,830 cubic metres for gas."
+   },
+   {
+    "quote": "promised a fixed rate of 24.1p per kWh for 12 months with no exit fee, but only if the switch completes before 30 November."
+   },
+   {
+    "quote": "My housemate,"
+   },
+   {
+    "quote": "is the named account holder, so she has to approve the switch by phone on"
+   },
+   {
+    "quote": "I would also like to know whether I should photograph both meters on the day the switch goes through."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I'm switching energy suppliers and want to check I'm not missing a step. My current supplier is Brightleaf Energy and my account number is [ACCOUNT_ID]. My meter readings on 3 November were 48,215 kWh for electricity and 6,830 cubic metres for gas. The new supplier, Cinder Power, promised a fixed rate of 24.1p per kWh for 12 months with no exit fee, but only if the switch completes before 30 November. My housemate, [PERSON_1], is the named account holder, so she has to approve the switch by phone on [PHONE]. Her email for the paperwork is [EMAIL]. I would also like to know whether I should photograph both meters on the day the switch goes through."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-004",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-004-boiler-service",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-004-boiler-service",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-004-boiler-service",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-004-boiler-service",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short confirmation message to the heating firm covering the arrival window, the pressure note and where the certificate goes.",
+  "text": "Subject: boiler service booking. Hello, our annual boiler service is booked for 11 December between 8am and 12pm, but I'll only be home after 10am so please don't arrive before then. The engineer, Kimani Njoroge, serviced it last year and noted the pressure was low at 0.8 bar and recommended topping up to 1.2 bar. Our landlord, Elias Haddad, pays the service fee of 85 pounds but wants the certificate emailed to him at elias.haddad@example.org. The booking reference is HB-90381 and the tenancy address is 9 Marlow Terrace, Leeds. Please help me turn this into a short confirmation message to the heating firm.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "engineer",
+    "quote": "Kimani Njoroge",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "landlord",
+    "quote": "Elias Haddad",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "email",
+    "quote": "elias.haddad@example.org",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m4",
+    "entity_id": "bookref",
+    "quote": "HB-90381",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m5",
+    "entity_id": "addr",
+    "quote": "9 Marlow Terrace, Leeds",
+    "label": "ADDRESS"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "engineer",
+    "quote": "Kimani Njoroge",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "landlord",
+    "quote": "Elias Haddad",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "email",
+    "quote": "elias.haddad@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The message tells the firm where to send the certificate, so the exact address matters; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "bookref",
+    "quote": "HB-90381",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The confirmation should cite the booking reference but the exact value is not needed to word it; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "addr",
+    "quote": "9 Marlow Terrace, Leeds",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The tenancy address is a direct identifier and the firm already holds it for the booking."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "our annual boiler service is booked for 11 December between 8am and 12pm, but I'll only be home after 10am so please don't arrive before then."
+   },
+   {
+    "quote": "The engineer,"
+   },
+   {
+    "quote": "serviced it last year and noted the pressure was low at 0.8 bar and recommended topping up to 1.2 bar."
+   },
+   {
+    "quote": "Our landlord,"
+   },
+   {
+    "quote": "pays the service fee of 85 pounds but wants the certificate emailed to him at"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Subject: boiler service booking. Hello, our annual boiler service is booked for 11 December between 8am and 12pm, but I'll only be home after 10am so please don't arrive before then. The engineer, [PERSON_1], serviced it last year and noted the pressure was low at 0.8 bar and recommended topping up to 1.2 bar. Our landlord, [PERSON_2], pays the service fee of 85 pounds but wants the certificate emailed to him at [EMAIL]. The booking reference is [ACCOUNT_ID] and the tenancy address is [ADDRESS]. Please help me turn this into a short confirmation message to the heating firm."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-005",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-005-bathroom-refit",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-005-bathroom-refit",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-005-bathroom-refit",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-005-bathroom-refit",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a week-by-week schedule and list which jobs depend on others.",
+  "text": "Notes for the bathroom refit. Plumber Oluwaseun Adeyemi starts on 2 June and needs the old bath out by Sunday. Tiler Mirela Constantin can only do the floor if the plumber has finished first, otherwise she will come back on 16 June. Electrician quote from Ferenc Szabo is 640 pounds for the extractor fan and two spotlights, excluding the 20 percent VAT. I paid Oluwaseun a 200-pound deposit last week. Ferenc wants the balance paid to IBAN GB00 FAKE 0000 1122 3344 55 within seven days of finishing. Please turn these notes into a week-by-week schedule and show me which jobs depend on which.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "plumber",
+    "quote": "Oluwaseun Adeyemi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "tiler",
+    "quote": "Mirela Constantin",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "electrician",
+    "quote": "Ferenc Szabo",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "plumber",
+    "quote": "Oluwaseun",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "electrician",
+    "quote": "Ferenc",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "iban",
+    "quote": "GB00 FAKE 0000 1122 3344 55",
+    "label": "IBAN"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "plumber",
+    "quote": "Oluwaseun Adeyemi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "tiler",
+    "quote": "Mirela Constantin",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "electrician",
+    "quote": "Ferenc Szabo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "plumber",
+    "quote": "Oluwaseun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "electrician",
+    "quote": "Ferenc",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "iban",
+    "quote": "GB00 FAKE 0000 1122 3344 55",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The schedule does not need the electrician's bank details; the user pays from their own records, so no utility is lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Plumber"
+   },
+   {
+    "quote": "starts on 2 June and needs the old bath out by Sunday."
+   },
+   {
+    "quote": "Tiler"
+   },
+   {
+    "quote": "can only do the floor if the plumber has finished first, otherwise she will come back on 16 June."
+   },
+   {
+    "quote": "Electrician quote from"
+   },
+   {
+    "quote": "is 640 pounds for the extractor fan and two spotlights, excluding the 20 percent VAT."
+   },
+   {
+    "quote": "a 200-pound deposit last week."
+   },
+   {
+    "quote": "wants the balance paid to IBAN"
+   },
+   {
+    "quote": "within seven days of finishing."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes for the bathroom refit. Plumber [PERSON_1] starts on 2 June and needs the old bath out by Sunday. Tiler [PERSON_2] can only do the floor if the plumber has finished first, otherwise she will come back on 16 June. Electrician quote from [PERSON_3] is 640 pounds for the extractor fan and two spotlights, excluding the 20 percent VAT. I paid [PERSON_1] a 200-pound deposit last week. [PERSON_3] wants the balance paid to IBAN [IBAN] within seven days of finishing. Please turn these notes into a week-by-week schedule and show me which jobs depend on which."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-006",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-006-final-bill",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-006-final-bill",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-006-final-bill",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-006-final-bill",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a formal complaint letter to the energy supplier setting out the billing error, the promised reissue that never came and what I want done by the deadline.",
+  "text": "Please help me turn this into a complaint to my old energy supplier. I closed account number 30-884-217 on 9 September when I moved out, but they sent a final bill for 312.40 pounds that includes 41 days after I left. The adviser I spoke to, Gwenllian Pugh, agreed on the phone that the closing reading was 21,904 and said she would reissue the bill within five working days. That was three weeks ago and nothing has arrived. My new address is Flat 3, 22 Henshaw Road, Cardiff and my email is tegan.morris@example.net. I want the bill recalculated and a written apology, and I will go to the ombudsman if it is not fixed by 30 October.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "acct",
+    "quote": "30-884-217",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m2",
+    "entity_id": "adviser",
+    "quote": "Gwenllian Pugh",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "addr",
+    "quote": "Flat 3, 22 Henshaw Road, Cardiff",
+    "label": "ADDRESS"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "quote": "tegan.morris@example.net",
+    "label": "EMAIL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "acct",
+    "quote": "30-884-217",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The complaint must cite the account number but the exact value is not needed to word it; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "adviser",
+    "quote": "Gwenllian Pugh",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "addr",
+    "quote": "Flat 3, 22 Henshaw Road, Cardiff",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The complaint needs a postal address for the reply, but the exact address is not needed to word it; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "tegan.morris@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is not needed to draft the letter."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "on 9 September when I moved out, but they sent a final bill for 312.40 pounds that includes 41 days after I left."
+   },
+   {
+    "quote": "The adviser I spoke to,"
+   },
+   {
+    "quote": "agreed on the phone that the closing reading was 21,904 and said she would reissue the bill within five working days."
+   },
+   {
+    "quote": "That was three weeks ago and nothing has arrived."
+   },
+   {
+    "quote": "I want the bill recalculated and a written apology, and I will go to the ombudsman if it is not fixed by 30 October."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Please help me turn this into a complaint to my old energy supplier. I closed account number [ACCOUNT_ID] on 9 September when I moved out, but they sent a final bill for 312.40 pounds that includes 41 days after I left. The adviser I spoke to, [PERSON_1], agreed on the phone that the closing reading was 21,904 and said she would reissue the bill within five working days. That was three weeks ago and nothing has arrived. My new address is [ADDRESS] and my email is [EMAIL]. I want the bill recalculated and a written apology, and I will go to the ombudsman if it is not fixed by 30 October."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-007",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-007-porch-permitted-dev",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-007-porch-permitted-dev",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-007-porch-permitted-dev",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-007-porch-permitted-dev",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check whether the porch measurements fit what the planning officer said, and list anything I still need to confirm.",
+  "text": "Hi Zainab, following your call I've pulled together the details for the porch. The planning officer, Dariusz Lewandowski, said on 6 October that a porch under 3 square metres and more than 2 metres from the highway should count as permitted development. Ours is 2.8 square metres and sits 4.2 metres from the road. He also said the conservation area does not apply to our street, not Fenwick Lane, which is the next one over. The fee is 258 pounds if we do need to apply. Please check my reading and tell me what I still need to confirm. Mobile: 07700 900587. Rohan Bhatt",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "recipient",
+    "quote": "Zainab",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "officer",
+    "quote": "Dariusz Lewandowski",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "phone",
+    "quote": "07700 900587",
+    "label": "PHONE"
+   },
+   {
+    "id": "m4",
+    "entity_id": "sender",
+    "quote": "Rohan Bhatt",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "recipient",
+    "quote": "Zainab",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "officer",
+    "quote": "Dariusz Lewandowski",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "phone",
+    "quote": "07700 900587",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The sender's mobile is not needed to check the measurements."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "sender",
+    "quote": "Rohan Bhatt",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "following your call I've pulled together the details for the porch."
+   },
+   {
+    "quote": "The planning officer,"
+   },
+   {
+    "quote": "said on 6 October that a porch under 3 square metres and more than 2 metres from the highway should count as permitted development."
+   },
+   {
+    "quote": "Ours is 2.8 square metres and sits 4.2 metres from the road."
+   },
+   {
+    "quote": "He also said the conservation area does not apply to our street, not Fenwick Lane, which is the next one over."
+   },
+   {
+    "quote": "The fee is 258 pounds if we do need to apply."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi [PERSON_1], following your call I've pulled together the details for the porch. The planning officer, [PERSON_2], said on 6 October that a porch under 3 square metres and more than 2 metres from the highway should count as permitted development. Ours is 2.8 square metres and sits 4.2 metres from the road. He also said the conservation area does not apply to our street, not Fenwick Lane, which is the next one over. The fee is 258 pounds if we do need to apply. Please check my reading and tell me what I still need to confirm. Mobile: [PHONE]. [PERSON_3]"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-008",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-008-roof-quotes",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-008-roof-quotes",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-008-roof-quotes",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-008-roof-quotes",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Compare the two roof quotes on total cost, start date and guarantee, and suggest questions for each builder.",
+  "text": "Comparing two quotes for the roof repair. Builder one, Anselm Okwuosa, quoted 7,400 pounds including scaffolding and says he can start on 19 January. Builder two, Katja Virtanen, quoted 6,150 pounds but scaffolding is extra at roughly 900 pounds, and she can only start in March. Anselm's price includes a 10-year guarantee; Katja offers 5 years. My mother-in-law, Fatima Rahimi, is lending us up to 2,000 pounds, but only if the work starts before the end of February. Anselm's mobile is 07700 900163 and Katja's is 07700 900741. Which quote fits best, and what should I ask each of them?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "builder1",
+    "quote": "Anselm Okwuosa",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "builder2",
+    "quote": "Katja Virtanen",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "builder1",
+    "quote": "Anselm",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "builder2",
+    "quote": "Katja",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "lender",
+    "quote": "Fatima Rahimi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m6",
+    "entity_id": "builder1",
+    "quote": "Anselm",
+    "label": "PERSON",
+    "occurrence": 3
+   },
+   {
+    "id": "m7",
+    "entity_id": "phone1",
+    "quote": "07700 900163",
+    "label": "PHONE"
+   },
+   {
+    "id": "m8",
+    "entity_id": "builder2",
+    "quote": "Katja",
+    "label": "PERSON",
+    "occurrence": 3
+   },
+   {
+    "id": "m9",
+    "entity_id": "phone2",
+    "quote": "07700 900741",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "builder1",
+    "quote": "Anselm Okwuosa",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "builder2",
+    "quote": "Katja Virtanen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "builder1",
+    "quote": "Anselm",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "builder2",
+    "quote": "Katja",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "lender",
+    "quote": "Fatima Rahimi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "builder1",
+    "quote": "Anselm",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "phone1",
+    "quote": "07700 900163",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone numbers are not needed to compare the quotes; role words and position tell the two numbers apart if needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "builder2",
+    "quote": "Katja",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "phone2",
+    "quote": "07700 900741",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone numbers are not needed to compare the quotes; role words and position tell the two numbers apart if needed."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Builder one,"
+   },
+   {
+    "quote": "quoted 7,400 pounds including scaffolding and says he can start on 19 January."
+   },
+   {
+    "quote": "Builder two,"
+   },
+   {
+    "quote": "quoted 6,150 pounds but scaffolding is extra at roughly 900 pounds, and she can only start in March."
+   },
+   {
+    "quote": "'s price includes a 10-year guarantee;"
+   },
+   {
+    "quote": "offers 5 years."
+   },
+   {
+    "quote": "My mother-in-law,"
+   },
+   {
+    "quote": "is lending us up to 2,000 pounds, but only if the work starts before the end of February."
+   },
+   {
+    "quote": "'s mobile is"
+   },
+   {
+    "quote": "'s is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Comparing two quotes for the roof repair. Builder one, [PERSON_1], quoted 7,400 pounds including scaffolding and says he can start on 19 January. Builder two, [PERSON_2], quoted 6,150 pounds but scaffolding is extra at roughly 900 pounds, and she can only start in March. [PERSON_1]'s price includes a 10-year guarantee; [PERSON_2] offers 5 years. My mother-in-law, [PERSON_3], is lending us up to 2,000 pounds, but only if the work starts before the end of February. [PERSON_1]'s mobile is [PHONE] and [PERSON_2]'s is [PHONE]. Which quote fits best, and what should I ask each of them?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-009",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-009-home-emergency-cover",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-009-home-emergency-cover",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-009-home-emergency-cover",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-009-home-emergency-cover",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a complaint to the cover provider that corrects their visit date, explains the double charge and asks for the refund.",
+  "text": "I need to chase my home emergency cover about the boiler. The boiler stopped heating on 2 February; I called Hearthguard on the same day and the engineer, Bartosz Michalak, came on 4 February, not 3 February as their email says. He replaced the diverter valve and said the part is covered, but the callout excess of 75 pounds is still payable. Policy no. HG-2209-6613. They then charged me 150 pounds on my card, which is double the excess. I'd like the extra 75 pounds refunded. My partner, Eilidh Rennie, took the call on the second day, so mention that she can confirm the time. You can email me on cathal.dunne@example.com.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "engineer",
+    "quote": "Bartosz Michalak",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "policy",
+    "quote": "HG-2209-6613",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "partner",
+    "quote": "Eilidh Rennie",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "quote": "cathal.dunne@example.com",
+    "label": "EMAIL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "engineer",
+    "quote": "Bartosz Michalak",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "policy",
+    "quote": "HG-2209-6613",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The complaint must cite the policy number but the exact value is not needed to word it; the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "partner",
+    "quote": "Eilidh Rennie",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "cathal.dunne@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is not needed to draft the complaint."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The boiler stopped heating on 2 February; I called Hearthguard on the same day and the engineer,"
+   },
+   {
+    "quote": "came on 4 February, not 3 February as their email says."
+   },
+   {
+    "quote": "He replaced the diverter valve and said the part is covered, but the callout excess of 75 pounds is still payable."
+   },
+   {
+    "quote": "Policy no."
+   },
+   {
+    "quote": "They then charged me 150 pounds on my card, which is double the excess. I'd like the extra 75 pounds refunded."
+   },
+   {
+    "quote": "My partner,"
+   },
+   {
+    "quote": "took the call on the second day, so mention that she can confirm the time."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I need to chase my home emergency cover about the boiler. The boiler stopped heating on 2 February; I called Hearthguard on the same day and the engineer, [PERSON_1], came on 4 February, not 3 February as their email says. He replaced the diverter valve and said the part is covered, but the callout excess of 75 pounds is still payable. Policy no. [ACCOUNT_ID]. They then charged me 150 pounds on my card, which is double the excess. I'd like the extra 75 pounds refunded. My partner, [PERSON_2], took the call on the second day, so mention that she can confirm the time. You can email me on [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-010",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-010-renewal-pipeline-update",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-010-renewal-pipeline-update",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-010-renewal-pipeline-update",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-010-renewal-pipeline-update",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these deal notes into a three-bullet summary for my manager with the seat count, the deadline and who owns each next step.",
+  "text": "Pipeline update for the Thursday review. I spoke with the customer's procurement lead, Hamid Zarei, who confirmed they want to renew 120 seats for another 12 months, not the 150 we assumed in the forecast. Hamid said legal will sign only if we add the data-processing addendum by 20 June. Our solutions engineer, Linnea Strömberg, has the technical answers for the two open security questions. Next steps: I send the revised order form to hamid.zarei@example.com today, and Linnea joins the next call. CRM opportunity ID is OPP-48210 and the renewal quote is Q-2026-0873. Please turn this into a three-bullet summary for my manager that keeps the seat count, the deadline and who owns each next step.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "buyer",
+    "quote": "Hamid Zarei",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "buyer",
+    "quote": "Hamid",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m3",
+    "entity_id": "engineer",
+    "quote": "Linnea Strömberg",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "quote": "hamid.zarei@example.com",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "engineer",
+    "quote": "Linnea",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "opp",
+    "quote": "OPP-48210",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m7",
+    "entity_id": "quoteno",
+    "quote": "Q-2026-0873",
+    "label": "ACCOUNT_ID"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "buyer",
+    "quote": "Hamid Zarei",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "buyer",
+    "quote": "Hamid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "engineer",
+    "quote": "Linnea Strömberg",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "hamid.zarei@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The next step is to send the order form to this address; the exact value is not needed to summarise it and the user re-inserts it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "engineer",
+    "quote": "Linnea",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "opp",
+    "quote": "OPP-48210",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The CRM opportunity ID keys to an internal record and is not needed for the summary; labels and position tell it apart from the quote number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "quoteno",
+    "quote": "Q-2026-0873",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The quote number keys to an internal record and is not needed for the summary; labels and position tell it apart from the opportunity ID."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I spoke with the customer's procurement lead,"
+   },
+   {
+    "quote": "who confirmed they want to renew 120 seats for another 12 months, not the 150 we assumed in the forecast."
+   },
+   {
+    "quote": "said legal will sign only if we add the data-processing addendum by 20 June."
+   },
+   {
+    "quote": "Our solutions engineer,"
+   },
+   {
+    "quote": "has the technical answers for the two open security questions."
+   },
+   {
+    "quote": "Next steps: I send the revised order form to"
+   },
+   {
+    "quote": "today, and"
+   },
+   {
+    "quote": "joins the next call."
+   },
+   {
+    "quote": "CRM opportunity ID is"
+   },
+   {
+    "quote": "and the renewal quote is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Pipeline update for the Thursday review. I spoke with the customer's procurement lead, [PERSON_1], who confirmed they want to renew 120 seats for another 12 months, not the 150 we assumed in the forecast. [PERSON_1] said legal will sign only if we add the data-processing addendum by 20 June. Our solutions engineer, [PERSON_2], has the technical answers for the two open security questions. Next steps: I send the revised order form to [EMAIL] today, and [PERSON_2] joins the next call. CRM opportunity ID is [ACCOUNT_ID] and the renewal quote is [ACCOUNT_ID]. Please turn this into a three-bullet summary for my manager that keeps the seat count, the deadline and who owns each next step."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-011",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-011-account-handover",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-011-account-handover",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-011-account-handover",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-011-account-handover",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this handover note into a tidy one-line-per-account checklist for the incoming account owner, keeping every date and condition.",
+  "text": "Account handover note for the renewals queue. I'm moving to the enterprise team on 1 July, so Raquel Domingos takes over these accounts from me. Account one renews on 14 August; the contact is Tuan Pham, tuan.pham@example.org, who prefers email to calls. Account two renews on 2 October and its contact is Ewa Zielińska on 07700 900612, but she is only available in the mornings. Account three has already churned, so do not send a renewal quote. Raquel should also know that Tuan Pham asked for the usage report before he will discuss terms. The billing profile for account one is BP-10442. Please turn this into a tidy checklist for her with one line per account, keeping the dates and conditions exactly.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "newowner",
+    "quote": "Raquel Domingos",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "contact1",
+    "quote": "Tuan Pham",
+    "label": "PERSON",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "email",
+    "quote": "tuan.pham@example.org",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m4",
+    "entity_id": "contact2",
+    "quote": "Ewa Zielińska",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "phone",
+    "quote": "07700 900612",
+    "label": "PHONE"
+   },
+   {
+    "id": "m6",
+    "entity_id": "newowner",
+    "quote": "Raquel",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "contact1",
+    "quote": "Tuan Pham",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "billing",
+    "quote": "BP-10442",
+    "label": "ACCOUNT_ID"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "newowner",
+    "quote": "Raquel Domingos",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "contact1",
+    "quote": "Tuan Pham",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "email",
+    "quote": "tuan.pham@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The incoming owner needs this contact address; the user re-inserts it after the checklist is drafted."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "contact2",
+    "quote": "Ewa Zielińska",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "phone",
+    "quote": "07700 900612",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The incoming owner needs this contact number; the user re-inserts it after the checklist is drafted."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "newowner",
+    "quote": "Raquel",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "contact1",
+    "quote": "Tuan Pham",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "billing",
+    "quote": "BP-10442",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The checklist should reference the billing profile but the exact ID is not needed to word it; the user re-inserts it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm moving to the enterprise team on 1 July, so"
+   },
+   {
+    "quote": "takes over these accounts from me."
+   },
+   {
+    "quote": "Account one renews on 14 August; the contact is"
+   },
+   {
+    "quote": "who prefers email to calls."
+   },
+   {
+    "quote": "Account two renews on 2 October and its contact is"
+   },
+   {
+    "quote": "but she is only available in the mornings."
+   },
+   {
+    "quote": "Account three has already churned, so do not send a renewal quote."
+   },
+   {
+    "quote": "should also know that"
+   },
+   {
+    "quote": "asked for the usage report before he will discuss terms."
+   },
+   {
+    "quote": "The billing profile for account one is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Account handover note for the renewals queue. I'm moving to the enterprise team on 1 July, so [PERSON_1] takes over these accounts from me. Account one renews on 14 August; the contact is [PERSON_2], [EMAIL], who prefers email to calls. Account two renews on 2 October and its contact is [PERSON_3] on [PHONE], but she is only available in the mornings. Account three has already churned, so do not send a renewal quote. [PERSON_1] should also know that [PERSON_2] asked for the usage report before he will discuss terms. The billing profile for account one is [ACCOUNT_ID]. Please turn this into a tidy checklist for her with one line per account, keeping the dates and conditions exactly."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-012",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-id-012-renewal-quote-email",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-id-012-renewal-quote-email",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-id-012-renewal-quote-email",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-id-012-renewal-quote-email",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this renewal quote email so it reads clearly and keeps the conditions, dates and licence counts exactly as written.",
+  "text": "Hello Adaeze, thanks for your time on Monday. As discussed, the renewal quote for your 40 licences is attached, valid until 31 October. If you add the premium support tier, the licence count must go up to at least 50, otherwise it isn't available. I have copied Piotr Nowicki from our finance team, who will issue the invoice once the purchase order arrives; the PO number should be quoted on the invoice. Your account manager remains Soo-jin Han, reachable at soojin.han@example.com. Please send the PO to me directly and call 555-0142 if anything is unclear. Let me know by Friday if you want to go ahead so we can lock in the term, and I will keep the price the same as last year.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "client",
+    "quote": "Adaeze",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "finance",
+    "quote": "Piotr Nowicki",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "acctmgr",
+    "quote": "Soo-jin Han",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "quote": "soojin.han@example.com",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "phone",
+    "quote": "555-0142",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "client",
+    "quote": "Adaeze",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "finance",
+    "quote": "Piotr Nowicki",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "acctmgr",
+    "quote": "Soo-jin Han",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "soojin.han@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The account manager's address is not needed to tidy the wording; the user can leave the original line in place when sending."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "phone",
+    "quote": "555-0142",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The sender's phone number is not needed to tidy the wording."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "thanks for your time on Monday."
+   },
+   {
+    "quote": "the renewal quote for your 40 licences is attached, valid until 31 October."
+   },
+   {
+    "quote": "If you add the premium support tier, the licence count must go up to at least 50, otherwise it isn't available."
+   },
+   {
+    "quote": "I have copied"
+   },
+   {
+    "quote": "from our finance team, who will issue the invoice once the purchase order arrives; the PO number should be quoted on the invoice."
+   },
+   {
+    "quote": "Your account manager remains"
+   },
+   {
+    "quote": "Please send the PO to me directly and call"
+   },
+   {
+    "quote": "if anything is unclear."
+   },
+   {
+    "quote": "Let me know by Friday if you want to go ahead so we can lock in the term, and I will keep the price the same as last year."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hello [PERSON_1], thanks for your time on Monday. As discussed, the renewal quote for your 40 licences is attached, valid until 31 October. If you add the premium support tier, the licence count must go up to at least 50, otherwise it isn't available. I have copied [PERSON_2] from our finance team, who will issue the invoice once the purchase order arrives; the PO number should be quoted on the invoice. Your account manager remains [PERSON_3], reachable at [EMAIL]. Please send the PO to me directly and call [PHONE] if anything is unclear. Let me know by Friday if you want to go ahead so we can lock in the term, and I will keep the price the same as last year."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:pres-001",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-pres-001-garage-cost-split",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-pres-001-garage-cost-split",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-pres-001-garage-cost-split",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-pres-001-garage-cost-split",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a clear message to the group that states each person's share and condition exactly, including what happens if the plans are refused.",
+  "text": "Quick summary of who owes what for the garage conversion so I can send it to the group. The total quote is 14,400 pounds. Brother-in-law Cormac Deasy agreed to pay 40 percent, not a third as I first wrote. Jamila Idowu is paying nothing towards the build but will cover the 1,200-pound planning fee. Cormac only pays his share if the council approves the plans by 15 August; if they refuse, nobody pays the builder, Sione Taufa, anything beyond the 300-pound survey he has already done. I am covering the rest, and I haven't asked Jamila for anything else. Please write a clear message to all three that keeps each person's share and condition exactly right.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "cormac",
+    "quote": "Cormac Deasy",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "jamila",
+    "quote": "Jamila Idowu",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "cormac",
+    "quote": "Cormac",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "sione",
+    "quote": "Sione Taufa",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "jamila",
+    "quote": "Jamila",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "cormac",
+    "quote": "Cormac Deasy",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "jamila",
+    "quote": "Jamila Idowu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "cormac",
+    "quote": "Cormac",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "sione",
+    "quote": "Sione Taufa",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "jamila",
+    "quote": "Jamila",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The total quote is 14,400 pounds."
+   },
+   {
+    "quote": "Brother-in-law"
+   },
+   {
+    "quote": "agreed to pay 40 percent, not a third as I first wrote."
+   },
+   {
+    "quote": "is paying nothing towards the build but will cover the 1,200-pound planning fee."
+   },
+   {
+    "quote": "only pays his share if the council approves the plans by 15 August; if they refuse, nobody pays the builder,"
+   },
+   {
+    "quote": "anything beyond the 300-pound survey he has already done."
+   },
+   {
+    "quote": "I am covering the rest, and I haven't asked"
+   },
+   {
+    "quote": "for anything else."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Quick summary of who owes what for the garage conversion so I can send it to the group. The total quote is 14,400 pounds. Brother-in-law [PERSON_1] agreed to pay 40 percent, not a third as I first wrote. [PERSON_2] is paying nothing towards the build but will cover the 1,200-pound planning fee. [PERSON_1] only pays his share if the council approves the plans by 15 August; if they refuse, nobody pays the builder, [PERSON_3], anything beyond the 300-pound survey he has already done. I am covering the rest, and I haven't asked [PERSON_2] for anything else. Please write a clear message to all three that keeps each person's share and condition exactly right."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:pres-002",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-pres-002-garden-room-planning",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-pres-002-garden-room-planning",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-pres-002-garden-room-planning",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-pres-002-garden-room-planning",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Make a short list of what I still need to confirm and who to ask, keeping every hedge and condition as stated.",
+  "text": "Notes from the planning meeting. Architect Ines Carvalho thinks we probably will not need full planning permission for the garden room, but she was clear it depends on keeping the height at 2.5 metres or less. Our neighbour Obinna Eze says the council told him the opposite, that any outbuilding within 2 metres of a boundary needs consent. I don't know which of them is right and I haven't spoken to the council myself. Obinna also says he won't object if we move the room 1 metre further from his fence. Ines says moving it is fine but costs about 600 pounds extra. I want a short list of what we still need to confirm and who we should ask, without turning any maybe into a definite.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "architect",
+    "quote": "Ines Carvalho",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "neighbour",
+    "quote": "Obinna Eze",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "neighbour",
+    "quote": "Obinna",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "architect",
+    "quote": "Ines",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "architect",
+    "quote": "Ines Carvalho",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "neighbour",
+    "quote": "Obinna Eze",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "neighbour",
+    "quote": "Obinna",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "architect",
+    "quote": "Ines",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Architect"
+   },
+   {
+    "quote": "thinks we probably will not need full planning permission for the garden room, but she was clear it depends on keeping the height at 2.5 metres or less."
+   },
+   {
+    "quote": "Our neighbour"
+   },
+   {
+    "quote": "says the council told him the opposite, that any outbuilding within 2 metres of a boundary needs consent."
+   },
+   {
+    "quote": "I don't know which of them is right and I haven't spoken to the council myself."
+   },
+   {
+    "quote": "also says he won't object if we move the room 1 metre further from his fence."
+   },
+   {
+    "quote": "says moving it is fine but costs about 600 pounds extra."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes from the planning meeting. Architect [PERSON_1] thinks we probably will not need full planning permission for the garden room, but she was clear it depends on keeping the height at 2.5 metres or less. Our neighbour [PERSON_2] says the council told him the opposite, that any outbuilding within 2 metres of a boundary needs consent. I don't know which of them is right and I haven't spoken to the council myself. [PERSON_2] also says he won't object if we move the room 1 metre further from his fence. [PERSON_1] says moving it is fine but costs about 600 pounds extra. I want a short list of what we still need to confirm and who we should ask, without turning any maybe into a definite."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:pres-003",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-pres-003-tariff-correction",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-pres-003-tariff-correction",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-pres-003-tariff-correction",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-pres-003-tariff-correction",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a clear message to my sister that corrects the earlier figure and shows which numbers are firm and which are only estimates.",
+  "text": "Message to my sister about the energy switch. Dear Maren, I told you the new tariff was 27p per kWh, but that's wrong: it's 23p per kWh, with a standing charge of 52p a day. Our flatmate Idris Bakare thinks we'd save roughly 180 pounds a year, though he hasn't included the standing charge, so I wouldn't trust his figure yet. Teuila Faleolo from the supplier said the switch takes up to 21 days and that we must not cancel the old direct debit ourselves. I still have to decide whether to switch before our current fixed deal ends on 31 January; I will only switch if the exit fee is zero. Can you help me put this clearly?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sister",
+    "quote": "Maren",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "flatmate",
+    "quote": "Idris Bakare",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "agent",
+    "quote": "Teuila Faleolo",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sister",
+    "quote": "Maren",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "flatmate",
+    "quote": "Idris Bakare",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "agent",
+    "quote": "Teuila Faleolo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I told you the new tariff was 27p per kWh, but that's wrong: it's 23p per kWh, with a standing charge of 52p a day."
+   },
+   {
+    "quote": "Our flatmate"
+   },
+   {
+    "quote": "thinks we'd save roughly 180 pounds a year, though he hasn't included the standing charge, so I wouldn't trust his figure yet."
+   },
+   {
+    "quote": "from the supplier said the switch takes up to 21 days and that we must not cancel the old direct debit ourselves."
+   },
+   {
+    "quote": "I still have to decide whether to switch before our current fixed deal ends on 31 January; I will only switch if the exit fee is zero."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Message to my sister about the energy switch. Dear [PERSON_1], I told you the new tariff was 27p per kWh, but that's wrong: it's 23p per kWh, with a standing charge of 52p a day. Our flatmate [PERSON_2] thinks we'd save roughly 180 pounds a year, though he hasn't included the standing charge, so I wouldn't trust his figure yet. [PERSON_3] from the supplier said the switch takes up to 21 days and that we must not cancel the old direct debit ourselves. I still have to decide whether to switch before our current fixed deal ends on 31 January; I will only switch if the exit fee is zero. Can you help me put this clearly?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:pres-004",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-pres-004-boiler-service-update",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-pres-004-boiler-service-update",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-pres-004-boiler-service-update",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-pres-004-boiler-service-update",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a note to my landlord that states what the engineer found and did not find, the invoice deadline and whether the alarm works.",
+  "text": "Update on the flat's boiler service. The landlord, Bronwen Aldous, did not book the service this year; I did, and she will reimburse the 92 pounds only if I send the invoice by Friday. The engineer, Jabu Mokoena, found no leak but did say the flue seal is worn and should be replaced within six months. He did not condemn the boiler, whatever the letting agent claims. Our other tenant, Lorcan Whelan, says he was told the carbon monoxide alarm needs a new battery, but I checked and it was fine. Can you draft a note to my landlord that gets the facts right: what was and wasn't found, what the invoice deadline is and whether the alarm works?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "landlord",
+    "quote": "Bronwen Aldous",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "engineer",
+    "quote": "Jabu Mokoena",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "tenant",
+    "quote": "Lorcan Whelan",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "landlord",
+    "quote": "Bronwen Aldous",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "engineer",
+    "quote": "Jabu Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "tenant",
+    "quote": "Lorcan Whelan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The landlord,"
+   },
+   {
+    "quote": "did not book the service this year; I did, and she will reimburse the 92 pounds only if I send the invoice by Friday."
+   },
+   {
+    "quote": "The engineer,"
+   },
+   {
+    "quote": "found no leak but did say the flue seal is worn and should be replaced within six months."
+   },
+   {
+    "quote": "He did not condemn the boiler, whatever the letting agent claims."
+   },
+   {
+    "quote": "Our other tenant,"
+   },
+   {
+    "quote": "says he was told the carbon monoxide alarm needs a new battery, but I checked and it was fine."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Update on the flat's boiler service. The landlord, [PERSON_1], did not book the service this year; I did, and she will reimburse the 92 pounds only if I send the invoice by Friday. The engineer, [PERSON_2], found no leak but did say the flue seal is worn and should be replaced within six months. He did not condemn the boiler, whatever the letting agent claims. Our other tenant, [PERSON_3], says he was told the carbon monoxide alarm needs a new battery, but I checked and it was fine. Can you draft a note to my landlord that gets the facts right: what was and wasn't found, what the invoice deadline is and whether the alarm works?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:ben-001",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-ben-001-extension-rules-public",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-ben-001-extension-rules-public",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-ben-001-extension-rules-public",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-ben-001-extension-rules-public",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain in plain terms which of these rules apply to the build and which to the heating choice.",
+  "text": "I'm planning a small single-storey rear extension and I've been reading the Planning Portal guidance on permitted development alongside Approved Document L of the Building Regulations. The guidance says some rear extensions can be built without a full application, but only within certain size limits and not in every conservation area. I also noticed that any new electrical circuits have to follow BS 7671 and be notified under Part P, and that gas work must be done by someone on the Gas Safe Register. Ofgem publishes the energy price cap, which I want to understand before choosing a heat pump over a new gas boiler. Can you explain, in plain terms, which of these rules apply to the build itself and which apply to the heating choice?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I'm planning a small single-storey rear extension and I've been reading the Planning Portal guidance on permitted development alongside Approved Document L of the Building Regulations. The guidance says some rear extensions can be built without a full application, but only within certain size limits and not in every conservation area. I also noticed that any new electrical circuits have to follow BS 7671 and be notified under Part P, and that gas work must be done by someone on the Gas Safe Register. Ofgem publishes the energy price cap, which I want to understand before choosing a heat pump over a new gas boiler. Can you explain, in plain terms, which of these rules apply to the build itself and which apply to the heating choice?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:ben-002",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-ben-002-pipeline-report-generic",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-ben-002-pipeline-report-generic",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-ben-002-pipeline-report-generic",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-ben-002-pipeline-report-generic",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Suggest a clean report layout with a short glossary of the stage names and metrics, plus a sensible retry setting for the nightly export.",
+  "text": "I'm building a monthly sales pipeline report and want to make sure the definitions are standard. We use stages named Qualified, Proposal, Negotiation and Closed Won, and I plan to report win rate as closed-won deals divided by all closed deals. Our CRM can export to CSV, and the BI tool loads that file nightly. Last week one export failed with an HTTP 504 error and a retry fixed it, so I'd like a simple retry policy. I also want to confirm that our customer data handling follows GDPR Article 28 and that the vendor's ISO 27001 certificate covers the hosting region. Please suggest a clean layout for the report with a short glossary of the stage names and metrics, and a sensible retry setting.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I'm building a monthly sales pipeline report and want to make sure the definitions are standard. We use stages named Qualified, Proposal, Negotiation and Closed Won, and I plan to report win rate as closed-won deals divided by all closed deals. Our CRM can export to CSV, and the BI tool loads that file nightly. Last week one export failed with an HTTP 504 error and a retry fixed it, so I'd like a simple retry policy. I also want to confirm that our customer data handling follows GDPR Article 28 and that the vendor's ISO 27001 certificate covers the hosting region. Please suggest a clean layout for the report with a short glossary of the stage names and metrics, and a sensible retry setting."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:cred-001",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-cred-001-deal-handover-portal",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-cred-001-deal-handover-portal",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-cred-001-deal-handover-portal",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-cred-001-deal-handover-portal",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short internal handover email for the new rep covering the deal stage, what is approved, what is still open and the next step.",
+  "text": "Handover for Sione, who picks this deal up on Monday. Quillfeather Biologics is a confidential account, so please don't name them outside the team. The renewal is worth 214,000 euros over two years and the VP approved an 11 percent discount on the condition that they sign by 28 November. Procurement still hasn't returned the signed order form. Their supplier portal login is user qf_renewals and password Pinecone#Ledger88; use it only to upload the order form, never to change bank details. Next step: chase their buyer, Maribel Ostrowski, on Wednesday if nothing has arrived. Her last email said legal is still reviewing the termination clause, so don't promise anything on that. I'm out from Friday.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "newrep",
+    "quote": "Sione",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "client",
+    "quote": "Quillfeather Biologics",
+    "label": "ORG"
+   },
+   {
+    "id": "m3",
+    "entity_id": "dealvalue",
+    "quote": "214,000 euros over two years",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m4",
+    "entity_id": "discount",
+    "quote": "11 percent",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "portaluser",
+    "quote": "qf_renewals",
+    "label": "USERNAME"
+   },
+   {
+    "id": "m6",
+    "entity_id": "portalpw",
+    "quote": "Pinecone#Ledger88",
+    "label": "SECRET"
+   },
+   {
+    "id": "m7",
+    "entity_id": "buyer",
+    "quote": "Maribel Ostrowski",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "newrep",
+    "quote": "Sione",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "client",
+    "quote": "Quillfeather Biologics",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The client is a confidential account and the handover email only needs to refer to the deal, not name the customer."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "dealvalue",
+    "quote": "214,000 euros over two years",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The nonpublic contract value is confidential and is not needed to describe the deal stage."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "discount",
+    "quote": "11 percent",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The approved discount is a nonpublic commercial term; the handover needs it, so the new rep re-inserts the figure from the CRM."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "portaluser",
+    "quote": "qf_renewals",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The portal username is a client-linked login and is not needed to write the handover email."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "portalpw",
+    "quote": "Pinecone#Ledger88",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A live-looking password must not leave the company; the email only needs to say that a portal login exists."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "buyer",
+    "quote": "Maribel Ostrowski",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Handover for"
+   },
+   {
+    "quote": "who picks this deal up on Monday."
+   },
+   {
+    "quote": "is a confidential account, so please don't name them outside the team."
+   },
+   {
+    "quote": "and the VP approved an"
+   },
+   {
+    "quote": "discount on the condition that they sign by 28 November."
+   },
+   {
+    "quote": "Procurement still hasn't returned the signed order form."
+   },
+   {
+    "quote": "Their supplier portal login is user"
+   },
+   {
+    "quote": "and password"
+   },
+   {
+    "quote": "use it only to upload the order form, never to change bank details."
+   },
+   {
+    "quote": "Next step: chase their buyer,"
+   },
+   {
+    "quote": "on Wednesday if nothing has arrived."
+   },
+   {
+    "quote": "Her last email said legal is still reviewing the termination clause, so don't promise anything on that."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Handover for [PERSON_1], who picks this deal up on Monday. [ORG] is a confidential account, so please don't name them outside the team. The renewal is worth [FINANCIAL] and the VP approved an [FINANCIAL] discount on the condition that they sign by 28 November. Procurement still hasn't returned the signed order form. Their supplier portal login is user [USERNAME] and password [SECRET]; use it only to upload the order form, never to change bank details. Next step: chase their buyer, [PERSON_2], on Wednesday if nothing has arrived. Her last email said legal is still reviewing the termination clause, so don't promise anything on that. I'm out from Friday."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "0c26f67397fc4b31b58a0ebe0286d1d6",
+  "id": "0c26f67397fc4b31b58a0ebe0286d1d6:cred-002",
+  "family_id": "0c26f67397fc4b31b58a0ebe0286d1d6:fam-cred-002-crm-export-403",
+  "persona_id": "0c26f67397fc4b31b58a0ebe0286d1d6:per-cred-002-crm-export-403",
+  "source_id": "0c26f67397fc4b31b58a0ebe0286d1d6:src-cred-002-crm-export-403",
+  "template_id": "0c26f67397fc4b31b58a0ebe0286d1d6:tpl-cred-002-crm-export-403",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Diagnose the 403 and tell me which scope or header change to request; the deal details are not needed.",
+  "text": "Our weekly pipeline export to the BI tool is failing with a 403. This is the call I run from the scheduler: curl -s -H \"X-Api-Key: qa_9d41b7e0_fake\" \"https://crm.internal.test/v2/deals?stage=negotiation&owner=emea\" -o deals.json. The response body is {\"error\":\"forbidden\",\"detail\":\"key scope missing deals:read\"}. The BI tool just shows an empty file and the scheduler log says the job exited with code 22. This worked until Friday, when ops changed the scopes. For context, the largest open renewal is for Brightwater Marine at 1.4 million dollars, and finance asked that it not leave the building. Which scope or header change should I request, and is there anything wrong with the query string itself?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "apikey",
+    "quote": "qa_9d41b7e0_fake",
+    "label": "SECRET"
+   },
+   {
+    "id": "m2",
+    "entity_id": "client",
+    "quote": "Brightwater Marine",
+    "label": "ORG"
+   },
+   {
+    "id": "m3",
+    "entity_id": "dealvalue",
+    "quote": "1.4 million dollars",
+    "label": "FINANCIAL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "apikey",
+    "quote": "qa_9d41b7e0_fake",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The API key is a credential and the diagnosis only needs the header name and the error message."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "client",
+    "quote": "Brightwater Marine",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The client is confidential per finance and is not needed to diagnose a scope error."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "dealvalue",
+    "quote": "1.4 million dollars",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The nonpublic renewal value is confidential and irrelevant to a 403 diagnosis."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our weekly pipeline export to the BI tool is failing with a 403."
+   },
+   {
+    "quote": "curl -s -H \"X-Api-Key:"
+   },
+   {
+    "quote": "\" \"https://crm.internal.test/v2/deals?stage=negotiation&owner=emea\" -o deals.json."
+   },
+   {
+    "quote": "The response body is {\"error\":\"forbidden\",\"detail\":\"key scope missing deals:read\"}."
+   },
+   {
+    "quote": "The BI tool just shows an empty file and the scheduler log says the job exited with code 22."
+   },
+   {
+    "quote": "This worked until Friday, when ops changed the scopes."
+   },
+   {
+    "quote": "Which scope or header change should I request, and is there anything wrong with the query string itself?"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "0c26f67397fc4b31b58a0ebe0286d1d6:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Our weekly pipeline export to the BI tool is failing with a 403. This is the call I run from the scheduler: curl -s -H \"X-Api-Key: [SECRET]\" \"https://crm.internal.test/v2/deals?stage=negotiation&owner=emea\" -o deals.json. The response body is {\"error\":\"forbidden\",\"detail\":\"key scope missing deals:read\"}. The BI tool just shows an empty file and the scheduler log says the job exited with code 22. This worked until Friday, when ops changed the scopes. For context, the largest open renewal is for [ORG] at [FINANCIAL], and finance asked that it not leave the building. Which scope or header change should I request, and is there anything wrong with the query string itself?"
+ }
+]

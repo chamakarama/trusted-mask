@@ -1,0 +1,1506 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-001",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-001",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-001",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-001",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-001",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Draft a firm but polite compensation claim email to the airline from these notes.",
+    "text": "Hi, I need to send a delay compensation claim to Larkspur Air and want it to sound firm but polite. Booking reference QX7R2M, flight LK 4418 from Lisbon to Manchester on 12 October. It was scheduled to land at 18:05 and actually landed at 23:40, so a delay of 5 hours 35 minutes. The airline blamed a crew shortage, not weather. Three of us were on the booking: me, my husband Babajide Oyelaran and my sister Marisol Quintero. Babajide paid 46 euros for dinner at the airport and kept the receipt; Marisol bought nothing. We were not offered meal vouchers at any point. Please reply to me at r.oyelaran@example.com or on 07700 900412 if anything is missing. I'd like to claim the standard 400 euros per person for this distance, plus the dinner receipt.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "booking-ref",
+        "label": "ACCOUNT_ID",
+        "quote": "QX7R2M"
+      },
+      {
+        "id": "m2",
+        "entity_id": "flight-date",
+        "label": "DATE",
+        "quote": "12 October"
+      },
+      {
+        "id": "m3",
+        "entity_id": "husband",
+        "label": "PERSON",
+        "quote": "Babajide Oyelaran"
+      },
+      {
+        "id": "m4",
+        "entity_id": "sister",
+        "label": "PERSON",
+        "quote": "Marisol Quintero"
+      },
+      {
+        "id": "m5",
+        "entity_id": "husband",
+        "label": "PERSON",
+        "quote": "Babajide",
+        "occurrence": 2
+      },
+      {
+        "id": "m6",
+        "entity_id": "sister",
+        "label": "PERSON",
+        "quote": "Marisol",
+        "occurrence": 2
+      },
+      {
+        "id": "m7",
+        "entity_id": "user-email",
+        "label": "EMAIL",
+        "quote": "r.oyelaran@example.com"
+      },
+      {
+        "id": "m8",
+        "entity_id": "user-phone",
+        "label": "PHONE",
+        "quote": "07700 900412"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "booking-ref",
+        "quote": "QX7R2M",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The booking reference identifies the travellers' reservation; the draft can carry a [ACCOUNT_ID] slot that the user fills in before sending."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "flight-date",
+        "quote": "12 October",
+        "label": "DATE",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "husband",
+        "quote": "Babajide Oyelaran",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "sister",
+        "quote": "Marisol Quintero",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "husband",
+        "quote": "Babajide",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "sister",
+        "quote": "Marisol",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "user-email",
+        "quote": "r.oyelaran@example.com",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The personal email address and surname in it are contact details the drafting AI does not need; the claim email can keep an [EMAIL] slot."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "user-phone",
+        "quote": "07700 900412",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The mobile number is a direct contact identifier with no role in drafting the claim wording."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "flight LK 4418 from Lisbon to Manchester on 12 October."
+      },
+      {
+        "quote": "It was scheduled to land at 18:05 and actually landed at 23:40, so a delay of 5 hours 35 minutes."
+      },
+      {
+        "quote": "The airline blamed a crew shortage, not weather."
+      },
+      {
+        "quote": "Three of us were on the booking: me, my husband"
+      },
+      {
+        "quote": "and my sister"
+      },
+      {
+        "quote": "paid 46 euros for dinner at the airport and kept the receipt;"
+      },
+      {
+        "quote": "bought nothing."
+      },
+      {
+        "quote": "We were not offered meal vouchers at any point."
+      },
+      {
+        "quote": "I'd like to claim the standard 400 euros per person for this distance, plus the dinner receipt."
+      }
+    ],
+    "approved_output": "Hi, I need to send a delay compensation claim to Larkspur Air and want it to sound firm but polite. Booking reference [ACCOUNT_ID], flight LK 4418 from Lisbon to Manchester on 12 October. It was scheduled to land at 18:05 and actually landed at 23:40, so a delay of 5 hours 35 minutes. The airline blamed a crew shortage, not weather. Three of us were on the booking: me, my husband [PERSON_1] and my sister [PERSON_2]. [PERSON_1] paid 46 euros for dinner at the airport and kept the receipt; [PERSON_2] bought nothing. We were not offered meal vouchers at any point. Please reply to me at [EMAIL] or on [PHONE] if anything is missing. I'd like to claim the standard 400 euros per person for this distance, plus the dinner receipt.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-002",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-002",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-002",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-002",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-002",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Turn this into a clear, polite complaint to the hotel chain asking for the refund.",
+    "text": "Message for the Harbourline Hotels guest relations team (draft):\n\nWe stayed at your Galway property from 3 to 6 May under a reservation my friend Kaveh Rostami made with his loyalty number HLX-55102-K. At checkout the folio showed the minibar charge of 38.50 euros twice, and a parking fee of 15 euros per night even though we did not have a car. Kaveh's card was charged the full 241.50 euros. The duty manager, Mr Szczepański, agreed at the desk that the second minibar line was a mistake but said the parking needed approval from head office. He has not called back since. Kaveh asked me to handle it because he is travelling until the 20th. You can reach me on +44 7700 900618 or jon.pereira@example.net. We would accept a refund of the duplicate charge and the parking, 83.50 euros in total.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "friend",
+        "label": "PERSON",
+        "quote": "Kaveh Rostami"
+      },
+      {
+        "id": "m2",
+        "entity_id": "loyalty",
+        "label": "ACCOUNT_ID",
+        "quote": "HLX-55102-K"
+      },
+      {
+        "id": "m3",
+        "entity_id": "friend",
+        "label": "PERSON",
+        "quote": "Kaveh",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "manager",
+        "label": "PERSON",
+        "quote": "Szczepański"
+      },
+      {
+        "id": "m5",
+        "entity_id": "friend",
+        "label": "PERSON",
+        "quote": "Kaveh",
+        "occurrence": 3
+      },
+      {
+        "id": "m6",
+        "entity_id": "phone",
+        "label": "PHONE",
+        "quote": "+44 7700 900618"
+      },
+      {
+        "id": "m7",
+        "entity_id": "email",
+        "label": "EMAIL",
+        "quote": "jon.pereira@example.net"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "friend",
+        "quote": "Kaveh Rostami",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "loyalty",
+        "quote": "HLX-55102-K",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The friend's loyalty number is an account identifier; the complaint wording only needs to mention that a loyalty booking exists."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "friend",
+        "quote": "Kaveh",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "manager",
+        "quote": "Szczepański",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "friend",
+        "quote": "Kaveh",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "phone",
+        "quote": "+44 7700 900618",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "Direct phone contact is not needed to write the complaint; a [PHONE] slot keeps the sentence intact."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "email",
+        "quote": "jon.pereira@example.net",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The email reveals the writer's name and is not needed for the complaint wording."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "We stayed at your Galway property from 3 to 6 May under a reservation my friend"
+      },
+      {
+        "quote": "At checkout the folio showed the minibar charge of 38.50 euros twice, and a parking fee of 15 euros per night even though we did not have a car."
+      },
+      {
+        "quote": "'s card was charged the full 241.50 euros."
+      },
+      {
+        "quote": "The duty manager, Mr"
+      },
+      {
+        "quote": "agreed at the desk that the second minibar line was a mistake but said the parking needed approval from head office."
+      },
+      {
+        "quote": "He has not called back since."
+      },
+      {
+        "quote": "We would accept a refund of the duplicate charge and the parking, 83.50 euros in total."
+      }
+    ],
+    "approved_output": "Message for the Harbourline Hotels guest relations team (draft):\n\nWe stayed at your Galway property from 3 to 6 May under a reservation my friend [PERSON_1] made with his loyalty number [ACCOUNT_ID]. At checkout the folio showed the minibar charge of 38.50 euros twice, and a parking fee of 15 euros per night even though we did not have a car. [PERSON_1]'s card was charged the full 241.50 euros. The duty manager, Mr [PERSON_2], agreed at the desk that the second minibar line was a mistake but said the parking needed approval from head office. He has not called back since. [PERSON_1] asked me to handle it because he is travelling until the 20th. You can reach me on [PHONE] or [EMAIL]. We would accept a refund of the duplicate charge and the parking, 83.50 euros in total.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-003",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-003",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-003",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-003",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-003",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Draft a friendly reply to the florist confirming the updated total and remaining balance, and include my fiancé's question.",
+    "text": "Notes before I reply to the florist:\n- Florist is Lucinda Achterberg, email lucinda.a@blooms.example\n- Wedding is 21 June. My fiancé Hemi Ngata and I paid a 300-pound deposit on 2 February.\n- Original quote was 1,150 pounds for 8 table arrangements, 2 arches and the bouquets. Lucinda now says it will be 1 arch, not 2, because the venue only allows one, and she's offered to take 140 pounds off.\n- Balance is due 14 days before the wedding. Her invoice asks for a transfer to GB00 FAKE 1234 5612 3456 78.\n- Hemi wants to ask whether the peonies can be swapped for ranunculus if peonies are out of season, but only if the price stays the same.\nCan you help me reply? I want to confirm the new total and what we still owe, and ask Hemi's question without sounding fussy.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "florist",
+        "label": "PERSON",
+        "quote": "Lucinda Achterberg"
+      },
+      {
+        "id": "m2",
+        "entity_id": "florist-email",
+        "label": "EMAIL",
+        "quote": "lucinda.a@blooms.example"
+      },
+      {
+        "id": "m3",
+        "entity_id": "wedding-date",
+        "label": "DATE",
+        "quote": "21 June"
+      },
+      {
+        "id": "m4",
+        "entity_id": "fiance",
+        "label": "PERSON",
+        "quote": "Hemi Ngata"
+      },
+      {
+        "id": "m5",
+        "entity_id": "florist",
+        "label": "PERSON",
+        "quote": "Lucinda",
+        "occurrence": 2
+      },
+      {
+        "id": "m6",
+        "entity_id": "iban",
+        "label": "IBAN",
+        "quote": "GB00 FAKE 1234 5612 3456 78"
+      },
+      {
+        "id": "m7",
+        "entity_id": "fiance",
+        "label": "PERSON",
+        "quote": "Hemi",
+        "occurrence": 2
+      },
+      {
+        "id": "m8",
+        "entity_id": "fiance",
+        "label": "PERSON",
+        "quote": "Hemi",
+        "occurrence": 3
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "florist",
+        "quote": "Lucinda Achterberg",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "florist-email",
+        "quote": "lucinda.a@blooms.example",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The florist's email is a direct contact identifier; the reply text itself does not need the address."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "wedding-date",
+        "quote": "21 June",
+        "label": "DATE",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "fiance",
+        "quote": "Hemi Ngata",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "florist",
+        "quote": "Lucinda",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "iban",
+        "quote": "GB00 FAKE 1234 5612 3456 78",
+        "label": "IBAN",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "Bank account details are not needed to confirm the total; the reply does not have to repeat the payment account."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "fiance",
+        "quote": "Hemi",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "fiance",
+        "quote": "Hemi",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Wedding is 21 June."
+      },
+      {
+        "quote": "My fiancé"
+      },
+      {
+        "quote": "and I paid a 300-pound deposit on 2 February."
+      },
+      {
+        "quote": "Original quote was 1,150 pounds for 8 table arrangements, 2 arches and the bouquets."
+      },
+      {
+        "quote": "now says it will be 1 arch, not 2, because the venue only allows one, and she's offered to take 140 pounds off."
+      },
+      {
+        "quote": "Balance is due 14 days before the wedding."
+      },
+      {
+        "quote": "wants to ask whether the peonies can be swapped for ranunculus if peonies are out of season, but only if the price stays the same."
+      }
+    ],
+    "approved_output": "Notes before I reply to the florist:\n- Florist is [PERSON_1], email [EMAIL]\n- Wedding is 21 June. My fiancé [PERSON_2] and I paid a 300-pound deposit on 2 February.\n- Original quote was 1,150 pounds for 8 table arrangements, 2 arches and the bouquets. [PERSON_1] now says it will be 1 arch, not 2, because the venue only allows one, and she's offered to take 140 pounds off.\n- Balance is due 14 days before the wedding. Her invoice asks for a transfer to [IBAN].\n- [PERSON_2] wants to ask whether the peonies can be swapped for ranunculus if peonies are out of season, but only if the price stays the same.\nCan you help me reply? I want to confirm the new total and what we still owe, and ask [PERSON_2]'s question without sounding fussy.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-004",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-004",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-004",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-004",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-004",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Rewrite this rota update so it's easier to scan, as a short list of changes and open asks.",
+    "text": "Hi all, rota update for the Saturday shifts at the Northgate food bank. Aino Tauriainen can't do 9-12 on the 16th any more, so Nguyen Thi Lan is swapping with her and Aino will take Lan's 1-4 slot on the 23rd instead. Dev Raghunathan is still on the van run both weeks, but he's asked for a second person to help lift because the crates are about 18 kg each. If anyone can join Dev, text him on 07700 900233 rather than replying here. New volunteers need to finish the 20-minute food hygiene video before their first shift; Lan has the link. Aino's number has changed to 07700 900871, so please update your contacts. We're short 2 people for the 30th, and we can't open the second distribution table unless we have at least 6 volunteers.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "aino",
+        "label": "PERSON",
+        "quote": "Aino Tauriainen"
+      },
+      {
+        "id": "m2",
+        "entity_id": "lan",
+        "label": "PERSON",
+        "quote": "Nguyen Thi Lan"
+      },
+      {
+        "id": "m3",
+        "entity_id": "aino",
+        "label": "PERSON",
+        "quote": "Aino",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "lan",
+        "label": "PERSON",
+        "quote": "Lan",
+        "occurrence": 2
+      },
+      {
+        "id": "m5",
+        "entity_id": "dev",
+        "label": "PERSON",
+        "quote": "Dev Raghunathan"
+      },
+      {
+        "id": "m6",
+        "entity_id": "dev",
+        "label": "PERSON",
+        "quote": "Dev",
+        "occurrence": 2
+      },
+      {
+        "id": "m7",
+        "entity_id": "dev-phone",
+        "label": "PHONE",
+        "quote": "07700 900233"
+      },
+      {
+        "id": "m8",
+        "entity_id": "lan",
+        "label": "PERSON",
+        "quote": "Lan",
+        "occurrence": 3
+      },
+      {
+        "id": "m9",
+        "entity_id": "aino",
+        "label": "PERSON",
+        "quote": "Aino",
+        "occurrence": 3
+      },
+      {
+        "id": "m10",
+        "entity_id": "aino-phone",
+        "label": "PHONE",
+        "quote": "07700 900871"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "aino",
+        "quote": "Aino Tauriainen",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "lan",
+        "quote": "Nguyen Thi Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "aino",
+        "quote": "Aino",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "lan",
+        "quote": "Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "dev",
+        "quote": "Dev Raghunathan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "dev",
+        "quote": "Dev",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "dev-phone",
+        "quote": "07700 900233",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A volunteer's mobile number should not go to an external AI; the rewritten list can keep a [PHONE] slot for the user to restore."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "lan",
+        "quote": "Lan",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "aino",
+        "quote": "Aino",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      },
+      {
+        "kind": "entity",
+        "target_id": "m10",
+        "entity_id": "aino-phone",
+        "quote": "07700 900871",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A volunteer's new number is a direct contact identifier; the rewrite only needs to say it changed. Both numbers render as [PHONE], so the user must restore each one by position."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "can't do 9-12 on the 16th any more, so"
+      },
+      {
+        "quote": "is swapping with her and"
+      },
+      {
+        "quote": "'s 1-4 slot on the 23rd instead."
+      },
+      {
+        "quote": "is still on the van run both weeks, but he's asked for a second person to help lift because the crates are about 18 kg each."
+      },
+      {
+        "quote": "New volunteers need to finish the 20-minute food hygiene video before their first shift;"
+      },
+      {
+        "quote": "has the link."
+      },
+      {
+        "quote": "We're short 2 people for the 30th, and we can't open the second distribution table unless we have at least 6 volunteers."
+      }
+    ],
+    "approved_output": "Hi all, rota update for the Saturday shifts at the Northgate food bank. [PERSON_1] can't do 9-12 on the 16th any more, so [PERSON_2] is swapping with her and [PERSON_1] will take [PERSON_2]'s 1-4 slot on the 23rd instead. [PERSON_3] is still on the van run both weeks, but he's asked for a second person to help lift because the crates are about 18 kg each. If anyone can join [PERSON_3], text him on [PHONE] rather than replying here. New volunteers need to finish the 20-minute food hygiene video before their first shift; [PERSON_2] has the link. [PERSON_1]'s number has changed to [PHONE], so please update your contacts. We're short 2 people for the 30th, and we can't open the second distribution table unless we have at least 6 volunteers.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-005",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-005",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-005",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-005",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-005",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me write a refund request to the resale platform.",
+    "text": "I bought two standing tickets for the Halloran Sisters show at the Corn Exchange on 29 November through ResaleRow, order RR-20481-77, for 96 pounds each plus a 14-pound fee. The seller, username gigswap_marta88, promised paper tickets by post to 14 Ashby Lane, Lowerfold LF3 9QT by 10 November. Nothing has arrived, and the tracking number she gave doesn't exist on the courier's site. I messaged her on 12 and 15 November and got no answer. ResaleRow's guarantee says buyers get a full refund if tickets don't arrive 5 days before the event, so I think I'm covered, but I'm not sure whether the 14-pound fee is refunded too. My account email is p.marsh@example.org. I don't want replacement tickets, just the refund.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "order",
+        "label": "ACCOUNT_ID",
+        "quote": "RR-20481-77"
+      },
+      {
+        "id": "m2",
+        "entity_id": "seller",
+        "label": "USERNAME",
+        "quote": "gigswap_marta88"
+      },
+      {
+        "id": "m3",
+        "entity_id": "address",
+        "label": "ADDRESS",
+        "quote": "14 Ashby Lane, Lowerfold LF3 9QT"
+      },
+      {
+        "id": "m4",
+        "entity_id": "email",
+        "label": "EMAIL",
+        "quote": "p.marsh@example.org"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "order",
+        "quote": "RR-20481-77",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The platform needs the order number to find the purchase, but the external AI cannot see or verify it; the draft keeps an [ACCOUNT_ID] slot the user fills in."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "seller",
+        "quote": "gigswap_marta88",
+        "label": "USERNAME",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The seller's handle identifies a private individual and contains a first name; the platform can find the seller from the order."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "address",
+        "quote": "14 Ashby Lane, Lowerfold LF3 9QT",
+        "label": "ADDRESS",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The buyer's home address is not needed to argue non-delivery; saying tickets were due by post is enough."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "email",
+        "quote": "p.marsh@example.org",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The account email is a direct identifier the drafting AI does not need."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "I bought two standing tickets for the Halloran Sisters show at the Corn Exchange on 29 November through ResaleRow, order"
+      },
+      {
+        "quote": "for 96 pounds each plus a 14-pound fee."
+      },
+      {
+        "quote": "promised paper tickets by post to"
+      },
+      {
+        "quote": "by 10 November."
+      },
+      {
+        "quote": "Nothing has arrived, and the tracking number she gave doesn't exist on the courier's site."
+      },
+      {
+        "quote": "I messaged her on 12 and 15 November and got no answer."
+      },
+      {
+        "quote": "ResaleRow's guarantee says buyers get a full refund if tickets don't arrive 5 days before the event, so I think I'm covered, but I'm not sure whether the 14-pound fee is refunded too."
+      },
+      {
+        "quote": "I don't want replacement tickets, just the refund."
+      }
+    ],
+    "approved_output": "I bought two standing tickets for the Halloran Sisters show at the Corn Exchange on 29 November through ResaleRow, order [ACCOUNT_ID], for 96 pounds each plus a 14-pound fee. The seller, username [USERNAME], promised paper tickets by post to [ADDRESS] by 10 November. Nothing has arrived, and the tracking number she gave doesn't exist on the courier's site. I messaged her on 12 and 15 November and got no answer. ResaleRow's guarantee says buyers get a full refund if tickets don't arrive 5 days before the event, so I think I'm covered, but I'm not sure whether the 14-pound fee is refunded too. My account email is [EMAIL]. I don't want replacement tickets, just the refund.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:id-006",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-id-006",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-id-006",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-id-006",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-id-006",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Write the access review sign-off summary and flag anything that still needs an owner.",
+    "text": "Quarterly access review, payments-api prod cluster, notes from Thursday:\n- Ilse Brandvold (ibrandvold) still has cluster-admin from the March incident. Ilse's manager confirmed she moved to the data team on 1 September, so the role should be removed, not downgraded.\n- Chukwuemeka Obi (cobi-ext, c.obi@contractors.example) has read-only kubectl access. His contract ends on 30 November; keep access until then and revoke it the next day.\n- Service account ci-deployer has 3 secrets-reader bindings unused for more than 90 days. Remove 2; the third is still used by the nightly backup job.\n- The break-glass account was used once, on 14 October, by Rafael Okonkwo-Lindqvist during the database failover; ticket SEC-3187 has the justification.\nNobody has picked up the ci-deployer clean-up yet.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "ilse",
+        "label": "PERSON",
+        "quote": "Ilse Brandvold"
+      },
+      {
+        "id": "m2",
+        "entity_id": "ilse-user",
+        "label": "USERNAME",
+        "quote": "ibrandvold"
+      },
+      {
+        "id": "m3",
+        "entity_id": "ilse",
+        "label": "PERSON",
+        "quote": "Ilse",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "ilse-move",
+        "label": "EMPLOYMENT",
+        "quote": "she moved to the data team on 1 September"
+      },
+      {
+        "id": "m5",
+        "entity_id": "chukwuemeka",
+        "label": "PERSON",
+        "quote": "Chukwuemeka Obi"
+      },
+      {
+        "id": "m6",
+        "entity_id": "obi-user",
+        "label": "USERNAME",
+        "quote": "cobi-ext"
+      },
+      {
+        "id": "m7",
+        "entity_id": "obi-email",
+        "label": "EMAIL",
+        "quote": "c.obi@contractors.example"
+      },
+      {
+        "id": "m8",
+        "entity_id": "obi-contract",
+        "label": "EMPLOYMENT",
+        "quote": "His contract ends on 30 November"
+      },
+      {
+        "id": "m9",
+        "entity_id": "rafael",
+        "label": "PERSON",
+        "quote": "Rafael Okonkwo-Lindqvist"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "ilse",
+        "quote": "Ilse Brandvold",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "ilse-user",
+        "quote": "ibrandvold",
+        "label": "USERNAME",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The employee's login handle is a direct account identifier; the summary can refer to the person by alias."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "ilse",
+        "quote": "Ilse",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "ilse-move",
+        "quote": "she moved to the data team on 1 September",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "chukwuemeka",
+        "quote": "Chukwuemeka Obi",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "obi-user",
+        "quote": "cobi-ext",
+        "label": "USERNAME",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The contractor's login handle is an account identifier not needed for the narrative summary."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "obi-email",
+        "quote": "c.obi@contractors.example",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The contractor's email is a direct contact identifier with no role in the sign-off summary."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m8",
+        "entity_id": "obi-contract",
+        "quote": "His contract ends on 30 November",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m9",
+        "entity_id": "rafael",
+        "quote": "Rafael Okonkwo-Lindqvist",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "still has cluster-admin from the March incident."
+      },
+      {
+        "quote": "'s manager confirmed she moved to the data team on 1 September, so the role should be removed, not downgraded."
+      },
+      {
+        "quote": "has read-only kubectl access."
+      },
+      {
+        "quote": "His contract ends on 30 November; keep access until then and revoke it the next day."
+      },
+      {
+        "quote": "Service account ci-deployer has 3 secrets-reader bindings unused for more than 90 days. Remove 2; the third is still used by the nightly backup job."
+      },
+      {
+        "quote": "The break-glass account was used once, on 14 October, by"
+      },
+      {
+        "quote": "during the database failover; ticket SEC-3187 has the justification."
+      },
+      {
+        "quote": "Nobody has picked up the ci-deployer clean-up yet."
+      }
+    ],
+    "approved_output": "Quarterly access review, payments-api prod cluster, notes from Thursday:\n- [PERSON_1] ([USERNAME]) still has cluster-admin from the March incident. [PERSON_1]'s manager confirmed she moved to the data team on 1 September, so the role should be removed, not downgraded.\n- [PERSON_2] ([USERNAME], [EMAIL]) has read-only kubectl access. His contract ends on 30 November; keep access until then and revoke it the next day.\n- Service account ci-deployer has 3 secrets-reader bindings unused for more than 90 days. Remove 2; the third is still used by the nightly backup job.\n- The break-glass account was used once, on 14 October, by [PERSON_3] during the database failover; ticket SEC-3187 has the justification.\nNobody has picked up the ci-deployer clean-up yet.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:pres-001",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-pres-001",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-pres-001",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-pres-001",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-pres-001",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Turn this into a short newsletter item for members.",
+    "text": "Committee chat summary for the Ridgeway Walkers newsletter, please check I've got this right:\nThe spring walk is on Sunday 15 March, not Saturday the 14th as the last email said. Meeting point is the station car park at 8:30. Agnieszka Wróblewska is leading, and Femi Adeyemi says he might bring the minibus, but only if at least 9 people sign up; otherwise everyone car-shares. Kalani Makoa is not doing first aid this time. Agnieszka is covering it, since Kalani's certificate lapsed in January. Membership is 25 pounds for the year, not 35; the 35 figure was last year's family rate. Femi still owes the club 12 pounds for the map set, and Kalani owes nothing. The walk is 14 km with about 400 m of climbing, which might be too much for beginners, so we may offer a shorter 8 km loop if anyone asks.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "agnieszka",
+        "label": "PERSON",
+        "quote": "Agnieszka Wróblewska"
+      },
+      {
+        "id": "m2",
+        "entity_id": "femi",
+        "label": "PERSON",
+        "quote": "Femi Adeyemi"
+      },
+      {
+        "id": "m3",
+        "entity_id": "kalani",
+        "label": "PERSON",
+        "quote": "Kalani Makoa"
+      },
+      {
+        "id": "m4",
+        "entity_id": "agnieszka",
+        "label": "PERSON",
+        "quote": "Agnieszka",
+        "occurrence": 2
+      },
+      {
+        "id": "m5",
+        "entity_id": "kalani",
+        "label": "PERSON",
+        "quote": "Kalani",
+        "occurrence": 2
+      },
+      {
+        "id": "m6",
+        "entity_id": "femi",
+        "label": "PERSON",
+        "quote": "Femi",
+        "occurrence": 2
+      },
+      {
+        "id": "m7",
+        "entity_id": "kalani",
+        "label": "PERSON",
+        "quote": "Kalani",
+        "occurrence": 3
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "agnieszka",
+        "quote": "Agnieszka Wróblewska",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "femi",
+        "quote": "Femi Adeyemi",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "kalani",
+        "quote": "Kalani Makoa",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "agnieszka",
+        "quote": "Agnieszka",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "kalani",
+        "quote": "Kalani",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m6",
+        "entity_id": "femi",
+        "quote": "Femi",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m7",
+        "entity_id": "kalani",
+        "quote": "Kalani",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 3
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The spring walk is on Sunday 15 March, not Saturday the 14th as the last email said."
+      },
+      {
+        "quote": "Meeting point is the station car park at 8:30."
+      },
+      {
+        "quote": "is leading, and"
+      },
+      {
+        "quote": "says he might bring the minibus, but only if at least 9 people sign up; otherwise everyone car-shares."
+      },
+      {
+        "quote": "is not doing first aid this time."
+      },
+      {
+        "quote": "is covering it, since"
+      },
+      {
+        "quote": "'s certificate lapsed in January."
+      },
+      {
+        "quote": "Membership is 25 pounds for the year, not 35; the 35 figure was last year's family rate."
+      },
+      {
+        "quote": "still owes the club 12 pounds for the map set, and"
+      },
+      {
+        "quote": "owes nothing."
+      },
+      {
+        "quote": "The walk is 14 km with about 400 m of climbing, which might be too much for beginners, so we may offer a shorter 8 km loop if anyone asks."
+      }
+    ],
+    "approved_output": "Committee chat summary for the Ridgeway Walkers newsletter, please check I've got this right:\nThe spring walk is on Sunday 15 March, not Saturday the 14th as the last email said. Meeting point is the station car park at 8:30. [PERSON_1] is leading, and [PERSON_2] says he might bring the minibus, but only if at least 9 people sign up; otherwise everyone car-shares. [PERSON_3] is not doing first aid this time. [PERSON_1] is covering it, since [PERSON_3]'s certificate lapsed in January. Membership is 25 pounds for the year, not 35; the 35 figure was last year's family rate. [PERSON_2] still owes the club 12 pounds for the map set, and [PERSON_3] owes nothing. The walk is 14 km with about 400 m of climbing, which might be too much for beginners, so we may offer a shorter 8 km loop if anyone asks.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:pres-002",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-pres-002",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-pres-002",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-pres-002",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-pres-002",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me write the timeline and contributing-factors sections of a blameless postmortem from these notes.",
+    "text": "Incident notes, checkout latency, 4 Nov (draft for the postmortem):\n- 14:02 alert fired: p99 latency on /checkout above 2,000 ms. Correction: the rollback started at 14:20, not 14:02; 14:02 was only the alert.\n- Deepa Venkataraman rolled back release 7.14.2 to 7.14.1. Joaquín Etxeberria thinks the connection pool was probably exhausted by the new batch reconciliation job, but he hasn't confirmed it in the logs yet.\n- The pool max is 50 connections, not 500; someone misread the config in the channel.\n- Deepa says we should only re-enable the batch job if the error rate stays below 0.5% for 30 minutes after the pool fix ships.\n- Customer impact: about 3% of checkout attempts failed between 14:02 and 14:31. No data loss.\n- Tuulikki Rantanen owns the follow-up ticket; Joaquín will pair with her on Monday.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "deepa",
+        "label": "PERSON",
+        "quote": "Deepa Venkataraman"
+      },
+      {
+        "id": "m2",
+        "entity_id": "joaquin",
+        "label": "PERSON",
+        "quote": "Joaquín Etxeberria"
+      },
+      {
+        "id": "m3",
+        "entity_id": "deepa",
+        "label": "PERSON",
+        "quote": "Deepa",
+        "occurrence": 2
+      },
+      {
+        "id": "m4",
+        "entity_id": "tuulikki",
+        "label": "PERSON",
+        "quote": "Tuulikki Rantanen"
+      },
+      {
+        "id": "m5",
+        "entity_id": "joaquin",
+        "label": "PERSON",
+        "quote": "Joaquín",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "deepa",
+        "quote": "Deepa Venkataraman",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "joaquin",
+        "quote": "Joaquín Etxeberria",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "deepa",
+        "quote": "Deepa",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "tuulikki",
+        "quote": "Tuulikki Rantanen",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m5",
+        "entity_id": "joaquin",
+        "quote": "Joaquín",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "14:02 alert fired: p99 latency on /checkout above 2,000 ms."
+      },
+      {
+        "quote": "Correction: the rollback started at 14:20, not 14:02; 14:02 was only the alert."
+      },
+      {
+        "quote": "rolled back release 7.14.2 to 7.14.1."
+      },
+      {
+        "quote": "thinks the connection pool was probably exhausted by the new batch reconciliation job, but he hasn't confirmed it in the logs yet."
+      },
+      {
+        "quote": "The pool max is 50 connections, not 500; someone misread the config in the channel."
+      },
+      {
+        "quote": "says we should only re-enable the batch job if the error rate stays below 0.5% for 30 minutes after the pool fix ships."
+      },
+      {
+        "quote": "Customer impact: about 3% of checkout attempts failed between 14:02 and 14:31. No data loss."
+      },
+      {
+        "quote": "owns the follow-up ticket;"
+      },
+      {
+        "quote": "will pair with her on Monday."
+      }
+    ],
+    "approved_output": "Incident notes, checkout latency, 4 Nov (draft for the postmortem):\n- 14:02 alert fired: p99 latency on /checkout above 2,000 ms. Correction: the rollback started at 14:20, not 14:02; 14:02 was only the alert.\n- [PERSON_1] rolled back release 7.14.2 to 7.14.1. [PERSON_2] thinks the connection pool was probably exhausted by the new batch reconciliation job, but he hasn't confirmed it in the logs yet.\n- The pool max is 50 connections, not 500; someone misread the config in the channel.\n- [PERSON_1] says we should only re-enable the batch job if the error rate stays below 0.5% for 30 minutes after the pool fix ships.\n- Customer impact: about 3% of checkout attempts failed between 14:02 and 14:31. No data loss.\n- [PERSON_3] owns the follow-up ticket; [PERSON_2] will pair with her on Monday.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:ben-001",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-ben-001",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-ben-001",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-ben-001",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-ben-001",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Compare the two routes for me and give practical booking tips and common pitfalls.",
+    "text": "I'm planning a rail trip from Amsterdam to Vienna in late April and trying to decide between the ÖBB Nightjet and splitting it into two daytime legs with a night in Munich. The Nightjet timetable on the ÖBB website shows a departure around 19:00 and an arrival around 09:30, but couchette prices seem to change a lot depending on how early you book. I've read Rick Steves' argument that sleeper trains save you a hotel night, and The Man in Seat 61 says the Munich route is more scenic in daylight. I'll have one carry-on and a small backpack, I don't mind an early start, and I'd rather not fly. I'm also unsure whether a Eurail pass would work out cheaper than booking point-to-point tickets for just this one journey.",
+    "entities": [],
+    "decisions": [],
+    "required_facts": [],
+    "approved_output": "I'm planning a rail trip from Amsterdam to Vienna in late April and trying to decide between the ÖBB Nightjet and splitting it into two daytime legs with a night in Munich. The Nightjet timetable on the ÖBB website shows a departure around 19:00 and an arrival around 09:30, but couchette prices seem to change a lot depending on how early you book. I've read Rick Steves' argument that sleeper trains save you a hotel night, and The Man in Seat 61 says the Munich route is more scenic in daylight. I'll have one carry-on and a small backpack, I don't mind an early start, and I'd rather not fly. I'm also unsure whether a Eurail pass would work out cheaper than booking point-to-point tickets for just this one journey.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "a67467e3f7a34acb83f361524acffbe3",
+    "id": "a67467e3f7a34acb83f361524acffbe3:cred-001",
+    "family_id": "a67467e3f7a34acb83f361524acffbe3:fam-cred-001",
+    "persona_id": "a67467e3f7a34acb83f361524acffbe3:persona-cred-001",
+    "source_id": "a67467e3f7a34acb83f361524acffbe3:src-cred-001",
+    "template_id": "a67467e3f7a34acb83f361524acffbe3:tpl-cred-001",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me work out why the staging migration fails and how to fix the CI secret safely.",
+    "text": "Our staging deploy keeps failing at the migrate step since this morning. Pipeline log excerpt:\n\n[migrate] DATABASE_URL=postgres://orders_app:Quarry!Moth93@pg-staging.internal.test:5432/orders\n[migrate] FATAL: password authentication failed for user \"orders_app\"\n[migrate] exit code 1\n\nNothing changed in the pipeline YAML. Halvard on the platform team rotated the staging database password on Tuesday night, and I think the new value was saved in the vault but not in the CI variable group. The pipeline also exports PARTNER_API_KEY=tok-demo-Wv83nTq5Lx for the Brightwater Insurance integration tests, and that stage passed, so the network path seems fine. Is the failure consistent with a stale CI secret, and what's the safest order to update the variable, re-run, and confirm it works without printing the secret in the logs again?",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "db-password",
+        "label": "SECRET",
+        "quote": "Quarry!Moth93"
+      },
+      {
+        "id": "m2",
+        "entity_id": "halvard",
+        "label": "PERSON",
+        "quote": "Halvard"
+      },
+      {
+        "id": "m3",
+        "entity_id": "partner-key",
+        "label": "SECRET",
+        "quote": "tok-demo-Wv83nTq5Lx"
+      },
+      {
+        "id": "m4",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Brightwater Insurance"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "db-password",
+        "quote": "Quarry!Moth93",
+        "label": "SECRET",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A live database password must not leave the company; diagnosing the auth failure needs only the connection-string structure, not the value."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "halvard",
+        "quote": "Halvard",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "partner-key",
+        "quote": "tok-demo-Wv83nTq5Lx",
+        "label": "SECRET",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The partner API key is an access credential; its value plays no part in the migrate failure."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m4",
+        "entity_id": "client",
+        "quote": "Brightwater Insurance",
+        "label": "ORG",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The integration client's identity is confidential business information and is not needed to debug the staging migration."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Our staging deploy keeps failing at the migrate step since this morning."
+      },
+      {
+        "quote": "[migrate] FATAL: password authentication failed for user \"orders_app\""
+      },
+      {
+        "quote": "[migrate] exit code 1"
+      },
+      {
+        "quote": "Nothing changed in the pipeline YAML."
+      },
+      {
+        "quote": "on the platform team rotated the staging database password on Tuesday night, and I think the new value was saved in the vault but not in the CI variable group."
+      },
+      {
+        "quote": "integration tests, and that stage passed, so the network path seems fine."
+      },
+      {
+        "quote": "Is the failure consistent with a stale CI secret, and what's the safest order to update the variable, re-run, and confirm it works without printing the secret in the logs again?"
+      }
+    ],
+    "approved_output": "Our staging deploy keeps failing at the migrate step since this morning. Pipeline log excerpt:\n\n[migrate] DATABASE_URL=postgres://orders_app:[SECRET]@pg-staging.internal.test:5432/orders\n[migrate] FATAL: password authentication failed for user \"orders_app\"\n[migrate] exit code 1\n\nNothing changed in the pipeline YAML. [PERSON_1] on the platform team rotated the staging database password on Tuesday night, and I think the new value was saved in the vault but not in the CI variable group. The pipeline also exports PARTNER_API_KEY=[SECRET] for the [ORG] integration tests, and that stage passed, so the network path seems fine. Is the failure consistent with a stale CI secret, and what's the safest order to update the variable, re-run, and confirm it works without printing the secret in the logs again?",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "a67467e3f7a34acb83f361524acffbe3:generator",
+      "generator_model": "claude-opus-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  }
+]
