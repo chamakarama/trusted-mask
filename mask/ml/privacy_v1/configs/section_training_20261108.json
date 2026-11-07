@@ -1,0 +1,19 @@
+{
+  "split": "mask/ml/privacy_v1/data/section-split-20261108-v1",
+  "seed": 17,
+  "epochs": 2,
+  "backbone_learning_rate": 0.00001,
+  "head_learning_rate": 0.0002,
+  "head_only_warmup_steps": 100,
+  "effective_batch_size": 8,
+  "microbatch": 4,
+  "objective_update_ratio": {"entity_bio": 1, "entity_action_and_relevance": 1, "section_relevance": 1},
+  "section_class_weights": {"essential": 1, "unnecessary": 4, "uncertain": 6},
+  "section_loss": "weighted CE normalized within labelled minibatch; approved unchanged unlabelled controls receive only non-deletion loss",
+  "sampler": "shuffle source-shard cohorts; keep paired clause jobs adjacent in the same effective batch; cycle shorter objective datasets",
+  "precision": "bf16 autocast with fp32 parameters and AdamW state",
+  "checkpoints": "every epoch, with optimizer and RNG state; publish final checkpoint immediately, evaluation pending",
+  "model_tracks": ["deberta-v3-base", "deberta-v3-large"],
+  "final_initialization": "each model's pinned pretrained backbone, never the sanity-overfit weights",
+  "budget_eur_max": 10
+}

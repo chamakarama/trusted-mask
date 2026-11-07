@@ -43,7 +43,7 @@ def load_model(directory, device="cpu"):
     if metadata["track"] == "custom-a":
         from .custom import CustomModel
         model = CustomModel.load(directory)
-    elif metadata["track"] in ("encoder-b", "deberta-v3-base"):
+    elif metadata["track"] in ("encoder-b", "deberta-v3-base", "deberta-v3-large"):
         from .encoder import EncoderModel
         model = EncoderModel.load(directory, device=device)
     else:

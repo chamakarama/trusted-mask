@@ -156,6 +156,13 @@ def parity(model, directory, records):
 
 
 def main():
+    # Preserve the historical 516-record experiment exactly. The new version
+    # requires an explicit frozen manifest and uses a separate objective path.
+    import sys
+    if '--section-split' in sys.argv:
+        from .section_training import main as section_main
+        sys.argv[sys.argv.index('--section-split')] = '--split'
+        return section_main()
     parser = argparse.ArgumentParser()
     parser.add_argument('--track', choices=('custom-a', 'encoder-b', 'deberta-v3-base', 'rules'), required=True)
     parser.add_argument('--base', type=Path)

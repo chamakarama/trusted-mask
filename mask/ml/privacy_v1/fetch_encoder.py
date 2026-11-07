@@ -8,9 +8,9 @@ def main():
     from huggingface_hub import HfApi, snapshot_download
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", required=True, type=Path)
-    parser.add_argument("--track", choices=("encoder-b", "deberta-v3-base"), default="encoder-b")
+    parser.add_argument("--track", choices=("encoder-b", "deberta-v3-base", "deberta-v3-large"), default="encoder-b")
     args = parser.parse_args()
-    filename = "encoder_b.json" if args.track == "encoder-b" else "deberta_v3_base.json"
+    filename = "encoder_b.json" if args.track == "encoder-b" else args.track.replace('-', '_') + '.json'
     config = json.loads((Path(__file__).parent / "configs" / filename).read_text())
     model_id, revision = config["model_id"], config["revision"]
     resolved = HfApi().model_info(model_id, revision=revision).sha

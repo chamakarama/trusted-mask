@@ -24,8 +24,9 @@ class RulesModel:
 
 
 class Protector:
-    def __init__(self, model=None, *, section_mode="legacy"):
-        if section_mode not in ("legacy", *SECTION_MODES):
+    def __init__(self, model=None, *, section_mode=None):
+        section_mode = section_mode or getattr(model, 'default_section_mode', 'legacy')
+        if section_mode not in ("legacy", 'section-head-v1', *SECTION_MODES):
             raise ValueError("Unknown section mode")
         self.model = model or RulesModel()
         self.section_mode = section_mode
@@ -50,6 +51,9 @@ class Protector:
             trace.append({"start": span.start, "end": span.end, "label": span.label,
                           "proposed_action": action, "action_score": score,
                           "relevance": dict(relevance), "scores_calibrated": False})
+        if (getattr(self.model, 'entity_semantics', '') == 'relevance-is-not-disclosure-v1'
+                and action == 'PLACEHOLDER' and score >= .7):
+            return action, score, 'value_substitution_independent_of_relevance', relevance
         if relevance["essential"] >= 0.5:
             return "KEEP", score, "essential_fact", relevance
         if not task.strip() or relevance["uncertain"] >= 0.5 or score < 0.7:
@@ -67,6 +71,10 @@ class Protector:
                 raise ValueError("Intended use/history exceeds model context capacity")
         learned = self.model.detect(text)
         entities, sections, pending = build_candidates(text, learned, header)
+        if self.section_mode == 'section-head-v1':
+            from .section_pipeline import protect_segment
+            return protect_segment(self, text, task, context, aliases, learned, entities, pending,
+                                   allow_section_drop=allow_section_drop)
         contextual = sections + [s for s in learned if s.label in SECTION_LABELS]
         if self.section_mode in SECTION_MODES:
             sections = structural_candidates(text, contextual, self.section_mode) if allow_section_drop else []
