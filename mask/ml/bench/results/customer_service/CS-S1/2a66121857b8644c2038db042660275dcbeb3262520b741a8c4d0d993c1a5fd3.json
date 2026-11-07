@@ -1,0 +1,646 @@
+{
+  "version": 1,
+  "reportId": "bench_576f7d57a923883495f0",
+  "adapterVersion": "mask-bench-1.0.0",
+  "toolkit": {
+    "name": "pets-eval",
+    "version": "1.0.0",
+    "commandLog": [
+      "cd /Users/markp/Code/sinceai-trusted/TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026 && PYTHONPATH=/Users/markp/Code/sinceai-trusted/TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/toolkit /Users/markp/.pyenv/versions/3.12.3/bin/python3 -m pets_eval scorecard --original /Users/markp/Code/sinceai-trusted/TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/customer_service --protected /Users/markp/Code/sinceai-trusted/mask/bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service --scenario CS-S1 --root /Users/markp/Code/sinceai-trusted/TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026 --out /Users/markp/Code/sinceai-trusted/mask/bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/out --max-adversary 3000    # exit 0, 1.5s",
+      "cd /Users/markp/Code/sinceai-trusted/TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026 && PYTHONPATH=/Users/markp/Code/sinceai-trusted/TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/toolkit /Users/markp/.pyenv/versions/3.12.3/bin/python3 -m pets_eval check /Users/markp/Code/sinceai-trusted/mask/bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/export/customer_service --out /Users/markp/Code/sinceai-trusted/mask/bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/out/check.json    # exit 0, 1.5s"
+    ]
+  },
+  "dataset": "customer_service",
+  "scenarioId": "CS-S1",
+  "split": "test",
+  "inputHash": "6fcbf758d9bd3ce7812c65f8a1174b14f25ead84f1f6a5e88be589609ff1a498",
+  "goalId": "ca3ca893cdd001153cc890755367af7198164b00fee4067a1c1901afdb0a000f",
+  "planHash": "2a66121857b8644c2038db042660275dcbeb3262520b741a8c4d0d993c1a5fd3",
+  "outputHash": "ae954f2ef2ae5de374660c9265ef1c0176c305ed6d232de9f7536542350f5c8c",
+  "representation": {
+    "conversations": "row_level",
+    "customers": "row_level",
+    "turns": "row_level"
+  },
+  "tests": [
+    {
+      "id": "representation.conversations",
+      "kind": "representation",
+      "name": "Representation of conversations",
+      "source": "pets_eval.scorecard row_alignment",
+      "status": "evaluated",
+      "scope": "conversations",
+      "metrics": {
+        "row_map": 1,
+        "rows_mapped": 11943
+      },
+      "denominators": {
+        "rows_original": 11943,
+        "rows_protected": 11943,
+        "rowmap_rows": 11943
+      },
+      "assumptions": [
+        "rowmap keyed by the catalogued record key conversation_id; protected_row is the 0-based row of the staged CSV"
+      ],
+      "covers": []
+    },
+    {
+      "id": "representation.customers",
+      "kind": "representation",
+      "name": "Representation of customers",
+      "source": "pets_eval.scorecard row_alignment",
+      "status": "evaluated",
+      "scope": "customers",
+      "metrics": {
+        "row_map": 1,
+        "rows_mapped": 9591
+      },
+      "denominators": {
+        "rows_original": 9591,
+        "rows_protected": 9591,
+        "rowmap_rows": 9591
+      },
+      "assumptions": [
+        "rowmap keyed by the catalogued record key customer_id; protected_row is the 0-based row of the staged CSV"
+      ],
+      "covers": []
+    },
+    {
+      "id": "representation.turns",
+      "kind": "representation",
+      "name": "Representation of turns",
+      "source": "pets_eval.scorecard row_alignment",
+      "status": "evaluated",
+      "scope": "turns",
+      "metrics": {
+        "row_map": 1,
+        "rows_mapped": 140345
+      },
+      "denominators": {
+        "rows_original": 140345,
+        "rows_protected": 140345,
+        "rowmap_rows": 140345
+      },
+      "assumptions": [
+        "rowmap keyed by the catalogued record key turn_id; protected_row is the 0-based row of the staged CSV"
+      ],
+      "covers": []
+    },
+    {
+      "id": "direct_identifiers_retained.conversations",
+      "kind": "residual_check",
+      "name": "Direct identifiers retained in conversations",
+      "source": "pets_eval.scorecard risk 'direct identifiers retained'",
+      "status": "evaluated",
+      "scope": "conversations",
+      "metrics": {
+        "direct_identifiers_retained": 0,
+        "n_columns_with_retained_values": 0
+      },
+      "denominators": {
+        "n_catalogued_direct_identifier_columns": 1,
+        "n_released_direct_identifier_columns": 0,
+        "rows_protected": 11943
+      },
+      "assumptions": [
+        "share of non-null protected values (normalised: case, whitespace, '-', '.') that equal an original value of the same catalogued direct-identifier column; max over columns",
+        "a column renamed or moved into another column is not matched here"
+      ],
+      "covers": [
+        "direct_reidentification"
+      ]
+    },
+    {
+      "id": "hashed_ids_reversible.conversations",
+      "kind": "attack",
+      "name": "Hashed identifiers in conversations reversed by dictionary attack",
+      "source": "pets_eval.attacks.hash_dictionary_attack",
+      "status": "not_applicable",
+      "statusReason": "no released column looks like an MD5/SHA-1/SHA-256 hex digest (Mask tokens are 'tok_' + 12 hex of a keyed HMAC)",
+      "scope": "conversations",
+      "metrics": {},
+      "denominators": {},
+      "sampling": "hex-digest detection on the first 2000 non-null values per column; up to 300000 candidates / 2000000 variants (MD5, SHA-1, SHA-256)",
+      "assumptions": [],
+      "covers": [
+        "token_reversal",
+        "direct_reidentification"
+      ]
+    },
+    {
+      "id": "k_anonymity.conversations",
+      "kind": "residual_check",
+      "name": "Records in conversations with k<5 on catalogued quasi-identifiers",
+      "source": "pets_eval.privacy.k_anonymity",
+      "status": "not_applicable",
+      "statusReason": "no catalogued quasi-identifier kept",
+      "scope": "conversations",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "quasi_identifier_linkage"
+      ]
+    },
+    {
+      "id": "linkage.conversations.no_spec",
+      "kind": "attack",
+      "name": "Linkage attack on conversations",
+      "source": "metadata/attack_specs.json",
+      "status": "not_applicable",
+      "statusReason": "no attack spec targets this table (metadata/attack_specs.json); background-knowledge linkage on it is NOT covered",
+      "scope": "conversations",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "quasi_identifier_linkage",
+        "attribute_inference_external"
+      ]
+    },
+    {
+      "id": "residual_check.conversations",
+      "kind": "residual_check",
+      "name": "Regex residual scan of conversations (informational)",
+      "source": "pets_eval.check.scan_text via scorecard regex_residuals",
+      "status": "evaluated",
+      "scope": "conversations",
+      "metrics": {
+        "total_hits": 0
+      },
+      "denominators": {
+        "rows_scanned": 11943
+      },
+      "sampling": "first 20000 protected rows (prot.head)",
+      "assumptions": [
+        "counts only; never enters the toolkit score; PHONE and LICENSE_PLATE are pattern-only (false positives possible)"
+      ],
+      "covers": [
+        "direct_reidentification",
+        "free_text_identifier_leakage"
+      ]
+    },
+    {
+      "id": "text_leakage.conversations.agent_note",
+      "kind": "text_leakage",
+      "name": "Free-text identifier leakage in conversations.agent_note (public-gold rows)",
+      "source": "metadata/pii_spans/customer_service__conversations__agent_note.jsonl (pets_eval.text.redaction_leakage)",
+      "status": "not_applicable",
+      "statusReason": "text column not released",
+      "scope": "conversations.agent_note",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "free_text_identifier_leakage",
+        "undetected_spoken_identifiers"
+      ]
+    },
+    {
+      "id": "text_leakage.conversations.agent_note.eval_split",
+      "kind": "text_leakage",
+      "name": "Free-text identifier leakage in conversations.agent_note (eval-split rows)",
+      "source": "metadata/pii_spans/customer_service__conversations__agent_note.jsonl (pets_eval.text.redaction_leakage)",
+      "status": "not_applicable",
+      "statusReason": "text column not released",
+      "scope": "conversations.agent_note",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "free_text_identifier_leakage",
+        "undetected_spoken_identifiers"
+      ]
+    },
+    {
+      "id": "direct_identifiers_retained.customers",
+      "kind": "residual_check",
+      "name": "Direct identifiers retained in customers",
+      "source": "pets_eval.scorecard risk 'direct identifiers retained'",
+      "status": "evaluated",
+      "scope": "customers",
+      "metrics": {
+        "direct_identifiers_retained": 0,
+        "n_columns_with_retained_values": 0
+      },
+      "denominators": {
+        "n_catalogued_direct_identifier_columns": 8,
+        "n_released_direct_identifier_columns": 0,
+        "rows_protected": 9591
+      },
+      "assumptions": [
+        "share of non-null protected values (normalised: case, whitespace, '-', '.') that equal an original value of the same catalogued direct-identifier column; max over columns",
+        "a column renamed or moved into another column is not matched here"
+      ],
+      "covers": [
+        "direct_reidentification"
+      ]
+    },
+    {
+      "id": "hashed_ids_reversible.customers",
+      "kind": "attack",
+      "name": "Hashed identifiers in customers reversed by dictionary attack",
+      "source": "pets_eval.attacks.hash_dictionary_attack",
+      "status": "not_applicable",
+      "statusReason": "no released column looks like an MD5/SHA-1/SHA-256 hex digest (Mask tokens are 'tok_' + 12 hex of a keyed HMAC)",
+      "scope": "customers",
+      "metrics": {},
+      "denominators": {},
+      "sampling": "hex-digest detection on the first 2000 non-null values per column; up to 300000 candidates / 2000000 variants (MD5, SHA-1, SHA-256)",
+      "assumptions": [],
+      "covers": [
+        "token_reversal",
+        "direct_reidentification"
+      ]
+    },
+    {
+      "id": "k_anonymity.customers",
+      "kind": "residual_check",
+      "name": "Records in customers with k<5 on catalogued quasi-identifiers",
+      "source": "pets_eval.privacy.k_anonymity",
+      "status": "not_applicable",
+      "statusReason": "no catalogued quasi-identifier kept",
+      "scope": "customers",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "quasi_identifier_linkage"
+      ]
+    },
+    {
+      "id": "linkage.customers.leaked_customer_list",
+      "kind": "attack",
+      "name": "Linkage attack 'leaked_customer_list' on customers",
+      "source": "metadata/attack_specs.json adversary=leaked_customer_list (pets_eval.attacks.linkage_attack)",
+      "status": "unsupported",
+      "statusReason": "every attacker column of this spec was removed, so no attack ran; the toolkit records reidentification 0.0 but that is reduced coverage, not a measured 0",
+      "scope": "customers",
+      "metrics": {
+        "reidentification_rate": null
+      },
+      "denominators": {},
+      "assumptions": [
+        "attacker knows city, email, name for people on the list; spec columns ['city', 'email', 'full_name']",
+        "sensitive attribute: accessibility_needs; attribute-inference success is reported with its majority-guess base rate",
+        "re-identification = unique candidate is the right person, over list members present in the release (n_targets_in_data)"
+      ],
+      "original": {
+        "reidentification_rate": 0.8392
+      },
+      "covers": [
+        "quasi_identifier_linkage",
+        "attribute_inference_external"
+      ]
+    },
+    {
+      "id": "residual_check.customers",
+      "kind": "residual_check",
+      "name": "Regex residual scan of customers (informational)",
+      "source": "pets_eval.check.scan_text via scorecard regex_residuals",
+      "status": "evaluated",
+      "scope": "customers",
+      "metrics": {
+        "total_hits": 0
+      },
+      "denominators": {
+        "rows_scanned": 9591
+      },
+      "sampling": "first 20000 protected rows (prot.head)",
+      "assumptions": [
+        "counts only; never enters the toolkit score; PHONE and LICENSE_PLATE are pattern-only (false positives possible)"
+      ],
+      "covers": [
+        "direct_reidentification",
+        "free_text_identifier_leakage"
+      ]
+    },
+    {
+      "id": "direct_identifiers_retained.turns",
+      "kind": "residual_check",
+      "name": "Direct identifiers retained in turns",
+      "source": "pets_eval.scorecard risk 'direct identifiers retained'",
+      "status": "not_applicable",
+      "statusReason": "no catalogued direct-identifier column in this table (the toolkit still records 0.0; identifiers inside text are covered by text_leakage and residual_check)",
+      "scope": "turns",
+      "metrics": {},
+      "denominators": {
+        "n_catalogued_direct_identifier_columns": 0
+      },
+      "assumptions": [],
+      "covers": [
+        "direct_reidentification"
+      ]
+    },
+    {
+      "id": "hashed_ids_reversible.turns",
+      "kind": "attack",
+      "name": "Hashed identifiers in turns reversed by dictionary attack",
+      "source": "pets_eval.attacks.hash_dictionary_attack",
+      "status": "not_applicable",
+      "statusReason": "no released column looks like an MD5/SHA-1/SHA-256 hex digest (Mask tokens are 'tok_' + 12 hex of a keyed HMAC)",
+      "scope": "turns",
+      "metrics": {},
+      "denominators": {},
+      "sampling": "hex-digest detection on the first 2000 non-null values per column; up to 300000 candidates / 2000000 variants (MD5, SHA-1, SHA-256)",
+      "assumptions": [],
+      "covers": [
+        "token_reversal",
+        "direct_reidentification"
+      ]
+    },
+    {
+      "id": "k_anonymity.turns",
+      "kind": "residual_check",
+      "name": "Records in turns with k<5 on catalogued quasi-identifiers",
+      "source": "pets_eval.privacy.k_anonymity",
+      "status": "not_applicable",
+      "statusReason": "no catalogued quasi-identifier kept",
+      "scope": "turns",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "quasi_identifier_linkage"
+      ]
+    },
+    {
+      "id": "linkage.turns.no_spec",
+      "kind": "attack",
+      "name": "Linkage attack on turns",
+      "source": "metadata/attack_specs.json",
+      "status": "not_applicable",
+      "statusReason": "no attack spec targets this table (metadata/attack_specs.json); background-knowledge linkage on it is NOT covered",
+      "scope": "turns",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "quasi_identifier_linkage",
+        "attribute_inference_external"
+      ]
+    },
+    {
+      "id": "residual_check.turns",
+      "kind": "residual_check",
+      "name": "Regex residual scan of turns (informational)",
+      "source": "pets_eval.check.scan_text via scorecard regex_residuals",
+      "status": "evaluated",
+      "scope": "turns",
+      "metrics": {
+        "total_hits": 0
+      },
+      "denominators": {
+        "rows_scanned": 20000
+      },
+      "sampling": "first 20000 protected rows (prot.head)",
+      "assumptions": [
+        "counts only; never enters the toolkit score; PHONE and LICENSE_PLATE are pattern-only (false positives possible)"
+      ],
+      "covers": [
+        "direct_reidentification",
+        "free_text_identifier_leakage"
+      ]
+    },
+    {
+      "id": "text_leakage.turns.text",
+      "kind": "text_leakage",
+      "name": "Free-text identifier leakage in turns.text (public-gold rows)",
+      "source": "metadata/pii_spans/customer_service__turns__text.jsonl (pets_eval.text.redaction_leakage)",
+      "status": "not_applicable",
+      "statusReason": "text column not released",
+      "scope": "turns.text",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "free_text_identifier_leakage",
+        "undetected_spoken_identifiers"
+      ]
+    },
+    {
+      "id": "text_leakage.turns.text.eval_split",
+      "kind": "text_leakage",
+      "name": "Free-text identifier leakage in turns.text (eval-split rows)",
+      "source": "metadata/pii_spans/customer_service__turns__text.jsonl (pets_eval.text.redaction_leakage)",
+      "status": "not_applicable",
+      "statusReason": "text column not released",
+      "scope": "turns.text",
+      "metrics": {},
+      "denominators": {},
+      "assumptions": [],
+      "covers": [
+        "free_text_identifier_leakage",
+        "undetected_spoken_identifiers"
+      ]
+    },
+    {
+      "id": "residual_check.export",
+      "kind": "residual_check",
+      "name": "Regex residual scan of the shareable export folder (informational)",
+      "source": "pets_eval check <run>/export/<dataset>",
+      "status": "evaluated",
+      "scope": "export",
+      "metrics": {
+        "total_hits": 0
+      },
+      "denominators": {
+        "n_files_scanned": 3
+      },
+      "assumptions": [
+        "every line of every exported file; counts only, examples stay in the private out folder"
+      ],
+      "covers": [
+        "direct_reidentification",
+        "free_text_identifier_leakage"
+      ]
+    },
+    {
+      "id": "utility.CS-U1",
+      "kind": "utility",
+      "name": "CS-U1: Intent classifier (TF-IDF + logistic regression) trained on protected train text, tested on original eval text.",
+      "source": "CS-U1",
+      "status": "unsupported",
+      "statusReason": "not answerable on the protected release: missing text, intent",
+      "scope": "turns",
+      "metrics": {
+        "score": null
+      },
+      "denominators": {},
+      "assumptions": [
+        "required by the scenario: yes",
+        "a required task that is not answerable scores 0 in the toolkit's utility mean; here it is reported as unsupported, not 0",
+        "metric: not answerable"
+      ],
+      "covers": []
+    },
+    {
+      "id": "utility.CS-U3",
+      "kind": "utility",
+      "name": "CS-U3: Contact-reason (intent) mix preserved.",
+      "source": "CS-U3",
+      "status": "unsupported",
+      "statusReason": "not answerable on the protected release: missing intent",
+      "scope": "conversations",
+      "metrics": {
+        "score": null
+      },
+      "denominators": {},
+      "assumptions": [
+        "required by the scenario: yes",
+        "a required task that is not answerable scores 0 in the toolkit's utility mean; here it is reported as unsupported, not 0",
+        "metric: not answerable"
+      ],
+      "covers": []
+    },
+    {
+      "id": "utility.CS-U4",
+      "kind": "utility",
+      "name": "CS-U4: Average handle time by intent.",
+      "source": "CS-U4",
+      "status": "unsupported",
+      "statusReason": "not answerable on the protected release: missing intent, handle_time_s",
+      "scope": "conversations",
+      "metrics": {
+        "score": null
+      },
+      "denominators": {},
+      "assumptions": [
+        "required by the scenario: yes",
+        "a required task that is not answerable scores 0 in the toolkit's utility mean; here it is reported as unsupported, not 0",
+        "metric: not answerable"
+      ],
+      "covers": []
+    },
+    {
+      "id": "utility.CS-U5",
+      "kind": "utility",
+      "name": "CS-U5: Ordinary vocabulary retained in text (redaction should remove identifiers, not meaning).",
+      "source": "CS-U5",
+      "status": "unsupported",
+      "statusReason": "not answerable on the protected release: missing text",
+      "scope": "turns",
+      "metrics": {
+        "score": null
+      },
+      "denominators": {},
+      "assumptions": [
+        "required by the scenario: yes",
+        "a required task that is not answerable scores 0 in the toolkit's utility mean; here it is reported as unsupported, not 0",
+        "metric: not answerable",
+        "20,000 original turns sampled with random_state=7 from ALL turns (eval split included); withheld turns lower the score"
+      ],
+      "covers": []
+    },
+    {
+      "id": "aggregate_score",
+      "kind": "aggregate_score",
+      "name": "pets-eval composite self-assessment",
+      "source": "pets_eval.scorecard summary",
+      "status": "evaluated",
+      "scope": "dataset",
+      "metrics": {
+        "privacy": 1,
+        "utility": 0,
+        "composite": 0,
+        "n_risk_components": 6,
+        "component.conversations: direct identifiers retained": 0,
+        "component.conversations: free-text identifier leakage": 0,
+        "component.customers: direct identifiers retained": 0,
+        "component.customers: linkage re-identification": 0,
+        "component.turns: direct identifiers retained": 0,
+        "component.turns: free-text identifier leakage": 0
+      },
+      "denominators": {},
+      "assumptions": [
+        "toolkit self-assessment (pets_eval scorecard summary), NOT the official judging score and NOT a probability of anonymity",
+        "privacy = 1 - (0.5*worst + 0.5*mean) over the risk components present; withholding a table removes its components and extra zero-valued components raise the mean",
+        "utility = mean over the scenario's tasks; a required task that is not answerable scores 0 in this mean"
+      ],
+      "covers": []
+    }
+  ],
+  "privateArtifacts": [
+    {
+      "name": "executed.json",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/executed.json",
+      "sha256": "bf6b8dd6b0054e01c62c3496df6e065dba25082903bee0bd13a6421817c9324a"
+    },
+    {
+      "name": "goal.json",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/goal.json",
+      "sha256": "25692fc330529b77c5a9c6f22b59b0789ece136cb65ff0679ab0868a6a4aa3f8"
+    },
+    {
+      "name": "out/check.json",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/out/check.json",
+      "sha256": "1bacd1e8a5e8e4328372795e9f1150cd66c5dd8e838985866f8621c300757f74"
+    },
+    {
+      "name": "out/commands.log",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/out/commands.log",
+      "sha256": "25fcea92e953a074b6096c00e99e59a023c152ceb9f333a16890b0b09725e6d2"
+    },
+    {
+      "name": "out/scorecard.html",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/out/scorecard.html",
+      "sha256": "f3b87181d73171733902f42a7033dec91f0ace923feda1dd3996fb7c1fe5e74a"
+    },
+    {
+      "name": "out/scorecard.json",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/out/scorecard.json",
+      "sha256": "98902678c054a3ec7dbb93a5653ee9b82e326f0c04249e21659b5cdfef654f93"
+    },
+    {
+      "name": "plan.json",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/plan.json",
+      "sha256": "a07c8eb8c54f230006634a8a5ad895ace5e56d12c528cdbfffbef6f3cef142a4"
+    },
+    {
+      "name": "staging/customer_service/conversations.csv",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service/conversations.csv",
+      "sha256": "a5e73e0fa106ae952d5c7d6f7be43da43fc096ac60dfb1c1670108c53c9b8b6c"
+    },
+    {
+      "name": "staging/customer_service/customers.csv",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service/customers.csv",
+      "sha256": "de96fef690635508fa8b585e125299444500fc92579ccc94598edf5fb1f00017"
+    },
+    {
+      "name": "staging/customer_service/rowmap_conversations.csv",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service/rowmap_conversations.csv",
+      "sha256": "524fe93497530cde336bb4f36e94d49df6001121b9d5e40564a294bdc9708bda"
+    },
+    {
+      "name": "staging/customer_service/rowmap_customers.csv",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service/rowmap_customers.csv",
+      "sha256": "31a06994251e211a0edb1817711408057463dec4e25fdcd950f696518a9da25a"
+    },
+    {
+      "name": "staging/customer_service/rowmap_turns.csv",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service/rowmap_turns.csv",
+      "sha256": "3a8b412eebb6905d3fbc61044035f5ae539e0395b19d930d37561ad748ccab82"
+    },
+    {
+      "name": "staging/customer_service/turns.csv",
+      "path": "bench/runs/customer_service/CS-S1/policy_destructive-2a66121857b8/staging/customer_service/turns.csv",
+      "sha256": "9ac362ed42019eee0826dced84727959eaf98eb3da1ad414daf403daccff3671"
+    }
+  ],
+  "createdAt": "2026-11-07T11:00:05Z",
+  "durationMs": 3364,
+  "notes": [
+    "Development self-assessment with the supplied pets-eval toolkit on synthetic challenge data; not the official judging score and not a probability of anonymity.",
+    "detectionMode: mask - mask mode: field roles from the Mask rules field detector, spans from the Mask span detector (end-to-end).",
+    "controls: utility_destroying (deliberate control plan: expected to fail privacy or utility constraints)",
+    "seed 0: derived deterministically: sha256('mask-bench/session-key/v1/<seed>'); benchmark runs are reproducible for a seed, the app uses a random per-session key",
+    "fixed toolkit sampling limits and seeds: {\"cs_u5_random_state\": 7, \"cs_u5_sample_turns\": 20000, \"dcr_rows\": 20000, \"hash_detection_values\": 2000, \"hash_dictionary_candidates\": 300000, \"hash_dictionary_variants\": 2000000, \"linkage_seed\": 0, \"mia_rows_per_side\": 5000, \"mia_synthetic_rows\": 50000, \"regex_residual_rows\": 20000, \"synthetic_seed\": 0, \"trajectory_users\": 1000}",
+    "NOT COVERED (cross_table_key_linkage): no cross-table attack is run; joining customers, conversations and turns through released keys/tokens (customer_id, conversation_id) or timestamps (started_ts) is not attacked by the supplied package.",
+    "NOT COVERED (trajectory): the package defines no trajectory/unicity attack for this dataset; turn and conversation timestamps are only covered by k-anonymity over catalogued quasi-identifiers.",
+    "NOT COVERED (eval-split text): gold spans for eval-split conversations are organiser-held; leakage on those rows is reported as unsupported, never 0.",
+    "NOT COVERED (hidden attackers): organiser-held stronger attackers, breach dumps and hidden labels named in the threat model have not been run; no such result is claimed.",
+    "NOT COVERED (membership_inference): membership inference runs in the toolkit only for tables it treats as synthetic; it is not measured for row-level releases.",
+    "NOT COVERED (linkage on tables without an attack spec): only the attack specs in metadata/attack_specs.json are run; other tables get linkage.<table>.no_spec = not_applicable.",
+    "toolkit pets-eval 1.0.0 (scorecard tool string 'pets-eval 1.0.0'), attack_specs version 1.0; sha256: toolkit/pets_eval=951f3c923c3cb4113b5b79a6d271e56b896ae900f6a273ded84b95d9188c788b; metadata/attack_specs.json=933d33d8a17c4af557d9c4b1783c3f961a88d079f16b20aa499ad9316cb63ce8; metadata/field_catalog.csv=265e4335a9c756de3d62a9ba2c60bed2ec2692ae4703bb8be3d9d3c0c41ffa47; metadata/scenarios.json=8b9a8ca1f35754dfcd9361996478295def12537ef8a5b021eb2390d6fdabd058; metadata/pii_spans/customer_service__conversations__agent_note.jsonl=bb67bfc5aece82c5b13dff6288b9651ecb257582a753fbd9b7a927d667b7162b; metadata/pii_spans/customer_service__turns__text.jsonl=89051352560f3f00e3e3594f36259101ab94c2ce921119408612d04e818bda4e"
+  ]
+}
