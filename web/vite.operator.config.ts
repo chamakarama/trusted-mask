@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   base: "./",
-  publicDir: "operator-public",
+  publicDir: false,
   build: { outDir: "dist-operator", emptyOutDir: true, rollupOptions: { input: "operator.html" } },
   server: { port: 5174, strictPort: false, open: "/operator.html" },
 });

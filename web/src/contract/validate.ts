@@ -1,6 +1,7 @@
 // Independent consumer-side validation of a RouteSafe protected release (planning/INTERFACES.md, schema 1.0).
 // Written separately from Astra's Python verifier so that two implementations must agree on the same bundle.
 // Runs in the browser (WebCrypto) and in Node tests. A release that fails any check is refused, never "repaired".
+import { geometryCentre } from "./geography";
 import Ajv2020 from "ajv/dist/2020";
 
 export const ALLOWED_MEMBERS = ["manifest.json", "definitions.json", "public_areas.geojson", "od_matrix.csv",
@@ -50,6 +51,7 @@ export function parseCsv(text: string): Record<string, string>[] {
 function datesBetween(start: string, endInclusive: string): string[] {
   const out: string[] = [];
   const d = new Date(start + "T00:00:00Z"), end = new Date(endInclusive + "T00:00:00Z");
+  if (!Number.isFinite(+d) || !Number.isFinite(+end) || +end < +d || +end - +d > 366 * 86400000) throw Error("Invalid release period");
   while (d <= end) { out.push(d.toISOString().slice(0, 10)); d.setUTCDate(d.getUTCDate() + 1); }
   return out;
 }
@@ -64,7 +66,7 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
   let manifest: any;
   try { manifest = JSON.parse(text("manifest.json")); } catch { return { ok: false, errors: ["ARTIFACT_INVALID: manifest is not JSON"], warnings }; }
   const major = String(manifest?.schema_version ?? "").split(".")[0];
-  if (major !== SUPPORTED_MAJOR) return { ok: false, errors: [`UNSUPPORTED_VERSION: schema_version ${manifest?.schema_version}`], warnings };
+  if (major !== SUPPORTED_MAJOR || !["1.0", "1.1"].includes(manifest?.schema_version)) return { ok: false, errors: [`UNSUPPORTED_VERSION: schema_version ${manifest?.schema_version}`], warnings };
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
   const schemaOk = validate(manifest as object);   // (not narrowing `manifest` itself)
@@ -101,13 +103,20 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
     const geo = JSON.parse(text("public_areas.geojson"));
     const exact = (o: unknown, keys: string[]) => !!o && typeof o === "object" && !Array.isArray(o) && Object.keys(o).sort().join() === [...keys].sort().join();
     if (!exact(geo, ["type", "features"]) || geo.type !== "FeatureCollection" || !Array.isArray(geo.features)) fail("ARTIFACT_INVALID", "geometry must be exactly {type: FeatureCollection, features}");
+    if (!Array.isArray(geo.features) || geo.features.length < 1 || geo.features.length > 100) fail("ARTIFACT_INVALID", "geometry size");
+    const boxes: number[][] = [];
     for (const f of Array.isArray(geo.features) ? geo.features : []) {
       if (!exact(f, ["type", "properties", "geometry"]) || f.type !== "Feature") { fail("ARTIFACT_INVALID", "feature must be exactly {type, properties, geometry}"); break; }
-      if (!exact(f.properties, GEO_PROPERTIES) || GEO_PROPERTIES.some((k) => typeof f.properties[k] !== "string" || !f.properties[k])) { fail("ARTIFACT_INVALID", `feature properties must be exactly ${GEO_PROPERTIES} (non-empty strings)`); break; }
+      if (!exact(f.properties, GEO_PROPERTIES) || GEO_PROPERTIES.some((k) => typeof f.properties[k] !== "string" || !f.properties[k] || f.properties[k].length > 240)) { fail("ARTIFACT_INVALID", `feature properties must be exactly ${GEO_PROPERTIES} (non-empty strings)`); break; }
       if (GEO_PROPERTIES.some((k) => /[<>"'`&\u0000-\u001f]|^[=+@\-\t]/.test(f.properties[k]))) { fail("ARTIFACT_INVALID", "public labels may not contain markup, quotes, control or formula characters"); break; }
-      const c = f.geometry?.coordinates;
-      if (!exact(f.geometry, ["type", "coordinates"]) || f.geometry.type !== "Point" || !Array.isArray(c) || c.length !== 2 ||
-          !c.every((x: unknown) => typeof x === "number" && Number.isFinite(x)) || Math.abs(c[0]) > 180 || Math.abs(c[1]) > 90) { fail("ARTIFACT_INVALID", "geometry must be finite [lon, lat] points"); break; }
+      try { geometryCentre(f.geometry, manifest.schema_version === "1.1"); }
+      catch(e) { fail("ARTIFACT_INVALID", String(e)); break; }
+      if (manifest.schema_version === "1.1") {
+        const r = f.geometry.coordinates[0];
+        const box = [Math.min(...r.map((p:number[])=>p[0])),Math.min(...r.map((p:number[])=>p[1])),Math.max(...r.map((p:number[])=>p[0])),Math.max(...r.map((p:number[])=>p[1]))];
+        if (boxes.some(b=>Math.min(box[2],b[2])>Math.max(box[0],b[0])+1e-10 && Math.min(box[3],b[3])>Math.max(box[1],b[1])+1e-10)) fail("ARTIFACT_INVALID", "overlapping zones");
+        boxes.push(box);
+      }
       areas.push(f.properties.area_id);
     }
     if (new Set(areas).size !== areas.length) fail("ARTIFACT_INVALID", "duplicate area_id");
@@ -138,8 +147,8 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
       if (seen.has(key)) { fail("ARTIFACT_INVALID", `${fam}: duplicate cell ${key}`); break; }
       seen.add(key);
       const v = r[value], n = r.noisy_value;
-      if (!Number.isInteger(v) || (v as number) < 0) { fail("ARTIFACT_INVALID", `${fam}: display count must be a nonnegative integer`); break; }
-      if (n !== null && !Number.isInteger(n)) { fail("ARTIFACT_INVALID", `${fam}: noisy_value must be an integer`); break; }
+      if (!Number.isSafeInteger(v) || (v as number) < 0) { fail("ARTIFACT_INVALID", `${fam}: display count must be a nonnegative integer`); break; }
+      if (!Number.isSafeInteger(n)) { fail("ARTIFACT_INVALID", `${fam}: noisy_value must be an integer`); break; }
       if (clampAtZero && n !== null && v !== Math.max(0, n as number)) { fail("ARTIFACT_INVALID", `${fam}: display count is not max(0, noisy_value)`); break; }
       const lo = r.noise_lower, hi = r.noise_upper;
       if ((lo === null) !== (hi === null) || (lo !== null && !((lo as number) <= (hi as number)))) { fail("ARTIFACT_INVALID", `${fam}: malformed interval`); break; }

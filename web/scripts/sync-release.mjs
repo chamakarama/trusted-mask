@@ -59,7 +59,10 @@ try {
   console.log("synced evidence/evidence-summary.json");
 } catch { console.log("no evidence/evidence-summary.json at this ref (evidence view will say so)"); }
 mkdirSync(join(out, "contract"), { recursive: true });
-writeFileSync(join(out, "contract", "manifest.schema.json"), show("contracts/manifest.schema.json"));
+for (const name of ["manifest.schema.json", "manifest-city.schema.json"]) {
+  try { writeFileSync(join(out,"contract",name),show(`contracts/${name}`)); }
+  catch (error) { if(name === "manifest.schema.json") throw error; }
+}
 // real releases first, fixtures last
 index.sort((a, b) => Number(a.fixture) - Number(b.fixture) || a.release_id.localeCompare(b.release_id));
 writeFileSync(join(out, "releases", "index.json"), JSON.stringify({ source_ref: ref, releases: index }, null, 2) + "\n");

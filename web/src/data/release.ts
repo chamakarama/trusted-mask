@@ -1,15 +1,17 @@
+import { geometryCentre } from "../contract/geography";
 // Loads one protected release from the static /releases/<id>/ directory, verifies it in the browser, and exposes a
 // typed, read-only model. Nothing here can reach private data: there is no backend, only allowlisted files.
 import { ALLOWED_MEMBERS, validateRelease, type Validation } from "../contract/validate";
 
 export interface ReleaseIndexEntry { release_id: string; fixture: boolean; data_class: string; guarantee_status: string; created_at: string }
-export interface Area { id: string; name: string; municipality: string; lon: number; lat: number }
+export interface Area { id: string; name: string; municipality: string; lon: number; lat: number; geometry?: any }
 export interface OdCell { origin_area: string; destination_area: string; hour_band: string; trips: number; noisy_value: number; noise_lower: number | null; noise_upper: number | null; evidence_status: string }
 export interface LineHourCell { line: string; hour: number; boardings: number; noisy_value: number; noise_lower: number | null; noise_upper: number | null; evidence_status: string }
 export interface DailyCell { date: string; tap_events: number; noisy_value: number; noise_lower: number | null; noise_upper: number | null; evidence_status: string }
 
 export interface Release {
   id: string;
+  manifestHash?: string;
   manifest: any;
   definitions: Record<string, string>;
   areas: Area[];
@@ -48,23 +50,27 @@ export class ReleaseRefused extends Error {
 export async function loadRelease(id: string): Promise<Release> {
   const td = new TextDecoder();
   const manifestBytes = await fetchBytes(releaseUrl(id, "manifest.json"));
+  if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(id)) throw new Error("Invalid release ID");
   const manifest = JSON.parse(td.decode(manifestBytes));
+  if (manifest.release_id !== id || !["1.0","1.1"].includes(manifest.schema_version) || !Array.isArray(manifest.resources)) throw new Error("Unsupported or inconsistent release");
   const files = new Map<string, Uint8Array>([["manifest.json", manifestBytes]]);
   // fetch only members the manifest lists AND the contract allowlists
   const wanted = manifest.resources.map((r: any) => r.path).filter((p: string) => (ALLOWED_MEMBERS as readonly string[]).includes(p));
   await Promise.all([...wanted, "checksums.sha256"].map(async (p: string) => files.set(p, await fetchBytes(releaseUrl(id, p)))));
-  const schema = await (await fetch(`${base()}/contract/manifest.schema.json`, { cache: "no-cache" })).json();
+  const schemaFile = manifest.schema_version === "1.1" ? "manifest-city.schema.json" : "manifest.schema.json";
+  const schema = await (await fetch(`${base()}/contract/${schemaFile}`, { cache: "no-cache" })).json();
   const validation = await validateRelease(files, schema, sha256);
   if (!validation.ok) throw new ReleaseRefused(validation);
   const stats = JSON.parse(td.decode(files.get("statistics.json")!));
   const geo = JSON.parse(td.decode(files.get("public_areas.geojson")!));
   return {
     id,
+    manifestHash: await sha256(manifestBytes),
     manifest,
     definitions: JSON.parse(td.decode(files.get("definitions.json")!)),
     areas: geo.features.map((f: any) => ({
       id: f.properties.area_id, name: f.properties.name, municipality: f.properties.municipality,
-      lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1],
+      lon: geometryCentre(f.geometry, manifest.schema_version === "1.1")[0], lat: geometryCentre(f.geometry, manifest.schema_version === "1.1")[1], geometry: f.geometry,
     })),
     od: stats.od ?? [],
     lineHour: stats.line_hour ?? [],

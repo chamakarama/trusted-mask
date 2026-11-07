@@ -4,6 +4,7 @@ import csv,hashlib,io,json,re,math
 from datetime import datetime,timezone
 from pathlib import Path
 import jsonschema
+from pipeline.geography import zone_centres
 from pipeline.mobility import CAPS,EPS,COLUMNS,VALUES,BANDS,DATES
 
 SCHEMA=Path(__file__).resolve().parents[1]/'contracts/manifest.schema.json'
@@ -14,7 +15,7 @@ ROW_EXTRA=['noisy_value','noise_lower','noise_upper','evidence_status']
 def encode(obj): return (json.dumps(obj,ensure_ascii=False,sort_keys=True,indent=2,allow_nan=False)+'\n').encode()
 def sha(b): return hashlib.sha256(b).hexdigest()
 
-def build(release_id,source_commit,domains,noisy,geometry,fixture=False):
+def build(release_id,source_commit,domains,noisy,geometry,fixture=False,city=False):
     if not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}',release_id): raise ValueError('INVALID_RELEASE_ID')
     stats={}; payload={}
     for f,domain in domains.items():
@@ -48,7 +49,18 @@ def build(release_id,source_commit,domains,noisy,geometry,fixture=False):
         'resources':[{'path':p,'media_type':'text/csv' if p.endswith('.csv') else 'application/geo+json' if p.endswith('.geojson') else 'text/plain' if p.endswith('.txt') else 'application/json','sha256':sha(b)} for p,b in sorted(payload.items())],
         'limitations':['Synthetic benchmark, not real transport findings.','Heuristic destinations are not observed.','E1 parameters are experimental, not final policy.','Mechanism intervals and ranking uncertainty not yet evaluated.','Clipping and clamping introduce bias.','All privacy claims require cross-review; fixture numbers are invented.' if fixture else 'OpenDP noise map does not prove custom preprocessing.'],
         'licenses':['TrustED PETs Proving Ground 2026 data/docs: CC BY 4.0, Since AI ry.','Public synthetic stops use upstream geography attribution; see supplied NOTICE.md.','OpenDP: MIT; upstream toolkit: MIT.']}
-    jsonschema.validate(manifest,json.loads(SCHEMA.read_text()))
+    if city:
+        if fixture: raise ValueError('INVALID_CITY_FIXTURE')
+        zone_centres(geometry, polygons=True)
+        manifest.update(policy_version='city-grid-32-64-64-epsilon1-v1', schema_version='1.1', data_class='team_synthetic', publisher='RouteSafe team-generated city scenario; fictional travel on real Turku geography', public_domain_version='turku-analysis-grid-v1')
+        manifest['licenses']=['Team-generated fictional travel and rectangular analysis grid: CC BY 4.0.', 'Basemap: OpenStreetMap contributors; see map attribution.', 'OpenDP: MIT.']
+        manifest['limitations']=[x.replace('Synthetic benchmark, not real transport findings.', 'Team-generated synthetic scenario, not actual Turku travel or the supplied benchmark.') for x in manifest['limitations']]
+        definitions['geometry']='Public rectangular analysis grid over Turku; artificial zones, not neighbourhood or postcode boundaries.'
+        payload['definitions.json']=encode(definitions)
+        payload['README.txt']=b'RouteSafe team-generated synthetic city release. Fictional travel on real geography. Rectangular analysis zones; inferred destinations; card-level protection; no real-city demand claim.\n'
+        manifest['resources']=[dict(r,sha256=sha(payload[r['path']])) for r in manifest['resources']]
+    schema_path=SCHEMA.with_name('manifest-city.schema.json') if city else SCHEMA
+    jsonschema.validate(manifest,json.loads(schema_path.read_text()))
     payload['manifest.json']=encode(manifest)
     payload['checksums.sha256']=''.join(f'{sha(b)}  {p}\n' for p,b in sorted(payload.items())).encode()
     return payload
@@ -60,7 +72,11 @@ def write(path,payload):
 def verify(path):
     expected=PAYLOADS|{'manifest.json','checksums.sha256'}
     if {p.name for p in path.iterdir()}!=expected or any(p.is_symlink() or not p.is_file() for p in path.iterdir()): raise ValueError('ARTIFACT_INVALID: file allowlist')
-    manifest=json.loads((path/'manifest.json').read_text()); jsonschema.validate(manifest,json.loads(SCHEMA.read_text()))
+    manifest=json.loads((path/'manifest.json').read_text())
+    version=manifest.get('schema_version')
+    if version not in ('1.0','1.1'): raise ValueError('UNSUPPORTED_VERSION')
+    schema_path=SCHEMA.with_name('manifest-city.schema.json') if version=='1.1' else SCHEMA
+    jsonschema.validate(manifest,json.loads(schema_path.read_text()))
     resources=manifest['resources']
     if len(resources)!=len(PAYLOADS) or {r['path'] for r in resources}!=PAYLOADS: raise ValueError('ARTIFACT_INVALID: resources')
     for r in resources:
@@ -70,15 +86,7 @@ def verify(path):
     stats=json.loads((path/'statistics.json').read_text())
     if set(stats)!=set(CAPS): raise ValueError('ARTIFACT_INVALID: families')
     geo=json.loads((path/'public_areas.geojson').read_text())
-    if set(geo)!={'type','features'} or geo['type']!='FeatureCollection': raise ValueError('ARTIFACT_INVALID: geometry')
-    areas=[]
-    for feature in geo['features']:
-        if set(feature)!={'type','properties','geometry'} or set(feature['properties'])!={'area_id','name','municipality','source'}: raise ValueError('ARTIFACT_INVALID: geometry fields')
-        if set(feature['geometry'])!={'type','coordinates'} or feature['geometry']['type']!='Point': raise ValueError('ARTIFACT_INVALID: geometry type')
-        lon,lat=feature['geometry']['coordinates']
-        if not (-180<=lon<=180 and -90<=lat<=90): raise ValueError('ARTIFACT_INVALID: coordinates')
-        areas.append(feature['properties']['area_id'])
-    if len(areas)!=len(set(areas)): raise ValueError('ARTIFACT_INVALID: duplicate area')
+    areas=list(zone_centres(geo,polygons=version=='1.1'))
     for f,rows in stats.items():
         seen=set()
         for row in rows:
@@ -86,7 +94,7 @@ def verify(path):
             key=tuple(row[c] for c in COLUMNS[f])
             if key in seen: raise ValueError('ARTIFACT_INVALID: duplicate cell')
             seen.add(key)
-            if type(row['noisy_value']) is not int or type(row[VALUES[f]]) is not int or row[VALUES[f]]!=max(0,row['noisy_value']): raise ValueError('ARTIFACT_INVALID: counts')
+            if type(row['noisy_value']) is not int or abs(row['noisy_value'])>9007199254740991 or type(row[VALUES[f]]) is not int or row[VALUES[f]]!=max(0,row['noisy_value']): raise ValueError('ARTIFACT_INVALID: counts')
             if row['noise_lower'] is not None or row['noise_upper'] is not None or row['evidence_status']!='uncertain': raise ValueError('ARTIFACT_INVALID: unsupported uncertainty')
             if f=='od' and (key[0] not in areas or key[1] not in areas or key[2] not in BANDS): raise ValueError('DOMAIN_MISMATCH')
             if f=='line_hour' and (type(key[1]) is not int or not 0<=key[1]<24): raise ValueError('DOMAIN_MISMATCH')

@@ -525,3 +525,13 @@ Required deliverables:
 The redesign is done when an unfamiliar user can move through clear owner steps, open the exact resulting release, answer the core planning questions on the city map and export a useful shortlist, while understanding the dataset class and material uncertainty.
 
 A polished mockup, a heatmap built from invented final values, a passing test count, or a disconnected collection of screens does not meet that definition.
+
+## 13. Implementation checkpoint — 7 November 2026
+
+The main implementation is on `codex/workflow-city-implementation`, with startup and generator integration instructions in [web/README.md](../web/README.md). The independently generated data is being developed in a separate chat at the lead's request.
+
+Implemented: seven actual local owner steps; scanner/policy presentation; immutable input snapshots and revision invalidation; existing-release verification; separate city publisher/accounting path; measured candidate evaluation; explicit limited-use acknowledgement; verified ZIP/static handoff; city map with point/polygon support, fixed time scales, origin/destination drilldown, time profiles, per-release shortlist and CSV/HTML export. Fixture values remain explicitly illustrative.
+
+The original benchmark remains unchanged and its 25.1% OD WAPE misses the 20% team target. A polished map must not conceal that result. The city generator and its measured utility remain a separate gate; point markers over the original release do not complete the polygon-heatmap requirement. No real-user study, production deployment or new city privacy result is claimed by this checkpoint.
+
+Before calling the whole redesign done: integrate the generator PR and frozen provenance, run the production city publisher from clean committed code, independently verify the release, finish the declared utility/seed checks, inspect the polygon flow on desktop/mobile, and conduct the unfamiliar-user task test. Retain failures and report scope reductions explicitly.
