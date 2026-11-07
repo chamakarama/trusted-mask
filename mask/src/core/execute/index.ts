@@ -1,3 +1,6 @@
 import type { PlanExecutor } from "./types";
+import { createPlanExecutor } from "./executor";
 export * from "./types";
-export function createExecutor(): PlanExecutor { return { execute: () => { throw new Error("PlanExecutor.execute is not implemented yet"); } }; }
+export { executedTableCsv, isWithheld, planIndex, conversationKeyColumn, binLabel, parseNumber } from "./executor";
+export { toCsv, csvField } from "./csv";
+export function createExecutor(): PlanExecutor { return createPlanExecutor(); }
