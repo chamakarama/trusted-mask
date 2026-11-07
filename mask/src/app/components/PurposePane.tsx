@@ -36,10 +36,11 @@ export function PurposePane() {
     void c.submitGoal(v);
   };
   const unchanged = !!s.goal && text.trim() === s.goal.rawText.trim();
+  const ready = !!text.trim() && !interpreting && !unchanged;
 
   return (
     <div className="purpose">
-      <div className="ask-box">
+      <div className={`ask-box ${open ? "is-open" : ""}`}>
       <form className="ask" onSubmit={(e) => { e.preventDefault(); send(); }}>
         <label htmlFor="goal-input" className="sr-only" id="purpose-title">What is this data for, and who receives it?</label>
         <textarea
@@ -52,7 +53,7 @@ export function PurposePane() {
           aria-describedby="ask-hint"
         />
         <span id="ask-hint" className="sr-only">Enter to send, Shift+Enter for a new line.</span>
-        <button type="submit" className="ask-send" disabled={!text.trim() || interpreting || unchanged} aria-label="Send" title="Send (Enter)">
+        <button type="submit" className={`ask-send ${ready ? "is-ready" : ""} ${interpreting ? "is-busy" : ""}`} disabled={!text.trim() || interpreting || unchanged} aria-label="Send" title="Send (Enter)">
           {interpreting ? <span className="spinner" aria-hidden="true" /> : <IconSend size={15} />}
         </button>
       </form>
@@ -66,8 +67,8 @@ export function PurposePane() {
         {questions > 0 && !open && <span className="spec-dot" aria-hidden="true" />}
         <IconChevronV size={14} up={open} />
       </button>
-      </div>
       {open && (
+        <div className="spec-reveal">
         <div className="spec-section" id="spec-section">
           {interpreting && <p className="reply muted">Reading…</p>}
           {s.goal ? (
@@ -88,7 +89,9 @@ export function PurposePane() {
             </>
           )}
         </div>
+        </div>
       )}
+      </div>
     </div>
   );
 }
