@@ -1,6 +1,6 @@
 /** Parsing and coarsening of dates and timestamps. Output forms follow the challenge conventions. */
 
-export type DateResolution = "15min" | "hour" | "day" | "week" | "month" | "year";
+export type DateResolution = "minute" | "15min" | "hour" | "day" | "week" | "month" | "year";
 
 export interface ParsedDate { y: number; m: number; d: number; hh: number; mm: number; hasTime: boolean }
 
@@ -39,8 +39,9 @@ export function isoWeek(y: number, m: number, d: number): { year: number; week: 
 export function formatDate(p: ParsedDate, res: DateResolution): string {
   const day = `${p.y}-${p2(p.m)}-${p2(p.d)}`;
   // a date without a time is never given invented precision
-  if (!p.hasTime && (res === "15min" || res === "hour")) return day;
+  if (!p.hasTime && (res === "minute" || res === "15min" || res === "hour")) return day;
   switch (res) {
+    case "minute": return `${day} ${p2(p.hh)}:${p2(p.mm)}`;
     case "15min": return `${day} ${p2(p.hh)}:${p2(Math.floor(p.mm / 15) * 15)}`;
     case "hour": return `${day} ${p2(p.hh)}:00`;
     case "day": return day;
