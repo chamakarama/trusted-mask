@@ -13,7 +13,14 @@ LABELS = ("PERSON", "EMAIL", "PHONE", "ADDRESS", "USERNAME", "ACCOUNT_ID",
           "LOCATION", "ORG", "HEALTH", "FINANCIAL", "EMPLOYMENT", "FAMILY")
 ACTIONS = ("KEEP", "DROP", "ALIAS", "ROLE", "GENERALISE", "PLACEHOLDER")
 RELEVANCE = ("essential", "unnecessary", "uncertain")
+# Types found only by validated rules, never by the trained models. Kept out of LABELS so the
+# model label order (checked against every bundle manifest) does not change. They are not direct
+# identifiers: whether an IP or VAT number matters depends on the request, which no trained model has
+# learned for these types yet, so they are kept by default and listed for the user's review.
+RULE_ONLY_LABELS = ("IP_ADDRESS", "VAT_ID")
+ALL_LABELS = LABELS + RULE_ONLY_LABELS
 DIRECT = frozenset(LABELS[:10])
+KEPT_FOR_REVIEW = "detected_kept_for_review"
 
 
 @dataclass(frozen=True)
@@ -24,7 +31,7 @@ class Span:
     source: str = "annotation"
 
     def validate(self, text: str):
-        if self.label not in LABELS or not (0 <= self.start < self.end <= len(text)):
+        if self.label not in ALL_LABELS or not (0 <= self.start < self.end <= len(text)):
             raise ValueError("Invalid span label or bounds")
 
 

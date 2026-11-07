@@ -1,6 +1,7 @@
 """Local inference boundary: proposals -> coherent policy plan -> exact edits."""
 from collections import defaultdict
-from .contracts import ACTIONS, DIRECT, RELEVANCE, Edit, Prediction, Result, PIPELINE_VERSION
+from .contracts import (ACTIONS, DIRECT, KEPT_FOR_REVIEW, RELEVANCE, RULE_ONLY_LABELS, Edit, Prediction, Result,
+                        PIPELINE_VERSION)
 from .policy import Aliases, POLICY_VERSION, allowed_actions, replacement
 from .candidates import build_candidates
 from .editing import apply_edits, drop_bounds
@@ -36,6 +37,8 @@ class Protector:
                 "model_bundle_sha256": getattr(self.model, "bundle_sha256", None)}
 
     def _decision(self, text, span, task, context, trace=None):
+        if span.label in RULE_ONLY_LABELS:  # no model has learned these types: never edit automatically
+            return "KEEP", None, KEPT_FOR_REVIEW, {"essential": 0.0, "unnecessary": 0.0, "uncertain": 1.0}
         prediction = self.model.predict(text, span, task, context)
         prediction.validate()
         allowed = allowed_actions(span, text[span.start:span.end])
@@ -169,7 +172,7 @@ class Protector:
                     action, score, reason, _ = self._decision(text, span, task, context)
                 if action == "DROP":
                     action = "PLACEHOLDER"
-                if reason == "uncertain_treatment":
+                if reason in ("uncertain_treatment", KEPT_FOR_REVIEW):
                     review.append(reason)
                 if action == "KEEP":
                     retained.append({"start": span.start, "end": span.end, "label": span.label, "reason": reason})
