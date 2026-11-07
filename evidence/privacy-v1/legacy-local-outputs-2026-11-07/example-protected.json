@@ -1,0 +1,46 @@
+{
+  "status": "needs_review",
+  "protected_text": "My name is [MASK_PERSON_1]; I have asthma and take 5 mg daily; email: [EMAIL].\n",
+  "model_version": "encoder-b-pilot",
+  "edits": [
+    {
+      "start": 11,
+      "end": 22,
+      "label": "PERSON",
+      "action": "ALIAS",
+      "replacement": "[MASK_PERSON_1]",
+      "reason": "direct_identifier_policy",
+      "score": 0.9973066393823133
+    },
+    {
+      "start": 66,
+      "end": 89,
+      "label": "EMAIL",
+      "action": "PLACEHOLDER",
+      "replacement": "[EMAIL]",
+      "reason": "direct_identifier_policy",
+      "score": 0.9978530488945584
+    }
+  ],
+  "retained_sensitive": [
+    {
+      "start": 23,
+      "end": 57,
+      "label": "HEALTH",
+      "reason": "model_proposal_with_policy_mask"
+    }
+  ],
+  "review_reasons": [
+    "experimental_model_not_release_validated"
+  ],
+  "coverage": {
+    "scanned_characters": 91,
+    "total_characters": 91,
+    "complete": true,
+    "offset_unit": "unicode_code_point",
+    "history_messages_scanned": 0,
+    "task_scanned": true
+  },
+  "protected_task": "Explain the health information and medication amounts.\n",
+  "protected_history": []
+}

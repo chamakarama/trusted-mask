@@ -29,7 +29,9 @@ All people and records in these inputs are fictional. The medical scene is an il
 
 > Mask is a local privacy layer between you and the AI tools you use.
 >
-> It uses your task to help decide what information to keep, what to remove, and what to make less specific—before you share it.
+> It uses your task to choose how to protect each detail before you share it.
+>
+> It replaces names with consistent aliases, masks contact details, and removes sensitive information that isn’t needed for your question.
 >
 > For this question, keep the medicine’s name and the symptoms recorded at that visit. Remove my patient number and the unrelated personal notes.
 
