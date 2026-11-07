@@ -10,7 +10,8 @@ const stats=json('statistics.json');
 const rel={id:'city-turku-v1',manifest:json('manifest.json'),od:stats.od} as Release;
 it('binds the geometry model to the released city domain',()=>{
  expect(compatibleNetwork(rel,network)).toBe(true);
- expect(compatibleNetwork({...rel,id:'e1-aura-001'},network)).toBe(false);
+ expect(compatibleNetwork({...rel,id:'kupittaa-hackathon-v1'},network)).toBe(true);
+ expect(compatibleNetwork({...rel,manifest:{resources:[]}},network)).toBe(false);
  expect(compatibleNetwork(rel,{...network,geography_sha256:'wrong'})).toBe(false);
  expect(Object.keys(network.paths)).toHaveLength(600);
  expect(Math.max(...Object.values(network.snaps).map(s=>s.distance_m))).toBeLessThanOrEqual(1500);
@@ -36,4 +37,12 @@ it('assigns a cell at most once to a shared segment and retains missing-path gap
  const n={...network,nodes:[[22.2,60.4],[22.3,60.4]],edges:[{a:0,b:1,lines:[]}],paths:{'A>B':[0,0]}};
  expect(routeSegments({...rel,od:[c]},n,'06-09','starts',null)[0].total).toBe(100);
  expect(routeSegments({...rel,od:[{...c,destination_area:'C'}]},n,'06-09','starts',null)).toEqual([]);
+});
+
+it('public bus catalog is bound to the same geometry source and valid stops',async()=>{
+ const catalog=JSON.parse(readFileSync(join(__dirname,'../src/planner/data/foli-catalog.json'),'utf8'));
+ expect(catalog.source_sha256).toBe(network.source.sha256);
+ const stops=new Set(catalog.stops.map((s:any)=>s.id));
+ for(const line of catalog.lines){expect(network.edges.some(e=>e.lines.includes(line.id))).toBe(true);for(const id of line.stops)expect(stops.has(id)).toBe(true);}
+ expect(catalog.stops.some((s:any)=>s.name==='Kupittaan asema')).toBe(true);
 });

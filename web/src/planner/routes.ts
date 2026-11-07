@@ -9,7 +9,7 @@ export interface RouteNetwork {
 }
 export interface RouteSegment extends Estimate {id:number;coordinates:number[][];lines:string[];members:OdCell[]}
 export function compatibleNetwork(rel:Release,n:RouteNetwork){
- return n.version===1&&n.release_id===rel.id&&rel.manifest.resources.some((r:any)=>r.path==='public_areas.geojson'&&r.sha256===n.geography_sha256);
+ return n.version===1&&rel.manifest.resources.some((r:any)=>r.path==='public_areas.geojson'&&r.sha256===n.geography_sha256);
 }
 export function routeSegments(rel:Release,n:RouteNetwork,band:string,direction:Direction,anchor:string|null):RouteSegment[]{
  const groups=new Map<number,OdCell[]>();

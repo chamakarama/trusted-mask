@@ -66,3 +66,11 @@ Known product limits: external basemap tiles require network access; the area li
 Route geometry provenance and reproduction: [route-network.md](../evidence/workflow-city/route-network.md). The separate [ScamChorus specification](../planning/SCAMCHORUS_EXTENSION.md) documents a possible second application and concrete private-to-shared workflow improvements; it is not implemented.
 
 The recipient’s **Morning priorities** action ranks destination areas from released counts, fixes the task to 06–09, opens modelled inbound routes and saves the three areas to the existing exportable shortlist. The owner’s Check/Share stages show actual private-versus-protected comparisons. See the updated [task evidence](../evidence/workflow-city/README.md); successful shortlist preservation does not resolve the failed count-accuracy target.
+
+## Upload → download → Kupittaa demo
+
+The private page (`http://127.0.0.1:8792/operator.html`) now accepts the registered synthetic ZIP through a file picker or drag-and-drop (16 MB compressed / 100 MB expanded). Start the service with `--city-input simulation/private/kupittaa-hackathon-v1 --runtime private/kupittaa-demo`; generate that ignored input once with `.venv/bin/python -m simulation.hackathon`. Unregistered inputs require a reviewed publication/accounting scope and are explicitly refused.
+
+After the five-stage review, **Download protected data** returns one portable JSON. The separate planner (`http://127.0.0.1:8791/?release=kupittaa-hackathon-v1`) opens that file locally through **Open protected file**. It verifies the embedded release, never posts file bytes, and does not use the convenience aggregate summary as a map input. The same protected JSON can be manually uploaded into a fresh external AI chat. The workbench supplies questions but does not send anything externally.
+
+**Bus lines** exposes named Föli routes and searchable public stops, with the existing modelled demand on their shared street segments. It is not a line-load or live-service measurement. See [Kupittaa evidence](../evidence/kupittaa-hackathon/README.md) for the frozen scenario, exact limits and measured spike.

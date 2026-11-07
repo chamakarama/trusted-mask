@@ -52,3 +52,13 @@ A fictional event or new workplace is a stronger demonstration than a hotspot at
 Prepare and label a baseline and event scenario ahead of recording. Freeze the intervention, privacy accounting and evaluation criteria before generating either protected result. Each release for an overlapping protected population must compose in the same accounting scope; do not reset ledgers or redraw until the map looks good. Show absolute views on a shared scale. A difference view needs uncertainty for both releases, plus cap and inference limitations. Establish the expected effect against the private synthetic reference, and report whether the protected result actually preserves it. No house marker or raw person trace may enter the recipient build.
 
 The planner's present decision is “investigate service here.” To say “add buses,” implement a separate declared supply scenario (timetable, route assignment, usable capacity, period and assumptions) and validate the demand/supply comparison. Synthetic supply is acceptable if visibly labelled; it must not be presented as measured Föli service insufficiency. Do not fake a live spike by mutating released counts in the browser.
+
+## Implemented Kupittaa cut — supersedes the proposed surge above
+
+1. **Protect data:** download/upload the raw synthetic ZIP. Show a fictional commuter's rows and the visible private boundary.
+2. Review the aggregate purpose and protection, then show the actual result. Kupittaa remains the largest morning destination (20,488 protected period trips; 20,000 private reference). Keep the failed fine-count metric honest.
+3. Download **routesafe-protected.json**. Switch to **Explore demand**, open this exact file, and select **See the hackathon surge**. Compare morning with midday on the same colour scale. Counts use all 20 weekdays; they are not per-event-day counts.
+4. Inspect public line 10 or 10A and search for a Kupittaa stop. Explain only if needed: public bus geometry, synthetic modelled demand, no measured line occupancy.
+5. Manually attach only the protected JSON in a fresh ChatGPT conversation. Ask the supplied commuter question, then the aggregate-demand question. Show its actual response; do not promise a particular refusal or treat it as proof of privacy.
+
+On-screen label: **“Since AI at Kupittaa · fictional scale test”**. The 10,000 attendees and October 2025 weekdays are invented and deliberately exaggerated, not actual event attendance/dates. The uploaded raw ZIP remains private; the downloaded protected JSON is the recipient artifact. See [scenario and evidence](../evidence/kupittaa-hackathon/README.md). Do not mix earlier city 300-draw results with this new scenario.

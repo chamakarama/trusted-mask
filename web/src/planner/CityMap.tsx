@@ -8,8 +8,9 @@ import type {Release} from '../data/release';
 import {label,number,type Estimate} from './model';
 import {pairGeometry,type RouteNetwork,type RouteSegment} from './routes';
 
-interface Props {rel:Release; values:({area:Release['areas'][number]}&Estimate)[]; maximum:number; anchor:string|null; selected:string|null; onSelect:(id:string)=>void; onUnavailable:()=>void;layer:'areas'|'flows';network:RouteNetwork|null;segments:RouteSegment[];segmentMaximum:number;selectedSegment:number|null;onSegmentSelect:(id:number)=>void;direction:'starts'|'destinations'}
-export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onUnavailable,layer,network,segments,segmentMaximum,selectedSegment,onSegmentSelect,direction}:Props) {
+type BusStop={id:string;name:string;lon:number;lat:number};
+interface Props {busLine:string|null;busStops:BusStop[];focusStop:BusStop|null;rel:Release; values:({area:Release['areas'][number]}&Estimate)[]; maximum:number; anchor:string|null; selected:string|null; onSelect:(id:string)=>void; onUnavailable:()=>void;layer:'areas'|'flows';network:RouteNetwork|null;segments:RouteSegment[];segmentMaximum:number;selectedSegment:number|null;onSegmentSelect:(id:number)=>void;direction:'starts'|'destinations'}
+export default function CityMap({busLine,busStops,focusStop,rel,values,maximum,anchor,selected,onSelect,onUnavailable,layer,network,segments,segmentMaximum,selectedSegment,onSegmentSelect,direction}:Props) {
   const box=useRef<HTMLDivElement>(null), map=useRef<MLMap|null>(null), callback=useRef(onSelect), failCallback=useRef(onUnavailable);
   const segmentCallback=useRef(onSegmentSelect);segmentCallback.current=onSegmentSelect;
   const layerRef=useRef(layer);layerRef.current=layer;
@@ -29,6 +30,9 @@ export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onU
     m.on('load',()=>{
       if(!alive)return;loaded=true;clearTimeout(timer);setFailed(false);
       const empty:any={type:'FeatureCollection',features:[]};
+      m.addSource('bus-track',{type:'geojson',data:empty});
+      m.addSource('bus-stops',{type:'geojson',data:empty});
+      m.addSource('event-place',{type:'geojson',data:empty});
       m.addSource('flows',{type:'geojson',data:empty});
       m.addSource('zones',{type:'geojson',data:empty});m.addSource('centres',{type:'geojson',data:empty});m.addSource('connection',{type:'geojson',data:empty});
       const colour:any=['interpolate',['linear'],['get','intensity'],0,'#edf3f2',.2,'#b9d9d1',.5,'#6eafa2',.8,'#267d71',1,'#07574d'];
@@ -37,11 +41,16 @@ export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onU
       m.addLayer({id:'zone-uncertain',type:'line',source:'zones',filter:['==',['get','uncertain'],true],paint:{'line-color':'#6b7d78','line-width':1,'line-dasharray':[2,3]}});
       m.addLayer({id:'zone-points',type:'circle',source:'centres',filter:['==',['get','marker'],true],paint:{'circle-radius':['+',8,['*',20,['sqrt',['get','intensity']]]],'circle-color':colour,'circle-opacity':['case',['get','uncertain'],.35,.8],'circle-stroke-color':['case',['get','selected'],'#172f2b','#ffffff'],'circle-stroke-width':['case',['get','selected'],3,1.5]}});
       const flowColor:any=['interpolate',['linear'],['get','intensity'],0,'#9192c9',.15,'#aa6dc9',.4,'#e55775',.7,'#f58436',1,'#ffcf54'];
+      m.addLayer({id:'bus-track',type:'line',source:'bus-track',paint:{'line-color':'#c5d6e4','line-width':3,'line-opacity':.45}});
       m.addLayer({id:'flow-glow',type:'line',source:'flows',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':flowColor,'line-width':['+',5,['*',12,['sqrt',['get','intensity']]]],'line-blur':4,'line-opacity':['case',['get','uncertain'],.15,.45]}});
       m.addLayer({id:'flow-lines',type:'line',source:'flows',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':flowColor,'line-width':['+',1,['*',5,['sqrt',['get','intensity']]]],'line-opacity':['case',['get','uncertain'],.3,.95]}});
       m.addLayer({id:'flow-hit',type:'line',source:'flows',paint:{'line-width':16,'line-opacity':0}});
       m.addLayer({id:'zone-label',type:'symbol',source:'centres',filter:['==',['get','marker'],false],layout:{'text-field':['get','caption'],'text-size':12,'text-font':['Noto Sans Regular'],'text-allow-overlap':false},paint:{'text-color':'#173d35','text-halo-color':'#ffffff','text-halo-width':1.5}});
       m.addLayer({id:'connection-line',type:'line',source:'connection',paint:{'line-color':'#ffffff','line-width':4,'line-opacity':.9}});
+      m.addLayer({id:'bus-stop-dots',type:'circle',source:'bus-stops',paint:{'circle-radius':['case',['get','focused'],7,4],'circle-color':'#ffffff','circle-stroke-width':2,'circle-stroke-color':'#387a98'}});
+      m.addLayer({id:'bus-stop-names',type:'symbol',source:'bus-stops',minzoom:13,layout:{'text-field':['get','name'],'text-size':11,'text-font':['Noto Sans Regular'],'text-offset':[0,1.4],'text-anchor':'top'},paint:{'text-color':'#ffffff','text-halo-color':'#13232d','text-halo-width':2}});
+      m.addLayer({id:'event-dot',type:'circle',source:'event-place',paint:{'circle-radius':9,'circle-color':'#ffcf54','circle-stroke-color':'#fff','circle-stroke-width':2}});
+      m.addLayer({id:'event-name',type:'symbol',source:'event-place',layout:{'text-field':'Kupittaa · demo area','text-size':14,'text-font':['Noto Sans Regular'],'text-offset':[0,1.5],'text-anchor':'top','text-allow-overlap':true},paint:{'text-color':'#ffdf83','text-halo-color':'#152128','text-halo-width':3}});
       m.on('click',event=>{
         const flow=m.queryRenderedFeatures(event.point,{layers:['flow-hit']})[0]?.properties;
         if(flow&&Number.isInteger(Number(flow.id))){segmentCallback.current(Number(flow.id));return;}
@@ -71,5 +80,15 @@ export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onU
     const lines = layer==='flows'&&network ? selectedSegment!==null&&network.edges[selectedSegment] ? [segments.find(s=>s.id===selectedSegment)?.coordinates].filter(Boolean) : anchor&&selected ? pairGeometry(network,direction==='starts'?anchor:selected,direction==='starts'?selected:anchor) : [] : [];
     (m.getSource('connection') as GeoJSONSource).setData({type:'FeatureCollection',features:lines.map(coordinates=>({type:'Feature',properties:{},geometry:{type:'LineString',coordinates}}))} as any);
   },[ready,values,maximum,anchor,selected,rel,layer,segments,segmentMaximum,network,selectedSegment,direction]);
+  useEffect(()=>{
+    const m=map.current;if(!ready||!m)return;
+    const edges=network&&busLine?network.edges.filter(e=>e.lines.includes(busLine)):[];
+    (m.getSource('bus-track') as GeoJSONSource).setData({type:'FeatureCollection',features:edges.map(e=>({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:[network!.nodes[e.a],network!.nodes[e.b]]}}))} as any);
+    (m.getSource('bus-stops') as GeoJSONSource).setData({type:'FeatureCollection',features:busStops.map(s=>({type:'Feature',properties:{name:s.name,focused:s.id===focusStop?.id},geometry:{type:'Point',coordinates:[s.lon,s.lat]}}))} as any);
+    const event=rel.id==='kupittaa-hackathon-v1'?rel.areas.find(a=>a.id==='TRK-G14'):null;
+    (m.getSource('event-place') as GeoJSONSource).setData({type:'FeatureCollection',features:event?[{type:'Feature',properties:{},geometry:{type:'Point',coordinates:[event.lon,event.lat]}}]:[]} as any);
+  },[ready,network,busLine,busStops,focusStop,rel]);
+  useEffect(()=>{if(ready&&map.current&&focusStop)map.current.flyTo({center:[focusStop.lon,focusStop.lat],zoom:14,duration:window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:650});},[ready,focusStop]);
+  useEffect(()=>{if(!ready||!map.current||!network||!busLine)return;const coords=network.edges.filter(e=>e.lines.includes(busLine)).flatMap(e=>[network.nodes[e.a],network.nodes[e.b]]);if(!coords.length)return;map.current.fitBounds([[Math.min(...coords.map(p=>p[0])),Math.min(...coords.map(p=>p[1]))],[Math.max(...coords.map(p=>p[0])),Math.max(...coords.map(p=>p[1]))]],{padding:70,maxZoom:13,duration:0});},[ready,network,busLine]);
   return <><div ref={box} className="city-map" aria-label="City map with protected demand by analysis area" role="region"/>{failed&&<div className="map-failure" role="status"><strong>City map unavailable</strong><p>Use the area list to continue. Map tiles need an internet connection.</p><button onClick={()=>window.location.reload()}>Retry map</button></div>}<div className="map-credit">Routes: <a href="https://data.foli.fi" target="_blank" rel="noreferrer">Föli · CC BY 4.0</a> · Map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> · <a href="https://openfreemap.org" target="_blank" rel="noreferrer">OpenFreeMap</a></div></>;
 }
