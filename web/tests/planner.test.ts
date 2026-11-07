@@ -38,3 +38,14 @@ it('accepts only finite non-crossing single-ring rectangular geometry',()=>{
  expect(()=>geometryCentre({...polygon,coordinates:[...polygon.coordinates,...polygon.coordinates]},true)).toThrow();
  expect(()=>geometryCentre({type:'Point',coordinates:[NaN,60]},false)).toThrow();
 });
+
+it('flow layer uses released nonself pairs with a fixed scale and schematic endpoints',async()=>{
+ const {flowValues,flowMaximum,flowCurve}=await import('../src/planner/model');
+ const flows=flowValues(rel,'06-09','starts',null);
+ expect(flows).toHaveLength(30);
+ expect(flows.every(f=>f.origin!==f.destination)).toBe(true);
+ expect(flows.every(f=>f.rate<=flowMaximum(rel))).toBe(true);
+ const a:[number,number]=[22.2,60.4],b:[number,number]=[22.3,60.5];
+ const curve=flowCurve(a,b);expect(curve[0]).toEqual(a);expect(curve.at(-1)).toEqual(b);
+ expect(flowCurve(b,a)[12]).not.toEqual(curve[12]);
+});

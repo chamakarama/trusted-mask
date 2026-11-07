@@ -20,7 +20,10 @@ for (let i = 0; i < args.length; i++) {
   if (args[i] === "--ref") ref = args[++i];
   else paths.push(args[i]);
 }
-if (!paths.length) paths.push("releases/e1-aura-001", "fixtures/protected-v1");
+if (!paths.length) {
+  paths.push("releases/e1-aura-001", "fixtures/protected-v1");
+  try { execFileSync("git",["cat-file","-e",`${ref}:releases/city-turku-v1/manifest.json`],{cwd:repo,stdio:"ignore"}); paths.push("releases/city-turku-v1"); } catch { /* Older refs have the original benchmark only. */ }
+}
 
 // Exactly the members INTERFACES.md lists for a release directory; nothing else is ever copied.
 const ALLOWED = ["manifest.json", "definitions.json", "public_areas.geojson", "od_matrix.csv", "line_hour.csv",
@@ -58,6 +61,11 @@ try {
   writeFileSync(join(out, "evidence", "evidence-summary.json"), ev);
   console.log("synced evidence/evidence-summary.json");
 } catch { console.log("no evidence/evidence-summary.json at this ref (evidence view will say so)"); }
+try {
+  const summary=show("evidence/workflow-city/public-summary.json");
+  JSON.parse(summary.toString("utf8"));mkdirSync(join(out,"evidence"),{recursive:true});
+  writeFileSync(join(out,"evidence","city-summary.json"),summary);
+} catch { /* City evidence is absent from older refs. */ }
 mkdirSync(join(out, "contract"), { recursive: true });
 for (const name of ["manifest.schema.json", "manifest-city.schema.json"]) {
   try { writeFileSync(join(out,"contract",name),show(`contracts/${name}`)); }

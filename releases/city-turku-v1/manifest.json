@@ -1,0 +1,154 @@
+{
+  "created_at": "2026-11-07T06:11:04.641544+00:00",
+  "data_class": "team_synthetic",
+  "families": {
+    "daily": {
+      "availability": "released",
+      "definition_id": "daily-v1",
+      "dimensions": [
+        "date"
+      ],
+      "resource": "daily.csv",
+      "uncertainty": "not_available_in_e1"
+    },
+    "line_hour": {
+      "availability": "released",
+      "definition_id": "line_hour-v1",
+      "dimensions": [
+        "line",
+        "hour"
+      ],
+      "resource": "line_hour.csv",
+      "uncertainty": "not_available_in_e1"
+    },
+    "od": {
+      "availability": "released",
+      "definition_id": "od-v1",
+      "dimensions": [
+        "origin_area",
+        "destination_area",
+        "hour_band"
+      ],
+      "resource": "od_matrix.csv",
+      "uncertainty": "not_available_in_e1"
+    }
+  },
+  "fixture": false,
+  "inference": "Card/day stable time order; remove double taps and weekends; retain >60 minute gaps from previous boarding; close last to first. Tied distinct events canonically ordered by stop/line.",
+  "licenses": [
+    "Team-generated fictional travel and rectangular analysis grid: CC BY 4.0.",
+    "Basemap: OpenStreetMap contributors; see map attribution.",
+    "OpenDP: MIT."
+  ],
+  "limitations": [
+    "Team-generated synthetic scenario, not actual Turku travel or the supplied benchmark.",
+    "Heuristic destinations are not observed.",
+    "E1 parameters are experimental, not final policy.",
+    "Mechanism intervals and ranking uncertainty not yet evaluated.",
+    "Clipping and clamping introduce bias.",
+    "OpenDP noise map does not prove custom preprocessing."
+  ],
+  "period": {
+    "end_date_inclusive": "2025-11-02",
+    "start_date": "2025-10-06",
+    "timestamp_ambiguity_policy": "Naive local wall clock as supplied; repeated DST hour not resolved. Weekday OD excludes the Sunday transition.",
+    "timezone": "Europe/Helsinki"
+  },
+  "policy_version": "city-grid-32-64-64-epsilon1-v1",
+  "postprocessing": "Integer noisy estimates clamped at zero for display; signed noisy_value retained. No reconciliation.",
+  "privacy": {
+    "accounting": "Single private publisher ledger; reserved draws count as spent; changing ledger is not a budget reset.",
+    "adjacency": "add_remove_one_card",
+    "delta_release": 0,
+    "epsilon_release": 1.0,
+    "families": {
+      "daily": {
+        "cap": 64,
+        "delta": 0,
+        "epsilon": 0.1,
+        "input_distance": 64,
+        "input_metric": "L1 integer vector",
+        "library_version": "0.16.0",
+        "mechanism": "OpenDP integer vector Laplace",
+        "scale": 640.0,
+        "selection": "card-local SHA256 rank over canonical final count units v1"
+      },
+      "line_hour": {
+        "cap": 64,
+        "delta": 0,
+        "epsilon": 0.3,
+        "input_distance": 64,
+        "input_metric": "L1 integer vector",
+        "library_version": "0.16.0",
+        "mechanism": "OpenDP integer vector Laplace",
+        "scale": 213.33333333333334,
+        "selection": "card-local SHA256 rank over canonical final count units v1"
+      },
+      "od": {
+        "cap": 32,
+        "delta": 0,
+        "epsilon": 0.6,
+        "input_distance": 32,
+        "input_metric": "L1 integer vector",
+        "library_version": "0.16.0",
+        "mechanism": "OpenDP integer vector Laplace",
+        "scale": 53.333333333333336,
+        "selection": "card-local SHA256 rank over canonical final count units v1"
+      }
+    },
+    "guarantee_status": "pending_review",
+    "multiple_identifier_limitation": "One person can have multiple cards; no fixed person-level guarantee.",
+    "scope": "whole_release_period",
+    "unit": "card"
+  },
+  "public_domain_version": "turku-analysis-grid-v1",
+  "publisher": "RouteSafe team-generated city scenario; fictional travel on real Turku geography",
+  "purpose": "External transport planning research: morning corridor shortlist, line/hour demand, daily taps; no capacity or optimal-route claim.",
+  "release_id": "city-turku-v1",
+  "resources": [
+    {
+      "media_type": "text/plain",
+      "path": "README.txt",
+      "sha256": "fcf070df1c6db9aa60c81bd77225179523d21047f5849af24c1abff2055c724b"
+    },
+    {
+      "media_type": "text/csv",
+      "path": "daily.csv",
+      "sha256": "edb3889f3f2b5b6b5b4b2c89f3cee07dec0eae835b19fb6c558a63cf9a2acadf"
+    },
+    {
+      "media_type": "application/json",
+      "path": "definitions.json",
+      "sha256": "d7d41ce90959b54fcd5aaef5bc8fb41b8bb7fc3e01b42ac13d1fab269ef13979"
+    },
+    {
+      "media_type": "text/csv",
+      "path": "line_hour.csv",
+      "sha256": "ddb8c0754e7f909e7d57bce6bd16298d6ef0445645eb50cd918ca3e7fa2d0548"
+    },
+    {
+      "media_type": "text/csv",
+      "path": "od_matrix.csv",
+      "sha256": "dde92e1b26e6fa9bcf84c2bc3f49842a94a4172b13598e7ec89e95dcd1fc35d2"
+    },
+    {
+      "media_type": "application/geo+json",
+      "path": "public_areas.geojson",
+      "sha256": "be1724bbfd4a12d117ec8ac6cb6e6ecca8fce3c66fb025bbc774884d555ddfed"
+    },
+    {
+      "media_type": "application/json",
+      "path": "statistics.json",
+      "sha256": "2f47a00bd78209888a62a8531781d7b8c1a32fae633270c505d81f841f75fc0e"
+    }
+  ],
+  "schema_version": "1.1",
+  "source_commit": "2403621db23cdbdc36c3fef40fe1535c0569a1a8",
+  "synthetic_provenance": {
+    "configuration_sha256": "ecfaf1f0c6fc87ce95dd9589fef3c359859f0a4435157c04bf58997a96ff8854",
+    "generator_source_sha256": "a411e783601cf8d5c7034420d6945fa0f3fd7206469b45b16e41a0145ae311a4",
+    "generator_version": "1.0.0",
+    "geography_sha256": "be1724bbfd4a12d117ec8ac6cb6e6ecca8fce3c66fb025bbc774884d555ddfed",
+    "population_seed": 20251106
+  }
+}

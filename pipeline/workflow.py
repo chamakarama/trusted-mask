@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import secrets
+import shutil
 import threading
 from urllib.parse import urlparse
 import uuid
@@ -27,6 +28,8 @@ from pipeline.public import sync_release
 from pipeline.snapshot import snapshot, fingerprint
 
 ROOT = Path(__file__).resolve().parents[1]
+BUNDLED_CITY = ROOT/'releases/city-turku-v1'
+BUNDLED_RECEIPT = ROOT/'evidence/workflow-city/release-receipt.json'
 PACKAGE = ROOT/'TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026'
 
 
@@ -147,7 +150,21 @@ class Workflow:
                     if artifact.verify(source) != receipt['manifest_sha256']: raise ValueError('ARTIFACT_INVALID: candidate receipt')
                     receipt = {**receipt, 'reused': True}
                 else:
-                    receipt = city.publish(folder, source, self.runtime/'city-ledger.sqlite', 'city-turku-v1')
+                    if BUNDLED_CITY.exists():
+                        bundled = json.loads(BUNDLED_RECEIPT.read_text())
+                        if bundled['fingerprint'] != self.state['fingerprint']: raise ValueError('RELEASE_CONFLICT: bundled city release belongs to different inputs; use a reviewed new dataset/version')
+                        digest = artifact.verify(BUNDLED_CITY)
+                        if digest != bundled['receipt']['manifest_sha256']: raise ValueError('ARTIFACT_INVALID: bundled receipt')
+                        if not source.exists():
+                            source.parent.mkdir(parents=True,exist_ok=True)
+                            with tempfile.TemporaryDirectory(prefix='.reuse-',dir=source.parent) as staging:
+                                temporary=Path(staging)/'release';shutil.copytree(BUNDLED_CITY,temporary)
+                                if artifact.verify(temporary)!=digest: raise ValueError('ARTIFACT_INVALID: staged reuse')
+                                os.rename(temporary,source)
+                        if artifact.verify(source)!=digest: raise ValueError('ARTIFACT_INVALID: reused candidate')
+                        receipt={**bundled['receipt'],'reused':True}
+                    else:
+                        receipt = city.publish(folder, source, self.runtime/'city-ledger.sqlite', 'city-turku-v1')
                     pending = receipt_file.with_suffix('.pending')
                     pending.write_text(json.dumps({'fingerprint':self.state['fingerprint'], 'receipt':receipt}))
                     os.replace(pending, receipt_file)

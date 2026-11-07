@@ -40,3 +40,15 @@ export function summaryHtml(rel:Release,items:SavedItem[]) {
   const esc=(s:string)=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
   return `<!doctype html><html lang="en"><meta charset="utf-8"><title>RouteSafe planning shortlist</title><style>body{font:16px system-ui;max-width:1000px;margin:40px auto;padding:24px}table{border-collapse:collapse;width:100%}td,th{padding:12px;border-bottom:1px solid #ddd;text-align:left}small{color:#555}@media print{body{margin:0}}</style><h1>RouteSafe planning shortlist</h1><p>${esc(rel.manifest.fixture?'Illustrative fixture — no privacy claim':rel.manifest.data_class==='team_synthetic'?'Team-generated synthetic city scenario':'Supplied synthetic benchmark')} · ${esc(rel.manifest.period.start_date)} – ${esc(rel.manifest.period.end_date_inclusive)}</p><p>Estimated trips per weekday in each departure band. For further investigation, not a service recommendation.</p><table><thead><tr><th>Selection</th>${BANDS.map(b=>`<th>${b}</th>`).join('')}</tr></thead><tbody>${items.map(x=>`<tr><th>${esc(itemLabel(rel,x))}</th>${profile(rel,x.direction,x.anchor,x.peer).map(e=>`<td>${number(e.perDay)}${e.uncertain?' *':''}${rel.manifest.fixture?'':`<br><small>${number(e.lower)}–${number(e.upper)}</small>`}</td>`).join('')}</tr>`).join('')}</tbody></table><p>${rel.manifest.fixture?'Illustrative fixture values. No privacy or accuracy claim.':'* Too uncertain to distinguish from zero. Ranges cover noise around capped counts only; they exclude cap loss and inference error.'} Destinations are estimated; counts are trips, not people. Synthetic activity is not actual Turku demand.</p><p>Release ${esc(rel.id)}<br>Manifest SHA-256: ${esc(rel.manifestHash??'')}</p></html>`;
 }
+
+/** Schematic OD flows only: no street geometry or congestion is inferred. */
+export function flowValues(rel:Release,band:string,direction:Direction,anchor:string|null){
+  return selectedCells(rel,band,direction,anchor).filter(c=>c.origin_area!==c.destination_area)
+    .map(c=>({origin:c.origin_area,destination:c.destination_area,...estimate(rel,[c],band)}))
+    .filter(f=>f.total>0).sort((a,b)=>b.rate-a.rate||a.origin.localeCompare(b.origin)||a.destination.localeCompare(b.destination)).slice(0,30);
+}
+export function flowMaximum(rel:Release){return Math.max(1,...BANDS.flatMap(b=>flowValues(rel,b,'starts',null).map(x=>x.rate)));}
+export function flowCurve(a:[number,number],b:[number,number]):[number,number][]{
+  const dx=b[0]-a[0],dy=b[1]-a[1],mid:[number,number]=[(a[0]+b[0])/2-dy*.18,(a[1]+b[1])/2+dx*.18];
+  return Array.from({length:25},(_,i)=>{const t=i/24,q=1-t;return [q*q*a[0]+2*q*t*mid[0]+t*t*b[0],q*q*a[1]+2*q*t*mid[1]+t*t*b[1]];});
+}

@@ -15,9 +15,10 @@ function load(id: string): Map<string, Uint8Array> {
   const dir = join(pub, "releases", id);
   return new Map(readdirSync(dir).map((f) => [f, new Uint8Array(readFileSync(join(dir, f)))]));
 }
-const releases = ["fixture-only-001", "e1-aura-001"].filter((id) => existsSync(join(pub, "releases", id)));
+const releases = ["fixture-only-001", "e1-aura-001", "city-turku-v1"].filter((id) => existsSync(join(pub, "releases", id)));
 
 describe.each(releases)("release %s", (id) => {
+  const schema = JSON.parse(readFileSync(join(__dirname,"../../contracts", id==="city-turku-v1"?"manifest-city.schema.json":"manifest.schema.json"),"utf8"));
   it("passes independent validation", async () => {
     const res = await validateRelease(load(id), schema, sha);
     expect(res.errors).toEqual([]);

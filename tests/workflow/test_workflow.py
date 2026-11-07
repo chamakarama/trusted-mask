@@ -31,6 +31,7 @@ def action(w, name, **kw): return w.action(name, {'revision':w.state['revision']
 
 def ready(tmp_path, monkeypatch):
     folder=inputs(tmp_path/'source')
+    monkeypatch.setattr(module,'BUNDLED_CITY',tmp_path/'unbundled')
     w=Workflow(tmp_path/'runtime',folder)
     action(w,'select',dataset_id='city'); action(w,'validate'); action(w,'review',acknowledged=True); action(w,'purpose',purpose='aggregate_transport_planning')
     def publish(folder,output,ledger,ident):
@@ -121,3 +122,15 @@ def test_metadata_checksum_and_municipality_gate(tmp_path):
 def test_revision_prevents_stale_actions(tmp_path,monkeypatch):
     w,_=ready(tmp_path,monkeypatch)
     with pytest.raises(ValueError,match='STALE_REVISION'):w.action('publish',{'revision':0})
+
+
+def test_bundled_city_reused_in_fresh_runtime_without_draw(tmp_path,monkeypatch):
+    w,folder=ready(tmp_path,monkeypatch);action(w,'publish')
+    receipt=tmp_path/'bundled-receipt.json'
+    receipt.write_text(json.dumps({'fingerprint':w.state['fingerprint'],'receipt':{k:w.state['candidate'][k] for k in ('release_id','manifest_sha256')}}))
+    monkeypatch.setattr(module,'BUNDLED_CITY',w.source());monkeypatch.setattr(module,'BUNDLED_RECEIPT',receipt)
+    monkeypatch.setattr(city,'publish',lambda *_: (_ for _ in ()).throw(AssertionError('must not redraw')))
+    other=Workflow(tmp_path/'other-runtime',folder)
+    action(other,'select',dataset_id='city');action(other,'validate');action(other,'review',acknowledged=True);action(other,'purpose',purpose='aggregate_transport_planning');action(other,'publish')
+    assert other.state['candidate']['reused'] is True
+    assert not (other.runtime/'city-ledger.sqlite').exists()
