@@ -1,0 +1,2777 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-alibi",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Three charges on my debit card from last weekend were not made by me: 89.90 euros at a webshop called Kaasboer Online, 214.00 euros at a petrol station in Lille that I have never visited, and 45.00 euros to a streaming service I do not subscribe to. The card itself was in my wallet the whole time, so I do not think it was lost or stolen.\n\nI was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases. My sister Marit Kuipers collected my phone and wallet from the ward on Sunday and can confirm that the card never left it.\n\nThe card ending 4417 is linked to the account of Sanne Verbeek, and the case reference I was given on the phone is FR-60418. The bank adviser, Mr Dirk Hoekstra, said I should reply to him within five working days. I would prefer a reply by email to sanne.verbeek@example.invalid, because I cannot take calls at work.",
+  "task": "Write a short statement for the bank's fraud team that explains why I could not have made these three purchases.",
+  "entities": [
+   {
+    "id": "sanne",
+    "entity_id": "p-sanne",
+    "label": "PERSON",
+    "quote": "Sanne Verbeek"
+   },
+   {
+    "id": "marit",
+    "entity_id": "p-marit",
+    "label": "PERSON",
+    "quote": "Marit Kuipers"
+   },
+   {
+    "id": "dirk",
+    "entity_id": "p-dirk",
+    "label": "PERSON",
+    "quote": "Dirk Hoekstra"
+   },
+   {
+    "id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "I was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases."
+   },
+   {
+    "id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4417"
+   },
+   {
+    "id": "case",
+    "entity_id": "case",
+    "label": "ACCOUNT_ID",
+    "quote": "FR-60418"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sanne.verbeek@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "I was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "marit",
+    "entity_id": "p-marit",
+    "label": "PERSON",
+    "quote": "Marit Kuipers",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4417",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Partial card number is a payment identifier; the task does not need the digits, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sanne",
+    "entity_id": "p-sanne",
+    "label": "PERSON",
+    "quote": "Sanne Verbeek",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "case",
+    "entity_id": "case",
+    "label": "ACCOUNT_ID",
+    "quote": "FR-60418",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Case reference is an account-linked identifier; replaced, so the exact reference is not available in the output."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dirk",
+    "entity_id": "p-dirk",
+    "label": "PERSON",
+    "quote": "Dirk Hoekstra",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sanne.verbeek@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is a direct contact identifier; the task does not need it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases."
+   },
+   {
+    "quote": "My sister"
+   },
+   {
+    "quote": "collected my phone and wallet from the ward on Sunday and can confirm that the card never left it."
+   },
+   {
+    "quote": "The card itself was in my wallet the whole time, so I do not think it was lost or stolen."
+   }
+  ],
+  "approved_output": "Three charges on my debit card from last weekend were not made by me: 89.90 euros at a webshop called Kaasboer Online, 214.00 euros at a petrol station in Lille that I have never visited, and 45.00 euros to a streaming service I do not subscribe to. The card itself was in my wallet the whole time, so I do not think it was lost or stolen.\n\nI was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases. My sister [PERSON_1] collected my phone and wallet from the ward on Sunday and can confirm that the card never left it.\n\nThe card ending [PAYMENT_CARD] is linked to the account of [PERSON_2], and the case reference I was given on the phone is [ACCOUNT_ID]. The bank adviser, Mr [PERSON_3], said I should reply to him within five working days. I would prefer a reply by email to [EMAIL], because I cannot take calls at work.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-list",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f01-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Three charges on my debit card from last weekend were not made by me: 89.90 euros at a webshop called Kaasboer Online, 214.00 euros at a petrol station in Lille that I have never visited, and 45.00 euros to a streaming service I do not subscribe to. The card itself was in my wallet the whole time, so I do not think it was lost or stolen.\n\nI was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases. My sister Marit Kuipers collected my phone and wallet from the ward on Sunday and can confirm that the card never left it.\n\nThe card ending 4417 is linked to the account of Sanne Verbeek, and the case reference I was given on the phone is FR-60418. The bank adviser, Mr Dirk Hoekstra, said I should reply to him within five working days. I would prefer a reply by email to sanne.verbeek@example.invalid, because I cannot take calls at work.",
+  "task": "Make a numbered list of the disputed charges with merchant and amount, plus the case reference and reply deadline, so I can read it out when I phone the bank.",
+  "entities": [
+   {
+    "id": "sanne",
+    "entity_id": "p-sanne",
+    "label": "PERSON",
+    "quote": "Sanne Verbeek"
+   },
+   {
+    "id": "marit",
+    "entity_id": "p-marit",
+    "label": "PERSON",
+    "quote": "Marit Kuipers"
+   },
+   {
+    "id": "dirk",
+    "entity_id": "p-dirk",
+    "label": "PERSON",
+    "quote": "Dirk Hoekstra"
+   },
+   {
+    "id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "I was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases."
+   },
+   {
+    "id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4417"
+   },
+   {
+    "id": "case",
+    "entity_id": "case",
+    "label": "ACCOUNT_ID",
+    "quote": "FR-60418"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sanne.verbeek@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "I was in hospital from Friday evening until Sunday afternoon after an emergency appendix operation, so I could not have made any of these purchases. My sister Marit Kuipers collected my phone and wallet from the ward on Sunday and can confirm that the card never left it.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Listing the disputed charges and the reply deadline does not need the user's hospital stay or the sister's collection of belongings; the amounts, merchants and deadline sit in other paragraphs."
+   },
+   {
+    "kind": "entity",
+    "target_id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4417",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Partial card number is a payment identifier; the task does not need the digits, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sanne",
+    "entity_id": "p-sanne",
+    "label": "PERSON",
+    "quote": "Sanne Verbeek",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "case",
+    "entity_id": "case",
+    "label": "ACCOUNT_ID",
+    "quote": "FR-60418",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The case reference is needed to quote on the call, but it is a direct identifier; PLACEHOLDER hides it, so the user must add the real reference."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dirk",
+    "entity_id": "p-dirk",
+    "label": "PERSON",
+    "quote": "Dirk Hoekstra",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sanne.verbeek@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is a direct contact identifier; the task does not need it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Three charges on my debit card from last weekend were not made by me: 89.90 euros at a webshop called Kaasboer Online, 214.00 euros at a petrol station in Lille that I have never visited, and 45.00 euros to a streaming service I do not subscribe to."
+   },
+   {
+    "quote": "The bank adviser, Mr"
+   },
+   {
+    "quote": "said I should reply to him within five working days."
+   }
+  ],
+  "approved_output": "Three charges on my debit card from last weekend were not made by me: 89.90 euros at a webshop called Kaasboer Online, 214.00 euros at a petrol station in Lille that I have never visited, and 45.00 euros to a streaming service I do not subscribe to. The card itself was in my wallet the whole time, so I do not think it was lost or stolen.\n\nThe card ending [PAYMENT_CARD] is linked to the account of [PERSON_1], and the case reference I was given on the phone is [ACCOUNT_ID]. The bank adviser, Mr [PERSON_2], said I should reply to him within five working days. I would prefer a reply by email to [EMAIL], because I cannot take calls at work.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-help",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "On Tuesday 14 October at about 21:40 I received a text asking me to confirm a parcel delivery, and I tapped the link before I noticed the sender looked odd. Within twenty minutes two transfers had left my current account: 6,400 kroner to an account I do not recognise, and 3,150 kroner to a second one. I did not approve either transfer with my MitID, and I rang the bank's emergency line at 22:15 to block the account.\n\nThe adviser who took my call was called Pernille Andersen, and my customer number is 7740-2291; you can reach me on +45 31 55 02 74 until 17:00 on weekdays.\n\nBecause of the missing money I now cannot pay my 7,900 kroner rent on 1 November. I was made redundant from my job as a warehouse planner in September and I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left. My landlord, Jesper Lund, has already said he cannot wait past the 5th.",
+  "task": "Draft a message asking the bank what interim help they can offer me while the investigation runs.",
+  "entities": [
+   {
+    "id": "pern",
+    "entity_id": "p-pern",
+    "label": "PERSON",
+    "quote": "Pernille Andersen"
+   },
+   {
+    "id": "jesp",
+    "entity_id": "p-jesp",
+    "label": "PERSON",
+    "quote": "Jesper Lund"
+   },
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "7740-2291"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 31 55 02 74"
+   },
+   {
+    "id": "rent",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "Because of the missing money I now cannot pay my 7,900 kroner rent on 1 November"
+   },
+   {
+    "id": "red1",
+    "entity_id": "red1",
+    "label": "EMPLOYMENT",
+    "quote": "I was made redundant from my job as a warehouse planner in September"
+   },
+   {
+    "id": "red2",
+    "entity_id": "red2",
+    "label": "FINANCIAL",
+    "quote": "I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pern",
+    "entity_id": "p-pern",
+    "label": "PERSON",
+    "quote": "Pernille Andersen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "7740-2291",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer number is an account identifier; not needed for the task, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 31 55 02 74",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct contact detail; not needed for the task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "rent",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "Because of the missing money I now cannot pay my 7,900 kroner rent on 1 November",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "red1",
+    "entity_id": "red1",
+    "label": "EMPLOYMENT",
+    "quote": "I was made redundant from my job as a warehouse planner in September",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "red2",
+    "entity_id": "red2",
+    "label": "FINANCIAL",
+    "quote": "I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "jesp",
+    "entity_id": "p-jesp",
+    "label": "PERSON",
+    "quote": "Jesper Lund",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Because of the missing money I now cannot pay my 7,900 kroner rent on 1 November."
+   },
+   {
+    "quote": "I was made redundant from my job as a warehouse planner in September and I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left."
+   },
+   {
+    "quote": "My landlord,"
+   },
+   {
+    "quote": "has already said he cannot wait past the 5th."
+   },
+   {
+    "quote": "Within twenty minutes two transfers had left my current account: 6,400 kroner to an account I do not recognise, and 3,150 kroner to a second one."
+   }
+  ],
+  "approved_output": "On Tuesday 14 October at about 21:40 I received a text asking me to confirm a parcel delivery, and I tapped the link before I noticed the sender looked odd. Within twenty minutes two transfers had left my current account: 6,400 kroner to an account I do not recognise, and 3,150 kroner to a second one. I did not approve either transfer with my MitID, and I rang the bank's emergency line at 22:15 to block the account.\n\nThe adviser who took my call was called [PERSON_1], and my customer number is [ACCOUNT_ID]; you can reach me on [PHONE] until 17:00 on weekdays.\n\nBecause of the missing money I now cannot pay my 7,900 kroner rent on 1 November. I was made redundant from my job as a warehouse planner in September and I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left. My landlord, [PERSON_2], has already said he cannot wait past the 5th.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-timeline",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f02-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "On Tuesday 14 October at about 21:40 I received a text asking me to confirm a parcel delivery, and I tapped the link before I noticed the sender looked odd. Within twenty minutes two transfers had left my current account: 6,400 kroner to an account I do not recognise, and 3,150 kroner to a second one. I did not approve either transfer with my MitID, and I rang the bank's emergency line at 22:15 to block the account.\n\nThe adviser who took my call was called Pernille Andersen, and my customer number is 7740-2291; you can reach me on +45 31 55 02 74 until 17:00 on weekdays.\n\nBecause of the missing money I now cannot pay my 7,900 kroner rent on 1 November. I was made redundant from my job as a warehouse planner in September and I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left. My landlord, Jesper Lund, has already said he cannot wait past the 5th.",
+  "task": "Write the timeline of what happened for the bank's fraud investigators, with times and amounts, so I can paste it into their claim form.",
+  "entities": [
+   {
+    "id": "pern",
+    "entity_id": "p-pern",
+    "label": "PERSON",
+    "quote": "Pernille Andersen"
+   },
+   {
+    "id": "jesp",
+    "entity_id": "p-jesp",
+    "label": "PERSON",
+    "quote": "Jesper Lund"
+   },
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "7740-2291"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 31 55 02 74"
+   },
+   {
+    "id": "rent",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "Because of the missing money I now cannot pay my 7,900 kroner rent on 1 November"
+   },
+   {
+    "id": "red1",
+    "entity_id": "red1",
+    "label": "EMPLOYMENT",
+    "quote": "I was made redundant from my job as a warehouse planner in September"
+   },
+   {
+    "id": "red2",
+    "entity_id": "red2",
+    "label": "FINANCIAL",
+    "quote": "I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pern",
+    "entity_id": "p-pern",
+    "label": "PERSON",
+    "quote": "Pernille Andersen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "7740-2291",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "Claim forms normally ask for the customer number; it is a direct identifier so PLACEHOLDER hides it and the user must add it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 31 55 02 74",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct contact detail; not needed for the task."
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nBecause of the missing money I now cannot pay my 7,900 kroner rent on 1 November. I was made redundant from my job as a warehouse planner in September and I am living on severance pay of 14,000 kroner a month until the end of the year, so the missing 9,550 kroner is about two thirds of what I have left. My landlord, Jesper Lund, has already said he cannot wait past the 5th.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Fraud investigators need the sequence, times and amounts of the transfers; the user's rent, redundancy and remaining income do not bear on whether the transfers were authorised."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "On Tuesday 14 October at about 21:40 I received a text asking me to confirm a parcel delivery, and I tapped the link before I noticed the sender looked odd."
+   },
+   {
+    "quote": "Within twenty minutes two transfers had left my current account: 6,400 kroner to an account I do not recognise, and 3,150 kroner to a second one."
+   },
+   {
+    "quote": "I did not approve either transfer with my MitID, and I rang the bank's emergency line at 22:15 to block the account."
+   }
+  ],
+  "approved_output": "On Tuesday 14 October at about 21:40 I received a text asking me to confirm a parcel delivery, and I tapped the link before I noticed the sender looked odd. Within twenty minutes two transfers had left my current account: 6,400 kroner to an account I do not recognise, and 3,150 kroner to a second one. I did not approve either transfer with my MitID, and I rang the bank's emergency line at 22:15 to block the account.\n\nThe adviser who took my call was called [PERSON_1], and my customer number is [ACCOUNT_ID]; you can reach me on [PHONE] until 17:00 on weekdays.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-rush",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th. I cannot manage the trip without a working card, and the usual five to seven working days for delivery would be too late.\n\nMy debit card disappeared from my coat at the gym on Monday evening. I blocked it in the app straight away at 19:05, and the app shows no payments after that time, although I am not sure about a contactless payment of 12.40 euros at the gym cafe a few minutes earlier, which may have been mine.\n\nThe replacement should go to Hoogstraat 58, 3011 Rotterdam, in the name of Joost van der Meer, and I would like the new card to keep the same daily limit of 750 euros. My phone number for the courier is 06 5120 8837 and my customer number is NL-5528-014.",
+  "task": "Write a message to the card service asking for the fastest delivery option and for any express fee to be waived.",
+  "entities": [
+   {
+    "id": "joost",
+    "entity_id": "p-joost",
+    "label": "PERSON",
+    "quote": "Joost van der Meer"
+   },
+   {
+    "id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "Hoogstraat 58, 3011 Rotterdam"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "06 5120 8837"
+   },
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "NL-5528-014"
+   },
+   {
+    "id": "dad",
+    "entity_id": "dad",
+    "label": "FAMILY",
+    "quote": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "dad",
+    "entity_id": "dad",
+    "label": "FAMILY",
+    "quote": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "Hoogstraat 58, 3011 Rotterdam",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Home address is a direct identifier; the task does not need the exact address, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "joost",
+    "entity_id": "p-joost",
+    "label": "PERSON",
+    "quote": "Joost van der Meer",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "06 5120 8837",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct contact detail; not needed for the message."
+   },
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "NL-5528-014",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer number is an account identifier; not needed for the task."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th."
+   },
+   {
+    "quote": "I cannot manage the trip without a working card, and the usual five to seven working days for delivery would be too late."
+   },
+   {
+    "quote": "My debit card disappeared from my coat at the gym on Monday evening."
+   }
+  ],
+  "approved_output": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th. I cannot manage the trip without a working card, and the usual five to seven working days for delivery would be too late.\n\nMy debit card disappeared from my coat at the gym on Monday evening. I blocked it in the app straight away at 19:05, and the app shows no payments after that time, although I am not sure about a contactless payment of 12.40 euros at the gym cafe a few minutes earlier, which may have been mine.\n\nThe replacement should go to [ADDRESS], in the name of [PERSON_1], and I would like the new card to keep the same daily limit of 750 euros. My phone number for the courier is [PHONE] and my customer number is [ACCOUNT_ID].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-plain",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f03-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th. I cannot manage the trip without a working card, and the usual five to seven working days for delivery would be too late.\n\nMy debit card disappeared from my coat at the gym on Monday evening. I blocked it in the app straight away at 19:05, and the app shows no payments after that time, although I am not sure about a contactless payment of 12.40 euros at the gym cafe a few minutes earlier, which may have been mine.\n\nThe replacement should go to Hoogstraat 58, 3011 Rotterdam, in the name of Joost van der Meer, and I would like the new card to keep the same daily limit of 750 euros. My phone number for the courier is 06 5120 8837 and my customer number is NL-5528-014.",
+  "task": "Write a clear request for the bank to issue a replacement debit card to my address with the same daily limit, and mention the contactless payment I am unsure about.",
+  "entities": [
+   {
+    "id": "joost",
+    "entity_id": "p-joost",
+    "label": "PERSON",
+    "quote": "Joost van der Meer"
+   },
+   {
+    "id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "Hoogstraat 58, 3011 Rotterdam"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "06 5120 8837"
+   },
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "NL-5528-014"
+   },
+   {
+    "id": "dad",
+    "entity_id": "dad",
+    "label": "FAMILY",
+    "quote": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "My father died last Thursday and the funeral is in Bergen on 20 November, so I fly out on the 18th. I cannot manage the trip without a working card, and the usual five to seven working days for delivery would be too late.\n\n",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A plain replacement request needs the loss details, address and limit; the bereavement and travel plans are not needed for it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "Hoogstraat 58, 3011 Rotterdam",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The replacement is to be sent to this address, but it is a direct identifier; PLACEHOLDER hides it and the user must add it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "joost",
+    "entity_id": "p-joost",
+    "label": "PERSON",
+    "quote": "Joost van der Meer",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "06 5120 8837",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct contact detail; not needed for the message."
+   },
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ACCOUNT_ID",
+    "quote": "NL-5528-014",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer number is an account identifier; not needed for the task."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My debit card disappeared from my coat at the gym on Monday evening."
+   },
+   {
+    "quote": "I blocked it in the app straight away at 19:05, and the app shows no payments after that time, although I am not sure about a contactless payment of 12.40 euros at the gym cafe a few minutes earlier, which may have been mine."
+   },
+   {
+    "quote": "The replacement should go to"
+   },
+   {
+    "quote": "in the name of"
+   },
+   {
+    "quote": "and I would like the new card to keep the same daily limit of 750 euros."
+   }
+  ],
+  "approved_output": "My debit card disappeared from my coat at the gym on Monday evening. I blocked it in the app straight away at 19:05, and the app shows no payments after that time, although I am not sure about a contactless payment of 12.40 euros at the gym cafe a few minutes earlier, which may have been mine.\n\nThe replacement should go to [ADDRESS], in the name of [PERSON_1], and I would like the new card to keep the same daily limit of 750 euros. My phone number for the courier is [PHONE] and my customer number is [ACCOUNT_ID].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-delay",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Last Friday I opened my banking app and found four cash withdrawals from an ATM in Aarhus that I did not make: 2,000 kroner on Tuesday at 02:11, 2,000 kroner at 02:13, and two more of 1,500 kroner on Wednesday. I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday. My card was never out of my flat, and my partner, Rasmus Winther, confirms he has not used it. I think the card details were copied at a restaurant on Saturday 11 October, but I am not certain. Please arrange a refund of 7,000 kroner. Astrid Holm, account number DK-4471-0093, mobile +45 22 61 48 05.",
+  "task": "Draft a reply to the bank, which asked me why I did not report this earlier.",
+  "entities": [
+   {
+    "id": "rasmus",
+    "entity_id": "p-rasmus",
+    "label": "PERSON",
+    "quote": "Rasmus Winther"
+   },
+   {
+    "id": "astrid",
+    "entity_id": "p-astrid",
+    "label": "PERSON",
+    "quote": "Astrid Holm"
+   },
+   {
+    "id": "night",
+    "entity_id": "night",
+    "label": "EMPLOYMENT",
+    "quote": "I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday"
+   },
+   {
+    "id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "DK-4471-0093"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 22 61 48 05"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "night",
+    "entity_id": "night",
+    "label": "EMPLOYMENT",
+    "quote": "I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "rasmus",
+    "entity_id": "p-rasmus",
+    "label": "PERSON",
+    "quote": "Rasmus Winther",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "astrid",
+    "entity_id": "p-astrid",
+    "label": "PERSON",
+    "quote": "Astrid Holm",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "DK-4471-0093",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Account number is a direct identifier; the message does not need the value, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 22 61 48 05",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Mobile number is a direct contact detail; not needed for the message."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Last Friday I opened my banking app and found four cash withdrawals from an ATM in Aarhus that I did not make:"
+   },
+   {
+    "quote": "I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday."
+   }
+  ],
+  "approved_output": "Last Friday I opened my banking app and found four cash withdrawals from an ATM in Aarhus that I did not make: 2,000 kroner on Tuesday at 02:11, 2,000 kroner at 02:13, and two more of 1,500 kroner on Wednesday. I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday. My card was never out of my flat, and my partner, [PERSON_1], confirms he has not used it. I think the card details were copied at a restaurant on Saturday 11 October, but I am not certain. Please arrange a refund of 7,000 kroner. [PERSON_2], account number [ACCOUNT_ID], mobile [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-dispute",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f04-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Last Friday I opened my banking app and found four cash withdrawals from an ATM in Aarhus that I did not make: 2,000 kroner on Tuesday at 02:11, 2,000 kroner at 02:13, and two more of 1,500 kroner on Wednesday. I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday. My card was never out of my flat, and my partner, Rasmus Winther, confirms he has not used it. I think the card details were copied at a restaurant on Saturday 11 October, but I am not certain. Please arrange a refund of 7,000 kroner. Astrid Holm, account number DK-4471-0093, mobile +45 22 61 48 05.",
+  "task": "Write a short dispute message that lists each withdrawal with its date, time and amount and asks for a refund.",
+  "entities": [
+   {
+    "id": "rasmus",
+    "entity_id": "p-rasmus",
+    "label": "PERSON",
+    "quote": "Rasmus Winther"
+   },
+   {
+    "id": "astrid",
+    "entity_id": "p-astrid",
+    "label": "PERSON",
+    "quote": "Astrid Holm"
+   },
+   {
+    "id": "night",
+    "entity_id": "night",
+    "label": "EMPLOYMENT",
+    "quote": "I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday"
+   },
+   {
+    "id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "DK-4471-0093"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 22 61 48 05"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "I work night shifts at a dairy plant outside Randers and sleep through most of the day, which is why I only looked at the account on Friday. ",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Listing the withdrawals and asking for a refund does not need the user's shift pattern; the withdrawals and refund amount are in other sentences."
+   },
+   {
+    "kind": "entity",
+    "target_id": "rasmus",
+    "entity_id": "p-rasmus",
+    "label": "PERSON",
+    "quote": "Rasmus Winther",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "astrid",
+    "entity_id": "p-astrid",
+    "label": "PERSON",
+    "quote": "Astrid Holm",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "DK-4471-0093",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Account number is a direct identifier; the message does not need the value, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 22 61 48 05",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Mobile number is a direct contact detail; not needed for the message."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Last Friday I opened my banking app and found four cash withdrawals from an ATM in Aarhus that I did not make: 2,000 kroner on Tuesday at 02:11, 2,000 kroner at 02:13, and two more of 1,500 kroner on Wednesday."
+   },
+   {
+    "quote": "Please arrange a refund of 7,000 kroner."
+   }
+  ],
+  "approved_output": "Last Friday I opened my banking app and found four cash withdrawals from an ATM in Aarhus that I did not make: 2,000 kroner on Tuesday at 02:11, 2,000 kroner at 02:13, and two more of 1,500 kroner on Wednesday. My card was never out of my flat, and my partner, [PERSON_1], confirms he has not used it. I think the card details were copied at a restaurant on Saturday 11 October, but I am not certain. Please arrange a refund of 7,000 kroner. [PERSON_2], account number [ACCOUNT_ID], mobile [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-post",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The ATM outside the bakery on Lindelaan kept my card at about 16:20 on Thursday after I entered the wrong PIN twice, and the screen said the card had been withdrawn. The branch in Amersfoort told me by phone that a replacement normally costs 8.50 euros, but that the fee can be waived if the card was kept by a machine. I do not want a new account, only a new card on the same account, and the old card should be cancelled if it has not already been destroyed. I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch. The card number on the front starts with 5204 and the account holder is Lotte Bakker. You can email me at lotte.bakker@example.invalid.",
+  "task": "Write to the bank asking them to post the new card and PIN to me instead of making me collect it at a branch.",
+  "entities": [
+   {
+    "id": "lotte",
+    "entity_id": "p-lotte",
+    "label": "PERSON",
+    "quote": "Lotte Bakker"
+   },
+   {
+    "id": "preg",
+    "entity_id": "preg",
+    "label": "HEALTH",
+    "quote": "I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch"
+   },
+   {
+    "id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "5204"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "lotte.bakker@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "preg",
+    "entity_id": "preg",
+    "label": "HEALTH",
+    "quote": "I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "5204",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Leading card digits are a payment identifier; not needed for the message, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "lotte",
+    "entity_id": "p-lotte",
+    "label": "PERSON",
+    "quote": "Lotte Bakker",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "lotte.bakker@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is a direct contact identifier; not needed for the message."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch."
+   },
+   {
+    "quote": "I do not want a new account, only a new card on the same account, and the old card should be cancelled if it has not already been destroyed."
+   }
+  ],
+  "approved_output": "The ATM outside the bakery on Lindelaan kept my card at about 16:20 on Thursday after I entered the wrong PIN twice, and the screen said the card had been withdrawn. The branch in Amersfoort told me by phone that a replacement normally costs 8.50 euros, but that the fee can be waived if the card was kept by a machine. I do not want a new account, only a new card on the same account, and the old card should be cancelled if it has not already been destroyed. I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch. The card number on the front starts with [PAYMENT_CARD] and the account holder is [PERSON_1]. You can email me at [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-request",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f05-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The ATM outside the bakery on Lindelaan kept my card at about 16:20 on Thursday after I entered the wrong PIN twice, and the screen said the card had been withdrawn. The branch in Amersfoort told me by phone that a replacement normally costs 8.50 euros, but that the fee can be waived if the card was kept by a machine. I do not want a new account, only a new card on the same account, and the old card should be cancelled if it has not already been destroyed. I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch. The card number on the front starts with 5204 and the account holder is Lotte Bakker. You can email me at lotte.bakker@example.invalid.",
+  "task": "Write a request for a replacement card after the machine kept mine, saying when and where it happened and asking for the fee to be waived.",
+  "entities": [
+   {
+    "id": "lotte",
+    "entity_id": "p-lotte",
+    "label": "PERSON",
+    "quote": "Lotte Bakker"
+   },
+   {
+    "id": "preg",
+    "entity_id": "preg",
+    "label": "HEALTH",
+    "quote": "I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch"
+   },
+   {
+    "id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "5204"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "lotte.bakker@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "I am in my 34th week of pregnancy and my midwife has told me to stay off my feet, so I cannot visit a branch. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A replacement-card request after an ATM retention does not need the pregnancy or the midwife's advice; the incident, fee and cancellation instructions are in other sentences."
+   },
+   {
+    "kind": "entity",
+    "target_id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "5204",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Leading card digits are a payment identifier; not needed for the message, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "lotte",
+    "entity_id": "p-lotte",
+    "label": "PERSON",
+    "quote": "Lotte Bakker",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "lotte.bakker@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is a direct contact identifier; not needed for the message."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The ATM outside the bakery on Lindelaan kept my card at about 16:20 on Thursday after I entered the wrong PIN twice, and the screen said the card had been withdrawn."
+   },
+   {
+    "quote": "The branch in Amersfoort told me by phone that a replacement normally costs 8.50 euros, but that the fee can be waived if the card was kept by a machine."
+   },
+   {
+    "quote": "I do not want a new account, only a new card on the same account, and the old card should be cancelled if it has not already been destroyed."
+   }
+  ],
+  "approved_output": "The ATM outside the bakery on Lindelaan kept my card at about 16:20 on Thursday after I entered the wrong PIN twice, and the screen said the card had been withdrawn. The branch in Amersfoort told me by phone that a replacement normally costs 8.50 euros, but that the fee can be waived if the card was kept by a machine. I do not want a new account, only a new card on the same account, and the old card should be cancelled if it has not already been destroyed. The card number on the front starts with [PAYMENT_CARD] and the account holder is [PERSON_1]. You can email me at [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-fee",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: Replacement card, same account\n\nHi Mads,\n\nThanks for calling me back this morning. As agreed, please set up the following:\n- a new debit card on my current account, with the same 4,000 kroner daily limit\n- delivery to my work address, because nobody is home on weekdays\n- the card active by 24 November at the latest, and the old card cancelled once the new one is activated\n- no change to the 349 kroner gym membership direct debit, which should move to the new card automatically\n\nThe direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed. I was told on the phone that you can only do this once, so I would rather you check before refusing.\n\nKind regards,\nIngrid Skov\ningrid.skov@example.invalid\n+45 40 77 18 63",
+  "task": "Write a polite follow-up to my adviser about the fee I was charged, so they can check whether it can be reversed.",
+  "entities": [
+   {
+    "id": "mads",
+    "entity_id": "p-mads",
+    "label": "PERSON",
+    "quote": "Mads"
+   },
+   {
+    "id": "ingrid",
+    "entity_id": "p-ingrid",
+    "label": "PERSON",
+    "quote": "Ingrid Skov"
+   },
+   {
+    "id": "fee",
+    "entity_id": "fee",
+    "label": "FINANCIAL",
+    "quote": "The direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ingrid.skov@example.invalid"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 40 77 18 63"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "mads",
+    "entity_id": "p-mads",
+    "label": "PERSON",
+    "quote": "Mads",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fee",
+    "entity_id": "fee",
+    "label": "FINANCIAL",
+    "quote": "The direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ingrid",
+    "entity_id": "p-ingrid",
+    "label": "PERSON",
+    "quote": "Ingrid Skov",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ingrid.skov@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address in the signature is a direct contact identifier; not needed for the task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 40 77 18 63",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number in the signature is a direct contact detail; not needed for the task."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed."
+   },
+   {
+    "quote": "I was told on the phone that you can only do this once, so I would rather you check before refusing."
+   }
+  ],
+  "approved_output": "Subject: Replacement card, same account\n\nHi [PERSON_1],\n\nThanks for calling me back this morning. As agreed, please set up the following:\n- a new debit card on my current account, with the same 4,000 kroner daily limit\n- delivery to my work address, because nobody is home on weekdays\n- the card active by 24 November at the latest, and the old card cancelled once the new one is activated\n- no change to the 349 kroner gym membership direct debit, which should move to the new card automatically\n\nThe direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed. I was told on the phone that you can only do this once, so I would rather you check before refusing.\n\nKind regards,\n[PERSON_2]\n[EMAIL]\n[PHONE]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-confirm",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f06-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: Replacement card, same account\n\nHi Mads,\n\nThanks for calling me back this morning. As agreed, please set up the following:\n- a new debit card on my current account, with the same 4,000 kroner daily limit\n- delivery to my work address, because nobody is home on weekdays\n- the card active by 24 November at the latest, and the old card cancelled once the new one is activated\n- no change to the 349 kroner gym membership direct debit, which should move to the new card automatically\n\nThe direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed. I was told on the phone that you can only do this once, so I would rather you check before refusing.\n\nKind regards,\nIngrid Skov\ningrid.skov@example.invalid\n+45 40 77 18 63",
+  "task": "Write a two-line confirmation of the changes I need on the new card, so the adviser can check them against what was agreed.",
+  "entities": [
+   {
+    "id": "mads",
+    "entity_id": "p-mads",
+    "label": "PERSON",
+    "quote": "Mads"
+   },
+   {
+    "id": "ingrid",
+    "entity_id": "p-ingrid",
+    "label": "PERSON",
+    "quote": "Ingrid Skov"
+   },
+   {
+    "id": "fee",
+    "entity_id": "fee",
+    "label": "FINANCIAL",
+    "quote": "The direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ingrid.skov@example.invalid"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 40 77 18 63"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "mads",
+    "entity_id": "p-mads",
+    "label": "PERSON",
+    "quote": "Mads",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "The direct debit failed on 3 November because my salary arrived three days late after a payroll error at my employer, and the bank charged a 100 kroner fee, which I would like reversed. I was told on the phone that you can only do this once, so I would rather you check before refusing.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Confirming the card limit, delivery, activation date and direct debit transfer does not need the late-salary explanation or the fee dispute, which is a separate complete paragraph."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ingrid",
+    "entity_id": "p-ingrid",
+    "label": "PERSON",
+    "quote": "Ingrid Skov",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ingrid.skov@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address in the signature is a direct contact identifier; not needed for the task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+45 40 77 18 63",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number in the signature is a direct contact detail; not needed for the task."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "a new debit card on my current account, with the same 4,000 kroner daily limit"
+   },
+   {
+    "quote": "delivery to my work address, because nobody is home on weekdays"
+   },
+   {
+    "quote": "the card active by 24 November at the latest, and the old card cancelled once the new one is activated"
+   },
+   {
+    "quote": "no change to the 349 kroner gym membership direct debit, which should move to the new card automatically"
+   }
+  ],
+  "approved_output": "Subject: Replacement card, same account\n\nHi [PERSON_1],\n\nThanks for calling me back this morning. As agreed, please set up the following:\n- a new debit card on my current account, with the same 4,000 kroner daily limit\n- delivery to my work address, because nobody is home on weekdays\n- the card active by 24 November at the latest, and the old card cancelled once the new one is activated\n- no change to the 349 kroner gym membership direct debit, which should move to the new card automatically\n\nKind regards,\n[PERSON_2]\n[EMAIL]\n[PHONE]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-claim",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Account holder\tBram Hendriks\nIBAN\tNL58 FICT 0128 4471 90\n\nDate\tMerchant\tAmount (EUR)\tStatus\tNote\n03 Nov\tBouwmarkt Zuid\t128.40\tmine\tgarden fence panels\n03 Nov\tZwarte Pan Webshop\t310.00\tnot mine\tcard not used online that day\n04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit\n05 Nov\tRoute 66 Fuel\t74.15\tnot mine\tpetrol station I have never been to\n06 Nov\tOnline Gaming Credits\t39.99\tnot mine\tsubscription I cancelled in June",
+  "task": "Which of these payments look like healthcare costs I could claim back from my supplementary insurance? Give date, provider and amount.",
+  "entities": [
+   {
+    "id": "bram",
+    "entity_id": "p-bram",
+    "label": "PERSON",
+    "quote": "Bram Hendriks"
+   },
+   {
+    "id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "NL58 FICT 0128 4471 90"
+   },
+   {
+    "id": "dent",
+    "entity_id": "dent",
+    "label": "HEALTH",
+    "quote": "04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "bram",
+    "entity_id": "p-bram",
+    "label": "PERSON",
+    "quote": "Bram Hendriks",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "NL58 FICT 0128 4471 90",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "IBAN is a direct account identifier; the task does not need the number, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dent",
+    "entity_id": "dent",
+    "label": "HEALTH",
+    "quote": "04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit"
+   }
+  ],
+  "approved_output": "Account holder\t[PERSON_1]\nIBAN\t[IBAN]\n\nDate\tMerchant\tAmount (EUR)\tStatus\tNote\n03 Nov\tBouwmarkt Zuid\t128.40\tmine\tgarden fence panels\n03 Nov\tZwarte Pan Webshop\t310.00\tnot mine\tcard not used online that day\n04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit\n05 Nov\tRoute 66 Fuel\t74.15\tnot mine\tpetrol station I have never been to\n06 Nov\tOnline Gaming Credits\t39.99\tnot mine\tsubscription I cancelled in June",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-fraud",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f07-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Account holder\tBram Hendriks\nIBAN\tNL58 FICT 0128 4471 90\n\nDate\tMerchant\tAmount (EUR)\tStatus\tNote\n03 Nov\tBouwmarkt Zuid\t128.40\tmine\tgarden fence panels\n03 Nov\tZwarte Pan Webshop\t310.00\tnot mine\tcard not used online that day\n04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit\n05 Nov\tRoute 66 Fuel\t74.15\tnot mine\tpetrol station I have never been to\n06 Nov\tOnline Gaming Credits\t39.99\tnot mine\tsubscription I cancelled in June",
+  "task": "List only the payments I did not make, with date, merchant and amount, so I can send them to the card issuer's fraud team.",
+  "entities": [
+   {
+    "id": "bram",
+    "entity_id": "p-bram",
+    "label": "PERSON",
+    "quote": "Bram Hendriks"
+   },
+   {
+    "id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "NL58 FICT 0128 4471 90"
+   },
+   {
+    "id": "dent",
+    "entity_id": "dent",
+    "label": "HEALTH",
+    "quote": "04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "bram",
+    "entity_id": "p-bram",
+    "label": "PERSON",
+    "quote": "Bram Hendriks",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "NL58 FICT 0128 4471 90",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "IBAN is a direct account identifier; the task does not need the number, no utility lost."
+   },
+   {
+    "kind": "section",
+    "quote": "04 Nov\tTandarts Wijkpraktijk\t95.00\tmine\tcrown repair, second visit\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The fraud list needs only the payments the user did not make; the dentist payment was made by the user and is not relevant to the dispute."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "03 Nov\tZwarte Pan Webshop\t310.00\tnot mine\tcard not used online that day"
+   },
+   {
+    "quote": "05 Nov\tRoute 66 Fuel\t74.15\tnot mine\tpetrol station I have never been to"
+   },
+   {
+    "quote": "06 Nov\tOnline Gaming Credits\t39.99\tnot mine\tsubscription I cancelled in June"
+   }
+  ],
+  "approved_output": "Account holder\t[PERSON_1]\nIBAN\t[IBAN]\n\nDate\tMerchant\tAmount (EUR)\tStatus\tNote\n03 Nov\tBouwmarkt Zuid\t128.40\tmine\tgarden fence panels\n03 Nov\tZwarte Pan Webshop\t310.00\tnot mine\tcard not used online that day\n05 Nov\tRoute 66 Fuel\t74.15\tnot mine\tpetrol station I have never been to\n06 Nov\tOnline Gaming Credits\t39.99\tnot mine\tsubscription I cancelled in June",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-handover",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "At 03:12 on Saturday the nightly export job for the parcel-tracking service started retrying every two seconds after the object store returned HTTP 503. Each retry opened a new connection, the pool of 200 connections was exhausted by 03:20, and the API began answering with timeouts. The retry loop, introduced in release 4.18, had no backoff and no cap, and that is the cause. We stopped the job at 03:41 and the API recovered at 03:44.\n\nOur usual on-call engineer, Nynke de Wit, is on secondment to the platform team in Utrecht until 20 June, so Thijs Aalbers carries the pager for the next three weeks. Thijs has not worked on the export service before and has asked for a short handover covering where the job is configured and who to wake up if it fails again.\n\nFix: backoff with jitter, a maximum of five attempts, and an alert when open connections pass 150. The change is in branch fix-export-backoff and needs a review from Sigrid Madsen before it ships on Tuesday.",
+  "task": "Draft the handover note for whoever is covering the pager over the next few weeks, so they know where to start.",
+  "entities": [
+   {
+    "id": "nynke",
+    "entity_id": "p-nynke",
+    "label": "PERSON",
+    "quote": "Nynke de Wit"
+   },
+   {
+    "id": "tarik1",
+    "entity_id": "p-tarik",
+    "label": "PERSON",
+    "quote": "Thijs Aalbers"
+   },
+   {
+    "id": "tarik2",
+    "entity_id": "p-tarik",
+    "label": "PERSON",
+    "quote": "Thijs",
+    "occurrence": 2
+   },
+   {
+    "id": "sigrid",
+    "entity_id": "p-sigrid",
+    "label": "PERSON",
+    "quote": "Sigrid Madsen"
+   },
+   {
+    "id": "sec",
+    "entity_id": "sec",
+    "label": "EMPLOYMENT",
+    "quote": "is on secondment to the platform team in Utrecht until 20 June"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nynke",
+    "entity_id": "p-nynke",
+    "label": "PERSON",
+    "quote": "Nynke de Wit",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sec",
+    "entity_id": "sec",
+    "label": "EMPLOYMENT",
+    "quote": "is on secondment to the platform team in Utrecht until 20 June",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tarik1",
+    "entity_id": "p-tarik",
+    "label": "PERSON",
+    "quote": "Thijs Aalbers",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tarik2",
+    "entity_id": "p-tarik",
+    "label": "PERSON",
+    "quote": "Thijs",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sigrid",
+    "entity_id": "p-sigrid",
+    "label": "PERSON",
+    "quote": "Sigrid Madsen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our usual on-call engineer,"
+   },
+   {
+    "quote": "is on secondment to the platform team in Utrecht until 20 June, so"
+   },
+   {
+    "quote": "carries the pager for the next three weeks."
+   },
+   {
+    "quote": "has not worked on the export service before and has asked for a short handover covering where the job is configured and who to wake up if it fails again."
+   },
+   {
+    "quote": "Fix: backoff with jitter, a maximum of five attempts, and an alert when open connections pass 150."
+   }
+  ],
+  "approved_output": "At 03:12 on Saturday the nightly export job for the parcel-tracking service started retrying every two seconds after the object store returned HTTP 503. Each retry opened a new connection, the pool of 200 connections was exhausted by 03:20, and the API began answering with timeouts. The retry loop, introduced in release 4.18, had no backoff and no cap, and that is the cause. We stopped the job at 03:41 and the API recovered at 03:44.\n\nOur usual on-call engineer, [PERSON_1], is on secondment to the platform team in Utrecht until 20 June, so [PERSON_2] carries the pager for the next three weeks. [PERSON_2] has not worked on the export service before and has asked for a short handover covering where the job is configured and who to wake up if it fails again.\n\nFix: backoff with jitter, a maximum of five attempts, and an alert when open connections pass 150. The change is in branch fix-export-backoff and needs a review from [PERSON_3] before it ships on Tuesday.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-rca",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f08-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "At 03:12 on Saturday the nightly export job for the parcel-tracking service started retrying every two seconds after the object store returned HTTP 503. Each retry opened a new connection, the pool of 200 connections was exhausted by 03:20, and the API began answering with timeouts. The retry loop, introduced in release 4.18, had no backoff and no cap, and that is the cause. We stopped the job at 03:41 and the API recovered at 03:44.\n\nOur usual on-call engineer, Nynke de Wit, is on secondment to the platform team in Utrecht until 20 June, so Thijs Aalbers carries the pager for the next three weeks. Thijs has not worked on the export service before and has asked for a short handover covering where the job is configured and who to wake up if it fails again.\n\nFix: backoff with jitter, a maximum of five attempts, and an alert when open connections pass 150. The change is in branch fix-export-backoff and needs a review from Sigrid Madsen before it ships on Tuesday.",
+  "task": "Write the technical incident summary for the engineering wiki: timeline, cause and fix.",
+  "entities": [
+   {
+    "id": "nynke",
+    "entity_id": "p-nynke",
+    "label": "PERSON",
+    "quote": "Nynke de Wit"
+   },
+   {
+    "id": "tarik1",
+    "entity_id": "p-tarik",
+    "label": "PERSON",
+    "quote": "Thijs Aalbers"
+   },
+   {
+    "id": "tarik2",
+    "entity_id": "p-tarik",
+    "label": "PERSON",
+    "quote": "Thijs",
+    "occurrence": 2
+   },
+   {
+    "id": "sigrid",
+    "entity_id": "p-sigrid",
+    "label": "PERSON",
+    "quote": "Sigrid Madsen"
+   },
+   {
+    "id": "sec",
+    "entity_id": "sec",
+    "label": "EMPLOYMENT",
+    "quote": "is on secondment to the platform team in Utrecht until 20 June"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "Our usual on-call engineer, Nynke de Wit, is on secondment to the platform team in Utrecht until 20 June, so Thijs Aalbers carries the pager for the next three weeks. Thijs has not worked on the export service before and has asked for a short handover covering where the job is configured and who to wake up if it fails again.\n\n",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The incident summary covers timeline, cause and fix; a colleague's secondment and the pager rota are staffing facts the summary does not need."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sigrid",
+    "entity_id": "p-sigrid",
+    "label": "PERSON",
+    "quote": "Sigrid Madsen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "At 03:12 on Saturday the nightly export job for the parcel-tracking service started retrying every two seconds after the object store returned HTTP 503."
+   },
+   {
+    "quote": "The retry loop, introduced in release 4.18, had no backoff and no cap, and that is the cause."
+   },
+   {
+    "quote": "We stopped the job at 03:41 and the API recovered at 03:44."
+   },
+   {
+    "quote": "Fix: backoff with jitter, a maximum of five attempts, and an alert when open connections pass 150."
+   }
+  ],
+  "approved_output": "At 03:12 on Saturday the nightly export job for the parcel-tracking service started retrying every two seconds after the object store returned HTTP 503. Each retry opened a new connection, the pool of 200 connections was exhausted by 03:20, and the API began answering with timeouts. The retry loop, introduced in release 4.18, had no backoff and no cap, and that is the cause. We stopped the job at 03:41 and the API recovered at 03:44.\n\nFix: backoff with jitter, a maximum of five attempts, and an alert when open connections pass 150. The change is in branch fix-export-backoff and needs a review from [PERSON_1] before it ships on Tuesday.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-credit",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 48812, customer Veldkamp Tuinbouw BV, priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Rotterdam region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAccount note from the sales team: Veldkamp renews in January at 41,500 euros a year for the Plus plan, and their buyer, Wendela Roos, hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with Wendela on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice. The credit has not been applied yet and needs approval from finance.",
+  "task": "Draft the note to finance asking them to approve what we promised the customer after the outage.",
+  "entities": [
+   {
+    "id": "org1",
+    "entity_id": "o-veld",
+    "label": "ORG",
+    "quote": "Veldkamp Tuinbouw BV"
+   },
+   {
+    "id": "org2",
+    "entity_id": "o-veld",
+    "label": "ORG",
+    "quote": "Veldkamp",
+    "occurrence": 2
+   },
+   {
+    "id": "wend1",
+    "entity_id": "p-wend",
+    "label": "PERSON",
+    "quote": "Wendela Roos"
+   },
+   {
+    "id": "wend2",
+    "entity_id": "p-wend",
+    "label": "PERSON",
+    "quote": "Wendela",
+    "occurrence": 2
+   },
+   {
+    "id": "price",
+    "entity_id": "price",
+    "label": "FINANCIAL",
+    "quote": "Veldkamp renews in January at 41,500 euros a year for the Plus plan"
+   },
+   {
+    "id": "cred",
+    "entity_id": "cred",
+    "label": "FINANCIAL",
+    "quote": "the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "org1",
+    "entity_id": "o-veld",
+    "label": "ORG",
+    "quote": "Veldkamp Tuinbouw BV",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer organisation name is a confidential client identity; the task does not need it, no utility lost."
+   },
+   {
+    "kind": "section",
+    "quote": "Account note from the sales team: Veldkamp renews in January at 41,500 euros a year for the Plus plan, and their buyer, Wendela Roos, hinted that they will compare us with a rival if there are more outages this quarter.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Finance approving a service credit does not need the confidential renewal price or the customer's hint about competitors."
+   },
+   {
+    "kind": "entity",
+    "target_id": "wend2",
+    "entity_id": "p-wend",
+    "label": "PERSON",
+    "quote": "Wendela",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cred",
+    "entity_id": "cred",
+    "label": "FINANCIAL",
+    "quote": "the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Agreed with"
+   },
+   {
+    "quote": "on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice."
+   },
+   {
+    "quote": "The credit has not been applied yet and needs approval from finance."
+   }
+  ],
+  "approved_output": "Ticket 48812, customer [ORG], priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Rotterdam region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAgreed with [PERSON_1] on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice. The credit has not been applied yet and needs approval from finance.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-postmortem",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 48812, customer Veldkamp Tuinbouw BV, priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Rotterdam region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAccount note from the sales team: Veldkamp renews in January at 41,500 euros a year for the Plus plan, and their buyer, Wendela Roos, hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with Wendela on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice. The credit has not been applied yet and needs approval from finance.",
+  "task": "Write the post-incident summary for the support team covering what happened, the cause and how it was fixed.",
+  "entities": [
+   {
+    "id": "org1",
+    "entity_id": "o-veld",
+    "label": "ORG",
+    "quote": "Veldkamp Tuinbouw BV"
+   },
+   {
+    "id": "org2",
+    "entity_id": "o-veld",
+    "label": "ORG",
+    "quote": "Veldkamp",
+    "occurrence": 2
+   },
+   {
+    "id": "wend1",
+    "entity_id": "p-wend",
+    "label": "PERSON",
+    "quote": "Wendela Roos"
+   },
+   {
+    "id": "wend2",
+    "entity_id": "p-wend",
+    "label": "PERSON",
+    "quote": "Wendela",
+    "occurrence": 2
+   },
+   {
+    "id": "price",
+    "entity_id": "price",
+    "label": "FINANCIAL",
+    "quote": "Veldkamp renews in January at 41,500 euros a year for the Plus plan"
+   },
+   {
+    "id": "cred",
+    "entity_id": "cred",
+    "label": "FINANCIAL",
+    "quote": "the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "org1",
+    "entity_id": "o-veld",
+    "label": "ORG",
+    "quote": "Veldkamp Tuinbouw BV",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer organisation name is a confidential client identity; the task does not need it, no utility lost."
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nAccount note from the sales team: Veldkamp renews in January at 41,500 euros a year for the Plus plan, and their buyer, Wendela Roos, hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with Wendela on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a service credit of 6 percent of the monthly fee, which is 207.50 euros, on the next invoice. The credit has not been applied yet and needs approval from finance.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A post-incident summary of impact, cause and fix does not need the confidential renewal price, the competitor hint, or the commercial service credit and its approval status; both are complete commercial paragraphs."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday."
+   },
+   {
+    "quote": "Cause: a cache node in the Rotterdam region had been restarted without warming, and the portal timed out while rebuilding the product index."
+   },
+   {
+    "quote": "The cache was warmed manually at 11:42 and the pages loaded again at 11:50."
+   }
+  ],
+  "approved_output": "Ticket 48812, customer [ORG], priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Rotterdam region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-order",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The CI pipeline for the mobile app has failed on the signing step since Monday with the error that the keystore was tampered with or the password was incorrect, but only on the two older build machines. Fresh runners in the cloud pool sign without any problem, so I believe the keystore file itself is fine and the old machines have a stale copy of the signing alias. Jonas Vermeulen wiped and reinstalled one old machine on Wednesday and the problem did not go away, which rules out a bad disk image. Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week. The keystore password is stored in the vault entry named ci-signing-prod, and I tried the one in my notes, Kv7!rainbow-delta, which also failed. For now the release is paused, and Eline Mulder in QA has asked for an update today.",
+  "task": "Write a short note to purchasing so the hardware order goes out in time if the fix does not work.",
+  "entities": [
+   {
+    "id": "jonas",
+    "entity_id": "p-jonas",
+    "label": "PERSON",
+    "quote": "Jonas Vermeulen"
+   },
+   {
+    "id": "eline",
+    "entity_id": "p-eline",
+    "label": "PERSON",
+    "quote": "Eline Mulder"
+   },
+   {
+    "id": "buy",
+    "entity_id": "buy",
+    "label": "FINANCIAL",
+    "quote": "Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week"
+   },
+   {
+    "id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kv7!rainbow-delta"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "jonas",
+    "entity_id": "p-jonas",
+    "label": "PERSON",
+    "quote": "Jonas Vermeulen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "buy",
+    "entity_id": "buy",
+    "label": "FINANCIAL",
+    "quote": "Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kv7!rainbow-delta",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Fictional signing password is a credential; neither task needs the value, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "eline",
+    "entity_id": "p-eline",
+    "label": "PERSON",
+    "quote": "Eline Mulder",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week."
+   },
+   {
+    "quote": "The CI pipeline for the mobile app has failed on the signing step since Monday with the error that the keystore was tampered with or the password was incorrect, but only on the two older build machines."
+   }
+  ],
+  "approved_output": "The CI pipeline for the mobile app has failed on the signing step since Monday with the error that the keystore was tampered with or the password was incorrect, but only on the two older build machines. Fresh runners in the cloud pool sign without any problem, so I believe the keystore file itself is fine and the old machines have a stale copy of the signing alias. [PERSON_1] wiped and reinstalled one old machine on Wednesday and the problem did not go away, which rules out a bad disk image. Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week. The keystore password is stored in the vault entry named ci-signing-prod, and I tried the one in my notes, [SECRET], which also failed. For now the release is paused, and [PERSON_2] in QA has asked for an update today.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-debug",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:f10-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The CI pipeline for the mobile app has failed on the signing step since Monday with the error that the keystore was tampered with or the password was incorrect, but only on the two older build machines. Fresh runners in the cloud pool sign without any problem, so I believe the keystore file itself is fine and the old machines have a stale copy of the signing alias. Jonas Vermeulen wiped and reinstalled one old machine on Wednesday and the problem did not go away, which rules out a bad disk image. Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week. The keystore password is stored in the vault entry named ci-signing-prod, and I tried the one in my notes, Kv7!rainbow-delta, which also failed. For now the release is paused, and Eline Mulder in QA has asked for an update today.",
+  "task": "Suggest what to check next for the signing failure on the old machines, using what has already been tried.",
+  "entities": [
+   {
+    "id": "jonas",
+    "entity_id": "p-jonas",
+    "label": "PERSON",
+    "quote": "Jonas Vermeulen"
+   },
+   {
+    "id": "eline",
+    "entity_id": "p-eline",
+    "label": "PERSON",
+    "quote": "Eline Mulder"
+   },
+   {
+    "id": "buy",
+    "entity_id": "buy",
+    "label": "FINANCIAL",
+    "quote": "Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week"
+   },
+   {
+    "id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kv7!rainbow-delta"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "jonas",
+    "entity_id": "p-jonas",
+    "label": "PERSON",
+    "quote": "Jonas Vermeulen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Procurement approved 4,200 euros for two replacement build servers if we cannot fix these by Friday, and the order has to go to the supplier before 14:00 on Friday to arrive next week. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Diagnosing the signing failure does not need the approved hardware budget or the supplier order deadline."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kv7!rainbow-delta",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Fictional signing password is a credential; neither task needs the value, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "eline",
+    "entity_id": "p-eline",
+    "label": "PERSON",
+    "quote": "Eline Mulder",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The CI pipeline for the mobile app has failed on the signing step since Monday with the error that the keystore was tampered with or the password was incorrect, but only on the two older build machines."
+   },
+   {
+    "quote": "Fresh runners in the cloud pool sign without any problem, so I believe the keystore file itself is fine and the old machines have a stale copy of the signing alias."
+   },
+   {
+    "quote": "wiped and reinstalled one old machine on Wednesday and the problem did not go away, which rules out a bad disk image."
+   },
+   {
+    "quote": "I tried the one in my notes,"
+   },
+   {
+    "quote": "which also failed."
+   }
+  ],
+  "approved_output": "The CI pipeline for the mobile app has failed on the signing step since Monday with the error that the keystore was tampered with or the password was incorrect, but only on the two older build machines. Fresh runners in the cloud pool sign without any problem, so I believe the keystore file itself is fine and the old machines have a stale copy of the signing alias. [PERSON_1] wiped and reinstalled one old machine on Wednesday and the problem did not go away, which rules out a bad disk image. The keystore password is stored in the vault entry named ci-signing-prod, and I tried the one in my notes, [SECRET], which also failed. For now the release is paused, and [PERSON_2] in QA has asked for an update today.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:c01-control",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c01-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c01-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c01-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c01-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "My mother, Birgit Mortensen, is 81 and was diagnosed with vascular dementia in 2023, and she cannot reliably remember numbers or follow instructions given by phone. On Monday a man came to her door saying he was from her bank's security team and asked her to hand over her debit card and tell him the PIN, which she did. By Tuesday 21,800 kroner had been withdrawn from her account in three cash withdrawals. I hold her power of attorney and manage her accounts. Her card ended in 9026. You can reach me, Henrik Mortensen, on 20 66 31 47.",
+  "task": "Write a letter to the bank's fraud department asking for a refund and explaining why my mother could not have recognised this approach as a scam.",
+  "entities": [
+   {
+    "id": "birgit",
+    "entity_id": "p-birgit",
+    "label": "PERSON",
+    "quote": "Birgit Mortensen"
+   },
+   {
+    "id": "henrik",
+    "entity_id": "p-henrik",
+    "label": "PERSON",
+    "quote": "Henrik Mortensen"
+   },
+   {
+    "id": "health",
+    "entity_id": "health",
+    "label": "HEALTH",
+    "quote": "was diagnosed with vascular dementia in 2023, and she cannot reliably remember numbers or follow instructions given by phone"
+   },
+   {
+    "id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "By Tuesday 21,800 kroner had been withdrawn from her account in three cash withdrawals"
+   },
+   {
+    "id": "poa",
+    "entity_id": "poa",
+    "label": "FAMILY",
+    "quote": "I hold her power of attorney and manage her accounts"
+   },
+   {
+    "id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "9026"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "20 66 31 47"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "birgit",
+    "entity_id": "p-birgit",
+    "label": "PERSON",
+    "quote": "Birgit Mortensen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "health",
+    "entity_id": "health",
+    "label": "HEALTH",
+    "quote": "was diagnosed with vascular dementia in 2023, and she cannot reliably remember numbers or follow instructions given by phone",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "By Tuesday 21,800 kroner had been withdrawn from her account in three cash withdrawals",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "poa",
+    "entity_id": "poa",
+    "label": "FAMILY",
+    "quote": "I hold her power of attorney and manage her accounts",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "9026",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Last card digits are a payment identifier; the letter does not need them, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "henrik",
+    "entity_id": "p-henrik",
+    "label": "PERSON",
+    "quote": "Henrik Mortensen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "20 66 31 47",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct contact detail; the letter does not need it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My mother,"
+   },
+   {
+    "quote": "was diagnosed with vascular dementia in 2023, and she cannot reliably remember numbers or follow instructions given by phone."
+   },
+   {
+    "quote": "On Monday a man came to her door saying he was from her bank's security team and asked her to hand over her debit card and tell him the PIN, which she did."
+   },
+   {
+    "quote": "By Tuesday 21,800 kroner had been withdrawn from her account in three cash withdrawals."
+   },
+   {
+    "quote": "I hold her power of attorney and manage her accounts."
+   }
+  ],
+  "approved_output": "My mother, [PERSON_1], is 81 and was diagnosed with vascular dementia in 2023, and she cannot reliably remember numbers or follow instructions given by phone. On Monday a man came to her door saying he was from her bank's security team and asked her to hand over her debit card and tell him the PIN, which she did. By Tuesday 21,800 kroner had been withdrawn from her account in three cash withdrawals. I hold her power of attorney and manage her accounts. Her card ended in [PAYMENT_CARD]. You can reach me, [PERSON_2], on [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:c02-control",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c02-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c02-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c02-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c02-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I am asking for a replacement debit card because mine cracked in half this week. Since January I have been in treatment for a gambling addiction, and my counsellor, Karen Ploug, has advised me to keep my daily spending limit at 300 kroner and to block gambling merchants on the card. I have already agreed this with my partner. Until the new card arrives I will use cash. I would like the new card to carry the same limit and the block on gambling and betting sites, and to be sent within seven days. The old card number ends in 3318. My name is Tobias Rasmussen and my phone is 53 20 84 17.",
+  "task": "Write a request to my bank for the new card, including the limit and merchant block I need and the reason for them.",
+  "entities": [
+   {
+    "id": "karen",
+    "entity_id": "p-karen",
+    "label": "PERSON",
+    "quote": "Karen Ploug"
+   },
+   {
+    "id": "tobias",
+    "entity_id": "p-tobias",
+    "label": "PERSON",
+    "quote": "Tobias Rasmussen"
+   },
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "Since January I have been in treatment for a gambling addiction"
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "has advised me to keep my daily spending limit at 300 kroner and to block gambling merchants on the card"
+   },
+   {
+    "id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "3318"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "53 20 84 17"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "Since January I have been in treatment for a gambling addiction",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "karen",
+    "entity_id": "p-karen",
+    "label": "PERSON",
+    "quote": "Karen Ploug",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "has advised me to keep my daily spending limit at 300 kroner and to block gambling merchants on the card",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "card",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "3318",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Last card digits are a payment identifier; the request does not need them, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "tobias",
+    "entity_id": "p-tobias",
+    "label": "PERSON",
+    "quote": "Tobias Rasmussen",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "53 20 84 17",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct contact detail; the request does not need it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Since January I have been in treatment for a gambling addiction"
+   },
+   {
+    "quote": "my counsellor,"
+   },
+   {
+    "quote": "has advised me to keep my daily spending limit at 300 kroner and to block gambling merchants on the card."
+   },
+   {
+    "quote": "I would like the new card to carry the same limit and the block on gambling and betting sites, and to be sent within seven days."
+   }
+  ],
+  "approved_output": "I am asking for a replacement debit card because mine cracked in half this week. Since January I have been in treatment for a gambling addiction, and my counsellor, [PERSON_1], has advised me to keep my daily spending limit at 300 kroner and to block gambling merchants on the card. I have already agreed this with my partner. Until the new card arrives I will use cash. I would like the new card to carry the same limit and the block on gambling and betting sites, and to be sent within seven days. The old card number ends in [PAYMENT_CARD]. My name is [PERSON_2] and my phone is [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:c03-control",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c03-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c03-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c03-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c03-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 51207, customer: Roelof Brink of Brink & Zonen Tuinmeubelen, priority 3. He cannot log in to the web shop admin page because the login puzzle (select all images with a bicycle) cannot be read by his screen reader. He is blind and uses a screen reader every day, and he says this started after our update on 4 November, as before that the login only asked for a code. He tried the audio option, which played static. A workaround we could offer him is to log in via the email link, but the shop admin role needs a second factor that is only available in the puzzle flow. His email is roelof@brinkenzonen.example.invalid and he asked us to call him on 06 2284 1950 only after 13:00.",
+  "task": "Write the internal bug report for the accessibility team describing how the login failure affects this customer and what has been tried.",
+  "entities": [
+   {
+    "id": "roelof",
+    "entity_id": "p-roelof",
+    "label": "PERSON",
+    "quote": "Roelof Brink"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Brink & Zonen Tuinmeubelen"
+   },
+   {
+    "id": "blind",
+    "entity_id": "blind",
+    "label": "HEALTH",
+    "quote": "He is blind and uses a screen reader every day"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "roelof@brinkenzonen.example.invalid"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "06 2284 1950"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "roelof",
+    "entity_id": "p-roelof",
+    "label": "PERSON",
+    "quote": "Roelof Brink",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Brink & Zonen Tuinmeubelen",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer business name is a client identity; the bug report does not need it, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "blind",
+    "entity_id": "blind",
+    "label": "HEALTH",
+    "quote": "He is blind and uses a screen reader every day",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "roelof@brinkenzonen.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer email is a direct contact identifier; not needed for the bug report."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "06 2284 1950",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer phone number is a direct contact detail; not needed for the bug report."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "He cannot log in to the web shop admin page because the login puzzle (select all images with a bicycle) cannot be read by his screen reader."
+   },
+   {
+    "quote": "He is blind and uses a screen reader every day, and he says this started after our update on 4 November, as before that the login only asked for a code."
+   },
+   {
+    "quote": "He tried the audio option, which played static."
+   }
+  ],
+  "approved_output": "Ticket 51207, customer: [PERSON_1] of [ORG], priority 3. He cannot log in to the web shop admin page because the login puzzle (select all images with a bicycle) cannot be read by his screen reader. He is blind and uses a screen reader every day, and he says this started after our update on 4 November, as before that the login only asked for a code. He tried the audio option, which played static. A workaround we could offer him is to log in via the email link, but the shop admin role needs a second factor that is only available in the puzzle flow. His email is [EMAIL] and he asked us to call him on [PHONE] only after 13:00.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:c04-control",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c04-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c04-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c04-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c04-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Steps for ordering a replacement debit card in the banking app: open the Cards tab, select the card you want to replace, and tap Replace card. Choose whether the old card is lost, stolen or damaged. A lost or stolen card is blocked immediately, while a damaged card stays active until the new one is activated. The new card arrives in five to seven working days, and the standard fee is 8.50 euros unless the card was kept by a machine. Activate the new card by making one chip and PIN payment of any amount. Contactless payments will work again after that first payment. If the card has not arrived after ten working days, contact the bank through the app chat.",
+  "task": "Turn these steps into a short numbered checklist.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "A lost or stolen card is blocked immediately, while a damaged card stays active until the new one is activated."
+   },
+   {
+    "quote": "The new card arrives in five to seven working days, and the standard fee is 8.50 euros unless the card was kept by a machine."
+   },
+   {
+    "quote": "If the card has not arrived after ten working days, contact the bank through the app chat."
+   }
+  ],
+  "approved_output": "Steps for ordering a replacement debit card in the banking app: open the Cards tab, select the card you want to replace, and tap Replace card. Choose whether the old card is lost, stolen or damaged. A lost or stolen card is blocked immediately, while a damaged card stays active until the new one is activated. The new card arrives in five to seven working days, and the standard fee is 8.50 euros unless the card was kept by a machine. Activate the new card by making one chip and PIN payment of any amount. Contactless payments will work again after that first payment. If the card has not arrived after ten working days, contact the bank through the app chat.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6c5266a7fc554e4ab41c0ab2e89e3604",
+  "id": "6c5266a7fc554e4ab41c0ab2e89e3604:c05-control",
+  "family_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c05-family",
+  "source_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c05-source",
+  "persona_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c05-persona",
+  "template_id": "6c5266a7fc554e4ab41c0ab2e89e3604:c05-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes from today. The card helpline said the replacement for my blocked card goes out on Monday, and the agent, Annelies Peeters, gave me the dispute window as thirteen months. Three fraud charges, 22.50, 61.00 and 140.00 euros, appear on the old card. I still need to ask whether the 5 euro replacement fee applies. My GP appointment is on Thursday morning about my blood pressure tablets, so I cannot ring back before noon. Paying my sister back the 300 euros I owe her is also on my list this week. Case code: KZ-72931.",
+  "task": "Help me organise this note.",
+  "entities": [
+   {
+    "id": "annelies",
+    "entity_id": "p-annelies",
+    "label": "PERSON",
+    "quote": "Annelies Peeters"
+   },
+   {
+    "id": "gp",
+    "entity_id": "gp",
+    "label": "HEALTH",
+    "quote": "My GP appointment is on Thursday morning about my blood pressure tablets, so I cannot ring back before noon"
+   },
+   {
+    "id": "sis",
+    "entity_id": "sis",
+    "label": "FINANCIAL",
+    "quote": "Paying my sister back the 300 euros I owe her is also on my list this week"
+   },
+   {
+    "id": "code",
+    "entity_id": "code",
+    "label": "ACCOUNT_ID",
+    "quote": "KZ-72931"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "annelies",
+    "entity_id": "p-annelies",
+    "label": "PERSON",
+    "quote": "Annelies Peeters",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "gp",
+    "entity_id": "gp",
+    "label": "HEALTH",
+    "quote": "My GP appointment is on Thursday morning about my blood pressure tablets, so I cannot ring back before noon",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "The task does not say whether the appointment matters; it may be a scheduling constraint for the call-back, so it stays uncertain and is kept."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sis",
+    "entity_id": "sis",
+    "label": "FINANCIAL",
+    "quote": "Paying my sister back the 300 euros I owe her is also on my list this week",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "The task does not say whether this debt belongs in the organised note; it may be a to-do item, so it stays uncertain and is kept."
+   },
+   {
+    "kind": "entity",
+    "target_id": "code",
+    "entity_id": "code",
+    "label": "ACCOUNT_ID",
+    "quote": "KZ-72931",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Case code is a direct identifier; the vague task does not show whether the exact code is needed, so it is replaced and utility may be lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Three fraud charges, 22.50, 61.00 and 140.00 euros, appear on the old card."
+   },
+   {
+    "quote": "I still need to ask whether the 5 euro replacement fee applies."
+   }
+  ],
+  "approved_output": "Notes from today. The card helpline said the replacement for my blocked card goes out on Monday, and the agent, [PERSON_1], gave me the dispute window as thirteen months. Three fraud charges, 22.50, 61.00 and 140.00 euros, appear on the old card. I still need to ask whether the 5 euro replacement fee applies. My GP appointment is on Thursday morning about my blood pressure tablets, so I cannot ring back before noon. Paying my sister back the 300 euros I owe her is also on my list this week. Case code: [ACCOUNT_ID].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6c5266a7fc554e4ab41c0ab2e89e3604:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

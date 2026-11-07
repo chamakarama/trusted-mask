@@ -1,0 +1,2679 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-001",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-001",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-001",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-001",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write the email to the admissions office requesting the extension, using the dates and the tutor's offer of support.",
+  "text": "Hi, I'm writing about my offer for the MSc in Data Science. My name is Tadeusz Wrona-Bielecki and my applicant number is APP-60418377. I received the offer on 12 March with a condition of an overall 2:1, but my final results will only be released on 19 June, and the conditions deadline is 14 June. My personal tutor, Dr Aino Heikkilä, said she can write to the department confirming the delay if I ask by Friday. Please contact me on tadeusz.wb@example.org or 07700 900314. Can you help me draft a polite email asking admissions to extend the conditions deadline to 24 June, and mention that the results delay is not my fault?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "me",
+    "quote": "Tadeusz Wrona-Bielecki",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "appno",
+    "quote": "APP-60418377",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "tutor",
+    "quote": "Aino Heikkilä",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "email",
+    "quote": "tadeusz.wb@example.org",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "phone",
+    "quote": "07700 900314",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "me",
+    "quote": "Tadeusz Wrona-Bielecki",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "appno",
+    "quote": "APP-60418377",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The email should cite the applicant number, so the user must re-insert the exact value; the model never sees it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "tutor",
+    "quote": "Aino Heikkilä",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "email",
+    "quote": "tadeusz.wb@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; the extension request does not need it, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "phone",
+    "quote": "07700 900314",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct phone number; the request does not need it, no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I received the offer on 12 March with a condition of an overall 2:1, but my final results will only be released on 19 June, and the conditions deadline is 14 June."
+   },
+   {
+    "quote": "My personal tutor, Dr"
+   },
+   {
+    "quote": "said she can write to the department confirming the delay if I ask by Friday."
+   },
+   {
+    "quote": "extend the conditions deadline to 24 June, and mention that the results delay is not my fault"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi, I'm writing about my offer for the MSc in Data Science. My name is [PERSON_1] and my applicant number is [ACCOUNT_ID]. I received the offer on 12 March with a condition of an overall 2:1, but my final results will only be released on 19 June, and the conditions deadline is 14 June. My personal tutor, Dr [PERSON_2], said she can write to the department confirming the delay if I ask by Friday. Please contact me on [EMAIL] or [PHONE]. Can you help me draft a polite email asking admissions to extend the conditions deadline to 24 June, and mention that the results delay is not my fault?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-002",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-002",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-002",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-002",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a one-page list of questions for my next call with the loan servicer, covering the payment mismatch and the possible refund or credit.",
+  "text": "Notes for my call with the loan servicer. Account holder: Thanh Tam Bui. Loan number LN-5520-8817, balance 14,250 pounds, 4.1 percent fixed. I started repayments in January, but they took 310 pounds in February and 180 pounds in March, not 180 both months. My mother, Hoa Pham, is the guarantor and she has not been told yet. The servicer's rep was called Deshawn Whitlock and promised a written correction within 10 working days. Deshawn also said the extra 130 pounds was a processing error, not interest. Call-back number he gave: 020 7946 0155. I want a one-page list of questions for the next call, including whether the 130-pound difference can be refunded or credited.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "me",
+    "quote": "Thanh Tam Bui",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "loan",
+    "quote": "LN-5520-8817",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "balance",
+    "quote": "balance 14,250 pounds",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m4",
+    "entity_id": "mother",
+    "quote": "Hoa Pham",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "rep",
+    "quote": "Deshawn Whitlock",
+    "label": "PERSON"
+   },
+   {
+    "id": "m6",
+    "entity_id": "rep",
+    "quote": "Deshawn",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "phone",
+    "quote": "020 7946 0155",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "me",
+    "quote": "Thanh Tam Bui",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "loan",
+    "quote": "LN-5520-8817",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The questions should reference the loan number, so the user re-inserts the exact value; the model cannot verify it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "balance",
+    "quote": "balance 14,250 pounds",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "mother",
+    "quote": "Hoa Pham",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rep",
+    "quote": "Deshawn Whitlock",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "rep",
+    "quote": "Deshawn",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "phone",
+    "quote": "020 7946 0155",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Call-back number is not needed to draft questions; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "they took 310 pounds in February and 180 pounds in March, not 180 both months."
+   },
+   {
+    "quote": "My mother,"
+   },
+   {
+    "quote": "is the guarantor and she has not been told yet."
+   },
+   {
+    "quote": "The servicer's rep was called"
+   },
+   {
+    "quote": "and promised a written correction within 10 working days."
+   },
+   {
+    "quote": "also said the extra 130 pounds was a processing error, not interest."
+   },
+   {
+    "quote": "I want a one-page list of questions for the next call, including whether the 130-pound difference can be refunded or credited."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes for my call with the loan servicer. Account holder: [PERSON_1]. Loan number [ACCOUNT_ID], balance 14,250 pounds, 4.1 percent fixed. I started repayments in January, but they took 310 pounds in February and 180 pounds in March, not 180 both months. My mother, [PERSON_2], is the guarantor and she has not been told yet. The servicer's rep was called [PERSON_3] and promised a written correction within 10 working days. [PERSON_3] also said the extra 130 pounds was a processing error, not interest. Call-back number he gave: [PHONE]. I want a one-page list of questions for the next call, including whether the 130-pound difference can be refunded or credited."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-003",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-003",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-003",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-003",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-003",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a short, clear extension request for the grants committee that keeps the dates and the reason.",
+  "text": "Dear grants team, I'm submitting my hardship grant application (reference HG-2026-0457) late because I was admitted to hospital with appendicitis on 3 October and discharged on 6 October. My name is Folasade Ogunleye-Brandt and I live at Flat 4, 27 Marlow Court, Leeds LS6 1AB. I'd like to ask for an extension to 21 October, not 14 October as the portal says. My landlord, Gerald Pimm, will confirm my rent of 640 pounds a month by email if you contact him at g.pimm@example.net. Gerald has the tenancy agreement and can send it the same day. Could you help me turn this into a clear request that keeps the dates and the hospital stay? The committee only reads the first paragraph.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "ref",
+    "quote": "HG-2026-0457",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m2",
+    "entity_id": "stay",
+    "quote": "I was admitted to hospital with appendicitis on 3 October and discharged on 6 October",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m3",
+    "entity_id": "me",
+    "quote": "Folasade Ogunleye-Brandt",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "addr",
+    "quote": "Flat 4, 27 Marlow Court, Leeds LS6 1AB",
+    "label": "ADDRESS"
+   },
+   {
+    "id": "m5",
+    "entity_id": "landlord",
+    "quote": "Gerald Pimm",
+    "label": "PERSON"
+   },
+   {
+    "id": "m6",
+    "entity_id": "lemail",
+    "quote": "g.pimm@example.net",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m7",
+    "entity_id": "landlord",
+    "quote": "Gerald",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "ref",
+    "quote": "HG-2026-0457",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The request should quote the application reference; the user re-inserts the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "stay",
+    "quote": "I was admitted to hospital with appendicitis on 3 October and discharged on 6 October",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "me",
+    "quote": "Folasade Ogunleye-Brandt",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "addr",
+    "quote": "Flat 4, 27 Marlow Court, Leeds LS6 1AB",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Home address is not needed for an extension request; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "landlord",
+    "quote": "Gerald Pimm",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "lemail",
+    "quote": "g.pimm@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The committee is told how to contact the landlord, so the user re-inserts the address; the model cannot check it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "landlord",
+    "quote": "Gerald",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "because I was admitted to hospital with appendicitis on 3 October and discharged on 6 October."
+   },
+   {
+    "quote": "I'd like to ask for an extension to 21 October, not 14 October as the portal says."
+   },
+   {
+    "quote": "My landlord,"
+   },
+   {
+    "quote": "will confirm my rent of 640 pounds a month by email if you contact him at"
+   },
+   {
+    "quote": "has the tenancy agreement and can send it the same day."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Dear grants team, I'm submitting my hardship grant application (reference [ACCOUNT_ID]) late because I was admitted to hospital with appendicitis on 3 October and discharged on 6 October. My name is [PERSON_1] and I live at [ADDRESS]. I'd like to ask for an extension to 21 October, not 14 October as the portal says. My landlord, [PERSON_2], will confirm my rent of 640 pounds a month by email if you contact him at [EMAIL]. [PERSON_2] has the tenancy agreement and can send it the same day. Could you help me turn this into a clear request that keeps the dates and the hospital stay? The committee only reads the first paragraph."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-004",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-004",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-004",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-004",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-004",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write the grounds of an exam re-mark appeal in numbered paragraphs, using the marks, dates and the comparison with a classmate's script.",
+  "text": "Appeal notes. Student: Chinedu Okonkwo-Lund, student ID 20318846, module ECON2207. Mark awarded 38, pass mark 40, so I failed by two marks. Question 3 was marked 4/15 but the marker, Professor Imre Szalai, wrote 'method correct' beside it and my working shows the right answer of 12.5 percent. If Q3 is re-marked at 6/15 or more I pass. My friend Ruth Mbeki sat the same paper and her question 3 had identical working but scored 10/15. I have not asked for a resit, only a re-mark of Q3. I sat the exam on 14 January and the appeal window closes on 28 February. Please send the reply to chinedu.ol@example.com.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "me",
+    "quote": "Chinedu Okonkwo-Lund",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "sid",
+    "quote": "20318846",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "marker",
+    "quote": "Imre Szalai",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "friend",
+    "quote": "Ruth Mbeki",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "email",
+    "quote": "chinedu.ol@example.com",
+    "label": "EMAIL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "me",
+    "quote": "Chinedu Okonkwo-Lund",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "sid",
+    "quote": "20318846",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The appeal grounds should cite the student ID; the user re-inserts the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "marker",
+    "quote": "Imre Szalai",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "friend",
+    "quote": "Ruth Mbeki",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "email",
+    "quote": "chinedu.ol@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reply address is not needed for drafting the grounds; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Mark awarded 38, pass mark 40, so I failed by two marks."
+   },
+   {
+    "quote": "Question 3 was marked 4/15 but the marker, Professor"
+   },
+   {
+    "quote": "wrote 'method correct' beside it and my working shows the right answer of 12.5 percent."
+   },
+   {
+    "quote": "If Q3 is re-marked at 6/15 or more I pass."
+   },
+   {
+    "quote": "My friend"
+   },
+   {
+    "quote": "sat the same paper and her question 3 had identical working but scored 10/15."
+   },
+   {
+    "quote": "I have not asked for a resit, only a re-mark of Q3."
+   },
+   {
+    "quote": "I sat the exam on 14 January and the appeal window closes on 28 February."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Appeal notes. Student: [PERSON_1], student ID [ACCOUNT_ID], module ECON2207. Mark awarded 38, pass mark 40, so I failed by two marks. Question 3 was marked 4/15 but the marker, Professor [PERSON_2], wrote 'method correct' beside it and my working shows the right answer of 12.5 percent. If Q3 is re-marked at 6/15 or more I pass. My friend [PERSON_3] sat the same paper and her question 3 had identical working but scored 10/15. I have not asked for a resit, only a re-mark of Q3. I sat the exam on 14 January and the appeal window closes on 28 February. Please send the reply to [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-005",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-005",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-005",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-005",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-005",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a firm but polite email asking for the holding deposit refund, pointing out the conflict between what the agent said and the contract.",
+  "text": "Hello, I'm Inês Valadares and I paid a holding deposit of 250 pounds on 2 September for a room at Westbrook Student Lofts, booking ref WSL-77412. The contract starts on 1 October, but I can't take the room because my visa appointment was moved to November. The agent, Mariam El-Sayed, told me by phone that the deposit is refundable if I give 14 days' notice, but the contract says it is non-refundable after 7 days. I paid with my guarantor's card, 4000 0012 8800 4410, and he, Szymon Kowal, has asked me to get the money back to him. Please reply to ines.valadares@example.com. Thanks, Inês",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "me",
+    "quote": "Inês Valadares",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "booking",
+    "quote": "WSL-77412",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "agent",
+    "quote": "Mariam El-Sayed",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "card",
+    "quote": "4000 0012 8800 4410",
+    "label": "PAYMENT_CARD"
+   },
+   {
+    "id": "m5",
+    "entity_id": "guarantor",
+    "quote": "Szymon Kowal",
+    "label": "PERSON"
+   },
+   {
+    "id": "m6",
+    "entity_id": "email",
+    "quote": "ines.valadares@example.com",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m7",
+    "entity_id": "me",
+    "quote": "Inês",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "me",
+    "quote": "Inês Valadares",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "booking",
+    "quote": "WSL-77412",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The refund request must cite the booking reference; the user re-inserts the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "agent",
+    "quote": "Mariam El-Sayed",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "card",
+    "quote": "4000 0012 8800 4410",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The agency may need the card used for the refund; the user supplies it directly, the model cannot verify it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "guarantor",
+    "quote": "Szymon Kowal",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "email",
+    "quote": "ines.valadares@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reply address is not needed to draft the email; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "me",
+    "quote": "Inês",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I paid a holding deposit of 250 pounds on 2 September"
+   },
+   {
+    "quote": "The contract starts on 1 October, but I can't take the room because my visa appointment was moved to November."
+   },
+   {
+    "quote": "The agent,"
+   },
+   {
+    "quote": "told me by phone that the deposit is refundable if I give 14 days' notice, but the contract says it is non-refundable after 7 days."
+   },
+   {
+    "quote": "I paid with my guarantor's card,"
+   },
+   {
+    "quote": "and he,"
+   },
+   {
+    "quote": "has asked me to get the money back to him."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hello, I'm [PERSON_1] and I paid a holding deposit of 250 pounds on 2 September for a room at Westbrook Student Lofts, booking ref [ACCOUNT_ID]. The contract starts on 1 October, but I can't take the room because my visa appointment was moved to November. The agent, [PERSON_2], told me by phone that the deposit is refundable if I give 14 days' notice, but the contract says it is non-refundable after 7 days. I paid with my guarantor's card, [PAYMENT_CARD], and he, [PERSON_3], has asked me to get the money back to him. Please reply to [EMAIL]. Thanks, [PERSON_1]"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-006",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-006",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-006",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-006",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-006",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a dated to-do plan up to the deadline, flagging the conditional items.",
+  "text": "Scholarship checklist. Applicant: Zsófia Hajdu, scholar ID SCH-33-9071. Merit scholarship, deadline 15 December. Referees: Professor Kamal Idrissi (agreed, will upload by 1 December) and Dr Lauri Mäkelä (not yet replied, I'll chase him on Monday). If Mäkelä has not replied by 8 December, I will ask Idrissi to suggest someone else. My personal statement is 640 words and the limit is 600, so I must cut 40 words, not 140. My GPA of 3.8 qualifies me only if I also submit the proof of enrolment. The portal login email is zsofia.hajdu@example.net and my phone for the SMS code is 07700 900562.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "me",
+    "quote": "Zsófia Hajdu",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "sch",
+    "quote": "SCH-33-9071",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "ref1",
+    "quote": "Kamal Idrissi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "ref2",
+    "quote": "Lauri Mäkelä",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "ref2",
+    "quote": "Mäkelä",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "ref1",
+    "quote": "Idrissi",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "email",
+    "quote": "zsofia.hajdu@example.net",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m8",
+    "entity_id": "phone",
+    "quote": "07700 900562",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "me",
+    "quote": "Zsófia Hajdu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "sch",
+    "quote": "SCH-33-9071",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The plan may cite the scholar ID; the user re-inserts the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "ref1",
+    "quote": "Kamal Idrissi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "ref2",
+    "quote": "Lauri Mäkelä",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "ref2",
+    "quote": "Mäkelä",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "ref1",
+    "quote": "Idrissi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "email",
+    "quote": "zsofia.hajdu@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Portal login email is not needed for a to-do plan; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "phone",
+    "quote": "07700 900562",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone for SMS codes is not needed for a to-do plan; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Merit scholarship, deadline 15 December."
+   },
+   {
+    "quote": "Referees: Professor"
+   },
+   {
+    "quote": "(agreed, will upload by 1 December) and Dr"
+   },
+   {
+    "quote": "(not yet replied, I'll chase him on Monday)."
+   },
+   {
+    "quote": "If"
+   },
+   {
+    "quote": "has not replied by 8 December, I will ask"
+   },
+   {
+    "quote": "to suggest someone else."
+   },
+   {
+    "quote": "My personal statement is 640 words and the limit is 600, so I must cut 40 words, not 140."
+   },
+   {
+    "quote": "My GPA of 3.8 qualifies me only if I also submit the proof of enrolment."
+   },
+   {
+    "quote": "The portal login email is"
+   },
+   {
+    "quote": "my phone for the SMS code is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Scholarship checklist. Applicant: [PERSON_1], scholar ID [ACCOUNT_ID]. Merit scholarship, deadline 15 December. Referees: Professor [PERSON_2] (agreed, will upload by 1 December) and Dr [PERSON_3] (not yet replied, I'll chase him on Monday). If [PERSON_3] has not replied by 8 December, I will ask [PERSON_2] to suggest someone else. My personal statement is 640 words and the limit is 600, so I must cut 40 words, not 140. My GPA of 3.8 qualifies me only if I also submit the proof of enrolment. The portal login email is [EMAIL] and my phone for the SMS code is [PHONE]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-007",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-007",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-007",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-007",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-007",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a formal objection to the overpayment demand using the figures and the employer's confirmation.",
+  "text": "I got a letter saying I was overpaid 1,120 euros of my study grant and must repay it by 30 November. The letter, signed by case officer Birgit Aasmäe, says the overpayment came from my part-time job income, 9,400 euros last year, which exceeded the 8,000 euro limit. But my payslips show I earned 7,850 euros after the October correction, as my employer, Hamza Qureshi, who runs the bakery where I work, will confirm in writing. My name is Katrin Lepik and the case number is CG-2026-558201. Please write to me at katrin.lepik@example.net. Can you help me draft a formal objection that sets out these figures and the employer's confirmation?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "inc1",
+    "quote": "my part-time job income, 9,400 euros last year",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m2",
+    "entity_id": "inc2",
+    "quote": "I earned 7,850 euros after the October correction",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m3",
+    "entity_id": "officer",
+    "quote": "Birgit Aasmäe",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "employer",
+    "quote": "Hamza Qureshi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "me",
+    "quote": "Katrin Lepik",
+    "label": "PERSON"
+   },
+   {
+    "id": "m6",
+    "entity_id": "case",
+    "quote": "CG-2026-558201",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m7",
+    "entity_id": "email",
+    "quote": "katrin.lepik@example.net",
+    "label": "EMAIL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "officer",
+    "quote": "Birgit Aasmäe",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "inc1",
+    "quote": "my part-time job income, 9,400 euros last year",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "inc2",
+    "quote": "I earned 7,850 euros after the October correction",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "employer",
+    "quote": "Hamza Qureshi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "me",
+    "quote": "Katrin Lepik",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "case",
+    "quote": "CG-2026-558201",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The objection must cite the case number; the user re-inserts the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "email",
+    "quote": "katrin.lepik@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reply address is not needed for the objection draft; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I was overpaid 1,120 euros of my study grant and must repay it by 30 November."
+   },
+   {
+    "quote": "The letter, signed by case officer"
+   },
+   {
+    "quote": "says the overpayment came from my part-time job income, 9,400 euros last year, which exceeded the 8,000 euro limit."
+   },
+   {
+    "quote": "But my payslips show I earned 7,850 euros after the October correction, as my employer,"
+   },
+   {
+    "quote": ", who runs the bakery where I work, will confirm in writing."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I got a letter saying I was overpaid 1,120 euros of my study grant and must repay it by 30 November. The letter, signed by case officer [PERSON_1], says the overpayment came from my part-time job income, 9,400 euros last year, which exceeded the 8,000 euro limit. But my payslips show I earned 7,850 euros after the October correction, as my employer, [PERSON_2], who runs the bakery where I work, will confirm in writing. My name is [PERSON_3] and the case number is [ACCOUNT_ID]. Please write to me at [EMAIL]. Can you help me draft a formal objection that sets out these figures and the employer's confirmation?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-008",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-008",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-008",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-008",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-008",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me write a clear deposit dispute email that sets out the amounts and my conditions.",
+  "text": "Move-out summary for my deposit dispute. I rented a room at 14 Aldermoor Road, Sheffield, from 1 September to 30 June. The deposit was 700 pounds. The landlord, Eilidh Ferguson, wants to deduct 260 pounds for carpet cleaning, but the check-in report from the agency, signed by Rahul Desai, says the carpet was already stained. I'll accept a 60 pound deduction for the broken lamp only if Eilidh shows the receipt. The balance should go to my IBAN, NL56 TEST 0123 4567 89, and I am Ayodele Mensah-Rao, the only tenant on the contract. Can you help me write a clear email that sets out the amounts and my conditions?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "addr",
+    "quote": "14 Aldermoor Road, Sheffield",
+    "label": "ADDRESS"
+   },
+   {
+    "id": "m2",
+    "entity_id": "landlord",
+    "quote": "Eilidh Ferguson",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "agent",
+    "quote": "Rahul Desai",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "landlord",
+    "quote": "Eilidh",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "iban",
+    "quote": "NL56 TEST 0123 4567 89",
+    "label": "IBAN"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me",
+    "quote": "Ayodele Mensah-Rao",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "addr",
+    "quote": "14 Aldermoor Road, Sheffield",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Rental address is not needed for the amounts and conditions; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "landlord",
+    "quote": "Eilidh Ferguson",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "agent",
+    "quote": "Rahul Desai",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "landlord",
+    "quote": "Eilidh",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "iban",
+    "quote": "NL56 TEST 0123 4567 89",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The email must say where to send the balance; the user re-inserts the IBAN and the model cannot check it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me",
+    "quote": "Ayodele Mensah-Rao",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The deposit was 700 pounds."
+   },
+   {
+    "quote": "The landlord,"
+   },
+   {
+    "quote": "wants to deduct 260 pounds for carpet cleaning, but the check-in report from the agency, signed by"
+   },
+   {
+    "quote": "says the carpet was already stained."
+   },
+   {
+    "quote": "I'll accept a 60 pound deduction for the broken lamp only if"
+   },
+   {
+    "quote": "shows the receipt."
+   },
+   {
+    "quote": "The balance should go to my IBAN,"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Move-out summary for my deposit dispute. I rented a room at [ADDRESS], from 1 September to 30 June. The deposit was 700 pounds. The landlord, [PERSON_1], wants to deduct 260 pounds for carpet cleaning, but the check-in report from the agency, signed by [PERSON_2], says the carpet was already stained. I'll accept a 60 pound deduction for the broken lamp only if [PERSON_1] shows the receipt. The balance should go to my IBAN, [IBAN], and I am [PERSON_3], the only tenant on the contract. Can you help me write a clear email that sets out the amounts and my conditions?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-009",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-009",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-009",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-009",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-009",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a message to the admissions office asking whether a conditional financial guarantee is acceptable, using the fee, scholarship and uncle details.",
+  "text": "I am helping my daughter, Nomvula Dlamini, with the admissions portal. She has an unconditional offer for Architecture starting 21 September and finishes school in June. The portal asks for her passport number, P4471920, and a guarantor statement from me, Sipho Dlamini, saying I will pay the first-year fee of 18,500 pounds, but only if she gets the 5,000 pound scholarship; otherwise her uncle, Themba, will pay half. The deadline is 30 July, and Nomvula has not yet decided whether to accept the offer. You can reach me on sipho.dlamini@example.com or 555-0143. Can you help me draft a message asking admissions whether a conditional guarantee is acceptable?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "daughter",
+    "quote": "Nomvula Dlamini",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "passport",
+    "quote": "P4471920",
+    "label": "NATIONAL_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "me",
+    "quote": "Sipho Dlamini",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "uncle",
+    "quote": "Themba",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "daughter",
+    "quote": "Nomvula",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "email",
+    "quote": "sipho.dlamini@example.com",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m7",
+    "entity_id": "phone",
+    "quote": "555-0143",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "daughter",
+    "quote": "Nomvula Dlamini",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "passport",
+    "quote": "P4471920",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Passport number is a government ID; the question about a conditional guarantee does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "me",
+    "quote": "Sipho Dlamini",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "uncle",
+    "quote": "Themba",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "daughter",
+    "quote": "Nomvula",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "email",
+    "quote": "sipho.dlamini@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is not needed to draft the question; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "phone",
+    "quote": "555-0143",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact number is not needed to draft the question; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "has an unconditional offer for Architecture starting 21 September"
+   },
+   {
+    "quote": "a guarantor statement from me,"
+   },
+   {
+    "quote": "saying I will pay the first-year fee of 18,500 pounds, but only if she gets the 5,000 pound scholarship; otherwise her uncle,"
+   },
+   {
+    "quote": "will pay half."
+   },
+   {
+    "quote": "The deadline is 30 July, and"
+   },
+   {
+    "quote": "has not yet decided whether to accept the offer."
+   },
+   {
+    "quote": "her passport number,"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I am helping my daughter, [PERSON_1], with the admissions portal. She has an unconditional offer for Architecture starting 21 September and finishes school in June. The portal asks for her passport number, [NATIONAL_ID], and a guarantor statement from me, [PERSON_2], saying I will pay the first-year fee of 18,500 pounds, but only if she gets the 5,000 pound scholarship; otherwise her uncle, [PERSON_3], will pay half. The deadline is 30 July, and [PERSON_1] has not yet decided whether to accept the offer. You can reach me on [EMAIL] or [PHONE]. Can you help me draft a message asking admissions whether a conditional guarantee is acceptable?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-010",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-010",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-010",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-010",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-010",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write the internal escalation summary for the duty manager, with the timeline and the decision needed.",
+  "text": "Escalation for SUP-48213. Customer Marguerite Dubois-Alves ordered a 55-inch TV (order ORD-7740192) on 3 August, paid 649 euros, and it arrived with a cracked panel. Agent Tomasz Kępski offered a replacement on 8 August, but the customer insisted on a refund after the second unit also arrived damaged on 20 August. Marguerite says she will file a chargeback with her bank if the refund is not issued within 5 business days. Her email is m.dubois.alves@example.org and her phone is 07700 900427. Policy allows a refund without return only below 500 euros, so a manager must approve. Please write the internal escalation summary for the duty manager, with the timeline and the decision needed.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "cust",
+    "quote": "Marguerite Dubois-Alves",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "order",
+    "quote": "ORD-7740192",
+    "label": "ACCOUNT_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "agent",
+    "quote": "Tomasz Kępski",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "cust",
+    "quote": "Marguerite",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "email",
+    "quote": "m.dubois.alves@example.org",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900427",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "cust",
+    "quote": "Marguerite Dubois-Alves",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "order",
+    "quote": "ORD-7740192",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The summary must reference the order number; the user re-inserts the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "agent",
+    "quote": "Tomasz Kępski",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "cust",
+    "quote": "Marguerite",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "email",
+    "quote": "m.dubois.alves@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer email is not needed for the summary; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900427",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer phone is not needed for the summary; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Customer"
+   },
+   {
+    "quote": "ordered a 55-inch TV (order"
+   },
+   {
+    "quote": ") on 3 August, paid 649 euros, and it arrived with a cracked panel."
+   },
+   {
+    "quote": "Agent"
+   },
+   {
+    "quote": "offered a replacement on 8 August, but the customer insisted on a refund after the second unit also arrived damaged on 20 August."
+   },
+   {
+    "quote": "says she will file a chargeback with her bank if the refund is not issued within 5 business days."
+   },
+   {
+    "quote": "Policy allows a refund without return only below 500 euros, so a manager must approve."
+   },
+   {
+    "quote": "Her email is"
+   },
+   {
+    "quote": "and her phone is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Escalation for SUP-48213. Customer [PERSON_1] ordered a 55-inch TV (order [ACCOUNT_ID]) on 3 August, paid 649 euros, and it arrived with a cracked panel. Agent [PERSON_2] offered a replacement on 8 August, but the customer insisted on a refund after the second unit also arrived damaged on 20 August. [PERSON_1] says she will file a chargeback with her bank if the refund is not issued within 5 business days. Her email is [EMAIL] and her phone is [PHONE]. Policy allows a refund without return only below 500 euros, so a manager must approve. Please write the internal escalation summary for the duty manager, with the timeline and the decision needed."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-011",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-011",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-011",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-011",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-011",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short note for finance asking them to book the repair as goodwill rather than warranty and confirm they have what they need.",
+  "text": "Hi team, warranty claim WC-90317 for the dishwasher. The customer, Arvid Sørensen, bought it on 14 March 2024, so it's out of the 24-month warranty, but our regional lead Naledi Khumalo approved a goodwill repair last week provided the fault isn't caused by misuse. Technician Jun-ho Baek visited on 5 May and found a failed pump, no sign of misuse. Parts cost 86 euros and labour was 2 hours. Arvid's email is a.sorensen@example.net and his phone is 07700 900185. Please draft a short note for finance asking them to book the repair as goodwill, not as warranty, and to confirm they have what they need.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "cust",
+    "quote": "Arvid Sørensen",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "lead",
+    "quote": "Naledi Khumalo",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "tech",
+    "quote": "Jun-ho Baek",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "cust",
+    "quote": "Arvid",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "email",
+    "quote": "a.sorensen@example.net",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900185",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "cust",
+    "quote": "Arvid Sørensen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "lead",
+    "quote": "Naledi Khumalo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "tech",
+    "quote": "Jun-ho Baek",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "cust",
+    "quote": "Arvid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "email",
+    "quote": "a.sorensen@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer email is not needed for the finance note; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900185",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer phone is not needed for the finance note; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The customer,"
+   },
+   {
+    "quote": "bought it on 14 March 2024, so it's out of the 24-month warranty, but our regional lead"
+   },
+   {
+    "quote": "approved a goodwill repair last week provided the fault isn't caused by misuse."
+   },
+   {
+    "quote": "Technician"
+   },
+   {
+    "quote": "visited on 5 May and found a failed pump, no sign of misuse."
+   },
+   {
+    "quote": "Parts cost 86 euros and labour was 2 hours."
+   },
+   {
+    "quote": "asking them to book the repair as goodwill, not as warranty"
+   },
+   {
+    "quote": "email is"
+   },
+   {
+    "quote": "his phone is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hi team, warranty claim WC-90317 for the dishwasher. The customer, [PERSON_1], bought it on 14 March 2024, so it's out of the 24-month warranty, but our regional lead [PERSON_2] approved a goodwill repair last week provided the fault isn't caused by misuse. Technician [PERSON_3] visited on 5 May and found a failed pump, no sign of misuse. Parts cost 86 euros and labour was 2 hours. [PERSON_1]'s email is [EMAIL] and his phone is [PHONE]. Please draft a short note for finance asking them to book the repair as goodwill, not as warranty, and to confirm they have what they need."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:id-012",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-id-012",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-id-012",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-id-012",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-id-012",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft the apology email for the account manager that acknowledges the breach, states the timings, and does not accept the credit request yet.",
+  "text": "Subject: SLA breach on ticket 33871. Our contract promises a first response within 4 hours for priority-1 tickets. Ticket 33871 was raised by Odalys Ferreira-Nunes on Tuesday 9 June at 08:12 reporting the checkout page returning HTTP 502. The first reply from Pieter Joubert came at 14:40, so we missed the 4-hour window by 2 hours 28 minutes. Odalys has asked for a 15% service credit, not the 10% in clause 7.2, and says she will escalate to her director, Mirela Constantin, if there is no reply by Friday. Her email is odalys.fn@example.com and her phone is +44 7700 900638. Please draft the apology email for the account manager that acknowledges the breach, states the timings, and does not accept the 15% yet.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "cust",
+    "quote": "Odalys Ferreira-Nunes",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "agent",
+    "quote": "Pieter Joubert",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "cust",
+    "quote": "Odalys",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "director",
+    "quote": "Mirela Constantin",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "email",
+    "quote": "odalys.fn@example.com",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "phone",
+    "quote": "+44 7700 900638",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "cust",
+    "quote": "Odalys Ferreira-Nunes",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "agent",
+    "quote": "Pieter Joubert",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "cust",
+    "quote": "Odalys",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "director",
+    "quote": "Mirela Constantin",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "email",
+    "quote": "odalys.fn@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer email is not needed to draft the apology body; no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "phone",
+    "quote": "+44 7700 900638",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer phone is not needed to draft the apology; no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our contract promises a first response within 4 hours for priority-1 tickets."
+   },
+   {
+    "quote": "Ticket 33871 was raised by"
+   },
+   {
+    "quote": "on Tuesday 9 June at 08:12 reporting the checkout page returning HTTP 502."
+   },
+   {
+    "quote": "The first reply from"
+   },
+   {
+    "quote": "came at 14:40, so we missed the 4-hour window by 2 hours 28 minutes."
+   },
+   {
+    "quote": "has asked for a 15% service credit, not the 10% in clause 7.2, and says she will escalate to her director,"
+   },
+   {
+    "quote": "if there is no reply by Friday."
+   },
+   {
+    "quote": "Her email is"
+   },
+   {
+    "quote": "and her phone is"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Subject: SLA breach on ticket 33871. Our contract promises a first response within 4 hours for priority-1 tickets. Ticket 33871 was raised by [PERSON_1] on Tuesday 9 June at 08:12 reporting the checkout page returning HTTP 502. The first reply from [PERSON_2] came at 14:40, so we missed the 4-hour window by 2 hours 28 minutes. [PERSON_1] has asked for a 15% service credit, not the 10% in clause 7.2, and says she will escalate to her director, [PERSON_3], if there is no reply by Friday. Her email is [EMAIL] and her phone is [PHONE]. Please draft the apology email for the account manager that acknowledges the breach, states the timings, and does not accept the 15% yet."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:pres-001",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-pres-001",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-pres-001",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-pres-001",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-pres-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out who still owes the person who paid the deposit, how much and by when, using the corrected figures, and draft a message to the group.",
+  "text": "Flat group chat summary, for the deposit. Total deposit is 1,800 pounds, 600 each. Rasmus Lindqvist paid all 1,800 upfront. Imogen Achterberg said she will send her 600 by 15 October, but Layla Haddad said she can only pay 300 now and 300 after her grant arrives, and not before 1 November. Rasmus told us that the landlord won't release the keys unless all three shares are in. Correction from Imogen: she can pay 400 on 15 October, not 600, and the rest on 1 November. Layla's first payment is still 300. Nobody has paid Rasmus anything yet. Keys are due on 20 October.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "rasmus",
+    "quote": "Rasmus Lindqvist",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "imogen",
+    "quote": "Imogen Achterberg",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "layla",
+    "quote": "Layla Haddad",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "rasmus",
+    "quote": "Rasmus",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "imogen",
+    "quote": "Imogen",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "rasmus",
+    "quote": "Rasmus",
+    "label": "PERSON",
+    "occurrence": 3
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "rasmus",
+    "quote": "Rasmus Lindqvist",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "imogen",
+    "quote": "Imogen Achterberg",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "layla",
+    "quote": "Layla Haddad",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "rasmus",
+    "quote": "Rasmus",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "imogen",
+    "quote": "Imogen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "rasmus",
+    "quote": "Rasmus",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Total deposit is 1,800 pounds, 600 each."
+   },
+   {
+    "quote": "paid all 1,800 upfront."
+   },
+   {
+    "quote": "said she will send her 600 by 15 October, but"
+   },
+   {
+    "quote": "said she can only pay 300 now and 300 after her grant arrives, and not before 1 November."
+   },
+   {
+    "quote": "told us that the landlord won't release the keys unless all three shares are in."
+   },
+   {
+    "quote": "Correction from"
+   },
+   {
+    "quote": ": she can pay 400 on 15 October, not 600, and the rest on 1 November."
+   },
+   {
+    "quote": "'s first payment is still 300."
+   },
+   {
+    "quote": "Nobody has paid"
+   },
+   {
+    "quote": "anything yet."
+   },
+   {
+    "quote": "Keys are due on 20 October."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Flat group chat summary, for the deposit. Total deposit is 1,800 pounds, 600 each. [PERSON_1] paid all 1,800 upfront. [PERSON_2] said she will send her 600 by 15 October, but [PERSON_3] said she can only pay 300 now and 300 after her grant arrives, and not before 1 November. [PERSON_1] told us that the landlord won't release the keys unless all three shares are in. Correction from [PERSON_2]: she can pay 400 on 15 October, not 600, and the rest on 1 November. [PERSON_3]'s first payment is still 300. Nobody has paid [PERSON_1] anything yet. Keys are due on 20 October."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:pres-002",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-pres-002",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-pres-002",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-pres-002",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-pres-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Summarise for the student what each person said or believes, what happens if the log shows 10 per cent, and the decision date.",
+  "text": "Notes from the appeal pre-meeting. Student Ayaan Khurana says he was told by the invigilator, Mrs Brigid Costello, that the extra time of 25 per cent was approved, but the disability office has not confirmed it. Dr Lindiwe Mahlangu, who chairs the panel, thinks the extra time was probably not applied, since the desk list shows 10 per cent. If the log confirms 10 per cent, the panel will rerun the marking of the last two questions only; it will not rerun the whole paper. Ayaan is not asking for a new sitting. Mrs Costello may have mixed up this exam with the March one. Decision expected by 12 December, not 5 December as first said.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "student",
+    "quote": "Ayaan Khurana",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "invig",
+    "quote": "Brigid Costello",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "chair",
+    "quote": "Lindiwe Mahlangu",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "student",
+    "quote": "Ayaan",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "invig",
+    "quote": "Costello",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "student",
+    "quote": "Ayaan Khurana",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "invig",
+    "quote": "Brigid Costello",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "chair",
+    "quote": "Lindiwe Mahlangu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "student",
+    "quote": "Ayaan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "invig",
+    "quote": "Costello",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Notes from the appeal pre-meeting. Student"
+   },
+   {
+    "quote": "says he was told by the invigilator, Mrs"
+   },
+   {
+    "quote": "that the extra time of 25 per cent was approved, but the disability office has not confirmed it."
+   },
+   {
+    "quote": "who chairs the panel, thinks the extra time was probably not applied, since the desk list shows 10 per cent."
+   },
+   {
+    "quote": "If the log confirms 10 per cent, the panel will rerun the marking of the last two questions only; it will not rerun the whole paper."
+   },
+   {
+    "quote": "is not asking for a new sitting."
+   },
+   {
+    "quote": "may have mixed up this exam with the March one."
+   },
+   {
+    "quote": "Decision expected by 12 December, not 5 December as first said."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes from the appeal pre-meeting. Student [PERSON_1] says he was told by the invigilator, Mrs [PERSON_2], that the extra time of 25 per cent was approved, but the disability office has not confirmed it. Dr [PERSON_3], who chairs the panel, thinks the extra time was probably not applied, since the desk list shows 10 per cent. If the log confirms 10 per cent, the panel will rerun the marking of the last two questions only; it will not rerun the whole paper. [PERSON_1] is not asking for a new sitting. Mrs [PERSON_2] may have mixed up this exam with the March one. Decision expected by 12 December, not 5 December as first said."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:pres-003",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-pres-003",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-pres-003",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-pres-003",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-pres-003",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me decide what to put on the household income line and what to tell the committee, based on these figures and uncertainties.",
+  "text": "Quick summary before I answer the scholarship committee. My brother, Dmitri Volkov, applied for the same bursary last year and got 2,500 euros, but he thinks the cap is 3,000 euros now, not sure. Our mother, Elena Volkov, earns about 28,000 euros a year, which is under the 30,000 limit, only if her bonus is excluded; with the bonus she is at roughly 31,500. The form asks for household income, and I'm not sure whether I should include my aunt Zorana, who lives with us but pays no rent. I have not told Dmitri that I applied. The deadline is 3 March, not 10 March.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "brother",
+    "quote": "Dmitri Volkov",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "income",
+    "quote": "earns about 28,000 euros a year",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m3",
+    "entity_id": "mother",
+    "quote": "Elena Volkov",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "aunt",
+    "quote": "Zorana",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "brother",
+    "quote": "Dmitri",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "brother",
+    "quote": "Dmitri Volkov",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mother",
+    "quote": "Elena Volkov",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "income",
+    "quote": "earns about 28,000 euros a year",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "aunt",
+    "quote": "Zorana",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "brother",
+    "quote": "Dmitri",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My brother,"
+   },
+   {
+    "quote": "applied for the same bursary last year and got 2,500 euros, but he thinks the cap is 3,000 euros now, not sure."
+   },
+   {
+    "quote": "Our mother,"
+   },
+   {
+    "quote": "earns about 28,000 euros a year, which is under the 30,000 limit, only if her bonus is excluded; with the bonus she is at roughly 31,500."
+   },
+   {
+    "quote": "I'm not sure whether I should include my aunt"
+   },
+   {
+    "quote": ", who lives with us but pays no rent."
+   },
+   {
+    "quote": "I have not told"
+   },
+   {
+    "quote": "that I applied."
+   },
+   {
+    "quote": "The deadline is 3 March, not 10 March."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Quick summary before I answer the scholarship committee. My brother, [PERSON_1], applied for the same bursary last year and got 2,500 euros, but he thinks the cap is 3,000 euros now, not sure. Our mother, [PERSON_2], earns about 28,000 euros a year, which is under the 30,000 limit, only if her bonus is excluded; with the bonus she is at roughly 31,500. The form asks for household income, and I'm not sure whether I should include my aunt [PERSON_3], who lives with us but pays no rent. I have not told [PERSON_1] that I applied. The deadline is 3 March, not 10 March."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:pres-004",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-pres-004",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-pres-004",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-pres-004",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-pres-004",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clear month-by-month summary of what is agreed, what is conditional and what is disputed.",
+  "text": "Notes on my repayment plan. My cousin Hamid Rostami and I agreed that I'd pay 150 pounds a month until the grant arrives, and 250 pounds a month afterwards. His sister Shirin Rostami offered to cover the first two payments, but only if I sign the letter by Friday; I am not signing anything until the loan agreement is checked. The student finance adviser, Mr Oluwaseun Bakare, said the grace period is 6 months, not 12, and that it starts on graduation day, not on the first payment. If I graduate in July, the first payment is due in January. Hamid thinks interest is charged during the grace period, but Mr Bakare says it is not.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "hamid",
+    "quote": "Hamid Rostami",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "shirin",
+    "quote": "Shirin Rostami",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "adviser",
+    "quote": "Oluwaseun Bakare",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "hamid",
+    "quote": "Hamid",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "adviser",
+    "quote": "Bakare",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "hamid",
+    "quote": "Hamid Rostami",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "shirin",
+    "quote": "Shirin Rostami",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "adviser",
+    "quote": "Oluwaseun Bakare",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "hamid",
+    "quote": "Hamid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "adviser",
+    "quote": "Bakare",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My cousin"
+   },
+   {
+    "quote": "and I agreed that I'd pay 150 pounds a month until the grant arrives, and 250 pounds a month afterwards."
+   },
+   {
+    "quote": "His sister"
+   },
+   {
+    "quote": "offered to cover the first two payments, but only if I sign the letter by Friday; I am not signing anything until the loan agreement is checked."
+   },
+   {
+    "quote": "The student finance adviser, Mr"
+   },
+   {
+    "quote": "said the grace period is 6 months, not 12, and that it starts on graduation day, not on the first payment."
+   },
+   {
+    "quote": "If I graduate in July, the first payment is due in January."
+   },
+   {
+    "quote": "thinks interest is charged during the grace period, but Mr"
+   },
+   {
+    "quote": "says it is not."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes on my repayment plan. My cousin [PERSON_1] and I agreed that I'd pay 150 pounds a month until the grant arrives, and 250 pounds a month afterwards. His sister [PERSON_2] offered to cover the first two payments, but only if I sign the letter by Friday; I am not signing anything until the loan agreement is checked. The student finance adviser, Mr [PERSON_3], said the grace period is 6 months, not 12, and that it starts on graduation day, not on the first payment. If I graduate in July, the first payment is due in January. [PERSON_1] thinks interest is charged during the grace period, but Mr [PERSON_3] says it is not."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:ben-001",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-ben-001",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-ben-001",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-ben-001",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-ben-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Suggest how to fix the upload error and say whether this opening idea works for a personal statement.",
+  "text": "I'm writing my personal statement for a history degree and want feedback on the opening. I start with Marie Curie and then move to Hannah Arendt's book The Origins of Totalitarianism (ISBN 978-0-15-668756-4, though I'm not certain that is the edition I read). The UCAS upload page returns HTTP 413 when I attach my 6.2 MB PDF, and the stated limit is 5 MB. I'm using Firefox 128 and the console shows ERR_FILE_TOO_LARGE. The statement is 3,812 characters of the 4,000 allowed, so I can't add much. Can you suggest how to shrink the file, and tell me whether opening with two famous women from different fields is a strong way to begin?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "I'm writing my personal statement for a history degree and want feedback on the opening."
+   },
+   {
+    "quote": "The UCAS upload page returns HTTP 413 when I attach my 6.2 MB PDF, and the stated limit is 5 MB."
+   },
+   {
+    "quote": "The statement is 3,812 characters of the 4,000 allowed, so I can't add much."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I'm writing my personal statement for a history degree and want feedback on the opening. I start with Marie Curie and then move to Hannah Arendt's book The Origins of Totalitarianism (ISBN 978-0-15-668756-4, though I'm not certain that is the edition I read). The UCAS upload page returns HTTP 413 when I attach my 6.2 MB PDF, and the stated limit is 5 MB. I'm using Firefox 128 and the console shows ERR_FILE_TOO_LARGE. The statement is 3,812 characters of the 4,000 allowed, so I can't add much. Can you suggest how to shrink the file, and tell me whether opening with two famous women from different fields is a strong way to begin?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:ben-002",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-ben-002",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-ben-002",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-ben-002",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-ben-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite the macro so it is shorter and suggest a retry note for agents about the rate-limit behaviour.",
+  "text": "Our refunds macro currently tells customers that a Visa chargeback with reason code 13.1 (merchandise not received) must be answered within 20 days, but I haven't checked that figure against Visa's published rules. I think the macro should also mention Mastercard code 4853 for cardholder disputes. The support tool's webhook sometimes returns HTTP 429 with error E-1042 when we bulk-close tickets. Our integration is on API version 2.3.1 using port 443, and the vendor's public docs say to retry after 60 seconds. Can you help me rewrite the macro so it is shorter and clearer, and suggest a short retry note for agents that explains the 429 behaviour without promising a fix date?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "Our refunds macro currently tells customers that a Visa chargeback with reason code 13.1 (merchandise not received) must be answered within 20 days, but I haven't checked that figure against Visa's published rules."
+   },
+   {
+    "quote": "The support tool's webhook sometimes returns HTTP 429 with error E-1042 when we bulk-close tickets."
+   },
+   {
+    "quote": "the vendor's public docs say to retry after 60 seconds."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Our refunds macro currently tells customers that a Visa chargeback with reason code 13.1 (merchandise not received) must be answered within 20 days, but I haven't checked that figure against Visa's published rules. I think the macro should also mention Mastercard code 4853 for cardholder disputes. The support tool's webhook sometimes returns HTTP 429 with error E-1042 when we bulk-close tickets. Our integration is on API version 2.3.1 using port 443, and the vendor's public docs say to retry after 60 seconds. Can you help me rewrite the macro so it is shorter and clearer, and suggest a short retry note for agents that explains the 429 behaviour without promising a fix date?"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:cred-001",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-cred-001",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-cred-001",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-cred-001",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-cred-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a checklist for my cover with the steps and deadlines.",
+  "text": "Handover for the refunds desk while I'm on leave. The courier claims portal is at https://claims.carrier-portal.test/login with the shared login refunds-desk and password Marigold-Quarry-318. Please don't change it, because the carrier locks the account after three failed tries. The big open claim is for Halvorsen Retail, who are under NDA, so don't name them externally. It covers 212 parcels damaged in transit, with a claim value of 38,400 euros. The carrier's SLA says they must answer within 10 working days, which ends on 19 June. If they reject it, escalate to the carrier's key-account contact. Please turn this into a checklist for my cover with the steps and deadlines.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "pw",
+    "quote": "Marigold-Quarry-318",
+    "label": "SECRET"
+   },
+   {
+    "id": "m2",
+    "entity_id": "client",
+    "quote": "Halvorsen Retail",
+    "label": "ORG"
+   },
+   {
+    "id": "m3",
+    "entity_id": "value",
+    "quote": "38,400 euros",
+    "label": "FINANCIAL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "pw",
+    "quote": "Marigold-Quarry-318",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Shared portal password; the checklist only needs to say a shared login exists, so no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "client",
+    "quote": "Halvorsen Retail",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Client under NDA; the checklist can refer to the big open claim without naming them."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "value",
+    "quote": "38,400 euros",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Nonpublic claim value; the checklist steps and deadlines do not need the amount."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The courier claims portal is at https://claims.carrier-portal.test/login with the shared login refunds-desk and password"
+   },
+   {
+    "quote": "Please don't change it, because the carrier locks the account after three failed tries."
+   },
+   {
+    "quote": "The big open claim is for"
+   },
+   {
+    "quote": ", who are under NDA, so don't name them externally."
+   },
+   {
+    "quote": "It covers 212 parcels damaged in transit, with a claim value of"
+   },
+   {
+    "quote": "The carrier's SLA says they must answer within 10 working days, which ends on 19 June."
+   },
+   {
+    "quote": "If they reject it, escalate to the carrier's key-account contact."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Handover for the refunds desk while I'm on leave. The courier claims portal is at https://claims.carrier-portal.test/login with the shared login refunds-desk and password [SECRET]. Please don't change it, because the carrier locks the account after three failed tries. The big open claim is for [ORG], who are under NDA, so don't name them externally. It covers 212 parcels damaged in transit, with a claim value of [FINANCIAL]. The carrier's SLA says they must answer within 10 working days, which ends on 19 June. If they reject it, escalate to the carrier's key-account contact. Please turn this into a checklist for my cover with the steps and deadlines."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "ac823de0b6584065a4564d345ab77693",
+  "id": "ac823de0b6584065a4564d345ab77693:cred-002",
+  "family_id": "ac823de0b6584065a4564d345ab77693:fam-cred-002",
+  "persona_id": "ac823de0b6584065a4564d345ab77693:per-cred-002",
+  "source_id": "ac823de0b6584065a4564d345ab77693:src-cred-002",
+  "template_id": "ac823de0b6584065a4564d345ab77693:tpl-cred-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain why the request returns 401 and what to check before issuing a replacement token.",
+  "text": "Our chargeback sync is failing with HTTP 401 after this morning's deploy. I ran this from the jump box: curl -s -X POST https://api.payments-gw.test/v2/chargebacks/sync -H 'Authorization: Bearer qa-x7Tn92LmVb4Rq' -d '{\"merchant\":\"retail-eu\",\"since\":\"2026-10-30\"}'. The response was {\"error\":\"token_expired\",\"expires_at\":\"2026-10-31T23:59:59Z\"}. The token was issued on 1 October with a 30-day life, so it should expire on 31 October, which matches the response, and today is 2 November. Our largest dispute this quarter is Brightwater Logistics, with 4.1 million euros in refund exposure, which the CFO wants kept internal. Is it normal for a 30-day token to stop working on day 31, and what should I check before issuing a new one?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "tok",
+    "quote": "qa-x7Tn92LmVb4Rq",
+    "label": "SECRET"
+   },
+   {
+    "id": "m2",
+    "entity_id": "client",
+    "quote": "Brightwater Logistics",
+    "label": "ORG"
+   },
+   {
+    "id": "m3",
+    "entity_id": "exposure",
+    "quote": "4.1 million euros",
+    "label": "FINANCIAL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "tok",
+    "quote": "qa-x7Tn92LmVb4Rq",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Bearer token; diagnosing the expiry needs only the response and issue date, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "client",
+    "quote": "Brightwater Logistics",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Confidential dispute counterparty; the token question does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "exposure",
+    "quote": "4.1 million euros",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Nonpublic exposure figure the CFO wants internal; not needed for the 401 question."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our chargeback sync is failing with HTTP 401 after this morning's deploy."
+   },
+   {
+    "quote": "curl -s -X POST https://api.payments-gw.test/v2/chargebacks/sync -H 'Authorization: Bearer"
+   },
+   {
+    "quote": "' -d '{\"merchant\":\"retail-eu\",\"since\":\"2026-10-30\"}'."
+   },
+   {
+    "quote": "The response was {\"error\":\"token_expired\",\"expires_at\":\"2026-10-31T23:59:59Z\"}."
+   },
+   {
+    "quote": "The token was issued on 1 October with a 30-day life, so it should expire on 31 October, which matches the response, and today is 2 November."
+   },
+   {
+    "quote": "Is it normal for a 30-day token to stop working on day 31"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "ac823de0b6584065a4564d345ab77693:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Our chargeback sync is failing with HTTP 401 after this morning's deploy. I ran this from the jump box: curl -s -X POST https://api.payments-gw.test/v2/chargebacks/sync -H 'Authorization: Bearer [SECRET]' -d '{\"merchant\":\"retail-eu\",\"since\":\"2026-10-30\"}'. The response was {\"error\":\"token_expired\",\"expires_at\":\"2026-10-31T23:59:59Z\"}. The token was issued on 1 October with a 30-day life, so it should expire on 31 October, which matches the response, and today is 2 November. Our largest dispute this quarter is [ORG], with [FINANCIAL] in refund exposure, which the CFO wants kept internal. Is it normal for a 30-day token to stop working on day 31, and what should I check before issuing a new one?"
+ }
+]

@@ -1,0 +1,1804 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:id-001",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-id-001",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-id-001",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-id-001",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-id-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short message I can send to my new local pharmacy asking them to request the prescription transfer before the supply runs out.",
+  "text": "Hi, I look after my mother, Halina Szczepańska, and I need to move her repeat prescription from Brookfield Pharmacy to the one near my flat. Her levothyroxine is 75 micrograms once a day, and she has only 3 tablets left, so the next 28-day supply must be ready by Friday 14 November. The old pharmacist, Kwabena Oyelaran, told me on the phone that he cannot release it until the new pharmacy requests the transfer. Halina's patient reference there is BRK-0048213, her date of birth is 02/03/1941, and the contact number on file is 07700 900412. Kwabena also said a transfer usually takes two working days. Replies should come to me at m.szczepanska@example.com rather than to her.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "mother",
+    "label": "PERSON",
+    "quote": "Halina Szczepańska"
+   },
+   {
+    "id": "m2",
+    "entity_id": "mother-dose",
+    "label": "HEALTH",
+    "quote": "Her levothyroxine is 75 micrograms once a day"
+   },
+   {
+    "id": "m3",
+    "entity_id": "pharmacist",
+    "label": "PERSON",
+    "quote": "Kwabena Oyelaran"
+   },
+   {
+    "id": "m4",
+    "entity_id": "mother",
+    "label": "PERSON",
+    "quote": "Halina",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "patient-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "BRK-0048213"
+   },
+   {
+    "id": "m6",
+    "entity_id": "dob",
+    "label": "DATE",
+    "quote": "02/03/1941"
+   },
+   {
+    "id": "m7",
+    "entity_id": "mother-phone",
+    "label": "PHONE",
+    "quote": "07700 900412"
+   },
+   {
+    "id": "m8",
+    "entity_id": "pharmacist",
+    "label": "PERSON",
+    "quote": "Kwabena",
+    "occurrence": 2
+   },
+   {
+    "id": "m9",
+    "entity_id": "user-email",
+    "label": "EMAIL",
+    "quote": "m.szczepanska@example.com"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "mother",
+    "quote": "Halina Szczepańska",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "mother-dose",
+    "quote": "Her levothyroxine is 75 micrograms once a day",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "pharmacist",
+    "quote": "Kwabena Oyelaran",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "mother",
+    "quote": "Halina",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "patient-ref",
+    "quote": "BRK-0048213",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The pharmacy patient reference directly identifies the patient; the new pharmacy can be given it later, so the draft only refers to it and cannot quote the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "dob",
+    "quote": "02/03/1941",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A full date of birth is an identity-verification value; the transfer request wording does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "mother-phone",
+    "quote": "07700 900412",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The contact number on file is a direct identifier and is not needed to word the request."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "pharmacist",
+    "quote": "Kwabena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "user-email",
+    "quote": "m.szczepanska@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The carer's email is a direct contact identifier; the draft only needs to say replies go to the carer."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I look after my mother,"
+   },
+   {
+    "quote": "and I need to move her repeat prescription from Brookfield Pharmacy to the one near my flat."
+   },
+   {
+    "quote": "Her levothyroxine is 75 micrograms once a day, and she has only 3 tablets left, so the next 28-day supply must be ready by Friday 14 November."
+   },
+   {
+    "quote": "told me on the phone that he cannot release it until the new pharmacy requests the transfer."
+   },
+   {
+    "quote": "also said a transfer usually takes two working days."
+   },
+   {
+    "quote": "rather than to her."
+   }
+  ],
+  "approved_output": "Hi, I look after my mother, [PERSON_1], and I need to move her repeat prescription from Brookfield Pharmacy to the one near my flat. Her levothyroxine is 75 micrograms once a day, and she has only 3 tablets left, so the next 28-day supply must be ready by Friday 14 November. The old pharmacist, [PERSON_2], told me on the phone that he cannot release it until the new pharmacy requests the transfer. [PERSON_1]'s patient reference there is [ACCOUNT_ID], her date of birth is [DATE], and the contact number on file is [PHONE]. [PERSON_2] also said a transfer usually takes two working days. Replies should come to me at [EMAIL] rather than to her.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:id-002",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-id-002",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-id-002",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-id-002",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-id-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Polish this complaint so it's firm but polite and makes the refund deadline clear.",
+  "text": "Subject: Double charge for crown fitting\n\nHello, I'm writing about my visit to Harbourside Dental on 22 October, when Dr Ngata fitted the crown on my lower left molar. My bank statement shows two payments of £385.00 on 23 October, not one. Mereana Ruatapu at reception said on 28 October that she could see only one payment on your system and would ask the accounts team, but I haven't heard back from Mereana since. The card used was 4111 1111 1111 1111. My patient number is HD-55102 and my dental insurance policy is DPX-7781-204; the insurer will only reimburse 50% once the duplicate is reversed. Please refund £385.00 to the same card within 14 days or call me on 07700 900233.\n\nThanks,\nTeodora Vasilescu",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "dentist",
+    "label": "PERSON",
+    "quote": "Ngata"
+   },
+   {
+    "id": "m2",
+    "entity_id": "dental-treatment",
+    "label": "HEALTH",
+    "quote": "fitted the crown on my lower left molar"
+   },
+   {
+    "id": "m3",
+    "entity_id": "receptionist",
+    "label": "PERSON",
+    "quote": "Mereana Ruatapu"
+   },
+   {
+    "id": "m4",
+    "entity_id": "receptionist",
+    "label": "PERSON",
+    "quote": "Mereana",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4111 1111 1111 1111"
+   },
+   {
+    "id": "m6",
+    "entity_id": "patient-no",
+    "label": "ACCOUNT_ID",
+    "quote": "HD-55102"
+   },
+   {
+    "id": "m7",
+    "entity_id": "policy-no",
+    "label": "ACCOUNT_ID",
+    "quote": "DPX-7781-204"
+   },
+   {
+    "id": "m8",
+    "entity_id": "user-phone",
+    "label": "PHONE",
+    "quote": "07700 900233"
+   },
+   {
+    "id": "m9",
+    "entity_id": "user",
+    "label": "PERSON",
+    "quote": "Teodora Vasilescu"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "dentist",
+    "quote": "Ngata",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "dental-treatment",
+    "quote": "fitted the crown on my lower left molar",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "receptionist",
+    "quote": "Mereana Ruatapu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "receptionist",
+    "quote": "Mereana",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "card",
+    "quote": "4111 1111 1111 1111",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A full card number is a direct payment identifier; the complaint only needs to say the same card was charged."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "patient-no",
+    "quote": "HD-55102",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The patient number identifies the user to the practice; the polished draft can reference it but cannot show the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "policy-no",
+    "quote": "DPX-7781-204",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The insurance policy number is a direct account identifier and is not needed to word the refund request."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "user-phone",
+    "quote": "07700 900233",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The callback number is a direct contact identifier; the draft only needs to offer a phone call."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "user",
+    "quote": "Teodora Vasilescu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm writing about my visit to Harbourside Dental on 22 October, when Dr"
+   },
+   {
+    "quote": "fitted the crown on my lower left molar."
+   },
+   {
+    "quote": "My bank statement shows two payments of £385.00 on 23 October, not one."
+   },
+   {
+    "quote": "at reception said on 28 October that she could see only one payment on your system and would ask the accounts team, but I haven't heard back from"
+   },
+   {
+    "quote": "the insurer will only reimburse 50% once the duplicate is reversed."
+   },
+   {
+    "quote": "Please refund £385.00 to the same card within 14 days or call me on"
+   }
+  ],
+  "approved_output": "Subject: Double charge for crown fitting\n\nHello, I'm writing about my visit to Harbourside Dental on 22 October, when Dr [PERSON_1] fitted the crown on my lower left molar. My bank statement shows two payments of £385.00 on 23 October, not one. [PERSON_2] at reception said on 28 October that she could see only one payment on your system and would ask the accounts team, but I haven't heard back from [PERSON_2] since. The card used was [PAYMENT_CARD]. My patient number is [ACCOUNT_ID] and my dental insurance policy is [ACCOUNT_ID]; the insurer will only reimburse 50% once the duplicate is reversed. Please refund £385.00 to the same card within 14 days or call me on [PHONE].\n\nThanks,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:id-003",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-id-003",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-id-003",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-id-003",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-id-003",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a short update for my brother and sister so they know what's changed and what's being asked of them.",
+  "text": "Notes from today's call with Rosewood Court about Dad (Behrouz Rostami, resident no. RC-20931):\n- Ms Tauriainen, the care coordinator, says he had two falls in October, the second on the 19th; neither caused a fracture.\n- Physio is now three times a week instead of once. She thinks his balance is a bit better but isn't sure yet.\n- They want a family meeting on Thursday 13 November at 2pm. Kaveh can only join by video, and Kaveh's flight back isn't until the 16th.\n- Fees go up from £1,140 to £1,195 a week from January.\n- Office line is 555-0147; Ms Tauriainen's email is a.tauriainen@rosewood.example.\n- Dad's room: 14B, 22 Elm Approach, Harrogate HG2 0XX.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "care-home",
+    "label": "ORG",
+    "quote": "Rosewood Court"
+   },
+   {
+    "id": "m2",
+    "entity_id": "dad",
+    "label": "PERSON",
+    "quote": "Behrouz Rostami"
+   },
+   {
+    "id": "m3",
+    "entity_id": "resident-no",
+    "label": "ACCOUNT_ID",
+    "quote": "RC-20931"
+   },
+   {
+    "id": "m4",
+    "entity_id": "coordinator",
+    "label": "PERSON",
+    "quote": "Tauriainen",
+    "occurrence": 1
+   },
+   {
+    "id": "m5",
+    "entity_id": "dad-falls",
+    "label": "HEALTH",
+    "quote": "he had two falls in October, the second on the 19th; neither caused a fracture."
+   },
+   {
+    "id": "m6",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Kaveh",
+    "occurrence": 1
+   },
+   {
+    "id": "m7",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Kaveh",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "fees",
+    "label": "FINANCIAL",
+    "quote": "Fees go up from £1,140 to £1,195 a week from January."
+   },
+   {
+    "id": "m9",
+    "entity_id": "office-phone",
+    "label": "PHONE",
+    "quote": "555-0147"
+   },
+   {
+    "id": "m10",
+    "entity_id": "coordinator",
+    "label": "PERSON",
+    "quote": "Tauriainen",
+    "occurrence": 2
+   },
+   {
+    "id": "m11",
+    "entity_id": "coordinator-email",
+    "label": "EMAIL",
+    "quote": "a.tauriainen@rosewood.example"
+   },
+   {
+    "id": "m12",
+    "entity_id": "dad-address",
+    "label": "ADDRESS",
+    "quote": "14B, 22 Elm Approach, Harrogate HG2 0XX"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "care-home",
+    "quote": "Rosewood Court",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Naming the care home pinpoints where the father lives; the family update only needs 'the care home'."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "dad",
+    "quote": "Behrouz Rostami",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "resident-no",
+    "quote": "RC-20931",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The resident number is a direct account identifier at the care home and adds nothing to the siblings' update."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "coordinator",
+    "quote": "Tauriainen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "dad-falls",
+    "quote": "he had two falls in October, the second on the 19th; neither caused a fracture.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "brother",
+    "quote": "Kaveh",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "brother",
+    "quote": "Kaveh",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "fees",
+    "quote": "Fees go up from £1,140 to £1,195 a week from January.",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "office-phone",
+    "quote": "555-0147",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The office phone number is a contact identifier tied to the care home; the siblings' update does not need it written out."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "coordinator",
+    "quote": "Tauriainen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m11",
+    "entity_id": "coordinator-email",
+    "quote": "a.tauriainen@rosewood.example",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The coordinator's email is a direct contact identifier; the update can say an email exists without showing it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m12",
+    "entity_id": "dad-address",
+    "quote": "14B, 22 Elm Approach, Harrogate HG2 0XX",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The room and street address are a home location identifier and are not needed for the siblings' update."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the care coordinator, says he had two falls in October, the second on the 19th; neither caused a fracture."
+   },
+   {
+    "quote": "Physio is now three times a week instead of once. She thinks his balance is a bit better but isn't sure yet."
+   },
+   {
+    "quote": "They want a family meeting on Thursday 13 November at 2pm."
+   },
+   {
+    "quote": "can only join by video, and"
+   },
+   {
+    "quote": "'s flight back isn't until the 16th."
+   },
+   {
+    "quote": "Fees go up from £1,140 to £1,195 a week from January."
+   }
+  ],
+  "approved_output": "Notes from today's call with [ORG] about Dad ([PERSON_1], resident no. [ACCOUNT_ID]):\n- Ms [PERSON_2], the care coordinator, says he had two falls in October, the second on the 19th; neither caused a fracture.\n- Physio is now three times a week instead of once. She thinks his balance is a bit better but isn't sure yet.\n- They want a family meeting on Thursday 13 November at 2pm. [PERSON_3] can only join by video, and [PERSON_3]'s flight back isn't until the 16th.\n- Fees go up from £1,140 to £1,195 a week from January.\n- Office line is [PHONE]; Ms [PERSON_2]'s email is [EMAIL].\n- Dad's room: [ADDRESS].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:id-004",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-id-004",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-id-004",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-id-004",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-id-004",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me write a short first email to the therapy service to book my first session.",
+  "text": "Hi, could you help me write to Thornbury Talking Therapies? My GP, Dr Eilidh MacAskill, referred me on 3 November for anxiety and panic attacks that started in August. My insurer has approved eight sessions, not twelve as the GP letter says, and the approval code only works if the first session happens before 31 January. I was told the therapist would be Nguyen Thi Lan. I'd like to stay with Lan if possible because a friend saw her and found her easy to talk to, but I'm open to someone else if the wait is long. I can do Tuesday or Wednesday evenings after 6pm, not mornings. My NHS number is 999 123 4567, insurer membership AXM-30027716, mobile 07700 900871, email jo.bramwell@example.net, and my address is 7 Linden Close, Thornbury BS35 2XX.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "gp",
+    "label": "PERSON",
+    "quote": "Eilidh MacAskill"
+   },
+   {
+    "id": "m2",
+    "entity_id": "referral",
+    "label": "HEALTH",
+    "quote": "referred me on 3 November for anxiety and panic attacks that started in August."
+   },
+   {
+    "id": "m3",
+    "entity_id": "therapist",
+    "label": "PERSON",
+    "quote": "Nguyen Thi Lan"
+   },
+   {
+    "id": "m4",
+    "entity_id": "therapist",
+    "label": "PERSON",
+    "quote": "Lan",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "nhs-no",
+    "label": "NATIONAL_ID",
+    "quote": "999 123 4567"
+   },
+   {
+    "id": "m6",
+    "entity_id": "membership",
+    "label": "ACCOUNT_ID",
+    "quote": "AXM-30027716"
+   },
+   {
+    "id": "m7",
+    "entity_id": "mobile",
+    "label": "PHONE",
+    "quote": "07700 900871"
+   },
+   {
+    "id": "m8",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "jo.bramwell@example.net"
+   },
+   {
+    "id": "m9",
+    "entity_id": "home-address",
+    "label": "ADDRESS",
+    "quote": "7 Linden Close, Thornbury BS35 2XX"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "gp",
+    "quote": "Eilidh MacAskill",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "referral",
+    "quote": "referred me on 3 November for anxiety and panic attacks that started in August.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "therapist",
+    "quote": "Nguyen Thi Lan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "therapist",
+    "quote": "Lan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "nhs-no",
+    "quote": "999 123 4567",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A national health number is a government identifier; a first booking email can be drafted without it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "membership",
+    "quote": "AXM-30027716",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The service may need the insurer membership to verify funding; the draft can reference it but cannot show the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "mobile",
+    "quote": "07700 900871",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The mobile number is a direct contact identifier and is not needed to word the email."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "email",
+    "quote": "jo.bramwell@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The user's email address is a direct identifier; the email will be sent from it anyway."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "home-address",
+    "quote": "7 Linden Close, Thornbury BS35 2XX",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The home address is a direct location identifier and a first booking email does not need it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My GP, Dr"
+   },
+   {
+    "quote": "referred me on 3 November for anxiety and panic attacks that started in August."
+   },
+   {
+    "quote": "My insurer has approved eight sessions, not twelve as the GP letter says, and the approval code only works if the first session happens before 31 January."
+   },
+   {
+    "quote": "I was told the therapist would be"
+   },
+   {
+    "quote": "if possible because a friend saw her and found her easy to talk to, but I'm open to someone else if the wait is long."
+   },
+   {
+    "quote": "I can do Tuesday or Wednesday evenings after 6pm, not mornings."
+   }
+  ],
+  "approved_output": "Hi, could you help me write to Thornbury Talking Therapies? My GP, Dr [PERSON_1], referred me on 3 November for anxiety and panic attacks that started in August. My insurer has approved eight sessions, not twelve as the GP letter says, and the approval code only works if the first session happens before 31 January. I was told the therapist would be [PERSON_2]. I'd like to stay with [PERSON_2] if possible because a friend saw her and found her easy to talk to, but I'm open to someone else if the wait is long. I can do Tuesday or Wednesday evenings after 6pm, not mornings. My NHS number is [NATIONAL_ID], insurer membership [ACCOUNT_ID], mobile [PHONE], email [EMAIL], and my address is [ADDRESS].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:id-005",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-id-005",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-id-005",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-id-005",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-id-005",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this up into a clear membership freeze request I can email to the gym.",
+  "text": "Hi, I'd like to freeze my CoreFit membership (no. CF-447120, app username rkhumalo_lifts) for three months from 1 December. I tore a ligament in my right knee on 26 October, and my physio, Siosaia Fifita, has said no running or squats for at least six weeks; he'll reassess on 8 December. Siosaia has written a medical note, which I can attach. Your terms say a freeze is allowed only with a medical note and costs £5 a month instead of the usual £42.50. Please stop the £42.50 direct debit from IBAN GB29 TEST 0000 0012 3456 78 and take only £5 a month from 1 December until 1 March. If the freeze can't start until January, please let me know before the next collection on 28 November. My phone is 07700 900655.\n\nThanks,\nRefilwe Khumalo",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "membership-no",
+    "label": "ACCOUNT_ID",
+    "quote": "CF-447120"
+   },
+   {
+    "id": "m2",
+    "entity_id": "app-username",
+    "label": "USERNAME",
+    "quote": "rkhumalo_lifts"
+   },
+   {
+    "id": "m3",
+    "entity_id": "knee-injury",
+    "label": "HEALTH",
+    "quote": "I tore a ligament in my right knee on 26 October"
+   },
+   {
+    "id": "m4",
+    "entity_id": "physio",
+    "label": "PERSON",
+    "quote": "Siosaia Fifita"
+   },
+   {
+    "id": "m5",
+    "entity_id": "physio-advice",
+    "label": "HEALTH",
+    "quote": "has said no running or squats for at least six weeks; he'll reassess on 8 December."
+   },
+   {
+    "id": "m6",
+    "entity_id": "physio",
+    "label": "PERSON",
+    "quote": "Siosaia",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "GB29 TEST 0000 0012 3456 78"
+   },
+   {
+    "id": "m8",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "07700 900655"
+   },
+   {
+    "id": "m9",
+    "entity_id": "member",
+    "label": "PERSON",
+    "quote": "Refilwe Khumalo"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "membership-no",
+    "quote": "CF-447120",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The gym needs the membership number to apply the freeze, but it is a direct account identifier; the draft can only reference it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "app-username",
+    "quote": "rkhumalo_lifts",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The app username is a login identifier and is not needed to word the freeze request."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "knee-injury",
+    "quote": "I tore a ligament in my right knee on 26 October",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "physio",
+    "quote": "Siosaia Fifita",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "physio-advice",
+    "quote": "has said no running or squats for at least six weeks; he'll reassess on 8 December.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "physio",
+    "quote": "Siosaia",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "iban",
+    "quote": "GB29 TEST 0000 0012 3456 78",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bank account number is a direct financial identifier; the gym already holds the mandate and the draft only needs to refer to the direct debit."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "phone",
+    "quote": "07700 900655",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The phone number is a direct contact identifier and is not needed to word the request."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "member",
+    "quote": "Refilwe Khumalo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Hi, I'd like to freeze my CoreFit membership (no."
+   },
+   {
+    "quote": "for three months from 1 December."
+   },
+   {
+    "quote": "I tore a ligament in my right knee on 26 October, and my physio,"
+   },
+   {
+    "quote": "has said no running or squats for at least six weeks; he'll reassess on 8 December."
+   },
+   {
+    "quote": "has written a medical note, which I can attach."
+   },
+   {
+    "quote": "Your terms say a freeze is allowed only with a medical note and costs £5 a month instead of the usual £42.50."
+   },
+   {
+    "quote": "and take only £5 a month from 1 December until 1 March."
+   },
+   {
+    "quote": "If the freeze can't start until January, please let me know before the next collection on 28 November."
+   }
+  ],
+  "approved_output": "Hi, I'd like to freeze my CoreFit membership (no. [ACCOUNT_ID], app username [USERNAME]) for three months from 1 December. I tore a ligament in my right knee on 26 October, and my physio, [PERSON_1], has said no running or squats for at least six weeks; he'll reassess on 8 December. [PERSON_1] has written a medical note, which I can attach. Your terms say a freeze is allowed only with a medical note and costs £5 a month instead of the usual £42.50. Please stop the £42.50 direct debit from IBAN [IBAN] and take only £5 a month from 1 December until 1 March. If the freeze can't start until January, please let me know before the next collection on 28 November. My phone is [PHONE].\n\nThanks,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:id-006",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-id-006",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-id-006",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-id-006",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-id-006",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a clear, prioritised ticket for the HR systems team.",
+  "text": "Ticket draft: HRIS access for new starter\n\nNew starter: Aleksandra Wiśniewska, Payroll Analyst, employee ID E-30418, start date Monday 17 November.\nHer PeopleHub login (username awisniewska2) fails with \"Account not provisioned for this tenant\". Tried on 5 November and again today. Her hiring manager, Rashida Okonkwo, confirmed the offer was countersigned on 29 October, so the record should exist. Aleksandra can't submit her bank details or tax form until she gets in, and the November payroll cut-off is 20 November; if she misses it she won't be paid until 19 December. Rashida asked that we not reset the password again, because it has been reset twice and the error didn't change. Aleksandra's personal email for the invite is ola.wisniewska@example.org and her mobile is +44 7700 900318.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "new-starter",
+    "label": "PERSON",
+    "quote": "Aleksandra Wiśniewska"
+   },
+   {
+    "id": "m2",
+    "entity_id": "employee-id",
+    "label": "ACCOUNT_ID",
+    "quote": "E-30418"
+   },
+   {
+    "id": "m3",
+    "entity_id": "username",
+    "label": "USERNAME",
+    "quote": "awisniewska2"
+   },
+   {
+    "id": "m4",
+    "entity_id": "hiring-manager",
+    "label": "PERSON",
+    "quote": "Rashida Okonkwo"
+   },
+   {
+    "id": "m5",
+    "entity_id": "new-starter",
+    "label": "PERSON",
+    "quote": "Aleksandra",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "hiring-manager",
+    "label": "PERSON",
+    "quote": "Rashida",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "new-starter",
+    "label": "PERSON",
+    "quote": "Aleksandra",
+    "occurrence": 3
+   },
+   {
+    "id": "m8",
+    "entity_id": "personal-email",
+    "label": "EMAIL",
+    "quote": "ola.wisniewska@example.org"
+   },
+   {
+    "id": "m9",
+    "entity_id": "mobile",
+    "label": "PHONE",
+    "quote": "+44 7700 900318"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "new-starter",
+    "quote": "Aleksandra Wiśniewska",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "employee-id",
+    "quote": "E-30418",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The HR systems team needs the employee ID to find the record, but it is a direct identifier; the rewritten ticket can only reference it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "username",
+    "quote": "awisniewska2",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The exact login name would help the HRIS team check provisioning, but it is a direct account identifier; the ticket keeps only its role."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "hiring-manager",
+    "quote": "Rashida Okonkwo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "new-starter",
+    "quote": "Aleksandra",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "hiring-manager",
+    "quote": "Rashida",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "new-starter",
+    "quote": "Aleksandra",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "personal-email",
+    "quote": "ola.wisniewska@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The new starter's personal email is a direct contact identifier; the ticket only needs to say an invite address is on file."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "mobile",
+    "quote": "+44 7700 900318",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The personal mobile number is a direct contact identifier and is not needed to prioritise the ticket."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Payroll Analyst,"
+   },
+   {
+    "quote": "start date Monday 17 November."
+   },
+   {
+    "quote": "fails with \"Account not provisioned for this tenant\". Tried on 5 November and again today."
+   },
+   {
+    "quote": "Her hiring manager,"
+   },
+   {
+    "quote": "confirmed the offer was countersigned on 29 October, so the record should exist."
+   },
+   {
+    "quote": "can't submit her bank details or tax form until she gets in, and the November payroll cut-off is 20 November; if she misses it she won't be paid until 19 December."
+   },
+   {
+    "quote": "asked that we not reset the password again, because it has been reset twice and the error didn't change."
+   }
+  ],
+  "approved_output": "Ticket draft: HRIS access for new starter\n\nNew starter: [PERSON_1], Payroll Analyst, employee ID [ACCOUNT_ID], start date Monday 17 November.\nHer PeopleHub login (username [USERNAME]) fails with \"Account not provisioned for this tenant\". Tried on 5 November and again today. Her hiring manager, [PERSON_2], confirmed the offer was countersigned on 29 October, so the record should exist. [PERSON_1] can't submit her bank details or tax form until she gets in, and the November payroll cut-off is 20 November; if she misses it she won't be paid until 19 December. [PERSON_2] asked that we not reset the password again, because it has been reset twice and the error didn't change. [PERSON_1]'s personal email for the invite is [EMAIL] and her mobile is [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:pres-001",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-pres-001",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-pres-001",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-pres-001",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-pres-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a clear medication and rota note for our family group chat.",
+  "text": "Correction to what I posted last night, sorry: Mum's evening amlodipine is 5 mg now, not 10 mg. Dr Haugland halved it on Monday after her blood pressure dropped to 98/60. Ivo, you gave her 10 mg on Tuesday because the old label was still on the box, which isn't your fault, and she seemed fine on Wednesday. From tonight it's one 5 mg tablet at 8pm, and she shouldn't take it if she feels dizzy; Dr Haugland said to skip that dose and ring the surgery instead. Auntie Bisola will cover Thursday and Friday evenings, but only if Ivo can drive her home by 9pm. Ivo thinks he probably can on Thursday but hasn't confirmed Friday. I'm doing the weekend. Bisola, the new boxes are in the top drawer, not the kitchen cupboard.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "mum-dose",
+    "label": "HEALTH",
+    "quote": "Mum's evening amlodipine is 5 mg now, not 10 mg."
+   },
+   {
+    "id": "m2",
+    "entity_id": "gp",
+    "label": "PERSON",
+    "quote": "Haugland",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "mum-bp",
+    "label": "HEALTH",
+    "quote": "halved it on Monday after her blood pressure dropped to 98/60."
+   },
+   {
+    "id": "m4",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Ivo",
+    "occurrence": 1
+   },
+   {
+    "id": "m5",
+    "entity_id": "gp",
+    "label": "PERSON",
+    "quote": "Haugland",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "aunt",
+    "label": "PERSON",
+    "quote": "Bisola",
+    "occurrence": 1
+   },
+   {
+    "id": "m7",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Ivo",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Ivo",
+    "occurrence": 3
+   },
+   {
+    "id": "m9",
+    "entity_id": "aunt",
+    "label": "PERSON",
+    "quote": "Bisola",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "mum-dose",
+    "quote": "Mum's evening amlodipine is 5 mg now, not 10 mg.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "gp",
+    "quote": "Haugland",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mum-bp",
+    "quote": "halved it on Monday after her blood pressure dropped to 98/60.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "brother",
+    "quote": "Ivo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "gp",
+    "quote": "Haugland",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "aunt",
+    "quote": "Bisola",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "brother",
+    "quote": "Ivo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "brother",
+    "quote": "Ivo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "aunt",
+    "quote": "Bisola",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Correction to what I posted last night, sorry: Mum's evening amlodipine is 5 mg now, not 10 mg."
+   },
+   {
+    "quote": "halved it on Monday after her blood pressure dropped to 98/60."
+   },
+   {
+    "quote": "you gave her 10 mg on Tuesday because the old label was still on the box, which isn't your fault, and she seemed fine on Wednesday."
+   },
+   {
+    "quote": "From tonight it's one 5 mg tablet at 8pm, and she shouldn't take it if she feels dizzy;"
+   },
+   {
+    "quote": "said to skip that dose and ring the surgery instead."
+   },
+   {
+    "quote": "will cover Thursday and Friday evenings, but only if"
+   },
+   {
+    "quote": "can drive her home by 9pm."
+   },
+   {
+    "quote": "thinks he probably can on Thursday but hasn't confirmed Friday."
+   },
+   {
+    "quote": "I'm doing the weekend."
+   },
+   {
+    "quote": "the new boxes are in the top drawer, not the kitchen cupboard."
+   }
+  ],
+  "approved_output": "Correction to what I posted last night, sorry: Mum's evening amlodipine is 5 mg now, not 10 mg. Dr [PERSON_1] halved it on Monday after her blood pressure dropped to 98/60. [PERSON_2], you gave her 10 mg on Tuesday because the old label was still on the box, which isn't your fault, and she seemed fine on Wednesday. From tonight it's one 5 mg tablet at 8pm, and she shouldn't take it if she feels dizzy; Dr [PERSON_1] said to skip that dose and ring the surgery instead. Auntie [PERSON_3] will cover Thursday and Friday evenings, but only if [PERSON_2] can drive her home by 9pm. [PERSON_2] thinks he probably can on Thursday but hasn't confirmed Friday. I'm doing the weekend. [PERSON_3], the new boxes are in the top drawer, not the kitchen cupboard.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:pres-002",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-pres-002",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-pres-002",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-pres-002",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-pres-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a friendly confirmation email to the employee setting out exactly what was agreed and what is still open.",
+  "text": "Notes from Tuesday's leave planning call (HR: Grigore Popescu; manager: Ifeoma Chukwu; employee: Hana Kobayashi)\n- Hana's parental leave starts 2 February, not 9 February as in the first draft; Grigore corrected this against the signed form.\n- Enhanced pay is 16 weeks at full salary, then statutory pay; it is not 18 weeks, which was the old policy.\n- Hana may add up to 4 weeks of annual leave at the end, but she hasn't decided and doesn't need to until 1 April.\n- Phased return: 3 days a week for the first 4 weeks, only if Ifeoma signs off the cover plan by 15 January.\n- Ifeoma said she'd probably approve, but wants the contractor confirmed first.\n- Keeping-in-touch days: up to 10, paid, none mandatory.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "hr-advisor",
+    "label": "PERSON",
+    "quote": "Grigore Popescu"
+   },
+   {
+    "id": "m2",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Ifeoma Chukwu"
+   },
+   {
+    "id": "m3",
+    "entity_id": "employee",
+    "label": "PERSON",
+    "quote": "Hana Kobayashi"
+   },
+   {
+    "id": "m4",
+    "entity_id": "employee",
+    "label": "PERSON",
+    "quote": "Hana",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "leave-dates",
+    "label": "EMPLOYMENT",
+    "quote": "parental leave starts 2 February, not 9 February as in the first draft"
+   },
+   {
+    "id": "m6",
+    "entity_id": "hr-advisor",
+    "label": "PERSON",
+    "quote": "Grigore",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "leave-pay",
+    "label": "EMPLOYMENT",
+    "quote": "Enhanced pay is 16 weeks at full salary, then statutory pay; it is not 18 weeks"
+   },
+   {
+    "id": "m8",
+    "entity_id": "employee",
+    "label": "PERSON",
+    "quote": "Hana",
+    "occurrence": 3
+   },
+   {
+    "id": "m9",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Ifeoma",
+    "occurrence": 2
+   },
+   {
+    "id": "m10",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Ifeoma",
+    "occurrence": 3
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "hr-advisor",
+    "quote": "Grigore Popescu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "manager",
+    "quote": "Ifeoma Chukwu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "employee",
+    "quote": "Hana Kobayashi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "employee",
+    "quote": "Hana",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "leave-dates",
+    "quote": "parental leave starts 2 February, not 9 February as in the first draft",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "hr-advisor",
+    "quote": "Grigore",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "leave-pay",
+    "quote": "Enhanced pay is 16 weeks at full salary, then statutory pay; it is not 18 weeks",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "employee",
+    "quote": "Hana",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "manager",
+    "quote": "Ifeoma",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "manager",
+    "quote": "Ifeoma",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "parental leave starts 2 February, not 9 February as in the first draft;"
+   },
+   {
+    "quote": "corrected this against the signed form."
+   },
+   {
+    "quote": "Enhanced pay is 16 weeks at full salary, then statutory pay; it is not 18 weeks, which was the old policy."
+   },
+   {
+    "quote": "may add up to 4 weeks of annual leave at the end, but she hasn't decided and doesn't need to until 1 April."
+   },
+   {
+    "quote": "Phased return: 3 days a week for the first 4 weeks, only if"
+   },
+   {
+    "quote": "signs off the cover plan by 15 January."
+   },
+   {
+    "quote": "said she'd probably approve, but wants the contractor confirmed first."
+   },
+   {
+    "quote": "Keeping-in-touch days: up to 10, paid, none mandatory."
+   }
+  ],
+  "approved_output": "Notes from Tuesday's leave planning call (HR: [PERSON_1]; manager: [PERSON_2]; employee: [PERSON_3])\n- [PERSON_3]'s parental leave starts 2 February, not 9 February as in the first draft; [PERSON_1] corrected this against the signed form.\n- Enhanced pay is 16 weeks at full salary, then statutory pay; it is not 18 weeks, which was the old policy.\n- [PERSON_3] may add up to 4 weeks of annual leave at the end, but she hasn't decided and doesn't need to until 1 April.\n- Phased return: 3 days a week for the first 4 weeks, only if [PERSON_2] signs off the cover plan by 15 January.\n- [PERSON_2] said she'd probably approve, but wants the contractor confirmed first.\n- Keeping-in-touch days: up to 10, paid, none mandatory.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:ben-001",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-ben-001",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-ben-001",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-ben-001",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-ben-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Compare these beginner running approaches and suggest a sensible three-runs-a-week schedule that respects the advice they share.",
+  "text": "I'm trying to put together a beginner running plan and keep reading conflicting advice. The WHO guidelines say adults should do 150 to 300 minutes of moderate activity a week, or 75 to 150 minutes of vigorous activity. The NHS Couch to 5K app runs over nine weeks with three runs a week, while Hal Higdon's novice 5K plan is eight weeks. Jeff Galloway's run-walk method builds in walking breaks from the very first session rather than working up to continuous running. A few forums also mention the 10 percent rule, where you don't increase weekly distance by more than 10 percent, though I've read that the evidence for it is fairly weak. Can you compare these approaches and explain where they actually agree and where they differ?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "approved_output": "I'm trying to put together a beginner running plan and keep reading conflicting advice. The WHO guidelines say adults should do 150 to 300 minutes of moderate activity a week, or 75 to 150 minutes of vigorous activity. The NHS Couch to 5K app runs over nine weeks with three runs a week, while Hal Higdon's novice 5K plan is eight weeks. Jeff Galloway's run-walk method builds in walking breaks from the very first session rather than working up to continuous running. A few forums also mention the 10 percent rule, where you don't increase weekly distance by more than 10 percent, though I've read that the evidence for it is fairly weak. Can you compare these approaches and explain where they actually agree and where they differ?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "4bb67ed080b844c9a99a4061abf1790c",
+  "id": "4bb67ed080b844c9a99a4061abf1790c:cred-001",
+  "family_id": "4bb67ed080b844c9a99a4061abf1790c:fam-cred-001",
+  "persona_id": "4bb67ed080b844c9a99a4061abf1790c:persona-cred-001",
+  "source_id": "4bb67ed080b844c9a99a4061abf1790c:src-cred-001",
+  "template_id": "4bb67ed080b844c9a99a4061abf1790c:tpl-cred-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me figure out why the payroll sync is failing and what to check first.",
+  "text": "Our nightly PeopleHub to payroll sync started failing on 3 November. Config excerpt (hris-sync.yaml):\n\nsource:\n  base_url: https://peoplehub.acme-hr.example/api/v2\n  api_token: tok-demo-9Vx2Pq7LmR4s\ntarget:\n  db_host: payroll-db.internal.example\n  db_user: payroll_sync\n  db_password: Birchwood!Tide57\n  batch_size: 500\n\nError from the job log: \"403 Forbidden: token lacks scope employees:read_compensation\". Nothing else changed in the YAML. Kemal Aydın rotated the token on 31 October after the security review, and Kemal thinks the new token was created with the default scopes. The sync matters because it feeds the 12 December bonus run, and this year's bonus pool is £1,860,000, which hasn't been announced to staff. What scope or setting should we check first?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "api-token",
+    "label": "SECRET",
+    "quote": "tok-demo-9Vx2Pq7LmR4s"
+   },
+   {
+    "id": "m2",
+    "entity_id": "db-user",
+    "label": "USERNAME",
+    "quote": "payroll_sync"
+   },
+   {
+    "id": "m3",
+    "entity_id": "db-password",
+    "label": "SECRET",
+    "quote": "Birchwood!Tide57"
+   },
+   {
+    "id": "m4",
+    "entity_id": "admin",
+    "label": "PERSON",
+    "quote": "Kemal Aydın"
+   },
+   {
+    "id": "m5",
+    "entity_id": "admin",
+    "label": "PERSON",
+    "quote": "Kemal",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "bonus-pool",
+    "label": "FINANCIAL",
+    "quote": "£1,860,000"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "api-token",
+    "quote": "tok-demo-9Vx2Pq7LmR4s",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A live API token grants access to employee records; diagnosing a missing-scope error only needs to know a token is configured."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "db-user",
+    "quote": "payroll_sync",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The payroll database login name is half of a credential pair; the failure is a token-scope error and does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "db-password",
+    "quote": "Birchwood!Tide57",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The database password is a credential; the diagnosis concerns API token scope and never needs its value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "admin",
+    "quote": "Kemal Aydın",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "admin",
+    "quote": "Kemal",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "bonus-pool",
+    "quote": "£1,860,000",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The unannounced bonus pool is confidential compensation data and has no bearing on the token-scope failure."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our nightly PeopleHub to payroll sync started failing on 3 November."
+   },
+   {
+    "quote": "base_url: https://peoplehub.acme-hr.example/api/v2"
+   },
+   {
+    "quote": "Error from the job log: \"403 Forbidden: token lacks scope employees:read_compensation\". Nothing else changed in the YAML."
+   },
+   {
+    "quote": "rotated the token on 31 October after the security review, and"
+   },
+   {
+    "quote": "thinks the new token was created with the default scopes."
+   },
+   {
+    "quote": "The sync matters because it feeds the 12 December bonus run,"
+   },
+   {
+    "quote": "which hasn't been announced to staff."
+   },
+   {
+    "quote": "What scope or setting should we check first?"
+   }
+  ],
+  "approved_output": "Our nightly PeopleHub to payroll sync started failing on 3 November. Config excerpt (hris-sync.yaml):\n\nsource:\n  base_url: https://peoplehub.acme-hr.example/api/v2\n  api_token: [SECRET]\ntarget:\n  db_host: payroll-db.internal.example\n  db_user: [USERNAME]\n  db_password: [SECRET]\n  batch_size: 500\n\nError from the job log: \"403 Forbidden: token lacks scope employees:read_compensation\". Nothing else changed in the YAML. [PERSON_1] rotated the token on 31 October after the security review, and [PERSON_1] thinks the new token was created with the default scopes. The sync matters because it feeds the 12 December bonus run, and this year's bonus pool is [FINANCIAL], which hasn't been announced to staff. What scope or setting should we check first?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "4bb67ed080b844c9a99a4061abf1790c:generator",
+   "generator_model": "claude-opus-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

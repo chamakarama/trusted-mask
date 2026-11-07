@@ -1,6 +1,8 @@
 # Canonical Mask training data — 7 November 2026
 
-Use this folder for the next training run. It consolidates all current **reviewed schema-v2** campaigns, including the exact two video messages and 20 newly authored demo-related messages.
+> **Superseded for new training runs by [`../training-2026-11-07b/`](../training-2026-11-07b/README.md).** That folder holds these 516 train records plus 300 reviewed placeholder-preservation records, with the same dev set. This folder stays unchanged, because the published bundles, evidence, `experiment.py` and `tests/test_training_campaign.py` refer to its exact 516-record file.
+
+This folder consolidates the reviewed **schema-v2** campaigns available on 7 November 2026, including the exact two video messages and 20 newly authored demo-related messages.
 
 - `train.jsonl`: **516 compiled training records**.
 - `dev.jsonl`: **50 compiled development records**. Never train on these.

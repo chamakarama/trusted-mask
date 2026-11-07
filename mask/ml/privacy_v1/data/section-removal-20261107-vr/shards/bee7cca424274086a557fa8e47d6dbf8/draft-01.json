@@ -1,0 +1,2741 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:fezkitchen-bank",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-fezkitchen",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-fezkitchen",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-fezkitchen",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-fezkitchen",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The kitchen and bathroom job in our Fez flat is now three weeks late. Rachid Ouazzani, the site foreman, told me on Monday that the second tile delivery will arrive on the 14th, and that he can only restart the plumbing once the old pipes in the wall have been signed off. We paid his firm 30,000 dirhams in March, and the next 25,000 falls due when the walls are closed.\n\nMy husband, Hicham Lahrichi, had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December. We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule.\n\nThe neighbours upstairs share the pipe stack and want two days' notice before the water is shut off. The foreman's mobile is 06 61 48 20 73, in case the delivery driver needs directions.",
+  "task": "Help me prepare for tomorrow's meeting at the bank about whether the instalments can be changed.",
+  "entities": [
+   {
+    "id": "foreman",
+    "entity_id": "foreman",
+    "label": "PERSON",
+    "quote": "Rachid Ouazzani"
+   },
+   {
+    "id": "husband",
+    "entity_id": "husband",
+    "label": "PERSON",
+    "quote": "Hicham Lahrichi"
+   },
+   {
+    "id": "pay",
+    "entity_id": "pay",
+    "label": "EMPLOYMENT",
+    "quote": "had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December."
+   },
+   {
+    "id": "loan",
+    "entity_id": "loan",
+    "label": "FINANCIAL",
+    "quote": "We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule."
+   },
+   {
+    "id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "06 61 48 20 73"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "foreman",
+    "entity_id": "foreman",
+    "label": "PERSON",
+    "quote": "Rachid Ouazzani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "husband",
+    "entity_id": "husband",
+    "label": "PERSON",
+    "quote": "Hicham Lahrichi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pay",
+    "entity_id": "pay",
+    "label": "EMPLOYMENT",
+    "quote": "had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "loan",
+    "entity_id": "loan",
+    "label": "FINANCIAL",
+    "quote": "We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "06 61 48 20 73",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number; not needed for the task and replaced with a placeholder, no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My husband,"
+   },
+   {
+    "quote": "had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December."
+   },
+   {
+    "quote": "We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "The kitchen and bathroom job in our Fez flat is now three weeks late. [PERSON_1], the site foreman, told me on Monday that the second tile delivery will arrive on the 14th, and that he can only restart the plumbing once the old pipes in the wall have been signed off. We paid his firm 30,000 dirhams in March, and the next 25,000 falls due when the walls are closed.\n\nMy husband, [PERSON_2], had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December. We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule.\n\nThe neighbours upstairs share the pipe stack and want two days' notice before the water is shut off. The foreman's mobile is [PHONE], in case the delivery driver needs directions."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:fezkitchen-foreman",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-fezkitchen",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-fezkitchen",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-fezkitchen",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-fezkitchen",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The kitchen and bathroom job in our Fez flat is now three weeks late. Rachid Ouazzani, the site foreman, told me on Monday that the second tile delivery will arrive on the 14th, and that he can only restart the plumbing once the old pipes in the wall have been signed off. We paid his firm 30,000 dirhams in March, and the next 25,000 falls due when the walls are closed.\n\nMy husband, Hicham Lahrichi, had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December. We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule.\n\nThe neighbours upstairs share the pipe stack and want two days' notice before the water is shut off. The foreman's mobile is 06 61 48 20 73, in case the delivery driver needs directions.",
+  "task": "Write a short message to the foreman asking him to confirm the new tile delivery date and when the plumbing can restart, and mention the neighbours' notice request.",
+  "entities": [
+   {
+    "id": "foreman",
+    "entity_id": "foreman",
+    "label": "PERSON",
+    "quote": "Rachid Ouazzani"
+   },
+   {
+    "id": "husband",
+    "entity_id": "husband",
+    "label": "PERSON",
+    "quote": "Hicham Lahrichi"
+   },
+   {
+    "id": "pay",
+    "entity_id": "pay",
+    "label": "EMPLOYMENT",
+    "quote": "had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December."
+   },
+   {
+    "id": "loan",
+    "entity_id": "loan",
+    "label": "FINANCIAL",
+    "quote": "We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule."
+   },
+   {
+    "id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "06 61 48 20 73"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "foreman",
+    "entity_id": "foreman",
+    "label": "PERSON",
+    "quote": "Rachid Ouazzani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "My husband, Hicham Lahrichi, had his hours cut at the Meknes warehouse in July, so his pay has been 40 percent lower ever since and will stay that way until at least December. We pay 2,150 dirhams a month on the home improvement loan, and I am not sure we can keep that up unless the bank agrees to a different schedule.\n\n",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The foreman message needs delivery, plumbing and water-notice facts; the household income cut and loan repayment burden are not needed to schedule the work."
+   },
+   {
+    "kind": "entity",
+    "target_id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "06 61 48 20 73",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number; not needed for the task and replaced with a placeholder, no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": ", the site foreman, told me on Monday that the second tile delivery will arrive on the 14th, and that he can only restart the plumbing once the old pipes in the wall have been signed off."
+   },
+   {
+    "quote": "The neighbours upstairs share the pipe stack and want two days' notice before the water is shut off."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "The kitchen and bathroom job in our Fez flat is now three weeks late. [PERSON_1], the site foreman, told me on Monday that the second tile delivery will arrive on the 14th, and that he can only restart the plumbing once the old pipes in the wall have been signed off. We paid his firm 30,000 dirhams in March, and the next 25,000 falls due when the walls are closed.\n\nThe neighbours upstairs share the pipe stack and want two days' notice before the water is shut off. The foreman's mobile is [PHONE], in case the delivery driver needs directions."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:oranloan-builder",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-oranloan",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-oranloan",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-oranloan",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-oranloan",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hello, I am renovating the ground floor of our house in Oran and applied for a renovation loan of 450,000 dinars at the branch where Ms Imane Bensalem handles my file. She said the bank still needs the signed estimate from the builder and a recent utility bill, and I should send both before 20 November or the offer lapses. My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold. The builder's estimate is 380,000 dinars, but he told me the figure could rise by 10 percent if the steel beams have to be replaced. I cannot get the utility bill until the 25th because the provider only issues it after the meter reading. My email for the file is karim.boudiaf@example.invalid, and I would like replies there instead of by phone.",
+  "task": "Write a short note to the builder listing the access requirements he must follow on the ground floor.",
+  "entities": [
+   {
+    "id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Imane Bensalem"
+   },
+   {
+    "id": "hip",
+    "entity_id": "hip",
+    "label": "HEALTH",
+    "quote": "My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold."
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "karim.boudiaf@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Imane Bensalem",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hip",
+    "entity_id": "hip",
+    "label": "HEALTH",
+    "quote": "My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "karim.boudiaf@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hello, I am renovating the ground floor of our house in Oran and applied for a renovation loan of 450,000 dinars at the branch where Ms [PERSON_1] handles my file. She said the bank still needs the signed estimate from the builder and a recent utility bill, and I should send both before 20 November or the offer lapses. My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold. The builder's estimate is 380,000 dinars, but he told me the figure could rise by 10 percent if the steel beams have to be replaced. I cannot get the utility bill until the 25th because the provider only issues it after the meter reading. My email for the file is [EMAIL], and I would like replies there instead of by phone."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:oranloan-bank",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-oranloan",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-oranloan",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-oranloan",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-oranloan",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hello, I am renovating the ground floor of our house in Oran and applied for a renovation loan of 450,000 dinars at the branch where Ms Imane Bensalem handles my file. She said the bank still needs the signed estimate from the builder and a recent utility bill, and I should send both before 20 November or the offer lapses. My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold. The builder's estimate is 380,000 dinars, but he told me the figure could rise by 10 percent if the steel beams have to be replaced. I cannot get the utility bill until the 25th because the provider only issues it after the meter reading. My email for the file is karim.boudiaf@example.invalid, and I would like replies there instead of by phone.",
+  "task": "Write a short email to the bank asking for more time to send the missing documents for the loan, explaining what is delayed and why.",
+  "entities": [
+   {
+    "id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Imane Bensalem"
+   },
+   {
+    "id": "hip",
+    "entity_id": "hip",
+    "label": "HEALTH",
+    "quote": "My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold."
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "karim.boudiaf@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Imane Bensalem",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "My mother-in-law has her hip replacement next month and will live with us afterwards, so the bathroom has to be step-free with a walk-in shower and no raised threshold. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The deadline-extension email needs the document list, dates and estimate caveat; a relative's surgery and the bathroom access requirement are not needed to ask for more time."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "karim.boudiaf@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "She said the bank still needs the signed estimate from the builder and a recent utility bill, and I should send both before 20 November or the offer lapses."
+   },
+   {
+    "quote": "I cannot get the utility bill until the 25th because the provider only issues it after the meter reading."
+   },
+   {
+    "quote": "The builder's estimate is 380,000 dinars, but he told me the figure could rise by 10 percent if the steel beams have to be replaced."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Hello, I am renovating the ground floor of our house in Oran and applied for a renovation loan of 450,000 dinars at the branch where Ms [PERSON_1] handles my file. She said the bank still needs the signed estimate from the builder and a recent utility bill, and I should send both before 20 November or the offer lapses. The builder's estimate is 380,000 dinars, but he told me the figure could rise by 10 percent if the steel beams have to be replaced. I cannot get the utility bill until the 25th because the provider only issues it after the meter reading. My email for the file is [EMAIL], and I would like replies there instead of by phone."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:roofquotes-cover",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-roofquotes",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-roofquotes",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-roofquotes",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-roofquotes",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed. I have since paid everything back, and the credit bureau report was updated in September. My brother Mourad Hadjadj has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything.\n\nFor the roof in Constantine I have three quotes. The first, 214,000 dinars, covers 85 square metres of tiles with insulation. The second, 188,000 dinars, covers 85 square metres but without insulation. The third, 161,000 dinars, covers only 70 square metres because that roofer would leave the garage side untouched.\n\nWhichever quote I pick, the work cannot start before the dry season ends in October, and the roofers want 20 percent upfront. My neighbour Wafa Tazi has recommended the second roofer, and her cousin had the same job done last year. The broker can reach me at hakim.merzouk@example.invalid.",
+  "task": "Write a short cover note for my application to a second lender, explaining my situation honestly.",
+  "entities": [
+   {
+    "id": "brother",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Mourad Hadjadj"
+   },
+   {
+    "id": "refusal",
+    "entity_id": "refusal",
+    "label": "FINANCIAL",
+    "quote": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed."
+   },
+   {
+    "id": "repaid",
+    "entity_id": "repaid",
+    "label": "FINANCIAL",
+    "quote": "I have since paid everything back, and the credit bureau report was updated in September."
+   },
+   {
+    "id": "guar",
+    "entity_id": "guar",
+    "label": "FINANCIAL",
+    "quote": "has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything."
+   },
+   {
+    "id": "neigh",
+    "entity_id": "neigh",
+    "label": "PERSON",
+    "quote": "Wafa Tazi"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "hakim.merzouk@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "refusal",
+    "entity_id": "refusal",
+    "label": "FINANCIAL",
+    "quote": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "repaid",
+    "entity_id": "repaid",
+    "label": "FINANCIAL",
+    "quote": "I have since paid everything back, and the credit bureau report was updated in September.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "brother",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Mourad Hadjadj",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "guar",
+    "entity_id": "guar",
+    "label": "FINANCIAL",
+    "quote": "has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "neigh",
+    "entity_id": "neigh",
+    "label": "PERSON",
+    "quote": "Wafa Tazi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "hakim.merzouk@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed."
+   },
+   {
+    "quote": "I have since paid everything back, and the credit bureau report was updated in September."
+   },
+   {
+    "quote": "My brother"
+   },
+   {
+    "quote": "has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed. I have since paid everything back, and the credit bureau report was updated in September. My brother [PERSON_1] has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything.\n\nFor the roof in Constantine I have three quotes. The first, 214,000 dinars, covers 85 square metres of tiles with insulation. The second, 188,000 dinars, covers 85 square metres but without insulation. The third, 161,000 dinars, covers only 70 square metres because that roofer would leave the garage side untouched.\n\nWhichever quote I pick, the work cannot start before the dry season ends in October, and the roofers want 20 percent upfront. My neighbour [PERSON_2] has recommended the second roofer, and her cousin had the same job done last year. The broker can reach me at [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:roofquotes-roofs",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-roofquotes",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-roofquotes",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-roofquotes",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-roofquotes",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed. I have since paid everything back, and the credit bureau report was updated in September. My brother Mourad Hadjadj has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything.\n\nFor the roof in Constantine I have three quotes. The first, 214,000 dinars, covers 85 square metres of tiles with insulation. The second, 188,000 dinars, covers 85 square metres but without insulation. The third, 161,000 dinars, covers only 70 square metres because that roofer would leave the garage side untouched.\n\nWhichever quote I pick, the work cannot start before the dry season ends in October, and the roofers want 20 percent upfront. My neighbour Wafa Tazi has recommended the second roofer, and her cousin had the same job done last year. The broker can reach me at hakim.merzouk@example.invalid.",
+  "task": "Compare the three roof quotes per square metre and tell me which one is the best value.",
+  "entities": [
+   {
+    "id": "brother",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Mourad Hadjadj"
+   },
+   {
+    "id": "refusal",
+    "entity_id": "refusal",
+    "label": "FINANCIAL",
+    "quote": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed."
+   },
+   {
+    "id": "repaid",
+    "entity_id": "repaid",
+    "label": "FINANCIAL",
+    "quote": "I have since paid everything back, and the credit bureau report was updated in September."
+   },
+   {
+    "id": "guar",
+    "entity_id": "guar",
+    "label": "FINANCIAL",
+    "quote": "has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything."
+   },
+   {
+    "id": "neigh",
+    "entity_id": "neigh",
+    "label": "PERSON",
+    "quote": "Wafa Tazi"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "hakim.merzouk@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "Last spring one bank turned down my renovation loan because I had missed two instalments on the car loan during the months my shop was closed. I have since paid everything back, and the credit bureau report was updated in September. My brother Mourad Hadjadj has offered to act as guarantor if another lender asks for one, but I have not yet asked him to sign anything.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Comparing roofing quotes needs prices and areas only; the past loan refusal, repayment history and guarantor offer are not needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "neigh",
+    "entity_id": "neigh",
+    "label": "PERSON",
+    "quote": "Wafa Tazi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "hakim.merzouk@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The first, 214,000 dinars, covers 85 square metres of tiles with insulation."
+   },
+   {
+    "quote": "The second, 188,000 dinars, covers 85 square metres but without insulation."
+   },
+   {
+    "quote": "The third, 161,000 dinars, covers only 70 square metres because that roofer would leave the garage side untouched."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "For the roof in Constantine I have three quotes. The first, 214,000 dinars, covers 85 square metres of tiles with insulation. The second, 188,000 dinars, covers 85 square metres but without insulation. The third, 161,000 dinars, covers only 70 square metres because that roofer would leave the garage side untouched.\n\nWhichever quote I pick, the work cannot start before the dry season ends in October, and the roofers want 20 percent upfront. My neighbour [PERSON_1] has recommended the second roofer, and her cousin had the same job done last year. The broker can reach me at [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:tangierplaster-term",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-tangierplaster",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-tangierplaster",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-tangierplaster",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-tangierplaster",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I want to borrow 120,000 dirhams to redo the electrics and plaster in the flat I bought in Tangier, and the bank has offered 84 months at a fixed rate, though the officer, Nadia Mekhloufi, said she would need my last three payslips. The electrician, Yassine Chraibi, can come on the 9th but only if the plasterer has not yet closed the walls, and the plasterer starts on the 12th. I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet. If the electrician needs the earthing checked first, that would add a day, and I would rather not pay for a second visit.",
+  "task": "Help me decide how long a repayment period to ask for.",
+  "entities": [
+   {
+    "id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Nadia Mekhloufi"
+   },
+   {
+    "id": "elec",
+    "entity_id": "elec",
+    "label": "PERSON",
+    "quote": "Yassine Chraibi"
+   },
+   {
+    "id": "job",
+    "entity_id": "job",
+    "label": "EMPLOYMENT",
+    "quote": "I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Nadia Mekhloufi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "elec",
+    "entity_id": "elec",
+    "label": "PERSON",
+    "quote": "Yassine Chraibi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "job",
+    "entity_id": "job",
+    "label": "EMPLOYMENT",
+    "quote": "I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet.",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I want to borrow 120,000 dirhams to redo the electrics and plaster in the flat I bought in Tangier, and the bank has offered 84 months at a fixed rate, though the officer,"
+   },
+   {
+    "quote": "said she would need my last three payslips."
+   },
+   {
+    "quote": "I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I want to borrow 120,000 dirhams to redo the electrics and plaster in the flat I bought in Tangier, and the bank has offered 84 months at a fixed rate, though the officer, [PERSON_1], said she would need my last three payslips. The electrician, [PERSON_2], can come on the 9th but only if the plasterer has not yet closed the walls, and the plasterer starts on the 12th. I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet. If the electrician needs the earthing checked first, that would add a day, and I would rather not pay for a second visit."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:tangierplaster-sparky",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-tangierplaster",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-tangierplaster",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-tangierplaster",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-tangierplaster",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I want to borrow 120,000 dirhams to redo the electrics and plaster in the flat I bought in Tangier, and the bank has offered 84 months at a fixed rate, though the officer, Nadia Mekhloufi, said she would need my last three payslips. The electrician, Yassine Chraibi, can come on the 9th but only if the plasterer has not yet closed the walls, and the plasterer starts on the 12th. I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet. If the electrician needs the earthing checked first, that would add a day, and I would rather not pay for a second visit.",
+  "task": "Write a message to the electrician asking him to confirm he can come on the 9th, and explain the order of work with the plasterer.",
+  "entities": [
+   {
+    "id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Nadia Mekhloufi"
+   },
+   {
+    "id": "elec",
+    "entity_id": "elec",
+    "label": "PERSON",
+    "quote": "Yassine Chraibi"
+   },
+   {
+    "id": "job",
+    "entity_id": "job",
+    "label": "EMPLOYMENT",
+    "quote": "I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "officer",
+    "entity_id": "officer",
+    "label": "PERSON",
+    "quote": "Nadia Mekhloufi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "elec",
+    "entity_id": "elec",
+    "label": "PERSON",
+    "quote": "Yassine Chraibi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "I start a new job in Casablanca in January on a six-month probation contract, so I am not sure the bank will treat my income as stable, and I have not told her yet. ",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Coordinating the electrician with the plasterer does not need the borrower's upcoming job change or the bank-income worry."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The electrician,"
+   },
+   {
+    "quote": "can come on the 9th but only if the plasterer has not yet closed the walls, and the plasterer starts on the 12th."
+   },
+   {
+    "quote": "If the electrician needs the earthing checked first, that would add a day, and I would rather not pay for a second visit."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "I want to borrow 120,000 dirhams to redo the electrics and plaster in the flat I bought in Tangier, and the bank has offered 84 months at a fixed rate, though the officer, [PERSON_1], said she would need my last three payslips. The electrician, [PERSON_2], can come on the 9th but only if the plasterer has not yet closed the walls, and the plasterer starts on the 12th. If the electrician needs the earthing checked first, that would add a day, and I would rather not pay for a second visit."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:annabadrill-meeting",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-annabadrill",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-annabadrill",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-annabadrill",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-annabadrill",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Since 3 September the flat above ours in Annaba has had drilling and hammering from about 7:30 most mornings, and on some Saturdays too. The owner, Salima Ouali, told me she is converting the second bedroom into a studio and that the work should end by the middle of November, but she has not given any dates in writing.\n\nI have asked her twice by message to stop before 9:00 on weekdays, and the second time she answered that the building rules allow work from 8:00. The building manager, Farid Sebti, has said he will put a notice on the board if we agree on the hours.\n\nI work nights at the hospital laundry and sleep from about 8 in the morning, and since September I have been getting three or four hours at most. My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues.\n\nThe meeting with the residents' committee is on Thursday evening at 18:30 in the entrance hall. The caretaker's number is 0771 63 05 28 if anyone needs the hall unlocked.",
+  "task": "Prepare what I will say at Thursday's committee meeting about how this has affected me.",
+  "entities": [
+   {
+    "id": "owner",
+    "entity_id": "owner",
+    "label": "PERSON",
+    "quote": "Salima Ouali"
+   },
+   {
+    "id": "manager",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Farid Sebti"
+   },
+   {
+    "id": "nights",
+    "entity_id": "nights",
+    "label": "EMPLOYMENT",
+    "quote": "I work nights at the hospital laundry and sleep from about 8 in the morning,"
+   },
+   {
+    "id": "sleep",
+    "entity_id": "sleep",
+    "label": "HEALTH",
+    "quote": "and since September I have been getting three or four hours at most."
+   },
+   {
+    "id": "bp",
+    "entity_id": "bp",
+    "label": "HEALTH",
+    "quote": "My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues."
+   },
+   {
+    "id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0771 63 05 28"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "owner",
+    "entity_id": "owner",
+    "label": "PERSON",
+    "quote": "Salima Ouali",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "manager",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Farid Sebti",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "nights",
+    "entity_id": "nights",
+    "label": "EMPLOYMENT",
+    "quote": "I work nights at the hospital laundry and sleep from about 8 in the morning,",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sleep",
+    "entity_id": "sleep",
+    "label": "HEALTH",
+    "quote": "and since September I have been getting three or four hours at most.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "bp",
+    "entity_id": "bp",
+    "label": "HEALTH",
+    "quote": "My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0771 63 05 28",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number; not needed for the task and replaced with a placeholder, no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Since 3 September the flat above ours in Annaba has had drilling and hammering from about 7:30 most mornings, and on some Saturdays too."
+   },
+   {
+    "quote": "I work nights at the hospital laundry and sleep from about 8 in the morning, and since September I have been getting three or four hours at most."
+   },
+   {
+    "quote": "My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Since 3 September the flat above ours in Annaba has had drilling and hammering from about 7:30 most mornings, and on some Saturdays too. The owner, [PERSON_1], told me she is converting the second bedroom into a studio and that the work should end by the middle of November, but she has not given any dates in writing.\n\nI have asked her twice by message to stop before 9:00 on weekdays, and the second time she answered that the building rules allow work from 8:00. The building manager, [PERSON_2], has said he will put a notice on the board if we agree on the hours.\n\nI work nights at the hospital laundry and sleep from about 8 in the morning, and since September I have been getting three or four hours at most. My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues.\n\nThe meeting with the residents' committee is on Thursday evening at 18:30 in the entrance hall. The caretaker's number is [PHONE] if anyone needs the hall unlocked."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:annabadrill-manager",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-annabadrill",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-annabadrill",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-annabadrill",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-annabadrill",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Since 3 September the flat above ours in Annaba has had drilling and hammering from about 7:30 most mornings, and on some Saturdays too. The owner, Salima Ouali, told me she is converting the second bedroom into a studio and that the work should end by the middle of November, but she has not given any dates in writing.\n\nI have asked her twice by message to stop before 9:00 on weekdays, and the second time she answered that the building rules allow work from 8:00. The building manager, Farid Sebti, has said he will put a notice on the board if we agree on the hours.\n\nI work nights at the hospital laundry and sleep from about 8 in the morning, and since September I have been getting three or four hours at most. My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues.\n\nThe meeting with the residents' committee is on Thursday evening at 18:30 in the entrance hall. The caretaker's number is 0771 63 05 28 if anyone needs the hall unlocked.",
+  "task": "Write a short message to the building manager asking that the work hours be put on the notice board and that drilling stop before 9:00 on weekdays.",
+  "entities": [
+   {
+    "id": "owner",
+    "entity_id": "owner",
+    "label": "PERSON",
+    "quote": "Salima Ouali"
+   },
+   {
+    "id": "manager",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Farid Sebti"
+   },
+   {
+    "id": "nights",
+    "entity_id": "nights",
+    "label": "EMPLOYMENT",
+    "quote": "I work nights at the hospital laundry and sleep from about 8 in the morning,"
+   },
+   {
+    "id": "sleep",
+    "entity_id": "sleep",
+    "label": "HEALTH",
+    "quote": "and since September I have been getting three or four hours at most."
+   },
+   {
+    "id": "bp",
+    "entity_id": "bp",
+    "label": "HEALTH",
+    "quote": "My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues."
+   },
+   {
+    "id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0771 63 05 28"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "owner",
+    "entity_id": "owner",
+    "label": "PERSON",
+    "quote": "Salima Ouali",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "manager",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Farid Sebti",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "I work nights at the hospital laundry and sleep from about 8 in the morning, and since September I have been getting three or four hours at most. My doctor has written that the broken sleep is making my blood pressure harder to control, and she wants me to bring a note from the building if it continues.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A request to post work hours and stop early drilling does not need the writer's shift pattern, sleep loss or blood-pressure advice from a doctor."
+   },
+   {
+    "kind": "entity",
+    "target_id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0771 63 05 28",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number; not needed for the task and replaced with a placeholder, no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Since 3 September the flat above ours in Annaba has had drilling and hammering from about 7:30 most mornings, and on some Saturdays too."
+   },
+   {
+    "quote": "I have asked her twice by message to stop before 9:00 on weekdays, and the second time she answered that the building rules allow work from 8:00."
+   },
+   {
+    "quote": "The building manager,"
+   },
+   {
+    "quote": "has said he will put a notice on the board if we agree on the hours."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Since 3 September the flat above ours in Annaba has had drilling and hammering from about 7:30 most mornings, and on some Saturdays too. The owner, [PERSON_1], told me she is converting the second bedroom into a studio and that the work should end by the middle of November, but she has not given any dates in writing.\n\nI have asked her twice by message to stop before 9:00 on weekdays, and the second time she answered that the building rules allow work from 8:00. The building manager, [PERSON_2], has said he will put a notice on the board if we agree on the hours.\n\nThe meeting with the residents' committee is on Thursday evening at 18:30 in the entrance hall. The caretaker's number is [PHONE] if anyone needs the hall unlocked."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:agadirfence-settle",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-agadirfence",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-agadirfence",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-agadirfence",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-agadirfence",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Our fence on the south side of the garden in Agadir leans onto the plot of Brahim Ziani, who says it was moved a metre when we rebuilt it in June, though the survey from 2019 shows it is on the line within a few centimetres. Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first. The municipal technician is coming on 28 November to mark the boundary, and Brahim has agreed to accept whatever the stakes show. The fence panels cost 3,800 dirhams, which I am happy to split if the line moves, but not if it does not. His sister Zineb Skalli, who lives in the other half of the house, called me yesterday to say the family wants to settle everything before the new year.",
+  "task": "Draft a message to my neighbour proposing how we settle everything between us before the new year.",
+  "entities": [
+   {
+    "id": "b1",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim Ziani"
+   },
+   {
+    "id": "b2",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim",
+    "occurrence": 2
+   },
+   {
+    "id": "debt",
+    "entity_id": "debt",
+    "label": "FINANCIAL",
+    "quote": "Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first."
+   },
+   {
+    "id": "sister",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Zineb Skalli"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "b1",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim Ziani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "debt",
+    "entity_id": "debt",
+    "label": "FINANCIAL",
+    "quote": "Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b2",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "sister",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Zineb Skalli",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first."
+   },
+   {
+    "quote": "The fence panels cost 3,800 dirhams, which I am happy to split if the line moves, but not if it does not."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Our fence on the south side of the garden in Agadir leans onto the plot of [PERSON_1], who says it was moved a metre when we rebuilt it in June, though the survey from 2019 shows it is on the line within a few centimetres. Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first. The municipal technician is coming on 28 November to mark the boundary, and [PERSON_1] has agreed to accept whatever the stakes show. The fence panels cost 3,800 dirhams, which I am happy to split if the line moves, but not if it does not. His sister [PERSON_2], who lives in the other half of the house, called me yesterday to say the family wants to settle everything before the new year."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:agadirfence-boundary",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-agadirfence",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-agadirfence",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-agadirfence",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-agadirfence",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Our fence on the south side of the garden in Agadir leans onto the plot of Brahim Ziani, who says it was moved a metre when we rebuilt it in June, though the survey from 2019 shows it is on the line within a few centimetres. Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first. The municipal technician is coming on 28 November to mark the boundary, and Brahim has agreed to accept whatever the stakes show. The fence panels cost 3,800 dirhams, which I am happy to split if the line moves, but not if it does not. His sister Zineb Skalli, who lives in the other half of the house, called me yesterday to say the family wants to settle everything before the new year.",
+  "task": "Write a short note to the neighbour confirming when the boundary will be checked and how we will share the fence cost.",
+  "entities": [
+   {
+    "id": "b1",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim Ziani"
+   },
+   {
+    "id": "b2",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim",
+    "occurrence": 2
+   },
+   {
+    "id": "debt",
+    "entity_id": "debt",
+    "label": "FINANCIAL",
+    "quote": "Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first."
+   },
+   {
+    "id": "sister",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Zineb Skalli"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "b1",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim Ziani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Last winter I lent him 12,000 dirhams towards his roof, and he promised to pay it back in four equal parts, of which he has paid only the first. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The boundary-check note needs the survey date and fence-cost split; the neighbour's separate roof loan and repayment record are not needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "b2",
+    "entity_id": "brahim",
+    "label": "PERSON",
+    "quote": "Brahim",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "sister",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Zineb Skalli",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The municipal technician is coming on 28 November to mark the boundary, and"
+   },
+   {
+    "quote": "has agreed to accept whatever the stakes show."
+   },
+   {
+    "quote": "The fence panels cost 3,800 dirhams, which I am happy to split if the line moves, but not if it does not."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Our fence on the south side of the garden in Agadir leans onto the plot of [PERSON_1], who says it was moved a metre when we rebuilt it in June, though the survey from 2019 shows it is on the line within a few centimetres. The municipal technician is coming on 28 November to mark the boundary, and [PERSON_1] has agreed to accept whatever the stakes show. The fence panels cost 3,800 dirhams, which I am happy to split if the line moves, but not if it does not. His sister [PERSON_2], who lives in the other half of the house, called me yesterday to say the family wants to settle everything before the new year."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:blidabins-account",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-blidabins",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-blidabins",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-blidabins",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-blidabins",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Courtyard bins log, second floor, Blida\n- 2 Oct: bags left on the landing again by the flat opposite, which belongs to Hind Lahlou; I carried them to the bin room myself.\n- 9 Oct: spoke to Hind on the stairs; she said her cleaner puts them out and promised to stop, and I did not raise my voice.\n- 12 Oct: off sick all day with a Crohn's flare-up, so I could not carry the recycling down.\n- 13 Oct: Hind told the committee that my own bags were late; I have not replied yet.\n- 17 Oct: the committee secretary, Anas Benjelloun, asked both of us for written accounts by the 24th.\n- 21 Oct: the cleaner left bags on the landing again; photo taken at 8:10, saved on my phone.\nPlease send the account to anas.benjelloun@example.invalid, not to the group chat.",
+  "task": "Help me write my written account for the committee, including how to answer the complaint about my own bags.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind Lahlou"
+   },
+   {
+    "id": "h2",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "occurrence": 2
+   },
+   {
+    "id": "h3",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "occurrence": 3
+   },
+   {
+    "id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "off sick all day with a Crohn's flare-up, so I could not carry the recycling down."
+   },
+   {
+    "id": "sec",
+    "entity_id": "sec",
+    "label": "PERSON",
+    "quote": "Anas Benjelloun"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "anas.benjelloun@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind Lahlou",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "off sick all day with a Crohn's flare-up, so I could not carry the recycling down.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "sec",
+    "entity_id": "sec",
+    "label": "PERSON",
+    "quote": "Anas Benjelloun",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "anas.benjelloun@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "12 Oct: off sick all day with a Crohn's flare-up, so I could not carry the recycling down."
+   },
+   {
+    "quote": "13 Oct:"
+   },
+   {
+    "quote": "told the committee that my own bags were late; I have not replied yet."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Courtyard bins log, second floor, Blida\n- 2 Oct: bags left on the landing again by the flat opposite, which belongs to [PERSON_1]; I carried them to the bin room myself.\n- 9 Oct: spoke to [PERSON_1] on the stairs; she said her cleaner puts them out and promised to stop, and I did not raise my voice.\n- 12 Oct: off sick all day with a Crohn's flare-up, so I could not carry the recycling down.\n- 13 Oct: [PERSON_1] told the committee that my own bags were late; I have not replied yet.\n- 17 Oct: the committee secretary, [PERSON_2], asked both of us for written accounts by the 24th.\n- 21 Oct: the cleaner left bags on the landing again; photo taken at 8:10, saved on my phone.\nPlease send the account to [EMAIL], not to the group chat."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:blidabins-timeline",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-blidabins",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-blidabins",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-blidabins",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-blidabins",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Courtyard bins log, second floor, Blida\n- 2 Oct: bags left on the landing again by the flat opposite, which belongs to Hind Lahlou; I carried them to the bin room myself.\n- 9 Oct: spoke to Hind on the stairs; she said her cleaner puts them out and promised to stop, and I did not raise my voice.\n- 12 Oct: off sick all day with a Crohn's flare-up, so I could not carry the recycling down.\n- 13 Oct: Hind told the committee that my own bags were late; I have not replied yet.\n- 17 Oct: the committee secretary, Anas Benjelloun, asked both of us for written accounts by the 24th.\n- 21 Oct: the cleaner left bags on the landing again; photo taken at 8:10, saved on my phone.\nPlease send the account to anas.benjelloun@example.invalid, not to the group chat.",
+  "task": "Write a short factual timeline of the bag incidents on the landing for the building committee.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind Lahlou"
+   },
+   {
+    "id": "h2",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "occurrence": 2
+   },
+   {
+    "id": "h3",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "occurrence": 3
+   },
+   {
+    "id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "off sick all day with a Crohn's flare-up, so I could not carry the recycling down."
+   },
+   {
+    "id": "sec",
+    "entity_id": "sec",
+    "label": "PERSON",
+    "quote": "Anas Benjelloun"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "anas.benjelloun@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind Lahlou",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "section",
+    "quote": "- 12 Oct: off sick all day with a Crohn's flare-up, so I could not carry the recycling down.\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A timeline of the landing incidents does not need the writer's illness on 12 October."
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "hind",
+    "label": "PERSON",
+    "quote": "Hind",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "sec",
+    "entity_id": "sec",
+    "label": "PERSON",
+    "quote": "Anas Benjelloun",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "anas.benjelloun@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "2 Oct: bags left on the landing again by the flat opposite, which belongs to"
+   },
+   {
+    "quote": "I carried them to the bin room myself."
+   },
+   {
+    "quote": "9 Oct: spoke to"
+   },
+   {
+    "quote": "on the stairs; she said her cleaner puts them out and promised to stop, and I did not raise my voice."
+   },
+   {
+    "quote": "21 Oct: the cleaner left bags on the landing again; photo taken at 8:10, saved on my phone."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Courtyard bins log, second floor, Blida\n- 2 Oct: bags left on the landing again by the flat opposite, which belongs to [PERSON_1]; I carried them to the bin room myself.\n- 9 Oct: spoke to [PERSON_1] on the stairs; she said her cleaner puts them out and promised to stop, and I did not raise my voice.\n- 13 Oct: [PERSON_1] told the committee that my own bags were late; I have not replied yet.\n- 17 Oct: the committee secretary, [PERSON_2], asked both of us for written accounts by the 24th.\n- 21 Oct: the cleaner left bags on the landing again; photo taken at 8:10, saved on my phone.\nPlease send the account to [EMAIL], not to the group chat."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:palletrenewal-call",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-palletrenewal",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-palletrenewal",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-palletrenewal",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-palletrenewal",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Call with the account manager at Tamda Logistics ran about forty minutes. They want to renew the pallet-storage contract for two years from 1 January and offered to hold the rate of 41 dirhams per pallet position per month if we commit to 1,800 pallet positions. The rate is under NDA and stays inside procurement.\n\nFinance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total. The delays came from our own approval queue, not from any dispute with them.\n\nWalid Tahiri from the warehouse team confirmed that we use about 1,500 positions on average and peak at 1,950 in November, so a commitment of 1,800 sits between the average and the peak. Send my draft to him and copy the vendor desk at sales.desk@tamda-logistics.example.invalid.",
+  "task": "Draft talking points for next week's call with their account manager.",
+  "entities": [
+   {
+    "id": "vendor",
+    "entity_id": "vendor",
+    "label": "ORG",
+    "quote": "Tamda Logistics"
+   },
+   {
+    "id": "rate",
+    "entity_id": "rate",
+    "label": "FINANCIAL",
+    "quote": "41 dirhams per pallet position per month"
+   },
+   {
+    "id": "fees",
+    "entity_id": "fees",
+    "label": "FINANCIAL",
+    "quote": "Finance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total."
+   },
+   {
+    "id": "walid",
+    "entity_id": "walid",
+    "label": "PERSON",
+    "quote": "Walid Tahiri"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sales.desk@tamda-logistics.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "vendor",
+    "entity_id": "vendor",
+    "label": "ORG",
+    "quote": "Tamda Logistics",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Vendor identity is confidential procurement information; the role words 'account manager' and 'their' keep the talking points usable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "rate",
+    "entity_id": "rate",
+    "label": "FINANCIAL",
+    "quote": "41 dirhams per pallet position per month",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The rate is under NDA and must stay inside procurement; it is relevant to the talking points but replaced with a placeholder, so exact rate wording and comparison are lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "fees",
+    "entity_id": "fees",
+    "label": "FINANCIAL",
+    "quote": "Finance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "walid",
+    "entity_id": "walid",
+    "label": "PERSON",
+    "quote": "Walid Tahiri",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sales.desk@tamda-logistics.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "They want to renew the pallet-storage contract for two years from 1 January and offered to hold the rate of"
+   },
+   {
+    "quote": "if we commit to 1,800 pallet positions."
+   },
+   {
+    "quote": "Finance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total."
+   },
+   {
+    "quote": "The delays came from our own approval queue, not from any dispute with them."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Call with the account manager at [ORG] ran about forty minutes. They want to renew the pallet-storage contract for two years from 1 January and offered to hold the rate of [FINANCIAL] if we commit to 1,800 pallet positions. The rate is under NDA and stays inside procurement.\n\nFinance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total. The delays came from our own approval queue, not from any dispute with them.\n\n[PERSON_1] from the warehouse team confirmed that we use about 1,500 positions on average and peak at 1,950 in November, so a commitment of 1,800 sits between the average and the peak. Send my draft to him and copy the vendor desk at [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:palletrenewal-capacity",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-palletrenewal",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-palletrenewal",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-palletrenewal",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-palletrenewal",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Call with the account manager at Tamda Logistics ran about forty minutes. They want to renew the pallet-storage contract for two years from 1 January and offered to hold the rate of 41 dirhams per pallet position per month if we commit to 1,800 pallet positions. The rate is under NDA and stays inside procurement.\n\nFinance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total. The delays came from our own approval queue, not from any dispute with them.\n\nWalid Tahiri from the warehouse team confirmed that we use about 1,500 positions on average and peak at 1,950 in November, so a commitment of 1,800 sits between the average and the peak. Send my draft to him and copy the vendor desk at sales.desk@tamda-logistics.example.invalid.",
+  "task": "Write a short internal note for the warehouse manager summarising the contract length and volume commitment and whether our usage supports it.",
+  "entities": [
+   {
+    "id": "vendor",
+    "entity_id": "vendor",
+    "label": "ORG",
+    "quote": "Tamda Logistics"
+   },
+   {
+    "id": "rate",
+    "entity_id": "rate",
+    "label": "FINANCIAL",
+    "quote": "41 dirhams per pallet position per month"
+   },
+   {
+    "id": "fees",
+    "entity_id": "fees",
+    "label": "FINANCIAL",
+    "quote": "Finance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total."
+   },
+   {
+    "id": "walid",
+    "entity_id": "walid",
+    "label": "PERSON",
+    "quote": "Walid Tahiri"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sales.desk@tamda-logistics.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "vendor",
+    "entity_id": "vendor",
+    "label": "ORG",
+    "quote": "Tamda Logistics",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Vendor identity is confidential procurement information and the capacity note does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "rate",
+    "entity_id": "rate",
+    "label": "FINANCIAL",
+    "quote": "41 dirhams per pallet position per month",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The rate is under NDA and the capacity note does not need it; no utility lost."
+   },
+   {
+    "kind": "section",
+    "quote": "Finance also flagged that we paid three of their invoices late this year, each by about three weeks, and that the resulting 1.5 percent late fees came to 6,400 dirhams in total. The delays came from our own approval queue, not from any dispute with them.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The capacity note needs term, volume and usage only; late-payment history and fees are internal finance details that are not needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "walid",
+    "entity_id": "walid",
+    "label": "PERSON",
+    "quote": "Walid Tahiri",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "sales.desk@tamda-logistics.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "They want to renew the pallet-storage contract for two years from 1 January and offered to hold the rate of"
+   },
+   {
+    "quote": "if we commit to 1,800 pallet positions."
+   },
+   {
+    "quote": "from the warehouse team confirmed that we use about 1,500 positions on average and peak at 1,950 in November, so a commitment of 1,800 sits between the average and the peak."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Call with the account manager at [ORG] ran about forty minutes. They want to renew the pallet-storage contract for two years from 1 January and offered to hold the rate of [FINANCIAL] if we commit to 1,800 pallet positions. The rate is under NDA and stays inside procurement.\n\n[PERSON_1] from the warehouse team confirmed that we use about 1,500 positions on average and peak at 1,950 in November, so a commitment of 1,800 sits between the average and the peak. Send my draft to him and copy the vendor desk at [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:fridayrun-agenda",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-fridayrun",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-fridayrun",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-fridayrun",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-fridayrun",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "For the Friday payment run I need three vendor payments released: the 52,400 dirhams invoice from the scaffolding supplier to IBAN MA64 0114 0000 1234 5678 9012 3456, the 18,900 dirhams freight invoice to be paid in two halves, and the audit fee of 31,000 dirhams, which Treasury should release only after Lamia Cherif in internal audit confirms the engagement letter is signed. Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in. The auditors' preliminary meeting is on 12 December, so the correction should be posted before then. Please do not release anything over 50,000 dirhams without the second approval from Sofia Bennani, the finance director.",
+  "task": "Draft the agenda for Thursday's month-end review with the controller, in order of priority.",
+  "entities": [
+   {
+    "id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "MA64 0114 0000 1234 5678 9012 3456"
+   },
+   {
+    "id": "lamia",
+    "entity_id": "lamia",
+    "label": "PERSON",
+    "quote": "Lamia Cherif"
+   },
+   {
+    "id": "accr",
+    "entity_id": "accr",
+    "label": "FINANCIAL",
+    "quote": "Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in."
+   },
+   {
+    "id": "sofia",
+    "entity_id": "sofia",
+    "label": "PERSON",
+    "quote": "Sofia Bennani"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "MA64 0114 0000 1234 5678 9012 3456",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Vendor bank account identifier is not needed for an agenda; replaced with a placeholder, no utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "lamia",
+    "entity_id": "lamia",
+    "label": "PERSON",
+    "quote": "Lamia Cherif",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "accr",
+    "entity_id": "accr",
+    "label": "FINANCIAL",
+    "quote": "Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sofia",
+    "entity_id": "sofia",
+    "label": "PERSON",
+    "quote": "Sofia Bennani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in."
+   },
+   {
+    "quote": "The auditors' preliminary meeting is on 12 December, so the correction should be posted before then."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "For the Friday payment run I need three vendor payments released: the 52,400 dirhams invoice from the scaffolding supplier to IBAN [IBAN], the 18,900 dirhams freight invoice to be paid in two halves, and the audit fee of 31,000 dirhams, which Treasury should release only after [PERSON_1] in internal audit confirms the engagement letter is signed. Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in. The auditors' preliminary meeting is on 12 December, so the correction should be posted before then. Please do not release anything over 50,000 dirhams without the second approval from [PERSON_2], the finance director."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:fridayrun-payments",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-fridayrun",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-fridayrun",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-fridayrun",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-fridayrun",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "For the Friday payment run I need three vendor payments released: the 52,400 dirhams invoice from the scaffolding supplier to IBAN MA64 0114 0000 1234 5678 9012 3456, the 18,900 dirhams freight invoice to be paid in two halves, and the audit fee of 31,000 dirhams, which Treasury should release only after Lamia Cherif in internal audit confirms the engagement letter is signed. Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in. The auditors' preliminary meeting is on 12 December, so the correction should be posted before then. Please do not release anything over 50,000 dirhams without the second approval from Sofia Bennani, the finance director.",
+  "task": "Write a payment instruction for the treasury clerk setting out which payments to release on Friday and under what conditions.",
+  "entities": [
+   {
+    "id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "MA64 0114 0000 1234 5678 9012 3456"
+   },
+   {
+    "id": "lamia",
+    "entity_id": "lamia",
+    "label": "PERSON",
+    "quote": "Lamia Cherif"
+   },
+   {
+    "id": "accr",
+    "entity_id": "accr",
+    "label": "FINANCIAL",
+    "quote": "Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in."
+   },
+   {
+    "id": "sofia",
+    "entity_id": "sofia",
+    "label": "PERSON",
+    "quote": "Sofia Bennani"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "iban",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "MA64 0114 0000 1234 5678 9012 3456",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "Exact account identifier is needed to pay but is replaced with a placeholder, so the clerk cannot verify the destination from this output."
+   },
+   {
+    "kind": "entity",
+    "target_id": "lamia",
+    "entity_id": "lamia",
+    "label": "PERSON",
+    "quote": "Lamia Cherif",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Two of the third-quarter accruals were booked twice by mistake, which overstated costs by 18,300 dirhams until the correction journal goes in. The auditors' preliminary meeting is on 12 December, so the correction should be posted before then. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The payment instruction needs the Friday payments and release conditions; the ledger accrual error and audit-timing remark are not needed by the treasury clerk."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sofia",
+    "entity_id": "sofia",
+    "label": "PERSON",
+    "quote": "Sofia Bennani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "For the Friday payment run I need three vendor payments released: the 52,400 dirhams invoice from the scaffolding supplier to IBAN"
+   },
+   {
+    "quote": ", the 18,900 dirhams freight invoice to be paid in two halves, and the audit fee of 31,000 dirhams, which Treasury should release only after"
+   },
+   {
+    "quote": "in internal audit confirms the engagement letter is signed."
+   },
+   {
+    "quote": "Please do not release anything over 50,000 dirhams without the second approval from"
+   },
+   {
+    "quote": ", the finance director."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "For the Friday payment run I need three vendor payments released: the 52,400 dirhams invoice from the scaffolding supplier to IBAN [IBAN], the 18,900 dirhams freight invoice to be paid in two halves, and the audit fee of 31,000 dirhams, which Treasury should release only after [PERSON_1] in internal audit confirms the engagement letter is signed. Please do not release anything over 50,000 dirhams without the second approval from [PERSON_2], the finance director."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:costcentretable-budget",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-costcentretable",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-costcentretable",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-costcentretable",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-costcentretable",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Cost centre review Q4 (tab-separated)\nline\titem\tamount_dirham\tstatus\tcomment\towner\n1\tSite survey, Fez depot\t14,200\tpaid\t\tKhadija Amrani\n2\tPallet racking, Oran depot\t86,500\tinvoiced\tsupplier invoice disputed for damaged beams\tTarek Ferhat\n3\tForklift hire, 3 months\t27,900\tapproved\t\tKhadija Amrani\n4\tPenalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note\tOussama Daoudi\n5\tSafety training, 24 staff\t12,300\tpaid\t\tTarek Ferhat\nQuarter budget: 140,000 dirhams",
+  "task": "Help me explain to the finance controller why this quarter ended above budget.",
+  "entities": [
+   {
+    "id": "k1",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "occurrence": 1
+   },
+   {
+    "id": "t1",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "occurrence": 1
+   },
+   {
+    "id": "k2",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "occurrence": 2
+   },
+   {
+    "id": "o1",
+    "entity_id": "o1",
+    "label": "PERSON",
+    "quote": "Oussama Daoudi"
+   },
+   {
+    "id": "t2",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "occurrence": 2
+   },
+   {
+    "id": "pen",
+    "entity_id": "pen",
+    "label": "FINANCIAL",
+    "quote": "Penalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "k1",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "t1",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "k2",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "pen",
+    "entity_id": "pen",
+    "label": "FINANCIAL",
+    "quote": "Penalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "o1",
+    "entity_id": "o1",
+    "label": "PERSON",
+    "quote": "Oussama Daoudi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "t2",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Penalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note"
+   },
+   {
+    "quote": "Pallet racking, Oran depot\t86,500\tinvoiced\tsupplier invoice disputed for damaged beams"
+   },
+   {
+    "quote": "Quarter budget: 140,000 dirhams"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Cost centre review Q4 (tab-separated)\nline\titem\tamount_dirham\tstatus\tcomment\towner\n1\tSite survey, Fez depot\t14,200\tpaid\t\t[PERSON_1]\n2\tPallet racking, Oran depot\t86,500\tinvoiced\tsupplier invoice disputed for damaged beams\t[PERSON_2]\n3\tForklift hire, 3 months\t27,900\tapproved\t\t[PERSON_1]\n4\tPenalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note\t[PERSON_3]\n5\tSafety training, 24 staff\t12,300\tpaid\t\t[PERSON_2]\nQuarter budget: 140,000 dirhams"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:costcentretable-ops",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-costcentretable",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-costcentretable",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-costcentretable",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-costcentretable",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Cost centre review Q4 (tab-separated)\nline\titem\tamount_dirham\tstatus\tcomment\towner\n1\tSite survey, Fez depot\t14,200\tpaid\t\tKhadija Amrani\n2\tPallet racking, Oran depot\t86,500\tinvoiced\tsupplier invoice disputed for damaged beams\tTarek Ferhat\n3\tForklift hire, 3 months\t27,900\tapproved\t\tKhadija Amrani\n4\tPenalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note\tOussama Daoudi\n5\tSafety training, 24 staff\t12,300\tpaid\t\tTarek Ferhat\nQuarter budget: 140,000 dirhams",
+  "task": "Prepare a short update for the operations manager listing the equipment and services delivered to the depots, with their status.",
+  "entities": [
+   {
+    "id": "k1",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "occurrence": 1
+   },
+   {
+    "id": "t1",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "occurrence": 1
+   },
+   {
+    "id": "k2",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "occurrence": 2
+   },
+   {
+    "id": "o1",
+    "entity_id": "o1",
+    "label": "PERSON",
+    "quote": "Oussama Daoudi"
+   },
+   {
+    "id": "t2",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "occurrence": 2
+   },
+   {
+    "id": "pen",
+    "entity_id": "pen",
+    "label": "FINANCIAL",
+    "quote": "Penalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "k1",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "t1",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "k2",
+    "entity_id": "khadija",
+    "label": "PERSON",
+    "quote": "Khadija Amrani",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "section",
+    "quote": "4\tPenalty for late handover, Blida depot\t9,800\taccrued\twe missed the handover date, client has not yet issued a credit note\tOussama Daoudi\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The delivery-status update covers equipment and services only; an accrued handover penalty and its dispute status are not needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "t2",
+    "entity_id": "tarek",
+    "label": "PERSON",
+    "quote": "Tarek Ferhat",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Site survey, Fez depot\t14,200\tpaid"
+   },
+   {
+    "quote": "Pallet racking, Oran depot\t86,500\tinvoiced\tsupplier invoice disputed for damaged beams"
+   },
+   {
+    "quote": "Forklift hire, 3 months\t27,900\tapproved"
+   },
+   {
+    "quote": "Safety training, 24 staff\t12,300\tpaid"
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Cost centre review Q4 (tab-separated)\nline\titem\tamount_dirham\tstatus\tcomment\towner\n1\tSite survey, Fez depot\t14,200\tpaid\t\t[PERSON_1]\n2\tPallet racking, Oran depot\t86,500\tinvoiced\tsupplier invoice disputed for damaged beams\t[PERSON_2]\n3\tForklift hire, 3 months\t27,900\tapproved\t\t[PERSON_1]\n5\tSafety training, 24 staff\t12,300\tpaid\t\t[PERSON_2]\nQuarter budget: 140,000 dirhams"
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:setifdust-ctl",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-setifdust",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-setifdust",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-setifdust",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-setifdust",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "We are starting the bathroom renovation in our Setif apartment on Monday with Bilal Merabet's crew. My daughter Lina has asthma that is well controlled, but her doctor told us she should not sleep in a room with plaster dust, and her inhaler use goes up when the air is dry and dusty. So I want plastic sheeting taped across her bedroom door every day and the windows kept shut while they cut tiles. The loan instalment of 4,100 dinars is due on the 5th regardless of delays, so we cannot pay for a separate cleaning crew. Please keep my number 0661 90 27 18 off the building's notice board, since I only want the crew to call it when they arrive.",
+  "task": "Write a short message to the crew setting out how dust and cleaning must be handled during the work.",
+  "entities": [
+   {
+    "id": "crew",
+    "entity_id": "crew",
+    "label": "PERSON",
+    "quote": "Bilal Merabet"
+   },
+   {
+    "id": "lina",
+    "entity_id": "lina",
+    "label": "PERSON",
+    "quote": "Lina"
+   },
+   {
+    "id": "asthma",
+    "entity_id": "asthma",
+    "label": "HEALTH",
+    "quote": "has asthma that is well controlled, but her doctor told us she should not sleep in a room with plaster dust, and her inhaler use goes up when the air is dry and dusty."
+   },
+   {
+    "id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "The loan instalment of 4,100 dinars is due on the 5th regardless of delays, so we cannot pay for a separate cleaning crew."
+   },
+   {
+    "id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0661 90 27 18"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "crew",
+    "entity_id": "crew",
+    "label": "PERSON",
+    "quote": "Bilal Merabet",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "lina",
+    "entity_id": "lina",
+    "label": "PERSON",
+    "quote": "Lina",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "asthma",
+    "entity_id": "asthma",
+    "label": "HEALTH",
+    "quote": "has asthma that is well controlled, but her doctor told us she should not sleep in a room with plaster dust, and her inhaler use goes up when the air is dry and dusty.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "The loan instalment of 4,100 dinars is due on the 5th regardless of delays, so we cannot pay for a separate cleaning crew.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0661 90 27 18",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number; not needed for the task and replaced with a placeholder, no utility lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My daughter"
+   },
+   {
+    "quote": "has asthma that is well controlled, but her doctor told us she should not sleep in a room with plaster dust, and her inhaler use goes up when the air is dry and dusty."
+   },
+   {
+    "quote": "So I want plastic sheeting taped across her bedroom door every day and the windows kept shut while they cut tiles."
+   },
+   {
+    "quote": "The loan instalment of 4,100 dinars is due on the 5th regardless of delays, so we cannot pay for a separate cleaning crew."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "We are starting the bathroom renovation in our Setif apartment on Monday with [PERSON_1]'s crew. My daughter [PERSON_2] has asthma that is well controlled, but her doctor told us she should not sleep in a room with plaster dust, and her inhaler use goes up when the air is dry and dusty. So I want plastic sheeting taped across her bedroom door every day and the windows kept shut while they cut tiles. The loan instalment of 4,100 dinars is due on the 5th regardless of delays, so we cannot pay for a separate cleaning crew. Please keep my number [PHONE] off the building's notice board, since I only want the crew to call it when they arrive."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:wastenotice-ctl",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-wastenotice",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-wastenotice",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-wastenotice",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-wastenotice",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Dear residents, the municipal waste service has changed the collection days. From the first Monday of December, general waste is collected on Mondays and Thursdays, recycling on Wednesdays, and bulky items on the second Saturday of each month. Bags should be put out after 19:00 the evening before and not left on landings or in the stairwell. The bins in the courtyard are emptied by the service, but the courtyard itself is swept every Friday by the residents in turn, and the rota is pinned inside the entrance. If you will be away on your turn, swap with a neighbour and write the swap on the rota. Questions about the new schedule can be raised at the residents' meeting in the courtyard on 14 December at 18:00.",
+  "task": "Turn this into a short noticeboard message of no more than five lines.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Dear residents, the municipal waste service has changed the collection days. From the first Monday of December, general waste is collected on Mondays and Thursdays, recycling on Wednesdays, and bulky items on the second Saturday of each month. Bags should be put out after 19:00 the evening before and not left on landings or in the stairwell. The bins in the courtyard are emptied by the service, but the courtyard itself is swept every Friday by the residents in turn, and the rota is pinned inside the entrance. If you will be away on your turn, swap with a neighbour and write the swap on the rota. Questions about the new schedule can be raised at the residents' meeting in the courtyard on 14 December at 18:00."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:batnawall-ctl",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-batnawall",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-batnawall",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-batnawall",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-batnawall",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes from the call with Nassima Rezgui, my neighbour in Batna, about the shared courtyard wall. She says her husband will repaint it in spring and wants us to share the cost, around 6,000 dinars each, but I said I would only agree after I see a written estimate. She mentioned that he has been under a lot of stress since the clinic told him to rest his back for a month. I also need to ask the owner about the leak under the stairs, and whether the building insurance covers it. Her number is 0773 18 46 05 in case I lose the card, and the repainting would start after 15 April.",
+  "task": "Help me organise this note.",
+  "entities": [
+   {
+    "id": "nas",
+    "entity_id": "nas",
+    "label": "PERSON",
+    "quote": "Nassima Rezgui"
+   },
+   {
+    "id": "back",
+    "entity_id": "back",
+    "label": "HEALTH",
+    "quote": "She mentioned that he has been under a lot of stress since the clinic told him to rest his back for a month."
+   },
+   {
+    "id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0773 18 46 05"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nas",
+    "entity_id": "nas",
+    "label": "PERSON",
+    "quote": "Nassima Rezgui",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "back",
+    "entity_id": "back",
+    "label": "HEALTH",
+    "quote": "She mentioned that he has been under a lot of stress since the clinic told him to rest his back for a month.",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "The vague task does not say whether the husband's condition matters; it is plausibly useful context for timing the work and carries no direct identifier."
+   },
+   {
+    "kind": "entity",
+    "target_id": "tel",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "0773 18 46 05",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Direct contact number; the vague task does not establish a need for the literal number, so it is replaced and the note still reads clearly."
+   }
+  ],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes from the call with [PERSON_1], my neighbour in Batna, about the shared courtyard wall. She says her husband will repaint it in spring and wants us to share the cost, around 6,000 dinars each, but I said I would only agree after I see a written estimate. She mentioned that he has been under a lot of stress since the clinic told him to rest his back for a month. I also need to ask the owner about the leak under the stairs, and whether the building insurance covers it. Her number is [PHONE] in case I lose the card, and the repainting would start after 15 April."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:invoicecover-ctl",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-invoicecover",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-invoicecover",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-invoicecover",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-invoicecover",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Invoice approval cover for the week of the 14th. The regional controller, Meriem Kaddour, is on leave until the 21st, so Ilyas Guerroudj approves in her place, but only up to 60,000 dirhams. Anything higher waits for her return or goes to the finance director. The Sahelis Packaging invoice for 74,500 dirhams falls into that second group, and its unit price comes from a contract that is under NDA, so please do not quote the price outside the finance team. The other three invoices are all below 25,000 dirhams and can be released on Thursday as normal. Questions go to the shared mailbox ap-cover@desk.example.invalid.",
+  "task": "Draft an email to the invoice approvers explaining who approves what this week and which invoices can be released on Thursday.",
+  "entities": [
+   {
+    "id": "meriem",
+    "entity_id": "meriem",
+    "label": "PERSON",
+    "quote": "Meriem Kaddour"
+   },
+   {
+    "id": "leave",
+    "entity_id": "leave",
+    "label": "EMPLOYMENT",
+    "quote": "is on leave until the 21st"
+   },
+   {
+    "id": "ilyas",
+    "entity_id": "ilyas",
+    "label": "PERSON",
+    "quote": "Ilyas Guerroudj"
+   },
+   {
+    "id": "vendor",
+    "entity_id": "vendor",
+    "label": "ORG",
+    "quote": "Sahelis Packaging"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ap-cover@desk.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "meriem",
+    "entity_id": "meriem",
+    "label": "PERSON",
+    "quote": "Meriem Kaddour",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "leave",
+    "entity_id": "leave",
+    "label": "EMPLOYMENT",
+    "quote": "is on leave until the 21st",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ilyas",
+    "entity_id": "ilyas",
+    "label": "PERSON",
+    "quote": "Ilyas Guerroudj",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "vendor",
+    "entity_id": "vendor",
+    "label": "ORG",
+    "quote": "Sahelis Packaging",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Vendor identity is tied to an NDA contract and is not needed because the 74,500 dirham amount identifies the invoice; no real utility lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ap-cover@desk.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; replaced with a placeholder, the task does not need the literal address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "is on leave until the 21st, so"
+   },
+   {
+    "quote": "approves in her place, but only up to 60,000 dirhams."
+   },
+   {
+    "quote": "Anything higher waits for her return or goes to the finance director."
+   },
+   {
+    "quote": "The other three invoices are all below 25,000 dirhams and can be released on Thursday as normal."
+   }
+  ],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Invoice approval cover for the week of the 14th. The regional controller, [PERSON_1], is on leave until the 21st, so [PERSON_2] approves in her place, but only up to 60,000 dirhams. Anything higher waits for her return or goes to the finance director. The [ORG] invoice for 74,500 dirhams falls into that second group, and its unit price comes from a contract that is under NDA, so please do not quote the price outside the finance team. The other three invoices are all below 25,000 dirhams and can be released on Thursday as normal. Questions go to the shared mailbox [EMAIL]."
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "bee7cca424274086a557fa8e47d6dbf8",
+  "id": "bee7cca424274086a557fa8e47d6dbf8:resinreview-ctl",
+  "family_id": "bee7cca424274086a557fa8e47d6dbf8:fam-resinreview",
+  "source_id": "bee7cca424274086a557fa8e47d6dbf8:src-resinreview",
+  "persona_id": "bee7cca424274086a557fa8e47d6dbf8:per-resinreview",
+  "template_id": "bee7cca424274086a557fa8e47d6dbf8:tpl-resinreview",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes, supplier review, Tuesday. Present: Hamza Benkirane (procurement), Latifa Haddouchi (quality), Badr Alaoui (finance). The packaging supplier Oued Sebou Plastics missed two deliveries in October and blamed a resin shortage. Latifa wants a formal warning, while Badr prefers to wait until the November batch arrives. Their last offer was 3.20 dirhams per unit for 200,000 units, valid until 30 November. Hamza will ask for a penalty clause before anything is signed. Latifa will be on leave from 1 December, so quality sign-off moves to her deputy. Supplier contact for follow-up: orders@oued-sebou.example.invalid.",
+  "task": "Clean up these meeting notes so I can share them with the team.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "hamza",
+    "label": "PERSON",
+    "quote": "Hamza Benkirane"
+   },
+   {
+    "id": "l1",
+    "entity_id": "latifa",
+    "label": "PERSON",
+    "quote": "Latifa Haddouchi"
+   },
+   {
+    "id": "b1",
+    "entity_id": "badr",
+    "label": "PERSON",
+    "quote": "Badr Alaoui"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Oued Sebou Plastics"
+   },
+   {
+    "id": "l2",
+    "entity_id": "latifa",
+    "label": "PERSON",
+    "quote": "Latifa",
+    "occurrence": 2
+   },
+   {
+    "id": "b2",
+    "entity_id": "badr",
+    "label": "PERSON",
+    "quote": "Badr",
+    "occurrence": 2
+   },
+   {
+    "id": "price",
+    "entity_id": "price",
+    "label": "FINANCIAL",
+    "quote": "3.20 dirhams per unit"
+   },
+   {
+    "id": "h2",
+    "entity_id": "hamza",
+    "label": "PERSON",
+    "quote": "Hamza",
+    "occurrence": 2
+   },
+   {
+    "id": "l3",
+    "entity_id": "latifa",
+    "label": "PERSON",
+    "quote": "Latifa",
+    "occurrence": 3
+   },
+   {
+    "id": "leave",
+    "entity_id": "leave",
+    "label": "EMPLOYMENT",
+    "quote": "will be on leave from 1 December, so quality sign-off moves to her deputy."
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "orders@oued-sebou.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "hamza",
+    "label": "PERSON",
+    "quote": "Hamza Benkirane",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "l1",
+    "entity_id": "latifa",
+    "label": "PERSON",
+    "quote": "Latifa Haddouchi",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b1",
+    "entity_id": "badr",
+    "label": "PERSON",
+    "quote": "Badr Alaoui",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Oued Sebou Plastics",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Supplier identity is confidential commercial information and the vague task does not establish a need for it; the role words keep the notes readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "l2",
+    "entity_id": "latifa",
+    "label": "PERSON",
+    "quote": "Latifa",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "b2",
+    "entity_id": "badr",
+    "label": "PERSON",
+    "quote": "Badr",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "price",
+    "entity_id": "price",
+    "label": "FINANCIAL",
+    "quote": "3.20 dirhams per unit",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "The supplier's offered price is a nonpublic commercial figure and the vague task does not establish that it is needed; the volume and validity remain, price detail is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "hamza",
+    "label": "PERSON",
+    "quote": "Hamza",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "l3",
+    "entity_id": "latifa",
+    "label": "PERSON",
+    "quote": "Latifa",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "leave",
+    "entity_id": "leave",
+    "label": "EMPLOYMENT",
+    "quote": "will be on leave from 1 December, so quality sign-off moves to her deputy.",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "The vague task does not say whether the leave matters; it is plausibly useful for the team and permitted, with the name aliased."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "orders@oued-sebou.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Direct contact address; the vague task does not need the literal address."
+   }
+  ],
+  "required_facts": [],
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "bee7cca424274086a557fa8e47d6dbf8:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  },
+  "approved_output": "Notes, supplier review, Tuesday. Present: [PERSON_1] (procurement), [PERSON_2] (quality), [PERSON_3] (finance). The packaging supplier [ORG] missed two deliveries in October and blamed a resin shortage. [PERSON_2] wants a formal warning, while [PERSON_3] prefers to wait until the November batch arrives. Their last offer was [FINANCIAL] for 200,000 units, valid until 30 November. [PERSON_1] will ask for a penalty clause before anything is signed. [PERSON_2] will be on leave from 1 December, so quality sign-off moves to her deputy. Supplier contact for follow-up: [EMAIL]."
+ }
+]

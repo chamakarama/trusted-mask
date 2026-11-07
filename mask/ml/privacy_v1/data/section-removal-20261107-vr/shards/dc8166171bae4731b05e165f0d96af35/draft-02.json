@@ -1,0 +1,209 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "dc8166171bae4731b05e165f0d96af35",
+    "id": "dc8166171bae4731b05e165f0d96af35:eng-device-order-r2-keep",
+    "family_id": "dc8166171bae4731b05e165f0d96af35:fam-eng-device-order",
+    "source_id": "dc8166171bae4731b05e165f0d96af35:src-eng-device-order",
+    "persona_id": "dc8166171bae4731b05e165f0d96af35:persona-eng-device-order",
+    "template_id": "dc8166171bae4731b05e165f0d96af35:tpl-eng-device-order",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Hi Marisol, I need to order Android test devices for the payments app before the 18th. The compatibility matrix needs eight phones across three screen sizes, and the supplier, Industrias Tecnomar, quoted 648 euros a unit for the rugged model, which is confidential until the framework contract is signed. Finance has approved up to twelve handsets under this quarter's test budget, and procurement can raise the purchase order as soon as I send you the list. Please do not include the foldable model, because it failed our camera test last year. The earliest delivery they promised is nine working days after the order.",
+    "task": "Tidy this note into the purchase request I will send to procurement.",
+    "entities": [
+      {
+        "id": "marisol",
+        "entity_id": "marisol",
+        "label": "PERSON",
+        "quote": "Marisol"
+      },
+      {
+        "id": "supplier",
+        "entity_id": "supplier",
+        "label": "ORG",
+        "quote": "Industrias Tecnomar"
+      },
+      {
+        "id": "price",
+        "entity_id": "price",
+        "label": "FINANCIAL",
+        "quote": "648 euros"
+      },
+      {
+        "id": "approval",
+        "entity_id": "approval",
+        "label": "FINANCIAL",
+        "quote": "Finance has approved up to twelve handsets under this quarter's test budget"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "marisol",
+        "entity_id": "marisol",
+        "label": "PERSON",
+        "quote": "Marisol",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "supplier",
+        "entity_id": "supplier",
+        "label": "ORG",
+        "quote": "Industrias Tecnomar",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The purchase request would normally name the supplier, but the identity is confidential until the contract is signed, so it stays a placeholder and the request loses the supplier name."
+      },
+      {
+        "kind": "entity",
+        "target_id": "price",
+        "entity_id": "price",
+        "label": "FINANCIAL",
+        "quote": "648 euros",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The unit price would normally be quoted in the purchase request, but it is confidential until the framework contract is signed, so it is replaced with a placeholder and the recipient loses the exact figure."
+      },
+      {
+        "kind": "entity",
+        "target_id": "approval",
+        "entity_id": "approval",
+        "label": "FINANCIAL",
+        "quote": "Finance has approved up to twelve handsets under this quarter's test budget",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "I need to order Android test devices for the payments app before the 18th."
+      },
+      {
+        "quote": "The compatibility matrix needs eight phones across three screen sizes,"
+      },
+      {
+        "quote": "Finance has approved up to twelve handsets under this quarter's test budget"
+      },
+      {
+        "quote": ", and procurement can raise the purchase order as soon as I send you the list."
+      },
+      {
+        "quote": "Please do not include the foldable model, because it failed our camera test last year."
+      },
+      {
+        "quote": "The earliest delivery they promised is nine working days after the order."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "dc8166171bae4731b05e165f0d96af35:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Hi [PERSON_1], I need to order Android test devices for the payments app before the 18th. The compatibility matrix needs eight phones across three screen sizes, and the supplier, [ORG], quoted [FINANCIAL] a unit for the rugged model, which is confidential until the framework contract is signed. Finance has approved up to twelve handsets under this quarter's test budget, and procurement can raise the purchase order as soon as I send you the list. Please do not include the foldable model, because it failed our camera test last year. The earliest delivery they promised is nine working days after the order."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "dc8166171bae4731b05e165f0d96af35",
+    "id": "dc8166171bae4731b05e165f0d96af35:eng-device-order-r2-drop",
+    "family_id": "dc8166171bae4731b05e165f0d96af35:fam-eng-device-order",
+    "source_id": "dc8166171bae4731b05e165f0d96af35:src-eng-device-order",
+    "persona_id": "dc8166171bae4731b05e165f0d96af35:persona-eng-device-order",
+    "template_id": "dc8166171bae4731b05e165f0d96af35:tpl-eng-device-order",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Hi Marisol, I need to order Android test devices for the payments app before the 18th. The compatibility matrix needs eight phones across three screen sizes, and the supplier, Industrias Tecnomar, quoted 648 euros a unit for the rugged model, which is confidential until the framework contract is signed. Finance has approved up to twelve handsets under this quarter's test budget, and procurement can raise the purchase order as soon as I send you the list. Please do not include the foldable model, because it failed our camera test last year. The earliest delivery they promised is nine working days after the order.",
+    "task": "Turn this note into a short test plan listing the devices to cover and the ones to leave out.",
+    "entities": [
+      {
+        "id": "marisol",
+        "entity_id": "marisol",
+        "label": "PERSON",
+        "quote": "Marisol"
+      },
+      {
+        "id": "supplier",
+        "entity_id": "supplier",
+        "label": "ORG",
+        "quote": "Industrias Tecnomar"
+      },
+      {
+        "id": "price",
+        "entity_id": "price",
+        "label": "FINANCIAL",
+        "quote": "648 euros"
+      },
+      {
+        "id": "approval",
+        "entity_id": "approval",
+        "label": "FINANCIAL",
+        "quote": "Finance has approved up to twelve handsets under this quarter's test budget"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "marisol",
+        "entity_id": "marisol",
+        "label": "PERSON",
+        "quote": "Marisol",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "supplier",
+        "entity_id": "supplier",
+        "label": "ORG",
+        "quote": "Industrias Tecnomar",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "Supplier identity is confidential until the framework contract is signed; replaced with a placeholder."
+      },
+      {
+        "kind": "entity",
+        "target_id": "price",
+        "entity_id": "price",
+        "label": "FINANCIAL",
+        "quote": "648 euros",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The unit price is confidential until the framework contract is signed and a device test plan does not need it, so it is replaced with a placeholder with no utility lost for this task."
+      },
+      {
+        "kind": "section",
+        "quote": "Finance has approved up to twelve handsets under this quarter's test budget, and procurement can raise the purchase order as soon as I send you the list. ",
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A device test plan lists models and screen coverage; the budget approval and purchase-order process are not needed."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The compatibility matrix needs eight phones across three screen sizes,"
+      },
+      {
+        "quote": "Please do not include the foldable model, because it failed our camera test last year."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "dc8166171bae4731b05e165f0d96af35:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Hi [PERSON_1], I need to order Android test devices for the payments app before the 18th. The compatibility matrix needs eight phones across three screen sizes, and the supplier, [ORG], quoted [FINANCIAL] a unit for the rugged model, which is confidential until the framework contract is signed. Please do not include the foldable model, because it failed our camera test last year. The earliest delivery they promised is nine working days after the order."
+  }
+]

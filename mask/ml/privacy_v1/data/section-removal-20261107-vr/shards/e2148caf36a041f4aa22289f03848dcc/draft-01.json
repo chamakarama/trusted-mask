@@ -1,0 +1,4137 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c1-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c1-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c1-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c1-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c1-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Dad moved into Anemone Court in March and the monthly fee is now 2,860 euros since the room upgrade. The revised invoice, reference AC-70418, still bills the old rate for the first two weeks, so I think we were overcharged by about 310 euros. I have not paid it yet and I do not want to be told it is a clerical matter again.\n\nThe visiting doctor changed his heart tablets last month and added a nightly pill for sleep. The home also adds 18 euros a week for medicine handling, which nobody asked me to approve. The nurse says she will assess his swallowing before the end of the month.\n\nMy sister Rena Panteli thinks we should split the fee evenly, but I pay the invoice from my own account and she has only ever sent 400 euros towards it. She is travelling until the 19th and will not answer the phone before then.\n\nThe accounts clerk, Spyros Karamanlis, is on 22 555 0171 and usually answers after lunch.",
+    "task": "Write a short, firm email to the home's accounts office asking them to correct the rate for the first two weeks and send a revised invoice.",
+    "entities": [
+      {
+        "id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the monthly fee is now 2,860 euros since the room upgrade",
+        "occurrence": 1
+      },
+      {
+        "id": "ref",
+        "entity_id": "ref",
+        "label": "ACCOUNT_ID",
+        "quote": "AC-70418",
+        "occurrence": 1
+      },
+      {
+        "id": "over",
+        "entity_id": "over",
+        "label": "FINANCIAL",
+        "quote": "so I think we were overcharged by about 310 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "h1",
+        "entity_id": "h1",
+        "label": "HEALTH",
+        "quote": "The visiting doctor changed his heart tablets last month and added a nightly pill for sleep.",
+        "occurrence": 1
+      },
+      {
+        "id": "f2",
+        "entity_id": "f2",
+        "label": "FINANCIAL",
+        "quote": "The home also adds 18 euros a week for medicine handling, which nobody asked me to approve.",
+        "occurrence": 1
+      },
+      {
+        "id": "h3",
+        "entity_id": "h3",
+        "label": "HEALTH",
+        "quote": "The nurse says she will assess his swallowing before the end of the month.",
+        "occurrence": 1
+      },
+      {
+        "id": "rena",
+        "entity_id": "rena",
+        "label": "PERSON",
+        "quote": "Rena Panteli",
+        "occurrence": 1
+      },
+      {
+        "id": "sib",
+        "entity_id": "sib",
+        "label": "FINANCIAL",
+        "quote": "she has only ever sent 400 euros towards it",
+        "occurrence": 1
+      },
+      {
+        "id": "spy",
+        "entity_id": "spy",
+        "label": "PERSON",
+        "quote": "Spyros Karamanlis",
+        "occurrence": 1
+      },
+      {
+        "id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "22 555 0171",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the monthly fee is now 2,860 euros since the room upgrade",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ref",
+        "entity_id": "ref",
+        "label": "ACCOUNT_ID",
+        "quote": "AC-70418",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The invoice reference identifies the resident's account; the email can say 'the revised invoice' without it, so only exact quoting of the reference is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "over",
+        "entity_id": "over",
+        "label": "FINANCIAL",
+        "quote": "so I think we were overcharged by about 310 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "The visiting doctor changed his heart tablets last month and added a nightly pill for sleep. The home also adds 18 euros a week for medicine handling, which nobody asked me to approve. The nurse says she will assess his swallowing before the end of the month.\n\n",
+        "occurrence": 1,
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The email only needs the rate error and the revised invoice; the medication change, medicine-handling charge and swallowing assessment are not needed to correct the first two weeks' rate."
+      },
+      {
+        "kind": "section",
+        "quote": "My sister Rena Panteli thinks we should split the fee evenly, but I pay the invoice from my own account and she has only ever sent 400 euros towards it. She is travelling until the 19th and will not answer the phone before then.\n\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "How the siblings share the fee and the sister's travel plans are not needed to dispute the invoice rate."
+      },
+      {
+        "kind": "entity",
+        "target_id": "spy",
+        "entity_id": "spy",
+        "label": "PERSON",
+        "quote": "Spyros Karamanlis",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "22 555 0171",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A direct phone number is not needed in an email to the accounts office; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "the monthly fee is now 2,860 euros since the room upgrade",
+        "occurrence": 1
+      },
+      {
+        "quote": "The revised invoice, reference",
+        "occurrence": 1
+      },
+      {
+        "quote": ", still bills the old rate for the first two weeks, so I think we were overcharged by about 310 euros.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Dad moved into Anemone Court in March and the monthly fee is now 2,860 euros since the room upgrade. The revised invoice, reference [ACCOUNT_ID], still bills the old rate for the first two weeks, so I think we were overcharged by about 310 euros. I have not paid it yet and I do not want to be told it is a clerical matter again.\n\nThe accounts clerk, [PERSON_1], is on [PHONE] and usually answers after lunch.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c1-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c1-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c1-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c1-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c1-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Dad moved into Anemone Court in March and the monthly fee is now 2,860 euros since the room upgrade. The revised invoice, reference AC-70418, still bills the old rate for the first two weeks, so I think we were overcharged by about 310 euros. I have not paid it yet and I do not want to be told it is a clerical matter again.\n\nThe visiting doctor changed his heart tablets last month and added a nightly pill for sleep. The home also adds 18 euros a week for medicine handling, which nobody asked me to approve. The nurse says she will assess his swallowing before the end of the month.\n\nMy sister Rena Panteli thinks we should split the fee evenly, but I pay the invoice from my own account and she has only ever sent 400 euros towards it. She is travelling until the 19th and will not answer the phone before then.\n\nThe accounts clerk, Spyros Karamanlis, is on 22 555 0171 and usually answers after lunch.",
+    "task": "I am meeting the home manager tomorrow. Help me prepare questions about anything on the invoice or in Dad's care that I should challenge or clarify.",
+    "entities": [
+      {
+        "id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the monthly fee is now 2,860 euros since the room upgrade",
+        "occurrence": 1
+      },
+      {
+        "id": "ref",
+        "entity_id": "ref",
+        "label": "ACCOUNT_ID",
+        "quote": "AC-70418",
+        "occurrence": 1
+      },
+      {
+        "id": "over",
+        "entity_id": "over",
+        "label": "FINANCIAL",
+        "quote": "so I think we were overcharged by about 310 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "h1",
+        "entity_id": "h1",
+        "label": "HEALTH",
+        "quote": "The visiting doctor changed his heart tablets last month and added a nightly pill for sleep.",
+        "occurrence": 1
+      },
+      {
+        "id": "f2",
+        "entity_id": "f2",
+        "label": "FINANCIAL",
+        "quote": "The home also adds 18 euros a week for medicine handling, which nobody asked me to approve.",
+        "occurrence": 1
+      },
+      {
+        "id": "h3",
+        "entity_id": "h3",
+        "label": "HEALTH",
+        "quote": "The nurse says she will assess his swallowing before the end of the month.",
+        "occurrence": 1
+      },
+      {
+        "id": "rena",
+        "entity_id": "rena",
+        "label": "PERSON",
+        "quote": "Rena Panteli",
+        "occurrence": 1
+      },
+      {
+        "id": "sib",
+        "entity_id": "sib",
+        "label": "FINANCIAL",
+        "quote": "she has only ever sent 400 euros towards it",
+        "occurrence": 1
+      },
+      {
+        "id": "spy",
+        "entity_id": "spy",
+        "label": "PERSON",
+        "quote": "Spyros Karamanlis",
+        "occurrence": 1
+      },
+      {
+        "id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "22 555 0171",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the monthly fee is now 2,860 euros since the room upgrade",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ref",
+        "entity_id": "ref",
+        "label": "ACCOUNT_ID",
+        "quote": "AC-70418",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The exact reference is not needed to draft questions; the manager can look it up, so nothing is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "over",
+        "entity_id": "over",
+        "label": "FINANCIAL",
+        "quote": "so I think we were overcharged by about 310 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "h1",
+        "entity_id": "h1",
+        "label": "HEALTH",
+        "quote": "The visiting doctor changed his heart tablets last month and added a nightly pill for sleep.",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "f2",
+        "entity_id": "f2",
+        "label": "FINANCIAL",
+        "quote": "The home also adds 18 euros a week for medicine handling, which nobody asked me to approve.",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "h3",
+        "entity_id": "h3",
+        "label": "HEALTH",
+        "quote": "The nurse says she will assess his swallowing before the end of the month.",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "My sister Rena Panteli thinks we should split the fee evenly, but I pay the invoice from my own account and she has only ever sent 400 euros towards it. She is travelling until the 19th and will not answer the phone before then.\n\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The sibling cost-sharing disagreement and the sister's travel dates are not questions for the home manager."
+      },
+      {
+        "kind": "entity",
+        "target_id": "spy",
+        "entity_id": "spy",
+        "label": "PERSON",
+        "quote": "Spyros Karamanlis",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "22 555 0171",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A direct phone number is not needed for preparing questions; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "the monthly fee is now 2,860 euros since the room upgrade",
+        "occurrence": 1
+      },
+      {
+        "quote": "The revised invoice, reference",
+        "occurrence": 1
+      },
+      {
+        "quote": ", still bills the old rate for the first two weeks, so I think we were overcharged by about 310 euros.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The visiting doctor changed his heart tablets last month and added a nightly pill for sleep.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The home also adds 18 euros a week for medicine handling, which nobody asked me to approve.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The nurse says she will assess his swallowing before the end of the month.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Dad moved into Anemone Court in March and the monthly fee is now 2,860 euros since the room upgrade. The revised invoice, reference [ACCOUNT_ID], still bills the old rate for the first two weeks, so I think we were overcharged by about 310 euros. I have not paid it yet and I do not want to be told it is a clerical matter again.\n\nThe visiting doctor changed his heart tablets last month and added a nightly pill for sleep. The home also adds 18 euros a week for medicine handling, which nobody asked me to approve. The nurse says she will assess his swallowing before the end of the month.\n\nThe accounts clerk, [PERSON_1], is on [PHONE] and usually answers after lunch.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c2-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c2-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c2-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c2-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c2-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "We met at my parents' flat on Sunday to decide how to cover Yiayia's care home place from January. My cousin Thanasis said he can do the Tuesday visits instead of money. Nobody has agreed yet who books the respite week in October, so that stays open.\n\nMy brother Alexandros Michaelides said he can pay 300 euros a month. Afterwards he told us he was made redundant from the shipping firm in August and his severance runs out in December, so the 300 euros is only guaranteed until then. He asked us not to mention it to our mother, and if he finds work before December he will raise his share to 450.\n\nOur mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us. I said I would check whether the welfare office gives any top-up before we commit.\n\nThe next meeting is on the 14th of December; Aunt Marina Petrides will join by video.",
+    "task": "Write a short message to my cousin and my aunt confirming the date of the next family meeting and what is still to be decided.",
+    "entities": [
+      {
+        "id": "than",
+        "entity_id": "than",
+        "label": "PERSON",
+        "quote": "Thanasis",
+        "occurrence": 1
+      },
+      {
+        "id": "alex",
+        "entity_id": "alex",
+        "label": "PERSON",
+        "quote": "Alexandros Michaelides",
+        "occurrence": 1
+      },
+      {
+        "id": "a300",
+        "entity_id": "a300",
+        "label": "FINANCIAL",
+        "quote": "he can pay 300 euros a month",
+        "occurrence": 1
+      },
+      {
+        "id": "red",
+        "entity_id": "red",
+        "label": "EMPLOYMENT",
+        "quote": "he was made redundant from the shipping firm in August",
+        "occurrence": 1
+      },
+      {
+        "id": "sev",
+        "entity_id": "sev",
+        "label": "FINANCIAL",
+        "quote": "his severance runs out in December, so the 300 euros is only guaranteed until then",
+        "occurrence": 1
+      },
+      {
+        "id": "ask",
+        "entity_id": "ask",
+        "label": "FAMILY",
+        "quote": "He asked us not to mention it to our mother",
+        "occurrence": 1
+      },
+      {
+        "id": "raise_",
+        "entity_id": "raise_",
+        "label": "FINANCIAL",
+        "quote": "if he finds work before December he will raise his share to 450",
+        "occurrence": 1
+      },
+      {
+        "id": "mom",
+        "entity_id": "mom",
+        "label": "FINANCIAL",
+        "quote": "Our mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us",
+        "occurrence": 1
+      },
+      {
+        "id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marina Petrides",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "than",
+        "entity_id": "than",
+        "label": "PERSON",
+        "quote": "Thanasis",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "section",
+        "quote": "My brother Alexandros Michaelides said he can pay 300 euros a month. Afterwards he told us he was made redundant from the shipping firm in August and his severance runs out in December, so the 300 euros is only guaranteed until then. He asked us not to mention it to our mother, and if he finds work before December he will raise his share to 450.\n\n",
+        "occurrence": 1,
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A brother's redundancy, severance and contribution conditions are not needed for a date confirmation and a list of open decisions."
+      },
+      {
+        "kind": "section",
+        "quote": "Our mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us. I said I would check whether the welfare office gives any top-up before we commit.\n\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The mother's pension contribution and the welfare top-up check are not needed to confirm the meeting date or the open items."
+      },
+      {
+        "kind": "entity",
+        "target_id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marina Petrides",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "My cousin",
+        "occurrence": 1
+      },
+      {
+        "quote": "said he can do the Tuesday visits instead of money.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Nobody has agreed yet who books the respite week in October, so that stays open.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The next meeting is on the 14th of December;",
+        "occurrence": 1
+      },
+      {
+        "quote": "Aunt",
+        "occurrence": 1
+      },
+      {
+        "quote": "will join by video.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "We met at my parents' flat on Sunday to decide how to cover Yiayia's care home place from January. My cousin [PERSON_1] said he can do the Tuesday visits instead of money. Nobody has agreed yet who books the respite week in October, so that stays open.\n\nThe next meeting is on the 14th of December; Aunt [PERSON_2] will join by video.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c2-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c2-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c2-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c2-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c2-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "We met at my parents' flat on Sunday to decide how to cover Yiayia's care home place from January. My cousin Thanasis said he can do the Tuesday visits instead of money. Nobody has agreed yet who books the respite week in October, so that stays open.\n\nMy brother Alexandros Michaelides said he can pay 300 euros a month. Afterwards he told us he was made redundant from the shipping firm in August and his severance runs out in December, so the 300 euros is only guaranteed until then. He asked us not to mention it to our mother, and if he finds work before December he will raise his share to 450.\n\nOur mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us. I said I would check whether the welfare office gives any top-up before we commit.\n\nThe next meeting is on the 14th of December; Aunt Marina Petrides will join by video.",
+    "task": "Help me prepare a one-page contribution plan for Yiayia's care home place from January.",
+    "entities": [
+      {
+        "id": "than",
+        "entity_id": "than",
+        "label": "PERSON",
+        "quote": "Thanasis",
+        "occurrence": 1
+      },
+      {
+        "id": "alex",
+        "entity_id": "alex",
+        "label": "PERSON",
+        "quote": "Alexandros Michaelides",
+        "occurrence": 1
+      },
+      {
+        "id": "a300",
+        "entity_id": "a300",
+        "label": "FINANCIAL",
+        "quote": "he can pay 300 euros a month",
+        "occurrence": 1
+      },
+      {
+        "id": "red",
+        "entity_id": "red",
+        "label": "EMPLOYMENT",
+        "quote": "he was made redundant from the shipping firm in August",
+        "occurrence": 1
+      },
+      {
+        "id": "sev",
+        "entity_id": "sev",
+        "label": "FINANCIAL",
+        "quote": "his severance runs out in December, so the 300 euros is only guaranteed until then",
+        "occurrence": 1
+      },
+      {
+        "id": "ask",
+        "entity_id": "ask",
+        "label": "FAMILY",
+        "quote": "He asked us not to mention it to our mother",
+        "occurrence": 1
+      },
+      {
+        "id": "raise_",
+        "entity_id": "raise_",
+        "label": "FINANCIAL",
+        "quote": "if he finds work before December he will raise his share to 450",
+        "occurrence": 1
+      },
+      {
+        "id": "mom",
+        "entity_id": "mom",
+        "label": "FINANCIAL",
+        "quote": "Our mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us",
+        "occurrence": 1
+      },
+      {
+        "id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marina Petrides",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "than",
+        "entity_id": "than",
+        "label": "PERSON",
+        "quote": "Thanasis",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "entity",
+        "target_id": "alex",
+        "entity_id": "alex",
+        "label": "PERSON",
+        "quote": "Alexandros Michaelides",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "a300",
+        "entity_id": "a300",
+        "label": "FINANCIAL",
+        "quote": "he can pay 300 euros a month",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "red",
+        "entity_id": "red",
+        "label": "EMPLOYMENT",
+        "quote": "he was made redundant from the shipping firm in August",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "sev",
+        "entity_id": "sev",
+        "label": "FINANCIAL",
+        "quote": "his severance runs out in December, so the 300 euros is only guaranteed until then",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ask",
+        "entity_id": "ask",
+        "label": "FAMILY",
+        "quote": "He asked us not to mention it to our mother",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "raise_",
+        "entity_id": "raise_",
+        "label": "FINANCIAL",
+        "quote": "if he finds work before December he will raise his share to 450",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "mom",
+        "entity_id": "mom",
+        "label": "FINANCIAL",
+        "quote": "Our mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marina Petrides",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "My cousin",
+        "occurrence": 1
+      },
+      {
+        "quote": "said he can do the Tuesday visits instead of money.",
+        "occurrence": 1
+      },
+      {
+        "quote": "said he can pay 300 euros a month.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Afterwards he told us he was made redundant from the shipping firm in August and his severance runs out in December, so the 300 euros is only guaranteed until then.",
+        "occurrence": 1
+      },
+      {
+        "quote": "He asked us not to mention it to our mother, and if he finds work before December he will raise his share to 450.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Our mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "We met at my parents' flat on Sunday to decide how to cover Yiayia's care home place from January. My cousin [PERSON_1] said he can do the Tuesday visits instead of money. Nobody has agreed yet who books the respite week in October, so that stays open.\n\nMy brother [PERSON_2] said he can pay 300 euros a month. Afterwards he told us he was made redundant from the shipping firm in August and his severance runs out in December, so the 300 euros is only guaranteed until then. He asked us not to mention it to our mother, and if he finds work before December he will raise his share to 450.\n\nOur mother will pay 650 euros from her pension and wants the remaining gap shared equally between the three of us. I said I would check whether the welfare office gives any top-up before we commit.\n\nThe next meeting is on the 14th of December; Aunt [PERSON_3] will join by video.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c3-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c3-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c3-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c3-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c3-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Can you help me work out what the home is actually charging? Mum's place at Olive Terrace costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses. I think the laundry fee should be included in the room price but nobody at the desk could confirm that.\n\nHer pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros. The social worker, Despina Savva, warned that once they fall under 4,000 euros Mum may qualify for a means-tested contribution, and I have a meeting with her in two weeks.\n\nFor what it is worth, my brother Kyriakos Aristidou has offered to cover the extras, but I would rather not take his money while he is still paying off his divorce settlement.\n\nThe front desk is on 24 555 0218 if you need the written fee schedule.",
+    "task": "Add up what the home charges Mum each month, including the extras, and tell me whether the laundry fee looks like double charging.",
+    "entities": [
+      {
+        "id": "mon",
+        "entity_id": "mon",
+        "label": "FINANCIAL",
+        "quote": "costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses",
+        "occurrence": 1
+      },
+      {
+        "id": "sav",
+        "entity_id": "sav",
+        "label": "FINANCIAL",
+        "quote": "Her pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros.",
+        "occurrence": 1
+      },
+      {
+        "id": "desp",
+        "entity_id": "desp",
+        "label": "PERSON",
+        "quote": "Despina Savva",
+        "occurrence": 1
+      },
+      {
+        "id": "thr",
+        "entity_id": "thr",
+        "label": "FINANCIAL",
+        "quote": "once they fall under 4,000 euros Mum may qualify for a means-tested contribution",
+        "occurrence": 1
+      },
+      {
+        "id": "kyr",
+        "entity_id": "kyr",
+        "label": "PERSON",
+        "quote": "Kyriakos Aristidou",
+        "occurrence": 1
+      },
+      {
+        "id": "div",
+        "entity_id": "div",
+        "label": "FAMILY",
+        "quote": "he is still paying off his divorce settlement",
+        "occurrence": 1
+      },
+      {
+        "id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "24 555 0218",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "mon",
+        "entity_id": "mon",
+        "label": "FINANCIAL",
+        "quote": "costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "Her pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros. The social worker, Despina Savva, warned that once they fall under 4,000 euros Mum may qualify for a means-tested contribution, and I have a meeting with her in two weeks.\n\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Her pension, savings and the means-test threshold are not needed to total the home's monthly charges or judge the laundry fee."
+      },
+      {
+        "kind": "section",
+        "quote": "For what it is worth, my brother Kyriakos Aristidou has offered to cover the extras, but I would rather not take his money while he is still paying off his divorce settlement.\n\n",
+        "occurrence": 1,
+        "label": "FAMILY",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The brother's offer and his divorce settlement have no bearing on adding up the home's charges."
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "24 555 0218",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The desk number is not needed to total the charges; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses.",
+        "occurrence": 1
+      },
+      {
+        "quote": "I think the laundry fee should be included in the room price but nobody at the desk could confirm that.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Can you help me work out what the home is actually charging? Mum's place at Olive Terrace costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses. I think the laundry fee should be included in the room price but nobody at the desk could confirm that.\n\nThe front desk is on [PHONE] if you need the written fee schedule.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c3-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c3-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c3-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c3-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c3-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Can you help me work out what the home is actually charging? Mum's place at Olive Terrace costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses. I think the laundry fee should be included in the room price but nobody at the desk could confirm that.\n\nHer pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros. The social worker, Despina Savva, warned that once they fall under 4,000 euros Mum may qualify for a means-tested contribution, and I have a meeting with her in two weeks.\n\nFor what it is worth, my brother Kyriakos Aristidou has offered to cover the extras, but I would rather not take his money while he is still paying off his divorce settlement.\n\nThe front desk is on 24 555 0218 if you need the written fee schedule.",
+    "task": "I'm meeting the home's social worker soon. What should I ask her, and what figures should I bring?",
+    "entities": [
+      {
+        "id": "mon",
+        "entity_id": "mon",
+        "label": "FINANCIAL",
+        "quote": "costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses",
+        "occurrence": 1
+      },
+      {
+        "id": "sav",
+        "entity_id": "sav",
+        "label": "FINANCIAL",
+        "quote": "Her pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros.",
+        "occurrence": 1
+      },
+      {
+        "id": "desp",
+        "entity_id": "desp",
+        "label": "PERSON",
+        "quote": "Despina Savva",
+        "occurrence": 1
+      },
+      {
+        "id": "thr",
+        "entity_id": "thr",
+        "label": "FINANCIAL",
+        "quote": "once they fall under 4,000 euros Mum may qualify for a means-tested contribution",
+        "occurrence": 1
+      },
+      {
+        "id": "kyr",
+        "entity_id": "kyr",
+        "label": "PERSON",
+        "quote": "Kyriakos Aristidou",
+        "occurrence": 1
+      },
+      {
+        "id": "div",
+        "entity_id": "div",
+        "label": "FAMILY",
+        "quote": "he is still paying off his divorce settlement",
+        "occurrence": 1
+      },
+      {
+        "id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "24 555 0218",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "mon",
+        "entity_id": "mon",
+        "label": "FINANCIAL",
+        "quote": "costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "sav",
+        "entity_id": "sav",
+        "label": "FINANCIAL",
+        "quote": "Her pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros.",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "desp",
+        "entity_id": "desp",
+        "label": "PERSON",
+        "quote": "Despina Savva",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "thr",
+        "entity_id": "thr",
+        "label": "FINANCIAL",
+        "quote": "once they fall under 4,000 euros Mum may qualify for a means-tested contribution",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "For what it is worth, my brother Kyriakos Aristidou has offered to cover the extras, but I would rather not take his money while he is still paying off his divorce settlement.\n\n",
+        "occurrence": 1,
+        "label": "FAMILY",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The brother's offer and his divorce settlement are not questions for the home's social worker."
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "24 555 0218",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The desk number is not needed to prepare questions; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses.",
+        "occurrence": 1
+      },
+      {
+        "quote": "I think the laundry fee should be included in the room price but nobody at the desk could confirm that.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Her pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The social worker,",
+        "occurrence": 1
+      },
+      {
+        "quote": "warned that once they fall under 4,000 euros Mum may qualify for a means-tested contribution, and I have a meeting with her in two weeks.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Can you help me work out what the home is actually charging? Mum's place at Olive Terrace costs 2,150 euros a month, plus 95 euros for laundry and 140 for the hairdresser and chiropodist visits she barely uses. I think the laundry fee should be included in the room price but nobody at the desk could confirm that.\n\nHer pension pays 1,380 a month and the rest has come from her savings, which are down to about 6,200 euros. The social worker, [PERSON_1], warned that once they fall under 4,000 euros Mum may qualify for a means-tested contribution, and I have a meeting with her in two weeks.\n\nThe front desk is on [PHONE] if you need the written fee schedule.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c4-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c4-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c4-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c4-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c4-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Chloe's father, Lefteris, works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays. He says his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice.\n\nAt the family meeting on Saturday the four of us agreed that Chloe will stay with me during the week and with her father at weekends when his rota allows. My mother Fotini Hadjikyriacou will do pick-ups on Wednesdays and Fridays, and Chloe's piano lesson stays at 5 pm on Mondays.\n\nWe did not settle who pays for the school trip to Rhodes in April; Lefteris says he will pay half only if the cost stays under 300 euros. I will tell the mediator, Irini Hadjiyianni, on the 12th and she may want it in writing.\n\nChloe's school email is chloe.vasilakis@example.invalid and her class teacher asked for any change of pick-up to be sent there.",
+    "task": "Draft a week-by-week calendar showing who covers my daughter's pick-ups and which days she is with her father.",
+    "entities": [
+      {
+        "id": "chloe#1",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 1
+      },
+      {
+        "id": "lef#1",
+        "entity_id": "lef",
+        "label": "PERSON",
+        "quote": "Lefteris",
+        "occurrence": 1
+      },
+      {
+        "id": "emp1",
+        "entity_id": "emp1",
+        "label": "EMPLOYMENT",
+        "quote": "works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays",
+        "occurrence": 1
+      },
+      {
+        "id": "emp2",
+        "entity_id": "emp2",
+        "label": "EMPLOYMENT",
+        "quote": "his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice",
+        "occurrence": 1
+      },
+      {
+        "id": "chloe#2",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 2
+      },
+      {
+        "id": "fot",
+        "entity_id": "fot",
+        "label": "PERSON",
+        "quote": "Fotini Hadjikyriacou",
+        "occurrence": 1
+      },
+      {
+        "id": "chloe#3",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 3
+      },
+      {
+        "id": "lef#2",
+        "entity_id": "lef",
+        "label": "PERSON",
+        "quote": "Lefteris",
+        "occurrence": 2
+      },
+      {
+        "id": "trip",
+        "entity_id": "trip",
+        "label": "FINANCIAL",
+        "quote": "he will pay half only if the cost stays under 300 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "iri",
+        "entity_id": "iri",
+        "label": "PERSON",
+        "quote": "Irini Hadjiyianni",
+        "occurrence": 1
+      },
+      {
+        "id": "chloe#4",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 4
+      },
+      {
+        "id": "mail",
+        "entity_id": "mail",
+        "label": "EMAIL",
+        "quote": "chloe.vasilakis@example.invalid",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "chloe#1",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "lef#1",
+        "entity_id": "lef",
+        "label": "PERSON",
+        "quote": "Lefteris",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "emp1",
+        "entity_id": "emp1",
+        "label": "EMPLOYMENT",
+        "quote": "works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "emp2",
+        "entity_id": "emp2",
+        "label": "EMPLOYMENT",
+        "quote": "his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "chloe#2",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fot",
+        "entity_id": "fot",
+        "label": "PERSON",
+        "quote": "Fotini Hadjikyriacou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "chloe#3",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "section",
+        "quote": "We did not settle who pays for the school trip to Rhodes in April; Lefteris says he will pay half only if the cost stays under 300 euros. I will tell the mediator, Irini Hadjiyianni, on the 12th and she may want it in writing.\n\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The unsettled school-trip cost split and the mediator follow-up are not needed for a pick-up calendar."
+      },
+      {
+        "kind": "entity",
+        "target_id": "chloe#4",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 4,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "mail",
+        "entity_id": "mail",
+        "label": "EMAIL",
+        "quote": "chloe.vasilakis@example.invalid",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The school email address is not needed for the calendar; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays.",
+        "occurrence": 1
+      },
+      {
+        "quote": "He says his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice.",
+        "occurrence": 1
+      },
+      {
+        "quote": "will stay with me during the week and with her father at weekends when his rota allows.",
+        "occurrence": 1
+      },
+      {
+        "quote": "My mother",
+        "occurrence": 1
+      },
+      {
+        "quote": "will do pick-ups on Wednesdays and Fridays, and",
+        "occurrence": 1
+      },
+      {
+        "quote": "'s piano lesson stays at 5 pm on Mondays.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "[PERSON_1]'s father, [PERSON_2], works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays. He says his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice.\n\nAt the family meeting on Saturday the four of us agreed that [PERSON_1] will stay with me during the week and with her father at weekends when his rota allows. My mother [PERSON_3] will do pick-ups on Wednesdays and Fridays, and [PERSON_1]'s piano lesson stays at 5 pm on Mondays.\n\n[PERSON_1]'s school email is [EMAIL] and her class teacher asked for any change of pick-up to be sent there.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c4-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c4-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c4-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c4-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c4-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Chloe's father, Lefteris, works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays. He says his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice.\n\nAt the family meeting on Saturday the four of us agreed that Chloe will stay with me during the week and with her father at weekends when his rota allows. My mother Fotini Hadjikyriacou will do pick-ups on Wednesdays and Fridays, and Chloe's piano lesson stays at 5 pm on Mondays.\n\nWe did not settle who pays for the school trip to Rhodes in April; Lefteris says he will pay half only if the cost stays under 300 euros. I will tell the mediator, Irini Hadjiyianni, on the 12th and she may want it in writing.\n\nChloe's school email is chloe.vasilakis@example.invalid and her class teacher asked for any change of pick-up to be sent there.",
+    "task": "Draft a short message to the mediator summarising what we agreed about where my daughter stays and what is still unsettled about the school trip.",
+    "entities": [
+      {
+        "id": "chloe#1",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 1
+      },
+      {
+        "id": "lef#1",
+        "entity_id": "lef",
+        "label": "PERSON",
+        "quote": "Lefteris",
+        "occurrence": 1
+      },
+      {
+        "id": "emp1",
+        "entity_id": "emp1",
+        "label": "EMPLOYMENT",
+        "quote": "works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays",
+        "occurrence": 1
+      },
+      {
+        "id": "emp2",
+        "entity_id": "emp2",
+        "label": "EMPLOYMENT",
+        "quote": "his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice",
+        "occurrence": 1
+      },
+      {
+        "id": "chloe#2",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 2
+      },
+      {
+        "id": "fot",
+        "entity_id": "fot",
+        "label": "PERSON",
+        "quote": "Fotini Hadjikyriacou",
+        "occurrence": 1
+      },
+      {
+        "id": "chloe#3",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 3
+      },
+      {
+        "id": "lef#2",
+        "entity_id": "lef",
+        "label": "PERSON",
+        "quote": "Lefteris",
+        "occurrence": 2
+      },
+      {
+        "id": "trip",
+        "entity_id": "trip",
+        "label": "FINANCIAL",
+        "quote": "he will pay half only if the cost stays under 300 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "iri",
+        "entity_id": "iri",
+        "label": "PERSON",
+        "quote": "Irini Hadjiyianni",
+        "occurrence": 1
+      },
+      {
+        "id": "chloe#4",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 4
+      },
+      {
+        "id": "mail",
+        "entity_id": "mail",
+        "label": "EMAIL",
+        "quote": "chloe.vasilakis@example.invalid",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "section",
+        "quote": "Chloe's father, Lefteris, works rotating shifts at the port and is only free on Sundays and every second Thursday evening, so he cannot do the school run on weekdays. He says his rota is published monthly and he can swap a shift if he gets forty-eight hours of notice.\n\n",
+        "occurrence": 1,
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The father's shift pattern and swap notice are not needed in a summary of agreements for the mediator; the retained agreement already says 'when his rota allows'."
+      },
+      {
+        "kind": "entity",
+        "target_id": "chloe#2",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fot",
+        "entity_id": "fot",
+        "label": "PERSON",
+        "quote": "Fotini Hadjikyriacou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "chloe#3",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "lef#2",
+        "entity_id": "lef",
+        "label": "PERSON",
+        "quote": "Lefteris",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "trip",
+        "entity_id": "trip",
+        "label": "FINANCIAL",
+        "quote": "he will pay half only if the cost stays under 300 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "iri",
+        "entity_id": "iri",
+        "label": "PERSON",
+        "quote": "Irini Hadjiyianni",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "entity",
+        "target_id": "chloe#4",
+        "entity_id": "chloe",
+        "label": "PERSON",
+        "quote": "Chloe",
+        "occurrence": 4,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "mail",
+        "entity_id": "mail",
+        "label": "EMAIL",
+        "quote": "chloe.vasilakis@example.invalid",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The school email address is not needed for a message to the mediator; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "will stay with me during the week and with her father at weekends when his rota allows.",
+        "occurrence": 1
+      },
+      {
+        "quote": "We did not settle who pays for the school trip to Rhodes in April;",
+        "occurrence": 1
+      },
+      {
+        "quote": "says he will pay half only if the cost stays under 300 euros.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "At the family meeting on Saturday the four of us agreed that [PERSON_1] will stay with me during the week and with her father at weekends when his rota allows. My mother [PERSON_2] will do pick-ups on Wednesdays and Fridays, and [PERSON_1]'s piano lesson stays at 5 pm on Mondays.\n\nWe did not settle who pays for the school trip to Rhodes in April; [PERSON_3] says he will pay half only if the cost stays under 300 euros. I will tell the mediator, [PERSON_4], on the 12th and she may want it in writing.\n\n[PERSON_1]'s school email is [EMAIL] and her class teacher asked for any change of pick-up to be sent there.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c5-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c5-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c5-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c5-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c5-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Aunt Anthi Constantinou has lived at Maple Row since June and the fee is 1,980 euros a month, due on the first by standing order. The home says the fee rises by 4 percent in January, though the contract I signed mentions no increase. She was diagnosed with early Parkinson's in September. The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month. Her niece Zoe Kalogeropoulou has power of attorney but lives in Leeds, so I handle the paperwork and pay from my own account, IBAN CY99 0020 5550 0000 0000 0731 4402. I can ask the clerk, Marios Eleftheriou, to put the increase in writing before I agree to anything.",
+    "task": "Write a short note to the home asking them to point to the clause in my contract that allows the January fee rise.",
+    "entities": [
+      {
+        "id": "anthi",
+        "entity_id": "anthi",
+        "label": "PERSON",
+        "quote": "Anthi Constantinou",
+        "occurrence": 1
+      },
+      {
+        "id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the fee is 1,980 euros a month, due on the first by standing order",
+        "occurrence": 1
+      },
+      {
+        "id": "rise",
+        "entity_id": "rise",
+        "label": "FINANCIAL",
+        "quote": "the fee rises by 4 percent in January, though the contract I signed mentions no increase",
+        "occurrence": 1
+      },
+      {
+        "id": "dx",
+        "entity_id": "dx",
+        "label": "HEALTH",
+        "quote": "She was diagnosed with early Parkinson's in September",
+        "occurrence": 1
+      },
+      {
+        "id": "nf",
+        "entity_id": "nf",
+        "label": "FINANCIAL",
+        "quote": "The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month",
+        "occurrence": 1
+      },
+      {
+        "id": "zoe",
+        "entity_id": "zoe",
+        "label": "PERSON",
+        "quote": "Zoe Kalogeropoulou",
+        "occurrence": 1
+      },
+      {
+        "id": "iban",
+        "entity_id": "iban",
+        "label": "IBAN",
+        "quote": "CY99 0020 5550 0000 0000 0731 4402",
+        "occurrence": 1
+      },
+      {
+        "id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marios Eleftheriou",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "anthi",
+        "entity_id": "anthi",
+        "label": "PERSON",
+        "quote": "Anthi Constantinou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the fee is 1,980 euros a month, due on the first by standing order",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "rise",
+        "entity_id": "rise",
+        "label": "FINANCIAL",
+        "quote": "the fee rises by 4 percent in January, though the contract I signed mentions no increase",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "She was diagnosed with early Parkinson's in September. ",
+        "occurrence": 1,
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A diagnosis is not needed to ask which contract clause allows the January increase."
+      },
+      {
+        "kind": "section",
+        "quote": "The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month. ",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The conditional nursing-floor surcharge is not part of the January increase being queried."
+      },
+      {
+        "kind": "entity",
+        "target_id": "zoe",
+        "entity_id": "zoe",
+        "label": "PERSON",
+        "quote": "Zoe Kalogeropoulou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "iban",
+        "entity_id": "iban",
+        "label": "IBAN",
+        "quote": "CY99 0020 5550 0000 0000 0731 4402",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The payer's IBAN is not needed in a note about the fee clause; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marios Eleftheriou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "has lived at Maple Row since June and the fee is 1,980 euros a month, due on the first by standing order.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The home says the fee rises by 4 percent in January, though the contract I signed mentions no increase.",
+        "occurrence": 1
+      },
+      {
+        "quote": "I can ask the clerk,",
+        "occurrence": 1
+      },
+      {
+        "quote": "to put the increase in writing before I agree to anything.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Aunt [PERSON_1] has lived at Maple Row since June and the fee is 1,980 euros a month, due on the first by standing order. The home says the fee rises by 4 percent in January, though the contract I signed mentions no increase. Her niece [PERSON_2] has power of attorney but lives in Leeds, so I handle the paperwork and pay from my own account, IBAN [IBAN]. I can ask the clerk, [PERSON_3], to put the increase in writing before I agree to anything.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c5-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c5-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c5-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c5-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c5-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Aunt Anthi Constantinou has lived at Maple Row since June and the fee is 1,980 euros a month, due on the first by standing order. The home says the fee rises by 4 percent in January, though the contract I signed mentions no increase. She was diagnosed with early Parkinson's in September. The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month. Her niece Zoe Kalogeropoulou has power of attorney but lives in Leeds, so I handle the paperwork and pay from my own account, IBAN CY99 0020 5550 0000 0000 0731 4402. I can ask the clerk, Marios Eleftheriou, to put the increase in writing before I agree to anything.",
+    "task": "Help me work out what Aunt's monthly cost could be next year and what I should ask the home before agreeing.",
+    "entities": [
+      {
+        "id": "anthi",
+        "entity_id": "anthi",
+        "label": "PERSON",
+        "quote": "Anthi Constantinou",
+        "occurrence": 1
+      },
+      {
+        "id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the fee is 1,980 euros a month, due on the first by standing order",
+        "occurrence": 1
+      },
+      {
+        "id": "rise",
+        "entity_id": "rise",
+        "label": "FINANCIAL",
+        "quote": "the fee rises by 4 percent in January, though the contract I signed mentions no increase",
+        "occurrence": 1
+      },
+      {
+        "id": "dx",
+        "entity_id": "dx",
+        "label": "HEALTH",
+        "quote": "She was diagnosed with early Parkinson's in September",
+        "occurrence": 1
+      },
+      {
+        "id": "nf",
+        "entity_id": "nf",
+        "label": "FINANCIAL",
+        "quote": "The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month",
+        "occurrence": 1
+      },
+      {
+        "id": "zoe",
+        "entity_id": "zoe",
+        "label": "PERSON",
+        "quote": "Zoe Kalogeropoulou",
+        "occurrence": 1
+      },
+      {
+        "id": "iban",
+        "entity_id": "iban",
+        "label": "IBAN",
+        "quote": "CY99 0020 5550 0000 0000 0731 4402",
+        "occurrence": 1
+      },
+      {
+        "id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marios Eleftheriou",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "anthi",
+        "entity_id": "anthi",
+        "label": "PERSON",
+        "quote": "Anthi Constantinou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "the fee is 1,980 euros a month, due on the first by standing order",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "rise",
+        "entity_id": "rise",
+        "label": "FINANCIAL",
+        "quote": "the fee rises by 4 percent in January, though the contract I signed mentions no increase",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "She was diagnosed with early Parkinson's in September. ",
+        "occurrence": 1,
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The diagnosis itself is not needed for projecting costs; the nursing-floor condition is retained as the cost driver."
+      },
+      {
+        "kind": "entity",
+        "target_id": "nf",
+        "entity_id": "nf",
+        "label": "FINANCIAL",
+        "quote": "The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "zoe",
+        "entity_id": "zoe",
+        "label": "PERSON",
+        "quote": "Zoe Kalogeropoulou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "iban",
+        "entity_id": "iban",
+        "label": "IBAN",
+        "quote": "CY99 0020 5550 0000 0000 0731 4402",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The payer's IBAN is not needed for a cost projection; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Marios Eleftheriou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "has lived at Maple Row since June and the fee is 1,980 euros a month, due on the first by standing order.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The home says the fee rises by 4 percent in January, though the contract I signed mentions no increase.",
+        "occurrence": 1
+      },
+      {
+        "quote": "I can ask the clerk,",
+        "occurrence": 1
+      },
+      {
+        "quote": "to put the increase in writing before I agree to anything.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Aunt [PERSON_1] has lived at Maple Row since June and the fee is 1,980 euros a month, due on the first by standing order. The home says the fee rises by 4 percent in January, though the contract I signed mentions no increase. The home wants her to move to the nursing floor if she starts to fall, which would cost 620 euros more a month. Her niece [PERSON_2] has power of attorney but lives in Leeds, so I handle the paperwork and pay from my own account, IBAN [IBAN]. I can ask the clerk, [PERSON_3], to put the increase in writing before I agree to anything.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c6-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c6-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c6-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c6-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c6-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "At Thursday's meeting with Pavlos's class teacher, Mrs Vasiliki Zografou, we agreed that he will move to the small reading group on Tuesdays and Fridays from next term. His dyslexia assessment from the summer shows that he reads about two years behind, and the school psychologist recommended extra time in written tests. His grandmother, who collects him on those days, will need a letter confirming the new finishing time of 4:15. We also discussed the school trip fee of 85 euros, which the school may waive because my husband lost his job in March. The school will email the written plan by Friday, but only if we confirm the Tuesday and Friday pick-ups in writing first.",
+    "task": "Write a short note for his grandmother explaining what changes in his weekly routine and what she needs to confirm.",
+    "entities": [
+      {
+        "id": "pav",
+        "entity_id": "pav",
+        "label": "PERSON",
+        "quote": "Pavlos",
+        "occurrence": 1
+      },
+      {
+        "id": "teach",
+        "entity_id": "teach",
+        "label": "PERSON",
+        "quote": "Vasiliki Zografou",
+        "occurrence": 1
+      },
+      {
+        "id": "d1",
+        "entity_id": "d1",
+        "label": "HEALTH",
+        "quote": "His dyslexia assessment from the summer shows that he reads about two years behind",
+        "occurrence": 1
+      },
+      {
+        "id": "d2",
+        "entity_id": "d2",
+        "label": "HEALTH",
+        "quote": "the school psychologist recommended extra time in written tests",
+        "occurrence": 1
+      },
+      {
+        "id": "tfee",
+        "entity_id": "tfee",
+        "label": "FINANCIAL",
+        "quote": "the school trip fee of 85 euros, which the school may waive",
+        "occurrence": 1
+      },
+      {
+        "id": "job",
+        "entity_id": "job",
+        "label": "EMPLOYMENT",
+        "quote": "my husband lost his job in March",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "pav",
+        "entity_id": "pav",
+        "label": "PERSON",
+        "quote": "Pavlos",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "teach",
+        "entity_id": "teach",
+        "label": "PERSON",
+        "quote": "Vasiliki Zografou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "section",
+        "quote": "His dyslexia assessment from the summer shows that he reads about two years behind, and the school psychologist recommended extra time in written tests. ",
+        "occurrence": 1,
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The assessment result and test accommodations are not needed to tell a grandmother about the new group days and finishing time."
+      },
+      {
+        "kind": "section",
+        "quote": "We also discussed the school trip fee of 85 euros, which the school may waive because my husband lost his job in March. ",
+        "occurrence": 1,
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The trip-fee waiver and the husband's job loss are not needed for the grandmother's routine note."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "we agreed that he will move to the small reading group on Tuesdays and Fridays from next term.",
+        "occurrence": 1
+      },
+      {
+        "quote": "His grandmother, who collects him on those days, will need a letter confirming the new finishing time of 4:15.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The school will email the written plan by Friday, but only if we confirm the Tuesday and Friday pick-ups in writing first.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "At Thursday's meeting with [PERSON_1]'s class teacher, Mrs [PERSON_2], we agreed that he will move to the small reading group on Tuesdays and Fridays from next term. His grandmother, who collects him on those days, will need a letter confirming the new finishing time of 4:15. The school will email the written plan by Friday, but only if we confirm the Tuesday and Friday pick-ups in writing first.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c6-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c6-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c6-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c6-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c6-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "At Thursday's meeting with Pavlos's class teacher, Mrs Vasiliki Zografou, we agreed that he will move to the small reading group on Tuesdays and Fridays from next term. His dyslexia assessment from the summer shows that he reads about two years behind, and the school psychologist recommended extra time in written tests. His grandmother, who collects him on those days, will need a letter confirming the new finishing time of 4:15. We also discussed the school trip fee of 85 euros, which the school may waive because my husband lost his job in March. The school will email the written plan by Friday, but only if we confirm the Tuesday and Friday pick-ups in writing first.",
+    "task": "Brief the tutor who starts with him next week so she can support what the school is doing.",
+    "entities": [
+      {
+        "id": "pav",
+        "entity_id": "pav",
+        "label": "PERSON",
+        "quote": "Pavlos",
+        "occurrence": 1
+      },
+      {
+        "id": "teach",
+        "entity_id": "teach",
+        "label": "PERSON",
+        "quote": "Vasiliki Zografou",
+        "occurrence": 1
+      },
+      {
+        "id": "d1",
+        "entity_id": "d1",
+        "label": "HEALTH",
+        "quote": "His dyslexia assessment from the summer shows that he reads about two years behind",
+        "occurrence": 1
+      },
+      {
+        "id": "d2",
+        "entity_id": "d2",
+        "label": "HEALTH",
+        "quote": "the school psychologist recommended extra time in written tests",
+        "occurrence": 1
+      },
+      {
+        "id": "tfee",
+        "entity_id": "tfee",
+        "label": "FINANCIAL",
+        "quote": "the school trip fee of 85 euros, which the school may waive",
+        "occurrence": 1
+      },
+      {
+        "id": "job",
+        "entity_id": "job",
+        "label": "EMPLOYMENT",
+        "quote": "my husband lost his job in March",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "pav",
+        "entity_id": "pav",
+        "label": "PERSON",
+        "quote": "Pavlos",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "teach",
+        "entity_id": "teach",
+        "label": "PERSON",
+        "quote": "Vasiliki Zografou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "entity",
+        "target_id": "d1",
+        "entity_id": "d1",
+        "label": "HEALTH",
+        "quote": "His dyslexia assessment from the summer shows that he reads about two years behind",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "d2",
+        "entity_id": "d2",
+        "label": "HEALTH",
+        "quote": "the school psychologist recommended extra time in written tests",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "We also discussed the school trip fee of 85 euros, which the school may waive because my husband lost his job in March. ",
+        "occurrence": 1,
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The trip-fee waiver and the husband's job loss are not relevant to briefing a tutor."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "we agreed that he will move to the small reading group on Tuesdays and Fridays from next term.",
+        "occurrence": 1
+      },
+      {
+        "quote": "His dyslexia assessment from the summer shows that he reads about two years behind, and the school psychologist recommended extra time in written tests.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "At Thursday's meeting with [PERSON_1]'s class teacher, Mrs [PERSON_2], we agreed that he will move to the small reading group on Tuesdays and Fridays from next term. His dyslexia assessment from the summer shows that he reads about two years behind, and the school psychologist recommended extra time in written tests. His grandmother, who collects him on those days, will need a letter confirming the new finishing time of 4:15. The school will email the written plan by Friday, but only if we confirm the Tuesday and Friday pick-ups in writing first.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c7-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c7-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c7-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c7-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c7-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Care costs for Mum so far, copied from our shared sheet:\nmonth,item,amount_eur,paid_by,note\nMarch,care home fee,2450,Nikolas Theocharous,paid on the 2nd\nMarch,pharmacy co-pay,64,Nikolas Theocharous,receipt kept\nApril,care home fee,2450,Eleni Charalambous,paid on the 5th\nApril,physio sessions x4,180,Eleni Charalambous,home invoice\nApril,loan from Eleni to Nikolas for roof repair,3000,Eleni Charalambous,repay by September\nMay,care home fee,2450,Nikolas Theocharous,late fee 35 waived\nMay,dentist visit for Mum,310,Panayiotis Demetriou,reimburse from joint account",
+    "task": "Work out which of us has paid the most towards Mum's care so far and who should even things out.",
+    "entities": [
+      {
+        "id": "nik#1",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 1
+      },
+      {
+        "id": "nik#2",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 2
+      },
+      {
+        "id": "ele#1",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 1
+      },
+      {
+        "id": "ele#2",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 2
+      },
+      {
+        "id": "ele_f",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni",
+        "occurrence": 3
+      },
+      {
+        "id": "nik_f",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas",
+        "occurrence": 3
+      },
+      {
+        "id": "amt",
+        "entity_id": "amt",
+        "label": "FINANCIAL",
+        "quote": "3000",
+        "occurrence": 1
+      },
+      {
+        "id": "ele#3",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 3
+      },
+      {
+        "id": "rep",
+        "entity_id": "rep",
+        "label": "FINANCIAL",
+        "quote": "repay by September",
+        "occurrence": 1
+      },
+      {
+        "id": "nik#3",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 3
+      },
+      {
+        "id": "pan",
+        "entity_id": "pan",
+        "label": "PERSON",
+        "quote": "Panayiotis Demetriou",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "nik#1",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "nik#2",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ele#1",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ele#2",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ele_f",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "nik_f",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "amt",
+        "entity_id": "amt",
+        "label": "FINANCIAL",
+        "quote": "3000",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ele#3",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "rep",
+        "entity_id": "rep",
+        "label": "FINANCIAL",
+        "quote": "repay by September",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "nik#3",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "pan",
+        "entity_id": "pan",
+        "label": "PERSON",
+        "quote": "Panayiotis Demetriou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "March,care home fee,2450,",
+        "occurrence": 1
+      },
+      {
+        "quote": "April,care home fee,2450,",
+        "occurrence": 1
+      },
+      {
+        "quote": "May,care home fee,2450,",
+        "occurrence": 1
+      },
+      {
+        "quote": "April,loan from",
+        "occurrence": 1
+      },
+      {
+        "quote": " to ",
+        "occurrence": 1
+      },
+      {
+        "quote": " for roof repair,3000,",
+        "occurrence": 1
+      },
+      {
+        "quote": ",repay by September",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Care costs for Mum so far, copied from our shared sheet:\nmonth,item,amount_eur,paid_by,note\nMarch,care home fee,2450,[PERSON_1],paid on the 2nd\nMarch,pharmacy co-pay,64,[PERSON_1],receipt kept\nApril,care home fee,2450,[PERSON_2],paid on the 5th\nApril,physio sessions x4,180,[PERSON_2],home invoice\nApril,loan from [PERSON_2] to [PERSON_1] for roof repair,3000,[PERSON_2],repay by September\nMay,care home fee,2450,[PERSON_1],late fee 35 waived\nMay,dentist visit for Mum,310,[PERSON_3],reimburse from joint account",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:c7-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:c7-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:c7-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:c7-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:c7-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Care costs for Mum so far, copied from our shared sheet:\nmonth,item,amount_eur,paid_by,note\nMarch,care home fee,2450,Nikolas Theocharous,paid on the 2nd\nMarch,pharmacy co-pay,64,Nikolas Theocharous,receipt kept\nApril,care home fee,2450,Eleni Charalambous,paid on the 5th\nApril,physio sessions x4,180,Eleni Charalambous,home invoice\nApril,loan from Eleni to Nikolas for roof repair,3000,Eleni Charalambous,repay by September\nMay,care home fee,2450,Nikolas Theocharous,late fee 35 waived\nMay,dentist visit for Mum,310,Panayiotis Demetriou,reimburse from joint account",
+    "task": "Add up the care home fees, pharmacy, physio and dentist costs for this year's medical expenses tax claim.",
+    "entities": [
+      {
+        "id": "nik#1",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 1
+      },
+      {
+        "id": "nik#2",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 2
+      },
+      {
+        "id": "ele#1",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 1
+      },
+      {
+        "id": "ele#2",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 2
+      },
+      {
+        "id": "ele_f",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni",
+        "occurrence": 3
+      },
+      {
+        "id": "nik_f",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas",
+        "occurrence": 3
+      },
+      {
+        "id": "amt",
+        "entity_id": "amt",
+        "label": "FINANCIAL",
+        "quote": "3000",
+        "occurrence": 1
+      },
+      {
+        "id": "ele#3",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 3
+      },
+      {
+        "id": "rep",
+        "entity_id": "rep",
+        "label": "FINANCIAL",
+        "quote": "repay by September",
+        "occurrence": 1
+      },
+      {
+        "id": "nik#3",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 3
+      },
+      {
+        "id": "pan",
+        "entity_id": "pan",
+        "label": "PERSON",
+        "quote": "Panayiotis Demetriou",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "nik#1",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "nik#2",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ele#1",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ele#2",
+        "entity_id": "ele",
+        "label": "PERSON",
+        "quote": "Eleni Charalambous",
+        "occurrence": 2,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "section",
+        "quote": "April,loan from Eleni to Nikolas for roof repair,3000,Eleni Charalambous,repay by September\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A private loan between siblings is not a care expense and is not part of a medical expenses claim."
+      },
+      {
+        "kind": "entity",
+        "target_id": "nik#3",
+        "entity_id": "nik",
+        "label": "PERSON",
+        "quote": "Nikolas Theocharous",
+        "occurrence": 3,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "pan",
+        "entity_id": "pan",
+        "label": "PERSON",
+        "quote": "Panayiotis Demetriou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "March,care home fee,2450,",
+        "occurrence": 1
+      },
+      {
+        "quote": "April,care home fee,2450,",
+        "occurrence": 1
+      },
+      {
+        "quote": "May,care home fee,2450,",
+        "occurrence": 1
+      },
+      {
+        "quote": "March,pharmacy co-pay,64,",
+        "occurrence": 1
+      },
+      {
+        "quote": "April,physio sessions x4,180,",
+        "occurrence": 1
+      },
+      {
+        "quote": "May,dentist visit for Mum,310,",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Care costs for Mum so far, copied from our shared sheet:\nmonth,item,amount_eur,paid_by,note\nMarch,care home fee,2450,[PERSON_1],paid on the 2nd\nMarch,pharmacy co-pay,64,[PERSON_1],receipt kept\nApril,care home fee,2450,[PERSON_2],paid on the 5th\nApril,physio sessions x4,180,[PERSON_2],home invoice\nMay,care home fee,2450,[PERSON_1],late fee 35 waived\nMay,dentist visit for Mum,310,[PERSON_3],reimburse from joint account",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:k1-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:k1-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:k1-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:k1-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:k1-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "The nightly export for the Kestrel Freight account failed again on Tuesday at 02:10 after the queue worker ran out of memory. A restart cleared it, but the failure recurs roughly every third night and the heap graph shows a slow climb from 1.1 GB to 3.9 GB. We suspect the retry loop in the batch writer keeps a copy of every failed payload.\n\nUntil the fix ships, support is re-running the export by hand with the service login svc-export and the password Tern-48-Quarry-lamp, which must be rotated afterwards.\n\nBecause this was the third missed export this quarter, we owe Kestrel a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead. Nefeli Voskou in billing wants the amount confirmed by the 28th.\n\nEvagoras Kyprianou's team will test a patch on the staging cluster on Thursday. If the heap stays under 2 GB for 72 hours we skip the memory upgrade; otherwise we raise the worker limit to 6 GB.",
+    "task": "Draft an internal post-incident summary for our customer success lead: what happened, the impact on the account and the next steps.",
+    "entities": [
+      {
+        "id": "org",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel Freight",
+        "occurrence": 1
+      },
+      {
+        "id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "svc-export",
+        "occurrence": 1
+      },
+      {
+        "id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Tern-48-Quarry-lamp",
+        "occurrence": 1
+      },
+      {
+        "id": "org2",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel",
+        "occurrence": 2
+      },
+      {
+        "id": "cred",
+        "entity_id": "cred",
+        "label": "FINANCIAL",
+        "quote": "a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead",
+        "occurrence": 1
+      },
+      {
+        "id": "nef",
+        "entity_id": "nef",
+        "label": "PERSON",
+        "quote": "Nefeli Voskou",
+        "occurrence": 1
+      },
+      {
+        "id": "eva",
+        "entity_id": "eva",
+        "label": "PERSON",
+        "quote": "Evagoras Kyprianou",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "org",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel Freight",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The customer name is protected from external AI; the summary can only say 'the customer', so naming the account is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "svc-export",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A service-account username is a credential component and is not needed in a summary; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Tern-48-Quarry-lamp",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A live password must never be disclosed and is not needed in a summary; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "org2",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel",
+        "occurrence": 2,
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The customer name is protected from external AI; the summary can only say 'the customer', so naming the account is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "cred",
+        "entity_id": "cred",
+        "label": "FINANCIAL",
+        "quote": "a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "nef",
+        "entity_id": "nef",
+        "label": "PERSON",
+        "quote": "Nefeli Voskou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "eva",
+        "entity_id": "eva",
+        "label": "PERSON",
+        "quote": "Evagoras Kyprianou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The nightly export for the",
+        "occurrence": 1
+      },
+      {
+        "quote": "account failed again on Tuesday at 02:10 after the queue worker ran out of memory.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Because this was the third missed export this quarter, we owe",
+        "occurrence": 1
+      },
+      {
+        "quote": "a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead.",
+        "occurrence": 1
+      },
+      {
+        "quote": "in billing wants the amount confirmed by the 28th.",
+        "occurrence": 1
+      },
+      {
+        "quote": "'s team will test a patch on the staging cluster on Thursday.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "The nightly export for the [ORG] account failed again on Tuesday at 02:10 after the queue worker ran out of memory. A restart cleared it, but the failure recurs roughly every third night and the heap graph shows a slow climb from 1.1 GB to 3.9 GB. We suspect the retry loop in the batch writer keeps a copy of every failed payload.\n\nUntil the fix ships, support is re-running the export by hand with the service login [USERNAME] and the password [SECRET], which must be rotated afterwards.\n\nBecause this was the third missed export this quarter, we owe [ORG] a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead. [PERSON_1] in billing wants the amount confirmed by the 28th.\n\n[PERSON_2]'s team will test a patch on the staging cluster on Thursday. If the heap stays under 2 GB for 72 hours we skip the memory upgrade; otherwise we raise the worker limit to 6 GB.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:k1-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:k1-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:k1-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:k1-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:k1-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "The nightly export for the Kestrel Freight account failed again on Tuesday at 02:10 after the queue worker ran out of memory. A restart cleared it, but the failure recurs roughly every third night and the heap graph shows a slow climb from 1.1 GB to 3.9 GB. We suspect the retry loop in the batch writer keeps a copy of every failed payload.\n\nUntil the fix ships, support is re-running the export by hand with the service login svc-export and the password Tern-48-Quarry-lamp, which must be rotated afterwards.\n\nBecause this was the third missed export this quarter, we owe Kestrel a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead. Nefeli Voskou in billing wants the amount confirmed by the 28th.\n\nEvagoras Kyprianou's team will test a patch on the staging cluster on Thursday. If the heap stays under 2 GB for 72 hours we skip the memory upgrade; otherwise we raise the worker limit to 6 GB.",
+    "task": "Help me find the likely cause of the memory growth and a way to confirm the fix.",
+    "entities": [
+      {
+        "id": "org",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel Freight",
+        "occurrence": 1
+      },
+      {
+        "id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "svc-export",
+        "occurrence": 1
+      },
+      {
+        "id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Tern-48-Quarry-lamp",
+        "occurrence": 1
+      },
+      {
+        "id": "org2",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel",
+        "occurrence": 2
+      },
+      {
+        "id": "cred",
+        "entity_id": "cred",
+        "label": "FINANCIAL",
+        "quote": "a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead",
+        "occurrence": 1
+      },
+      {
+        "id": "nef",
+        "entity_id": "nef",
+        "label": "PERSON",
+        "quote": "Nefeli Voskou",
+        "occurrence": 1
+      },
+      {
+        "id": "eva",
+        "entity_id": "eva",
+        "label": "PERSON",
+        "quote": "Evagoras Kyprianou",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "org",
+        "entity_id": "client",
+        "label": "ORG",
+        "quote": "Kestrel Freight",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The customer name is protected and is not needed to analyse the memory growth; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "svc-export",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A service-account username is a credential component and is not needed for the analysis; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Tern-48-Quarry-lamp",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A live password must never be disclosed and is not needed for the analysis; nothing task-relevant is lost."
+      },
+      {
+        "kind": "section",
+        "quote": "Because this was the third missed export this quarter, we owe Kestrel a service credit of 2,300 euros under the SLA, and billing will apply it to the November invoice unless the customer asks for a refund instead. Nefeli Voskou in billing wants the amount confirmed by the 28th.\n\n",
+        "occurrence": 1,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The SLA credit amount, invoice timing and billing deadline are not needed to diagnose memory growth or verify a patch."
+      },
+      {
+        "kind": "entity",
+        "target_id": "eva",
+        "entity_id": "eva",
+        "label": "PERSON",
+        "quote": "Evagoras Kyprianou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The nightly export for the",
+        "occurrence": 1
+      },
+      {
+        "quote": "account failed again on Tuesday at 02:10 after the queue worker ran out of memory.",
+        "occurrence": 1
+      },
+      {
+        "quote": "A restart cleared it, but the failure recurs roughly every third night and the heap graph shows a slow climb from 1.1 GB to 3.9 GB.",
+        "occurrence": 1
+      },
+      {
+        "quote": "We suspect the retry loop in the batch writer keeps a copy of every failed payload.",
+        "occurrence": 1
+      },
+      {
+        "quote": "If the heap stays under 2 GB for 72 hours we skip the memory upgrade; otherwise we raise the worker limit to 6 GB.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "The nightly export for the [ORG] account failed again on Tuesday at 02:10 after the queue worker ran out of memory. A restart cleared it, but the failure recurs roughly every third night and the heap graph shows a slow climb from 1.1 GB to 3.9 GB. We suspect the retry loop in the batch writer keeps a copy of every failed payload.\n\nUntil the fix ships, support is re-running the export by hand with the service login [USERNAME] and the password [SECRET], which must be rotated afterwards.\n\n[PERSON_1]'s team will test a patch on the staging cluster on Thursday. If the heap stays under 2 GB for 72 hours we skip the memory upgrade; otherwise we raise the worker limit to 6 GB.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:k2-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:k2-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:k2-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:k2-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:k2-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Accrual notes for the Q3 close: the Larnaca office rent invoice from Palmgate Estates came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros, which I propose to book to facilities. The travel desk reimbursed Giorgos Papageorgiou's trip to the supplier audit in Limassol, 640 euros, but the taxi receipt for 86 euros is still missing. Separately, the sales director Tasos Lambrou has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that. Please do not post the advance rows until the approval is in. The cut-off for journals is 17:00 on the 29th, and anything after that rolls into October.",
+    "task": "Make me a checklist of everything still open before I can post the Q3 close journals.",
+    "entities": [
+      {
+        "id": "land",
+        "entity_id": "land",
+        "label": "ORG",
+        "quote": "Palmgate Estates",
+        "occurrence": 1
+      },
+      {
+        "id": "rent",
+        "entity_id": "rent",
+        "label": "FINANCIAL",
+        "quote": "came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "gio",
+        "entity_id": "gio",
+        "label": "PERSON",
+        "quote": "Giorgos Papageorgiou",
+        "occurrence": 1
+      },
+      {
+        "id": "tas",
+        "entity_id": "tas",
+        "label": "PERSON",
+        "quote": "Tasos Lambrou",
+        "occurrence": 1
+      },
+      {
+        "id": "adv",
+        "entity_id": "adv",
+        "label": "EMPLOYMENT",
+        "quote": "has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that",
+        "occurrence": 1
+      },
+      {
+        "id": "hold",
+        "entity_id": "hold",
+        "label": "EMPLOYMENT",
+        "quote": "Please do not post the advance rows until the approval is in",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "land",
+        "entity_id": "land",
+        "label": "ORG",
+        "quote": "Palmgate Estates",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "uncertain",
+        "reason": "The vendor name is protected from external AI and the checklist can say 'the landlord'; only the vendor name is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "rent",
+        "entity_id": "rent",
+        "label": "FINANCIAL",
+        "quote": "came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "gio",
+        "entity_id": "gio",
+        "label": "PERSON",
+        "quote": "Giorgos Papageorgiou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "tas",
+        "entity_id": "tas",
+        "label": "PERSON",
+        "quote": "Tasos Lambrou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "adv",
+        "entity_id": "adv",
+        "label": "EMPLOYMENT",
+        "quote": "has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "hold",
+        "entity_id": "hold",
+        "label": "EMPLOYMENT",
+        "quote": "Please do not post the advance rows until the approval is in",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Accrual notes for the Q3 close: the Larnaca office rent invoice from",
+        "occurrence": 1
+      },
+      {
+        "quote": "came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros, which I propose to book to facilities.",
+        "occurrence": 1
+      },
+      {
+        "quote": "'s trip to the supplier audit in Limassol, 640 euros, but the taxi receipt for 86 euros is still missing.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Separately, the sales director",
+        "occurrence": 1
+      },
+      {
+        "quote": "has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Please do not post the advance rows until the approval is in.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The cut-off for journals is 17:00 on the 29th, and anything after that rolls into October.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Accrual notes for the Q3 close: the Larnaca office rent invoice from [ORG] came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros, which I propose to book to facilities. The travel desk reimbursed [PERSON_1]'s trip to the supplier audit in Limassol, 640 euros, but the taxi receipt for 86 euros is still missing. Separately, the sales director [PERSON_2] has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that. Please do not post the advance rows until the approval is in. The cut-off for journals is 17:00 on the 29th, and anything after that rolls into October.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:k2-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:k2-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:k2-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:k2-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:k2-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Accrual notes for the Q3 close: the Larnaca office rent invoice from Palmgate Estates came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros, which I propose to book to facilities. The travel desk reimbursed Giorgos Papageorgiou's trip to the supplier audit in Limassol, 640 euros, but the taxi receipt for 86 euros is still missing. Separately, the sales director Tasos Lambrou has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that. Please do not post the advance rows until the approval is in. The cut-off for journals is 17:00 on the 29th, and anything after that rolls into October.",
+    "task": "Draft a short email to facilities and the travel desk about the rent shortfall and the missing taxi receipt.",
+    "entities": [
+      {
+        "id": "land",
+        "entity_id": "land",
+        "label": "ORG",
+        "quote": "Palmgate Estates",
+        "occurrence": 1
+      },
+      {
+        "id": "rent",
+        "entity_id": "rent",
+        "label": "FINANCIAL",
+        "quote": "came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "gio",
+        "entity_id": "gio",
+        "label": "PERSON",
+        "quote": "Giorgos Papageorgiou",
+        "occurrence": 1
+      },
+      {
+        "id": "tas",
+        "entity_id": "tas",
+        "label": "PERSON",
+        "quote": "Tasos Lambrou",
+        "occurrence": 1
+      },
+      {
+        "id": "adv",
+        "entity_id": "adv",
+        "label": "EMPLOYMENT",
+        "quote": "has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that",
+        "occurrence": 1
+      },
+      {
+        "id": "hold",
+        "entity_id": "hold",
+        "label": "EMPLOYMENT",
+        "quote": "Please do not post the advance rows until the approval is in",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "land",
+        "entity_id": "land",
+        "label": "ORG",
+        "quote": "Palmgate Estates",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "uncertain",
+        "reason": "The vendor name is protected from external AI and the email can say 'the landlord'; only the vendor name is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "rent",
+        "entity_id": "rent",
+        "label": "FINANCIAL",
+        "quote": "came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "gio",
+        "entity_id": "gio",
+        "label": "PERSON",
+        "quote": "Giorgos Papageorgiou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "section",
+        "quote": "Separately, the sales director Tasos Lambrou has asked that his commission advance of 7,500 euros be repaid over three months instead of one, and HR has not approved that. Please do not post the advance rows until the approval is in. ",
+        "occurrence": 1,
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A named colleague's commission advance repayment terms and the HR approval status are not needed for a rent shortfall and taxi receipt email; the follow-on instruction about the advance rows depends on it and goes with it."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Accrual notes for the Q3 close: the Larnaca office rent invoice from",
+        "occurrence": 1
+      },
+      {
+        "quote": "came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros, which I propose to book to facilities.",
+        "occurrence": 1
+      },
+      {
+        "quote": "'s trip to the supplier audit in Limassol, 640 euros, but the taxi receipt for 86 euros is still missing.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Accrual notes for the Q3 close: the Larnaca office rent invoice from [ORG] came to 11,400 euros against an accrual of 10,900, so we are short by 500 euros, which I propose to book to facilities. The travel desk reimbursed [PERSON_1]'s trip to the supplier audit in Limassol, 640 euros, but the taxi receipt for 86 euros is still missing. The cut-off for journals is 17:00 on the 29th, and anything after that rolls into October.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:k3-a",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:k3-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:k3-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:k3-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:k3-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Hi Stelios,\n\nNotes from today's call with the Aspendos Data Systems reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: Alkis Anagnos and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user ops-vault, password Plume-902-Harbor.\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\nKyriaki",
+    "task": "Work out how many seats to put on the renewal request and what to tell procurement.",
+    "entities": [
+      {
+        "id": "ste",
+        "entity_id": "ste",
+        "label": "PERSON",
+        "quote": "Stelios",
+        "occurrence": 1
+      },
+      {
+        "id": "aspo",
+        "entity_id": "aspo",
+        "label": "ORG",
+        "quote": "Aspendos Data Systems",
+        "occurrence": 1
+      },
+      {
+        "id": "quote",
+        "entity_id": "quote",
+        "label": "FINANCIAL",
+        "quote": "quote 38,600 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "alk",
+        "entity_id": "alk",
+        "label": "PERSON",
+        "quote": "Alkis Anagnos",
+        "occurrence": 1
+      },
+      {
+        "id": "hc",
+        "entity_id": "hc",
+        "label": "EMPLOYMENT",
+        "quote": "and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled",
+        "occurrence": 1
+      },
+      {
+        "id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "ops-vault",
+        "occurrence": 1
+      },
+      {
+        "id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Plume-902-Harbor",
+        "occurrence": 1
+      },
+      {
+        "id": "kyr",
+        "entity_id": "kyr",
+        "label": "PERSON",
+        "quote": "Kyriaki",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "ste",
+        "entity_id": "ste",
+        "label": "PERSON",
+        "quote": "Stelios",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "aspo",
+        "entity_id": "aspo",
+        "label": "ORG",
+        "quote": "Aspendos Data Systems",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The reseller's name is protected from external AI and the plan can say 'the reseller'; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "quote",
+        "entity_id": "quote",
+        "label": "FINANCIAL",
+        "quote": "quote 38,600 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "alk",
+        "entity_id": "alk",
+        "label": "PERSON",
+        "quote": "Alkis Anagnos",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "hc",
+        "entity_id": "hc",
+        "label": "EMPLOYMENT",
+        "quote": "and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "ops-vault",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A shared portal username is a credential component and is not needed for seat planning; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Plume-902-Harbor",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A live password must never be disclosed and is not needed for seat planning; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "kyr",
+        "entity_id": "kyr",
+        "label": "PERSON",
+        "quote": "Kyriaki",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Our headcount plan:",
+        "occurrence": 1
+      },
+      {
+        "quote": "and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Hi [PERSON_1],\n\nNotes from today's call with the [ORG] reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: [PERSON_2] and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user [USERNAME], password [SECRET].\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\n[PERSON_3]",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:k3-b",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:k3-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:k3-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:k3-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:k3-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Hi Stelios,\n\nNotes from today's call with the Aspendos Data Systems reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: Alkis Anagnos and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user ops-vault, password Plume-902-Harbor.\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\nKyriaki",
+    "task": "Draft a short reply to the reseller asking them to hold the quote until the 30th and confirm the free training days.",
+    "entities": [
+      {
+        "id": "ste",
+        "entity_id": "ste",
+        "label": "PERSON",
+        "quote": "Stelios",
+        "occurrence": 1
+      },
+      {
+        "id": "aspo",
+        "entity_id": "aspo",
+        "label": "ORG",
+        "quote": "Aspendos Data Systems",
+        "occurrence": 1
+      },
+      {
+        "id": "quote",
+        "entity_id": "quote",
+        "label": "FINANCIAL",
+        "quote": "quote 38,600 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "alk",
+        "entity_id": "alk",
+        "label": "PERSON",
+        "quote": "Alkis Anagnos",
+        "occurrence": 1
+      },
+      {
+        "id": "hc",
+        "entity_id": "hc",
+        "label": "EMPLOYMENT",
+        "quote": "and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled",
+        "occurrence": 1
+      },
+      {
+        "id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "ops-vault",
+        "occurrence": 1
+      },
+      {
+        "id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Plume-902-Harbor",
+        "occurrence": 1
+      },
+      {
+        "id": "kyr",
+        "entity_id": "kyr",
+        "label": "PERSON",
+        "quote": "Kyriaki",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "ste",
+        "entity_id": "ste",
+        "label": "PERSON",
+        "quote": "Stelios",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "aspo",
+        "entity_id": "aspo",
+        "label": "ORG",
+        "quote": "Aspendos Data Systems",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The reseller is the addressee, but its name is protected from external AI; the reply can only say 'the reseller', so naming it is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "quote",
+        "entity_id": "quote",
+        "label": "FINANCIAL",
+        "quote": "quote 38,600 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "- Our headcount plan: Alkis Anagnos and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n",
+        "occurrence": 1,
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Our own headcount changes and a colleague's departure are internal and are not needed in a reply asking the reseller to hold a quote and confirm training days."
+      },
+      {
+        "kind": "entity",
+        "target_id": "usr",
+        "entity_id": "usr",
+        "label": "USERNAME",
+        "quote": "ops-vault",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A shared portal username is a credential component and is not needed in the reply; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "pwd",
+        "entity_id": "pwd",
+        "label": "SECRET",
+        "quote": "Plume-902-Harbor",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A live password must never be disclosed and is not needed in the reply; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "kyr",
+        "entity_id": "kyr",
+        "label": "PERSON",
+        "quote": "Kyriaki",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.",
+        "occurrence": 1
+      },
+      {
+        "quote": "They will add two on-site training days free if we sign this month.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Hi [PERSON_1],\n\nNotes from today's call with the [ORG] reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Their support portal login for us is still the shared one, user [USERNAME], password [SECRET].\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\n[PERSON_2]",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:r1",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:r1-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:r1-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:r1-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:r1-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Mum's bill from Hillcrest Residence for June lists a 'personal care supplement' of 260 euros and a 'dressing assistance' charge of 75 euros, on top of the standard fee of 2,300 euros. Since the stroke in April she needs help getting dressed and washing on her left side, but she still feeds herself and walks to the lounge with a frame. The supplement was introduced after the care plan review on the 3rd, which my brother Stavros Kakoullis attended instead of me.\n\nHer GP, Dr Evgenia Louca, wrote at the review that she needs help with dressing but not with eating, and the physiotherapist visits twice a week at no charge according to the contract. I think the dressing charge and the supplement may overlap. The bill reference is HR-2291-06 and the accounts line is 24 555 0396.",
+    "task": "Check whether the extra charges on this bill match the care described and tell me which ones to question.",
+    "entities": [
+      {
+        "id": "chg",
+        "entity_id": "chg",
+        "label": "FINANCIAL",
+        "quote": "a 'personal care supplement' of 260 euros and a 'dressing assistance' charge of 75 euros, on top of the standard fee of 2,300 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "stroke",
+        "entity_id": "stroke",
+        "label": "HEALTH",
+        "quote": "Since the stroke in April she needs help getting dressed and washing on her left side, but she still feeds herself and walks to the lounge with a frame.",
+        "occurrence": 1
+      },
+      {
+        "id": "sta",
+        "entity_id": "sta",
+        "label": "PERSON",
+        "quote": "Stavros Kakoullis",
+        "occurrence": 1
+      },
+      {
+        "id": "evg",
+        "entity_id": "evg",
+        "label": "PERSON",
+        "quote": "Evgenia Louca",
+        "occurrence": 1
+      },
+      {
+        "id": "gp",
+        "entity_id": "gp",
+        "label": "HEALTH",
+        "quote": "she needs help with dressing but not with eating",
+        "occurrence": 1
+      },
+      {
+        "id": "ref",
+        "entity_id": "ref",
+        "label": "ACCOUNT_ID",
+        "quote": "HR-2291-06",
+        "occurrence": 1
+      },
+      {
+        "id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "24 555 0396",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "chg",
+        "entity_id": "chg",
+        "label": "FINANCIAL",
+        "quote": "a 'personal care supplement' of 260 euros and a 'dressing assistance' charge of 75 euros, on top of the standard fee of 2,300 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "stroke",
+        "entity_id": "stroke",
+        "label": "HEALTH",
+        "quote": "Since the stroke in April she needs help getting dressed and washing on her left side, but she still feeds herself and walks to the lounge with a frame.",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "sta",
+        "entity_id": "sta",
+        "label": "PERSON",
+        "quote": "Stavros Kakoullis",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "evg",
+        "entity_id": "evg",
+        "label": "PERSON",
+        "quote": "Evgenia Louca",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "gp",
+        "entity_id": "gp",
+        "label": "HEALTH",
+        "quote": "she needs help with dressing but not with eating",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ref",
+        "entity_id": "ref",
+        "label": "ACCOUNT_ID",
+        "quote": "HR-2291-06",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The exact bill reference is not needed to judge whether charges overlap; nothing task-relevant is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "24 555 0396",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "A direct phone number is not needed to check charges; nothing task-relevant is lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "a 'personal care supplement' of 260 euros and a 'dressing assistance' charge of 75 euros, on top of the standard fee of 2,300 euros.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Since the stroke in April she needs help getting dressed and washing on her left side, but she still feeds herself and walks to the lounge with a frame.",
+        "occurrence": 1
+      },
+      {
+        "quote": "wrote at the review that she needs help with dressing but not with eating, and the physiotherapist visits twice a week at no charge according to the contract.",
+        "occurrence": 1
+      },
+      {
+        "quote": "I think the dressing charge and the supplement may overlap.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Mum's bill from Hillcrest Residence for June lists a 'personal care supplement' of 260 euros and a 'dressing assistance' charge of 75 euros, on top of the standard fee of 2,300 euros. Since the stroke in April she needs help getting dressed and washing on her left side, but she still feeds herself and walks to the lounge with a frame. The supplement was introduced after the care plan review on the 3rd, which my brother [PERSON_1] attended instead of me.\n\nHer GP, Dr [PERSON_2], wrote at the review that she needs help with dressing but not with eating, and the physiotherapist visits twice a week at no charge according to the contract. I think the dressing charge and the supplement may overlap. The bill reference is [ACCOUNT_ID] and the accounts line is [PHONE].",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:r2",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:r2-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:r2-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:r2-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:r2-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Notes after Sunday's meeting about Grandpa's move to sheltered housing. Our uncle Yiannis Antoniou will pay the deposit of 1,800 euros but only if the flat in Aglantzia is confirmed by the 20th. My cousin Maria Ioannou cannot lift anything heavy after her knee operation, so she will handle the paperwork and the phone calls instead of the packing. I will take the Saturday shift with the removal van, and my husband will take Sunday. Grandpa himself said he does not want his old armchair thrown away, whatever the cost. Nothing is settled about who pays for the second van if the first one is too small.",
+    "task": "Summarise what each person agreed to do after this family meeting and what is still unresolved.",
+    "entities": [
+      {
+        "id": "yia",
+        "entity_id": "yia",
+        "label": "PERSON",
+        "quote": "Yiannis Antoniou",
+        "occurrence": 1
+      },
+      {
+        "id": "dep",
+        "entity_id": "dep",
+        "label": "FINANCIAL",
+        "quote": "will pay the deposit of 1,800 euros but only if the flat in Aglantzia is confirmed by the 20th",
+        "occurrence": 1
+      },
+      {
+        "id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Maria Ioannou",
+        "occurrence": 1
+      },
+      {
+        "id": "knee",
+        "entity_id": "knee",
+        "label": "HEALTH",
+        "quote": "cannot lift anything heavy after her knee operation",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "yia",
+        "entity_id": "yia",
+        "label": "PERSON",
+        "quote": "Yiannis Antoniou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "dep",
+        "entity_id": "dep",
+        "label": "FINANCIAL",
+        "quote": "will pay the deposit of 1,800 euros but only if the flat in Aglantzia is confirmed by the 20th",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "mar",
+        "entity_id": "mar",
+        "label": "PERSON",
+        "quote": "Maria Ioannou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "knee",
+        "entity_id": "knee",
+        "label": "HEALTH",
+        "quote": "cannot lift anything heavy after her knee operation",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Our uncle",
+        "occurrence": 1
+      },
+      {
+        "quote": "will pay the deposit of 1,800 euros but only if the flat in Aglantzia is confirmed by the 20th.",
+        "occurrence": 1
+      },
+      {
+        "quote": "My cousin",
+        "occurrence": 1
+      },
+      {
+        "quote": "cannot lift anything heavy after her knee operation, so she will handle the paperwork and the phone calls instead of the packing.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Nothing is settled about who pays for the second van if the first one is too small.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Notes after Sunday's meeting about Grandpa's move to sheltered housing. Our uncle [PERSON_1] will pay the deposit of 1,800 euros but only if the flat in Aglantzia is confirmed by the 20th. My cousin [PERSON_2] cannot lift anything heavy after her knee operation, so she will handle the paperwork and the phone calls instead of the packing. I will take the Saturday shift with the removal van, and my husband will take Sunday. Grandpa himself said he does not want his old armchair thrown away, whatever the cost. Nothing is settled about who pays for the second van if the first one is too small.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:r3",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:r3-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:r3-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:r3-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:r3-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Invoice check for the platform migration. The contractor Vasilis Mavros, from Zephyr Cloudworks, billed 18 days for October at the agreed day rate of 540 euros, which the vendor agreement says must not be disclosed outside the company. Our timesheet shows he logged 16 days. The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email. The cost centre owner, Rodoula Pantazi, approved up to 17 days only. Please do not approve the invoice until the difference is explained.",
+    "task": "Check this contractor invoice against the timesheet and tell me which days should not be billed.",
+    "entities": [
+      {
+        "id": "vas",
+        "entity_id": "vas",
+        "label": "PERSON",
+        "quote": "Vasilis Mavros",
+        "occurrence": 1
+      },
+      {
+        "id": "org",
+        "entity_id": "org",
+        "label": "ORG",
+        "quote": "Zephyr Cloudworks",
+        "occurrence": 1
+      },
+      {
+        "id": "rate",
+        "entity_id": "rate",
+        "label": "FINANCIAL",
+        "quote": "540 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "leave",
+        "entity_id": "leave",
+        "label": "EMPLOYMENT",
+        "quote": "The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email",
+        "occurrence": 1
+      },
+      {
+        "id": "rod",
+        "entity_id": "rod",
+        "label": "PERSON",
+        "quote": "Rodoula Pantazi",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "vas",
+        "entity_id": "vas",
+        "label": "PERSON",
+        "quote": "Vasilis Mavros",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "org",
+        "entity_id": "org",
+        "label": "ORG",
+        "quote": "Zephyr Cloudworks",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The vendor name is protected from external AI; the answer can refer to 'the vendor', so naming it is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "rate",
+        "entity_id": "rate",
+        "label": "FINANCIAL",
+        "quote": "540 euros",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The agreed day rate is marked as not for disclosure outside the company; the day counts still allow the check but the exact amount owed cannot be computed."
+      },
+      {
+        "kind": "entity",
+        "target_id": "leave",
+        "entity_id": "leave",
+        "label": "EMPLOYMENT",
+        "quote": "The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "rod",
+        "entity_id": "rod",
+        "label": "PERSON",
+        "quote": "Rodoula Pantazi",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The contractor",
+        "occurrence": 1
+      },
+      {
+        "quote": "billed 18 days for October at the agreed day rate of",
+        "occurrence": 1
+      },
+      {
+        "quote": "which the vendor agreement says must not be disclosed outside the company.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Our timesheet shows he logged 16 days.",
+        "occurrence": 1
+      },
+      {
+        "quote": "The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email.",
+        "occurrence": 1
+      },
+      {
+        "quote": "approved up to 17 days only.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Please do not approve the invoice until the difference is explained.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Invoice check for the platform migration. The contractor [PERSON_1], from [ORG], billed 18 days for October at the agreed day rate of [FINANCIAL], which the vendor agreement says must not be disclosed outside the company. Our timesheet shows he logged 16 days. The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email. The cost centre owner, [PERSON_2], approved up to 17 days only. Please do not approve the invoice until the difference is explained.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:r4",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:r4-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:r4-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:r4-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:r4-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "The Hilltop Community Centre is hosting a family information evening on Thursday 12 November from 18:30 to 20:00 in the main hall. Topics include how care home fees are calculated, what the local council offers for home help, and how to prepare for a family meeting with a care provider. Entry is free and seating is first come, first served, with about 80 places. Tea and coffee will be available from 18:00. A sign language interpreter will attend, and the hall is step-free with a lift to the first floor. Parking is available behind the building and the number 7 bus stops outside every 20 minutes. Anyone who wants a written copy of the handout can pick one up at the front desk on the day.",
+    "task": "Turn this into a short reminder for our neighbourhood group chat.",
+    "entities": [],
+    "decisions": [],
+    "required_facts": [
+      {
+        "quote": "a family information evening on Thursday 12 November from 18:30 to 20:00 in the main hall.",
+        "occurrence": 1
+      },
+      {
+        "quote": "Entry is free and seating is first come, first served, with about 80 places.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "The Hilltop Community Centre is hosting a family information evening on Thursday 12 November from 18:30 to 20:00 in the main hall. Topics include how care home fees are calculated, what the local council offers for home help, and how to prepare for a family meeting with a care provider. Entry is free and seating is first come, first served, with about 80 places. Tea and coffee will be available from 18:00. A sign language interpreter will attend, and the hall is step-free with a lift to the first floor. Parking is available behind the building and the number 7 bus stops outside every 20 minutes. Anyone who wants a written copy of the handout can pick one up at the front desk on the day.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "e2148caf36a041f4aa22289f03848dcc",
+    "id": "e2148caf36a041f4aa22289f03848dcc:r5",
+    "family_id": "e2148caf36a041f4aa22289f03848dcc:r5-family",
+    "source_id": "e2148caf36a041f4aa22289f03848dcc:r5-source",
+    "persona_id": "e2148caf36a041f4aa22289f03848dcc:r5-persona",
+    "template_id": "e2148caf36a041f4aa22289f03848dcc:r5-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Notes from the call with the care home. The deputy manager, Katerina Mavrogenis, said Dad's fee will be reviewed in January and that she cannot promise it stays at 2,600 euros. She mentioned he has been refusing lunch twice this week and the nurse wants to weigh him on Mondays. My brother Costas Christodoulou thinks we should switch homes, but I told him I would wait for the review. Dad's room number is 31 and visiting hours end at 19:00 on weekdays. Call me back on 22 555 0473 or write to maria.v@example.invalid if the dates change.",
+    "task": "Can you tidy this up for me?",
+    "entities": [
+      {
+        "id": "kat",
+        "entity_id": "kat",
+        "label": "PERSON",
+        "quote": "Katerina Mavrogenis",
+        "occurrence": 1
+      },
+      {
+        "id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "fee will be reviewed in January and that she cannot promise it stays at 2,600 euros",
+        "occurrence": 1
+      },
+      {
+        "id": "eat",
+        "entity_id": "eat",
+        "label": "HEALTH",
+        "quote": "he has been refusing lunch twice this week and the nurse wants to weigh him on Mondays",
+        "occurrence": 1
+      },
+      {
+        "id": "cos",
+        "entity_id": "cos",
+        "label": "PERSON",
+        "quote": "Costas Christodoulou",
+        "occurrence": 1
+      },
+      {
+        "id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "22 555 0473",
+        "occurrence": 1
+      },
+      {
+        "id": "em",
+        "entity_id": "em",
+        "label": "EMAIL",
+        "quote": "maria.v@example.invalid",
+        "occurrence": 1
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "kat",
+        "entity_id": "kat",
+        "label": "PERSON",
+        "quote": "Katerina Mavrogenis",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fee",
+        "entity_id": "fee",
+        "label": "FINANCIAL",
+        "quote": "fee will be reviewed in January and that she cannot promise it stays at 2,600 euros",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "uncertain",
+        "reason": "The task does not say what the notes are for; the fee review is plausibly useful context and is permitted, so it is kept."
+      },
+      {
+        "kind": "entity",
+        "target_id": "eat",
+        "entity_id": "eat",
+        "label": "HEALTH",
+        "quote": "he has been refusing lunch twice this week and the nurse wants to weigh him on Mondays",
+        "occurrence": 1,
+        "action": "KEEP",
+        "relevance": "uncertain",
+        "reason": "The task does not say what the notes are for; the eating and weighing note is plausibly useful care context and is permitted, so it is kept."
+      },
+      {
+        "kind": "entity",
+        "target_id": "cos",
+        "entity_id": "cos",
+        "label": "PERSON",
+        "quote": "Costas Christodoulou",
+        "occurrence": 1,
+        "action": "ALIAS",
+        "relevance": "uncertain"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "ph",
+        "label": "PHONE",
+        "quote": "22 555 0473",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "uncertain",
+        "reason": "A direct phone number is protected; whether contact details are needed is unclear, so some utility may be lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "em",
+        "entity_id": "em",
+        "label": "EMAIL",
+        "quote": "maria.v@example.invalid",
+        "occurrence": 1,
+        "action": "PLACEHOLDER",
+        "relevance": "uncertain",
+        "reason": "A direct email address is protected; whether contact details are needed is unclear, so some utility may be lost."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "that she cannot promise it stays at 2,600 euros.",
+        "occurrence": 1
+      },
+      {
+        "quote": "he has been refusing lunch twice this week and the nurse wants to weigh him on Mondays.",
+        "occurrence": 1
+      }
+    ],
+    "approved_output": "Notes from the call with the care home. The deputy manager, [PERSON_1], said Dad's fee will be reviewed in January and that she cannot promise it stays at 2,600 euros. She mentioned he has been refusing lunch twice this week and the nurse wants to weigh him on Mondays. My brother [PERSON_2] thinks we should switch homes, but I told him I would wait for the review. Dad's room number is 31 and visiting hours end at 19:00 on weekdays. Call me back on [PHONE] or write to [EMAIL] if the dates change.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "e2148caf36a041f4aa22289f03848dcc:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    }
+  }
+]

@@ -1,0 +1,2896 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-001",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-001",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-001",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-001",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this into a polite, firm email to the counselling service that asks for my waitlist position and an evening slot.",
+  "text": "Hello, I'm writing to ask where I am on the counselling waitlist. I referred myself on 14 September and was told the wait would be about eight weeks, so I expected a call by now. My name is Thandiwe Mokoena, and you can reach me at thandiwe.mokoena@example.org or on 07700 900314. My waitlist reference is CW-48213. Last month my GP, Dr Henrik Aalto, wrote that my anxiety is moderate to severe and that I should not wait longer than twelve weeks. I can only do appointments after 5pm because of my shifts. Please tell me my current position, whether the eight-week estimate still stands, and whether an evening slot is possible.\n\nThanks, Thandiwe",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Thandiwe Mokoena"
+   },
+   {
+    "id": "m2",
+    "entity_id": "me-email",
+    "label": "EMAIL",
+    "quote": "thandiwe.mokoena@example.org"
+   },
+   {
+    "id": "m3",
+    "entity_id": "me-phone",
+    "label": "PHONE",
+    "quote": "07700 900314"
+   },
+   {
+    "id": "m4",
+    "entity_id": "waitlist-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "CW-48213"
+   },
+   {
+    "id": "m5",
+    "entity_id": "gp",
+    "label": "PERSON",
+    "quote": "Henrik Aalto"
+   },
+   {
+    "id": "m6",
+    "entity_id": "anxiety",
+    "label": "HEALTH",
+    "quote": "my anxiety is moderate to severe"
+   },
+   {
+    "id": "m7",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Thandiwe",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "me",
+    "quote": "Thandiwe Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "me-email",
+    "quote": "thandiwe.mokoena@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address; the email only needs to ask about the waitlist and the service already holds the address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "me-phone",
+    "quote": "07700 900314",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal phone number; the drafted email does not need the exact number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "waitlist-ref",
+    "quote": "CW-48213",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The service needs the exact waitlist reference to find the record; the user re-inserts it, so the AI cannot verify it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "gp",
+    "quote": "Henrik Aalto",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "anxiety",
+    "quote": "my anxiety is moderate to severe",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "me",
+    "quote": "Thandiwe",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I referred myself on 14 September and was told the wait would be about eight weeks, so I expected a call by now."
+   },
+   {
+    "quote": "My waitlist reference is"
+   },
+   {
+    "quote": "you can reach me at"
+   },
+   {
+    "quote": "or on"
+   },
+   {
+    "quote": "Last month my GP, Dr"
+   },
+   {
+    "quote": ", wrote that my anxiety is moderate to severe and that I should not wait longer than twelve weeks."
+   },
+   {
+    "quote": "I can only do appointments after 5pm because of my shifts."
+   },
+   {
+    "quote": "Please tell me my current position, whether the eight-week estimate still stands, and whether an evening slot is possible."
+   }
+  ],
+  "approved_output": "Hello, I'm writing to ask where I am on the counselling waitlist. I referred myself on 14 September and was told the wait would be about eight weeks, so I expected a call by now. My name is [PERSON_1], and you can reach me at [EMAIL] or on [PHONE]. My waitlist reference is [ACCOUNT_ID]. Last month my GP, Dr [PERSON_2], wrote that my anxiety is moderate to severe and that I should not wait longer than twelve weeks. I can only do appointments after 5pm because of my shifts. Please tell me my current position, whether the eight-week estimate still stands, and whether an evening slot is possible.\n\nThanks, [PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-002",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-002",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-002",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-002",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short script for my phone call chasing the missing review form and asking for it to be emailed. Keep the details of what the assessor said.",
+  "text": "Notes for my disability benefit review call. The assessor, Ruth Kimathi, rang on Tuesday and said my claim number is DB-7720-5531 and that my award of 128.40 pounds a week will stay unchanged unless the review finds I can walk more than 50 metres unaided. She posted the form to 14 Tamarind Row, Leeds LS6 2QT but I have not received it. My National Insurance number is QQ 123456 C if you need it for the call. My carer is my brother, Pham Quoc Bao, and he thinks the form should have been emailed to him at bao.pham@example.net as I authorised. I need a script to chase this politely, mention that I cannot walk 50 metres without a rest, and ask for a copy by email.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "assessor",
+    "label": "PERSON",
+    "quote": "Ruth Kimathi"
+   },
+   {
+    "id": "m2",
+    "entity_id": "claim-no",
+    "label": "ACCOUNT_ID",
+    "quote": "DB-7720-5531"
+   },
+   {
+    "id": "m3",
+    "entity_id": "award",
+    "label": "FINANCIAL",
+    "quote": "my award of 128.40 pounds a week"
+   },
+   {
+    "id": "m4",
+    "entity_id": "home-address",
+    "label": "ADDRESS",
+    "quote": "14 Tamarind Row, Leeds LS6 2QT"
+   },
+   {
+    "id": "m5",
+    "entity_id": "ni-number",
+    "label": "NATIONAL_ID",
+    "quote": "QQ 123456 C"
+   },
+   {
+    "id": "m6",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Pham Quoc Bao"
+   },
+   {
+    "id": "m7",
+    "entity_id": "brother-email",
+    "label": "EMAIL",
+    "quote": "bao.pham@example.net"
+   },
+   {
+    "id": "m8",
+    "entity_id": "mobility",
+    "label": "HEALTH",
+    "quote": "I cannot walk 50 metres without a rest"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "assessor",
+    "quote": "Ruth Kimathi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "claim-no",
+    "quote": "DB-7720-5531",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The call script must cite the claim number; the user re-inserts the exact value, so the AI cannot check it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "award",
+    "quote": "my award of 128.40 pounds a week",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "home-address",
+    "quote": "14 Tamarind Row, Leeds LS6 2QT",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Home address where the form was posted; the script only needs to say it was posted and not received."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "ni-number",
+    "quote": "QQ 123456 C",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "National Insurance number is a government identifier and the script does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "brother",
+    "quote": "Pham Quoc Bao",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "brother-email",
+    "quote": "bao.pham@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The brother's email address is not needed to draft the chase; the script only says the form should be emailed to him."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "mobility",
+    "quote": "I cannot walk 50 metres without a rest",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The assessor,"
+   },
+   {
+    "quote": ", rang on Tuesday and said my claim number is"
+   },
+   {
+    "quote": "and that my award of 128.40 pounds a week will stay unchanged unless the review finds I can walk more than 50 metres unaided."
+   },
+   {
+    "quote": "She posted the form to"
+   },
+   {
+    "quote": "but I have not received it."
+   },
+   {
+    "quote": "My carer is my brother,"
+   },
+   {
+    "quote": ", and he thinks the form should have been emailed to him at"
+   },
+   {
+    "quote": "as I authorised."
+   },
+   {
+    "quote": "mention that I cannot walk 50 metres without a rest, and ask for a copy by email."
+   }
+  ],
+  "approved_output": "Notes for my disability benefit review call. The assessor, [PERSON_1], rang on Tuesday and said my claim number is [ACCOUNT_ID] and that my award of 128.40 pounds a week will stay unchanged unless the review finds I can walk more than 50 metres unaided. She posted the form to [ADDRESS] but I have not received it. My National Insurance number is [NATIONAL_ID] if you need it for the call. My carer is my brother, [PERSON_2], and he thinks the form should have been emailed to him at [EMAIL] as I authorised. I need a script to chase this politely, mention that I cannot walk 50 metres without a rest, and ask for a copy by email.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-003",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-003",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-003",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-003",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-003",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft the mandatory reconsideration request from these facts, stating the corrected earnings and that I am disputing the amounts, not the work.",
+  "text": "Hi, I need help writing to the benefits office. I look after my mum, Bridget Quigley, for about 38 hours a week, and I claim Carer's Allowance under reference CA-3391-807. Their letter dated 2 July says I was overpaid 412 pounds because my earnings went over the limit in the weeks of 3 June and 10 June. I did one-off cover shifts then, and my payslips show 112 pounds and 98 pounds, not the 190 pounds each they used. I am not disputing that I worked, only the amounts. I'm Mairead Quigley, email mairead.q@example.com, phone 07700 900455. The adviser, Tomasz Wrona, said last week that I can ask for a mandatory reconsideration within one month.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "mum",
+    "label": "PERSON",
+    "quote": "Bridget Quigley"
+   },
+   {
+    "id": "m2",
+    "entity_id": "ca-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "CA-3391-807"
+   },
+   {
+    "id": "m3",
+    "entity_id": "payslips",
+    "label": "FINANCIAL",
+    "quote": "my payslips show 112 pounds and 98 pounds, not the 190 pounds each they used"
+   },
+   {
+    "id": "m4",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Mairead Quigley"
+   },
+   {
+    "id": "m5",
+    "entity_id": "me-email",
+    "label": "EMAIL",
+    "quote": "mairead.q@example.com"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me-phone",
+    "label": "PHONE",
+    "quote": "07700 900455"
+   },
+   {
+    "id": "m7",
+    "entity_id": "adviser",
+    "label": "PERSON",
+    "quote": "Tomasz Wrona"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "mum",
+    "quote": "Bridget Quigley",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "ca-ref",
+    "quote": "CA-3391-807",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The reconsideration request must cite the claim reference; the user re-inserts it, so the AI cannot verify the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "payslips",
+    "quote": "my payslips show 112 pounds and 98 pounds, not the 190 pounds each they used",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "me",
+    "quote": "Mairead Quigley",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "me-email",
+    "quote": "mairead.q@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal email address; the request text does not need it to explain the dispute."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me-phone",
+    "quote": "07700 900455",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal phone number is not needed to word the dispute."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "adviser",
+    "quote": "Tomasz Wrona",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I look after my mum,"
+   },
+   {
+    "quote": ", for about 38 hours a week, and I claim Carer's Allowance under reference"
+   },
+   {
+    "quote": "Their letter dated 2 July says I was overpaid 412 pounds because my earnings went over the limit in the weeks of 3 June and 10 June."
+   },
+   {
+    "quote": "I did one-off cover shifts then, and my payslips show 112 pounds and 98 pounds, not the 190 pounds each they used."
+   },
+   {
+    "quote": "I am not disputing that I worked, only the amounts."
+   },
+   {
+    "quote": "The adviser,"
+   },
+   {
+    "quote": ", said last week that I can ask for a mandatory reconsideration within one month."
+   }
+  ],
+  "approved_output": "Hi, I need help writing to the benefits office. I look after my mum, [PERSON_1], for about 38 hours a week, and I claim Carer's Allowance under reference [ACCOUNT_ID]. Their letter dated 2 July says I was overpaid 412 pounds because my earnings went over the limit in the weeks of 3 June and 10 June. I did one-off cover shifts then, and my payslips show 112 pounds and 98 pounds, not the 190 pounds each they used. I am not disputing that I worked, only the amounts. I'm [PERSON_2], email [EMAIL], phone [PHONE]. The adviser, [PERSON_3], said last week that I can ask for a mandatory reconsideration within one month.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-004",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-004",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-004",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-004",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-004",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clear accessibility request email asking them to confirm the lift status and the seating, keeping the dimensions and conditions.",
+  "text": "Hello, I have booked two tickets for the 21 March recital, booking reference RT-904127. I use a power wheelchair that is 68 cm wide, so I need the step-free entrance, not the main door with three steps. Your access officer, Kwabena Asante, told my friend Ilona Farkas on the phone that the lift is out of service until 2 April, but I read online it was repaired last week. Which is correct? If it is still out, I would need a ground-floor seat with a companion seat beside it, at no extra cost. My email is ayse.demirci@example.org and you can also text me on 07700 900226. Regards, Ayşe Demirci",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "booking-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "RT-904127"
+   },
+   {
+    "id": "m2",
+    "entity_id": "wheelchair",
+    "label": "HEALTH",
+    "quote": "I use a power wheelchair that is 68 cm wide"
+   },
+   {
+    "id": "m3",
+    "entity_id": "access-officer",
+    "label": "PERSON",
+    "quote": "Kwabena Asante"
+   },
+   {
+    "id": "m4",
+    "entity_id": "friend",
+    "label": "PERSON",
+    "quote": "Ilona Farkas"
+   },
+   {
+    "id": "m5",
+    "entity_id": "me-email",
+    "label": "EMAIL",
+    "quote": "ayse.demirci@example.org"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me-phone",
+    "label": "PHONE",
+    "quote": "07700 900226"
+   },
+   {
+    "id": "m7",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Ayşe Demirci"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "booking-ref",
+    "quote": "RT-904127",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The venue needs the exact booking reference to find the order; the user re-inserts it, so the AI cannot check it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "wheelchair",
+    "quote": "I use a power wheelchair that is 68 cm wide",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "access-officer",
+    "quote": "Kwabena Asante",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "friend",
+    "quote": "Ilona Farkas",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "me-email",
+    "quote": "ayse.demirci@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal email address; the rewritten request does not need the exact address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me-phone",
+    "quote": "07700 900226",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal mobile number; the request only mentions that text contact is possible."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "me",
+    "quote": "Ayşe Demirci",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I have booked two tickets for the 21 March recital, booking reference"
+   },
+   {
+    "quote": "I use a power wheelchair that is 68 cm wide, so I need the step-free entrance, not the main door with three steps."
+   },
+   {
+    "quote": "Your access officer,"
+   },
+   {
+    "quote": "told my friend"
+   },
+   {
+    "quote": "on the phone that the lift is out of service until 2 April, but I read online it was repaired last week. Which is correct?"
+   },
+   {
+    "quote": "If it is still out, I would need a ground-floor seat with a companion seat beside it, at no extra cost."
+   },
+   {
+    "quote": "My email is"
+   },
+   {
+    "quote": "and you can also text me on"
+   }
+  ],
+  "approved_output": "Hello, I have booked two tickets for the 21 March recital, booking reference [ACCOUNT_ID]. I use a power wheelchair that is 68 cm wide, so I need the step-free entrance, not the main door with three steps. Your access officer, [PERSON_1], told my friend [PERSON_2] on the phone that the lift is out of service until 2 April, but I read online it was repaired last week. Which is correct? If it is still out, I would need a ground-floor seat with a companion seat beside it, at no extra cost. My email is [EMAIL] and you can also text me on [PHONE]. Regards, [PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-005",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-005",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-005",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-005",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-005",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a short request to the clinic that keeps my session count and the conditions about changing therapist.",
+  "text": "Hi, I'm writing to the clinic about my CBT. I have been seeing Marit Solheim every Wednesday at 4pm, and I've had 7 of my 12 sessions. From 6 November I can't do Wednesdays after 2pm because of my new work schedule, so I'd like to stay with Marit if she has Thursday mornings, and only move to someone else if she doesn't. Please don't cancel my remaining five sessions. The sessions have helped a lot, and I'd rather not lose momentum before the new year. My patient number is MH-20-66431, and my dad, Baek Jun-ho, is my emergency contact on 07700 900518. Thank you, Eun-ji Baek",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "cbt",
+    "label": "HEALTH",
+    "quote": "my CBT"
+   },
+   {
+    "id": "m2",
+    "entity_id": "therapist",
+    "label": "PERSON",
+    "quote": "Marit Solheim"
+   },
+   {
+    "id": "m3",
+    "entity_id": "therapist",
+    "label": "PERSON",
+    "quote": "Marit",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "patient-no",
+    "label": "ACCOUNT_ID",
+    "quote": "MH-20-66431"
+   },
+   {
+    "id": "m5",
+    "entity_id": "dad",
+    "label": "PERSON",
+    "quote": "Baek Jun-ho"
+   },
+   {
+    "id": "m6",
+    "entity_id": "dad-phone",
+    "label": "PHONE",
+    "quote": "07700 900518"
+   },
+   {
+    "id": "m7",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Eun-ji Baek"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "cbt",
+    "quote": "my CBT",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "therapist",
+    "quote": "Marit Solheim",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "therapist",
+    "quote": "Marit",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "patient-no",
+    "quote": "MH-20-66431",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The clinic needs the exact patient number to match the record; the user re-inserts it, so the AI cannot check the value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "dad",
+    "quote": "Baek Jun-ho",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "dad-phone",
+    "quote": "07700 900518",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The father's phone number is a third party's contact detail and the rewritten request does not need the digits."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "me",
+    "quote": "Eun-ji Baek",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I have been seeing"
+   },
+   {
+    "quote": "every Wednesday at 4pm, and I've had 7 of my 12 sessions."
+   },
+   {
+    "quote": "From 6 November I can't do Wednesdays after 2pm because of my new work schedule, so I'd like to stay with"
+   },
+   {
+    "quote": "if she has Thursday mornings, and only move to someone else if she doesn't."
+   },
+   {
+    "quote": "Please don't cancel my remaining five sessions."
+   },
+   {
+    "quote": "My patient number is"
+   },
+   {
+    "quote": "and my dad,"
+   },
+   {
+    "quote": ", is my emergency contact on"
+   }
+  ],
+  "approved_output": "Hi, I'm writing to the clinic about my CBT. I have been seeing [PERSON_1] every Wednesday at 4pm, and I've had 7 of my 12 sessions. From 6 November I can't do Wednesdays after 2pm because of my new work schedule, so I'd like to stay with [PERSON_1] if she has Thursday mornings, and only move to someone else if she doesn't. Please don't cancel my remaining five sessions. The sessions have helped a lot, and I'd rather not lose momentum before the new year. My patient number is [ACCOUNT_ID], and my dad, [PERSON_2], is my emergency contact on [PHONE]. Thank you, [PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-006",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-006",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-006",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-006",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-006",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a short script for my phone call, keeping the waiting time, the symptoms and the question about the list.",
+  "text": "Notes for CAMHS call:\n- Son: Obinna Okafor, age 14, referred by school nurse Gwen Pritchard on 3 October\n- Waiting 11 weeks so far; letter said the first appointment would be within 12 weeks\n- He has had panic attacks about twice a week and missed 6 days of school in October\n- School says it will send an attendance letter if the clinic asks for one\n- Ask: is he still on the 12-week list, or was it reset because we changed address?\n- Referral ref: CAMHS/R/80412\n- Parent: Chidinma Okafor, mobile 07700 900662, email chidinma.o@example.net\n- New address: 9 Kestrel Close, Bristol BS8 1TT",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "son",
+    "label": "PERSON",
+    "quote": "Obinna Okafor"
+   },
+   {
+    "id": "m2",
+    "entity_id": "son-age",
+    "label": "AGE",
+    "quote": "age 14"
+   },
+   {
+    "id": "m3",
+    "entity_id": "nurse",
+    "label": "PERSON",
+    "quote": "Gwen Pritchard"
+   },
+   {
+    "id": "m4",
+    "entity_id": "panic",
+    "label": "HEALTH",
+    "quote": "panic attacks about twice a week and missed 6 days of school in October"
+   },
+   {
+    "id": "m5",
+    "entity_id": "referral-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "CAMHS/R/80412"
+   },
+   {
+    "id": "m6",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Chidinma Okafor"
+   },
+   {
+    "id": "m7",
+    "entity_id": "parent-phone",
+    "label": "PHONE",
+    "quote": "07700 900662"
+   },
+   {
+    "id": "m8",
+    "entity_id": "parent-email",
+    "label": "EMAIL",
+    "quote": "chidinma.o@example.net"
+   },
+   {
+    "id": "m9",
+    "entity_id": "new-address",
+    "label": "ADDRESS",
+    "quote": "9 Kestrel Close, Bristol BS8 1TT"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "son",
+    "quote": "Obinna Okafor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "son-age",
+    "quote": "age 14",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "nurse",
+    "quote": "Gwen Pritchard",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "panic",
+    "quote": "panic attacks about twice a week and missed 6 days of school in October",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "referral-ref",
+    "quote": "CAMHS/R/80412",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The service looks up the referral by this exact reference; the user re-inserts it, so the script cannot verify it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "parent",
+    "quote": "Chidinma Okafor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "parent-phone",
+    "quote": "07700 900662",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Parent's mobile number is not needed to word the call script."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "parent-email",
+    "quote": "chidinma.o@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Parent's email address is not needed for a phone-call script."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "new-address",
+    "quote": "9 Kestrel Close, Bristol BS8 1TT",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Full new home address; the question only needs to say the family changed address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "- Son:"
+   },
+   {
+    "quote": ", age 14, referred by school nurse"
+   },
+   {
+    "quote": "on 3 October"
+   },
+   {
+    "quote": "Waiting 11 weeks so far; letter said the first appointment would be within 12 weeks"
+   },
+   {
+    "quote": "He has had panic attacks about twice a week and missed 6 days of school in October"
+   },
+   {
+    "quote": "Ask: is he still on the 12-week list, or was it reset because we changed address?"
+   },
+   {
+    "quote": "- Referral ref:"
+   },
+   {
+    "quote": "- Parent:"
+   },
+   {
+    "quote": ", mobile"
+   },
+   {
+    "quote": ", email"
+   }
+  ],
+  "approved_output": "Notes for CAMHS call:\n- Son: [PERSON_1], age 14, referred by school nurse [PERSON_2] on 3 October\n- Waiting 11 weeks so far; letter said the first appointment would be within 12 weeks\n- He has had panic attacks about twice a week and missed 6 days of school in October\n- School says it will send an attendance letter if the clinic asks for one\n- Ask: is he still on the 12-week list, or was it reset because we changed address?\n- Referral ref: [ACCOUNT_ID]\n- Parent: [PERSON_3], mobile [PHONE], email [EMAIL]\n- New address: [ADDRESS]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-007",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-007",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-007",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-007",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-007",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Summarise who is doing which caring task, who pays what, and the correction about the cost.",
+  "text": "Dalia: I called the council about Mum's carer assessment. Rosalind there booked it for 12 December, at the clinic.\nTeodor: Mum can't manage the stairs there. Ask Rosalind to do it at Mum's flat instead.\nDalia: Will do. Are you still happy with the visits?\nTeodor: I can do the Monday and Thursday visits, but only if you cover Saturdays.\nDalia: Fine. I'll pay the 60 pounds for the respite place, you pay the taxi to the day centre.\nTeodor: Not 60, the letter says 75 pounds. And Mum's carer number is CR-5527 if they ask.\nDalia: OK, 75 then.\nTeodor: Email me the forms at teodor.lazar@example.org and I'll sign them.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "dalia",
+    "label": "PERSON",
+    "quote": "Dalia",
+    "occurrence": 1
+   },
+   {
+    "id": "m2",
+    "entity_id": "rosalind",
+    "label": "PERSON",
+    "quote": "Rosalind",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "teodor",
+    "label": "PERSON",
+    "quote": "Teodor",
+    "occurrence": 1
+   },
+   {
+    "id": "m4",
+    "entity_id": "stairs",
+    "label": "HEALTH",
+    "quote": "Mum can't manage the stairs there"
+   },
+   {
+    "id": "m5",
+    "entity_id": "rosalind",
+    "label": "PERSON",
+    "quote": "Rosalind",
+    "occurrence": 2
+   },
+   {
+    "id": "m6",
+    "entity_id": "dalia",
+    "label": "PERSON",
+    "quote": "Dalia",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "teodor",
+    "label": "PERSON",
+    "quote": "Teodor",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "dalia",
+    "label": "PERSON",
+    "quote": "Dalia",
+    "occurrence": 3
+   },
+   {
+    "id": "m9",
+    "entity_id": "teodor",
+    "label": "PERSON",
+    "quote": "Teodor",
+    "occurrence": 3
+   },
+   {
+    "id": "m10",
+    "entity_id": "carer-no",
+    "label": "ACCOUNT_ID",
+    "quote": "CR-5527"
+   },
+   {
+    "id": "m11",
+    "entity_id": "dalia",
+    "label": "PERSON",
+    "quote": "Dalia",
+    "occurrence": 4
+   },
+   {
+    "id": "m12",
+    "entity_id": "teodor",
+    "label": "PERSON",
+    "quote": "Teodor",
+    "occurrence": 4
+   },
+   {
+    "id": "m13",
+    "entity_id": "teodor-email",
+    "label": "EMAIL",
+    "quote": "teodor.lazar@example.org"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "dalia",
+    "quote": "Dalia",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "rosalind",
+    "quote": "Rosalind",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "teodor",
+    "quote": "Teodor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "stairs",
+    "quote": "Mum can't manage the stairs there",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rosalind",
+    "quote": "Rosalind",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "dalia",
+    "quote": "Dalia",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "teodor",
+    "quote": "Teodor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "dalia",
+    "quote": "Dalia",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "teodor",
+    "quote": "Teodor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "carer-no",
+    "quote": "CR-5527",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Mum's carer number is a record identifier that the summary of tasks and costs does not need."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m11",
+    "entity_id": "dalia",
+    "quote": "Dalia",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 4
+   },
+   {
+    "kind": "entity",
+    "target_id": "m12",
+    "entity_id": "teodor",
+    "quote": "Teodor",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 4
+   },
+   {
+    "kind": "entity",
+    "target_id": "m13",
+    "entity_id": "teodor-email",
+    "quote": "teodor.lazar@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal email address; the summary only needs to say the forms go to Teodor by email."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": ": I called the council about Mum's carer assessment."
+   },
+   {
+    "quote": "there booked it for 12 December, at the clinic."
+   },
+   {
+    "quote": ": Mum can't manage the stairs there. Ask"
+   },
+   {
+    "quote": "to do it at Mum's flat instead."
+   },
+   {
+    "quote": ": Will do. Are you still happy with the visits?"
+   },
+   {
+    "quote": ": I can do the Monday and Thursday visits, but only if you cover Saturdays."
+   },
+   {
+    "quote": ": Fine. I'll pay the 60 pounds for the respite place, you pay the taxi to the day centre."
+   },
+   {
+    "quote": ": Not 60, the letter says 75 pounds."
+   },
+   {
+    "quote": ": OK, 75 then."
+   },
+   {
+    "quote": ": Email me the forms at"
+   },
+   {
+    "quote": "and I'll sign them."
+   }
+  ],
+  "approved_output": "[PERSON_1]: I called the council about Mum's carer assessment. [PERSON_2] there booked it for 12 December, at the clinic.\n[PERSON_3]: Mum can't manage the stairs there. Ask [PERSON_2] to do it at Mum's flat instead.\n[PERSON_1]: Will do. Are you still happy with the visits?\n[PERSON_3]: I can do the Monday and Thursday visits, but only if you cover Saturdays.\n[PERSON_1]: Fine. I'll pay the 60 pounds for the respite place, you pay the taxi to the day centre.\n[PERSON_3]: Not 60, the letter says 75 pounds. And Mum's carer number is [ACCOUNT_ID] if they ask.\n[PERSON_1]: OK, 75 then.\n[PERSON_3]: Email me the forms at [EMAIL] and I'll sign them.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-008",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-008",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-008",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-008",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-008",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft my appeal summary with the scores, dates and amounts exactly, and make clear how the reconsideration request was sent and what my adviser suggests.",
+  "text": "I'm appealing the decision to stop my Employment and Support Allowance. The decision letter, signed by Sigrún Jónsdóttir, says I scored 9 points and need 15 points, but the assessment ignored that I have lupus with flares lasting up to 3 days. My payments of 84.60 pounds a week stopped on 8 August. I sent my reconsideration request by post on 19 August, not by email, and I have the recorded delivery receipt. My adviser at the advice centre, Declan Foy, thinks we should ask for a phone hearing, not an in-person one. Refund details if needed: IBAN IE00DEMO99887766554433, account holder Priyanka Venkataraman, contact priyanka.v@example.org.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "decision-maker",
+    "label": "PERSON",
+    "quote": "Sigrún Jónsdóttir"
+   },
+   {
+    "id": "m2",
+    "entity_id": "lupus",
+    "label": "HEALTH",
+    "quote": "I have lupus with flares lasting up to 3 days"
+   },
+   {
+    "id": "m3",
+    "entity_id": "payments",
+    "label": "FINANCIAL",
+    "quote": "My payments of 84.60 pounds a week stopped on 8 August"
+   },
+   {
+    "id": "m4",
+    "entity_id": "adviser",
+    "label": "PERSON",
+    "quote": "Declan Foy"
+   },
+   {
+    "id": "m5",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "IE00DEMO99887766554433"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Priyanka Venkataraman"
+   },
+   {
+    "id": "m7",
+    "entity_id": "me-email",
+    "label": "EMAIL",
+    "quote": "priyanka.v@example.org"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "decision-maker",
+    "quote": "Sigrún Jónsdóttir",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "lupus",
+    "quote": "I have lupus with flares lasting up to 3 days",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "payments",
+    "quote": "My payments of 84.60 pounds a week stopped on 8 August",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "adviser",
+    "quote": "Declan Foy",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "iban",
+    "quote": "IE00DEMO99887766554433",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Bank account number is not needed to summarise the appeal; it would only risk exposure."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me",
+    "quote": "Priyanka Venkataraman",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "me-email",
+    "quote": "priyanka.v@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal email address; the appeal summary does not need it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The decision letter, signed by"
+   },
+   {
+    "quote": ", says I scored 9 points and need 15 points, but the assessment ignored that I have lupus with flares lasting up to 3 days."
+   },
+   {
+    "quote": "My payments of 84.60 pounds a week stopped on 8 August."
+   },
+   {
+    "quote": "I sent my reconsideration request by post on 19 August, not by email, and I have the recorded delivery receipt."
+   },
+   {
+    "quote": "My adviser at the advice centre,"
+   },
+   {
+    "quote": ", thinks we should ask for a phone hearing, not an in-person one."
+   }
+  ],
+  "approved_output": "I'm appealing the decision to stop my Employment and Support Allowance. The decision letter, signed by [PERSON_1], says I scored 9 points and need 15 points, but the assessment ignored that I have lupus with flares lasting up to 3 days. My payments of 84.60 pounds a week stopped on 8 August. I sent my reconsideration request by post on 19 August, not by email, and I have the recorded delivery receipt. My adviser at the advice centre, [PERSON_2], thinks we should ask for a phone hearing, not an in-person one. Refund details if needed: IBAN [IBAN], account holder [PERSON_3], contact [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-009",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-009",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-009",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-009",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-009",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this voicemail transcript into a short written message to the counselling provider that confirms the session time and the privacy request.",
+  "text": "Hi Lucas, it's Wanjiru Kamau calling about my EAP counselling. The first session was meant to be Friday at 10, but I got an email from your booking system saying 10:30, and I never confirmed that. Please confirm it's 10 and not 10:30, because I can only leave my desk at 10. I would rather not rebook, because the next free slot could be weeks away. My employee number is EMP-70418 and my plan covers 6 sessions, if I'm reading it right. Please call me back on 07700 900347 or email wanjiru.kamau@example.com. My line manager, Fiona Barrett, doesn't know about this, so please don't leave details on my work phone.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "counsellor",
+    "label": "PERSON",
+    "quote": "Lucas"
+   },
+   {
+    "id": "m2",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Wanjiru Kamau"
+   },
+   {
+    "id": "m3",
+    "entity_id": "eap",
+    "label": "HEALTH",
+    "quote": "my EAP counselling"
+   },
+   {
+    "id": "m4",
+    "entity_id": "emp-no",
+    "label": "ACCOUNT_ID",
+    "quote": "EMP-70418"
+   },
+   {
+    "id": "m5",
+    "entity_id": "me-phone",
+    "label": "PHONE",
+    "quote": "07700 900347"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me-email",
+    "label": "EMAIL",
+    "quote": "wanjiru.kamau@example.com"
+   },
+   {
+    "id": "m7",
+    "entity_id": "line-manager",
+    "label": "PERSON",
+    "quote": "Fiona Barrett"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "counsellor",
+    "quote": "Lucas",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "me",
+    "quote": "Wanjiru Kamau",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "eap",
+    "quote": "my EAP counselling",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "emp-no",
+    "quote": "EMP-70418",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The provider matches the plan by employee number; the user re-inserts it, so the AI cannot verify the value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "me-phone",
+    "quote": "07700 900347",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal phone number is not needed to word the confirmation message."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me-email",
+    "quote": "wanjiru.kamau@example.com",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal email address is not needed to word the confirmation message."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "line-manager",
+    "quote": "Fiona Barrett",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Hi"
+   },
+   {
+    "quote": ", it's"
+   },
+   {
+    "quote": "calling about my EAP counselling."
+   },
+   {
+    "quote": "The first session was meant to be Friday at 10, but I got an email from your booking system saying 10:30, and I never confirmed that."
+   },
+   {
+    "quote": "Please confirm it's 10 and not 10:30, because I can only leave my desk at 10."
+   },
+   {
+    "quote": "My employee number is"
+   },
+   {
+    "quote": "my plan covers 6 sessions, if I'm reading it right."
+   },
+   {
+    "quote": "Please call me back on"
+   },
+   {
+    "quote": "My line manager,"
+   },
+   {
+    "quote": ", doesn't know about this, so please don't leave details on my work phone."
+   }
+  ],
+  "approved_output": "Hi [PERSON_1], it's [PERSON_2] calling about my EAP counselling. The first session was meant to be Friday at 10, but I got an email from your booking system saying 10:30, and I never confirmed that. Please confirm it's 10 and not 10:30, because I can only leave my desk at 10. I would rather not rebook, because the next free slot could be weeks away. My employee number is [ACCOUNT_ID] and my plan covers 6 sessions, if I'm reading it right. Please call me back on [PHONE] or email [EMAIL]. My line manager, [PERSON_3], doesn't know about this, so please don't leave details on my work phone.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-010",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-010",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-010",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-010",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-010",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clean payroll correction request and calculate the extra gross pay owed, showing the working.",
+  "text": "Subject: Pay correction, October run\n\nHi Payroll team,\n\nEmployee Chiamaka Eze (employee ID E-30871, work email chiamaka.eze@example.net) was underpaid for October. She raised it with me on 3 November. She worked 14 hours of overtime at 1.5x, but only 9 hours were paid. Her hourly rate is 22.40 pounds. Please add the missing 5 hours at 1.5x to the November run, not as an off-cycle payment. Her line manager, Gustavo Pinheiro, approved the timesheet on 29 October. I checked it twice: the 14 hours are all on Saturdays. Do not change her base pay or her bank details. Ticket HR-5521 has the screenshots.\n\nThanks,\nMirela Dragan, HR Operations",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "employee",
+    "label": "PERSON",
+    "quote": "Chiamaka Eze"
+   },
+   {
+    "id": "m2",
+    "entity_id": "emp-id",
+    "label": "ACCOUNT_ID",
+    "quote": "E-30871"
+   },
+   {
+    "id": "m3",
+    "entity_id": "emp-email",
+    "label": "EMAIL",
+    "quote": "chiamaka.eze@example.net"
+   },
+   {
+    "id": "m4",
+    "entity_id": "overtime",
+    "label": "EMPLOYMENT",
+    "quote": "She worked 14 hours of overtime at 1.5x, but only 9 hours were paid."
+   },
+   {
+    "id": "m5",
+    "entity_id": "rate",
+    "label": "FINANCIAL",
+    "quote": "Her hourly rate is 22.40 pounds."
+   },
+   {
+    "id": "m6",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Gustavo Pinheiro"
+   },
+   {
+    "id": "m7",
+    "entity_id": "hr-ops",
+    "label": "PERSON",
+    "quote": "Mirela Dragan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "employee",
+    "quote": "Chiamaka Eze",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "emp-id",
+    "quote": "E-30871",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "Payroll needs the exact employee ID to apply the correction; the user re-inserts it, so the AI cannot verify it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "emp-email",
+    "quote": "chiamaka.eze@example.net",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Work email of an identifiable employee; the correction request does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "overtime",
+    "quote": "She worked 14 hours of overtime at 1.5x, but only 9 hours were paid.",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rate",
+    "quote": "Her hourly rate is 22.40 pounds.",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "manager",
+    "quote": "Gustavo Pinheiro",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "hr-ops",
+    "quote": "Mirela Dragan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Employee"
+   },
+   {
+    "quote": "(employee ID"
+   },
+   {
+    "quote": ", work email"
+   },
+   {
+    "quote": ") was underpaid for October."
+   },
+   {
+    "quote": "She worked 14 hours of overtime at 1.5x, but only 9 hours were paid."
+   },
+   {
+    "quote": "Her hourly rate is 22.40 pounds."
+   },
+   {
+    "quote": "Please add the missing 5 hours at 1.5x to the November run, not as an off-cycle payment."
+   },
+   {
+    "quote": "Her line manager,"
+   },
+   {
+    "quote": ", approved the timesheet on 29 October."
+   },
+   {
+    "quote": "Do not change her base pay or her bank details."
+   }
+  ],
+  "approved_output": "Subject: Pay correction, October run\n\nHi Payroll team,\n\nEmployee [PERSON_1] (employee ID [ACCOUNT_ID], work email [EMAIL]) was underpaid for October. She raised it with me on 3 November. She worked 14 hours of overtime at 1.5x, but only 9 hours were paid. Her hourly rate is 22.40 pounds. Please add the missing 5 hours at 1.5x to the November run, not as an off-cycle payment. Her line manager, [PERSON_2], approved the timesheet on 29 October. I checked it twice: the 14 hours are all on Saturdays. Do not change her base pay or her bank details. Ticket HR-5521 has the screenshots.\n\nThanks,\n[PERSON_3], HR Operations",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-011",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-011",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-011",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-011",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-011",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite as a clear helpdesk ticket for the benefits team, listing the problem, the deadline and the two questions.",
+  "text": "Hi HR benefits, I'm trying to enrol my partner, Joaquín Salazar, in the dental plan, but the portal rejects the plan code DEN-PLUS. The enrolment window closes on 15 December. Katarzyna Wójcik from the benefits team told me last week that dependants added before 15 December are covered from 1 January, and that cover is not backdated. The portal shows a premium of 38.50 pounds a month for him, which I'm happy to pay through payroll. My staff number is S-12093 and my work email is rashid.almansour@example.org. Please tell me whether I need to submit a paper form instead, and whether the deadline still applies if the portal fault is on your side. Rashid Al-Mansour",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "partner",
+    "label": "PERSON",
+    "quote": "Joaquín Salazar"
+   },
+   {
+    "id": "m2",
+    "entity_id": "benefits-rep",
+    "label": "PERSON",
+    "quote": "Katarzyna Wójcik"
+   },
+   {
+    "id": "m3",
+    "entity_id": "staff-no",
+    "label": "ACCOUNT_ID",
+    "quote": "S-12093"
+   },
+   {
+    "id": "m4",
+    "entity_id": "me-email",
+    "label": "EMAIL",
+    "quote": "rashid.almansour@example.org"
+   },
+   {
+    "id": "m5",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Rashid Al-Mansour"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "partner",
+    "quote": "Joaquín Salazar",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "benefits-rep",
+    "quote": "Katarzyna Wójcik",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "staff-no",
+    "quote": "S-12093",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The benefits team needs the exact staff number to find the enrolment; the user re-inserts it, so the AI cannot check it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "me-email",
+    "quote": "rashid.almansour@example.org",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Work email is not needed to word the helpdesk ticket."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "me",
+    "quote": "Rashid Al-Mansour",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm trying to enrol my partner,"
+   },
+   {
+    "quote": ", in the dental plan, but the portal rejects the plan code DEN-PLUS. The enrolment window closes on 15 December."
+   },
+   {
+    "quote": "from the benefits team told me last week that dependants added before 15 December are covered from 1 January, and that cover is not backdated."
+   },
+   {
+    "quote": "The portal shows a premium of 38.50 pounds a month for him, which I'm happy to pay through payroll."
+   },
+   {
+    "quote": "My staff number is"
+   },
+   {
+    "quote": "my work email is"
+   },
+   {
+    "quote": "Please tell me whether I need to submit a paper form instead, and whether the deadline still applies if the portal fault is on your side."
+   }
+  ],
+  "approved_output": "Hi HR benefits, I'm trying to enrol my partner, [PERSON_1], in the dental plan, but the portal rejects the plan code DEN-PLUS. The enrolment window closes on 15 December. [PERSON_2] from the benefits team told me last week that dependants added before 15 December are covered from 1 January, and that cover is not backdated. The portal shows a premium of 38.50 pounds a month for him, which I'm happy to pay through payroll. My staff number is [ACCOUNT_ID] and my work email is [EMAIL]. Please tell me whether I need to submit a paper form instead, and whether the deadline still applies if the portal fault is on your side. [PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-012",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-id-012",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-id-012",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-id-012",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-id-012",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Make this a firm but polite overtime dispute email and check that my 112.50 pound figure matches the 12 hours.",
+  "text": "Dear HR, I am disputing the overtime on my October payslip. My team lead, Pekka Virtanen, told me on 22 October that Saturday shifts would be paid at double time, not time and a half, but the payslip shows time and a half for 12 hours. I am in salary band C and my base rate is 18.75 pounds an hour. I think I am owed 112.50 pounds, unless the policy says double time only applies after 40 hours that week. Your colleague Ifeoma Chukwu said she would check by Friday but I have not heard back. My staff number is 441-209, my phone is 07700 900781, and I'm happy to send the rota. Regards, Nokuthula Dlamini",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "team-lead",
+    "label": "PERSON",
+    "quote": "Pekka Virtanen"
+   },
+   {
+    "id": "m2",
+    "entity_id": "band",
+    "label": "EMPLOYMENT",
+    "quote": "I am in salary band C"
+   },
+   {
+    "id": "m3",
+    "entity_id": "base-rate",
+    "label": "FINANCIAL",
+    "quote": "my base rate is 18.75 pounds an hour"
+   },
+   {
+    "id": "m4",
+    "entity_id": "hr-colleague",
+    "label": "PERSON",
+    "quote": "Ifeoma Chukwu"
+   },
+   {
+    "id": "m5",
+    "entity_id": "staff-no",
+    "label": "ACCOUNT_ID",
+    "quote": "441-209"
+   },
+   {
+    "id": "m6",
+    "entity_id": "me-phone",
+    "label": "PHONE",
+    "quote": "07700 900781"
+   },
+   {
+    "id": "m7",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Nokuthula Dlamini"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "team-lead",
+    "quote": "Pekka Virtanen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "band",
+    "quote": "I am in salary band C",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "base-rate",
+    "quote": "my base rate is 18.75 pounds an hour",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "hr-colleague",
+    "quote": "Ifeoma Chukwu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "staff-no",
+    "quote": "441-209",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "HR needs the exact staff number to find the payslip; the user re-inserts it, so the AI cannot verify it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "me-phone",
+    "quote": "07700 900781",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Personal phone number is not needed to word the dispute email."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "me",
+    "quote": "Nokuthula Dlamini",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My team lead,"
+   },
+   {
+    "quote": ", told me on 22 October that Saturday shifts would be paid at double time, not time and a half, but the payslip shows time and a half for 12 hours."
+   },
+   {
+    "quote": "I am in salary band C and my base rate is 18.75 pounds an hour."
+   },
+   {
+    "quote": "I think I am owed 112.50 pounds, unless the policy says double time only applies after 40 hours that week."
+   },
+   {
+    "quote": "Your colleague"
+   },
+   {
+    "quote": "said she would check by Friday but I have not heard back."
+   },
+   {
+    "quote": "My staff number is"
+   },
+   {
+    "quote": "my phone is"
+   }
+  ],
+  "approved_output": "Dear HR, I am disputing the overtime on my October payslip. My team lead, [PERSON_1], told me on 22 October that Saturday shifts would be paid at double time, not time and a half, but the payslip shows time and a half for 12 hours. I am in salary band C and my base rate is 18.75 pounds an hour. I think I am owed 112.50 pounds, unless the policy says double time only applies after 40 hours that week. Your colleague [PERSON_2] said she would check by Friday but I have not heard back. My staff number is [ACCOUNT_ID], my phone is [PHONE], and I'm happy to send the rota. Regards, [PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:pres-001",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-pres-001",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-pres-001",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-pres-001",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-pres-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a weekly rota table that shows who does which day, and what is still conditional or uncertain.",
+  "text": "Update on Dad's care rota, because I got it wrong last time. My sister, Adaeze Nwosu, will take Tuesdays and Fridays, not Wednesdays as I said. My brother-in-law, Kristof Szabo, will only do Sundays if Adaeze can't, and he said he might manage Thursday evenings too, but he is not sure. Our neighbour, Mrs Glenys Halloran, has offered to sit with Dad for two hours on Wednesdays unless her own hospital appointment moves; she will let us know by 20 November. The carer's allowance claim is in my name only, not Adaeze's, so the 81.90 pounds a week is mine. Mrs Halloran would also like a key, but I have not agreed to that yet.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Adaeze Nwosu"
+   },
+   {
+    "id": "m2",
+    "entity_id": "brother-in-law",
+    "label": "PERSON",
+    "quote": "Kristof Szabo"
+   },
+   {
+    "id": "m3",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Adaeze",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "neighbour",
+    "label": "PERSON",
+    "quote": "Glenys Halloran"
+   },
+   {
+    "id": "m5",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Adaeze",
+    "occurrence": 3
+   },
+   {
+    "id": "m6",
+    "entity_id": "neighbour",
+    "label": "PERSON",
+    "quote": "Halloran",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sister",
+    "quote": "Adaeze Nwosu",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "brother-in-law",
+    "quote": "Kristof Szabo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "sister",
+    "quote": "Adaeze",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "neighbour",
+    "quote": "Glenys Halloran",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "sister",
+    "quote": "Adaeze",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "neighbour",
+    "quote": "Halloran",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Update on Dad's care rota, because I got it wrong last time."
+   },
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": ", will take Tuesdays and Fridays, not Wednesdays as I said."
+   },
+   {
+    "quote": "My brother-in-law,"
+   },
+   {
+    "quote": ", will only do Sundays if"
+   },
+   {
+    "quote": "can't, and he said he might manage Thursday evenings too, but he is not sure."
+   },
+   {
+    "quote": "Our neighbour, Mrs"
+   },
+   {
+    "quote": ", has offered to sit with Dad for two hours on Wednesdays unless her own hospital appointment moves; she will let us know by 20 November."
+   },
+   {
+    "quote": "The carer's allowance claim is in my name only, not"
+   },
+   {
+    "quote": "'s, so the 81.90 pounds a week is mine."
+   },
+   {
+    "quote": "Mrs",
+    "occurrence": 2
+   },
+   {
+    "quote": "would also like a key, but I have not agreed to that yet."
+   }
+  ],
+  "approved_output": "Update on Dad's care rota, because I got it wrong last time. My sister, [PERSON_1], will take Tuesdays and Fridays, not Wednesdays as I said. My brother-in-law, [PERSON_2], will only do Sundays if [PERSON_1] can't, and he said he might manage Thursday evenings too, but he is not sure. Our neighbour, Mrs [PERSON_3], has offered to sit with Dad for two hours on Wednesdays unless her own hospital appointment moves; she will let us know by 20 November. The carer's allowance claim is in my name only, not [PERSON_1]'s, so the 81.90 pounds a week is mine. Mrs [PERSON_3] would also like a key, but I have not agreed to that yet.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:pres-002",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-pres-002",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-pres-002",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-pres-002",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-pres-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me write to the charity: who said what, what I paid, what I think I am owed, and what is conditional.",
+  "text": "I need to sort out my counselling fees. My counsellor, Ingrid Halvorsen, told me in the first session that the sliding-scale fee would be 25 pounds, not 40 as on the website, because my income is under 1,400 pounds a month. Her receptionist, Dev Malhotra, now says the invoice must be 40 pounds unless I send proof of income by 30 November. I have already paid 3 sessions at 40 pounds each, so I think I am owed 45 pounds back, though I'm not certain how the refund is calculated. My mother, Lucia Ferreira, offered to pay the difference only if the charity refuses a refund. I have not decided whether to accept that.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "counsellor",
+    "label": "PERSON",
+    "quote": "Ingrid Halvorsen"
+   },
+   {
+    "id": "m2",
+    "entity_id": "income",
+    "label": "FINANCIAL",
+    "quote": "my income is under 1,400 pounds a month"
+   },
+   {
+    "id": "m3",
+    "entity_id": "receptionist",
+    "label": "PERSON",
+    "quote": "Dev Malhotra"
+   },
+   {
+    "id": "m4",
+    "entity_id": "mother",
+    "label": "PERSON",
+    "quote": "Lucia Ferreira"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "counsellor",
+    "quote": "Ingrid Halvorsen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "income",
+    "quote": "my income is under 1,400 pounds a month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "receptionist",
+    "quote": "Dev Malhotra",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "mother",
+    "quote": "Lucia Ferreira",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My counsellor,"
+   },
+   {
+    "quote": ", told me in the first session that the sliding-scale fee would be 25 pounds, not 40 as on the website, because my income is under 1,400 pounds a month."
+   },
+   {
+    "quote": "Her receptionist,"
+   },
+   {
+    "quote": ", now says the invoice must be 40 pounds unless I send proof of income by 30 November."
+   },
+   {
+    "quote": "I have already paid 3 sessions at 40 pounds each, so I think I am owed 45 pounds back, though I'm not certain how the refund is calculated."
+   },
+   {
+    "quote": "My mother,"
+   },
+   {
+    "quote": ", offered to pay the difference only if the charity refuses a refund."
+   },
+   {
+    "quote": "I have not decided whether to accept that."
+   }
+  ],
+  "approved_output": "I need to sort out my counselling fees. My counsellor, [PERSON_1], told me in the first session that the sliding-scale fee would be 25 pounds, not 40 as on the website, because my income is under 1,400 pounds a month. Her receptionist, [PERSON_2], now says the invoice must be 40 pounds unless I send proof of income by 30 November. I have already paid 3 sessions at 40 pounds each, so I think I am owed 45 pounds back, though I'm not certain how the refund is calculated. My mother, [PERSON_3], offered to pay the difference only if the charity refuses a refund. I have not decided whether to accept that.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:pres-003",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-pres-003",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-pres-003",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-pres-003",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-pres-003",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me draft the adjustments request, listing what is confirmed, what is refused, and what is still conditional.",
+  "text": "Notes for my tribunal hearing on 9 December. I am deaf in my left ear, so I need to follow speech clearly. The tribunal clerk, Naledi Sithole, said in her email that they can provide a hearing loop and a break every 30 minutes, but not a home visit. My adviser, Alasdair Kerr, thinks a phone hearing is possible only if the judge agrees in advance, so we should ask now, not on the day. My daughter, Mina Brandt, will attend as my support person unless she has her exam that morning; she said she'll know by 1 December. Lukas Brandt",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "hearing",
+    "label": "HEALTH",
+    "quote": "I am deaf in my left ear"
+   },
+   {
+    "id": "m2",
+    "entity_id": "clerk",
+    "label": "PERSON",
+    "quote": "Naledi Sithole"
+   },
+   {
+    "id": "m3",
+    "entity_id": "adviser",
+    "label": "PERSON",
+    "quote": "Alasdair Kerr"
+   },
+   {
+    "id": "m4",
+    "entity_id": "daughter",
+    "label": "PERSON",
+    "quote": "Mina Brandt"
+   },
+   {
+    "id": "m5",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Lukas Brandt"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "hearing",
+    "quote": "I am deaf in my left ear",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "clerk",
+    "quote": "Naledi Sithole",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "adviser",
+    "quote": "Alasdair Kerr",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "daughter",
+    "quote": "Mina Brandt",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "me",
+    "quote": "Lukas Brandt",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Notes for my tribunal hearing on 9 December."
+   },
+   {
+    "quote": "I am deaf in my left ear, so I need to follow speech clearly."
+   },
+   {
+    "quote": "The tribunal clerk,"
+   },
+   {
+    "quote": ", said in her email that they can provide a hearing loop and a break every 30 minutes, but not a home visit."
+   },
+   {
+    "quote": "My adviser,"
+   },
+   {
+    "quote": ", thinks a phone hearing is possible only if the judge agrees in advance, so we should ask now, not on the day."
+   },
+   {
+    "quote": "My daughter,"
+   },
+   {
+    "quote": ", will attend as my support person unless she has her exam that morning; she said she'll know by 1 December."
+   }
+  ],
+  "approved_output": "Notes for my tribunal hearing on 9 December. I am deaf in my left ear, so I need to follow speech clearly. The tribunal clerk, [PERSON_1], said in her email that they can provide a hearing loop and a break every 30 minutes, but not a home visit. My adviser, [PERSON_2], thinks a phone hearing is possible only if the judge agrees in advance, so we should ask now, not on the day. My daughter, [PERSON_3], will attend as my support person unless she has her exam that morning; she said she'll know by 1 December. [PERSON_4]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:pres-004",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-pres-004",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-pres-004",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-pres-004",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-pres-004",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Summarise where the referral stands, who said what, and the private-therapy option with its condition.",
+  "text": "Where things stand with my depression referral. I want to write this down before my next call with the practice, so that I remember what each person told me. My GP, Dr Ravi Subramaniam, said he would refer me for therapy, not medication, and that the wait is probably 10 to 14 weeks. The practice manager, Odile Marchetti, says the referral was sent on 4 November, but the clinic's letter says they got nothing. If it was not sent, my GP promised he'd resend it by Friday. My partner, Jonah Pelletier, thinks I should pay for 6 private sessions at 55 pounds each (330 pounds in total) only if the NHS wait goes beyond 12 weeks. I have not decided.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "depression",
+    "label": "HEALTH",
+    "quote": "my depression"
+   },
+   {
+    "id": "m2",
+    "entity_id": "gp",
+    "label": "PERSON",
+    "quote": "Ravi Subramaniam"
+   },
+   {
+    "id": "m3",
+    "entity_id": "practice-manager",
+    "label": "PERSON",
+    "quote": "Odile Marchetti"
+   },
+   {
+    "id": "m4",
+    "entity_id": "partner",
+    "label": "PERSON",
+    "quote": "Jonah Pelletier"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "depression",
+    "quote": "my depression",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "gp",
+    "quote": "Ravi Subramaniam",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "practice-manager",
+    "quote": "Odile Marchetti",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "partner",
+    "quote": "Jonah Pelletier",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My GP, Dr"
+   },
+   {
+    "quote": ", said he would refer me for therapy, not medication, and that the wait is probably 10 to 14 weeks."
+   },
+   {
+    "quote": "The practice manager,"
+   },
+   {
+    "quote": ", says the referral was sent on 4 November, but the clinic's letter says they got nothing."
+   },
+   {
+    "quote": "If it was not sent, my GP promised he'd resend it by Friday."
+   },
+   {
+    "quote": "My partner,"
+   },
+   {
+    "quote": ", thinks I should pay for 6 private sessions at 55 pounds each (330 pounds in total) only if the NHS wait goes beyond 12 weeks."
+   },
+   {
+    "quote": "I have not decided."
+   }
+  ],
+  "approved_output": "Where things stand with my depression referral. I want to write this down before my next call with the practice, so that I remember what each person told me. My GP, Dr [PERSON_1], said he would refer me for therapy, not medication, and that the wait is probably 10 to 14 weeks. The practice manager, [PERSON_2], says the referral was sent on 4 November, but the clinic's letter says they got nothing. If it was not sent, my GP promised he'd resend it by Friday. My partner, [PERSON_3], thinks I should pay for 6 private sessions at 55 pounds each (330 pounds in total) only if the NHS wait goes beyond 12 weeks. I have not decided.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:ben-001",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-ben-001",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-ben-001",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-ben-001",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-ben-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Give me a prioritised list of accessibility fixes for the site and explain what the law requires versus what is optional.",
+  "text": "Hi, I help run a small peer-support charity website and we have been asked to make it more accessible. Could you explain how WCAG 2.2 level AA differs from level AAA, and which fixes matter most for people using screen readers? Our site runs WordPress 6.5 on PHP 8.2. The contrast checker reports a ratio of 4.3:1 for the grey body text on white, and the old PDF forms return HTTP 404 since we moved them. I have also read that the Equality Act 2010 expects reasonable adjustments, and that the NHS Talking Therapies service publishes its own accessibility statement. What should we fix first, and which of those points is a legal requirement rather than good practice?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "approved_output": "Hi, I help run a small peer-support charity website and we have been asked to make it more accessible. Could you explain how WCAG 2.2 level AA differs from level AAA, and which fixes matter most for people using screen readers? Our site runs WordPress 6.5 on PHP 8.2. The contrast checker reports a ratio of 4.3:1 for the grey body text on white, and the old PDF forms return HTTP 404 since we moved them. I have also read that the Equality Act 2010 expects reasonable adjustments, and that the NHS Talking Therapies service publishes its own accessibility statement. What should we fix first, and which of those points is a legal requirement rather than good practice?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:ben-002",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-ben-002",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-ben-002",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-ben-002",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-ben-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain how to fix the date format failure and answer the question about the 48-hour week rule.",
+  "text": "Our payroll team keeps getting a failure when the weekly export runs. The log says: POST /v1/timesheets returned HTTP 422, error code E_DATE_FORMAT, client version 3.2.1, port 8443. I think the export uses DD/MM/YYYY dates but the API expects ISO 8601 (YYYY-MM-DD). Can you explain how to convert the dates in a CSV with Python's datetime module and pandas 2.1? We also need to check that overtime is stored as decimal hours, for example 7.5 rather than 7:30. Finally, I read that the Working Time Regulations 1998 set an average 48-hour week limit over a 17-week reference period. Is that right, and does it apply to payroll calculations or only to scheduling? Please keep the answer practical for a small HR team.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "approved_output": "Our payroll team keeps getting a failure when the weekly export runs. The log says: POST /v1/timesheets returned HTTP 422, error code E_DATE_FORMAT, client version 3.2.1, port 8443. I think the export uses DD/MM/YYYY dates but the API expects ISO 8601 (YYYY-MM-DD). Can you explain how to convert the dates in a CSV with Python's datetime module and pandas 2.1? We also need to check that overtime is stored as decimal hours, for example 7.5 rather than 7:30. Finally, I read that the Working Time Regulations 1998 set an average 48-hour week limit over a 17-week reference period. Is that right, and does it apply to payroll calculations or only to scheduling? Please keep the answer practical for a small HR team.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:cred-001",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-cred-001",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-cred-001",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-cred-001",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-cred-001",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a numbered handover checklist for the person covering payroll submissions. Keep the deadline, the error handling and who to contact.",
+  "text": "Handover notes for the payroll provider portal, Anselm, since I'm on leave from Monday. Login page is https://payroll-portal.example.test, username svc-payroll-ro, password Marigold!Tide77 (shared, please don't change it). Submit the monthly file by the 25th. If you see \"Session expired (error 440)\" after about 15 minutes of inactivity, log back in and resubmit, it does not duplicate the file. The portal also logs you out if you open it in two tabs, so stick to one. The October run total was 1,284,500 pounds and the board has not seen it yet, so keep that out of anything external. If the login fails, ask Beatriz Cardoso in finance, who can reset the portal access.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "covering",
+    "label": "PERSON",
+    "quote": "Anselm"
+   },
+   {
+    "id": "m2",
+    "entity_id": "portal-password",
+    "label": "SECRET",
+    "quote": "Marigold!Tide77"
+   },
+   {
+    "id": "m3",
+    "entity_id": "run-total",
+    "label": "FINANCIAL",
+    "quote": "1,284,500 pounds"
+   },
+   {
+    "id": "m4",
+    "entity_id": "finance-contact",
+    "label": "PERSON",
+    "quote": "Beatriz Cardoso"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "covering",
+    "quote": "Anselm",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "portal-password",
+    "quote": "Marigold!Tide77",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Shared portal password; the checklist can say to use the shared login without the password itself."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "run-total",
+    "quote": "1,284,500 pounds",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Nonpublic payroll total the board has not seen; the checklist does not need the figure."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "finance-contact",
+    "quote": "Beatriz Cardoso",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Handover notes for the payroll provider portal,"
+   },
+   {
+    "quote": ", since I'm on leave from Monday."
+   },
+   {
+    "quote": "(shared, please don't change it)."
+   },
+   {
+    "quote": "Submit the monthly file by the 25th."
+   },
+   {
+    "quote": "If you see \"Session expired (error 440)\" after about 15 minutes of inactivity, log back in and resubmit, it does not duplicate the file."
+   },
+   {
+    "quote": "The October run total was"
+   },
+   {
+    "quote": "and the board has not seen it yet, so keep that out of anything external."
+   },
+   {
+    "quote": "If the login fails, ask"
+   },
+   {
+    "quote": "in finance, who can reset the portal access."
+   }
+  ],
+  "approved_output": "Handover notes for the payroll provider portal, [PERSON_1], since I'm on leave from Monday. Login page is https://payroll-portal.example.test, username svc-payroll-ro, password [SECRET] (shared, please don't change it). Submit the monthly file by the 25th. If you see \"Session expired (error 440)\" after about 15 minutes of inactivity, log back in and resubmit, it does not duplicate the file. The portal also logs you out if you open it in two tabs, so stick to one. The October run total was [FINANCIAL] and the board has not seen it yet, so keep that out of anything external. If the login fails, ask [PERSON_2] in finance, who can reset the portal access.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "6f3a54fde3954d9588ca4a07a8d12a3d",
+  "id": "6f3a54fde3954d9588ca4a07a8d12a3d:cred-002",
+  "family_id": "6f3a54fde3954d9588ca4a07a8d12a3d:fam-cred-002",
+  "persona_id": "6f3a54fde3954d9588ca4a07a8d12a3d:per-cred-002",
+  "source_id": "6f3a54fde3954d9588ca4a07a8d12a3d:src-cred-002",
+  "template_id": "6f3a54fde3954d9588ca4a07a8d12a3d:tpl-cred-002",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain the likely cause of the 401 and how to refresh the token, and say whether a retry on 401 is sensible.",
+  "text": "Why am I getting a 401 here? I ran this from my laptop and it worked yesterday.\n\ncurl -s https://hr-api.internal.test/v2/salary-bands -H \"Authorization: Bearer hrb.demo.7Qm2xVd9\" -H \"Accept: application/json\"\n\nResponse now: {\"status\":401,\"error\":\"token_expired\",\"message\":\"Token lifetime exceeded, request a new one\"}\n\nYesterday's response for band D was {\"band\":\"D\",\"min\":61000,\"max\":74500,\"currency\":\"GBP\"}. My colleague Hamza Qureshi says tokens last 24 hours, but the docs page says 12. I'm not sure which is right. I have checked the clock on my laptop and it is correct. I need to know how to refresh the token without asking IT each time, and whether adding a retry on 401 is sensible. The same call runs in our nightly script, which fails around 02:00.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "bearer",
+    "label": "SECRET",
+    "quote": "hrb.demo.7Qm2xVd9"
+   },
+   {
+    "id": "m2",
+    "entity_id": "band-min",
+    "label": "FINANCIAL",
+    "quote": "61000"
+   },
+   {
+    "id": "m3",
+    "entity_id": "band-max",
+    "label": "FINANCIAL",
+    "quote": "74500"
+   },
+   {
+    "id": "m4",
+    "entity_id": "colleague",
+    "label": "PERSON",
+    "quote": "Hamza Qureshi"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "bearer",
+    "quote": "hrb.demo.7Qm2xVd9",
+    "label": "SECRET",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Live bearer token for an internal HR API; the diagnosis only needs to know a bearer header is sent."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "band-min",
+    "quote": "61000",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Nonpublic salary band minimum; the 401 diagnosis does not need compensation figures."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "band-max",
+    "quote": "74500",
+    "label": "FINANCIAL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Nonpublic salary band maximum; the 401 diagnosis does not need compensation figures."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "colleague",
+    "quote": "Hamza Qureshi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Why am I getting a 401 here? I ran this from my laptop and it worked yesterday."
+   },
+   {
+    "quote": "curl -s https://hr-api.internal.test/v2/salary-bands -H \"Authorization: Bearer"
+   },
+   {
+    "quote": "Token lifetime exceeded, request a new one"
+   },
+   {
+    "quote": "My colleague"
+   },
+   {
+    "quote": "says tokens last 24 hours, but the docs page says 12. I'm not sure which is right."
+   },
+   {
+    "quote": "I need to know how to refresh the token without asking IT each time, and whether adding a retry on 401 is sensible."
+   },
+   {
+    "quote": "The same call runs in our nightly script, which fails around 02:00."
+   }
+  ],
+  "approved_output": "Why am I getting a 401 here? I ran this from my laptop and it worked yesterday.\n\ncurl -s https://hr-api.internal.test/v2/salary-bands -H \"Authorization: Bearer [SECRET]\" -H \"Accept: application/json\"\n\nResponse now: {\"status\":401,\"error\":\"token_expired\",\"message\":\"Token lifetime exceeded, request a new one\"}\n\nYesterday's response for band D was {\"band\":\"D\",\"min\":[FINANCIAL],\"max\":[FINANCIAL],\"currency\":\"GBP\"}. My colleague [PERSON_1] says tokens last 24 hours, but the docs page says 12. I'm not sure which is right. I have checked the clock on my laptop and it is correct. I need to know how to refresh the token without asking IT each time, and whether adding a retry on 401 is sensible. The same call runs in our nightly script, which fails around 02:00.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "6f3a54fde3954d9588ca4a07a8d12a3d:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

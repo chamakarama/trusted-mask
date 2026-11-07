@@ -1,0 +1,3123 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f01-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f01-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f01-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f01-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f01-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hi Mr Chiang, here is what I have so far for my 2025 return. My salary from Dahe Girls' School was 812,000 NT dollars and the withholding slip is attached. The weekend tutoring brought in about 36,000 NT dollars, paid in cash, so there is no slip for it.\n\nLast spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all. Two of the receipts are in the name of my husband, Wu Zhi-Hao, not mine, and I am not sure they still count for a joint filing.\n\nMy mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia. I do not know whether that matters for the dependants section.\n\nFor the refund, please use the account ending 4417 and call me on 0912 304 855 if anything is missing.",
+  "task": "Write a short list of points I should raise with my tax adviser about what might lower the tax I owe for 2025.",
+  "entities": [
+   {
+    "id": "chiang",
+    "entity_id": "chiang",
+    "label": "PERSON",
+    "quote": "Chiang"
+   },
+   {
+    "id": "school",
+    "entity_id": "school",
+    "label": "ORG",
+    "quote": "Dahe Girls' School"
+   },
+   {
+    "id": "sal",
+    "entity_id": "sal",
+    "label": "FINANCIAL",
+    "quote": "812,000 NT dollars"
+   },
+   {
+    "id": "tut",
+    "entity_id": "tut",
+    "label": "FINANCIAL",
+    "quote": "about 36,000 NT dollars"
+   },
+   {
+    "id": "med",
+    "entity_id": "med",
+    "label": "HEALTH",
+    "quote": "Last spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all."
+   },
+   {
+    "id": "husb",
+    "entity_id": "husb",
+    "label": "PERSON",
+    "quote": "Wu Zhi-Hao"
+   },
+   {
+    "id": "mom",
+    "entity_id": "mom",
+    "label": "FAMILY",
+    "quote": "My mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia."
+   },
+   {
+    "id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "4417"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0912 304 855"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "chiang",
+    "entity_id": "chiang",
+    "label": "PERSON",
+    "quote": "Chiang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "school",
+    "entity_id": "school",
+    "label": "ORG",
+    "quote": "Dahe Girls' School",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sal",
+    "entity_id": "sal",
+    "label": "FINANCIAL",
+    "quote": "812,000 NT dollars",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tut",
+    "entity_id": "tut",
+    "label": "FINANCIAL",
+    "quote": "about 36,000 NT dollars",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "med",
+    "entity_id": "med",
+    "label": "HEALTH",
+    "quote": "Last spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "husb",
+    "entity_id": "husb",
+    "label": "PERSON",
+    "quote": "Wu Zhi-Hao",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mom",
+    "entity_id": "mom",
+    "label": "FAMILY",
+    "quote": "My mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "4417",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Account number is a direct financial identifier; replaced by a placeholder, the task does not need the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0912 304 855",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct identifier; replaced by a placeholder, the task does not need the digits."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The weekend tutoring brought in about 36,000 NT dollars, paid in cash, so there is no slip for it."
+   },
+   {
+    "quote": "Last spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all."
+   },
+   {
+    "quote": "Two of the receipts are in the name of my husband,"
+   },
+   {
+    "quote": "not mine, and I am not sure they still count for a joint filing."
+   },
+   {
+    "quote": "My mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia."
+   },
+   {
+    "quote": "I do not know whether that matters for the dependants section."
+   }
+  ],
+  "approved_output": "Hi Mr [PERSON_1], here is what I have so far for my 2025 return. My salary from [ORG] was 812,000 NT dollars and the withholding slip is attached. The weekend tutoring brought in about 36,000 NT dollars, paid in cash, so there is no slip for it.\n\nLast spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all. Two of the receipts are in the name of my husband, [PERSON_2], not mine, and I am not sure they still count for a joint filing.\n\nMy mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia. I do not know whether that matters for the dependants section.\n\nFor the refund, please use the account ending [ACCOUNT_ID] and call me on [PHONE] if anything is missing.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f01-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f01-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f01-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f01-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f01-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hi Mr Chiang, here is what I have so far for my 2025 return. My salary from Dahe Girls' School was 812,000 NT dollars and the withholding slip is attached. The weekend tutoring brought in about 36,000 NT dollars, paid in cash, so there is no slip for it.\n\nLast spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all. Two of the receipts are in the name of my husband, Wu Zhi-Hao, not mine, and I am not sure they still count for a joint filing.\n\nMy mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia. I do not know whether that matters for the dependants section.\n\nFor the refund, please use the account ending 4417 and call me on 0912 304 855 if anything is missing.",
+  "task": "Make a checklist of the income documents I still need to collect before I file.",
+  "entities": [
+   {
+    "id": "chiang",
+    "entity_id": "chiang",
+    "label": "PERSON",
+    "quote": "Chiang"
+   },
+   {
+    "id": "school",
+    "entity_id": "school",
+    "label": "ORG",
+    "quote": "Dahe Girls' School"
+   },
+   {
+    "id": "sal",
+    "entity_id": "sal",
+    "label": "FINANCIAL",
+    "quote": "812,000 NT dollars"
+   },
+   {
+    "id": "tut",
+    "entity_id": "tut",
+    "label": "FINANCIAL",
+    "quote": "about 36,000 NT dollars"
+   },
+   {
+    "id": "med",
+    "entity_id": "med",
+    "label": "HEALTH",
+    "quote": "Last spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all."
+   },
+   {
+    "id": "husb",
+    "entity_id": "husb",
+    "label": "PERSON",
+    "quote": "Wu Zhi-Hao"
+   },
+   {
+    "id": "mom",
+    "entity_id": "mom",
+    "label": "FAMILY",
+    "quote": "My mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia."
+   },
+   {
+    "id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "4417"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0912 304 855"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "chiang",
+    "entity_id": "chiang",
+    "label": "PERSON",
+    "quote": "Chiang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "school",
+    "entity_id": "school",
+    "label": "ORG",
+    "quote": "Dahe Girls' School",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sal",
+    "entity_id": "sal",
+    "label": "FINANCIAL",
+    "quote": "812,000 NT dollars",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tut",
+    "entity_id": "tut",
+    "label": "FINANCIAL",
+    "quote": "about 36,000 NT dollars",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "Last spring I had a dental implant and then six physiotherapy sessions after shoulder surgery, 58,400 NT dollars in all. Two of the receipts are in the name of my husband, Wu Zhi-Hao, not mine, and I am not sure they still count for a joint filing.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Treatment history, receipts and who holds them are not needed for a checklist of income documents."
+   },
+   {
+    "kind": "section",
+    "quote": "My mother in Chiayi lived with us from March to August, and I paid her pharmacy bills while she recovered from pneumonia. I do not know whether that matters for the dependants section.\n\n",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A relative's illness and pharmacy bills do not affect which income documents must still be collected."
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "4417",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Account number is a direct financial identifier; replaced by a placeholder, the task does not need the exact value."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0912 304 855",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct identifier; replaced by a placeholder, the task does not need the digits."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My salary from"
+   },
+   {
+    "quote": "was 812,000 NT dollars and the withholding slip is attached."
+   },
+   {
+    "quote": "The weekend tutoring brought in about 36,000 NT dollars, paid in cash, so there is no slip for it."
+   }
+  ],
+  "approved_output": "Hi Mr [PERSON_1], here is what I have so far for my 2025 return. My salary from [ORG] was 812,000 NT dollars and the withholding slip is attached. The weekend tutoring brought in about 36,000 NT dollars, paid in cash, so there is no slip for it.\n\nFor the refund, please use the account ending [ACCOUNT_ID] and call me on [PHONE] if anything is missing.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f02-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f02-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f02-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f02-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f02-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The property tax bill for our flat arrived on Tuesday: 14,820 NT dollars, due 30 November. It still shows the previous owner's mailing address, 31 Zhongshan Road, and I have not yet asked the office to correct it.\n\nIn September the company let me go after the Kaohsiung warehouse closed. They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date.\n\nMy brother-in-law, Cheng Wei-Lun, lent us 200,000 NT dollars towards the repairs on the flat. We agreed it is a loan, not a gift, and we have promised to start repaying in January.\n\nIf anything is unclear, the district office clerk, Mrs Hsieh, said I can reach her on 02 2555 0176.",
+  "task": "Make a list of every sum of money I should mention to my tax adviser for this year, with dates and conditions.",
+  "entities": [
+   {
+    "id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "31 Zhongshan Road"
+   },
+   {
+    "id": "emp1",
+    "entity_id": "emp1",
+    "label": "EMPLOYMENT",
+    "quote": "In September the company let me go after the Kaohsiung warehouse closed."
+   },
+   {
+    "id": "emp2",
+    "entity_id": "emp2",
+    "label": "EMPLOYMENT",
+    "quote": "They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date."
+   },
+   {
+    "id": "cheng",
+    "entity_id": "cheng",
+    "label": "PERSON",
+    "quote": "Cheng Wei-Lun"
+   },
+   {
+    "id": "loan1",
+    "entity_id": "loan1",
+    "label": "FINANCIAL",
+    "quote": "lent us 200,000 NT dollars towards the repairs on the flat."
+   },
+   {
+    "id": "loan2",
+    "entity_id": "loan2",
+    "label": "FINANCIAL",
+    "quote": "We agreed it is a loan, not a gift, and we have promised to start repaying in January."
+   },
+   {
+    "id": "hsieh",
+    "entity_id": "hsieh",
+    "label": "PERSON",
+    "quote": "Hsieh"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "02 2555 0176"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "31 Zhongshan Road",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Street address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp1",
+    "entity_id": "emp1",
+    "label": "EMPLOYMENT",
+    "quote": "In September the company let me go after the Kaohsiung warehouse closed.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp2",
+    "entity_id": "emp2",
+    "label": "EMPLOYMENT",
+    "quote": "They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cheng",
+    "entity_id": "cheng",
+    "label": "PERSON",
+    "quote": "Cheng Wei-Lun",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "loan1",
+    "entity_id": "loan1",
+    "label": "FINANCIAL",
+    "quote": "lent us 200,000 NT dollars towards the repairs on the flat.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "loan2",
+    "entity_id": "loan2",
+    "label": "FINANCIAL",
+    "quote": "We agreed it is a loan, not a gift, and we have promised to start repaying in January.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hsieh",
+    "entity_id": "hsieh",
+    "label": "PERSON",
+    "quote": "Hsieh",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "02 2555 0176",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct identifier; replaced by a placeholder, the task does not need the digits."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The property tax bill for our flat arrived on Tuesday: 14,820 NT dollars, due 30 November."
+   },
+   {
+    "quote": "In September the company let me go after the Kaohsiung warehouse closed."
+   },
+   {
+    "quote": "They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date."
+   },
+   {
+    "quote": "My brother-in-law,"
+   },
+   {
+    "quote": "lent us 200,000 NT dollars towards the repairs on the flat."
+   },
+   {
+    "quote": "We agreed it is a loan, not a gift, and we have promised to start repaying in January."
+   }
+  ],
+  "approved_output": "The property tax bill for our flat arrived on Tuesday: 14,820 NT dollars, due 30 November. It still shows the previous owner's mailing address, [ADDRESS], and I have not yet asked the office to correct it.\n\nIn September the company let me go after the Kaohsiung warehouse closed. They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date.\n\nMy brother-in-law, [PERSON_1], lent us 200,000 NT dollars towards the repairs on the flat. We agreed it is a loan, not a gift, and we have promised to start repaying in January.\n\nIf anything is unclear, the district office clerk, Mrs [PERSON_2], said I can reach her on [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f02-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f02-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f02-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f02-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f02-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The property tax bill for our flat arrived on Tuesday: 14,820 NT dollars, due 30 November. It still shows the previous owner's mailing address, 31 Zhongshan Road, and I have not yet asked the office to correct it.\n\nIn September the company let me go after the Kaohsiung warehouse closed. They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date.\n\nMy brother-in-law, Cheng Wei-Lun, lent us 200,000 NT dollars towards the repairs on the flat. We agreed it is a loan, not a gift, and we have promised to start repaying in January.\n\nIf anything is unclear, the district office clerk, Mrs Hsieh, said I can reach her on 02 2555 0176.",
+  "task": "Write a short message to the district office asking them to correct the mailing address on the property tax bill.",
+  "entities": [
+   {
+    "id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "31 Zhongshan Road"
+   },
+   {
+    "id": "emp1",
+    "entity_id": "emp1",
+    "label": "EMPLOYMENT",
+    "quote": "In September the company let me go after the Kaohsiung warehouse closed."
+   },
+   {
+    "id": "emp2",
+    "entity_id": "emp2",
+    "label": "EMPLOYMENT",
+    "quote": "They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date."
+   },
+   {
+    "id": "cheng",
+    "entity_id": "cheng",
+    "label": "PERSON",
+    "quote": "Cheng Wei-Lun"
+   },
+   {
+    "id": "loan1",
+    "entity_id": "loan1",
+    "label": "FINANCIAL",
+    "quote": "lent us 200,000 NT dollars towards the repairs on the flat."
+   },
+   {
+    "id": "loan2",
+    "entity_id": "loan2",
+    "label": "FINANCIAL",
+    "quote": "We agreed it is a loan, not a gift, and we have promised to start repaying in January."
+   },
+   {
+    "id": "hsieh",
+    "entity_id": "hsieh",
+    "label": "PERSON",
+    "quote": "Hsieh"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "02 2555 0176"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "addr",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "31 Zhongshan Road",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Street address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   },
+   {
+    "kind": "section",
+    "quote": "In September the company let me go after the Kaohsiung warehouse closed. They paid a severance of 260,000 NT dollars in October and said the final salary would follow, but I have nothing in writing about the exact date.\n\n",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Job loss and severance terms have no bearing on a request to correct a mailing address."
+   },
+   {
+    "kind": "section",
+    "quote": "My brother-in-law, Cheng Wei-Lun, lent us 200,000 NT dollars towards the repairs on the flat. We agreed it is a loan, not a gift, and we have promised to start repaying in January.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A family loan for repairs is not needed to ask the office to change the address on a bill."
+   },
+   {
+    "kind": "entity",
+    "target_id": "hsieh",
+    "entity_id": "hsieh",
+    "label": "PERSON",
+    "quote": "Hsieh",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "02 2555 0176",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct identifier; replaced by a placeholder, the task does not need the digits."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The property tax bill for our flat arrived on Tuesday: 14,820 NT dollars, due 30 November."
+   },
+   {
+    "quote": "It still shows the previous owner's mailing address,"
+   },
+   {
+    "quote": "and I have not yet asked the office to correct it."
+   }
+  ],
+  "approved_output": "The property tax bill for our flat arrived on Tuesday: 14,820 NT dollars, due 30 November. It still shows the previous owner's mailing address, [ADDRESS], and I have not yet asked the office to correct it.\n\nIf anything is unclear, the district office clerk, Mrs [PERSON_1], said I can reach her on [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f03-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f03-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f03-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f03-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f03-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Invoice TW-2025-118 covers 14 hours of Japanese to English translation at 1,350 NT dollars an hour, so the total is 18,900 NT dollars before tax is withheld. Kuo Ting-An at Peiyuan Heritage Press approved the draft on 9 October, the agreed due date was 24 October, and the money has still not arrived.\n\nMy rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid. My landlady has said she will not accept a late payment again.\n\nKuo's assistant replied yesterday that the payment was delayed by a change in the bank form, not by any dispute over my work. She promised an answer by Friday but did not give an amount or a date for the transfer.",
+  "task": "Draft a firm but courteous email to the client chasing this invoice and proposing a payment date that works for me.",
+  "entities": [
+   {
+    "id": "kuo1",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo Ting-An"
+   },
+   {
+    "id": "press",
+    "entity_id": "press",
+    "label": "ORG",
+    "quote": "Peiyuan Heritage Press"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "fin1",
+    "label": "FINANCIAL",
+    "quote": "My rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid."
+   },
+   {
+    "id": "fin2",
+    "entity_id": "fin2",
+    "label": "FINANCIAL",
+    "quote": "My landlady has said she will not accept a late payment again."
+   },
+   {
+    "id": "kuo2",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "kuo1",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo Ting-An",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "press",
+    "entity_id": "press",
+    "label": "ORG",
+    "quote": "Peiyuan Heritage Press",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "fin1",
+    "label": "FINANCIAL",
+    "quote": "My rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin2",
+    "entity_id": "fin2",
+    "label": "FINANCIAL",
+    "quote": "My landlady has said she will not accept a late payment again.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "kuo2",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid."
+   },
+   {
+    "quote": "My landlady has said she will not accept a late payment again."
+   },
+   {
+    "quote": "the agreed due date was 24 October, and the money has still not arrived."
+   },
+   {
+    "quote": "She promised an answer by Friday but did not give an amount or a date for the transfer."
+   }
+  ],
+  "approved_output": "Invoice TW-2025-118 covers 14 hours of Japanese to English translation at 1,350 NT dollars an hour, so the total is 18,900 NT dollars before tax is withheld. [PERSON_1] at [ORG] approved the draft on 9 October, the agreed due date was 24 October, and the money has still not arrived.\n\nMy rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid. My landlady has said she will not accept a late payment again.\n\n[PERSON_1]'s assistant replied yesterday that the payment was delayed by a change in the bank form, not by any dispute over my work. She promised an answer by Friday but did not give an amount or a date for the transfer.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f03-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f03-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f03-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f03-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f03-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Invoice TW-2025-118 covers 14 hours of Japanese to English translation at 1,350 NT dollars an hour, so the total is 18,900 NT dollars before tax is withheld. Kuo Ting-An at Peiyuan Heritage Press approved the draft on 9 October, the agreed due date was 24 October, and the money has still not arrived.\n\nMy rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid. My landlady has said she will not accept a late payment again.\n\nKuo's assistant replied yesterday that the payment was delayed by a change in the bank form, not by any dispute over my work. She promised an answer by Friday but did not give an amount or a date for the transfer.",
+  "task": "Write a neutral payment reminder that states the invoice amount, the agreed due date and what I need back from the client's accounts team.",
+  "entities": [
+   {
+    "id": "kuo1",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo Ting-An"
+   },
+   {
+    "id": "press",
+    "entity_id": "press",
+    "label": "ORG",
+    "quote": "Peiyuan Heritage Press"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "fin1",
+    "label": "FINANCIAL",
+    "quote": "My rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid."
+   },
+   {
+    "id": "fin2",
+    "entity_id": "fin2",
+    "label": "FINANCIAL",
+    "quote": "My landlady has said she will not accept a late payment again."
+   },
+   {
+    "id": "kuo2",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "kuo1",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo Ting-An",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "press",
+    "entity_id": "press",
+    "label": "ORG",
+    "quote": "Peiyuan Heritage Press",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "section",
+    "quote": "My rent of 21,000 NT dollars is due on the 3rd, and I am 6,000 short unless this invoice is paid. My landlady has said she will not accept a late payment again.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The writer's own rent shortfall and landlady's stance are not needed for a neutral reminder about the invoice amount, due date and requested reply."
+   },
+   {
+    "kind": "entity",
+    "target_id": "kuo2",
+    "entity_id": "kuo",
+    "label": "PERSON",
+    "quote": "Kuo",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Invoice TW-2025-118 covers 14 hours of Japanese to English translation at 1,350 NT dollars an hour, so the total is 18,900 NT dollars before tax is withheld."
+   },
+   {
+    "quote": "approved the draft on 9 October, the agreed due date was 24 October, and the money has still not arrived."
+   },
+   {
+    "quote": "assistant replied yesterday that the payment was delayed by a change in the bank form, not by any dispute over my work."
+   },
+   {
+    "quote": "She promised an answer by Friday but did not give an amount or a date for the transfer."
+   }
+  ],
+  "approved_output": "Invoice TW-2025-118 covers 14 hours of Japanese to English translation at 1,350 NT dollars an hour, so the total is 18,900 NT dollars before tax is withheld. [PERSON_1] at [ORG] approved the draft on 9 October, the agreed due date was 24 October, and the money has still not arrived.\n\n[PERSON_1]'s assistant replied yesterday that the payment was delayed by a change in the bank form, not by any dispute over my work. She promised an answer by Friday but did not give an amount or a date for the transfer.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f04-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f04-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f04-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f04-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f04-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Balance reminder for the Zeng wedding: the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open. The shoot took place on 19 July at the Fenqihu hillside venue, my second shooter, Fang Kuan-Ting, handled the album proofs, and I delivered the edited gallery on 2 August.\n\nTwo other bookings in August fell through because I spent nine days in hospital with a kidney infection. I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates.\n\nThe Zeng family asked yesterday if they can pay in two parts, half on 15 December and the rest after the new year. I told them I would check my cash flow first. I have not said yes or no.\n\nBank transfers go to account 7710-2284-0095, reference ZW-0719.",
+  "task": "Write a short explanation for my bookkeeper of why my August income fell, what I refunded and what money is still outstanding.",
+  "entities": [
+   {
+    "id": "zeng1",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 1
+   },
+   {
+    "id": "bal",
+    "entity_id": "bal",
+    "label": "FINANCIAL",
+    "quote": "the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open."
+   },
+   {
+    "id": "fang",
+    "entity_id": "fang",
+    "label": "PERSON",
+    "quote": "Fang Kuan-Ting"
+   },
+   {
+    "id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "Two other bookings in August fell through because I spent nine days in hospital with a kidney infection."
+   },
+   {
+    "id": "refund",
+    "entity_id": "refund",
+    "label": "FINANCIAL",
+    "quote": "I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates."
+   },
+   {
+    "id": "zeng2",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 2
+   },
+   {
+    "id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "7710-2284-0095"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "zeng1",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "bal",
+    "entity_id": "bal",
+    "label": "FINANCIAL",
+    "quote": "the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fang",
+    "entity_id": "fang",
+    "label": "PERSON",
+    "quote": "Fang Kuan-Ting",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "Two other bookings in August fell through because I spent nine days in hospital with a kidney infection.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "refund",
+    "entity_id": "refund",
+    "label": "FINANCIAL",
+    "quote": "I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "zeng2",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "7710-2284-0095",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Account number is a direct financial identifier; replaced by a placeholder, the task does not need the exact value."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Two other bookings in August fell through because I spent nine days in hospital with a kidney infection."
+   },
+   {
+    "quote": "I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates."
+   },
+   {
+    "quote": "the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open."
+   }
+  ],
+  "approved_output": "Balance reminder for the [PERSON_1] wedding: the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open. The shoot took place on 19 July at the Fenqihu hillside venue, my second shooter, [PERSON_2], handled the album proofs, and I delivered the edited gallery on 2 August.\n\nTwo other bookings in August fell through because I spent nine days in hospital with a kidney infection. I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates.\n\nThe [PERSON_1] family asked yesterday if they can pay in two parts, half on 15 December and the rest after the new year. I told them I would check my cash flow first. I have not said yes or no.\n\nBank transfers go to account [ACCOUNT_ID], reference ZW-0719.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f04-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f04-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f04-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f04-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f04-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Balance reminder for the Zeng wedding: the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open. The shoot took place on 19 July at the Fenqihu hillside venue, my second shooter, Fang Kuan-Ting, handled the album proofs, and I delivered the edited gallery on 2 August.\n\nTwo other bookings in August fell through because I spent nine days in hospital with a kidney infection. I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates.\n\nThe Zeng family asked yesterday if they can pay in two parts, half on 15 December and the rest after the new year. I told them I would check my cash flow first. I have not said yes or no.\n\nBank transfers go to account 7710-2284-0095, reference ZW-0719.",
+  "task": "Draft a friendly reply to the family about their request to pay the balance in two parts.",
+  "entities": [
+   {
+    "id": "zeng1",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 1
+   },
+   {
+    "id": "bal",
+    "entity_id": "bal",
+    "label": "FINANCIAL",
+    "quote": "the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open."
+   },
+   {
+    "id": "fang",
+    "entity_id": "fang",
+    "label": "PERSON",
+    "quote": "Fang Kuan-Ting"
+   },
+   {
+    "id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "Two other bookings in August fell through because I spent nine days in hospital with a kidney infection."
+   },
+   {
+    "id": "refund",
+    "entity_id": "refund",
+    "label": "FINANCIAL",
+    "quote": "I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates."
+   },
+   {
+    "id": "zeng2",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 2
+   },
+   {
+    "id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "7710-2284-0095"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "zeng1",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "bal",
+    "entity_id": "bal",
+    "label": "FINANCIAL",
+    "quote": "the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fang",
+    "entity_id": "fang",
+    "label": "PERSON",
+    "quote": "Fang Kuan-Ting",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Two other bookings in August fell through because I spent nine days in hospital with a kidney infection. I refunded both deposits, 5,000 NT dollars each, and I will not be rebooking those dates.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The writer's hospital stay and refunds on other bookings are not needed to answer the family's instalment request."
+   },
+   {
+    "kind": "entity",
+    "target_id": "zeng2",
+    "entity_id": "zeng",
+    "label": "PERSON",
+    "quote": "Zeng",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "acct",
+    "label": "ACCOUNT_ID",
+    "quote": "7710-2284-0095",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Account number is a direct financial identifier; replaced by a placeholder, the task does not need the exact value."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open."
+   },
+   {
+    "quote": "asked yesterday if they can pay in two parts, half on 15 December and the rest after the new year."
+   },
+   {
+    "quote": "I told them I would check my cash flow first."
+   },
+   {
+    "quote": "I have not said yes or no."
+   }
+  ],
+  "approved_output": "Balance reminder for the [PERSON_1] wedding: the package was 48,000 NT dollars, they paid 20,000 as a deposit in June, and 28,000 is still open. The shoot took place on 19 July at the Fenqihu hillside venue, my second shooter, [PERSON_2], handled the album proofs, and I delivered the edited gallery on 2 August.\n\nThe [PERSON_1] family asked yesterday if they can pay in two parts, half on 15 December and the rest after the new year. I told them I would check my cash flow first. I have not said yes or no.\n\nBank transfers go to account [ACCOUNT_ID], reference ZW-0719.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f05-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f05-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f05-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f05-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f05-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The stationery invoice from Rongsheng Paper Supplies is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November. Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees.\n\nZhan Yi-Ting's claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days. The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.\n\nUnder the framework agreement the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars. Please keep that rate out of anything shared outside finance.\n\nQuestions go to the payables desk at ap-desk@fenghuang-parts.example.invalid.",
+  "task": "Calculate how much of this claim can be reimbursed under the stated limit and flag anything that needs a manager's sign-off.",
+  "entities": [
+   {
+    "id": "supplier",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Rongsheng Paper Supplies"
+   },
+   {
+    "id": "inv",
+    "entity_id": "inv",
+    "label": "FINANCIAL",
+    "quote": "is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November."
+   },
+   {
+    "id": "zhan",
+    "entity_id": "zhan",
+    "label": "PERSON",
+    "quote": "Zhan Yi-Ting"
+   },
+   {
+    "id": "clm",
+    "entity_id": "clm",
+    "label": "FINANCIAL",
+    "quote": "claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days."
+   },
+   {
+    "id": "pol",
+    "entity_id": "pol",
+    "label": "FINANCIAL",
+    "quote": "The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached."
+   },
+   {
+    "id": "reb",
+    "entity_id": "reb",
+    "label": "FINANCIAL",
+    "quote": "the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ap-desk@fenghuang-parts.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "The stationery invoice from Rongsheng Paper Supplies is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November. Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A supplier stationery invoice and its payment terms are not needed to check an employee's travel claim."
+   },
+   {
+    "kind": "entity",
+    "target_id": "zhan",
+    "entity_id": "zhan",
+    "label": "PERSON",
+    "quote": "Zhan Yi-Ting",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "clm",
+    "entity_id": "clm",
+    "label": "FINANCIAL",
+    "quote": "claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "pol",
+    "label": "FINANCIAL",
+    "quote": "The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "Under the framework agreement the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars. Please keep that rate out of anything shared outside finance.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The supplier rebate terms are confidential to finance and neither task needs them; they must not reach an external AI."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ap-desk@fenghuang-parts.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days."
+   },
+   {
+    "quote": "The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached."
+   }
+  ],
+  "approved_output": "[PERSON_1]'s claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days. The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.\n\nQuestions go to the payables desk at [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f05-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f05-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f05-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f05-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f05-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The stationery invoice from Rongsheng Paper Supplies is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November. Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees.\n\nZhan Yi-Ting's claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days. The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.\n\nUnder the framework agreement the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars. Please keep that rate out of anything shared outside finance.\n\nQuestions go to the payables desk at ap-desk@fenghuang-parts.example.invalid.",
+  "task": "Write a short note to the budget owner saying whether this invoice is ready to be scheduled for payment and when.",
+  "entities": [
+   {
+    "id": "supplier",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Rongsheng Paper Supplies"
+   },
+   {
+    "id": "inv",
+    "entity_id": "inv",
+    "label": "FINANCIAL",
+    "quote": "is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November."
+   },
+   {
+    "id": "zhan",
+    "entity_id": "zhan",
+    "label": "PERSON",
+    "quote": "Zhan Yi-Ting"
+   },
+   {
+    "id": "clm",
+    "entity_id": "clm",
+    "label": "FINANCIAL",
+    "quote": "claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days."
+   },
+   {
+    "id": "pol",
+    "entity_id": "pol",
+    "label": "FINANCIAL",
+    "quote": "The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached."
+   },
+   {
+    "id": "reb",
+    "entity_id": "reb",
+    "label": "FINANCIAL",
+    "quote": "the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ap-desk@fenghuang-parts.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "supplier",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Rongsheng Paper Supplies",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "inv",
+    "entity_id": "inv",
+    "label": "FINANCIAL",
+    "quote": "is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "Zhan Yi-Ting's claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days. The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "An individual employee's travel claim and the hotel policy cap are not needed to confirm a supplier invoice for payment."
+   },
+   {
+    "kind": "section",
+    "quote": "Under the framework agreement the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars. Please keep that rate out of anything shared outside finance.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The supplier rebate terms are confidential to finance and neither task needs them; they must not reach an external AI."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "ap-desk@fenghuang-parts.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November."
+   },
+   {
+    "quote": "Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees."
+   }
+  ],
+  "approved_output": "The stationery invoice from [ORG] is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November. Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees.\n\nQuestions go to the payables desk at [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f06-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f06-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f06-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f06-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f06-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I drive for a ride-hailing platform in Taoyuan and my 2025 earnings were about 31,000 NT dollars a month from January to June. My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August. After that I averaged 24,500 a month until December because I only work mornings now. I posted the signed authorisation form on Monday to Mr Dai Kai-Xiang's office and haven't heard back, and I'd like to know what else is missing before the 15 January deadline for the paperwork. My wife, Peng Shu-Hui, handles the household accounts and has the fuel receipts, but she is travelling until the 12th.",
+  "task": "Summarise my 2025 income month by month so I can fill in the income section of the tax return.",
+  "entities": [
+   {
+    "id": "knee",
+    "entity_id": "knee",
+    "label": "HEALTH",
+    "quote": "My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August."
+   },
+   {
+    "id": "dai",
+    "entity_id": "dai",
+    "label": "PERSON",
+    "quote": "Dai Kai-Xiang"
+   },
+   {
+    "id": "peng",
+    "entity_id": "peng",
+    "label": "PERSON",
+    "quote": "Peng Shu-Hui"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "knee",
+    "entity_id": "knee",
+    "label": "HEALTH",
+    "quote": "My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dai",
+    "entity_id": "dai",
+    "label": "PERSON",
+    "quote": "Dai Kai-Xiang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "peng",
+    "entity_id": "peng",
+    "label": "PERSON",
+    "quote": "Peng Shu-Hui",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my 2025 earnings were about 31,000 NT dollars a month from January to June."
+   },
+   {
+    "quote": "My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August."
+   },
+   {
+    "quote": "After that I averaged 24,500 a month until December because I only work mornings now."
+   }
+  ],
+  "approved_output": "I drive for a ride-hailing platform in Taoyuan and my 2025 earnings were about 31,000 NT dollars a month from January to June. My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August. After that I averaged 24,500 a month until December because I only work mornings now. I posted the signed authorisation form on Monday to Mr [PERSON_1]'s office and haven't heard back, and I'd like to know what else is missing before the 15 January deadline for the paperwork. My wife, [PERSON_2], handles the household accounts and has the fuel receipts, but she is travelling until the 12th.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f06-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f06-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f06-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f06-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f06-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I drive for a ride-hailing platform in Taoyuan and my 2025 earnings were about 31,000 NT dollars a month from January to June. My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August. After that I averaged 24,500 a month until December because I only work mornings now. I posted the signed authorisation form on Monday to Mr Dai Kai-Xiang's office and haven't heard back, and I'd like to know what else is missing before the 15 January deadline for the paperwork. My wife, Peng Shu-Hui, handles the household accounts and has the fuel receipts, but she is travelling until the 12th.",
+  "task": "Write a short message asking whether my signed form arrived and what else is still needed before the deadline.",
+  "entities": [
+   {
+    "id": "knee",
+    "entity_id": "knee",
+    "label": "HEALTH",
+    "quote": "My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August."
+   },
+   {
+    "id": "dai",
+    "entity_id": "dai",
+    "label": "PERSON",
+    "quote": "Dai Kai-Xiang"
+   },
+   {
+    "id": "peng",
+    "entity_id": "peng",
+    "label": "PERSON",
+    "quote": "Peng Shu-Hui"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "My knee operation in July kept me off the road for six weeks, so I earned nothing between 8 July and 18 August. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The operation and recovery weeks are not needed to ask whether a form arrived and what else is missing."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dai",
+    "entity_id": "dai",
+    "label": "PERSON",
+    "quote": "Dai Kai-Xiang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "peng",
+    "entity_id": "peng",
+    "label": "PERSON",
+    "quote": "Peng Shu-Hui",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I posted the signed authorisation form on Monday"
+   },
+   {
+    "quote": "haven't heard back, and I'd like to know what else is missing before the 15 January deadline for the paperwork."
+   },
+   {
+    "quote": "My wife,"
+   },
+   {
+    "quote": "handles the household accounts and has the fuel receipts, but she is travelling until the 12th."
+   }
+  ],
+  "approved_output": "I drive for a ride-hailing platform in Taoyuan and my 2025 earnings were about 31,000 NT dollars a month from January to June. After that I averaged 24,500 a month until December because I only work mornings now. I posted the signed authorisation form on Monday to Mr [PERSON_1]'s office and haven't heard back, and I'd like to know what else is missing before the 15 January deadline for the paperwork. My wife, [PERSON_2], handles the household accounts and has the fuel receipts, but she is travelling until the 12th.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f07-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f07-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f07-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f07-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f07-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The Hsinchu clinic booking system project had three milestones at 25,000 NT dollars each. The client, Ye Chien-Hao, paid milestone 1 on 12 September and milestone 3 on 20 November, but milestone 2 is still unpaid. I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late. The contract has a late-delivery penalty of 5 percent per week, and Ye's colleague, Soong Mei-Ling, said by phone that the finance team would only waive it if I explained the delay in writing. I invoiced all three milestones on the same day and have not changed any bank details.",
+  "task": "Draft a short message to the client explaining why milestone 2 was late and asking them to waive the late-delivery penalty.",
+  "entities": [
+   {
+    "id": "ye1",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye Chien-Hao"
+   },
+   {
+    "id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late."
+   },
+   {
+    "id": "pen",
+    "entity_id": "pen",
+    "label": "FINANCIAL",
+    "quote": "The contract has a late-delivery penalty of 5 percent per week"
+   },
+   {
+    "id": "ye2",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye",
+    "occurrence": 2
+   },
+   {
+    "id": "soong",
+    "entity_id": "soong",
+    "label": "PERSON",
+    "quote": "Soong Mei-Ling"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ye1",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye Chien-Hao",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pen",
+    "entity_id": "pen",
+    "label": "FINANCIAL",
+    "quote": "The contract has a late-delivery penalty of 5 percent per week",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ye2",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "soong",
+    "entity_id": "soong",
+    "label": "PERSON",
+    "quote": "Soong Mei-Ling",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late."
+   },
+   {
+    "quote": "The contract has a late-delivery penalty of 5 percent per week,"
+   },
+   {
+    "quote": "said by phone that the finance team would only waive it if I explained the delay in writing."
+   }
+  ],
+  "approved_output": "The Hsinchu clinic booking system project had three milestones at 25,000 NT dollars each. The client, [PERSON_1], paid milestone 1 on 12 September and milestone 3 on 20 November, but milestone 2 is still unpaid. I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late. The contract has a late-delivery penalty of 5 percent per week, and [PERSON_1]'s colleague, [PERSON_2], said by phone that the finance team would only waive it if I explained the delay in writing. I invoiced all three milestones on the same day and have not changed any bank details.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f07-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f07-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f07-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f07-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f07-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The Hsinchu clinic booking system project had three milestones at 25,000 NT dollars each. The client, Ye Chien-Hao, paid milestone 1 on 12 September and milestone 3 on 20 November, but milestone 2 is still unpaid. I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late. The contract has a late-delivery penalty of 5 percent per week, and Ye's colleague, Soong Mei-Ling, said by phone that the finance team would only waive it if I explained the delay in writing. I invoiced all three milestones on the same day and have not changed any bank details.",
+  "task": "List what the client has paid and what is still outstanding for each milestone.",
+  "entities": [
+   {
+    "id": "ye1",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye Chien-Hao"
+   },
+   {
+    "id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late."
+   },
+   {
+    "id": "pen",
+    "entity_id": "pen",
+    "label": "FINANCIAL",
+    "quote": "The contract has a late-delivery penalty of 5 percent per week"
+   },
+   {
+    "id": "ye2",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye",
+    "occurrence": 2
+   },
+   {
+    "id": "soong",
+    "entity_id": "soong",
+    "label": "PERSON",
+    "quote": "Soong Mei-Ling"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ye1",
+    "entity_id": "ye",
+    "label": "PERSON",
+    "quote": "Ye Chien-Hao",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "I was off sick for the last week of October with a throat infection, which is why milestone 2 was delivered five days late. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The writer's sick leave is not needed to list which milestone payments were received or are outstanding."
+   },
+   {
+    "kind": "section",
+    "quote": "The contract has a late-delivery penalty of 5 percent per week, and Ye's colleague, Soong Mei-Ling, said by phone that the finance team would only waive it if I explained the delay in writing. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The late-delivery penalty and the call about waiving it do not change which milestones are paid or outstanding."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The Hsinchu clinic booking system project had three milestones at 25,000 NT dollars each."
+   },
+   {
+    "quote": "paid milestone 1 on 12 September and milestone 3 on 20 November, but milestone 2 is still unpaid."
+   }
+  ],
+  "approved_output": "The Hsinchu clinic booking system project had three milestones at 25,000 NT dollars each. The client, [PERSON_1], paid milestone 1 on 12 September and milestone 3 on 20 November, but milestone 2 is still unpaid. I invoiced all three milestones on the same day and have not changed any bank details.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f08-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f08-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f08-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f08-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f08-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 48291 from Baoshan Cold Storage: label exports have failed since the 3 November update, and their warehouse lead, Hung Chia-Wei, says pallet labels now print without barcodes. We reproduced it on version 5.2.1 and found that exporting to PDF works while exporting to ZPL fails with a font error, so the temporary workaround is to switch the export format to PDF. Engineering expects a patch by 12 November, but that date is not confirmed. As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each, approved by the support lead, Yu Shu-Ling, on 6 November. Hung asked that all replies go to the shared mailbox cold-ops@baoshan-storage.example.invalid and not to his own address.",
+  "task": "Draft the reply to the customer that closes out this ticket and tells them what they can expect from us.",
+  "entities": [
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ORG",
+    "quote": "Baoshan Cold Storage"
+   },
+   {
+    "id": "hung1",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung Chia-Wei"
+   },
+   {
+    "id": "refund",
+    "entity_id": "refund",
+    "label": "FINANCIAL",
+    "quote": "As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each"
+   },
+   {
+    "id": "yu",
+    "entity_id": "yu",
+    "label": "PERSON",
+    "quote": "Yu Shu-Ling"
+   },
+   {
+    "id": "hung2",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung",
+    "occurrence": 2
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "cold-ops@baoshan-storage.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ORG",
+    "quote": "Baoshan Cold Storage",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "hung1",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung Chia-Wei",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "refund",
+    "entity_id": "refund",
+    "label": "FINANCIAL",
+    "quote": "As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "yu",
+    "entity_id": "yu",
+    "label": "PERSON",
+    "quote": "Yu Shu-Ling",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hung2",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "cold-ops@baoshan-storage.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "exporting to PDF works while exporting to ZPL fails with a font error, so the temporary workaround is to switch the export format to PDF."
+   },
+   {
+    "quote": "Engineering expects a patch by 12 November, but that date is not confirmed."
+   },
+   {
+    "quote": "As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each,"
+   },
+   {
+    "quote": "asked that all replies go to the shared mailbox"
+   },
+   {
+    "quote": "and not to his own address."
+   }
+  ],
+  "approved_output": "Ticket 48291 from [ORG]: label exports have failed since the 3 November update, and their warehouse lead, [PERSON_1], says pallet labels now print without barcodes. We reproduced it on version 5.2.1 and found that exporting to PDF works while exporting to ZPL fails with a font error, so the temporary workaround is to switch the export format to PDF. Engineering expects a patch by 12 November, but that date is not confirmed. As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each, approved by the support lead, [PERSON_2], on 6 November. [PERSON_1] asked that all replies go to the shared mailbox [EMAIL] and not to his own address.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f08-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f08-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f08-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f08-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f08-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 48291 from Baoshan Cold Storage: label exports have failed since the 3 November update, and their warehouse lead, Hung Chia-Wei, says pallet labels now print without barcodes. We reproduced it on version 5.2.1 and found that exporting to PDF works while exporting to ZPL fails with a font error, so the temporary workaround is to switch the export format to PDF. Engineering expects a patch by 12 November, but that date is not confirmed. As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each, approved by the support lead, Yu Shu-Ling, on 6 November. Hung asked that all replies go to the shared mailbox cold-ops@baoshan-storage.example.invalid and not to his own address.",
+  "task": "Write a handover summary of the technical fault, the workaround and the patch status for the on-call engineer.",
+  "entities": [
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ORG",
+    "quote": "Baoshan Cold Storage"
+   },
+   {
+    "id": "hung1",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung Chia-Wei"
+   },
+   {
+    "id": "refund",
+    "entity_id": "refund",
+    "label": "FINANCIAL",
+    "quote": "As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each"
+   },
+   {
+    "id": "yu",
+    "entity_id": "yu",
+    "label": "PERSON",
+    "quote": "Yu Shu-Ling"
+   },
+   {
+    "id": "hung2",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung",
+    "occurrence": 2
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "cold-ops@baoshan-storage.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ORG",
+    "quote": "Baoshan Cold Storage",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "hung1",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung Chia-Wei",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "As goodwill we agreed to refund their last two monthly fees of 3,900 NT dollars each, approved by the support lead, Yu Shu-Ling, on 6 November. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The goodwill refund and who approved it are billing matters that an engineer taking over the fault does not need."
+   },
+   {
+    "kind": "entity",
+    "target_id": "hung2",
+    "entity_id": "hung",
+    "label": "PERSON",
+    "quote": "Hung",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "cold-ops@baoshan-storage.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "label exports have failed since the 3 November update,"
+   },
+   {
+    "quote": "says pallet labels now print without barcodes."
+   },
+   {
+    "quote": "We reproduced it on version 5.2.1 and found that exporting to PDF works while exporting to ZPL fails with a font error, so the temporary workaround is to switch the export format to PDF."
+   },
+   {
+    "quote": "Engineering expects a patch by 12 November, but that date is not confirmed."
+   }
+  ],
+  "approved_output": "Ticket 48291 from [ORG]: label exports have failed since the 3 November update, and their warehouse lead, [PERSON_1], says pallet labels now print without barcodes. We reproduced it on version 5.2.1 and found that exporting to PDF works while exporting to ZPL fails with a font error, so the temporary workaround is to switch the export format to PDF. Engineering expects a patch by 12 November, but that date is not confirmed. [PERSON_1] asked that all replies go to the shared mailbox [EMAIL] and not to his own address.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f09-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f09-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f09-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f09-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f09-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: Re: invoice 2025-31, remaining questions\n\nHi Ms Pan,\n\nThanks for the quick reply. Where we stand:\n- Invoice 2025-31 is for 12 character illustrations at 2,800 NT dollars each, 33,600 NT dollars in total.\n- You paid 15,000 NT dollars on 3 October, so 18,600 is outstanding.\n- I can accept the rest in two instalments, 10,000 by 30 November and the remainder by 15 January.\n- I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November.\n- Please send payment queries to my studio address, studio@zhuangart.example.invalid, not my personal one.\n\nBest,\nZhuang Yi-Fan",
+  "task": "The client has now asked for three rush revisions next week. Draft my answer, saying what I can take on.",
+  "entities": [
+   {
+    "id": "pan",
+    "entity_id": "pan",
+    "label": "PERSON",
+    "quote": "Pan"
+   },
+   {
+    "id": "phys",
+    "entity_id": "phys",
+    "label": "HEALTH",
+    "quote": "I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November."
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "studio@zhuangart.example.invalid"
+   },
+   {
+    "id": "me",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Zhuang Yi-Fan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pan",
+    "entity_id": "pan",
+    "label": "PERSON",
+    "quote": "Pan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phys",
+    "entity_id": "phys",
+    "label": "HEALTH",
+    "quote": "I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "studio@zhuangart.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "me",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Zhuang Yi-Fan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November."
+   }
+  ],
+  "approved_output": "Subject: Re: invoice 2025-31, remaining questions\n\nHi Ms [PERSON_1],\n\nThanks for the quick reply. Where we stand:\n- Invoice 2025-31 is for 12 character illustrations at 2,800 NT dollars each, 33,600 NT dollars in total.\n- You paid 15,000 NT dollars on 3 October, so 18,600 is outstanding.\n- I can accept the rest in two instalments, 10,000 by 30 November and the remainder by 15 January.\n- I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November.\n- Please send payment queries to my studio address, [EMAIL], not my personal one.\n\nBest,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f09-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f09-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f09-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f09-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f09-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: Re: invoice 2025-31, remaining questions\n\nHi Ms Pan,\n\nThanks for the quick reply. Where we stand:\n- Invoice 2025-31 is for 12 character illustrations at 2,800 NT dollars each, 33,600 NT dollars in total.\n- You paid 15,000 NT dollars on 3 October, so 18,600 is outstanding.\n- I can accept the rest in two instalments, 10,000 by 30 November and the remainder by 15 January.\n- I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November.\n- Please send payment queries to my studio address, studio@zhuangart.example.invalid, not my personal one.\n\nBest,\nZhuang Yi-Fan",
+  "task": "Turn this message into a table of the invoice total, payments received, the balance and the instalment dates.",
+  "entities": [
+   {
+    "id": "pan",
+    "entity_id": "pan",
+    "label": "PERSON",
+    "quote": "Pan"
+   },
+   {
+    "id": "phys",
+    "entity_id": "phys",
+    "label": "HEALTH",
+    "quote": "I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November."
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "studio@zhuangart.example.invalid"
+   },
+   {
+    "id": "me",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Zhuang Yi-Fan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pan",
+    "entity_id": "pan",
+    "label": "PERSON",
+    "quote": "Pan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "- I'm having physiotherapy for my wrist twice a week, so I can't take any rush revisions before 20 November.\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Treatment sessions and the writer's revision availability are not needed for a table of totals, payments and instalment dates."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "studio@zhuangart.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   },
+   {
+    "kind": "entity",
+    "target_id": "me",
+    "entity_id": "me",
+    "label": "PERSON",
+    "quote": "Zhuang Yi-Fan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Invoice 2025-31 is for 12 character illustrations at 2,800 NT dollars each, 33,600 NT dollars in total."
+   },
+   {
+    "quote": "You paid 15,000 NT dollars on 3 October, so 18,600 is outstanding."
+   },
+   {
+    "quote": "I can accept the rest in two instalments, 10,000 by 30 November and the remainder by 15 January."
+   }
+  ],
+  "approved_output": "Subject: Re: invoice 2025-31, remaining questions\n\nHi Ms [PERSON_1],\n\nThanks for the quick reply. Where we stand:\n- Invoice 2025-31 is for 12 character illustrations at 2,800 NT dollars each, 33,600 NT dollars in total.\n- You paid 15,000 NT dollars on 3 October, so 18,600 is outstanding.\n- I can accept the rest in two instalments, 10,000 by 30 November and the remainder by 15 January.\n- Please send payment queries to my studio address, [EMAIL], not my personal one.\n\nBest,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f10-keep",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f10-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f10-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f10-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f10-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Q4 team spend - items to settle in November\nline,owner,item,amount_ntd,status\n1,Sun Wen-Jie,Venue deposit for Hualien offsite,48000,paid 2 Nov\n2,Sun Wen-Jie,Coach hire for the offsite,22500,quote only - not booked yet\n3,Kao Li-Ting,Team dinner after the offsite,16800,receipt attached\n4,Kao Li-Ting,Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct\n5,Tseng Hao-Yuan,Software licence renewal,31200,invoice due 20 Nov\n6,Tseng Hao-Yuan,Printer toner,2350,paid by card 5 Nov",
+  "task": "Add up every amount here that finance still has to pay out in November and name the lines that are not yet paid.",
+  "entities": [
+   {
+    "id": "sun1",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 1
+   },
+   {
+    "id": "sun2",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 2
+   },
+   {
+    "id": "kao1",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 1
+   },
+   {
+    "id": "kao2",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 2
+   },
+   {
+    "id": "adv",
+    "entity_id": "adv",
+    "label": "EMPLOYMENT",
+    "quote": "Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct"
+   },
+   {
+    "id": "ts1",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 1
+   },
+   {
+    "id": "ts2",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "sun1",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sun2",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "kao1",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "kao2",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "adv",
+    "entity_id": "adv",
+    "label": "EMPLOYMENT",
+    "quote": "Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ts1",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ts2",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Venue deposit for Hualien offsite,48000,paid 2 Nov"
+   },
+   {
+    "quote": "Coach hire for the offsite,22500,quote only - not booked yet"
+   },
+   {
+    "quote": "Team dinner after the offsite,16800,receipt attached"
+   },
+   {
+    "quote": "Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct"
+   },
+   {
+    "quote": "Software licence renewal,31200,invoice due 20 Nov"
+   },
+   {
+    "quote": "Printer toner,2350,paid by card 5 Nov"
+   }
+  ],
+  "approved_output": "Q4 team spend - items to settle in November\nline,owner,item,amount_ntd,status\n1,[PERSON_1],Venue deposit for Hualien offsite,48000,paid 2 Nov\n2,[PERSON_1],Coach hire for the offsite,22500,quote only - not booked yet\n3,[PERSON_2],Team dinner after the offsite,16800,receipt attached\n4,[PERSON_2],Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct\n5,[PERSON_3],Software licence renewal,31200,invoice due 20 Nov\n6,[PERSON_3],Printer toner,2350,paid by card 5 Nov",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f10-drop",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:f10-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:f10-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:f10-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:f10-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Q4 team spend - items to settle in November\nline,owner,item,amount_ntd,status\n1,Sun Wen-Jie,Venue deposit for Hualien offsite,48000,paid 2 Nov\n2,Sun Wen-Jie,Coach hire for the offsite,22500,quote only - not booked yet\n3,Kao Li-Ting,Team dinner after the offsite,16800,receipt attached\n4,Kao Li-Ting,Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct\n5,Tseng Hao-Yuan,Software licence renewal,31200,invoice due 20 Nov\n6,Tseng Hao-Yuan,Printer toner,2350,paid by card 5 Nov",
+  "task": "Work out the total cost of the offsite from these lines and flag anything that is only a quote.",
+  "entities": [
+   {
+    "id": "sun1",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 1
+   },
+   {
+    "id": "sun2",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 2
+   },
+   {
+    "id": "kao1",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 1
+   },
+   {
+    "id": "kao2",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 2
+   },
+   {
+    "id": "adv",
+    "entity_id": "adv",
+    "label": "EMPLOYMENT",
+    "quote": "Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct"
+   },
+   {
+    "id": "ts1",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 1
+   },
+   {
+    "id": "ts2",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "sun1",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sun2",
+    "entity_id": "sun",
+    "label": "PERSON",
+    "quote": "Sun Wen-Jie",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "kao1",
+    "entity_id": "kao",
+    "label": "PERSON",
+    "quote": "Kao Li-Ting",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "4,Kao Li-Ting,Relocation advance (transfer to Taichung),90000,approved by HR 28 Oct\n",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A staff relocation advance is a personnel payment, not part of the offsite cost, so the cost calculation does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ts1",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ts2",
+    "entity_id": "tseng",
+    "label": "PERSON",
+    "quote": "Tseng Hao-Yuan",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Venue deposit for Hualien offsite,48000,paid 2 Nov"
+   },
+   {
+    "quote": "Coach hire for the offsite,22500,quote only - not booked yet"
+   },
+   {
+    "quote": "Team dinner after the offsite,16800,receipt attached"
+   }
+  ],
+  "approved_output": "Q4 team spend - items to settle in November\nline,owner,item,amount_ntd,status\n1,[PERSON_1],Venue deposit for Hualien offsite,48000,paid 2 Nov\n2,[PERSON_1],Coach hire for the offsite,22500,quote only - not booked yet\n3,[PERSON_2],Team dinner after the offsite,16800,receipt attached\n5,[PERSON_3],Software licence renewal,31200,invoice due 20 Nov\n6,[PERSON_3],Printer toner,2350,paid by card 5 Nov",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-c1-relevant-sensitive",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:c1-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:c1-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:c1-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:c1-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "My daughter's orthodontic treatment started in February: braces fitting 38,000 NT dollars, six adjustment visits at 1,200 each, and retainers 6,500 NT dollars. The receipts are all in the name of my daughter, Chiu Ai-Lin.\n\nThe clinic, Meihua Family Dental, gave me an itemised receipt for the fitting only, so I still need receipts for the adjustments and retainers. Our insurance reimbursed 10,000 NT dollars of the fitting.\n\nMy husband, Chiu Bo-Han, thinks the amount for the retainers may not be deductible, but I have not asked the tax office. I plan to file online before the deadline on 31 May.",
+  "task": "Add up the medical costs I can put on the return after the insurance payment and list which receipts I still have to collect.",
+  "entities": [
+   {
+    "id": "h",
+    "entity_id": "h",
+    "label": "HEALTH",
+    "quote": "My daughter's orthodontic treatment started in February: braces fitting 38,000 NT dollars, six adjustment visits at 1,200 each, and retainers 6,500 NT dollars."
+   },
+   {
+    "id": "ai",
+    "entity_id": "ai",
+    "label": "PERSON",
+    "quote": "Chiu Ai-Lin"
+   },
+   {
+    "id": "dental",
+    "entity_id": "dental",
+    "label": "ORG",
+    "quote": "Meihua Family Dental"
+   },
+   {
+    "id": "ins",
+    "entity_id": "ins",
+    "label": "FINANCIAL",
+    "quote": "Our insurance reimbursed 10,000 NT dollars of the fitting."
+   },
+   {
+    "id": "bo",
+    "entity_id": "bo",
+    "label": "PERSON",
+    "quote": "Chiu Bo-Han"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h",
+    "entity_id": "h",
+    "label": "HEALTH",
+    "quote": "My daughter's orthodontic treatment started in February: braces fitting 38,000 NT dollars, six adjustment visits at 1,200 each, and retainers 6,500 NT dollars.",
+    "action": "KEEP",
+    "relevance": "essential",
+    "reason": "Treatment costs are the core of the requested total."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ai",
+    "entity_id": "ai",
+    "label": "PERSON",
+    "quote": "Chiu Ai-Lin",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dental",
+    "entity_id": "dental",
+    "label": "ORG",
+    "quote": "Meihua Family Dental",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ins",
+    "entity_id": "ins",
+    "label": "FINANCIAL",
+    "quote": "Our insurance reimbursed 10,000 NT dollars of the fitting.",
+    "action": "KEEP",
+    "relevance": "essential",
+    "reason": "The insurance payment reduces the claimable total."
+   },
+   {
+    "kind": "entity",
+    "target_id": "bo",
+    "entity_id": "bo",
+    "label": "PERSON",
+    "quote": "Chiu Bo-Han",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My daughter's orthodontic treatment started in February: braces fitting 38,000 NT dollars, six adjustment visits at 1,200 each, and retainers 6,500 NT dollars."
+   },
+   {
+    "quote": "Our insurance reimbursed 10,000 NT dollars of the fitting."
+   },
+   {
+    "quote": "The clinic,"
+   },
+   {
+    "quote": "gave me an itemised receipt for the fitting only, so I still need receipts for the adjustments and retainers."
+   },
+   {
+    "quote": "My husband,"
+   },
+   {
+    "quote": "thinks the amount for the retainers may not be deductible, but I have not asked the tax office."
+   }
+  ],
+  "approved_output": "My daughter's orthodontic treatment started in February: braces fitting 38,000 NT dollars, six adjustment visits at 1,200 each, and retainers 6,500 NT dollars. The receipts are all in the name of my daughter, [PERSON_1].\n\nThe clinic, [ORG], gave me an itemised receipt for the fitting only, so I still need receipts for the adjustments and retainers. Our insurance reimbursed 10,000 NT dollars of the fitting.\n\nMy husband, [PERSON_2], thinks the amount for the retainers may not be deductible, but I have not asked the tax office. I plan to file online before the deadline on 31 May.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-c2-relevant-sensitive",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:c2-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:c2-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:c2-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:c2-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I booked the Zhulin Sound Studio for 14 and 15 November at 2,400 NT dollars an hour, four hours each day, with a deposit of 8,000. On 12 November I came down with the flu and cancelled by email at 9 in the morning, which is less than 48 hours before.\n\nThe booking terms say that a cancellation inside 48 hours forfeits the deposit but a doctor's note can waive it, and I have a note from my GP covering 12 to 14 November. The studio manager, Shen Ju-An, replied that she needs the note by Friday before she can decide.\n\nPlease send the note to shen-ju-an.bookings@zhulin-studio.example.invalid. I would also like to check the arithmetic: eight hours at 2,400 is 19,200 NT dollars, so the deposit is under half.",
+  "task": "Draft an email asking the studio to waive the forfeited deposit, using the cancellation timing and the booking terms.",
+  "entities": [
+   {
+    "id": "studio",
+    "entity_id": "studio",
+    "label": "ORG",
+    "quote": "Zhulin Sound Studio"
+   },
+   {
+    "id": "flu",
+    "entity_id": "flu",
+    "label": "HEALTH",
+    "quote": "On 12 November I came down with the flu and cancelled by email at 9 in the morning, which is less than 48 hours before."
+   },
+   {
+    "id": "gp",
+    "entity_id": "gp",
+    "label": "HEALTH",
+    "quote": "I have a note from my GP covering 12 to 14 November"
+   },
+   {
+    "id": "shen",
+    "entity_id": "shen",
+    "label": "PERSON",
+    "quote": "Shen Ju-An"
+   },
+   {
+    "id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "shen-ju-an.bookings@zhulin-studio.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "studio",
+    "entity_id": "studio",
+    "label": "ORG",
+    "quote": "Zhulin Sound Studio",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "flu",
+    "entity_id": "flu",
+    "label": "HEALTH",
+    "quote": "On 12 November I came down with the flu and cancelled by email at 9 in the morning, which is less than 48 hours before.",
+    "action": "KEEP",
+    "relevance": "essential",
+    "reason": "The illness date and late cancellation are the basis of the waiver request."
+   },
+   {
+    "kind": "entity",
+    "target_id": "gp",
+    "entity_id": "gp",
+    "label": "HEALTH",
+    "quote": "I have a note from my GP covering 12 to 14 November",
+    "action": "KEEP",
+    "relevance": "essential",
+    "reason": "The doctor's note is the condition that waives the forfeit."
+   },
+   {
+    "kind": "entity",
+    "target_id": "shen",
+    "entity_id": "shen",
+    "label": "PERSON",
+    "quote": "Shen Ju-An",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mail",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "shen-ju-an.bookings@zhulin-studio.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact address is a direct identifier; replaced by a placeholder, the task does not need the exact address."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "On 12 November I came down with the flu and cancelled by email at 9 in the morning, which is less than 48 hours before."
+   },
+   {
+    "quote": "The booking terms say that a cancellation inside 48 hours forfeits the deposit but a doctor's note can waive it, and I have a note from my GP covering 12 to 14 November."
+   },
+   {
+    "quote": "replied that she needs the note by Friday before she can decide."
+   }
+  ],
+  "approved_output": "I booked the [ORG] for 14 and 15 November at 2,400 NT dollars an hour, four hours each day, with a deposit of 8,000. On 12 November I came down with the flu and cancelled by email at 9 in the morning, which is less than 48 hours before.\n\nThe booking terms say that a cancellation inside 48 hours forfeits the deposit but a doctor's note can waive it, and I have a note from my GP covering 12 to 14 November. The studio manager, [PERSON_1], replied that she needs the note by Friday before she can decide.\n\nPlease send the note to [EMAIL]. I would also like to check the arithmetic: eight hours at 2,400 is 19,200 NT dollars, so the deposit is under half.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-c3-relevant-sensitive",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:c3-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:c3-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:c3-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:c3-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 51207 from Yongfu Bicycle Parts: their developer, Ma Zhi-Qiang, reports 401 errors on the orders endpoint since 5 November. He pasted the key he is calling with, k7q-4091-zv88-ptw3, and says it worked until the key rotation on 31 October.\n\nOur records show that the old key expired at 23:59 on 31 October and that the new key was never emailed because the contact address on file bounced. Mr Ma says their monthly invoice of 28,000 NT dollars was also charged twice on 1 November, and he wants the duplicate refunded.",
+  "task": "Draft a reply that explains why the orders endpoint returns 401, how they can get a working key, and what we will do about the invoice.",
+  "entities": [
+   {
+    "id": "cust",
+    "entity_id": "cust",
+    "label": "ORG",
+    "quote": "Yongfu Bicycle Parts"
+   },
+   {
+    "id": "ma1",
+    "entity_id": "ma",
+    "label": "PERSON",
+    "quote": "Ma Zhi-Qiang"
+   },
+   {
+    "id": "key",
+    "entity_id": "key",
+    "label": "SECRET",
+    "quote": "k7q-4091-zv88-ptw3"
+   },
+   {
+    "id": "ma2",
+    "entity_id": "ma",
+    "label": "PERSON",
+    "quote": "Ma",
+    "occurrence": 2
+   },
+   {
+    "id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "their monthly invoice of 28,000 NT dollars was also charged twice on 1 November"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "cust",
+    "entity_id": "cust",
+    "label": "ORG",
+    "quote": "Yongfu Bicycle Parts",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ma1",
+    "entity_id": "ma",
+    "label": "PERSON",
+    "quote": "Ma Zhi-Qiang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "key",
+    "entity_id": "key",
+    "label": "SECRET",
+    "quote": "k7q-4091-zv88-ptw3",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "A live-style API key is a credential and must not reach an external AI; the exact value cannot be compared with the expired key, which is a utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ma2",
+    "entity_id": "ma",
+    "label": "PERSON",
+    "quote": "Ma",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "their monthly invoice of 28,000 NT dollars was also charged twice on 1 November",
+    "action": "KEEP",
+    "relevance": "essential",
+    "reason": "The double charge is the customer's own billing issue and the reply goes to that customer."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "reports 401 errors on the orders endpoint since 5 November."
+   },
+   {
+    "quote": "and says it worked until the key rotation on 31 October."
+   },
+   {
+    "quote": "Our records show that the old key expired at 23:59 on 31 October and that the new key was never emailed because the contact address on file bounced."
+   },
+   {
+    "quote": "says their monthly invoice of 28,000 NT dollars was also charged twice on 1 November, and he wants the duplicate refunded."
+   }
+  ],
+  "approved_output": "Ticket 51207 from [ORG]: their developer, [PERSON_1], reports 401 errors on the orders endpoint since 5 November. He pasted the key he is calling with, [SECRET], and says it worked until the key rotation on 31 October.\n\nOur records show that the old key expired at 23:59 on 31 October and that the new key was never emailed because the contact address on file bounced. Mr [PERSON_1] says their monthly invoice of 28,000 NT dollars was also charged twice on 1 November, and he wants the duplicate refunded.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-c4-benign",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:c4-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:c4-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:c4-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:c4-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Invoice checklist from my own template notes. Number invoices in sequence, for example 2025-001, 2025-002 and so on. State the currency and the payment term, such as 14 days from the issue date. List each deliverable on its own line with hours, rate and subtotal. Put the bank details at the bottom of the PDF, never in the email body. Show the total in bold at the end, and add one line about overdue amounts, for instance a reminder after 7 days. Send the invoice as a PDF and keep the editable file for corrections.",
+  "task": "Turn this into a one-page invoice template I can reuse for my freelance clients.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "Put the bank details at the bottom of the PDF, never in the email body."
+   },
+   {
+    "quote": "State the currency and the payment term, such as 14 days from the issue date."
+   }
+  ],
+  "approved_output": "Invoice checklist from my own template notes. Number invoices in sequence, for example 2025-001, 2025-002 and so on. State the currency and the payment term, such as 14 days from the issue date. List each deliverable on its own line with hours, rate and subtotal. Put the bank details at the bottom of the PDF, never in the email body. Show the total in bold at the end, and add one line about overdue amounts, for instance a reminder after 7 days. Send the invoice as a PDF and keep the editable file for corrections.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "7686eba46340443fb5f6b9fac2e111ec",
+  "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-c5-vague-task",
+  "family_id": "7686eba46340443fb5f6b9fac2e111ec:c5-fam",
+  "source_id": "7686eba46340443fb5f6b9fac2e111ec:c5-src",
+  "persona_id": "7686eba46340443fb5f6b9fac2e111ec:c5-persona",
+  "template_id": "7686eba46340443fb5f6b9fac2e111ec:c5-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Tax stuff to sort before January. Ask Ms Zhou at the tax counter about the home-office claim, I think she said to bring the lease. My landlord, Mr Jian Wen-Han, still has not given me a signed copy, his number is 02 2774 3981. The portal login is the one I made in March, username meilan_tw_0412. There was a letter about an underpayment of 4,300 NT dollars, not sure if it is mine or my old flatmate's. Maybe ask about the hospital bill from August, and my brother says I should declare the 12,000 from selling my camera. Pharmacy receipts are in the blue folder.",
+  "task": "Help me organise this note.",
+  "entities": [
+   {
+    "id": "zhou",
+    "entity_id": "zhou",
+    "label": "PERSON",
+    "quote": "Zhou"
+   },
+   {
+    "id": "jian",
+    "entity_id": "jian",
+    "label": "PERSON",
+    "quote": "Jian Wen-Han"
+   },
+   {
+    "id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "02 2774 3981"
+   },
+   {
+    "id": "user",
+    "entity_id": "user",
+    "label": "USERNAME",
+    "quote": "meilan_tw_0412"
+   },
+   {
+    "id": "under",
+    "entity_id": "under",
+    "label": "FINANCIAL",
+    "quote": "There was a letter about an underpayment of 4,300 NT dollars, not sure if it is mine or my old flatmate's."
+   },
+   {
+    "id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "the hospital bill from August"
+   },
+   {
+    "id": "camera",
+    "entity_id": "camera",
+    "label": "FINANCIAL",
+    "quote": "declare the 12,000 from selling my camera"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "zhou",
+    "entity_id": "zhou",
+    "label": "PERSON",
+    "quote": "Zhou",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "jian",
+    "entity_id": "jian",
+    "label": "PERSON",
+    "quote": "Jian Wen-Han",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "02 2774 3981",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Landlord's phone number is a direct identifier; masked, and an organised to-do list does not need the digits."
+   },
+   {
+    "kind": "entity",
+    "target_id": "user",
+    "entity_id": "user",
+    "label": "USERNAME",
+    "quote": "meilan_tw_0412",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Portal username is a credential identifier; masked, and the list only needs to say a login exists."
+   },
+   {
+    "kind": "entity",
+    "target_id": "under",
+    "entity_id": "under",
+    "label": "FINANCIAL",
+    "quote": "There was a letter about an underpayment of 4,300 NT dollars, not sure if it is mine or my old flatmate's.",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Plausibly a to-do item for the note, but the task does not say which items matter, so relevance stays uncertain."
+   },
+   {
+    "kind": "entity",
+    "target_id": "hosp",
+    "entity_id": "hosp",
+    "label": "HEALTH",
+    "quote": "the hospital bill from August",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Might be a deduction question to organise; the vague task does not establish whether it matters."
+   },
+   {
+    "kind": "entity",
+    "target_id": "camera",
+    "entity_id": "camera",
+    "label": "FINANCIAL",
+    "quote": "declare the 12,000 from selling my camera",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Possible income to declare; the vague task does not say how the note will be used."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I think she said to bring the lease."
+   },
+   {
+    "quote": "Pharmacy receipts are in the blue folder."
+   }
+  ],
+  "approved_output": "Tax stuff to sort before January. Ask Ms [PERSON_1] at the tax counter about the home-office claim, I think she said to bring the lease. My landlord, Mr [PERSON_2], still has not given me a signed copy, his number is [PHONE]. The portal login is the one I made in March, username [USERNAME]. There was a letter about an underpayment of 4,300 NT dollars, not sure if it is mine or my old flatmate's. Maybe ask about the hospital bill from August, and my brother says I should declare the 12,000 from selling my camera. Pharmacy receipts are in the blue folder.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "7686eba46340443fb5f6b9fac2e111ec:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

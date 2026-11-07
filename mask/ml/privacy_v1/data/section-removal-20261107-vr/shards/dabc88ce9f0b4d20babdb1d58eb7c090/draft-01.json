@@ -1,0 +1,3447 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-claim",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Our Zanzibar trip was booked for 14 to 21 March through a travel agent in Kisumu, and the insurer's assessor wants a clear sequence of events before deciding the cancellation claim. I am the policyholder, Otieno Ochieng, policy TX-48213-K, and my wife Achieng Odhiambo is the second traveller. The agent we dealt with was Barasa Wekesa.\n\nTwo days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks. He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later; my wife was not unwell and could have travelled alone.\n\nThe policy excess is KES 5,000 per claim. The hospital invoice came to KES 86,500, which I paid by card. The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable.\n\nYou can reach me on 0712 555 0148 or otieno.o@example.invalid.",
+  "task": "Draft the claim letter to the insurer's assessor setting out how the cancellation came about and the evidence behind it.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "otieno",
+    "label": "PERSON",
+    "quote": "Otieno Ochieng"
+   },
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TX-48213-K"
+   },
+   {
+    "id": "n2",
+    "entity_id": "achieng",
+    "label": "PERSON",
+    "quote": "Achieng Odhiambo"
+   },
+   {
+    "id": "n3",
+    "entity_id": "barasa",
+    "label": "PERSON",
+    "quote": "Barasa Wekesa"
+   },
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "Two days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks."
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later"
+   },
+   {
+    "id": "h3",
+    "entity_id": "h3",
+    "label": "HEALTH",
+    "quote": "my wife was not unwell and could have travelled alone"
+   },
+   {
+    "id": "m3",
+    "entity_id": "m3",
+    "label": "FINANCIAL",
+    "quote": "The policy excess is KES 5,000 per claim."
+   },
+   {
+    "id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "The hospital invoice came to KES 86,500, which I paid by card."
+   },
+   {
+    "id": "m2",
+    "entity_id": "m2",
+    "label": "FINANCIAL",
+    "quote": "The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable."
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0712 555 0148"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "otieno.o@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "otieno",
+    "label": "PERSON",
+    "quote": "Otieno Ochieng",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TX-48213-K",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The policy number would identify the file for the assessor but is an account identifier that must be hidden; the user must add it back, so exact file matching is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "achieng",
+    "label": "PERSON",
+    "quote": "Achieng Odhiambo",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "barasa",
+    "label": "PERSON",
+    "quote": "Barasa Wekesa",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "Two days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "h3",
+    "label": "HEALTH",
+    "quote": "my wife was not unwell and could have travelled alone",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "m3",
+    "label": "FINANCIAL",
+    "quote": "The policy excess is KES 5,000 per claim.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "The hospital invoice came to KES 86,500, which I paid by card.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "m2",
+    "label": "FINANCIAL",
+    "quote": "The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0712 555 0148",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "otieno.o@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Two days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks."
+   },
+   {
+    "quote": "my wife was not unwell and could have travelled alone"
+   },
+   {
+    "quote": "The policy excess is KES 5,000 per claim."
+   },
+   {
+    "quote": "The hospital invoice came to KES 86,500, which I paid by card."
+   },
+   {
+    "quote": "The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable."
+   }
+  ],
+  "approved_output": "Our Zanzibar trip was booked for 14 to 21 March through a travel agent in Kisumu, and the insurer's assessor wants a clear sequence of events before deciding the cancellation claim. I am the policyholder, [PERSON_1], policy [ACCOUNT_ID], and my wife [PERSON_2] is the second traveller. The agent we dealt with was [PERSON_3].\n\nTwo days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks. He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later; my wife was not unwell and could have travelled alone.\n\nThe policy excess is KES 5,000 per claim. The hospital invoice came to KES 86,500, which I paid by card. The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable.\n\nYou can reach me on [PHONE] or [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-agent",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f1-zanzibar-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Our Zanzibar trip was booked for 14 to 21 March through a travel agent in Kisumu, and the insurer's assessor wants a clear sequence of events before deciding the cancellation claim. I am the policyholder, Otieno Ochieng, policy TX-48213-K, and my wife Achieng Odhiambo is the second traveller. The agent we dealt with was Barasa Wekesa.\n\nTwo days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks. He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later; my wife was not unwell and could have travelled alone.\n\nThe policy excess is KES 5,000 per claim. The hospital invoice came to KES 86,500, which I paid by card. The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable.\n\nYou can reach me on 0712 555 0148 or otieno.o@example.invalid.",
+  "task": "Write an email to the travel agent asking them to confirm in writing which parts of what I paid were refunded and why the rest was kept.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "otieno",
+    "label": "PERSON",
+    "quote": "Otieno Ochieng"
+   },
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TX-48213-K"
+   },
+   {
+    "id": "n2",
+    "entity_id": "achieng",
+    "label": "PERSON",
+    "quote": "Achieng Odhiambo"
+   },
+   {
+    "id": "n3",
+    "entity_id": "barasa",
+    "label": "PERSON",
+    "quote": "Barasa Wekesa"
+   },
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "Two days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks."
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later"
+   },
+   {
+    "id": "h3",
+    "entity_id": "h3",
+    "label": "HEALTH",
+    "quote": "my wife was not unwell and could have travelled alone"
+   },
+   {
+    "id": "m3",
+    "entity_id": "m3",
+    "label": "FINANCIAL",
+    "quote": "The policy excess is KES 5,000 per claim."
+   },
+   {
+    "id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "The hospital invoice came to KES 86,500, which I paid by card."
+   },
+   {
+    "id": "m2",
+    "entity_id": "m2",
+    "label": "FINANCIAL",
+    "quote": "The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable."
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0712 555 0148"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "otieno.o@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "otieno",
+    "label": "PERSON",
+    "quote": "Otieno Ochieng",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TX-48213-K",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "achieng",
+    "label": "PERSON",
+    "quote": "Achieng Odhiambo",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "barasa",
+    "label": "PERSON",
+    "quote": "Barasa Wekesa",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Two days before departure I was admitted overnight with a kidney stone, and the urologist told me not to fly for three weeks. He started me on tamsulosin 0.4 mg once daily and booked a repeat scan ten days later; my wife was not unwell and could have travelled alone.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The agent's refund query needs only the payment and refund facts; the clinical diagnosis, treatment and the wife's health are not needed to ask what was refunded."
+   },
+   {
+    "kind": "section",
+    "quote": "The policy excess is KES 5,000 per claim. The hospital invoice came to KES 86,500, which I paid by card. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The excess and the hospital invoice concern the insurer claim, not the agent's refund of the booking fee and deposit."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "m2",
+    "label": "FINANCIAL",
+    "quote": "The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0712 555 0148",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "otieno.o@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable."
+   }
+  ],
+  "approved_output": "Our Zanzibar trip was booked for 14 to 21 March through a travel agent in Kisumu, and the insurer's assessor wants a clear sequence of events before deciding the cancellation claim. I am the policyholder, [PERSON_1], policy [ACCOUNT_ID], and my wife [PERSON_2] is the second traveller. The agent we dealt with was [PERSON_3].\n\nThe agent refunded the 12,000 shilling booking fee but kept the KES 45,000 deposit because the airline ticket was non-refundable.\n\nYou can reach me on [PHONE] or [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-costs",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Flight ET 8451 from Addis Ababa to Nairobi was due to land at 19:40 on 3 June but finally arrived at 01:15 the next day, after the crew first reported a technical fault and then a crew-hours problem. I am Tigist Mengistu, I was travelling alone, and the booking reference is QW7K2P.\n\nThe airline gave me a 250 birr meal voucher and nothing for a hotel, because I slept at the airport on two chairs. I did not ask for a refund of the taxi fare. The duty manager at the gate, Kidist Abebe, wrote the delay times on a letter for me. Please confirm what I am owed and when it will be paid. My email is tigist.t@example.invalid.\n\nMy brother stayed with our mother that night, and I paid a neighbour 1,800 birr to sit with her until he arrived. She has advanced dementia and cannot be left alone after dark. He had to swap a night shift to do it, so I owe him a favour.",
+  "task": "Write the complaint to the airline asking them to reimburse every cost this delay caused me, with the amounts and the reasons for each.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "tigist",
+    "label": "PERSON",
+    "quote": "Tigist Mengistu"
+   },
+   {
+    "id": "ref",
+    "entity_id": "booking",
+    "label": "ACCOUNT_ID",
+    "quote": "QW7K2P"
+   },
+   {
+    "id": "n2",
+    "entity_id": "kidist",
+    "label": "PERSON",
+    "quote": "Kidist Abebe"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "tigist.t@example.invalid"
+   },
+   {
+    "id": "fam",
+    "entity_id": "fam",
+    "label": "FAMILY",
+    "quote": "My brother stayed with our mother that night"
+   },
+   {
+    "id": "pay",
+    "entity_id": "pay",
+    "label": "FINANCIAL",
+    "quote": "I paid a neighbour 1,800 birr to sit with her until he arrived"
+   },
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "She has advanced dementia and cannot be left alone after dark."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "tigist",
+    "label": "PERSON",
+    "quote": "Tigist Mengistu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "booking",
+    "label": "ACCOUNT_ID",
+    "quote": "QW7K2P",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The booking reference identifies the ticket for the airline but is an account identifier that must be hidden; the user must add it back, so exact booking lookup is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "kidist",
+    "label": "PERSON",
+    "quote": "Kidist Abebe",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "tigist.t@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam",
+    "entity_id": "fam",
+    "label": "FAMILY",
+    "quote": "My brother stayed with our mother that night",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pay",
+    "entity_id": "pay",
+    "label": "FINANCIAL",
+    "quote": "I paid a neighbour 1,800 birr to sit with her until he arrived",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "She has advanced dementia and cannot be left alone after dark.",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The airline gave me a 250 birr meal voucher and nothing for a hotel, because I slept at the airport on two chairs."
+   },
+   {
+    "quote": "I did not ask for a refund of the taxi fare."
+   },
+   {
+    "quote": "My brother stayed with our mother that night, and I paid a neighbour 1,800 birr to sit with her until he arrived."
+   },
+   {
+    "quote": "She has advanced dementia and cannot be left alone after dark."
+   }
+  ],
+  "approved_output": "Flight ET 8451 from Addis Ababa to Nairobi was due to land at 19:40 on 3 June but finally arrived at 01:15 the next day, after the crew first reported a technical fault and then a crew-hours problem. I am [PERSON_1], I was travelling alone, and the booking reference is [ACCOUNT_ID].\n\nThe airline gave me a 250 birr meal voucher and nothing for a hotel, because I slept at the airport on two chairs. I did not ask for a refund of the taxi fare. The duty manager at the gate, [PERSON_2], wrote the delay times on a letter for me. Please confirm what I am owed and when it will be paid. My email is [EMAIL].\n\nMy brother stayed with our mother that night, and I paid a neighbour 1,800 birr to sit with her until he arrived. She has advanced dementia and cannot be left alone after dark. He had to swap a night shift to do it, so I owe him a favour.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-form",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f2-addis-nairobi-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Flight ET 8451 from Addis Ababa to Nairobi was due to land at 19:40 on 3 June but finally arrived at 01:15 the next day, after the crew first reported a technical fault and then a crew-hours problem. I am Tigist Mengistu, I was travelling alone, and the booking reference is QW7K2P.\n\nThe airline gave me a 250 birr meal voucher and nothing for a hotel, because I slept at the airport on two chairs. I did not ask for a refund of the taxi fare. The duty manager at the gate, Kidist Abebe, wrote the delay times on a letter for me. Please confirm what I am owed and when it will be paid. My email is tigist.t@example.invalid.\n\nMy brother stayed with our mother that night, and I paid a neighbour 1,800 birr to sit with her until he arrived. She has advanced dementia and cannot be left alone after dark. He had to swap a night shift to do it, so I owe him a favour.",
+  "task": "Summarise the delay for the airline's compensation form: scheduled arrival, actual arrival, the reason the airline gave, and what it already gave me.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "tigist",
+    "label": "PERSON",
+    "quote": "Tigist Mengistu"
+   },
+   {
+    "id": "ref",
+    "entity_id": "booking",
+    "label": "ACCOUNT_ID",
+    "quote": "QW7K2P"
+   },
+   {
+    "id": "n2",
+    "entity_id": "kidist",
+    "label": "PERSON",
+    "quote": "Kidist Abebe"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "tigist.t@example.invalid"
+   },
+   {
+    "id": "fam",
+    "entity_id": "fam",
+    "label": "FAMILY",
+    "quote": "My brother stayed with our mother that night"
+   },
+   {
+    "id": "pay",
+    "entity_id": "pay",
+    "label": "FINANCIAL",
+    "quote": "I paid a neighbour 1,800 birr to sit with her until he arrived"
+   },
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "She has advanced dementia and cannot be left alone after dark."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "tigist",
+    "label": "PERSON",
+    "quote": "Tigist Mengistu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "booking",
+    "label": "ACCOUNT_ID",
+    "quote": "QW7K2P",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The booking reference is needed to file the form but is an account identifier that must be hidden; the user must enter it, so exact lookup is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "kidist",
+    "label": "PERSON",
+    "quote": "Kidist Abebe",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "tigist.t@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nMy brother stayed with our mother that night, and I paid a neighbour 1,800 birr to sit with her until he arrived. She has advanced dementia and cannot be left alone after dark. He had to swap a night shift to do it, so I owe him a favour.",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The compensation form needs flight times, the stated reason and what the airline provided; the mother's care arrangements, her condition and the brother's shift swap are not needed."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Flight ET 8451 from Addis Ababa to Nairobi was due to land at 19:40 on 3 June but finally arrived at 01:15 the next day, after the crew first reported a technical fault and then a crew-hours problem."
+   },
+   {
+    "quote": "The airline gave me a 250 birr meal voucher and nothing for a hotel, because I slept at the airport on two chairs."
+   }
+  ],
+  "approved_output": "Flight ET 8451 from Addis Ababa to Nairobi was due to land at 19:40 on 3 June but finally arrived at 01:15 the next day, after the crew first reported a technical fault and then a crew-hours problem. I am [PERSON_1], I was travelling alone, and the booking reference is [ACCOUNT_ID].\n\nThe airline gave me a 250 birr meal voucher and nothing for a hotel, because I slept at the airport on two chairs. I did not ask for a refund of the taxi fare. The duty manager at the gate, [PERSON_2], wrote the delay times on a letter for me. Please confirm what I am owed and when it will be paid. My email is [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-declare",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I'm going to Mombasa for my cousin's wedding from 9 to 16 August, flying out of Addis with a one-hour layover in Nairobi, and I bought an annual multi-trip plan, policy number SS-770124, mainly because the baggage cover looked decent. The hotel in Nyali is paid in full and the wedding is on the Saturday. Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it. The plan wants any declaration within 14 days of purchase, which ends on 20 July. Nobody else in the group has insurance. My phone is +251 91 555 0179, and my sister Bethlehem Worku is collecting the spare key.",
+  "task": "Help me work out what I should tell the insurer, and by when, based on what I've written.",
+  "entities": [
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "SS-770124"
+   },
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it."
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0179"
+   },
+   {
+    "id": "n1",
+    "entity_id": "bethlehem",
+    "label": "PERSON",
+    "quote": "Bethlehem Worku"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "SS-770124",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0179",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "bethlehem",
+    "label": "PERSON",
+    "quote": "Bethlehem Worku",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it."
+   },
+   {
+    "quote": "The plan wants any declaration within 14 days of purchase, which ends on 20 July."
+   }
+  ],
+  "approved_output": "I'm going to Mombasa for my cousin's wedding from 9 to 16 August, flying out of Addis with a one-hour layover in Nairobi, and I bought an annual multi-trip plan, policy number [ACCOUNT_ID], mainly because the baggage cover looked decent. The hotel in Nyali is paid in full and the wedding is on the Saturday. Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it. The plan wants any declaration within 14 days of purchase, which ends on 20 July. Nobody else in the group has insurance. My phone is [PHONE], and my sister [PERSON_1] is collecting the spare key.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-hotel",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f3-mombasa-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I'm going to Mombasa for my cousin's wedding from 9 to 16 August, flying out of Addis with a one-hour layover in Nairobi, and I bought an annual multi-trip plan, policy number SS-770124, mainly because the baggage cover looked decent. The hotel in Nyali is paid in full and the wedding is on the Saturday. Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it. The plan wants any declaration within 14 days of purchase, which ends on 20 July. Nobody else in the group has insurance. My phone is +251 91 555 0179, and my sister Bethlehem Worku is collecting the spare key.",
+  "task": "Write a short message to the hotel in Nyali confirming my stay from the 9th to the 16th and asking whether they can arrange an airport pickup.",
+  "entities": [
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "SS-770124"
+   },
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it."
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0179"
+   },
+   {
+    "id": "n1",
+    "entity_id": "bethlehem",
+    "label": "PERSON",
+    "quote": "Bethlehem Worku"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "SS-770124",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "section",
+    "quote": "Since my heart-rhythm procedure in January I take bisoprolol 2.5 mg every morning, my cardiologist said flying is fine, and I haven't told the insurer about any of it. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A hotel confirmation and pickup request needs dates and arrival logistics; the cardiac procedure, medication and what was told to the insurer are not needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0179",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "bethlehem",
+    "label": "PERSON",
+    "quote": "Bethlehem Worku",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm going to Mombasa for my cousin's wedding from 9 to 16 August, flying out of Addis with a one-hour layover in Nairobi"
+   },
+   {
+    "quote": "The hotel in Nyali is paid in full and the wedding is on the Saturday."
+   }
+  ],
+  "approved_output": "I'm going to Mombasa for my cousin's wedding from 9 to 16 August, flying out of Addis with a one-hour layover in Nairobi, and I bought an annual multi-trip plan, policy number [ACCOUNT_ID], mainly because the baggage cover looked decent. The hotel in Nyali is paid in full and the wedding is on the Saturday. The plan wants any declaration within 14 days of purchase, which ends on 20 July. Nobody else in the group has insurance. My phone is [PHONE], and my sister [PERSON_1] is collecting the spare key.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-claim",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The 07:10 flight from Eldoret to Nairobi was pushed back four times, and we only got a text at 09:30 saying it would leave at noon, with nothing said at the gate in between. I'm Kipchirchir Rotich and I was travelling with my colleague Naliaka Simiyu to a training day. The gate staff kept telling us to check the app, but the app still showed the old time. My manager docked KES 4,200 from my pay for the shift I missed at the depot. I have emailed Naliaka's supervisor to confirm she was told the same. We did get a free sandwich and a drink at 10:30. The agent on the phone, Wafula Masinde, said a written statement would arrive within 10 days if I quote reference LK4-93810. Please reply to kip.rotich@example.invalid.",
+  "task": "Draft a claim to the airline listing every loss this delay caused me and what I want paid back.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "kip",
+    "label": "PERSON",
+    "quote": "Kipchirchir Rotich"
+   },
+   {
+    "id": "n2",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka Simiyu"
+   },
+   {
+    "id": "n2b",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka",
+    "occurrence": 2
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "My manager docked KES 4,200 from my pay for the shift I missed at the depot."
+   },
+   {
+    "id": "n3",
+    "entity_id": "wafula",
+    "label": "PERSON",
+    "quote": "Wafula Masinde"
+   },
+   {
+    "id": "ref",
+    "entity_id": "ref",
+    "label": "ACCOUNT_ID",
+    "quote": "LK4-93810"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "kip.rotich@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "kip",
+    "label": "PERSON",
+    "quote": "Kipchirchir Rotich",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka Simiyu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "My manager docked KES 4,200 from my pay for the shift I missed at the depot.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2b",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "wafula",
+    "label": "PERSON",
+    "quote": "Wafula Masinde",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "ref",
+    "label": "ACCOUNT_ID",
+    "quote": "LK4-93810",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The phone agent's reference identifies the case for the airline but is an account identifier that must be hidden; the user must add it back, so exact case lookup is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "kip.rotich@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The 07:10 flight from Eldoret to Nairobi was pushed back four times"
+   },
+   {
+    "quote": "My manager docked KES 4,200 from my pay for the shift I missed at the depot."
+   }
+  ],
+  "approved_output": "The 07:10 flight from Eldoret to Nairobi was pushed back four times, and we only got a text at 09:30 saying it would leave at noon, with nothing said at the gate in between. I'm [PERSON_1] and I was travelling with my colleague [PERSON_2] to a training day. The gate staff kept telling us to check the app, but the app still showed the old time. My manager docked KES 4,200 from my pay for the shift I missed at the depot. I have emailed [PERSON_2]'s supervisor to confirm she was told the same. We did get a free sandwich and a drink at 10:30. The agent on the phone, [PERSON_3], said a written statement would arrive within 10 days if I quote reference [ACCOUNT_ID]. Please reply to [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-feedback",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f4-eldoret-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The 07:10 flight from Eldoret to Nairobi was pushed back four times, and we only got a text at 09:30 saying it would leave at noon, with nothing said at the gate in between. I'm Kipchirchir Rotich and I was travelling with my colleague Naliaka Simiyu to a training day. The gate staff kept telling us to check the app, but the app still showed the old time. My manager docked KES 4,200 from my pay for the shift I missed at the depot. I have emailed Naliaka's supervisor to confirm she was told the same. We did get a free sandwich and a drink at 10:30. The agent on the phone, Wafula Masinde, said a written statement would arrive within 10 days if I quote reference LK4-93810. Please reply to kip.rotich@example.invalid.",
+  "task": "Write a feedback email to the airline about how the delay was communicated at the gate and in the app.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "kip",
+    "label": "PERSON",
+    "quote": "Kipchirchir Rotich"
+   },
+   {
+    "id": "n2",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka Simiyu"
+   },
+   {
+    "id": "n2b",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka",
+    "occurrence": 2
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "My manager docked KES 4,200 from my pay for the shift I missed at the depot."
+   },
+   {
+    "id": "n3",
+    "entity_id": "wafula",
+    "label": "PERSON",
+    "quote": "Wafula Masinde"
+   },
+   {
+    "id": "ref",
+    "entity_id": "ref",
+    "label": "ACCOUNT_ID",
+    "quote": "LK4-93810"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "kip.rotich@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "kip",
+    "label": "PERSON",
+    "quote": "Kipchirchir Rotich",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka Simiyu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "My manager docked KES 4,200 from my pay for the shift I missed at the depot. ",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Feedback on gate and app communication does not need the employer's pay deduction; no communication fact depends on it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2b",
+    "entity_id": "naliaka",
+    "label": "PERSON",
+    "quote": "Naliaka",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "wafula",
+    "label": "PERSON",
+    "quote": "Wafula Masinde",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "ref",
+    "label": "ACCOUNT_ID",
+    "quote": "LK4-93810",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "kip.rotich@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "we only got a text at 09:30 saying it would leave at noon, with nothing said at the gate in between"
+   },
+   {
+    "quote": "The gate staff kept telling us to check the app, but the app still showed the old time."
+   }
+  ],
+  "approved_output": "The 07:10 flight from Eldoret to Nairobi was pushed back four times, and we only got a text at 09:30 saying it would leave at noon, with nothing said at the gate in between. I'm [PERSON_1] and I was travelling with my colleague [PERSON_2] to a training day. The gate staff kept telling us to check the app, but the app still showed the old time. I have emailed [PERSON_2]'s supervisor to confirm she was told the same. We did get a free sandwich and a drink at 10:30. The agent on the phone, [PERSON_3], said a written statement would arrive within 10 days if I quote reference [ACCOUNT_ID]. Please reply to [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-insurer",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it. The treatment was an adrenaline injection and three hours on a drip, and the bill was AED 1,150, which I paid in cash and have a receipt for.\n\nThe suitcase failed to arrive on 12 October, and the airline's baggage desk gave me a property irregularity report numbered DXB-LX-55902 that I have not yet sent to anyone. The bag held two school-uniform dresses for my daughter, a laptop sleeve, a pair of leather sandals and my work files for the Kapsabet exams. I estimate the replacement value at about KES 62,000, but the laptop itself was in my hand luggage.\n\nI am Chebet Koskei, a primary-school teacher, and my husband Kiprop Langat booked the trip on his card, although the policy TG-2061-M is in my name only. Please use chebet.k@example.invalid.",
+  "task": "Draft my claim to the travel insurer for the money I lost on this trip, with what happened behind each item.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it."
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "The treatment was an adrenaline injection and three hours on a drip"
+   },
+   {
+    "id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "the bill was AED 1,150, which I paid in cash and have a receipt for"
+   },
+   {
+    "id": "ref",
+    "entity_id": "pir",
+    "label": "ACCOUNT_ID",
+    "quote": "DXB-LX-55902"
+   },
+   {
+    "id": "n1",
+    "entity_id": "chebet",
+    "label": "PERSON",
+    "quote": "Chebet Koskei"
+   },
+   {
+    "id": "n2",
+    "entity_id": "kiprop",
+    "label": "PERSON",
+    "quote": "Kiprop Langat"
+   },
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TG-2061-M"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "chebet.k@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "The treatment was an adrenaline injection and three hours on a drip",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "the bill was AED 1,150, which I paid in cash and have a receipt for",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "pir",
+    "label": "ACCOUNT_ID",
+    "quote": "DXB-LX-55902",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The airline's report number supports the baggage item but is an account identifier that must be hidden; the user must add it back, so exact report lookup is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "chebet",
+    "label": "PERSON",
+    "quote": "Chebet Koskei",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "kiprop",
+    "label": "PERSON",
+    "quote": "Kiprop Langat",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TG-2061-M",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The policy number would identify the file for the insurer but is an account identifier that must be hidden; the user must add it back, so exact file matching is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "chebet.k@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it."
+   },
+   {
+    "quote": "The treatment was an adrenaline injection and three hours on a drip"
+   },
+   {
+    "quote": "the bill was AED 1,150, which I paid in cash and have a receipt for"
+   },
+   {
+    "quote": "The bag held two school-uniform dresses for my daughter, a laptop sleeve, a pair of leather sandals and my work files for the Kapsabet exams."
+   },
+   {
+    "quote": "I estimate the replacement value at about KES 62,000, but the laptop itself was in my hand luggage."
+   }
+  ],
+  "approved_output": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it. The treatment was an adrenaline injection and three hours on a drip, and the bill was AED 1,150, which I paid in cash and have a receipt for.\n\nThe suitcase failed to arrive on 12 October, and the airline's baggage desk gave me a property irregularity report numbered [ACCOUNT_ID] that I have not yet sent to anyone. The bag held two school-uniform dresses for my daughter, a laptop sleeve, a pair of leather sandals and my work files for the Kapsabet exams. I estimate the replacement value at about KES 62,000, but the laptop itself was in my hand luggage.\n\nI am [PERSON_1], a primary-school teacher, and my husband [PERSON_2] booked the trip on his card, although the policy [ACCOUNT_ID] is in my name only. Please use [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-baggage",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f5-dubai-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it. The treatment was an adrenaline injection and three hours on a drip, and the bill was AED 1,150, which I paid in cash and have a receipt for.\n\nThe suitcase failed to arrive on 12 October, and the airline's baggage desk gave me a property irregularity report numbered DXB-LX-55902 that I have not yet sent to anyone. The bag held two school-uniform dresses for my daughter, a laptop sleeve, a pair of leather sandals and my work files for the Kapsabet exams. I estimate the replacement value at about KES 62,000, but the laptop itself was in my hand luggage.\n\nI am Chebet Koskei, a primary-school teacher, and my husband Kiprop Langat booked the trip on his card, although the policy TG-2061-M is in my name only. Please use chebet.k@example.invalid.",
+  "task": "Draft the lost baggage report for the airline's baggage desk, listing the items and their estimated value.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it."
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "The treatment was an adrenaline injection and three hours on a drip"
+   },
+   {
+    "id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "the bill was AED 1,150, which I paid in cash and have a receipt for"
+   },
+   {
+    "id": "ref",
+    "entity_id": "pir",
+    "label": "ACCOUNT_ID",
+    "quote": "DXB-LX-55902"
+   },
+   {
+    "id": "n1",
+    "entity_id": "chebet",
+    "label": "PERSON",
+    "quote": "Chebet Koskei"
+   },
+   {
+    "id": "n2",
+    "entity_id": "kiprop",
+    "label": "PERSON",
+    "quote": "Kiprop Langat"
+   },
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TG-2061-M"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "chebet.k@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "On the second night of our Dubai trip I was taken to a clinic with a severe allergic reaction after a hotel dinner, and the doctor said it was probably peanuts although they never confirmed it. The treatment was an adrenaline injection and three hours on a drip, and the bill was AED 1,150, which I paid in cash and have a receipt for.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A lost-baggage report to the airline needs the items, value and arrival date; the clinic visit, allergic reaction, treatment and its bill are not needed."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "pir",
+    "label": "ACCOUNT_ID",
+    "quote": "DXB-LX-55902",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The airline's report number is needed to link the report but is an account identifier that must be hidden; the user must add it back, so exact report matching is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "chebet",
+    "label": "PERSON",
+    "quote": "Chebet Koskei",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "kiprop",
+    "label": "PERSON",
+    "quote": "Kiprop Langat",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "TG-2061-M",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "chebet.k@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The suitcase failed to arrive on 12 October"
+   },
+   {
+    "quote": "The bag held two school-uniform dresses for my daughter, a laptop sleeve, a pair of leather sandals and my work files for the Kapsabet exams."
+   },
+   {
+    "quote": "I estimate the replacement value at about KES 62,000, but the laptop itself was in my hand luggage."
+   }
+  ],
+  "approved_output": "The suitcase failed to arrive on 12 October, and the airline's baggage desk gave me a property irregularity report numbered [ACCOUNT_ID] that I have not yet sent to anyone. The bag held two school-uniform dresses for my daughter, a laptop sleeve, a pair of leather sandals and my work files for the Kapsabet exams. I estimate the replacement value at about KES 62,000, but the laptop itself was in my hand luggage.\n\nI am [PERSON_1], a primary-school teacher, and my husband [PERSON_2] booked the trip on his card, although the policy [ACCOUNT_ID] is in my name only. Please use [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-assist",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Timeline for the Addis-Frankfurt delay (my notes, local times):\n- 22:30 Check-in done, boarding for gate B7 announced for 00:15.\n- 00:40 Crew change announced, delay of about one hour.\n- 02:10 Boarding cancelled, passengers told to collect hotel vouchers at desk 3.\n- 03:05 Voucher HV-2217 collected for me and my father, Mulugeta Assefa, but the hotel shuttle was full.\n- 03:20 My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form.\n- 05:45 Taxi to the hotel, 640 birr, receipt kept.\n- 11:30 Rebooked onto the 14:50 service via Istanbul, so arrival moved from 06:10 to about 20:25.\nContact: Yohannes Gebremedhin, +251 91 555 0238.",
+  "task": "Write the statement for the airline's special assistance team describing how the disruption affected my father and what the desk agent did.",
+  "entities": [
+   {
+    "id": "vo",
+    "entity_id": "voucher",
+    "label": "ACCOUNT_ID",
+    "quote": "HV-2217"
+   },
+   {
+    "id": "n2",
+    "entity_id": "mulugeta",
+    "label": "PERSON",
+    "quote": "Mulugeta Assefa"
+   },
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form."
+   },
+   {
+    "id": "n1",
+    "entity_id": "yohannes",
+    "label": "PERSON",
+    "quote": "Yohannes Gebremedhin"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0238"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "vo",
+    "entity_id": "voucher",
+    "label": "ACCOUNT_ID",
+    "quote": "HV-2217",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "mulugeta",
+    "label": "PERSON",
+    "quote": "Mulugeta Assefa",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "yohannes",
+    "label": "PERSON",
+    "quote": "Yohannes Gebremedhin",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0238",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "passengers told to collect hotel vouchers at desk 3"
+   },
+   {
+    "quote": "but the hotel shuttle was full."
+   },
+   {
+    "quote": "My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form."
+   }
+  ],
+  "approved_output": "Timeline for the Addis-Frankfurt delay (my notes, local times):\n- 22:30 Check-in done, boarding for gate B7 announced for 00:15.\n- 00:40 Crew change announced, delay of about one hour.\n- 02:10 Boarding cancelled, passengers told to collect hotel vouchers at desk 3.\n- 03:05 Voucher [ACCOUNT_ID] collected for me and my father, [PERSON_1], but the hotel shuttle was full.\n- 03:20 My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form.\n- 05:45 Taxi to the hotel, 640 birr, receipt kept.\n- 11:30 Rebooked onto the 14:50 service via Istanbul, so arrival moved from 06:10 to about 20:25.\nContact: [PERSON_2], [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-timeline",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f6-frankfurt-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Timeline for the Addis-Frankfurt delay (my notes, local times):\n- 22:30 Check-in done, boarding for gate B7 announced for 00:15.\n- 00:40 Crew change announced, delay of about one hour.\n- 02:10 Boarding cancelled, passengers told to collect hotel vouchers at desk 3.\n- 03:05 Voucher HV-2217 collected for me and my father, Mulugeta Assefa, but the hotel shuttle was full.\n- 03:20 My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form.\n- 05:45 Taxi to the hotel, 640 birr, receipt kept.\n- 11:30 Rebooked onto the 14:50 service via Istanbul, so arrival moved from 06:10 to about 20:25.\nContact: Yohannes Gebremedhin, +251 91 555 0238.",
+  "task": "Turn these notes into a short clean timeline of the flight times and the rebooking that I can attach to a compensation form.",
+  "entities": [
+   {
+    "id": "vo",
+    "entity_id": "voucher",
+    "label": "ACCOUNT_ID",
+    "quote": "HV-2217"
+   },
+   {
+    "id": "n2",
+    "entity_id": "mulugeta",
+    "label": "PERSON",
+    "quote": "Mulugeta Assefa"
+   },
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form."
+   },
+   {
+    "id": "n1",
+    "entity_id": "yohannes",
+    "label": "PERSON",
+    "quote": "Yohannes Gebremedhin"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0238"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "vo",
+    "entity_id": "voucher",
+    "label": "ACCOUNT_ID",
+    "quote": "HV-2217",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "mulugeta",
+    "label": "PERSON",
+    "quote": "Mulugeta Assefa",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "- 03:20 My father, who uses a wheelchair and has diabetes, had a low blood sugar reading, so I gave him glucose gel and the desk agent noted it on a form.\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A flight-time and rebooking timeline for a compensation form does not need the father's mobility, diabetes or the glucose incident."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "yohannes",
+    "label": "PERSON",
+    "quote": "Yohannes Gebremedhin",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "+251 91 555 0238",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "00:40 Crew change announced, delay of about one hour."
+   },
+   {
+    "quote": "02:10 Boarding cancelled, passengers told to collect hotel vouchers at desk 3."
+   },
+   {
+    "quote": "11:30 Rebooked onto the 14:50 service via Istanbul, so arrival moved from 06:10 to about 20:25."
+   }
+  ],
+  "approved_output": "Timeline for the Addis-Frankfurt delay (my notes, local times):\n- 22:30 Check-in done, boarding for gate B7 announced for 00:15.\n- 00:40 Crew change announced, delay of about one hour.\n- 02:10 Boarding cancelled, passengers told to collect hotel vouchers at desk 3.\n- 03:05 Voucher [ACCOUNT_ID] collected for me and my father, [PERSON_1], but the hotel shuttle was full.\n- 05:45 Taxi to the hotel, 640 birr, receipt kept.\n- 11:30 Rebooked onto the 14:50 service via Istanbul, so arrival moved from 06:10 to about 20:25.\nContact: [PERSON_2], [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-curtail",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I flew from Nairobi to Lisbon on 2 September for a three-week course in marine biology, and the policy I bought is a single-trip plan numbered BL-300518 that covers cancellation, curtailment and medical costs. The course fee was paid by my university and is not part of any claim.\n\nThe airline moved my return flight twice, first to 18 September and then to 21 September, and the second change cost me a 7,500 shilling fee that the airline says is non-refundable. I kept the airline's emails showing both changes.\n\nI paid 52,000 shillings for a new one-way ticket on a different airline, and the original return flight went unused. The hostel refunded the last five nights but kept the first night's deposit. Please call me on 0733 555 0194, and the claim is under the name Mwende Musyoka.\n\nThe reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th. I did not tell the airline why, and nobody there asked.",
+  "task": "Write the claim letter to my travel insurer for what it cost me when I came back sooner than planned.",
+  "entities": [
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "BL-300518"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0733 555 0194"
+   },
+   {
+    "id": "n1",
+    "entity_id": "mwende",
+    "label": "PERSON",
+    "quote": "Mwende Musyoka"
+   },
+   {
+    "id": "fam",
+    "entity_id": "fam",
+    "label": "FAMILY",
+    "quote": "The reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "BL-300518",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The policy number would identify the file for the insurer but is an account identifier that must be hidden; the user must add it back, so exact file matching is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0733 555 0194",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "mwende",
+    "label": "PERSON",
+    "quote": "Mwende Musyoka",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam",
+    "entity_id": "fam",
+    "label": "FAMILY",
+    "quote": "The reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th.",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the second change cost me a 7,500 shilling fee that the airline says is non-refundable"
+   },
+   {
+    "quote": "I paid 52,000 shillings for a new one-way ticket on a different airline, and the original return flight went unused."
+   },
+   {
+    "quote": "The reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th."
+   }
+  ],
+  "approved_output": "I flew from Nairobi to Lisbon on 2 September for a three-week course in marine biology, and the policy I bought is a single-trip plan numbered [ACCOUNT_ID] that covers cancellation, curtailment and medical costs. The course fee was paid by my university and is not part of any claim.\n\nThe airline moved my return flight twice, first to 18 September and then to 21 September, and the second change cost me a 7,500 shilling fee that the airline says is non-refundable. I kept the airline's emails showing both changes.\n\nI paid 52,000 shillings for a new one-way ticket on a different airline, and the original return flight went unused. The hostel refunded the last five nights but kept the first night's deposit. Please call me on [PHONE], and the claim is under the name [PERSON_1].\n\nThe reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th. I did not tell the airline why, and nobody there asked.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-airline",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:f7-lisbon-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I flew from Nairobi to Lisbon on 2 September for a three-week course in marine biology, and the policy I bought is a single-trip plan numbered BL-300518 that covers cancellation, curtailment and medical costs. The course fee was paid by my university and is not part of any claim.\n\nThe airline moved my return flight twice, first to 18 September and then to 21 September, and the second change cost me a 7,500 shilling fee that the airline says is non-refundable. I kept the airline's emails showing both changes.\n\nI paid 52,000 shillings for a new one-way ticket on a different airline, and the original return flight went unused. The hostel refunded the last five nights but kept the first night's deposit. Please call me on 0733 555 0194, and the claim is under the name Mwende Musyoka.\n\nThe reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th. I did not tell the airline why, and nobody there asked.",
+  "task": "Draft an email to the airline asking for a refund of the change fee and of the return leg I never used.",
+  "entities": [
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "BL-300518"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0733 555 0194"
+   },
+   {
+    "id": "n1",
+    "entity_id": "mwende",
+    "label": "PERSON",
+    "quote": "Mwende Musyoka"
+   },
+   {
+    "id": "fam",
+    "entity_id": "fam",
+    "label": "FAMILY",
+    "quote": "The reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "BL-300518",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Reference/account identifier cannot be disclosed verbatim and the task does not need exact lookup, so no utility is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0733 555 0194",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "mwende",
+    "label": "PERSON",
+    "quote": "Mwende Musyoka",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nThe reason I left early was my grandmother's death in Machakos, with the burial set for the 16th, so I flew on the 14th. I did not tell the airline why, and nobody there asked.",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The airline refund request needs the fee, the changes and the unused return leg; the grandmother's death, the burial date and what was told to the airline are not needed."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The airline moved my return flight twice, first to 18 September and then to 21 September, and the second change cost me a 7,500 shilling fee that the airline says is non-refundable."
+   },
+   {
+    "quote": "the original return flight went unused"
+   }
+  ],
+  "approved_output": "I flew from Nairobi to Lisbon on 2 September for a three-week course in marine biology, and the policy I bought is a single-trip plan numbered [ACCOUNT_ID] that covers cancellation, curtailment and medical costs. The course fee was paid by my university and is not part of any claim.\n\nThe airline moved my return flight twice, first to 18 September and then to 21 September, and the second change cost me a 7,500 shilling fee that the airline says is non-refundable. I kept the airline's emails showing both changes.\n\nI paid 52,000 shillings for a new one-way ticket on a different airline, and the original return flight went unused. The hostel refunded the last five nights but kept the first night's deposit. Please call me on [PHONE], and the claim is under the name [PERSON_1].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-cost",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing. Our quality team wanted the cap raised to 15 percent, but that change was not accepted.\n\nI am the buyer, Selamawit Tesfaye, and the bids for the packaging line spares close on 28 November. Gerbera Fluid Systems quoted 1,240,000 shillings with a 21-day lead time, and Ndege Valves quoted 1,185,000 shillings with a 60-day lead time. Both bids are marked commercial in confidence and the committee has not seen them yet.\n\nOur finance partner, Birhanu Tadesse, will not release the purchase order until the budget code is confirmed. He is out until Monday and his phone is 0722 555 0176. The plant manager, Jepkemoi Tanui, prefers the shorter lead time.",
+  "task": "Draft a note for the evaluation committee on how each bidder's lead time could change what delivery costs us, without quoting either bid price or naming the bidders.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing."
+   },
+   {
+    "id": "f2",
+    "entity_id": "f2",
+    "label": "FINANCIAL",
+    "quote": "Our quality team wanted the cap raised to 15 percent, but that change was not accepted."
+   },
+   {
+    "id": "n1",
+    "entity_id": "selamawit",
+    "label": "PERSON",
+    "quote": "Selamawit Tesfaye"
+   },
+   {
+    "id": "o1",
+    "entity_id": "gerbera",
+    "label": "ORG",
+    "quote": "Gerbera Fluid Systems"
+   },
+   {
+    "id": "p1",
+    "entity_id": "price1",
+    "label": "FINANCIAL",
+    "quote": "1,240,000 shillings"
+   },
+   {
+    "id": "o2",
+    "entity_id": "ndege",
+    "label": "ORG",
+    "quote": "Ndege Valves"
+   },
+   {
+    "id": "p2",
+    "entity_id": "price2",
+    "label": "FINANCIAL",
+    "quote": "1,185,000 shillings"
+   },
+   {
+    "id": "n2",
+    "entity_id": "birhanu",
+    "label": "PERSON",
+    "quote": "Birhanu Tadesse"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0722 555 0176"
+   },
+   {
+    "id": "n3",
+    "entity_id": "jepkemoi",
+    "label": "PERSON",
+    "quote": "Jepkemoi Tanui"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "f2",
+    "label": "FINANCIAL",
+    "quote": "Our quality team wanted the cap raised to 15 percent, but that change was not accepted.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "selamawit",
+    "label": "PERSON",
+    "quote": "Selamawit Tesfaye",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "o1",
+    "entity_id": "gerbera",
+    "label": "ORG",
+    "quote": "Gerbera Fluid Systems",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bidder name is confidential bid information not yet seen by the committee; a generic [ORG] is enough, but the two bidders can no longer be told apart."
+   },
+   {
+    "kind": "entity",
+    "target_id": "p1",
+    "entity_id": "price1",
+    "label": "FINANCIAL",
+    "quote": "1,240,000 shillings",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bid price is marked commercial in confidence and not approved for external disclosure; the task can be done without it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "o2",
+    "entity_id": "ndege",
+    "label": "ORG",
+    "quote": "Ndege Valves",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bidder name is confidential bid information not yet seen by the committee; a generic [ORG] is enough, but the two bidders can no longer be told apart."
+   },
+   {
+    "kind": "entity",
+    "target_id": "p2",
+    "entity_id": "price2",
+    "label": "FINANCIAL",
+    "quote": "1,185,000 shillings",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bid price is marked commercial in confidence and not approved for external disclosure; the task can be done without it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "birhanu",
+    "label": "PERSON",
+    "quote": "Birhanu Tadesse",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0722 555 0176",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "jepkemoi",
+    "label": "PERSON",
+    "quote": "Jepkemoi Tanui",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing."
+   },
+   {
+    "quote": "Our quality team wanted the cap raised to 15 percent, but that change was not accepted."
+   },
+   {
+    "quote": "with a 21-day lead time"
+   },
+   {
+    "quote": "with a 60-day lead time"
+   }
+  ],
+  "approved_output": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing. Our quality team wanted the cap raised to 15 percent, but that change was not accepted.\n\nI am the buyer, [PERSON_1], and the bids for the packaging line spares close on 28 November. [ORG] quoted [FINANCIAL] with a 21-day lead time, and [ORG] quoted [FINANCIAL] with a 60-day lead time. Both bids are marked commercial in confidence and the committee has not seen them yet.\n\nOur finance partner, [PERSON_2], will not release the purchase order until the budget code is confirmed. He is out until Monday and his phone is [PHONE]. The plant manager, [PERSON_3], prefers the shorter lead time.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-status",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c1-tender-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing. Our quality team wanted the cap raised to 15 percent, but that change was not accepted.\n\nI am the buyer, Selamawit Tesfaye, and the bids for the packaging line spares close on 28 November. Gerbera Fluid Systems quoted 1,240,000 shillings with a 21-day lead time, and Ndege Valves quoted 1,185,000 shillings with a 60-day lead time. Both bids are marked commercial in confidence and the committee has not seen them yet.\n\nOur finance partner, Birhanu Tadesse, will not release the purchase order until the budget code is confirmed. He is out until Monday and his phone is 0722 555 0176. The plant manager, Jepkemoi Tanui, prefers the shorter lead time.",
+  "task": "Write a short status update for the plant manager saying what is still blocking the purchase order and when the bids close, without mentioning prices or bidder names.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing."
+   },
+   {
+    "id": "f2",
+    "entity_id": "f2",
+    "label": "FINANCIAL",
+    "quote": "Our quality team wanted the cap raised to 15 percent, but that change was not accepted."
+   },
+   {
+    "id": "n1",
+    "entity_id": "selamawit",
+    "label": "PERSON",
+    "quote": "Selamawit Tesfaye"
+   },
+   {
+    "id": "o1",
+    "entity_id": "gerbera",
+    "label": "ORG",
+    "quote": "Gerbera Fluid Systems"
+   },
+   {
+    "id": "p1",
+    "entity_id": "price1",
+    "label": "FINANCIAL",
+    "quote": "1,240,000 shillings"
+   },
+   {
+    "id": "o2",
+    "entity_id": "ndege",
+    "label": "ORG",
+    "quote": "Ndege Valves"
+   },
+   {
+    "id": "p2",
+    "entity_id": "price2",
+    "label": "FINANCIAL",
+    "quote": "1,185,000 shillings"
+   },
+   {
+    "id": "n2",
+    "entity_id": "birhanu",
+    "label": "PERSON",
+    "quote": "Birhanu Tadesse"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0722 555 0176"
+   },
+   {
+    "id": "n3",
+    "entity_id": "jepkemoi",
+    "label": "PERSON",
+    "quote": "Jepkemoi Tanui"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "The published terms of tender NB-17 say late delivery is charged at 2 percent of the order value per full week, capped at 10 percent, and the penalty applies only if the buyer has confirmed the order in writing. Our quality team wanted the cap raised to 15 percent, but that change was not accepted.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A blocker and deadline update does not need the published late-delivery penalty terms or the rejected cap proposal."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "selamawit",
+    "label": "PERSON",
+    "quote": "Selamawit Tesfaye",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "o1",
+    "entity_id": "gerbera",
+    "label": "ORG",
+    "quote": "Gerbera Fluid Systems",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bidder name is confidential bid information not yet seen by the committee; a generic [ORG] is enough, but the two bidders can no longer be told apart."
+   },
+   {
+    "kind": "entity",
+    "target_id": "p1",
+    "entity_id": "price1",
+    "label": "FINANCIAL",
+    "quote": "1,240,000 shillings",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bid price is marked commercial in confidence and not approved for external disclosure; the task can be done without it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "o2",
+    "entity_id": "ndege",
+    "label": "ORG",
+    "quote": "Ndege Valves",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bidder name is confidential bid information not yet seen by the committee; a generic [ORG] is enough, but the two bidders can no longer be told apart."
+   },
+   {
+    "kind": "entity",
+    "target_id": "p2",
+    "entity_id": "price2",
+    "label": "FINANCIAL",
+    "quote": "1,185,000 shillings",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bid price is marked commercial in confidence and not approved for external disclosure; the task can be done without it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "birhanu",
+    "label": "PERSON",
+    "quote": "Birhanu Tadesse",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0722 555 0176",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "jepkemoi",
+    "label": "PERSON",
+    "quote": "Jepkemoi Tanui",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the bids for the packaging line spares close on 28 November."
+   },
+   {
+    "quote": "will not release the purchase order until the budget code is confirmed."
+   },
+   {
+    "quote": "He is out until Monday"
+   }
+  ],
+  "approved_output": "I am the buyer, [PERSON_1], and the bids for the packaging line spares close on 28 November. [ORG] quoted [FINANCIAL] with a 21-day lead time, and [ORG] quoted [FINANCIAL] with a 60-day lead time. Both bids are marked commercial in confidence and the committee has not seen them yet.\n\nOur finance partner, [PERSON_2], will not release the purchase order until the budget code is confirmed. He is out until Monday and his phone is [PHONE]. The plant manager, [PERSON_3], prefers the shorter lead time.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-worth",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Demo went well with the operations team at the Lakeshore clinic group, who liked the batch-scheduling module but asked for an offline mode before they sign. Their procurement lead, Fikadu Lemma, said the budget holder returns on 5 December, so a decision is unlikely before then. My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota. The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota. I promised a written answer on offline mode by Friday, and Dawit Haile in engineering has not yet said whether it is on the roadmap. Fikadu also wants a reference customer in the same region, but I told him I would check what we are allowed to share. His number is 0715 555 0121 and the draft quote is 150,000 shillings for 50 seats.",
+  "task": "Help me decide whether pushing for a signature before the quarter ends is worth it for me, given where this deal stands.",
+  "entities": [
+   {
+    "id": "o",
+    "entity_id": "lakeshore",
+    "label": "ORG",
+    "quote": "Lakeshore clinic group"
+   },
+   {
+    "id": "n1",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu Lemma"
+   },
+   {
+    "id": "n1b",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu",
+    "occurrence": 2
+   },
+   {
+    "id": "e1",
+    "entity_id": "e1",
+    "label": "EMPLOYMENT",
+    "quote": "My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota."
+   },
+   {
+    "id": "e2",
+    "entity_id": "e2",
+    "label": "EMPLOYMENT",
+    "quote": "The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota."
+   },
+   {
+    "id": "n2",
+    "entity_id": "dawit",
+    "label": "PERSON",
+    "quote": "Dawit Haile"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0715 555 0121"
+   },
+   {
+    "id": "pr",
+    "entity_id": "quote",
+    "label": "FINANCIAL",
+    "quote": "150,000 shillings"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "o",
+    "entity_id": "lakeshore",
+    "label": "ORG",
+    "quote": "Lakeshore clinic group",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The customer's name is confidential account information; a generic [ORG] is enough for the task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu Lemma",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e1",
+    "entity_id": "e1",
+    "label": "EMPLOYMENT",
+    "quote": "My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e2",
+    "entity_id": "e2",
+    "label": "EMPLOYMENT",
+    "quote": "The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "dawit",
+    "label": "PERSON",
+    "quote": "Dawit Haile",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1b",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0715 555 0121",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pr",
+    "entity_id": "quote",
+    "label": "FINANCIAL",
+    "quote": "150,000 shillings",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The draft quote is a confidential commercial figure not approved for external disclosure; the task does not need the exact value."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "said the budget holder returns on 5 December, so a decision is unlikely before then."
+   },
+   {
+    "quote": "My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota."
+   },
+   {
+    "quote": "The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota."
+   }
+  ],
+  "approved_output": "Demo went well with the operations team at the [ORG], who liked the batch-scheduling module but asked for an offline mode before they sign. Their procurement lead, [PERSON_1], said the budget holder returns on 5 December, so a decision is unlikely before then. My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota. The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota. I promised a written answer on offline mode by Friday, and [PERSON_2] in engineering has not yet said whether it is on the roadmap. [PERSON_1] also wants a reference customer in the same region, but I told him I would check what we are allowed to share. His number is [PHONE] and the draft quote is [FINANCIAL] for 50 seats.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-followup",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c2-lakeshore-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Demo went well with the operations team at the Lakeshore clinic group, who liked the batch-scheduling module but asked for an offline mode before they sign. Their procurement lead, Fikadu Lemma, said the budget holder returns on 5 December, so a decision is unlikely before then. My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota. The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota. I promised a written answer on offline mode by Friday, and Dawit Haile in engineering has not yet said whether it is on the roadmap. Fikadu also wants a reference customer in the same region, but I told him I would check what we are allowed to share. His number is 0715 555 0121 and the draft quote is 150,000 shillings for 50 seats.",
+  "task": "Draft the follow-up email to the customer's procurement lead recapping the demo, the open questions and the next steps, without naming the customer or quoting the price.",
+  "entities": [
+   {
+    "id": "o",
+    "entity_id": "lakeshore",
+    "label": "ORG",
+    "quote": "Lakeshore clinic group"
+   },
+   {
+    "id": "n1",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu Lemma"
+   },
+   {
+    "id": "n1b",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu",
+    "occurrence": 2
+   },
+   {
+    "id": "e1",
+    "entity_id": "e1",
+    "label": "EMPLOYMENT",
+    "quote": "My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota."
+   },
+   {
+    "id": "e2",
+    "entity_id": "e2",
+    "label": "EMPLOYMENT",
+    "quote": "The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota."
+   },
+   {
+    "id": "n2",
+    "entity_id": "dawit",
+    "label": "PERSON",
+    "quote": "Dawit Haile"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0715 555 0121"
+   },
+   {
+    "id": "pr",
+    "entity_id": "quote",
+    "label": "FINANCIAL",
+    "quote": "150,000 shillings"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "o",
+    "entity_id": "lakeshore",
+    "label": "ORG",
+    "quote": "Lakeshore clinic group",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The customer's name is confidential account information; a generic [ORG] is enough for the task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu Lemma",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "My quota for the quarter is 400,000 shillings in new bookings and I am at 310,000, and if this deal closes in the quarter it takes me past quota. The plan pays 6 percent normally, with an accelerator to 9 percent on bookings above quota. ",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A customer follow-up does not need the rep's own quota attainment or commission plan; no commitment or next step depends on them."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "dawit",
+    "label": "PERSON",
+    "quote": "Dawit Haile",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1b",
+    "entity_id": "fikadu",
+    "label": "PERSON",
+    "quote": "Fikadu",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0715 555 0121",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact number that identifies the writer; the task does not need it, so only the number is hidden and the sentence stays readable."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pr",
+    "entity_id": "quote",
+    "label": "FINANCIAL",
+    "quote": "150,000 shillings",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The draft quote is a confidential commercial figure not approved for external disclosure; the task does not need the exact value."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "who liked the batch-scheduling module but asked for an offline mode before they sign"
+   },
+   {
+    "quote": "I promised a written answer on offline mode by Friday, and"
+   },
+   {
+    "quote": "in engineering has not yet said whether it is on the roadmap."
+   }
+  ],
+  "approved_output": "Demo went well with the operations team at the [ORG], who liked the batch-scheduling module but asked for an offline mode before they sign. Their procurement lead, [PERSON_1], said the budget holder returns on 5 December, so a decision is unlikely before then. I promised a written answer on offline mode by Friday, and [PERSON_2] in engineering has not yet said whether it is on the roadmap. [PERSON_1] also wants a reference customer in the same region, but I told him I would check what we are allowed to share. His number is [PHONE] and the draft quote is [FINANCIAL] for 50 seats.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-cash",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "ref,team,requested_by,category,amount_kes,status\nEX-3101,Field sales,Aster Negash,Fuel and tolls,18400,paid 04 Oct\nEX-3102,Field sales,Mutua Kyalo,Client lunch,7250,paid 04 Oct\nEX-3103,Finance,Payroll desk,Salary advance recovery over three months,45000,approved not yet paid\nEX-3104,Support,Atieno Owino,Courier and packaging,3900,rejected missing receipt\nEX-3105,Field sales,Aster Negash,Hotel Kisumu 2 nights,26500,paid 11 Oct\nEX-3106,Support,Atieno Owino,Courier and packaging,3900,paid 11 Oct resubmitted with receipt",
+  "task": "Work out how much cash is still due to leave the bank in October versus what has already gone out, for the cash forecast.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "occurrence": 1
+   },
+   {
+    "id": "n1b",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "occurrence": 2
+   },
+   {
+    "id": "n2",
+    "entity_id": "mutua",
+    "label": "PERSON",
+    "quote": "Mutua Kyalo"
+   },
+   {
+    "id": "n3",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "occurrence": 1
+   },
+   {
+    "id": "n3b",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "occurrence": 2
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "Salary advance recovery over three months,45000,approved not yet paid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "mutua",
+    "label": "PERSON",
+    "quote": "Mutua Kyalo",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "Salary advance recovery over three months,45000,approved not yet paid",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1b",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3b",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "EX-3101,Field sales,"
+   },
+   {
+    "quote": ",Fuel and tolls,18400,paid 04 Oct"
+   },
+   {
+    "quote": "EX-3102,Field sales,"
+   },
+   {
+    "quote": ",Client lunch,7250,paid 04 Oct"
+   },
+   {
+    "quote": "EX-3103,Finance,Payroll desk,Salary advance recovery over three months,45000,approved not yet paid"
+   },
+   {
+    "quote": "EX-3104,Support,"
+   },
+   {
+    "quote": ",Courier and packaging,3900,rejected missing receipt"
+   },
+   {
+    "quote": "EX-3105,Field sales,"
+   },
+   {
+    "quote": ",Hotel Kisumu 2 nights,26500,paid 11 Oct"
+   },
+   {
+    "quote": "EX-3106,Support,"
+   },
+   {
+    "quote": ",Courier and packaging,3900,paid 11 Oct resubmitted with receipt"
+   }
+  ],
+  "approved_output": "ref,team,requested_by,category,amount_kes,status\nEX-3101,Field sales,[PERSON_1],Fuel and tolls,18400,paid 04 Oct\nEX-3102,Field sales,[PERSON_2],Client lunch,7250,paid 04 Oct\nEX-3103,Finance,Payroll desk,Salary advance recovery over three months,45000,approved not yet paid\nEX-3104,Support,[PERSON_3],Courier and packaging,3900,rejected missing receipt\nEX-3105,Field sales,[PERSON_1],Hotel Kisumu 2 nights,26500,paid 11 Oct\nEX-3106,Support,[PERSON_3],Courier and packaging,3900,paid 11 Oct resubmitted with receipt",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-budget",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:c3-claims-ledger-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "ref,team,requested_by,category,amount_kes,status\nEX-3101,Field sales,Aster Negash,Fuel and tolls,18400,paid 04 Oct\nEX-3102,Field sales,Mutua Kyalo,Client lunch,7250,paid 04 Oct\nEX-3103,Finance,Payroll desk,Salary advance recovery over three months,45000,approved not yet paid\nEX-3104,Support,Atieno Owino,Courier and packaging,3900,rejected missing receipt\nEX-3105,Field sales,Aster Negash,Hotel Kisumu 2 nights,26500,paid 11 Oct\nEX-3106,Support,Atieno Owino,Courier and packaging,3900,paid 11 Oct resubmitted with receipt",
+  "task": "Summarise the paid claims by team and category, with totals, for the field-cost discussion at the budget meeting.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "occurrence": 1
+   },
+   {
+    "id": "n1b",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "occurrence": 2
+   },
+   {
+    "id": "n2",
+    "entity_id": "mutua",
+    "label": "PERSON",
+    "quote": "Mutua Kyalo"
+   },
+   {
+    "id": "n3",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "occurrence": 1
+   },
+   {
+    "id": "n3b",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "occurrence": 2
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "Salary advance recovery over three months,45000,approved not yet paid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "mutua",
+    "label": "PERSON",
+    "quote": "Mutua Kyalo",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "EX-3103,Finance,Payroll desk,Salary advance recovery over three months,45000,approved not yet paid\n",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A paid-claims summary for field costs does not need a payroll salary-advance recovery row; it is not a paid expense claim."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1b",
+    "entity_id": "aster",
+    "label": "PERSON",
+    "quote": "Aster Negash",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "n3b",
+    "entity_id": "atieno",
+    "label": "PERSON",
+    "quote": "Atieno Owino",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "EX-3101,Field sales,"
+   },
+   {
+    "quote": ",Fuel and tolls,18400,paid 04 Oct"
+   },
+   {
+    "quote": "EX-3102,Field sales,"
+   },
+   {
+    "quote": ",Client lunch,7250,paid 04 Oct"
+   },
+   {
+    "quote": "EX-3105,Field sales,"
+   },
+   {
+    "quote": ",Hotel Kisumu 2 nights,26500,paid 11 Oct"
+   },
+   {
+    "quote": "EX-3106,Support,"
+   },
+   {
+    "quote": ",Courier and packaging,3900,paid 11 Oct resubmitted with receipt"
+   }
+  ],
+  "approved_output": "ref,team,requested_by,category,amount_kes,status\nEX-3101,Field sales,[PERSON_1],Fuel and tolls,18400,paid 04 Oct\nEX-3102,Field sales,[PERSON_2],Client lunch,7250,paid 04 Oct\nEX-3104,Support,[PERSON_3],Courier and packaging,3900,rejected missing receipt\nEX-3105,Field sales,[PERSON_1],Hotel Kisumu 2 nights,26500,paid 11 Oct\nEX-3106,Support,[PERSON_3],Courier and packaging,3900,paid 11 Oct resubmitted with receipt",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:k1-insulin-ctl",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k1-insulin-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k1-insulin-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k1-insulin-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k1-insulin-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "My connecting flight from Kisumu to Nairobi was cancelled at 16:30 on Tuesday, and the next seat the airline offered was on Thursday morning, which would have meant two nights in the city. I have type 1 diabetes and I use insulin pens that have to be kept cool, with a spare pen in my bag that is only good for about four days. The hotel I found had no fridge, so I paid 3,800 shillings for a city pharmacy to store two pens overnight. I am Nyokabi Waweru, and the duty officer who handled my rebooking was Kipkemboi Sang, who said he would note the medical reason on my file.",
+  "task": "Write a message to the airline's customer service asking them to cover the storage fee and rebook me on the earliest flight, explaining why the storage was needed.",
+  "entities": [
+   {
+    "id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "I have type 1 diabetes and I use insulin pens that have to be kept cool, with a spare pen in my bag that is only good for about four days."
+   },
+   {
+    "id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "so I paid 3,800 shillings for a city pharmacy to store two pens overnight"
+   },
+   {
+    "id": "n1",
+    "entity_id": "nyokabi",
+    "label": "PERSON",
+    "quote": "Nyokabi Waweru"
+   },
+   {
+    "id": "n2",
+    "entity_id": "kipkemboi",
+    "label": "PERSON",
+    "quote": "Kipkemboi Sang"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "hl",
+    "entity_id": "hl",
+    "label": "HEALTH",
+    "quote": "I have type 1 diabetes and I use insulin pens that have to be kept cool, with a spare pen in my bag that is only good for about four days.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "so I paid 3,800 shillings for a city pharmacy to store two pens overnight",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "nyokabi",
+    "label": "PERSON",
+    "quote": "Nyokabi Waweru",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "kipkemboi",
+    "label": "PERSON",
+    "quote": "Kipkemboi Sang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I have type 1 diabetes and I use insulin pens that have to be kept cool, with a spare pen in my bag that is only good for about four days."
+   },
+   {
+    "quote": "The hotel I found had no fridge, so I paid 3,800 shillings for a city pharmacy to store two pens overnight."
+   },
+   {
+    "quote": "the duty officer who handled my rebooking was"
+   },
+   {
+    "quote": ", who said he would note the medical reason on my file."
+   }
+  ],
+  "approved_output": "My connecting flight from Kisumu to Nairobi was cancelled at 16:30 on Tuesday, and the next seat the airline offered was on Thursday morning, which would have meant two nights in the city. I have type 1 diabetes and I use insulin pens that have to be kept cool, with a spare pen in my bag that is only good for about four days. The hotel I found had no fridge, so I paid 3,800 shillings for a city pharmacy to store two pens overnight. I am [PERSON_1], and the duty officer who handled my rebooking was [PERSON_2], who said he would note the medical reason on my file.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:k2-kigali-ctl",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k2-kigali-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k2-kigali-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k2-kigali-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k2-kigali-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I am Hiwot Zewdu and I am applying for a one-month travel policy for a work trip to Kigali from 3 to 17 June, and the application asks about any treatment in the last two years. In March last year I had a gallbladder removal with no complications and I have had no follow-up since. I take levothyroxine 75 micrograms every day for an underactive thyroid, and my endocrinologist, Dr Tsegaye Bekele, reviewed it in September and left the dose unchanged. The application wants my national ID, which is 31884520, and my email, hiwot.z@example.invalid.",
+  "task": "Help me fill in the treatment-history question on the insurer's application accurately, using what I have written.",
+  "entities": [
+   {
+    "id": "n1",
+    "entity_id": "hiwot",
+    "label": "PERSON",
+    "quote": "Hiwot Zewdu"
+   },
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "In March last year I had a gallbladder removal with no complications and I have had no follow-up since."
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "I take levothyroxine 75 micrograms every day for an underactive thyroid"
+   },
+   {
+    "id": "n2",
+    "entity_id": "tsegaye",
+    "label": "PERSON",
+    "quote": "Tsegaye Bekele"
+   },
+   {
+    "id": "h3",
+    "entity_id": "h3",
+    "label": "HEALTH",
+    "quote": "reviewed it in September and left the dose unchanged"
+   },
+   {
+    "id": "nid",
+    "entity_id": "nid",
+    "label": "NATIONAL_ID",
+    "quote": "31884520"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "hiwot.z@example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "hiwot",
+    "label": "PERSON",
+    "quote": "Hiwot Zewdu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "In March last year I had a gallbladder removal with no complications and I have had no follow-up since.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "I take levothyroxine 75 micrograms every day for an underactive thyroid",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "tsegaye",
+    "label": "PERSON",
+    "quote": "Tsegaye Bekele",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "h3",
+    "label": "HEALTH",
+    "quote": "reviewed it in September and left the dose unchanged",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "nid",
+    "entity_id": "nid",
+    "label": "NATIONAL_ID",
+    "quote": "31884520",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Government identifier cannot be disclosed and the task does not need the number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "hiwot.z@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Direct contact address that identifies the writer; the task does not need it, so only the address is hidden and the sentence stays readable."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "In March last year I had a gallbladder removal with no complications and I have had no follow-up since."
+   },
+   {
+    "quote": "I take levothyroxine 75 micrograms every day for an underactive thyroid"
+   },
+   {
+    "quote": "reviewed it in September and left the dose unchanged."
+   }
+  ],
+  "approved_output": "I am [PERSON_1] and I am applying for a one-month travel policy for a work trip to Kigali from 3 to 17 June, and the application asks about any treatment in the last two years. In March last year I had a gallbladder removal with no complications and I have had no follow-up since. I take levothyroxine 75 micrograms every day for an underactive thyroid, and my endocrinologist, Dr [PERSON_2], reviewed it in September and left the dose unchanged. The application wants my national ID, which is [NATIONAL_ID], and my email, [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:k3-supplier-terms-ctl",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k3-supplier-terms-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k3-supplier-terms-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k3-supplier-terms-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k3-supplier-terms-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The supplier has asked us to pay faster. Our standard terms are payment 45 days after the invoice date, and I am allowed to approve an early-payment discount of 2 percent if we pay within 10 days. Their invoice is dated 3 November, so the standard due date would fall in mid-December. Their account manager, Tadelech Hailu, says Ridgeline Cold Chain needs the cash before the 20th to cover a fuel contract, but I have not confirmed that with anyone. Their bank account for payment is 0114-7783-02 and I will not approve anything above the discount without the finance director.",
+  "task": "Draft a reply to the supplier's account manager about their request for faster payment, stating what we can offer and by when, and what I cannot approve myself.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "Our standard terms are payment 45 days after the invoice date, and I am allowed to approve an early-payment discount of 2 percent if we pay within 10 days."
+   },
+   {
+    "id": "n1",
+    "entity_id": "tadelech",
+    "label": "PERSON",
+    "quote": "Tadelech Hailu"
+   },
+   {
+    "id": "o1",
+    "entity_id": "ridgeline",
+    "label": "ORG",
+    "quote": "Ridgeline Cold Chain"
+   },
+   {
+    "id": "acct",
+    "entity_id": "bank",
+    "label": "ACCOUNT_ID",
+    "quote": "0114-7783-02"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "Our standard terms are payment 45 days after the invoice date, and I am allowed to approve an early-payment discount of 2 percent if we pay within 10 days.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "tadelech",
+    "label": "PERSON",
+    "quote": "Tadelech Hailu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "o1",
+    "entity_id": "ridgeline",
+    "label": "ORG",
+    "quote": "Ridgeline Cold Chain",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The supplier name is a counterparty identity not needed to draft the reply text; a generic [ORG] loses only the name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "acct",
+    "entity_id": "bank",
+    "label": "ACCOUNT_ID",
+    "quote": "0114-7783-02",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "The bank account number is a financial identifier that cannot be disclosed and is not needed to state terms or dates."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our standard terms are payment 45 days after the invoice date, and I am allowed to approve an early-payment discount of 2 percent if we pay within 10 days."
+   },
+   {
+    "quote": "Their invoice is dated 3 November, so the standard due date would fall in mid-December."
+   },
+   {
+    "quote": "but I have not confirmed that with anyone."
+   },
+   {
+    "quote": "I will not approve anything above the discount without the finance director."
+   }
+  ],
+  "approved_output": "The supplier has asked us to pay faster. Our standard terms are payment 45 days after the invoice date, and I am allowed to approve an early-payment discount of 2 percent if we pay within 10 days. Their invoice is dated 3 November, so the standard due date would fall in mid-December. Their account manager, [PERSON_1], says [ORG] needs the cash before the 20th to cover a fuel contract, but I have not confirmed that with anyone. Their bank account for payment is [ACCOUNT_ID] and I will not approve anything above the discount without the finance director.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:k4-board-ctl",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k4-board-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k4-board-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k4-board-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k4-board-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The arrivals board at the airport showed the 14:20 service from Mombasa to Nairobi as delayed to 16:05, and the airline's website listed the same new time. The gate had moved from 4 to 7. A staff member at the desk said passengers waiting more than two hours can ask for a meal voucher and that the lounge was open until 18:00. The weather at Nairobi was clear, and the flight was a regular narrow-body jet with 144 seats. I only have hand luggage and a charger, and the nearest charging points are by gate 6. I would like to understand what a two-hour wait normally entitles me to and what questions are worth asking at the desk before I decide whether to rebook.",
+  "task": "Explain in plain language what a two-hour flight delay normally entitles a passenger to, and list the questions worth asking at the desk.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "A staff member at the desk said passengers waiting more than two hours can ask for a meal voucher"
+   }
+  ],
+  "approved_output": "The arrivals board at the airport showed the 14:20 service from Mombasa to Nairobi as delayed to 16:05, and the airline's website listed the same new time. The gate had moved from 4 to 7. A staff member at the desk said passengers waiting more than two hours can ask for a meal voucher and that the lounge was open until 18:00. The weather at Nairobi was clear, and the flight was a regular narrow-body jet with 144 seats. I only have hand luggage and a charger, and the nearest charging points are by gate 6. I would like to understand what a two-hour wait normally entitles me to and what questions are worth asking at the desk before I decide whether to rebook.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "dabc88ce9f0b4d20babdb1d58eb7c090",
+  "id": "dabc88ce9f0b4d20babdb1d58eb7c090:k5-kampala-notes-ctl",
+  "family_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k5-kampala-notes-fam",
+  "source_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k5-kampala-notes-src",
+  "persona_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k5-kampala-notes-persona",
+  "template_id": "dabc88ce9f0b4d20babdb1d58eb7c090:k5-kampala-notes-tpl",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes after the Kampala trip, to sort out later. The travel policy GL-559203 covers medical costs and lost baggage. On day three I saw a doctor, Dr Jepkorir Mutai, for a throat infection and paid 9,500 shillings, receipt in my bag. The pharmacy gave me amoxicillin for seven days. My bag came late on the second day, with one strap broken. Kiprono Chelimo from the office said he would send the hotel letter by email, and I should call him on 0701 555 0163 if it does not arrive. Still to do: find the airline's baggage form, check the excess, and ask about the dentist visit I skipped.",
+  "task": "Help me organise this note.",
+  "entities": [
+   {
+    "id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "GL-559203"
+   },
+   {
+    "id": "n1",
+    "entity_id": "jepkorir",
+    "label": "PERSON",
+    "quote": "Jepkorir Mutai"
+   },
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "for a throat infection"
+   },
+   {
+    "id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "paid 9,500 shillings, receipt in my bag"
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "The pharmacy gave me amoxicillin for seven days."
+   },
+   {
+    "id": "n2",
+    "entity_id": "kiprono",
+    "label": "PERSON",
+    "quote": "Kiprono Chelimo"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0701 555 0163"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pol",
+    "entity_id": "policy",
+    "label": "ACCOUNT_ID",
+    "quote": "GL-559203",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "The policy number is an account identifier that must be hidden; the task does not say whether the exact number matters, so only the number is replaced."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n1",
+    "entity_id": "jepkorir",
+    "label": "PERSON",
+    "quote": "Jepkorir Mutai",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "for a throat infection",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Plausibly useful claim context for an organised note; relevance is not settled by the vague task and nothing requires removing it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "m1",
+    "label": "FINANCIAL",
+    "quote": "paid 9,500 shillings, receipt in my bag",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Plausibly useful expense context for an organised note; relevance is not settled by the vague task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "The pharmacy gave me amoxicillin for seven days.",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Plausibly useful treatment context for an organised note; relevance is not settled by the vague task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "n2",
+    "entity_id": "kiprono",
+    "label": "PERSON",
+    "quote": "Kiprono Chelimo",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "0701 555 0163",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "The phone number is a direct identifier that must be hidden; the task does not say whether a callback number is needed, so only the number is replaced."
+   }
+  ],
+  "required_facts": [],
+  "approved_output": "Notes after the Kampala trip, to sort out later. The travel policy [ACCOUNT_ID] covers medical costs and lost baggage. On day three I saw a doctor, Dr [PERSON_1], for a throat infection and paid 9,500 shillings, receipt in my bag. The pharmacy gave me amoxicillin for seven days. My bag came late on the second day, with one strap broken. [PERSON_2] from the office said he would send the hotel letter by email, and I should call him on [PHONE] if it does not arrive. Still to do: find the airline's baggage form, check the excess, and ask about the dentist visit I skipped.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "dabc88ce9f0b4d20babdb1d58eb7c090:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]
