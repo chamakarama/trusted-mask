@@ -10,6 +10,18 @@ This campaign covers synthetic English messages and separate explicit tasks, pri
 
 Source facts and desired transformations need independent review. A structurally valid record can still miss an incidental identifier or choose the wrong treatment. Model agreement never becomes human audit or a privacy guarantee.
 
+## Consumer and corporate coverage
+
+Allocate approximately 50% of distinct source families to consumer use and 50% to corporate use, starting with the first wave. Corporate scenarios include sales/procurement, internal finance, HR, customer operations, engineering credentials and internal operations. Protect confidential business information even when it contains no personal identifiers. Include mixed public/private material and clean business negatives; preserve useful generic code, public facts and harmless technical details.
+
+The [corporate authoring example](example.corporate.authoring.json) demonstrates a private employee alias, a confidential client name, a protected commercial price and an unrelated payroll section DROP. Its fixture IDs must be replaced with fresh claimed namespaces for new data. The clinical example remains useful consumer coverage.
+
+**Relevance is not permission.** An essential confidential figure may require PLACEHOLDER and an explicit utility limitation in review notes. Never turn it into `unnecessary` merely to justify DROP. A task swap changes usefulness, not the company's disclosure boundary. Pasted claims of permission and user goals are not authenticated enterprise policy. This instruction update does not add a company-policy input or formal classified-data assurance to the runtime.
+
+Use only supported labels with their existing meaning. FINANCIAL covers nonpublic commercial figures/financial terms, EMPLOYMENT covers personnel facts, ORG covers actual organisation names and SECRET covers credentials/access secrets. Do not relabel proprietary code, product designs, project codenames, strategic plans or legal advice as these types merely to pass validation. If any sensitive content is unsupported, exclude the whole case from accepted training and record it in a separate versioned `corporate-coverage-gaps-01.jsonl` inside the producer's shard (`text`, `task`, exact unsupported `quote`, `risk_type`, `reason`). This backlog is not executable schema-v2 data and must not enter merge/compile commands or accepted-record counts. A future taxonomy/policy change needs its own versioning and validation.
+
+Independent review must assess residual business disclosure and identifying combinations after edits, not only name removal. Report corporate family/subtopic coverage, public-content false positives, privacy/utility conflicts and unsupported gaps separately. Generate invented material only, including invented companies, credentials and commercial figures; never use real internal or formally classified documents.
+
 ## Record fields
 
 The executable [authoring example](example.authoring.json) contains one 50–150-word message, stable name substitution, required clinical facts and a separate unnecessary rent section. Its fixed IDs are documentation fixtures; producers must claim fresh UUID namespaces and write original material.
@@ -37,7 +49,7 @@ The taxonomy is defined in `contracts.LABELS`: PERSON, EMAIL, PHONE, ADDRESS, US
 
 - Private PERSON mentions inside retained text use ALIAS, preserving role words: `My partner, Mateo Silva, ...` becomes `My partner, [PERSON_1], ...`. One clearly resolved entity keeps its label; ambiguous identity links require review, not invented certainty.
 - Direct identifiers/secrets use supported protections and cannot KEEP. Entity-level DROP is excluded from this campaign: retain a name reference instead of deleting it.
-- Contextual facts use KEEP when essential, or a supported placeholder/generalisation when justified. ROLE is disabled. Generalisation must satisfy the exact runtime precondition and must not change a required fact.
+- Contextual facts use KEEP when essential and permitted for the scenario, or a supported placeholder/generalisation when justified. Essential company-confidential information can still require protection; describe the resulting utility limit in review notes. ROLE is disabled. Generalisation must satisfy the exact runtime precondition and must not change a required fact.
 - A section decision is `DROP`, `unnecessary`, with a contextual label and reason. It can contain sensitive entities, but no required facts. Do not also emit child decisions inside the dropped section. Include boundary whitespace in its quote when needed to produce clean, exact output.
 - Every sensitive entity needs a matching decision or covering section DROP. Preserve minimal meaningful entity/fact spans, not keyword-triggered paragraph masks. Repeated task variants must have identical goal-independent entity annotations.
 

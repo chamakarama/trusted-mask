@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "shard_id": "0123456789abcdef0123456789abcdef",
+  "id": "0123456789abcdef0123456789abcdef:example-corporate",
+  "family_id": "0123456789abcdef0123456789abcdef:corporate-family",
+  "persona_id": "0123456789abcdef0123456789abcdef:corporate-persona",
+  "source_id": "0123456789abcdef0123456789abcdef:corporate-source",
+  "template_id": "0123456789abcdef0123456789abcdef:corporate-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Prepare a generic procurement follow-up using an external AI. Preserve the onboarding requests and tone constraints. Employee identities, the confidential client's name and internal pricing must not be disclosed. The separate payroll note is unrelated.",
+  "text": "Please help turn these notes into a generic procurement follow-up. Our account lead, Priya Nair, met the confidential client Oriole Works yesterday. The customer asked for a shorter onboarding checklist and a clear owner for each step. Keep the tone professional and do not promise a delivery date. The confidential draft quote is 87,400 euros; it is not approved for external disclosure. We need wording that asks which steps are blocked without repeating internal pricing.\n\nSeparately, an internal payroll note says the proposed salary is 96,000 euros.",
+  "entities": [
+    {"id": "m1", "entity_id": "account-lead", "quote": "Priya Nair", "label": "PERSON"},
+    {"id": "m2", "entity_id": "client", "quote": "Oriole Works", "label": "ORG"},
+    {"id": "m3", "entity_id": "quote-price", "quote": "87,400 euros", "label": "FINANCIAL"},
+    {"id": "m4", "entity_id": "salary", "quote": "96,000 euros", "label": "FINANCIAL"}
+  ],
+  "decisions": [
+    {"kind": "entity", "target_id": "m1", "entity_id": "account-lead", "quote": "Priya Nair", "label": "PERSON", "action": "ALIAS", "relevance": "unnecessary"},
+    {"kind": "entity", "target_id": "m2", "entity_id": "client", "quote": "Oriole Works", "label": "ORG", "action": "PLACEHOLDER", "relevance": "unnecessary"},
+    {"kind": "entity", "target_id": "m3", "entity_id": "quote-price", "quote": "87,400 euros", "label": "FINANCIAL", "action": "PLACEHOLDER", "relevance": "unnecessary"},
+    {"kind": "section", "quote": "\n\nSeparately, an internal payroll note says the proposed salary is 96,000 euros.", "label": "FINANCIAL", "action": "DROP", "relevance": "unnecessary", "reason": "The unrelated payroll paragraph contains confidential compensation and no facts needed for the generic procurement follow-up."}
+  ],
+  "required_facts": [
+    {"quote": "Our account lead,"},
+    {"quote": "a shorter onboarding checklist and a clear owner for each step"},
+    {"quote": "Keep the tone professional and do not promise a delivery date."},
+    {"quote": "it is not approved for external disclosure"},
+    {"quote": "asks which steps are blocked without repeating internal pricing"}
+  ],
+  "approved_output": "Please help turn these notes into a generic procurement follow-up. Our account lead, [PERSON_1], met the confidential client [ORG] yesterday. The customer asked for a shorter onboarding checklist and a clear owner for each step. Keep the tone professional and do not promise a delivery date. The confidential draft quote is [FINANCIAL]; it is not approved for external disclosure. We need wording that asks which steps are blocked without repeating internal pricing.",
+  "provenance": {"synthetic": true, "human_audited": false, "generator_id": "0123456789abcdef0123456789abcdef:corporate-fixture-author", "generator_model": "documentation-fixture"},
+  "review": {"status": "pending"}
+}
