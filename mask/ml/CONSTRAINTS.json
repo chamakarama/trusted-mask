@@ -1,0 +1,50 @@
+{
+  "version": "constraints-1",
+  "frozenAt": "2026-11-07",
+  "note": "Predeclared before any plan is benchmarked. A plan qualifies only if every applicable constraint is 'evaluated' and satisfied (or 'not_applicable' where allowed). Missing, unsupported or failed tests never count as satisfied. Change only with a new version id; select_targets records the version in every target.",
+  "metricAliases": {
+    "directIdentifiersRetained": ["direct_identifiers_retained", "retained_direct_identifiers", "retained"],
+    "hardLabelLeaks": ["hard_label_leaks", "hard_leak_count", "leaked_hard_spans", "hard_label_leak_rate"],
+    "reidentificationRate": ["reidentification_rate", "reid_rate", "success_rate", "match_rate"],
+    "utilityScore": ["utility_ratio", "ratio", "score", "utility", "retained_ratio"]
+  },
+  "constraints": [
+    {
+      "id": "C1-direct-identifiers",
+      "description": "No direct identifier survives in the output",
+      "trustLevels": ["contractual", "controlled_research", "public"],
+      "match": { "kind": "residual_check", "idPattern": "direct|identifier|residual" },
+      "metric": "directIdentifiersRetained", "op": "==", "threshold": 0,
+      "notApplicablePasses": false
+    },
+    {
+      "id": "C2-text-hard-labels",
+      "description": "No hard-label span (national id, email, phone, IBAN, card, secret, ...) leaks in free text",
+      "trustLevels": ["internal", "contractual", "controlled_research", "public"],
+      "match": { "kind": "text_leakage" },
+      "metric": "hardLabelLeaks", "op": "==", "threshold": 0,
+      "notApplicablePasses": true
+    },
+    {
+      "id": "C3-linkage",
+      "description": "Linkage attack re-identification rate at or below the trust-level threshold",
+      "trustLevels": ["internal", "contractual", "controlled_research", "public"],
+      "match": { "kind": "attack", "idPattern": "link|reid|join|mosaic" },
+      "metric": "reidentificationRate", "op": "<=",
+      "thresholdByTrust": { "internal": 1.0, "controlled_research": 0.10, "contractual": 0.05, "public": 0.01 },
+      "notApplicablePasses": true
+    },
+    {
+      "id": "C4-utility-answerable",
+      "description": "Every utility task the scenario requires is answerable on the protected output (status evaluated)",
+      "trustLevels": ["internal", "contractual", "controlled_research", "public"],
+      "match": { "kind": "utility", "sourceFromScenario": "utility_requirements" },
+      "requireStatus": "evaluated",
+      "notApplicablePasses": false
+    }
+  ],
+  "ranking": {
+    "description": "Among qualifying plans, rank by the mean utility score over the scenario's required utility tasks (higher is better); ties broken by fewer removed units, then by planHash.",
+    "metric": "utilityScore"
+  }
+}

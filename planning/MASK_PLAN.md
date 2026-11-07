@@ -89,6 +89,49 @@ Search a bounded set of complete plans proposed by the selector, retaining usefu
 
 For real private data, adaptive selection and published diagnostics can also disclose information. Any differential-privacy claim must account for private-data-dependent plan selection and repeated releases. Initial experiments use synthetic data.
 
+## Required adversarial benchmark integration
+
+Implementation requirement added during the active Claude build: implement a benchmark adapter around the supplied `pets-eval` toolkit. This section specifies work and acceptance criteria, not completed Mask measurements. The package contains attacker background data, executable attacks, utility tasks and reference protection baselines; it is not one pretrained adversary model.
+
+Owning sources under `TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/`:
+
+- [Threat model](../TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/docs/THREAT_MODEL.md)
+- [Attack specifications](../TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/metadata/attack_specs.json)
+- [Evaluation contract](../TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/docs/EVALUATION.md)
+- [Reference baselines](../TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/docs/BENCHMARK.md)
+- [Scorecard implementation](../TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/toolkit/pets_eval/scorecard.py)
+
+### Adapter and feedback loop
+
+1. Accept a supported source dataset, scenario, frozen split assignment and versioned complete transformation plan.
+2. Execute the plan and write a private benchmark staging representation. Preserve the toolkit's expected table/column names and supported generalised-value formats, or document and validate an adapter. Preserve private row mappings after filtering, sorting or tokenisation; never restore original identifiers into the shareable artifact just to make scoring work.
+3. Run relevant linkage/inference attacks, residual-identifier and text-leakage checks, and the scenario's utility tasks. Keep original and protected runs comparable. Record sampling limits and denominators; do not silently substitute a partial scan for a full benchmark.
+4. Return per-test coverage and status (`evaluated`, `not_applicable`, `unsupported`, `failed`), metrics, assumptions, toolkit/configuration versions, input/output/plan hashes and private artifact references. Missing, skipped or failed tests must not become zero-risk observations. Toolkit scores are self-assessment evidence, not the official judging rubric or a probability of anonymity.
+5. On development data, compare several executed candidate plans. Select plans with the best relevant utility among those satisfying predeclared constraints; record acceptable alternatives. If none qualify, retain the failure/abstention rather than inventing a successful label.
+6. Use reviewed results as supervision for the softmax selector. This is offline target generation followed by cross-entropy training; no backpropagation through attack code or adversarial neural-network training is required. An optional learned risk proxy must be validated separately.
+
+Agent-generated labels propose candidates; measured outcomes and review determine acceptance. A complete-plan score does not automatically assign causal credit to each field recipe. Retain the surrounding plan in training examples and evaluate controlled substitutions where field-level targets are needed.
+
+### First customer-service evaluation
+
+The supplied `leaked_customer_list` linkage specification targets the `customers` table through name, email and city, with `accessibility_needs` as the sensitive attribute. It does not automatically evaluate every attack on conversation text or every cross-table inference. Pair it with separate annotated-span leakage checks on transcripts/notes and scenario-relevant utility tasks such as intent classification, complaint mix and resolution rate.
+
+Display uncovered transcript/cross-table threats explicitly. Implement additional attacks when needed for a claim, reporting those separately from the unchanged supplied benchmark. If tables are withheld or replaced by aggregates, explain which row-level attacks become inapplicable and what evaluates the released representation instead.
+
+### Evaluation isolation and final validation
+
+Keep benchmark truth, attacker knowledge and scoring rowmaps in offline/private evaluation. Ground truth verifies attack success; it must not be an inference feature. The final export excludes these files. Without rowmaps or original IDs the toolkit may treat a table as synthetic, so validate representation classification instead of accepting misleading scores.
+
+Split before target generation. Development attacks used to choose labels are no longer independent final evidence on those cases. Freeze held-out sources/goals, avoid repeated test-driven tuning, and use the documented optional organiser-held stronger attackers/hidden labels when available. Do not claim those checks occurred until results exist. Reference baselines that use the catalog have privileged type labels: distinguish transformation-only comparisons from end-to-end detection performance.
+
+For arbitrary user uploads, ground truth and matching attacker data generally do not exist. Mark benchmark-derived metrics unavailable where necessary, and distinguish heuristic/proxy diagnostics from measured attack success. Do not invent ground-truth measurements in the UI. Any cloud benchmark job uses approved synthetic material and follows the same split/feature isolation.
+
+### Integration ownership and acceptance
+
+The pipeline owner implements the adapter, staging/rowmap handling and export isolation. The ML owner consumes versioned development results for labels and owns held-out comparison. The UI owner displays coverage, metric definitions, measured results and uncertainty separately from method preference.
+
+Completion requires one fresh supported synthetic input with multiple genuinely executed candidate plans, reproducible privacy and utility reports, reviewed training targets, and a frozen held-out comparison. Test a retained-identifier positive control, a deliberately destructive transformation to expose utility loss, and an unsupported/failed attack to verify honest coverage reporting. Verify that changing a plan invalidates its old evaluation and that the public download contains no private benchmark material.
+
 ## Training and evaluation protocol
 
 1. Define scenarios, recipes, threats, utility metrics and selection criteria before tuning. Detection labels identify content; they do not label the best method.
