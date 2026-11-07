@@ -18,6 +18,7 @@ import threading
 from urllib.parse import urlparse
 import uuid
 import tempfile
+import re
 import zipfile
 
 import numpy as np
@@ -29,11 +30,21 @@ from pipeline.mobility import load, validate, prepare, STOP_COLS, CAPS, EPS, COL
 from pipeline.public import sync_release
 from pipeline.snapshot import snapshot, fingerprint
 from pipeline.planning_task import evaluate_areas
+from pipeline.transfer import extract_upload, raw_demo_zip, protected_document, MAX_UPLOAD
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLED_CITY = ROOT/'releases/city-turku-v1'
 BUNDLED_RECEIPT = ROOT/'evidence/workflow-city/release-receipt.json'
 PACKAGE = ROOT/'TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026'
+
+
+def city_registration(digest):
+    registrations=[(BUNDLED_CITY,BUNDLED_RECEIPT),(ROOT/'releases/kupittaa-hackathon-v1',ROOT/'evidence/kupittaa-hackathon/release-receipt.json')]
+    for source,receipt_path in registrations:
+        if source.exists() and receipt_path.exists():
+            record=json.loads(receipt_path.read_text())
+            if record['fingerprint']==digest:return source,record
+    return None
 
 
 class Workflow:
@@ -43,13 +54,19 @@ class Workflow:
         self.planner_url = planner_url
         self.datasets = {'aura': {'name': 'Aura Transit benchmark', 'data_class': 'supplied_synthetic', 'path': PACKAGE/'data/mobility'}}
         if city_input:
-            self.datasets['city'] = {'name': 'Turku synthetic city', 'data_class': 'team_synthetic', 'path': Path(city_input).resolve()}
+            self.datasets['city'] = {'name': 'Since AI · Kupittaa synthetic demo' if 'kupittaa' in str(city_input) else 'Turku synthetic city', 'data_class': 'team_synthetic', 'path': Path(city_input).resolve()}
+        self.demo_input = Path(city_input).resolve() if city_input else None
+        upload_pointer=self.runtime/'uploaded.json'
+        if upload_pointer.exists():
+            digest=json.loads(upload_pointer.read_text()).get('fingerprint','')
+            if not re.fullmatch('[0-9a-f]{64}',digest):raise ValueError('UPLOAD_POINTER_INVALID')
+            self.datasets['city']={'name':'Uploaded synthetic city','data_class':'team_synthetic','path':self.runtime/'uploads'/digest}
         self.lock = threading.Lock()
         self.state_file = self.runtime/'workflow.json'
         self.state = json.loads(self.state_file.read_text()) if self.state_file.exists() else {'revision': 0, 'completed': 0}
 
     def public_state(self):
-        return {**self.state, 'datasets': [{'id': k, **{a:b for a,b in v.items() if a!='path'}, 'available': (v['path']/'taps.csv').exists()} for k,v in self.datasets.items()], 'policy': {'id': city.POLICY, 'caps': CAPS, 'epsilon': EPS}, 'planner_url': self.planner_url}
+        return {**self.state, 'datasets': [{'id': k, **{a:b for a,b in v.items() if a!='path'}, 'available': (v['path']/'taps.csv').exists()} for k,v in self.datasets.items()], 'policy': {'id': city.POLICY, 'caps': CAPS, 'epsilon': EPS}, 'planner_url': self.planner_url, 'demo_available':bool(self.demo_input and (self.demo_input/'taps.csv').exists())}
 
     def save(self):
         temp = self.state_file.with_suffix('.pending')
@@ -147,8 +164,10 @@ class Workflow:
                 receipt = {'release_id':'e1-aura-001', 'manifest_sha256': artifact.verify(source), 'reused': True}
                 mode = 'Verified existing benchmark publication; no new noise drawn.'
             else:
-                source = self.runtime/'candidate/city-turku-v1'
-                receipt_file = self.runtime/'city-receipt.json'
+                registration=city_registration(self.state['fingerprint'])
+                release_id=registration[1]['receipt']['release_id'] if registration else 'city-turku-v1'
+                source = self.runtime/'candidate'/release_id
+                receipt_file = self.runtime/(release_id+'-receipt.json')
                 if receipt_file.exists():
                     prior = json.loads(receipt_file.read_text())
                     if prior['fingerprint'] != self.state['fingerprint']: raise ValueError('RELEASE_CONFLICT: existing publication belongs to different inputs')
@@ -156,15 +175,15 @@ class Workflow:
                     if artifact.verify(source) != receipt['manifest_sha256']: raise ValueError('ARTIFACT_INVALID: candidate receipt')
                     receipt = {**receipt, 'reused': True}
                 else:
-                    if BUNDLED_CITY.exists():
-                        bundled = json.loads(BUNDLED_RECEIPT.read_text())
+                    if registration or BUNDLED_CITY.exists():
+                        bundled_source,bundled=registration if registration else (BUNDLED_CITY,json.loads(BUNDLED_RECEIPT.read_text()))
                         if bundled['fingerprint'] != self.state['fingerprint']: raise ValueError('RELEASE_CONFLICT: bundled city release belongs to different inputs; use a reviewed new dataset/version')
-                        digest = artifact.verify(BUNDLED_CITY)
+                        digest = artifact.verify(bundled_source)
                         if digest != bundled['receipt']['manifest_sha256']: raise ValueError('ARTIFACT_INVALID: bundled receipt')
                         if not source.exists():
                             source.parent.mkdir(parents=True,exist_ok=True)
                             with tempfile.TemporaryDirectory(prefix='.reuse-',dir=source.parent) as staging:
-                                temporary=Path(staging)/'release';shutil.copytree(BUNDLED_CITY,temporary)
+                                temporary=Path(staging)/'release';shutil.copytree(bundled_source,temporary)
                                 if artifact.verify(temporary)!=digest: raise ValueError('ARTIFACT_INVALID: staged reuse')
                                 os.rename(temporary,source)
                         if artifact.verify(source)!=digest: raise ValueError('ARTIFACT_INVALID: reused candidate')
@@ -223,6 +242,34 @@ class Workflow:
         self.save()
         return self.public_state()
 
+    def upload(self, data, revision):
+        if revision!=self.state['revision']:raise ValueError('STALE_REVISION: refresh before uploading')
+        uploads=self.runtime/'uploads';uploads.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix='.upload-',dir=uploads) as stage:
+            folder=Path(stage)
+            extract_upload(data,folder)
+            city.validate_metadata(folder)
+            digest=city.fingerprint(folder)
+            # This demonstration reuses its registered publication. Changed populations
+            # require a separately reviewed release/accounting scope, never a fresh ledger.
+            if not city_registration(digest):
+                raise ValueError('UNREGISTERED_DATASET: this demo accepts the supplied synthetic city ZIP. Changed data needs a reviewed release and privacy budget.')
+            destination=uploads/digest
+            if destination.exists():
+                if city.fingerprint(destination)!=digest:raise ValueError('UPLOAD_CHANGED')
+            else:shutil.copytree(folder,destination)
+        pending=self.runtime/'uploaded.pending'
+        pending.write_text(json.dumps({'fingerprint':digest}))
+        os.replace(pending,self.runtime/'uploaded.json')
+        self.datasets['city']={'name':'Uploaded synthetic city','data_class':'team_synthetic','path':destination}
+        return self.action('select',{'revision':revision,'dataset_id':'city'})
+
+    def portable_bytes(self):
+        self.require(6)
+        source=self.source()
+        if artifact.verify(source)!=self.state['acceptance']['release_hash']:raise ValueError('ARTIFACT_CHANGED')
+        return (json.dumps(protected_document(source),ensure_ascii=False,separators=(',',':'))+'\n').encode()
+
     def recipient_preview(self):
         self.require(4)
         source=self.source()
@@ -233,7 +280,7 @@ class Workflow:
         return {'release_id':self.state['candidate']['release_id'],'manifest_sha256':digest,'source_file':'statistics.json','measurement':'od','records':rows}
 
     def source(self):
-        return ROOT/'releases/e1-aura-001' if self.state['dataset_id']=='aura' else self.runtime/'candidate/city-turku-v1'
+        return ROOT/'releases/e1-aura-001' if self.state['dataset_id']=='aura' else self.runtime/'candidate'/self.state.get('candidate',{}).get('release_id','city-turku-v1')
 
     @staticmethod
     def verify_package(path, source):
@@ -273,6 +320,17 @@ def handler_for(workflow, port):
             if not self.valid_host(): return self.respond(403, {'error':'HOST_REFUSED'})
             path = urlparse(self.path).path
             if path == '/api/state': return self.respond(200, {**workflow.public_state(), 'csrf':token, 'busy':workflow.lock.locked()})
+            if path in ('/api/demo-input','/api/protected-data'):
+                if not workflow.lock.acquire(blocking=False):return self.respond(409,{'error':'JOB_RUNNING'})
+                try:
+                    if path=='/api/demo-input':
+                        if not workflow.demo_input:raise ValueError('DEMO_INPUT_UNAVAILABLE')
+                        data=raw_demo_zip(workflow.demo_input);filename='routesafe-PRIVATE-synthetic-city.zip';content_type='application/zip'
+                    else:
+                        data=workflow.portable_bytes();filename='routesafe-protected.json';content_type='application/json'
+                except (ValueError,OSError):return self.respond(409,{'error':'DOWNLOAD_NOT_READY_OR_CHANGED'})
+                finally:workflow.lock.release()
+                self.send_response(200);self.send_header('Content-Type',content_type);self.send_header('Content-Disposition',f'attachment; filename="{filename}"');self.send_header('Content-Length',str(len(data)));self.end_headers();return self.wfile.write(data)
             if path == '/api/recipient-preview':
                 if not workflow.lock.acquire(blocking=False):return self.respond(409,{'error':'JOB_RUNNING'})
                 try:return self.respond(200,workflow.recipient_preview())
@@ -291,6 +349,18 @@ def handler_for(workflow, port):
             return super().do_GET()
         def do_POST(self):
             if not self.valid_host() or self.headers.get('Origin') != origin or not secrets.compare_digest(self.headers.get('X-Workflow-Token',''),token): return self.respond(403, {'error':'ORIGIN_OR_TOKEN_REFUSED'})
+            if urlparse(self.path).path=='/api/upload':
+                if self.headers.get('Content-Type')!='application/zip':return self.respond(415,{'error':'ZIP_REQUIRED'})
+                if not workflow.lock.acquire(blocking=False):return self.respond(409,{'error':'JOB_RUNNING'})
+                try:
+                    size=int(self.headers.get('Content-Length','0'));revision=int(self.headers.get('X-Workflow-Revision','-1'))
+                    if not 0<size<=MAX_UPLOAD:raise ValueError('UPLOAD_TOO_LARGE: maximum 16 MB ZIP')
+                    data=self.rfile.read(size)
+                    if len(data)!=size:raise ValueError('UPLOAD_INCOMPLETE')
+                    result=workflow.upload(data,revision)
+                    return self.respond(200,{**result,'csrf':token})
+                except (ValueError,OSError) as exc:return self.respond(409,{'error':str(exc)[:300]})
+                finally:workflow.lock.release()
             if self.headers.get('Content-Type') != 'application/json': return self.respond(415, {'error':'JSON_REQUIRED'})
             if not workflow.lock.acquire(blocking=False): return self.respond(409, {'error':'JOB_RUNNING'})
             try:
