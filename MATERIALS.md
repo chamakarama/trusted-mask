@@ -1,29 +1,25 @@
-# RouteSafe plans and supplied materials
+# Mask challenge materials
 
-Start with [ROUTESAFE_BUILD_PLAN.md](ROUTESAFE_BUILD_PLAN.md), then [the interface contract](planning/INTERFACES.md) and [the coordination guide and agent launch prompts](planning/COORDINATION.md). These are planning documents. The integrated scanner, private publisher and public planner are now implemented; use [ROUTESAFE_DEVELOPMENT.md](ROUTESAFE_DEVELOPMENT.md) for startup and [the evidence guide](evidence/README.md) for executed results and limitations. The root README is the product front page; earlier ideation is preserved in [planning/ORIGINAL_IDEA.md](planning/ORIGINAL_IDEA.md), and the build plan records the accepted scope from [the combined proposal](COMBINED_IDEA.md).
+The supplied `TRUSTED_SinceAI2026_FINAL/` folder is unchanged. It includes the original archive, synthetic datasets, toolkit, challenge PDF, detailed brief, and partner presentation. Large members use Git LFS: run `git lfs pull` and `git lfs fsck` before experiments. A file starting with `version https://git-lfs.github.com/spec/v1` is a pointer, not data.
 
-The complete supplied `TRUSTED_SinceAI2026_FINAL/` folder is included, with its original ZIP, extracted dataset/toolkit, challenge PDF, detailed brief, and partner video/transcript. Source files are preserved byte for byte. Large files are stored with Git LFS; small source and documentation files remain ordinary Git files.
+## Owning sources
 
-## Obtain the full dataset
+- [Detailed brief](TRUSTED_SinceAI2026_FINAL/TrustED_PETs_Transformer_Challenge_Brief_FINAL_REVIEW%20%281%29.docx): detect risks, justify transformations, demonstrate protected output and retained analytical utility. AI is optional.
+- [Package guide](TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/START_HERE.md): datasets, labels and evaluation paths.
+- [Taxonomy](TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/metadata/taxonomy.md): field roles, subtypes and span labels.
+- [Sharing scenarios](TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/metadata/scenarios.json): purpose, recipient, threat assumptions and utility tasks.
+- [PET playbook](TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/docs/PET_PLAYBOOK.md): techniques and their limitations.
+- [Evaluation](TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/docs/EVALUATION.md): detection, attacks, text leakage and utility. The toolkit scorecard is a self-assessment aid, not the official judging rubric.
+- [Customer-service dataset](TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/customer_service/README.md): proposed first mixed structured/text demonstration, public training span labels and organiser-held evaluation labels.
 
-Install Git LFS using the [official installation instructions](https://git-lfs.com/), then:
+## Training and export boundaries
 
-```sh
-git lfs install
-git clone https://github.com/Chintufp/Since-AI-hackathon---WAWS.git
-cd Since-AI-hackathon---WAWS
-git lfs pull
-git lfs fsck
-```
+The field catalog and span annotations label content, not the optimal protection method. Create method-selection targets through reviewed decisions or evaluated candidate plans and record their provenance.
 
-For an existing clone, run `git lfs install` and `git lfs pull` there. A tiny text file starting with `version https://git-lfs.github.com/spec/v1` is a pointer, not the actual CSV, ZIP or video. GitHub's source ZIP download may not contain materialised LFS content; use the commands above.
+The same synthetic people recur across domains. Separate people, conversations, source groups and derived variants across train/validation/test as appropriate. Field classification also needs held-out schemas/domains; millions of rows do not create millions of independent field labels.
 
-The extracted package's `MANIFEST.json` contains checksums for verifying its members. Both builders should verify materialisation before running experiments. Do not edit the supplied package to make tests pass; put adapters and generated outputs outside it.
+The inherited detector was developed with the field catalog visible, and the supplied unlabelled HR file was inspected previously. Neither is a new blind benchmark for that detector. Unlabelled inputs support qualitative inspection; numerical accuracy needs independent labels or organiser scoring.
 
-## Data and publishing boundaries
+Attacker files, truth tables and private row mappings are offline evaluation inputs, not production features or export content. Preserve the customer-service organiser-held evaluation split; missing hidden annotations are not negative labels.
 
-The supplied records are synthetic challenge materials. Evaluation truth, attacker data and baseline rowmaps are included as part of that original package, **not as RouteSafe product output**. They must not become hidden inputs to the production pipeline or be copied into the public planner app. New evaluation rowmaps and any real private inputs must remain outside published product releases.
-
-The public build contains only explicitly allowlisted application assets, protected release files, public geometry, contract schema and the curated synthetic-only `evidence/evidence-summary.json`. That evidence summary includes exact synthetic reference results and must not be generated for public release from real private data. Do not deploy this entire repository as a static folder. Follow the original package's notices and licenses: code is supplied under MIT terms and data/documentation under CC BY 4.0, with upstream attribution retained.
-
-OS metadata, local credentials, dependency caches and future private runtime outputs are excluded from Git. No RouteSafe implementation, experiment result or performance claim is implied by the presence of the supplied benchmark results.
+Data/documentation: CC BY 4.0. Toolkit: MIT. Retain upstream notices. All supplied records are synthetic; availability does not establish production readiness.

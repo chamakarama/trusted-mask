@@ -1,4 +1,4 @@
-"""Private field inventory (planning/INTERFACES.md, "Scanner and policy handoff", inventory_schema_version 1.0).
+"""Private field inventory (inventory_schema_version 1.0; see petpilot/README.md).
 
 The inventory is a private operator-workbench artifact. It contains column names, roles, reasons and rule ids,
 never raw values, recovered identifiers or row-level matches.

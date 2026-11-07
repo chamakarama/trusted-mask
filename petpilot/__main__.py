@@ -1,9 +1,9 @@
 """CLI.
 
-  python -m petpilot inventory --data <dataset folder> --dataset mobility --out private/mobility_inventory.json
-  python -m petpilot scan --data <folder of dataset folders> [--only mobility] --out labels.csv
+  python -m petpilot inventory --data <dataset folder> --dataset customer_service --out private/customer_service_inventory.json
+  python -m petpilot scan --data <folder of dataset folders> [--only customer_service] --out labels.csv
   python -m petpilot scan-file <table.csv> --out labels.csv
-  python -m petpilot evaluate-catalog --package <package root> --out petpilot/evidence/dev_catalog_eval.json
+  python -m petpilot evaluate-catalog --package <package root> --out private/dev_catalog_eval.json
 """
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ from .scan import read_csv, scan_folder, scan_table
 def main() -> None:
     ap = argparse.ArgumentParser(prog="petpilot")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    i = sub.add_parser("inventory", help="private field inventory (INTERFACES.md, inventory_schema_version 1.0)")
-    i.add_argument("--data", required=True, help="one dataset folder, e.g. .../data/mobility")
+    i = sub.add_parser("inventory", help="private field inventory (inventory_schema_version 1.0)")
+    i.add_argument("--data", required=True, help="one dataset folder, e.g. .../data/customer_service")
     i.add_argument("--dataset", required=True, help="dataset identifier recorded in the envelope")
     i.add_argument("--tables", nargs="*", help="restrict to these table names")
     i.add_argument("--no-sweep", action="store_true", help="skip the full-column identifier sweep")
