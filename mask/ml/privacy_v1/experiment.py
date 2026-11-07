@@ -80,7 +80,7 @@ def preflight(model, records):
     tokenizer = model.tokenizer
     markers = [tokenizer.encode(m, add_special_tokens=False) for m in ('[unused0]', '[unused1]')]
     assert all(len(m) == 1 for m in markers) and markers[0] != markers[1]
-    lengths, actions, offsets_checked = [], [], 0
+    lengths, actions, offsets_checked, whitespace_tokens = [], [], 0, 0
     for record in records:
         text = record['text']
         encoded = tokenizer(text, return_offsets_mapping=True)
@@ -89,7 +89,12 @@ def preflight(model, records):
             assert 0 <= a <= b <= len(text)
             if a != b:
                 a, b = model._offset(text, a, b)
-                assert a < b and text[a:b].strip()
+                if a == b:
+                    # SentencePiece can emit a standalone whitespace token. The
+                    # detector skips it and training masks its target with -100.
+                    whitespace_tokens += 1
+                    continue
+                assert text[a:b].strip()
                 offsets_checked += 1
         for entry in record['spans']:
             span = Span(entry['start'], entry['end'], entry['label'])
@@ -107,7 +112,7 @@ def preflight(model, records):
             'tokenizer_size': len(tokenizer), 'embedding_rows': model.net.backbone.get_input_embeddings().num_embeddings,
             'config_vocab_size': model.net.backbone.config.vocab_size,
             'max_detection_tokens': max(lengths), 'max_action_tokens': max(actions),
-            'offsets_checked': offsets_checked, 'source': model.source,
+            'offsets_checked': offsets_checked, 'whitespace_tokens_ignored': whitespace_tokens, 'source': model.source,
             'torch_version': torch.__version__}
 
 
@@ -159,7 +164,9 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     write(args.output / 'run.json', {'args': vars(args) | {'output': str(args.output), 'base': str(args.base)},
           'dataset_sha256': HASHES, 'train_records': len(train), 'dev_records': len(dev),
-          'git_commit': os.environ.get('MASK_SOURCE_COMMIT') or subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(),
+          'git_commit': Path('SOURCE_COMMIT').read_text().strip() if Path('SOURCE_COMMIT').exists() else
+                        os.environ.get('MASK_SOURCE_COMMIT') or subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(),
+          'code_sha256': {p.name: digest(p) for p in sorted(Path(__file__).parent.glob('*.py'))},
           'platform': platform.platform(), 'selection_order': ['unsupported', 'privacy_misses', 'lost_facts', 'unnecessary_character_edits', 'missed_section_drops']})
     if args.track == 'rules':
         diagnostics(RulesModel(), dev, args.output / 'dev.json')
