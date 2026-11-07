@@ -23,12 +23,13 @@ def covered(a, b, intervals):
     return False
 
 
-def evaluate(model, records):
+def evaluate(model, records, outputs=None):
     protector = Protector(model)
     counts = {k: 0 for k in ("records", "gold_spans", "gold_detection_spans", "detected_gold_exact", "gold_action_correct",
               "gold_relevance_correct", "required_removal", "required_removed", "direct_required",
               "direct_removed", "required_facts", "facts_retained", "ready", "unsupported",
-              "predicted_spans", "benign_characters", "benign_characters_changed")}
+              "predicted_spans", "benign_characters", "benign_characters_changed",
+              "required_section_drops", "sections_dropped", "gold_keep_characters", "gold_keep_characters_changed")}
     durations = []
     for record in records:
         text = record["text"]
@@ -41,6 +42,9 @@ def evaluate(model, records):
             counts["detected_gold_exact"] += (target["start"], target["end"], target["label"]) in found
         start = time.perf_counter()
         result = protector.protect_text(text, record["task"])
+        if outputs is not None:
+            outputs.append({"id": record["id"], "text": text, "task": record["task"],
+                            "result": result.as_dict()})
         durations.append(time.perf_counter() - start)
         counts["ready"] += result.status == "ready"
         counts["unsupported"] += result.status == "unsupported"
@@ -49,6 +53,9 @@ def evaluate(model, records):
         changed = {i for edit in result.edits for i in range(edit.start, edit.end)}
         counts["benign_characters"] += len(benign)
         counts["benign_characters_changed"] += len(benign & changed)
+        keep = {i for s in record["spans"] if s["action"] == "KEEP" for i in range(s["start"], s["end"])}
+        counts["gold_keep_characters"] += len(keep)
+        counts["gold_keep_characters_changed"] += len(keep & changed)
         for target in record["spans"]:
             span = Span(target["start"], target["end"], target["label"])
             counts["gold_spans"] += 1
@@ -61,6 +68,10 @@ def evaluate(model, records):
                 removed = result.protected_text is not None and covered(span.start, span.end,
                     [(e.start, e.end) for e in result.edits if e.action != "KEEP"])
                 counts["required_removed"] += bool(removed)
+                if target["action"] == "DROP":
+                    counts["required_section_drops"] += 1
+                    counts["sections_dropped"] += bool(result.protected_text is not None and covered(span.start, span.end,
+                        [(e.start, e.end) for e in result.edits if e.action == "DROP"]))
                 if span.label in DIRECT:
                     counts["direct_required"] += 1
                     counts["direct_removed"] += bool(removed)
@@ -76,6 +87,9 @@ def evaluate(model, records):
         "draft_required_removal_coverage": ratio("required_removed", "required_removal"),
         "draft_direct_removal_coverage": ratio("direct_removed", "direct_required"),
         "draft_exact_fact_retention": ratio("facts_retained", "required_facts"),
+        "draft_privacy_misses": counts["required_removal"] - counts["required_removed"],
+        "draft_section_drop_recall": ratio("sections_dropped", "required_section_drops"),
+        "draft_keep_character_change_rate": ratio("gold_keep_characters_changed", "gold_keep_characters"),
         "automatic_coverage": ratio("ready", "records"),
         "latency_seconds": {"median": sorted(durations)[len(durations)//2],
                             "p95": sorted(durations)[min(len(durations)-1, int(len(durations)*0.95))]},

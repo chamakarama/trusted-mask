@@ -33,6 +33,14 @@ class EncoderModel:
     def __init__(self, net, tokenizer, source, device="cpu"):
         self.net, self.tokenizer, self.source = net.to(device), tokenizer, source
         self.device = device
+        self.model_id = "deberta-v3-base" if source.get("repository") == "microsoft/deberta-v3-base" else "encoder-b-pilot"
+        if not tokenizer.is_fast:
+            raise ValueError("Fast tokenizer required for lossless offsets")
+        marker_ids = tokenizer.convert_tokens_to_ids(["[unused0]", "[unused1]"])
+        if len(set(marker_ids)) != 2 or tokenizer.unk_token_id in marker_ids:
+            raise ValueError("Span markers must be distinct known tokens")
+        if max(tokenizer.get_vocab().values()) >= net.backbone.get_input_embeddings().num_embeddings:
+            raise ValueError("Tokenizer exceeds backbone embedding size")
         self.net.eval()
 
     @classmethod
@@ -45,7 +53,18 @@ class EncoderModel:
             raise ValueError("Fast tokenizer required for lossless offsets")
         tokenizer.add_special_tokens({"additional_special_tokens": ["[unused0]", "[unused1]"]})
         backbone = AutoModel.from_pretrained(directory, local_files_only=True, trust_remote_code=False)
+        if len(tokenizer) > backbone.get_input_embeddings().num_embeddings:
+            backbone.resize_token_embeddings(len(tokenizer), mean_resizing=False)
         return cls(Network(backbone), tokenizer, source, device)
+
+    @staticmethod
+    def _offset(text, a, b):
+        # SentencePiece may include the preceding space in a token's source range.
+        while a < b and text[a].isspace():
+            a += 1
+        while b > a and text[b - 1].isspace():
+            b -= 1
+        return a, b
 
     def _action_input(self, text, span, task, context):
         # No silent truncation. Oversized action context is an explicit review/unsupported case.
@@ -68,6 +87,7 @@ class EncoderModel:
         values = {}
         for window, mapping in zip(logits, offsets, strict=True):
             for logit, (a, b) in zip(window, mapping, strict=True):
+                a, b = self._offset(text, a, b)
                 if a == b:
                     continue
                 values.setdefault((a, b), []).append(logit)
@@ -83,8 +103,12 @@ class EncoderModel:
         return Prediction(dict(zip(ACTIONS, action.softmax(-1)[0].cpu().tolist(), strict=True)),
                           dict(zip(RELEVANCE, relevance.softmax(-1)[0].cpu().tolist(), strict=True)))
 
-    def train_records(self, records, epochs=1, max_steps=None):
+    def train_records(self, records, epochs=1, max_steps=None, learning_rate=3e-5, on_epoch=None):
         from .policy import allowed_actions
+        if not records or any(r["split"] != "train" for r in records):
+            raise ValueError("Training accepts only nonempty train records")
+        if epochs < 1 or learning_rate <= 0 or (max_steps is not None and max_steps < 1):
+            raise ValueError("Training bounds must be positive")
         jobs, seen = [], set()
         for record in records:
             if record["text"] not in seen:
@@ -92,7 +116,7 @@ class EncoderModel:
                 seen.add(record["text"])
             for entry in record["spans"]:
                 jobs.append(("action", record, entry))
-        optimizer = torch.optim.AdamW(self.net.parameters(), lr=3e-5, weight_decay=0.01)
+        optimizer = torch.optim.AdamW(self.net.parameters(), lr=learning_rate, weight_decay=0.01)
         randomizer = random.Random(17)
         steps, losses = 0, []
         self.net.train()
@@ -109,6 +133,7 @@ class EncoderModel:
                     offsets = encoded.pop("offset_mapping")[0].tolist()
                     targets = []
                     for a, b in offsets:
+                        a, b = self._offset(record["text"], a, b)
                         if a == b:
                             targets.append(-100)
                             continue
@@ -138,6 +163,14 @@ class EncoderModel:
                 losses.append(float(loss.detach().cpu()))
                 if steps % 50 == 0:
                     print(json.dumps({"epoch": epoch, "steps": steps, "recent_loss": sum(losses[-50:]) / 50}), flush=True)
+            self.net.eval()
+            if on_epoch is not None:
+                on_epoch(self, epoch + 1, {"steps": steps, "learning_rate": learning_rate,
+                    "mean_training_loss": sum(losses) / max(1, len(losses)),
+                    "bounded_smoke_run": max_steps is not None}, optimizer)
+            if max_steps is not None and steps >= max_steps:
+                break
+            self.net.train()
         self.net.eval()
         return {"steps": steps, "epochs_requested": epochs, "mean_training_loss": sum(losses) / max(1, len(losses)),
                 "bounded_smoke_run": max_steps is not None}
