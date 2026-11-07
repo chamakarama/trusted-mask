@@ -1,208 +1,115 @@
-import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import test from "node:test";
-import { JSDOM } from "jsdom";
-const html = readFileSync(new URL("../static/index.html", import.meta.url), "utf8");
-const script = readFileSync(new URL("../static/app.js", import.meta.url), "utf8");
-const flush = () => new Promise((resolve) => setTimeout(resolve, 25));
-const result = { status: "needs_review", preview_id: "opaque-preview", payload: "instruction\nHello [PERSON_1]", protected_text: "Hello [PERSON_1]", protected_task: "Write to [PERSON_1]", provider_request: { system: "Use labels verbatim.", user: "Hello [PERSON_1]" }, coverage: { complete: true }, context_mode: "message_only", change_count: 1 };
-const json = (data, status = 200) => ({ ok: status < 400, status, json: async () => data });
-function stream(events, chunkSize = 3) {
-  const data = new TextEncoder().encode(events.map(([name, data]) => `event: ${name}\ndata: ${JSON.stringify(data)}\n\n`).join(""));
-  return { ok: true, body: new ReadableStream({ start(controller) {
-    for (let i = 0; i < data.length; i += chunkSize) controller.enqueue(data.slice(i, i + chunkSize));
-    controller.close();
-  } }) };
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import test from 'node:test';
+import { JSDOM } from 'jsdom';
+const html=readFileSync(new URL('../static/index.html',import.meta.url),'utf8');
+const script=readFileSync(new URL('../static/app.js',import.meta.url),'utf8');
+const examples=JSON.parse(readFileSync(new URL('../../../demo/web-examples.json',import.meta.url),'utf8')).examples;
+const flush=()=>new Promise(resolve=>setTimeout(resolve,20));
+const result={preview_id:'approved-preview',status:'needs_review',coverage:{complete:true},protected_text:'Hello [PERSON_1]'};
+function setup(preview=async()=>({ok:true,json:async()=>result}),motion=false,provider=null){
+  const dom=new JSDOM(html,{url:'http://127.0.0.1:8788',runScripts:'outside-only'}), w=dom.window, calls=[];
+  w.matchMedia=()=>({matches:!motion});w.TextDecoder=TextDecoder;w.requestAnimationFrame=fn=>w.setTimeout(fn,0);w.HTMLElement.prototype.scrollIntoView=function(){this.dataset.scrolled='true';};
+  w.fetch=async(path,options)=>{calls.push({path,options}); return path==='/api/preview'?preview():path==='/api/send'&&provider?provider():{ok:true,json:async()=>({})};};
+  w.eval(script); const $=id=>w.document.getElementById(id);
+  const type=value=>{$('message').value=value;$('message').dispatchEvent(new w.Event('input'));};
+  return {w,$,type,calls,close:()=>w.close()};
 }
-function setup({ preview = () => json(result), send, configured = true, mock = false, mode = "compare", motion = false } = {}) {
-  const dom = new JSDOM(html, { url: "http://127.0.0.1:8788", runScripts: "outside-only" });
-  const { window } = dom;
-  const timeout = window.setTimeout.bind(window);
-  window.setTimeout = (fn, delay) => timeout(fn, delay === 450 ? 0 : delay);
-  window.TextDecoder = TextDecoder;
-  window.matchMedia = () => ({ matches: !motion });
-  const calls = [];
-  window.fetch = async (path, options) => {
-    calls.push({ path, options });
-    if (path === "/api/health") return json({ provider_connected: configured, provider: { mock } });
-    if (path === "/api/preview") return preview();
-    if (path === "/api/send") return send ? send() : json({ error: "Not configured" }, 503);
-    return json({ status: "reset" });
-  };
-  window.eval(script);
-  const $ = (id) => window.document.getElementById(id);
-  const type = (value) => { $("message").value = value; $("message").dispatchEvent(new window.Event("input")); };
-  const purpose = (value) => { $("task").value = value; $("task").dispatchEvent(new window.Event("input")); };
-  if (mode === "compare") $("mode-compare").click();
-  return { window, $, type, purpose, calls: (path) => calls.filter((c) => c.path === path), close: () => window.close() };
-}
-test("minimal two-box layout, optional purpose, explicit send, no automatic provider call", async () => {
-  const ui = setup();
-  try {
-    assert.equal(ui.window.document.querySelectorAll("h1,h2,header,footer").length, 0);
-    assert.equal(ui.$("reply-panel").hidden, true);
-    ui.type("Hello Emma"); await flush();
-    assert.equal(ui.$("output").textContent, result.protected_text);
-    assert.deepEqual(JSON.parse(ui.calls("/api/preview")[0].options.body), { text: "Hello Emma" });
-    assert.ok(ui.calls("/api/preview")[0].options.headers["X-Mask-Client"].length >= 20);
-    assert.equal(ui.$("send").disabled, false);
-    assert.equal(ui.calls("/api/send").length, 0);
-    ui.$("inspect").click();
-    assert.match(ui.$("output").textContent, /Use labels verbatim/);
-    ui.$("inspect").click(); assert.equal(ui.$("output").textContent, result.protected_text);
-  } finally { ui.close(); }
+test('exactly one visible box and two controls; no auto filtering or provider calls',async()=>{
+ const ui=setup();try{
+ assert.equal(ui.$('send').hidden,true);assert.equal(ui.$('reply-section').hidden,true);
+ assert.equal(ui.w.document.querySelectorAll('h1,h2,header,footer,input').length,0);
+ assert.equal(ui.$('output').hidden,true);ui.type('Hello Emma');await flush();
+ assert.equal(ui.calls.filter(x=>x.path==='/api/preview').length,0);
+ ui.$('filter').click();await flush();assert.equal(ui.$('message').hidden,true);
+ assert.equal(ui.$('output').textContent,result.protected_text);
+ assert.equal(ui.calls.some(x=>x.path==='/api/send'),false);
+ }finally{ui.close();}
 });
-test("purpose edits clear the approved preview and reset its server session", async () => {
-  const ui = setup();
-  try {
-    ui.type("Hello Emma"); await flush(); ui.purpose(" Write a letter ");
-    assert.equal(ui.$("output").textContent, ""); assert.equal(ui.$("send").disabled, true);
-    await flush();
-    assert.equal(JSON.parse(ui.calls("/api/preview")[1].options.body).task, "Write a letter");
-    assert.equal(ui.calls("/api/reset").length, 3);
-  } finally { ui.close(); }
+test('example link alternates the two supplied complete messages',()=>{
+ const ui=setup();try{
+ ui.$('example').click();assert.equal(ui.$('message').value,examples[0].text.trimEnd().replace('below?\n\nPATIENT','below?\nPATIENT'));
+ ui.$('example').click();assert.equal(ui.$('message').value,examples[1].text.trimEnd());
+ ui.$('example').click();assert.match(ui.$('message').value,/Name: Alex Bennett/);
+ assert.equal(ui.calls.filter(x=>x.path==='/api/preview').length,0);
+ }finally{ui.close();}
 });
-test("obsolete inference cannot restore a preview after an edit", async () => {
-  const resolves = [];
-  const ui = setup({ preview: () => new Promise((resolve) => resolves.push(resolve)) });
-  try {
-    ui.type("First"); await flush(); ui.purpose("New purpose"); await flush();
-    resolves[1](json({ ...result, protected_text: "New result" })); await flush();
-    resolves[0](json({ ...result, protected_text: "Old result" })); await flush();
-    assert.equal(ui.$("output").textContent, "New result");
-    ui.type(""); assert.equal(ui.$("output").textContent, "");
-  } finally { ui.close(); }
+test('full message is scanned; opening request supplies context',async()=>{
+ const ui=setup();try{ui.$('example').click();ui.$('filter').click();await flush();
+ const body=JSON.parse(ui.calls.find(x=>x.path==='/api/preview').options.body);
+ assert.match(body.text,/wrist pain/);assert.equal(body.task,examples[0].intended_use);
+ }finally{ui.close();}
 });
-test("partial inference and absent provider fail closed", async () => {
-  const ui = setup({ preview: () => json({ ...result, coverage: { complete: false } }) });
-  const noKey = setup({ configured: false });
-  try {
-    ui.type("Message"); noKey.type("Message"); await flush();
-    assert.equal(ui.$("output").textContent, ""); assert.equal(ui.$("send").disabled, true);
-    assert.match(ui.$("status").textContent, /No complete preview/);
-    assert.equal(noKey.$("send").disabled, true); assert.match(noKey.$("status").textContent, /not configured/);
-  } finally { ui.close(); noKey.close(); }
+test('example change discards obsolete inference',async()=>{
+ let resolve;const ui=setup(()=>new Promise(done=>resolve=done));try{
+ ui.type('First');ui.$('filter').click();ui.$('example').click();
+ resolve({ok:true,json:async()=>result});await flush();
+ assert.equal(ui.$('output').hidden,true);assert.match(ui.$('message').value,/Alex Bennett/);
+ }finally{ui.close();}
 });
-test("split UTF-8 and placeholders stream, names restore locally, raw reply stays available", async () => {
-  const events = [["start", {}], ["delta", { raw: "Hi [PER", segments: [{ text: "Hi " }] }],
-    ["delta", { raw: "SON_1] — hello!", segments: [{ text: "Emma", alias: "[PERSON_1]" }, { text: " — hello!" }] }], ["done", { names: 1, stop_reason: "end_turn" }]];
-  const ui = setup({ send: () => stream(events) });
-  try {
-    ui.type("Hello Emma"); await flush(); ui.$("send").click(); await flush();
-    assert.equal(ui.$("reply-panel").hidden, false); assert.equal(ui.$("reply").textContent, "Hi [PERSON_1] — hello!");
-    ui.$("names").click(); assert.equal(ui.$("reply").textContent, "Hi Emma — hello!");
-    assert.equal(ui.$("reply").querySelector(".restored").textContent, "Emma");
-    assert.deepEqual(JSON.parse(ui.calls("/api/send")[0].options.body), { preview_id: "opaque-preview" });
-    assert.equal(ui.calls("/api/send")[0].options.headers["X-Mask-Request"], "send");
-    ui.$("names").click(); assert.equal(ui.$("reply").textContent, "Hi [PERSON_1] — hello!");
-    ui.$("names").click(); assert.equal(ui.$("reply").textContent, "Hi Emma — hello!");
-    ui.$("send").click(); assert.equal(ui.calls("/api/send").length, 1);
-  } finally { ui.close(); }
+test('failed coverage preserves source and exposes retry only in the existing button',async()=>{
+ const ui=setup(async()=>({ok:true,json:async()=>({...result,coverage:{complete:false}})}));try{
+ ui.type('Original');ui.$('filter').click();await flush();assert.equal(ui.$('message').value,'Original');
+ assert.match(ui.$('filter').textContent,/try again/);assert.equal(ui.$('output').hidden,true);
+ }finally{ui.close();}
 });
-test("names remain placeholders while the provider is still writing", async () => {
-  let push;
-  const response = { ok: true, body: new ReadableStream({ start(controller) { push = controller; } }) };
-  const ui = setup({ send: () => response });
-  try {
-    ui.type("Hello Emma"); await flush(); ui.$("send").click(); await flush();
-    push.enqueue(new TextEncoder().encode('event: delta\ndata: {"raw":"Hi [PERSON_1]","segments":[{"text":"Hi "},{"text":"Emma","alias":"[PERSON_1]"}]}\n\n'));
-    await flush(); assert.equal(ui.$("reply").textContent, "Hi [PERSON_1]");
-    assert.equal(ui.$("names").hidden, true);
-    push.enqueue(new TextEncoder().encode('event: done\ndata: {"names":1}\n\n')); push.close();
-    await flush(); assert.equal(ui.$("reply").textContent, "Hi [PERSON_1]");
-    ui.$("names").click(); assert.equal(ui.$("reply").textContent, "Hi Emma");
-  } finally { ui.close(); }
-});
-test("HTML-like reply text and restored names never become markup", async () => {
-  const text = '<img src=x onerror="alert(1)">';
-  const ui = setup({ preview: () => json({ ...result, protected_text: text }), send: () => stream([
-    ["delta", { raw: text + " [PERSON_1]", segments: [{ text }, { text: "<script>bad()</script>", alias: "[PERSON_1]" }] }], ["done", {}]]) });
-  try {
-    ui.type("Message"); await flush(); ui.$("send").click(); await flush();
-    ui.$("names").click();
-    assert.equal(ui.window.document.querySelector("img"), null); assert.equal(ui.$("reply").querySelector("script"), null);
-    assert.match(ui.$("reply").textContent, /<script>/);
-  } finally { ui.close(); }
-});
-test("provider error and truncated stream never claim successful restoration", async () => {
-  for (const events of [[["error", { message: "Claude rejected the key." }]], [["delta", { raw: "Partial [PERSON_1]", segments: [{ text: "Partial " }, { text: "Emma", alias: "[PERSON_1]" }] }]]]) {
-    const ui = setup({ send: () => stream(events) });
-    try {
-      ui.type("Message"); await flush(); ui.$("send").click(); await flush();
-      assert.equal(ui.$("reply-status").textContent, "Incomplete reply");
-      assert.equal(ui.$("names").hidden, true); assert.equal(ui.$("retry").hidden, false);
-      assert.doesNotMatch(ui.$("reply").textContent, /Emma/);
-    } finally { ui.close(); }
-  }
-});
-test("editing during a send cancels and ignores the obsolete reply", async () => {
-  let finish;
-  const ui = setup({ send: () => new Promise((resolve) => { finish = resolve; }) });
-  try {
-    ui.type("First"); await flush(); ui.$("send").click(); await flush(); ui.type("");
-    assert.equal(ui.calls("/api/send")[0].options.signal.aborted, true);
-    assert.equal(ui.calls("/api/cancel").length, 1);
-    finish(stream([["delta", { raw: "OBSOLETE" }], ["done", {}]])); await flush();
-    assert.equal(ui.$("reply-panel").hidden, true); assert.equal(ui.$("reply").textContent, "");
-  } finally { ui.close(); }
-});
-test("stop aborts and sends cancellation, and mock provider is clearly labelled", async () => {
-  let finish;
-  const ui = setup({ mock: true, send: () => new Promise((resolve) => { finish = resolve; }) });
-  try {
-    ui.type("Message"); await flush(); ui.$("send").click(); await flush();
-    assert.match(ui.$("reply-status").textContent, /Mock/);
-    ui.$("stop").click();
-    assert.equal(ui.calls("/api/send")[0].options.signal.aborted, true);
-    assert.equal(ui.calls("/api/cancel").length, 1);
-    finish(stream([])); await flush();
-    assert.equal(ui.$("stop").hidden, true);
-  } finally { ui.close(); }
+test('real edit ranges animate safely, including Unicode and DROP, without HTML execution',async()=>{
+ const data={...result,protected_text:'😀 [PERSON_1].',protected_view:{message:[{text:'😀 '},{text:'[PERSON_1]',start:2,end:6,action:'ALIAS'},{text:'.'},{text:'',start:7,end:14,action:'DROP'}]}};
+ const ui=setup(async()=>({ok:true,json:async()=>data}),true);try{
+ ui.type('😀 Emma. <img>');ui.$('filter').click();await flush();
+ assert.ok(ui.$('output').querySelector('.dust'));assert.equal(ui.$('output').querySelector('img'),null);
+ await new Promise(resolve=>setTimeout(resolve,850));assert.equal(ui.$('output').textContent,data.protected_text);
+ assert.equal(ui.$('message').value,data.protected_text);assert.equal(ui.$('output').querySelector('.dust'),null);
+ }finally{ui.close();}
 });
 
-test("Inline waits for Filter, keeps the original for Edit, and shares its preview with Compare", async () => {
-  const ui = setup({ mode: "inline" });
-  try {
-    ui.type("Hello Emma"); await flush();
-    assert.equal(ui.calls("/api/preview").length, 0);
-    assert.equal(ui.$("filter").disabled, false);
-    ui.$("filter").click(); await flush();
-    assert.equal(ui.$("inline-output").textContent, "Hello [PERSON_1]");
-    assert.equal(ui.$("message").hidden, true);
-    assert.equal(ui.$("message").value, "Hello Emma");
-    assert.equal(ui.$("send").disabled, false);
-    ui.$("mode-compare").click();
-    assert.equal(ui.$("message").hidden, false);
-    assert.equal(ui.$("output").textContent, "Hello [PERSON_1]");
-    assert.equal(ui.calls("/api/preview").length, 1);
-    ui.$("mode-inline").click(); ui.$("edit").click();
-    assert.equal(ui.$("message").hidden, false); assert.equal(ui.$("send").disabled, true);
-    assert.equal(ui.$("inline-output").textContent, "");
-  } finally { ui.close(); }
+function stream(events){
+ const bytes=new TextEncoder().encode(events.map(([name,data])=>`event: ${name}\ndata: ${JSON.stringify(data)}\n\n`).join(''));
+ return {ok:true,body:new ReadableStream({start(c){for(let i=0;i<bytes.length;i+=3)c.enqueue(bytes.slice(i,i+3));c.close();}})};
+}
+test('send creates a lower reply, scrolls into view, and restores only on button click',async()=>{
+ const events=[['delta',{raw:'Hi [PER',segments:[{text:'Hi '}]}],['delta',{raw:'SON_1] — hello',segments:[{text:'Emma',alias:'[PERSON_1]'},{text:' — hello'}]}],['done',{}]];
+ const ui=setup(undefined,false,()=>stream(events));try{
+ ui.type('Hello Emma');ui.$('filter').click();await flush();assert.equal(ui.$('send').hidden,false);
+ ui.$('send').click();await flush();assert.equal(ui.$('reply-section').hidden,false);
+ assert.equal(ui.$('reply-section').dataset.scrolled,'true');assert.equal(ui.$('reply').textContent,'Hi [PERSON_1] — hello');
+ assert.deepEqual(JSON.parse(ui.calls.find(c=>c.path==='/api/send').options.body),{preview_id:'approved-preview'});
+ ui.$('revert').click();assert.equal(ui.$('reply').textContent,'Hi Emma — hello');
+ assert.equal(ui.calls.filter(c=>c.path==='/api/send').length,1);assert.equal(ui.$('revert').disabled,true);
+ }finally{ui.close();}
 });
-test("Inline animates exact Unicode edits and real DROP ranges, then discards removed text", async () => {
-  const data = { ...result, protected_text: "😀 [PERSON_1].", change_count: 2,
-    protected_view: { message: [{ text: "😀 " }, { text: "[PERSON_1]", label: "PERSON", action: "ALIAS", start: 2, end: 6 }, { text: "." }, { text: "", label: "HEALTH", action: "DROP", start: 7, end: 15 }] } };
-  const ui = setup({ mode: "inline", motion: true, preview: () => json(data) });
-  try {
-    ui.type("😀 Emma. Secret."); ui.$("filter").click(); await flush();
-    assert.equal(ui.$("send").disabled, true);
-    assert.match(ui.$("inline-output").textContent, /Emma/);
-    assert.ok(ui.$("inline-output").querySelectorAll(".dust").length > 0);
-    await new Promise((resolve) => setTimeout(resolve, 850));
-    assert.equal(ui.$("inline-output").textContent, "😀 [PERSON_1].");
-    assert.equal(ui.$("inline-output").querySelector(".dust"), null);
-    assert.equal(ui.$("send").disabled, false);
-  } finally { ui.close(); }
+test('editing or selecting another example cancels obsolete sends and clears the reply',async()=>{
+ let resolve;const ui=setup(undefined,false,()=>new Promise(done=>resolve=done));try{
+ ui.type('Hello Emma');ui.$('filter').click();await flush();ui.$('send').click();await flush();
+ ui.$('example').click();assert.equal(ui.calls.find(c=>c.path==='/api/send').options.signal.aborted,true);
+ resolve(stream([['delta',{raw:'OBSOLETE'}],['done',{}]]));await flush();
+ assert.equal(ui.$('reply-section').hidden,true);assert.equal(ui.$('reply').textContent,'');
+ }finally{ui.close();}
 });
-test("editing during an Inline animation cannot bring back the old protected output", async () => {
-  const data = { ...result, protected_view: { message: [{ text: "Hello " }, { text: "[PERSON_1]", label: "PERSON", action: "ALIAS", start: 6, end: 10 }] } };
-  const ui = setup({ mode: "inline", motion: true, preview: () => json(data) });
-  try {
-    ui.type("Hello Emma"); ui.$("filter").click(); await flush();
-    ui.purpose("New task");
-    await new Promise((resolve) => setTimeout(resolve, 850));
-    assert.equal(ui.$("inline-output").textContent, ""); assert.equal(ui.$("send").disabled, true);
-    assert.equal(ui.$("message").hidden, false);
-  } finally { ui.close(); }
+test('provider errors permit retry and never enable name restoration',async()=>{
+ const ui=setup(undefined,false,()=>stream([['error',{message:'Service unavailable. Try sending again.'}]]));try{
+ ui.type('Hello Emma');ui.$('filter').click();await flush();ui.$('send').click();await flush();
+ assert.match(ui.$('reply').textContent,/Service unavailable/);assert.equal(ui.$('revert').disabled,true);assert.equal(ui.$('send').disabled,false);
+ }finally{ui.close();}
+});
+test('HTML in replies and local restored values is inert',async()=>{
+ const ui=setup(undefined,false,()=>stream([['delta',{raw:'[PERSON_1]<img>',segments:[{text:'<script>name</script>',alias:'[PERSON_1]'},{text:'<img>'}]}],['done',{}]]));try{
+ ui.type('Hello');ui.$('filter').click();await flush();ui.$('send').click();await flush();ui.$('revert').click();
+ assert.equal(ui.$('reply').querySelector('script,img'),null);assert.match(ui.$('reply').textContent,/<script>/);
+ }finally{ui.close();}
+});
+
+test('multi-word placeholders stay highlighted after animation, streaming and name restoration',async()=>{
+ const text='[PERSON_1] [ACCOUNT_ID_1] [ACCOUNT_ID] [EMAIL]';
+ const data={...result,protected_text:text,protected_view:{message:[{text,start:0,end:4,action:'ALIAS'}]}};
+ const events=[['delta',{raw:'[PERSON_1] [ACCOUNT_',segments:[{text:'Emma',alias:'[PERSON_1]'},{text:' [ACCOUNT_'}]}],['delta',{raw:'ID_1] [ACCOUNT_ID] [EMAIL]',segments:[{text:'ID_1] [ACCOUNT_ID] [EMAIL]'}]}],['done',{}]];
+ const ui=setup(async()=>({ok:true,json:async()=>data}),true,()=>stream(events));try{
+ ui.type('Emma');ui.$('filter').click();await new Promise(resolve=>setTimeout(resolve,900));
+ const tokens=id=>Array.from(ui.$(id).querySelectorAll('.token'),el=>el.textContent);
+ assert.deepEqual(tokens('output'),['[PERSON_1]','[ACCOUNT_ID_1]','[ACCOUNT_ID]','[EMAIL]']);
+ ui.$('send').click();await flush();assert.deepEqual(tokens('reply'),tokens('output'));
+ ui.$('revert').click();await new Promise(resolve=>setTimeout(resolve,600));
+ assert.deepEqual(tokens('reply'),['[ACCOUNT_ID_1]','[ACCOUNT_ID]','[EMAIL]']);
+ assert.equal(ui.$('reply').textContent,'Emma [ACCOUNT_ID_1] [ACCOUNT_ID] [EMAIL]');
+ }finally{ui.close();}
 });
