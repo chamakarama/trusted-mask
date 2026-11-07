@@ -38,6 +38,9 @@ def evaluate_rows(model,records,section_mode=None):
         for decision in row['decisions']:
             a,b=decision['start'],decision['end']
             if decision['action']!='KEEP':expected.update(range(a,b))
+            if decision['action']=='DROP':
+                counts['required_whole_sections']+=1
+                counts['whole_sections_removed']+=covered(text,a,b,result.edits,'DROP')
             if decision['label'] in DIRECT and decision['action']!='KEEP':
                 counts['direct_identifiers']+=1
                 if result.protected_text is None or not covered(text,a,b,result.edits):
@@ -70,6 +73,14 @@ def evaluate_rows(model,records,section_mode=None):
                 counts['required_clause_removals']+=1;counts['correct_clause_removals']+=removed
             elif removed:
                 counts['false_clause_removals']+=1;false.append(s)
+        counts['records_with_identifier_misses']+=bool(misses)
+        counts['records_with_lost_required_facts']+=bool(lost)
+        counts['records_with_false_clause_removals']+=bool(false)
+        for trace in result.section_diagnostics:
+            target=next((s['target'] for s in targets if (s['start'],s['end'])==(trace['start'],trace['end'])),None)
+            if trace.get('raw_class')=='unnecessary' and target is not None:
+                counts['raw_unnecessary_on_'+target]+=1
+            counts['gate_'+trace['reason']]+=1
         if text==row['approved_output']:
             counts['benign_no_edit_controls']+=1
             counts['benign_controls_changed']+=(result.protected_text!=text)
@@ -134,11 +145,13 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--model',type=Path);p.add_argument('--data',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--device',default='cpu');p.add_argument('--section-mode')
     p.add_argument('--goal-agnostic',action='store_true');p.add_argument('--threshold',type=float)
+    p.add_argument('--legacy-entity-semantics',action='store_true',help='Isolate learned weight gains under the old entity decision rules')
     args=p.parse_args()
     import torch
     torch.set_num_threads(4)
     model=load_model(args.model,args.device) if args.model else RulesModel()
     if args.threshold is not None:model.runtime['section_threshold']=args.threshold
+    if args.legacy_entity_semantics:model.entity_semantics='legacy'
     if args.goal_agnostic:model=GoalAgnostic(model)
     report=evaluate_rows(model,read(args.data),args.section_mode)
     args.output.parent.mkdir(parents=True,exist_ok=True)

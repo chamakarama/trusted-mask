@@ -44,6 +44,14 @@ def test_essential_context_still_substitutes_private_value():
     assert 'Friday' in result.protected_text
 
 
+def test_essential_placeholder_vetoes_section_drop_but_value_stays_masked():
+    model=SectionModel()
+    model.predict_sections=lambda text,units,task,context='':[dict(essential=.001,unnecessary=.998,uncertain=.001) for _ in units]
+    result=Protector(model).protect_text('My salary is 3120 euros.','Explain my budget')
+    assert result.protected_text=='My salary is [FINANCIAL].'
+    assert result.section_diagnostics[0]['reason']=='section_contains_retained_or_uncertain_evidence'
+
+
 def test_full_short_aliases_and_distinct_people():
     text='Alina Birch met Marek Wolf. Alina thanked Marek.'
     result=Protector(SectionModel()).protect_text(text,'Draft the shipping request')
@@ -68,6 +76,13 @@ def test_missing_and_vague_task_never_deletes(task):
 
 def test_legacy_models_still_default_to_legacy():
     assert Protector().section_mode=='legacy'
+
+
+def test_invalid_section_scores_fail_closed():
+    model=SectionModel()
+    model.predict_sections=lambda text,units,task,context='':[dict(essential=float('nan'),unnecessary=.99,uncertain=.01) for _ in units]
+    result=Protector(model).protect_text('I have asthma.','Draft the shipping request')
+    assert result.status=='unsupported' and result.protected_text is None
 
 
 def test_local_restoration_uses_generated_aliases_only():

@@ -4,6 +4,7 @@ Only runtime text, task, detections and model scores are accepted. Gold annotati
 objects are deliberately absent from this interface.
 """
 import re
+import math
 from .contracts import DIRECT, RULE_ONLY_LABELS, Span, Edit, Result
 from .candidates import NON_NAMES, plausible_person
 from .sections import section_units, section_drop_bounds, CLAUSE_MODE, MAX_SECTIONS, SECTION_LABELS
@@ -59,7 +60,9 @@ def protect_segment(protector, text, task, context, aliases, learned, entities, 
         review.append('unconfirmed_detection_requires_review')
     threshold = model.runtime.get('section_threshold', .9)
     for (a,b), probability in zip(units, scores, strict=allow_section_drop):
-        if set(probability) != {'essential','unnecessary','uncertain'}:
+        if (set(probability) != {'essential','unnecessary','uncertain'} or
+                any(not math.isfinite(v) or v<0 for v in probability.values()) or
+                abs(sum(probability.values())-1)>1e-4):
             raise ValueError('Invalid section prediction')
         raw = max(probability, key=probability.get)
         reason = 'section_not_confidently_unnecessary'
@@ -78,7 +81,7 @@ def protect_segment(protector, text, task, context, aliases, learned, entities, 
             for s in evidence.values():
                 action,score,gate,rel = protector._decision(text,s,task,context)
                 nested.append({'start':s.start,'end':s.end,'label':s.label,'action':action,'relevance':rel})
-                if s.label in RULE_ONLY_LABELS or rel['uncertain'] >= .5 or (action=='KEEP' and rel['essential'] >= .5):
+                if s.label in RULE_ONLY_LABELS or rel['uncertain'] >= .5 or rel['essential'] >= .5:
                     removable,reason = False,'section_contains_retained_or_uncertain_evidence'
             trace['nested_evidence'] = nested
         if removable:
