@@ -1,0 +1,555 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "221daaf242e64b2daaf567e507e2b744",
+  "id": "221daaf242e64b2daaf567e507e2b744:travel-claim",
+  "family_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip",
+  "persona_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip-persona",
+  "source_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip-source",
+  "template_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hi, here is what happened on the Lisbon trip, pasted from my notes.\n\nBooking: Hotel Alvor, reservation for Ines Marchetti and me, 12 to 16 March, 480 euros paid in advance. Check-in was delayed by two hours because the room was not ready.\n\nOn 13 March Ines slipped on the wet stairs outside the hotel and twisted her left ankle. The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances. She could not join the planned day trip.\n\nI paid 95 euros for the clinic visit by card and kept the receipt. The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered.",
+  "task": "Draft a dated incident timeline for my travel insurance claim, covering the injury, treatment, costs and the filing deadline.",
+  "entities": [
+   {
+    "id": "name-full",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines Marchetti"
+   },
+   {
+    "id": "name-short",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines",
+    "occurrence": 2
+   },
+   {
+    "id": "injury",
+    "entity_id": "injury",
+    "label": "HEALTH",
+    "quote": "slipped on the wet stairs outside the hotel and twisted her left ankle."
+   },
+   {
+    "id": "care",
+    "entity_id": "care",
+    "label": "HEALTH",
+    "quote": "The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances."
+   },
+   {
+    "id": "cost",
+    "entity_id": "cost",
+    "label": "FINANCIAL",
+    "quote": "I paid 95 euros for the clinic visit by card and kept the receipt."
+   },
+   {
+    "id": "claim",
+    "entity_id": "claim",
+    "label": "FINANCIAL",
+    "quote": "The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "name-full",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines Marchetti",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "name-short",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "injury",
+    "entity_id": "injury",
+    "label": "HEALTH",
+    "quote": "slipped on the wet stairs outside the hotel and twisted her left ankle.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "care",
+    "entity_id": "care",
+    "label": "HEALTH",
+    "quote": "The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cost",
+    "entity_id": "cost",
+    "label": "FINANCIAL",
+    "quote": "I paid 95 euros for the clinic visit by card and kept the receipt.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "claim",
+    "entity_id": "claim",
+    "label": "FINANCIAL",
+    "quote": "The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered.",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "On 13 March"
+   },
+   {
+    "quote": "slipped on the wet stairs outside the hotel and twisted her left ankle."
+   },
+   {
+    "quote": "The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances."
+   },
+   {
+    "quote": "I paid 95 euros for the clinic visit by card and kept the receipt."
+   },
+   {
+    "quote": "The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered."
+   },
+   {
+    "quote": "Check-in was delayed by two hours because the room was not ready."
+   }
+  ],
+  "approved_output": "Hi, here is what happened on the Lisbon trip, pasted from my notes.\n\nBooking: Hotel Alvor, reservation for [PERSON_1] and me, 12 to 16 March, 480 euros paid in advance. Check-in was delayed by two hours because the room was not ready.\n\nOn 13 March [PERSON_1] slipped on the wet stairs outside the hotel and twisted her left ankle. The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances. She could not join the planned day trip.\n\nI paid 95 euros for the clinic visit by card and kept the receipt. The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "221daaf242e64b2daaf567e507e2b744:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "221daaf242e64b2daaf567e507e2b744",
+  "id": "221daaf242e64b2daaf567e507e2b744:hotel-email",
+  "family_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip",
+  "persona_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip-persona",
+  "source_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip-source",
+  "template_id": "221daaf242e64b2daaf567e507e2b744:lisbon-trip-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hi, here is what happened on the Lisbon trip, pasted from my notes.\n\nBooking: Hotel Alvor, reservation for Ines Marchetti and me, 12 to 16 March, 480 euros paid in advance. Check-in was delayed by two hours because the room was not ready.\n\nOn 13 March Ines slipped on the wet stairs outside the hotel and twisted her left ankle. The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances. She could not join the planned day trip.\n\nI paid 95 euros for the clinic visit by card and kept the receipt. The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered.",
+  "task": "Write a short email asking the hotel for some compensation for the delayed check-in.",
+  "entities": [
+   {
+    "id": "name-full",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines Marchetti"
+   },
+   {
+    "id": "name-short",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines",
+    "occurrence": 2
+   },
+   {
+    "id": "injury",
+    "entity_id": "injury",
+    "label": "HEALTH",
+    "quote": "slipped on the wet stairs outside the hotel and twisted her left ankle."
+   },
+   {
+    "id": "care",
+    "entity_id": "care",
+    "label": "HEALTH",
+    "quote": "The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances."
+   },
+   {
+    "id": "cost",
+    "entity_id": "cost",
+    "label": "FINANCIAL",
+    "quote": "I paid 95 euros for the clinic visit by card and kept the receipt."
+   },
+   {
+    "id": "claim",
+    "entity_id": "claim",
+    "label": "FINANCIAL",
+    "quote": "The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "name-full",
+    "entity_id": "ines",
+    "label": "PERSON",
+    "quote": "Ines Marchetti",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nOn 13 March Ines slipped on the wet stairs outside the hotel and twisted her left ankle. The clinic X-ray showed no fracture, and the doctor told her to rest the ankle for five days and not to walk long distances. She could not join the planned day trip.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The hotel email is about the late check-in; an ankle injury, treatment advice and a missed trip are not needed and are sensitive health details."
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nI paid 95 euros for the clinic visit by card and kept the receipt. The insurer said claims must be filed within 30 days, but I am not sure whether the hotel stairs count as covered.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Clinic costs and the insurer filing deadline are not needed for a check-in compensation request."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "reservation for"
+   },
+   {
+    "quote": "and me, 12 to 16 March, 480 euros paid in advance."
+   },
+   {
+    "quote": "Check-in was delayed by two hours because the room was not ready."
+   }
+  ],
+  "approved_output": "Hi, here is what happened on the Lisbon trip, pasted from my notes.\n\nBooking: Hotel Alvor, reservation for [PERSON_1] and me, 12 to 16 March, 480 euros paid in advance. Check-in was delayed by two hours because the room was not ready.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "221daaf242e64b2daaf567e507e2b744:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "221daaf242e64b2daaf567e507e2b744",
+  "id": "221daaf242e64b2daaf567e507e2b744:export-debug",
+  "family_id": "221daaf242e64b2daaf567e507e2b744:export-ticket",
+  "persona_id": "221daaf242e64b2daaf567e507e2b744:export-ticket-persona",
+  "source_id": "221daaf242e64b2daaf567e507e2b744:export-ticket-source",
+  "template_id": "221daaf242e64b2daaf567e507e2b744:export-ticket-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 4471 from Northgate Freight: the dashboard export times out after about 90 seconds on the shipments table. A smaller date range worked, so the failure looks tied to row volume. Our contract with Northgate Freight is 38,000 euros a year with a 12 percent renewal discount, and procurement wants to renegotiate before May. Dana Okoye, our usual on-call engineer, is on secondment to the Tampere office until 20 June, so Mikko Halla covers the rota and cannot take escalations after 17:00. The exporter runs as svc-export-nf with the temporary password Kestrel-Plum-4471-xq, which expires on Friday. Please check whether the query needs an index.",
+  "task": "Help me diagnose why this customer export times out and what to check next.",
+  "entities": [
+   {
+    "id": "client",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Northgate Freight",
+    "occurrence": 1
+   },
+   {
+    "id": "client2",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Northgate Freight",
+    "occurrence": 2
+   },
+   {
+    "id": "price",
+    "entity_id": "price",
+    "label": "FINANCIAL",
+    "quote": "38,000 euros a year with a 12 percent renewal discount"
+   },
+   {
+    "id": "dana",
+    "entity_id": "dana",
+    "label": "PERSON",
+    "quote": "Dana Okoye"
+   },
+   {
+    "id": "mikko",
+    "entity_id": "mikko",
+    "label": "PERSON",
+    "quote": "Mikko Halla"
+   },
+   {
+    "id": "away",
+    "entity_id": "away",
+    "label": "EMPLOYMENT",
+    "quote": "is on secondment to the Tampere office until 20 June"
+   },
+   {
+    "id": "cover",
+    "entity_id": "cover",
+    "label": "EMPLOYMENT",
+    "quote": "covers the rota and cannot take escalations after 17:00"
+   },
+   {
+    "id": "svc",
+    "entity_id": "svc",
+    "label": "USERNAME",
+    "quote": "svc-export-nf"
+   },
+   {
+    "id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kestrel-Plum-4471-xq"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "client",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Northgate Freight",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "occurrence": 1,
+    "reason": "Customer name is confidential business information; the task does not need it and the generic organisation placeholder loses no needed utility."
+   },
+   {
+    "kind": "section",
+    "quote": " Our contract with Northgate Freight is 38,000 euros a year with a 12 percent renewal discount, and procurement wants to renegotiate before May.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Contract price and renewal terms are confidential commercial terms unrelated to this task."
+   },
+   {
+    "kind": "section",
+    "quote": " Dana Okoye, our usual on-call engineer, is on secondment to the Tampere office until 20 June, so Mikko Halla covers the rota and cannot take escalations after 17:00.",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "On-call coverage and a colleague's secondment are staffing details irrelevant to diagnosing the export timeout."
+   },
+   {
+    "kind": "entity",
+    "target_id": "svc",
+    "entity_id": "svc",
+    "label": "USERNAME",
+    "quote": "svc-export-nf",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Service account name is an access identifier; protecting it loses no meaning for this task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kestrel-Plum-4471-xq",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Credential value must never be disclosed; the expiry timing remains and the exact value is not needed."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the dashboard export times out after about 90 seconds on the shipments table."
+   },
+   {
+    "quote": "A smaller date range worked, so the failure looks tied to row volume."
+   },
+   {
+    "quote": "Please check whether the query needs an index."
+   }
+  ],
+  "approved_output": "Ticket 4471 from [ORG]: the dashboard export times out after about 90 seconds on the shipments table. A smaller date range worked, so the failure looks tied to row volume. The exporter runs as [USERNAME] with the temporary password [SECRET], which expires on Friday. Please check whether the query needs an index.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "221daaf242e64b2daaf567e507e2b744:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "221daaf242e64b2daaf567e507e2b744",
+  "id": "221daaf242e64b2daaf567e507e2b744:oncall-note",
+  "family_id": "221daaf242e64b2daaf567e507e2b744:export-ticket",
+  "persona_id": "221daaf242e64b2daaf567e507e2b744:export-ticket-persona",
+  "source_id": "221daaf242e64b2daaf567e507e2b744:export-ticket-source",
+  "template_id": "221daaf242e64b2daaf567e507e2b744:export-ticket-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket 4471 from Northgate Freight: the dashboard export times out after about 90 seconds on the shipments table. A smaller date range worked, so the failure looks tied to row volume. Our contract with Northgate Freight is 38,000 euros a year with a 12 percent renewal discount, and procurement wants to renegotiate before May. Dana Okoye, our usual on-call engineer, is on secondment to the Tampere office until 20 June, so Mikko Halla covers the rota and cannot take escalations after 17:00. The exporter runs as svc-export-nf with the temporary password Kestrel-Plum-4471-xq, which expires on Friday. Please check whether the query needs an index.",
+  "task": "Write a short handover note for support saying who covers escalations and until when.",
+  "entities": [
+   {
+    "id": "client",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Northgate Freight",
+    "occurrence": 1
+   },
+   {
+    "id": "client2",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Northgate Freight",
+    "occurrence": 2
+   },
+   {
+    "id": "price",
+    "entity_id": "price",
+    "label": "FINANCIAL",
+    "quote": "38,000 euros a year with a 12 percent renewal discount"
+   },
+   {
+    "id": "dana",
+    "entity_id": "dana",
+    "label": "PERSON",
+    "quote": "Dana Okoye"
+   },
+   {
+    "id": "mikko",
+    "entity_id": "mikko",
+    "label": "PERSON",
+    "quote": "Mikko Halla"
+   },
+   {
+    "id": "away",
+    "entity_id": "away",
+    "label": "EMPLOYMENT",
+    "quote": "is on secondment to the Tampere office until 20 June"
+   },
+   {
+    "id": "cover",
+    "entity_id": "cover",
+    "label": "EMPLOYMENT",
+    "quote": "covers the rota and cannot take escalations after 17:00"
+   },
+   {
+    "id": "svc",
+    "entity_id": "svc",
+    "label": "USERNAME",
+    "quote": "svc-export-nf"
+   },
+   {
+    "id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kestrel-Plum-4471-xq"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "client",
+    "entity_id": "client",
+    "label": "ORG",
+    "quote": "Northgate Freight",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "occurrence": 1,
+    "reason": "Customer name is confidential business information; the task does not need it and the generic organisation placeholder loses no needed utility."
+   },
+   {
+    "kind": "section",
+    "quote": " Our contract with Northgate Freight is 38,000 euros a year with a 12 percent renewal discount, and procurement wants to renegotiate before May.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Contract price and renewal terms are confidential commercial terms unrelated to this task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dana",
+    "entity_id": "dana",
+    "label": "PERSON",
+    "quote": "Dana Okoye",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "away",
+    "entity_id": "away",
+    "label": "EMPLOYMENT",
+    "quote": "is on secondment to the Tampere office until 20 June",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mikko",
+    "entity_id": "mikko",
+    "label": "PERSON",
+    "quote": "Mikko Halla",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cover",
+    "entity_id": "cover",
+    "label": "EMPLOYMENT",
+    "quote": "covers the rota and cannot take escalations after 17:00",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "svc",
+    "entity_id": "svc",
+    "label": "USERNAME",
+    "quote": "svc-export-nf",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Service account name is an access identifier; protecting it loses no meaning for this task."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pw",
+    "entity_id": "pw",
+    "label": "SECRET",
+    "quote": "Kestrel-Plum-4471-xq",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Credential value must never be disclosed; the expiry timing remains and the exact value is not needed."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": ", our usual on-call engineer,"
+   },
+   {
+    "quote": "is on secondment to the Tampere office until 20 June, so"
+   },
+   {
+    "quote": "covers the rota and cannot take escalations after 17:00."
+   }
+  ],
+  "approved_output": "Ticket 4471 from [ORG]: the dashboard export times out after about 90 seconds on the shipments table. A smaller date range worked, so the failure looks tied to row volume. [PERSON_1], our usual on-call engineer, is on secondment to the Tampere office until 20 June, so [PERSON_2] covers the rota and cannot take escalations after 17:00. The exporter runs as [USERNAME] with the temporary password [SECRET], which expires on Friday. Please check whether the query needs an index.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "221daaf242e64b2daaf567e507e2b744:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

@@ -1,0 +1,3054 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Camila Sepúlveda, who coordinates the secondary timetable, agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room. The swap only happens if the caretaker finishes the ramp repair; if not, we meet again on 3 December.\n\nSince the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours. My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review. I inject every second Friday, and the next one is on the 14th.\n\nPlease do not move my Thursday duty slot; Valentina Pizarro already swapped it with me once, and I owe her the Friday morning supervision. Our head of department, Ignacio Bravo, wants the final timetable by the 20th, even if the lab question is still open.",
+    "task": "Write a short update for my specialist's nurse before my review: how the last two months have gone and how my work has had to adapt.",
+    "entities": [
+      {
+        "id": "n1",
+        "entity_id": "camila",
+        "label": "PERSON",
+        "quote": "Camila Sepúlveda"
+      },
+      {
+        "id": "w1",
+        "entity_id": "work-arrangement",
+        "label": "EMPLOYMENT",
+        "quote": "agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room"
+      },
+      {
+        "id": "h1",
+        "entity_id": "inj-1",
+        "label": "HEALTH",
+        "quote": "Since the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours."
+      },
+      {
+        "id": "h2",
+        "entity_id": "inj-2",
+        "label": "HEALTH",
+        "quote": "My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review."
+      },
+      {
+        "id": "h3",
+        "entity_id": "inj-3",
+        "label": "HEALTH",
+        "quote": "I inject every second Friday, and the next one is on the 14th."
+      },
+      {
+        "id": "n2",
+        "entity_id": "valentina",
+        "label": "PERSON",
+        "quote": "Valentina Pizarro"
+      },
+      {
+        "id": "n3",
+        "entity_id": "ignacio",
+        "label": "PERSON",
+        "quote": "Ignacio Bravo"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "n1",
+        "entity_id": "camila",
+        "quote": "Camila Sepúlveda",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "w1",
+        "entity_id": "work-arrangement",
+        "quote": "agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "h1",
+        "entity_id": "inj-1",
+        "quote": "Since the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "h2",
+        "entity_id": "inj-2",
+        "quote": "My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "h3",
+        "entity_id": "inj-3",
+        "quote": "I inject every second Friday, and the next one is on the 14th.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "n2",
+        "entity_id": "valentina",
+        "quote": "Valentina Pizarro",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "n3",
+        "entity_id": "ignacio",
+        "quote": "Ignacio Bravo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room"
+      },
+      {
+        "quote": "Since the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours."
+      },
+      {
+        "quote": "My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review."
+      },
+      {
+        "quote": "I inject every second Friday, and the next one is on the 14th."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], who coordinates the secondary timetable, agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room. The swap only happens if the caretaker finishes the ramp repair; if not, we meet again on 3 December.\n\nSince the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours. My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review. I inject every second Friday, and the next one is on the 14th.\n\nPlease do not move my Thursday duty slot; [PERSON_2] already swapped it with me once, and I owe her the Friday morning supervision. Our head of department, [PERSON_3], wants the final timetable by the 20th, even if the lab question is still open."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p1-teacher-timetable-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Camila Sepúlveda, who coordinates the secondary timetable, agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room. The swap only happens if the caretaker finishes the ramp repair; if not, we meet again on 3 December.\n\nSince the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours. My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review. I inject every second Friday, and the next one is on the 14th.\n\nPlease do not move my Thursday duty slot; Valentina Pizarro already swapped it with me once, and I owe her the Friday morning supervision. Our head of department, Ignacio Bravo, wants the final timetable by the 20th, even if the lab question is still open.",
+    "task": "Write a short message to my head of department confirming my new teaching hours, the lab-room swap and what I owe for the duty-slot swap.",
+    "entities": [
+      {
+        "id": "n1",
+        "entity_id": "camila",
+        "label": "PERSON",
+        "quote": "Camila Sepúlveda"
+      },
+      {
+        "id": "w1",
+        "entity_id": "work-arrangement",
+        "label": "EMPLOYMENT",
+        "quote": "agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room"
+      },
+      {
+        "id": "h1",
+        "entity_id": "inj-1",
+        "label": "HEALTH",
+        "quote": "Since the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours."
+      },
+      {
+        "id": "h2",
+        "entity_id": "inj-2",
+        "label": "HEALTH",
+        "quote": "My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review."
+      },
+      {
+        "id": "h3",
+        "entity_id": "inj-3",
+        "label": "HEALTH",
+        "quote": "I inject every second Friday, and the next one is on the 14th."
+      },
+      {
+        "id": "n2",
+        "entity_id": "valentina",
+        "label": "PERSON",
+        "quote": "Valentina Pizarro"
+      },
+      {
+        "id": "n3",
+        "entity_id": "ignacio",
+        "label": "PERSON",
+        "quote": "Ignacio Bravo"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "n1",
+        "entity_id": "camila",
+        "quote": "Camila Sepúlveda",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "w1",
+        "entity_id": "work-arrangement",
+        "quote": "agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "Since the biologic injection started in September, the stiffness in my hands lasts about ninety minutes after I wake, down from about three hours. My rheumatologist does not think the dose needs to change yet, and she wants a blood test before the next review. I inject every second Friday, and the next one is on the 14th.\n\n",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The timetable confirmation needs the agreed hours, room swap and duty-slot commitments, not injection routine, symptom duration or specialist treatment decisions."
+      },
+      {
+        "kind": "entity",
+        "target_id": "n2",
+        "entity_id": "valentina",
+        "quote": "Valentina Pizarro",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "n3",
+        "entity_id": "ignacio",
+        "quote": "Ignacio Bravo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "who coordinates the secondary timetable,"
+      },
+      {
+        "quote": "agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room."
+      },
+      {
+        "quote": "The swap only happens if the caretaker finishes the ramp repair; if not, we meet again on 3 December."
+      },
+      {
+        "quote": "Please do not move my Thursday duty slot;"
+      },
+      {
+        "quote": "already swapped it with me once, and I owe her the Friday morning supervision."
+      },
+      {
+        "quote": "Our head of department,"
+      },
+      {
+        "quote": "wants the final timetable by the 20th, even if the lab question is still open."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], who coordinates the secondary timetable, agreed that I will teach no classes before 9:30 on Mondays and Wednesdays until the end of term, and that my science group moves from the third-floor lab to a ground-floor room. The swap only happens if the caretaker finishes the ramp repair; if not, we meet again on 3 December.\n\nPlease do not move my Thursday duty slot; [PERSON_2] already swapped it with me once, and I owe her the Friday morning supervision. Our head of department, [PERSON_3], wants the final timetable by the 20th, even if the lab question is still open."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card. I am not behind on either, but there is almost nothing left once the fixed costs are paid.\n\nTomás Quiroga drives from Merlo on Mondays and Thursdays and has two free seats. He asked for 6,000 pesos per trip toward fuel and tolls, and said he will not wait more than five minutes after 6:40 at the Parque Avellaneda corner. Lucía Ferreyra could take the Tuesday run if her shift at the lab stays at 7:30; she has not confirmed yet.\n\nThe Sarmiento line pass costs 19,800 pesos for the month. On Wednesdays I need to be in Once by 7:15 for the delivery check, so the train is the only option that day.",
+    "task": "Help me work out whether the car share plus a few train days is realistic for the next three months.",
+    "entities": [
+      {
+        "id": "f1",
+        "entity_id": "budget-1",
+        "label": "FINANCIAL",
+        "quote": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card."
+      },
+      {
+        "id": "f2",
+        "entity_id": "budget-2",
+        "label": "FINANCIAL",
+        "quote": "I am not behind on either, but there is almost nothing left once the fixed costs are paid."
+      },
+      {
+        "id": "t1",
+        "entity_id": "tomas",
+        "label": "PERSON",
+        "quote": "Tomás Quiroga"
+      },
+      {
+        "id": "l1",
+        "entity_id": "lucia",
+        "label": "PERSON",
+        "quote": "Lucía Ferreyra"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "f1",
+        "entity_id": "budget-1",
+        "quote": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card.",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "f2",
+        "entity_id": "budget-2",
+        "quote": "I am not behind on either, but there is almost nothing left once the fixed costs are paid.",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "t1",
+        "entity_id": "tomas",
+        "quote": "Tomás Quiroga",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "l1",
+        "entity_id": "lucia",
+        "quote": "Lucía Ferreyra",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card."
+      },
+      {
+        "quote": "I am not behind on either, but there is almost nothing left once the fixed costs are paid."
+      },
+      {
+        "quote": "drives from Merlo on Mondays and Thursdays and has two free seats."
+      },
+      {
+        "quote": "He asked for 6,000 pesos per trip toward fuel and tolls"
+      },
+      {
+        "quote": "The Sarmiento line pass costs 19,800 pesos for the month."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card. I am not behind on either, but there is almost nothing left once the fixed costs are paid.\n\n[PERSON_1] drives from Merlo on Mondays and Thursdays and has two free seats. He asked for 6,000 pesos per trip toward fuel and tolls, and said he will not wait more than five minutes after 6:40 at the Parque Avellaneda corner. [PERSON_2] could take the Tuesday run if her shift at the lab stays at 7:30; she has not confirmed yet.\n\nThe Sarmiento line pass costs 19,800 pesos for the month. On Wednesdays I need to be in Once by 7:15 for the delivery check, so the train is the only option that day."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p2-carpool-budget-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card. I am not behind on either, but there is almost nothing left once the fixed costs are paid.\n\nTomás Quiroga drives from Merlo on Mondays and Thursdays and has two free seats. He asked for 6,000 pesos per trip toward fuel and tolls, and said he will not wait more than five minutes after 6:40 at the Parque Avellaneda corner. Lucía Ferreyra could take the Tuesday run if her shift at the lab stays at 7:30; she has not confirmed yet.\n\nThe Sarmiento line pass costs 19,800 pesos for the month. On Wednesdays I need to be in Once by 7:15 for the delivery check, so the train is the only option that day.",
+    "task": "Write a message to the carpool group proposing who drives on which days next month and how we split fuel and tolls.",
+    "entities": [
+      {
+        "id": "f1",
+        "entity_id": "budget-1",
+        "label": "FINANCIAL",
+        "quote": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card."
+      },
+      {
+        "id": "f2",
+        "entity_id": "budget-2",
+        "label": "FINANCIAL",
+        "quote": "I am not behind on either, but there is almost nothing left once the fixed costs are paid."
+      },
+      {
+        "id": "t1",
+        "entity_id": "tomas",
+        "label": "PERSON",
+        "quote": "Tomás Quiroga"
+      },
+      {
+        "id": "l1",
+        "entity_id": "lucia",
+        "label": "PERSON",
+        "quote": "Lucía Ferreyra"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "section",
+        "quote": "After the car insurance renewal went up to 41,500 pesos a month, my salary of 612,000 pesos stopped covering the 78,000 I pay toward the personal loan and the 54,000 minimum on the credit card. I am not behind on either, but there is almost nothing left once the fixed costs are paid.\n\n",
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Proposing a driving rota and fuel split needs the driver's offer and timings, not the writer's salary, loan repayments or card minimum."
+      },
+      {
+        "kind": "entity",
+        "target_id": "t1",
+        "entity_id": "tomas",
+        "quote": "Tomás Quiroga",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "l1",
+        "entity_id": "lucia",
+        "quote": "Lucía Ferreyra",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "drives from Merlo on Mondays and Thursdays and has two free seats."
+      },
+      {
+        "quote": "He asked for 6,000 pesos per trip toward fuel and tolls, and said he will not wait more than five minutes after 6:40 at the Parque Avellaneda corner."
+      },
+      {
+        "quote": "could take the Tuesday run if her shift at the lab stays at 7:30; she has not confirmed yet."
+      },
+      {
+        "quote": "On Wednesdays I need to be in Once by 7:15 for the delivery check, so the train is the only option that day."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1] drives from Merlo on Mondays and Thursdays and has two free seats. He asked for 6,000 pesos per trip toward fuel and tolls, and said he will not wait more than five minutes after 6:40 at the Parque Avellaneda corner. [PERSON_2] could take the Tuesday run if her shift at the lab stays at 7:30; she has not confirmed yet.\n\nThe Sarmiento line pass costs 19,800 pesos for the month. On Wednesdays I need to be in Once by 7:15 for the delivery check, so the train is the only option that day."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Rodrigo Cáceres, the branch manager, approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published. I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward. Marisol Echeverría, who covers the counter with me, will take the crates on those days if I do the stock count on Tuesdays and Thursdays. I asked whether the later start could continue past January, and Rodrigo said he would decide after the pharmacy audit on 12 December, not before.",
+    "task": "Write a handover note for my colleague on how the counter and deliveries are split on my late-start days.",
+    "entities": [
+      {
+        "id": "r1",
+        "entity_id": "rodrigo",
+        "label": "PERSON",
+        "quote": "Rodrigo Cáceres"
+      },
+      {
+        "id": "e1",
+        "entity_id": "late-start",
+        "label": "EMPLOYMENT",
+        "quote": "approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published"
+      },
+      {
+        "id": "h1",
+        "entity_id": "clinic-days",
+        "label": "HEALTH",
+        "quote": "I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward"
+      },
+      {
+        "id": "m1",
+        "entity_id": "marisol",
+        "label": "PERSON",
+        "quote": "Marisol Echeverría"
+      },
+      {
+        "id": "r2",
+        "entity_id": "rodrigo",
+        "label": "PERSON",
+        "quote": "Rodrigo",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "r1",
+        "entity_id": "rodrigo",
+        "quote": "Rodrigo Cáceres",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "e1",
+        "entity_id": "late-start",
+        "quote": "approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "h1",
+        "entity_id": "clinic-days",
+        "quote": "I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "marisol",
+        "quote": "Marisol Echeverría",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "r2",
+        "entity_id": "rodrigo",
+        "quote": "Rodrigo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "the branch manager, approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published."
+      },
+      {
+        "quote": "I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward."
+      },
+      {
+        "quote": "who covers the counter with me, will take the crates on those days if I do the stock count on Tuesdays and Thursdays."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], the branch manager, approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published. I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward. [PERSON_2], who covers the counter with me, will take the crates on those days if I do the stock count on Tuesdays and Thursdays. I asked whether the later start could continue past January, and [PERSON_1] said he would decide after the pharmacy audit on 12 December, not before."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p3-pharmacy-late-start-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Rodrigo Cáceres, the branch manager, approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published. I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward. Marisol Echeverría, who covers the counter with me, will take the crates on those days if I do the stock count on Tuesdays and Thursdays. I asked whether the later start could continue past January, and Rodrigo said he would decide after the pharmacy audit on 12 December, not before.",
+    "task": "Write a two-line message asking my manager to confirm whether the 8:30 start can continue after January; he already has the paperwork.",
+    "entities": [
+      {
+        "id": "r1",
+        "entity_id": "rodrigo",
+        "label": "PERSON",
+        "quote": "Rodrigo Cáceres"
+      },
+      {
+        "id": "e1",
+        "entity_id": "late-start",
+        "label": "EMPLOYMENT",
+        "quote": "approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published"
+      },
+      {
+        "id": "h1",
+        "entity_id": "clinic-days",
+        "label": "HEALTH",
+        "quote": "I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward"
+      },
+      {
+        "id": "m1",
+        "entity_id": "marisol",
+        "label": "PERSON",
+        "quote": "Marisol Echeverría"
+      },
+      {
+        "id": "r2",
+        "entity_id": "rodrigo",
+        "label": "PERSON",
+        "quote": "Rodrigo",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "r1",
+        "entity_id": "rodrigo",
+        "quote": "Rodrigo Cáceres",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "e1",
+        "entity_id": "late-start",
+        "quote": "approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "I get dialysis on those mornings at the clinic near Plaza Victoria, and the nurse says I should not carry the heavy delivery crates afterward. ",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The request to continue a start time the manager already approved needs the dates and audit timing, not the clinic schedule or care instructions."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "marisol",
+        "quote": "Marisol Echeverría",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "r2",
+        "entity_id": "rodrigo",
+        "quote": "Rodrigo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "the branch manager, approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published."
+      },
+      {
+        "quote": "I asked whether the later start could continue past January, and"
+      },
+      {
+        "quote": "said he would decide after the pharmacy audit on 12 December, not before."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], the branch manager, approved my request to start at 8:30 instead of 8:00 on Mondays, Wednesdays and Fridays, but only until the January roster is published. [PERSON_2], who covers the counter with me, will take the crates on those days if I do the stock count on Tuesdays and Thursdays. I asked whether the later start could continue past January, and [PERSON_1] said he would decide after the pharmacy audit on 12 December, not before."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "I ride the e-bike from Maipú to the office three days a week and drive on the other two, mostly because the bike lane ends at the Costanera. Gonzalo Vidal in facilities said the bike shed is full until March, and Paula Ríos from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit. My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible. The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November. I will not be driving at all in January because the car goes in for repairs. You can reach me at emi.dominguez@example.invalid if anything is unclear.",
+    "task": "Write a request to facilities for a reserved parking bay for the days I drive.",
+    "entities": [
+      {
+        "id": "g1",
+        "entity_id": "gonzalo",
+        "label": "PERSON",
+        "quote": "Gonzalo Vidal"
+      },
+      {
+        "id": "p1",
+        "entity_id": "paula",
+        "label": "PERSON",
+        "quote": "Paula Ríos"
+      },
+      {
+        "id": "ms",
+        "entity_id": "ms-parking",
+        "label": "HEALTH",
+        "quote": "My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible"
+      },
+      {
+        "id": "em",
+        "entity_id": "own-email",
+        "label": "EMAIL",
+        "quote": "emi.dominguez@example.invalid"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "g1",
+        "entity_id": "gonzalo",
+        "quote": "Gonzalo Vidal",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "p1",
+        "entity_id": "paula",
+        "quote": "Paula Ríos",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ms",
+        "entity_id": "ms-parking",
+        "quote": "My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "em",
+        "entity_id": "own-email",
+        "quote": "emi.dominguez@example.invalid",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The writer's contact address is not needed in the body of a message to facilities; the address is a direct identifier, so it is masked with no utility loss."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "I ride the e-bike from Maipú to the office three days a week and drive on the other two"
+      },
+      {
+        "quote": "makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible."
+      },
+      {
+        "quote": "I will not be driving at all in January because the car goes in for repairs."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "I ride the e-bike from Maipú to the office three days a week and drive on the other two, mostly because the bike lane ends at the Costanera. [PERSON_1] in facilities said the bike shed is full until March, and [PERSON_2] from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit. My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible. The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November. I will not be driving at all in January because the car goes in for repairs. You can reach me at [EMAIL] if anything is unclear."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "I ride the e-bike from Maipú to the office three days a week and drive on the other two, mostly because the bike lane ends at the Costanera. Gonzalo Vidal in facilities said the bike shed is full until March, and Paula Ríos from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit. My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible. The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November. I will not be driving at all in January because the car goes in for repairs. You can reach me at emi.dominguez@example.invalid if anything is unclear.",
+    "task": "Write a note to facilities asking about space in the bike shed and how to submit the e-bike invoice to the repayment scheme.",
+    "entities": [
+      {
+        "id": "g1",
+        "entity_id": "gonzalo",
+        "label": "PERSON",
+        "quote": "Gonzalo Vidal"
+      },
+      {
+        "id": "p1",
+        "entity_id": "paula",
+        "label": "PERSON",
+        "quote": "Paula Ríos"
+      },
+      {
+        "id": "ms",
+        "entity_id": "ms-parking",
+        "label": "HEALTH",
+        "quote": "My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible"
+      },
+      {
+        "id": "em",
+        "entity_id": "own-email",
+        "label": "EMAIL",
+        "quote": "emi.dominguez@example.invalid"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "g1",
+        "entity_id": "gonzalo",
+        "quote": "Gonzalo Vidal",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "p1",
+        "entity_id": "paula",
+        "quote": "Paula Ríos",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "section",
+        "quote": "My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible. ",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Asking about bike-shed space and the invoice process does not need the writer's diagnosis, fatigue pattern or neurologist advice."
+      },
+      {
+        "kind": "entity",
+        "target_id": "em",
+        "entity_id": "own-email",
+        "quote": "emi.dominguez@example.invalid",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The writer's contact address is not needed in the body of a message to facilities; the address is a direct identifier, so it is masked with no utility loss."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "in facilities said the bike shed is full until March, and"
+      },
+      {
+        "quote": "from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit."
+      },
+      {
+        "quote": "The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "I ride the e-bike from Maipú to the office three days a week and drive on the other two, mostly because the bike lane ends at the Costanera. [PERSON_1] in facilities said the bike shed is full until March, and [PERSON_2] from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit. The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November. I will not be driving at all in January because the car goes in for repairs. You can reach me at [EMAIL] if anything is unclear."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Notes from Tuesday's call with Verónica Lagos in HR:\n- Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well.\n- Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person.\n- The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning.\n- Equipment: a second monitor and a footrest should arrive by 24 November, ordered by Joaquín Ibáñez in IT.\n- I asked for the parking permit to be extended; Verónica will check and reply by Monday, and I should not assume it is approved until then.",
+    "task": "Plan my calendar for the week of 17 November: tell me what is already fixed and which meetings I should ask to move.",
+    "entities": [
+      {
+        "id": "v1",
+        "entity_id": "veronica",
+        "label": "PERSON",
+        "quote": "Verónica Lagos"
+      },
+      {
+        "id": "b1",
+        "entity_id": "return-plan",
+        "label": "EMPLOYMENT",
+        "quote": "Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well"
+      },
+      {
+        "id": "b2",
+        "entity_id": "remote-days",
+        "label": "EMPLOYMENT",
+        "quote": "Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person"
+      },
+      {
+        "id": "b3",
+        "entity_id": "leave-reason",
+        "label": "HEALTH",
+        "quote": "The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning"
+      },
+      {
+        "id": "j1",
+        "entity_id": "joaquin",
+        "label": "PERSON",
+        "quote": "Joaquín Ibáñez"
+      },
+      {
+        "id": "v2",
+        "entity_id": "veronica",
+        "label": "PERSON",
+        "quote": "Verónica",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "v1",
+        "entity_id": "veronica",
+        "quote": "Verónica Lagos",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "b1",
+        "entity_id": "return-plan",
+        "quote": "Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "b2",
+        "entity_id": "remote-days",
+        "quote": "Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "b3",
+        "entity_id": "leave-reason",
+        "quote": "The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "j1",
+        "entity_id": "joaquin",
+        "quote": "Joaquín Ibáñez",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "v2",
+        "entity_id": "veronica",
+        "quote": "Verónica",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well."
+      },
+      {
+        "quote": "Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person."
+      },
+      {
+        "quote": "the next infusion is on 19 November and takes most of the morning."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Notes from Tuesday's call with [PERSON_1] in HR:\n- Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well.\n- Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person.\n- The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning.\n- Equipment: a second monitor and a footrest should arrive by 24 November, ordered by [PERSON_2] in IT.\n- I asked for the parking permit to be extended; [PERSON_1] will check and reply by Monday, and I should not assume it is approved until then."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p5-return-to-work-notes-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Notes from Tuesday's call with Verónica Lagos in HR:\n- Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well.\n- Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person.\n- The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning.\n- Equipment: a second monitor and a footrest should arrive by 24 November, ordered by Joaquín Ibáñez in IT.\n- I asked for the parking permit to be extended; Verónica will check and reply by Monday, and I should not assume it is approved until then.",
+    "task": "Turn these notes into a short confirmation email to HR covering the agreed hours, remote days, equipment and parking.",
+    "entities": [
+      {
+        "id": "v1",
+        "entity_id": "veronica",
+        "label": "PERSON",
+        "quote": "Verónica Lagos"
+      },
+      {
+        "id": "b1",
+        "entity_id": "return-plan",
+        "label": "EMPLOYMENT",
+        "quote": "Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well"
+      },
+      {
+        "id": "b2",
+        "entity_id": "remote-days",
+        "label": "EMPLOYMENT",
+        "quote": "Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person"
+      },
+      {
+        "id": "b3",
+        "entity_id": "leave-reason",
+        "label": "HEALTH",
+        "quote": "The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning"
+      },
+      {
+        "id": "j1",
+        "entity_id": "joaquin",
+        "label": "PERSON",
+        "quote": "Joaquín Ibáñez"
+      },
+      {
+        "id": "v2",
+        "entity_id": "veronica",
+        "label": "PERSON",
+        "quote": "Verónica",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "v1",
+        "entity_id": "veronica",
+        "quote": "Verónica Lagos",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "b1",
+        "entity_id": "return-plan",
+        "quote": "Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "b2",
+        "entity_id": "remote-days",
+        "quote": "Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "- The lupus flare in October was the reason for the leave, and the next infusion is on 19 November and takes most of the morning.\n",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Confirming hours, remote days, equipment and parking with HR does not need the diagnosis, the reason for leave or the infusion date."
+      },
+      {
+        "kind": "entity",
+        "target_id": "j1",
+        "entity_id": "joaquin",
+        "quote": "Joaquín Ibáñez",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "v2",
+        "entity_id": "veronica",
+        "quote": "Verónica",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well."
+      },
+      {
+        "quote": "Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person."
+      },
+      {
+        "quote": "Equipment: a second monitor and a footrest should arrive by 24 November, ordered by"
+      },
+      {
+        "quote": "in IT."
+      },
+      {
+        "quote": "I asked for the parking permit to be extended;"
+      },
+      {
+        "quote": "will check and reply by Monday, and I should not assume it is approved until then."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Notes from Tuesday's call with [PERSON_1] in HR:\n- Phased return starts on 3 November: four-hour days for the first two weeks, then six hours, and full days from 6 January only if the review goes well.\n- Remote work is allowed on Wednesdays and Fridays, but the Thursday stand-up stays in person.\n- Equipment: a second monitor and a footrest should arrive by 24 November, ordered by [PERSON_2] in IT.\n- I asked for the parking permit to be extended; [PERSON_1] will check and reply by Monday, and I should not assume it is approved until then."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "date,mode,route,minutes,fare_ars,note\nMon 03 Nov,subte,Line D Palermo to Catedral,31,700,\nTue 04 Nov,colectivo 152,Villa Crespo to Microcentro,48,650,delayed by road works\nWed 05 Nov,taxi,Villa Crespo to Policlínico del Sauce,22,9800,infusion appointment 9:00\nThu 06 Nov,subte,Line D Palermo to Catedral,29,700,\nFri 07 Nov,colectivo 152,Villa Crespo to Microcentro,44,650,rode with Facundo Roldán after the strike\nMon 10 Nov,subte,Line D Palermo to Catedral,33,700,\nTue 11 Nov,taxi,Villa Crespo to Policlínico del Sauce,25,10400,blood tests before 8:00\nWed 12 Nov,subte,Line D Palermo to Catedral,30,700,",
+    "task": "Make a list of the trips I should claim back from my health insurer, with the day and fare for each.",
+    "entities": [
+      {
+        "id": "x1",
+        "entity_id": "infusion-note",
+        "label": "HEALTH",
+        "quote": "infusion appointment 9:00"
+      },
+      {
+        "id": "fq",
+        "entity_id": "facundo",
+        "label": "PERSON",
+        "quote": "Facundo Roldán"
+      },
+      {
+        "id": "x2",
+        "entity_id": "bloods-note",
+        "label": "HEALTH",
+        "quote": "blood tests before 8:00"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "x1",
+        "entity_id": "infusion-note",
+        "quote": "infusion appointment 9:00",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fq",
+        "entity_id": "facundo",
+        "quote": "Facundo Roldán",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "x2",
+        "entity_id": "bloods-note",
+        "quote": "blood tests before 8:00",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Wed 05 Nov,taxi,Villa Crespo to Policlínico del Sauce,22,9800,infusion appointment 9:00"
+      },
+      {
+        "quote": "Tue 11 Nov,taxi,Villa Crespo to Policlínico del Sauce,25,10400,blood tests before 8:00"
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "date,mode,route,minutes,fare_ars,note\nMon 03 Nov,subte,Line D Palermo to Catedral,31,700,\nTue 04 Nov,colectivo 152,Villa Crespo to Microcentro,48,650,delayed by road works\nWed 05 Nov,taxi,Villa Crespo to Policlínico del Sauce,22,9800,infusion appointment 9:00\nThu 06 Nov,subte,Line D Palermo to Catedral,29,700,\nFri 07 Nov,colectivo 152,Villa Crespo to Microcentro,44,650,rode with [PERSON_1] after the strike\nMon 10 Nov,subte,Line D Palermo to Catedral,33,700,\nTue 11 Nov,taxi,Villa Crespo to Policlínico del Sauce,25,10400,blood tests before 8:00\nWed 12 Nov,subte,Line D Palermo to Catedral,30,700,"
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p6-commute-fare-log-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "date,mode,route,minutes,fare_ars,note\nMon 03 Nov,subte,Line D Palermo to Catedral,31,700,\nTue 04 Nov,colectivo 152,Villa Crespo to Microcentro,48,650,delayed by road works\nWed 05 Nov,taxi,Villa Crespo to Policlínico del Sauce,22,9800,infusion appointment 9:00\nThu 06 Nov,subte,Line D Palermo to Catedral,29,700,\nFri 07 Nov,colectivo 152,Villa Crespo to Microcentro,44,650,rode with Facundo Roldán after the strike\nMon 10 Nov,subte,Line D Palermo to Catedral,33,700,\nTue 11 Nov,taxi,Villa Crespo to Policlínico del Sauce,25,10400,blood tests before 8:00\nWed 12 Nov,subte,Line D Palermo to Catedral,30,700,",
+    "task": "Work out the average fare on my subte and colectivo commute days this month.",
+    "entities": [
+      {
+        "id": "x1",
+        "entity_id": "infusion-note",
+        "label": "HEALTH",
+        "quote": "infusion appointment 9:00"
+      },
+      {
+        "id": "fq",
+        "entity_id": "facundo",
+        "label": "PERSON",
+        "quote": "Facundo Roldán"
+      },
+      {
+        "id": "x2",
+        "entity_id": "bloods-note",
+        "label": "HEALTH",
+        "quote": "blood tests before 8:00"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "section",
+        "quote": "Wed 05 Nov,taxi,Villa Crespo to Policlínico del Sauce,22,9800,infusion appointment 9:00\n",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Averaging subte and colectivo commute fares does not need the taxi trips to treatment, whose note cells reveal clinic visits."
+      },
+      {
+        "kind": "entity",
+        "target_id": "fq",
+        "entity_id": "facundo",
+        "quote": "Facundo Roldán",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "section",
+        "quote": "Tue 11 Nov,taxi,Villa Crespo to Policlínico del Sauce,25,10400,blood tests before 8:00\n",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Averaging subte and colectivo commute fares does not need the taxi trips to treatment, whose note cells reveal clinic visits."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Mon 03 Nov,subte,Line D Palermo to Catedral,31,700,"
+      },
+      {
+        "quote": "Tue 04 Nov,colectivo 152,Villa Crespo to Microcentro,48,650,delayed by road works"
+      },
+      {
+        "quote": "Thu 06 Nov,subte,Line D Palermo to Catedral,29,700,"
+      },
+      {
+        "quote": "Fri 07 Nov,colectivo 152,Villa Crespo to Microcentro,44,650,rode with"
+      },
+      {
+        "quote": "Mon 10 Nov,subte,Line D Palermo to Catedral,33,700,"
+      },
+      {
+        "quote": "Wed 12 Nov,subte,Line D Palermo to Catedral,30,700,"
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "date,mode,route,minutes,fare_ars,note\nMon 03 Nov,subte,Line D Palermo to Catedral,31,700,\nTue 04 Nov,colectivo 152,Villa Crespo to Microcentro,48,650,delayed by road works\nThu 06 Nov,subte,Line D Palermo to Catedral,29,700,\nFri 07 Nov,colectivo 152,Villa Crespo to Microcentro,44,650,rode with [PERSON_1] after the strike\nMon 10 Nov,subte,Line D Palermo to Catedral,33,700,\nWed 12 Nov,subte,Line D Palermo to Catedral,30,700,"
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Marcelo Toledo, the shift supervisor, confirmed that from 1 December I move from nights to the 06:00 to 14:00 shift at the cold-storage dock, with a 15-minute break at 10:00 and a 30-minute lunch at 12:00. If the second picker position is not filled by then, I stay on nights until 15 December.\n\nThe new locker is number 42 near gate 4. Débora Funes in facilities will hand over the key after I pay the 5,000 pesos deposit, which is refundable. Questions about the key can go to my email, nahuel.arce@example.invalid.\n\nI have type 1 diabetes. If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait. It has happened twice this year, both times on night shifts, and not since I started asking for the day shift.",
+    "task": "Write a short briefing for the first-aid volunteer on my shift covering what they might need to do for me.",
+    "entities": [
+      {
+        "id": "mt",
+        "entity_id": "marcelo",
+        "label": "PERSON",
+        "quote": "Marcelo Toledo"
+      },
+      {
+        "id": "df",
+        "entity_id": "debora",
+        "label": "PERSON",
+        "quote": "Débora Funes"
+      },
+      {
+        "id": "em",
+        "entity_id": "own-email",
+        "label": "EMAIL",
+        "quote": "nahuel.arce@example.invalid"
+      },
+      {
+        "id": "d1",
+        "entity_id": "t1d",
+        "label": "HEALTH",
+        "quote": "I have type 1 diabetes."
+      },
+      {
+        "id": "d2",
+        "entity_id": "alarm",
+        "label": "HEALTH",
+        "quote": "If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait."
+      },
+      {
+        "id": "d3",
+        "entity_id": "episodes",
+        "label": "HEALTH",
+        "quote": "It has happened twice this year, both times on night shifts, and not since I started asking for the day shift."
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "mt",
+        "entity_id": "marcelo",
+        "quote": "Marcelo Toledo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "df",
+        "entity_id": "debora",
+        "quote": "Débora Funes",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "em",
+        "entity_id": "own-email",
+        "quote": "nahuel.arce@example.invalid",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The writer's email address is a direct identifier and is not needed in the body of this message; masking loses no task information."
+      },
+      {
+        "kind": "entity",
+        "target_id": "d1",
+        "entity_id": "t1d",
+        "quote": "I have type 1 diabetes.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "d2",
+        "entity_id": "alarm",
+        "quote": "If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "d3",
+        "entity_id": "episodes",
+        "quote": "It has happened twice this year, both times on night shifts, and not since I started asking for the day shift.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "confirmed that from 1 December I move from nights to the 06:00 to 14:00 shift at the cold-storage dock"
+      },
+      {
+        "quote": "The new locker is number 42 near gate 4."
+      },
+      {
+        "quote": "I have type 1 diabetes."
+      },
+      {
+        "quote": "If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait."
+      },
+      {
+        "quote": "It has happened twice this year, both times on night shifts, and not since I started asking for the day shift."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], the shift supervisor, confirmed that from 1 December I move from nights to the 06:00 to 14:00 shift at the cold-storage dock, with a 15-minute break at 10:00 and a 30-minute lunch at 12:00. If the second picker position is not filled by then, I stay on nights until 15 December.\n\nThe new locker is number 42 near gate 4. [PERSON_2] in facilities will hand over the key after I pay the 5,000 pesos deposit, which is refundable. Questions about the key can go to my email, [EMAIL].\n\nI have type 1 diabetes. If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait. It has happened twice this year, both times on night shifts, and not since I started asking for the day shift."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:p7-cold-storage-shift-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Marcelo Toledo, the shift supervisor, confirmed that from 1 December I move from nights to the 06:00 to 14:00 shift at the cold-storage dock, with a 15-minute break at 10:00 and a 30-minute lunch at 12:00. If the second picker position is not filled by then, I stay on nights until 15 December.\n\nThe new locker is number 42 near gate 4. Débora Funes in facilities will hand over the key after I pay the 5,000 pesos deposit, which is refundable. Questions about the key can go to my email, nahuel.arce@example.invalid.\n\nI have type 1 diabetes. If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait. It has happened twice this year, both times on night shifts, and not since I started asking for the day shift.",
+    "task": "Write a note to the stock team lead confirming my new shift hours, break times and locker arrangement.",
+    "entities": [
+      {
+        "id": "mt",
+        "entity_id": "marcelo",
+        "label": "PERSON",
+        "quote": "Marcelo Toledo"
+      },
+      {
+        "id": "df",
+        "entity_id": "debora",
+        "label": "PERSON",
+        "quote": "Débora Funes"
+      },
+      {
+        "id": "em",
+        "entity_id": "own-email",
+        "label": "EMAIL",
+        "quote": "nahuel.arce@example.invalid"
+      },
+      {
+        "id": "d1",
+        "entity_id": "t1d",
+        "label": "HEALTH",
+        "quote": "I have type 1 diabetes."
+      },
+      {
+        "id": "d2",
+        "entity_id": "alarm",
+        "label": "HEALTH",
+        "quote": "If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait."
+      },
+      {
+        "id": "d3",
+        "entity_id": "episodes",
+        "label": "HEALTH",
+        "quote": "It has happened twice this year, both times on night shifts, and not since I started asking for the day shift."
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "mt",
+        "entity_id": "marcelo",
+        "quote": "Marcelo Toledo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "df",
+        "entity_id": "debora",
+        "quote": "Débora Funes",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "em",
+        "entity_id": "own-email",
+        "quote": "nahuel.arce@example.invalid",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The writer's email address is a direct identifier and is not needed in the body of this message; masking loses no task information."
+      },
+      {
+        "kind": "section",
+        "quote": "\n\nI have type 1 diabetes. If my sensor alarm goes off, I need fast sugar within a few minutes, either juice or glucose tablets from the locker, and if I stop answering, someone should call 107 immediately and not wait. It has happened twice this year, both times on night shifts, and not since I started asking for the day shift.",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Confirming shift hours, breaks and the locker handover needs none of the diagnosis, alarm response or episode history."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "the shift supervisor, confirmed that from 1 December I move from nights to the 06:00 to 14:00 shift at the cold-storage dock, with a 15-minute break at 10:00 and a 30-minute lunch at 12:00."
+      },
+      {
+        "quote": "If the second picker position is not filled by then, I stay on nights until 15 December."
+      },
+      {
+        "quote": "The new locker is number 42 near gate 4."
+      },
+      {
+        "quote": "in facilities will hand over the key after I pay the 5,000 pesos deposit, which is refundable."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], the shift supervisor, confirmed that from 1 December I move from nights to the 06:00 to 14:00 shift at the cold-storage dock, with a 15-minute break at 10:00 and a 30-minute lunch at 12:00. If the second picker position is not filled by then, I stay on nights until 15 December.\n\nThe new locker is number 42 near gate 4. [PERSON_2] in facilities will hand over the key after I pay the 5,000 pesos deposit, which is refundable. Questions about the key can go to my email, [EMAIL]."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Swap requests for the December rota close on Friday 28 November at 17:00, and each swap needs the approval of the shift lead and a note to HR. A swap that leaves someone with less than eleven hours between shifts will be refused, whatever the reason given.\n\nValeria Soto from the day shift asked to swap her 24 December evening with Renzo Acuña, and Ariel Montenegro offered to take her 31 December slot instead of Pilar Sandoval. Each slot is eight hours. Nothing is confirmed until the shift lead replies.\n\nOvertime so far this quarter is tracked per person. Ariel has logged 52 hours, Pilar 47 and Renzo 29, against a cap of 60 per person. If anyone passes 55 hours, I have to report it to HR before the next payroll run on the 5th.",
+    "task": "Check whether the swap requests described here would push anyone over the limit before the shift lead replies.",
+    "entities": [
+      {
+        "id": "va",
+        "entity_id": "valeria",
+        "label": "PERSON",
+        "quote": "Valeria Soto"
+      },
+      {
+        "id": "re1",
+        "entity_id": "renzo",
+        "label": "PERSON",
+        "quote": "Renzo Acuña"
+      },
+      {
+        "id": "ar1",
+        "entity_id": "ariel",
+        "label": "PERSON",
+        "quote": "Ariel Montenegro"
+      },
+      {
+        "id": "pi1",
+        "entity_id": "pilar",
+        "label": "PERSON",
+        "quote": "Pilar Sandoval"
+      },
+      {
+        "id": "ar2",
+        "entity_id": "ariel",
+        "label": "PERSON",
+        "quote": "Ariel",
+        "occurrence": 2
+      },
+      {
+        "id": "o1",
+        "entity_id": "ot-ariel",
+        "label": "EMPLOYMENT",
+        "quote": "has logged 52 hours"
+      },
+      {
+        "id": "pi2",
+        "entity_id": "pilar",
+        "label": "PERSON",
+        "quote": "Pilar",
+        "occurrence": 2
+      },
+      {
+        "id": "o2",
+        "entity_id": "ot-pilar",
+        "label": "EMPLOYMENT",
+        "quote": "47"
+      },
+      {
+        "id": "re2",
+        "entity_id": "renzo",
+        "label": "PERSON",
+        "quote": "Renzo",
+        "occurrence": 2
+      },
+      {
+        "id": "o3",
+        "entity_id": "ot-renzo",
+        "label": "EMPLOYMENT",
+        "quote": "29"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "va",
+        "entity_id": "valeria",
+        "quote": "Valeria Soto",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "re1",
+        "entity_id": "renzo",
+        "quote": "Renzo Acuña",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ar1",
+        "entity_id": "ariel",
+        "quote": "Ariel Montenegro",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "pi1",
+        "entity_id": "pilar",
+        "quote": "Pilar Sandoval",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ar2",
+        "entity_id": "ariel",
+        "quote": "Ariel",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "o1",
+        "entity_id": "ot-ariel",
+        "quote": "has logged 52 hours",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "pi2",
+        "entity_id": "pilar",
+        "quote": "Pilar",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "o2",
+        "entity_id": "ot-pilar",
+        "quote": "47",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "re2",
+        "entity_id": "renzo",
+        "quote": "Renzo",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "o3",
+        "entity_id": "ot-renzo",
+        "quote": "29",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "from the day shift asked to swap her 24 December evening with"
+      },
+      {
+        "quote": "offered to take her 31 December slot instead of"
+      },
+      {
+        "quote": "Each slot is eight hours."
+      },
+      {
+        "quote": "has logged 52 hours,"
+      },
+      {
+        "quote": "47 and"
+      },
+      {
+        "quote": "29, against a cap of 60 per person."
+      },
+      {
+        "quote": "If anyone passes 55 hours, I have to report it to HR before the next payroll run on the 5th."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Swap requests for the December rota close on Friday 28 November at 17:00, and each swap needs the approval of the shift lead and a note to HR. A swap that leaves someone with less than eleven hours between shifts will be refused, whatever the reason given.\n\n[PERSON_1] from the day shift asked to swap her 24 December evening with [PERSON_2], and [PERSON_3] offered to take her 31 December slot instead of [PERSON_4]. Each slot is eight hours. Nothing is confirmed until the shift lead replies.\n\nOvertime so far this quarter is tracked per person. [PERSON_3] has logged 52 hours, [PERSON_4] 47 and [PERSON_2] 29, against a cap of 60 per person. If anyone passes 55 hours, I have to report it to HR before the next payroll run on the 5th."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c1-hr-december-swaps-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Swap requests for the December rota close on Friday 28 November at 17:00, and each swap needs the approval of the shift lead and a note to HR. A swap that leaves someone with less than eleven hours between shifts will be refused, whatever the reason given.\n\nValeria Soto from the day shift asked to swap her 24 December evening with Renzo Acuña, and Ariel Montenegro offered to take her 31 December slot instead of Pilar Sandoval. Each slot is eight hours. Nothing is confirmed until the shift lead replies.\n\nOvertime so far this quarter is tracked per person. Ariel has logged 52 hours, Pilar 47 and Renzo 29, against a cap of 60 per person. If anyone passes 55 hours, I have to report it to HR before the next payroll run on the 5th.",
+    "task": "Write the announcement for the warehouse team about the December swap deadline and the approval steps.",
+    "entities": [
+      {
+        "id": "va",
+        "entity_id": "valeria",
+        "label": "PERSON",
+        "quote": "Valeria Soto"
+      },
+      {
+        "id": "re1",
+        "entity_id": "renzo",
+        "label": "PERSON",
+        "quote": "Renzo Acuña"
+      },
+      {
+        "id": "ar1",
+        "entity_id": "ariel",
+        "label": "PERSON",
+        "quote": "Ariel Montenegro"
+      },
+      {
+        "id": "pi1",
+        "entity_id": "pilar",
+        "label": "PERSON",
+        "quote": "Pilar Sandoval"
+      },
+      {
+        "id": "ar2",
+        "entity_id": "ariel",
+        "label": "PERSON",
+        "quote": "Ariel",
+        "occurrence": 2
+      },
+      {
+        "id": "o1",
+        "entity_id": "ot-ariel",
+        "label": "EMPLOYMENT",
+        "quote": "has logged 52 hours"
+      },
+      {
+        "id": "pi2",
+        "entity_id": "pilar",
+        "label": "PERSON",
+        "quote": "Pilar",
+        "occurrence": 2
+      },
+      {
+        "id": "o2",
+        "entity_id": "ot-pilar",
+        "label": "EMPLOYMENT",
+        "quote": "47"
+      },
+      {
+        "id": "re2",
+        "entity_id": "renzo",
+        "label": "PERSON",
+        "quote": "Renzo",
+        "occurrence": 2
+      },
+      {
+        "id": "o3",
+        "entity_id": "ot-renzo",
+        "label": "EMPLOYMENT",
+        "quote": "29"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "section",
+        "quote": "\n\nValeria Soto from the day shift asked to swap her 24 December evening with Renzo Acuña, and Ariel Montenegro offered to take her 31 December slot instead of Pilar Sandoval. Each slot is eight hours. Nothing is confirmed until the shift lead replies.\n\nOvertime so far this quarter is tracked per person. Ariel has logged 52 hours, Pilar 47 and Renzo 29, against a cap of 60 per person. If anyone passes 55 hours, I have to report it to HR before the next payroll run on the 5th.",
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A team-wide announcement of the deadline and approval steps does not need named individuals' swap requests or their overtime totals against the cap."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Swap requests for the December rota close on Friday 28 November at 17:00, and each swap needs the approval of the shift lead and a note to HR."
+      },
+      {
+        "quote": "A swap that leaves someone with less than eleven hours between shifts will be refused, whatever the reason given."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Swap requests for the December rota close on Friday 28 November at 17:00, and each swap needs the approval of the shift lead and a note to HR. A swap that leaves someone with less than eleven hours between shifts will be refused, whatever the reason given."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "The checkout API started returning 502 errors at 02:10 on Saturday after the certificate for the payments gateway expired. Renewing the certificate at 03:05 fixed the errors, and no orders were lost. The renewal was blocked for 40 minutes because the engineer paged first, Antonella Roca, did not have access to the vault, and Abril Cuello from platform granted temporary access at 02:55. Federico Maldonado, our usual on-call engineer, is on secondment to the data team until 20 June, so escalations on his rota currently go to Antonella. The expiry alert fired correctly 14 days ahead but went to Federico's old pager rule, which nobody has moved yet. I did not check the staging gateway, so I cannot say whether it has the same problem.",
+    "task": "Draft a note to the engineering manager proposing what should change in our on-call setup before the next certificate expiry.",
+    "entities": [
+      {
+        "id": "a1",
+        "entity_id": "antonella",
+        "label": "PERSON",
+        "quote": "Antonella Roca"
+      },
+      {
+        "id": "ab",
+        "entity_id": "abril",
+        "label": "PERSON",
+        "quote": "Abril Cuello"
+      },
+      {
+        "id": "f1",
+        "entity_id": "federico",
+        "label": "PERSON",
+        "quote": "Federico Maldonado"
+      },
+      {
+        "id": "sec",
+        "entity_id": "secondment",
+        "label": "EMPLOYMENT",
+        "quote": "is on secondment to the data team until 20 June, so escalations on his rota currently go to"
+      },
+      {
+        "id": "a2",
+        "entity_id": "antonella",
+        "label": "PERSON",
+        "quote": "Antonella",
+        "occurrence": 2
+      },
+      {
+        "id": "f2",
+        "entity_id": "federico",
+        "label": "PERSON",
+        "quote": "Federico",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "a1",
+        "entity_id": "antonella",
+        "quote": "Antonella Roca",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ab",
+        "entity_id": "abril",
+        "quote": "Abril Cuello",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "f1",
+        "entity_id": "federico",
+        "quote": "Federico Maldonado",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "sec",
+        "entity_id": "secondment",
+        "quote": "is on secondment to the data team until 20 June, so escalations on his rota currently go to",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "a2",
+        "entity_id": "antonella",
+        "quote": "Antonella",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "f2",
+        "entity_id": "federico",
+        "quote": "Federico",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "is on secondment to the data team until 20 June, so escalations on his rota currently go to"
+      },
+      {
+        "quote": "The expiry alert fired correctly 14 days ahead but went to"
+      },
+      {
+        "quote": "'s old pager rule, which nobody has moved yet."
+      },
+      {
+        "quote": "did not have access to the vault, and"
+      },
+      {
+        "quote": "from platform granted temporary access at 02:55."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "The checkout API started returning 502 errors at 02:10 on Saturday after the certificate for the payments gateway expired. Renewing the certificate at 03:05 fixed the errors, and no orders were lost. The renewal was blocked for 40 minutes because the engineer paged first, [PERSON_1], did not have access to the vault, and [PERSON_2] from platform granted temporary access at 02:55. [PERSON_3], our usual on-call engineer, is on secondment to the data team until 20 June, so escalations on his rota currently go to [PERSON_1]. The expiry alert fired correctly 14 days ahead but went to [PERSON_3]'s old pager rule, which nobody has moved yet. I did not check the staging gateway, so I cannot say whether it has the same problem."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c2-engineering-cert-incident-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "The checkout API started returning 502 errors at 02:10 on Saturday after the certificate for the payments gateway expired. Renewing the certificate at 03:05 fixed the errors, and no orders were lost. The renewal was blocked for 40 minutes because the engineer paged first, Antonella Roca, did not have access to the vault, and Abril Cuello from platform granted temporary access at 02:55. Federico Maldonado, our usual on-call engineer, is on secondment to the data team until 20 June, so escalations on his rota currently go to Antonella. The expiry alert fired correctly 14 days ahead but went to Federico's old pager rule, which nobody has moved yet. I did not check the staging gateway, so I cannot say whether it has the same problem.",
+    "task": "Write a short root-cause summary for the engineering channel: what failed, how it was fixed and what still needs verifying.",
+    "entities": [
+      {
+        "id": "a1",
+        "entity_id": "antonella",
+        "label": "PERSON",
+        "quote": "Antonella Roca"
+      },
+      {
+        "id": "ab",
+        "entity_id": "abril",
+        "label": "PERSON",
+        "quote": "Abril Cuello"
+      },
+      {
+        "id": "f1",
+        "entity_id": "federico",
+        "label": "PERSON",
+        "quote": "Federico Maldonado"
+      },
+      {
+        "id": "sec",
+        "entity_id": "secondment",
+        "label": "EMPLOYMENT",
+        "quote": "is on secondment to the data team until 20 June, so escalations on his rota currently go to"
+      },
+      {
+        "id": "a2",
+        "entity_id": "antonella",
+        "label": "PERSON",
+        "quote": "Antonella",
+        "occurrence": 2
+      },
+      {
+        "id": "f2",
+        "entity_id": "federico",
+        "label": "PERSON",
+        "quote": "Federico",
+        "occurrence": 2
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "a1",
+        "entity_id": "antonella",
+        "quote": "Antonella Roca",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ab",
+        "entity_id": "abril",
+        "quote": "Abril Cuello",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "section",
+        "quote": "Federico Maldonado, our usual on-call engineer, is on secondment to the data team until 20 June, so escalations on his rota currently go to Antonella. ",
+        "label": "EMPLOYMENT",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A root-cause summary needs the failure, fix and gaps; why a named engineer's rota is covered by someone else (secondment dates) is personnel detail it does not need."
+      },
+      {
+        "kind": "entity",
+        "target_id": "f2",
+        "entity_id": "federico",
+        "quote": "Federico",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The checkout API started returning 502 errors at 02:10 on Saturday after the certificate for the payments gateway expired."
+      },
+      {
+        "quote": "Renewing the certificate at 03:05 fixed the errors, and no orders were lost."
+      },
+      {
+        "quote": "The renewal was blocked for 40 minutes because the engineer paged first,"
+      },
+      {
+        "quote": "did not have access to the vault, and"
+      },
+      {
+        "quote": "from platform granted temporary access at 02:55."
+      },
+      {
+        "quote": "The expiry alert fired correctly 14 days ahead but went to"
+      },
+      {
+        "quote": "'s old pager rule, which nobody has moved yet."
+      },
+      {
+        "quote": "I did not check the staging gateway, so I cannot say whether it has the same problem."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "The checkout API started returning 502 errors at 02:10 on Saturday after the certificate for the payments gateway expired. Renewing the certificate at 03:05 fixed the errors, and no orders were lost. The renewal was blocked for 40 minutes because the engineer paged first, [PERSON_1], did not have access to the vault, and [PERSON_2] from platform granted temporary access at 02:55. The expiry alert fired correctly 14 days ahead but went to [PERSON_3]'s old pager rule, which nobody has moved yet. I did not check the staging gateway, so I cannot say whether it has the same problem."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-keep",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Tecnoandes Redes quoted the 48-port model last month, but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars. The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it.\n\nWe need a replacement for the core switch in the Rosario office rack, and I would like a one-page technical comparison. The current unit has 24 ports and runs hot above 35 degrees; the new one must support at least 48 ports, PoE on 12 of them, and fit the existing 1U shelf without moving the patch panel.\n\nThe rack is in a locked room on the second floor, and the spare key is held by Gisela Paredes in building services. Installation is only possible on a Saturday because Hernán Luna's team cannot take the office offline on weekdays.",
+    "task": "Draft a message to procurement so they can decide how to handle the vendor's latest paperwork.",
+    "entities": [
+      {
+        "id": "org",
+        "entity_id": "vendor",
+        "label": "ORG",
+        "quote": "Tecnoandes Redes"
+      },
+      {
+        "id": "fa",
+        "entity_id": "invoice-gap",
+        "label": "FINANCIAL",
+        "quote": "but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars"
+      },
+      {
+        "id": "fb",
+        "entity_id": "extra-charge",
+        "label": "FINANCIAL",
+        "quote": "The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it"
+      },
+      {
+        "id": "gp",
+        "entity_id": "gisela",
+        "label": "PERSON",
+        "quote": "Gisela Paredes"
+      },
+      {
+        "id": "hl",
+        "entity_id": "hernan",
+        "label": "PERSON",
+        "quote": "Hernán Luna"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "org",
+        "entity_id": "vendor",
+        "quote": "Tecnoandes Redes",
+        "label": "ORG",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The vendor name is withheld from the external AI; procurement needs the vendor in the final message, so identity is lost until the user restores it locally."
+      },
+      {
+        "kind": "entity",
+        "target_id": "fa",
+        "entity_id": "invoice-gap",
+        "quote": "but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fb",
+        "entity_id": "extra-charge",
+        "quote": "The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "gp",
+        "entity_id": "gisela",
+        "quote": "Gisela Paredes",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "hl",
+        "entity_id": "hernan",
+        "quote": "Hernán Luna",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "quoted the 48-port model last month,"
+      },
+      {
+        "quote": "but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars."
+      },
+      {
+        "quote": "The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[ORG] quoted the 48-port model last month, but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars. The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it.\n\nWe need a replacement for the core switch in the Rosario office rack, and I would like a one-page technical comparison. The current unit has 24 ports and runs hot above 35 degrees; the new one must support at least 48 ports, PoE on 12 of them, and fit the existing 1U shelf without moving the patch panel.\n\nThe rack is in a locked room on the second floor, and the spare key is held by [PERSON_1] in building services. Installation is only possible on a Saturday because [PERSON_2]'s team cannot take the office offline on weekdays."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-drop",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c3-switch-invoice-gap-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Tecnoandes Redes quoted the 48-port model last month, but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars. The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it.\n\nWe need a replacement for the core switch in the Rosario office rack, and I would like a one-page technical comparison. The current unit has 24 ports and runs hot above 35 degrees; the new one must support at least 48 ports, PoE on 12 of them, and fit the existing 1U shelf without moving the patch panel.\n\nThe rack is in a locked room on the second floor, and the spare key is held by Gisela Paredes in building services. Installation is only possible on a Saturday because Hernán Luna's team cannot take the office offline on weekdays.",
+    "task": "Write a one-page technical brief comparing replacement switches and listing the installation constraints.",
+    "entities": [
+      {
+        "id": "org",
+        "entity_id": "vendor",
+        "label": "ORG",
+        "quote": "Tecnoandes Redes"
+      },
+      {
+        "id": "fa",
+        "entity_id": "invoice-gap",
+        "label": "FINANCIAL",
+        "quote": "but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars"
+      },
+      {
+        "id": "fb",
+        "entity_id": "extra-charge",
+        "label": "FINANCIAL",
+        "quote": "The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it"
+      },
+      {
+        "id": "gp",
+        "entity_id": "gisela",
+        "label": "PERSON",
+        "quote": "Gisela Paredes"
+      },
+      {
+        "id": "hl",
+        "entity_id": "hernan",
+        "label": "PERSON",
+        "quote": "Hernán Luna"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "section",
+        "quote": "Tecnoandes Redes quoted the 48-port model last month, but the invoice that arrived on Tuesday was 4,380 dollars against a purchase order of 3,760 dollars. The extra 620 comes from a licence line that was not in the quote, and finance will not pay the difference until procurement signs off on it.\n\n",
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "A technical comparison and installation brief does not need the vendor's invoice discrepancy, the purchase-order gap or the pending finance sign-off."
+      },
+      {
+        "kind": "entity",
+        "target_id": "gp",
+        "entity_id": "gisela",
+        "quote": "Gisela Paredes",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "hl",
+        "entity_id": "hernan",
+        "quote": "Hernán Luna",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "We need a replacement for the core switch in the Rosario office rack, and I would like a one-page technical comparison."
+      },
+      {
+        "quote": "The current unit has 24 ports and runs hot above 35 degrees; the new one must support at least 48 ports, PoE on 12 of them, and fit the existing 1U shelf without moving the patch panel."
+      },
+      {
+        "quote": "The rack is in a locked room on the second floor, and the spare key is held by"
+      },
+      {
+        "quote": "in building services."
+      },
+      {
+        "quote": "Installation is only possible on a Saturday because"
+      },
+      {
+        "quote": "'s team cannot take the office offline on weekdays."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "We need a replacement for the core switch in the Rosario office rack, and I would like a one-page technical comparison. The current unit has 24 ports and runs hot above 35 degrees; the new one must support at least 48 ports, PoE on 12 of them, and fit the existing 1U shelf without moving the patch panel.\n\nThe rack is in a locked room on the second floor, and the spare key is held by [PERSON_1] in building services. Installation is only possible on a Saturday because [PERSON_2]'s team cannot take the office offline on weekdays."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:t1-migraine-accommodation-control",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:t1-migraine-accommodation-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:t1-migraine-accommodation-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:t1-migraine-accommodation-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:t1-migraine-accommodation-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "I have chronic migraine, usually twelve to fifteen days a month, and the attacks are worst in the first two hours after waking. My neurologist, Dr Natalia Brizuela, recommends a start time no earlier than 10:00 on those days, plus a dark, quiet room for about thirty minutes if an attack begins at work. I do not need any change to my hours on days without an attack, and I can make up the time in the evening. I would like this to start in the first week of December and be reviewed after three months. The HR contact is Sebastián Olmos, reachable on +54 11 5550-0173 or sebastian.olmos@example.invalid. I take the 7:20 bus from Quilmes and work in the billing team.",
+    "task": "Draft a short accommodation request to my employer's HR team asking for flexible start times and a quiet room when needed.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "migraine",
+        "label": "HEALTH",
+        "quote": "I have chronic migraine, usually twelve to fifteen days a month, and the attacks are worst in the first two hours after waking."
+      },
+      {
+        "id": "np",
+        "entity_id": "natalia",
+        "label": "PERSON",
+        "quote": "Natalia Brizuela"
+      },
+      {
+        "id": "m2",
+        "entity_id": "advice",
+        "label": "HEALTH",
+        "quote": "recommends a start time no earlier than 10:00 on those days, plus a dark, quiet room for about thirty minutes if an attack begins at work"
+      },
+      {
+        "id": "m3",
+        "entity_id": "hours",
+        "label": "EMPLOYMENT",
+        "quote": "I do not need any change to my hours on days without an attack, and I can make up the time in the evening"
+      },
+      {
+        "id": "so",
+        "entity_id": "sebastian",
+        "label": "PERSON",
+        "quote": "Sebastián Olmos"
+      },
+      {
+        "id": "ph",
+        "entity_id": "hr-phone",
+        "label": "PHONE",
+        "quote": "+54 11 5550-0173"
+      },
+      {
+        "id": "em",
+        "entity_id": "hr-email",
+        "label": "EMAIL",
+        "quote": "sebastian.olmos@example.invalid"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "migraine",
+        "quote": "I have chronic migraine, usually twelve to fifteen days a month, and the attacks are worst in the first two hours after waking.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "np",
+        "entity_id": "natalia",
+        "quote": "Natalia Brizuela",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "advice",
+        "quote": "recommends a start time no earlier than 10:00 on those days, plus a dark, quiet room for about thirty minutes if an attack begins at work",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "hours",
+        "quote": "I do not need any change to my hours on days without an attack, and I can make up the time in the evening",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "so",
+        "entity_id": "sebastian",
+        "quote": "Sebastián Olmos",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ph",
+        "entity_id": "hr-phone",
+        "quote": "+54 11 5550-0173",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The HR contact's phone number is a direct identifier and the request does not need to repeat it; masking loses no task information."
+      },
+      {
+        "kind": "entity",
+        "target_id": "em",
+        "entity_id": "hr-email",
+        "quote": "sebastian.olmos@example.invalid",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The HR contact's email is a direct identifier and the request body does not need it; masking loses no task information."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "I have chronic migraine, usually twelve to fifteen days a month, and the attacks are worst in the first two hours after waking."
+      },
+      {
+        "quote": "recommends a start time no earlier than 10:00 on those days, plus a dark, quiet room for about thirty minutes if an attack begins at work."
+      },
+      {
+        "quote": "I do not need any change to my hours on days without an attack, and I can make up the time in the evening."
+      },
+      {
+        "quote": "I would like this to start in the first week of December and be reviewed after three months."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "I have chronic migraine, usually twelve to fifteen days a month, and the attacks are worst in the first two hours after waking. My neurologist, Dr [PERSON_1], recommends a start time no earlier than 10:00 on those days, plus a dark, quiet room for about thirty minutes if an attack begins at work. I do not need any change to my hours on days without an attack, and I can make up the time in the evening. I would like this to start in the first week of December and be reviewed after three months. The HR contact is [PERSON_2], reachable on [PHONE] or [EMAIL]. I take the 7:20 bus from Quilmes and work in the billing team."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:t2-bicycle-commute-claim-control",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:t2-bicycle-commute-claim-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:t2-bicycle-commute-claim-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:t2-bicycle-commute-claim-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:t2-bicycle-commute-claim-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Last Thursday at about 7:50 I fell off my bicycle on Avenida Vicuña Mackenna when a delivery van opened its door, and the driver, Esteban Carrasco, admitted it in front of a passer-by. I went to the emergency clinic the same morning, and the doctor said the wrist is sprained, not broken, and I should keep the splint on for two weeks. The clinic charged 68,500 pesos, which I paid by card, and my claim reference with the insurer is POL-48210-CL. I missed no work, but I took a taxi for the next three commutes at 9,200 pesos each. The bike repair estimate is 45,000 pesos, although I have not received the written quote yet, so please leave it out of the claim total for now.",
+    "task": "Draft the claim letter to the van driver's insurer setting out what happened, my injury and the costs I am claiming.",
+    "entities": [
+      {
+        "id": "es",
+        "entity_id": "esteban",
+        "label": "PERSON",
+        "quote": "Esteban Carrasco"
+      },
+      {
+        "id": "hc",
+        "entity_id": "wrist",
+        "label": "HEALTH",
+        "quote": "the doctor said the wrist is sprained, not broken, and I should keep the splint on for two weeks"
+      },
+      {
+        "id": "c1",
+        "entity_id": "clinic-fee",
+        "label": "FINANCIAL",
+        "quote": "The clinic charged 68,500 pesos, which I paid by card"
+      },
+      {
+        "id": "ac",
+        "entity_id": "claim-ref",
+        "label": "ACCOUNT_ID",
+        "quote": "POL-48210-CL"
+      },
+      {
+        "id": "c2",
+        "entity_id": "taxi-cost",
+        "label": "FINANCIAL",
+        "quote": "I took a taxi for the next three commutes at 9,200 pesos each"
+      },
+      {
+        "id": "c3",
+        "entity_id": "repair-estimate",
+        "label": "FINANCIAL",
+        "quote": "The bike repair estimate is 45,000 pesos, although I have not received the written quote yet, so please leave it out of the claim total for now"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "es",
+        "entity_id": "esteban",
+        "quote": "Esteban Carrasco",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "hc",
+        "entity_id": "wrist",
+        "quote": "the doctor said the wrist is sprained, not broken, and I should keep the splint on for two weeks",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "c1",
+        "entity_id": "clinic-fee",
+        "quote": "The clinic charged 68,500 pesos, which I paid by card",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "ac",
+        "entity_id": "claim-ref",
+        "quote": "POL-48210-CL",
+        "label": "ACCOUNT_ID",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The claim reference is an account-style identifier and is masked before the external AI; the letter needs it, so the exact reference must be restored locally and exact verification is lost."
+      },
+      {
+        "kind": "entity",
+        "target_id": "c2",
+        "entity_id": "taxi-cost",
+        "quote": "I took a taxi for the next three commutes at 9,200 pesos each",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "c3",
+        "entity_id": "repair-estimate",
+        "quote": "The bike repair estimate is 45,000 pesos, although I have not received the written quote yet, so please leave it out of the claim total for now",
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "the doctor said the wrist is sprained, not broken, and I should keep the splint on for two weeks."
+      },
+      {
+        "quote": "The clinic charged 68,500 pesos, which I paid by card,"
+      },
+      {
+        "quote": "I took a taxi for the next three commutes at 9,200 pesos each."
+      },
+      {
+        "quote": "The bike repair estimate is 45,000 pesos, although I have not received the written quote yet, so please leave it out of the claim total for now."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Last Thursday at about 7:50 I fell off my bicycle on Avenida Vicuña Mackenna when a delivery van opened its door, and the driver, [PERSON_1], admitted it in front of a passer-by. I went to the emergency clinic the same morning, and the doctor said the wrist is sprained, not broken, and I should keep the splint on for two weeks. The clinic charged 68,500 pesos, which I paid by card, and my claim reference with the insurer is [ACCOUNT_ID]. I missed no work, but I took a taxi for the next three commutes at 9,200 pesos each. The bike repair estimate is 45,000 pesos, although I have not received the written quote yet, so please leave it out of the claim total for now."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:t3-airport-transfer-control",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:t3-airport-transfer-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:t3-airport-transfer-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:t3-airport-transfer-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:t3-airport-transfer-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "I need to get from Constitución station to Ezeiza airport on a Friday, arriving by 11:30 for a 14:30 flight. The options I found are an express bus, which takes about 95 minutes with traffic, and a taxi that costs around 28,000 pesos and takes about 50 minutes. The regular bus runs less often on weekends, but I am travelling on a weekday. I carry one suitcase of about 20 kg and a backpack. Which option is safer for being on time, and is there any reason to leave before 8:00?",
+    "task": "Compare the two options and recommend one, with a back-up plan if the first one runs late.",
+    "entities": [],
+    "decisions": [],
+    "required_facts": [
+      {
+        "quote": "arriving by 11:30 for a 14:30 flight."
+      },
+      {
+        "quote": "but I am travelling on a weekday."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "I need to get from Constitución station to Ezeiza airport on a Friday, arriving by 11:30 for a 14:30 flight. The options I found are an express bus, which takes about 95 minutes with traffic, and a taxi that costs around 28,000 pesos and takes about 50 minutes. The regular bus runs less often on weekends, but I am travelling on a weekday. I carry one suitcase of about 20 kg and a backpack. Which option is safer for being on time, and is there any reason to leave before 8:00?"
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:t4-pain-clinic-notes-control",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:t4-pain-clinic-notes-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:t4-pain-clinic-notes-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:t4-pain-clinic-notes-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:t4-pain-clinic-notes-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Pain clinic appointment moved to 13 January, Dr Lorena Figueroa's secretary called from +56 9 5550 0138, I need to tell work something. The fibromyalgia flare in October was bad, I missed four Mondays, and my supervisor Cristóbal Reyes was fine about it but the timesheet still shows them as unauthorised. Maybe ask for the home-office day to be written down? Pharmacy: new tablets 50 mg at night, not in the morning like before. Cecilia can drive me on the 13th if she gets the day off, otherwise I take the 8:15 bus. Also the gym is 24,900 pesos a month, cancel? Not sure if that matters for the form.",
+    "task": "Help me organise this note.",
+    "entities": [
+      {
+        "id": "lf",
+        "entity_id": "lorena",
+        "label": "PERSON",
+        "quote": "Lorena Figueroa"
+      },
+      {
+        "id": "pn",
+        "entity_id": "clinic-phone",
+        "label": "PHONE",
+        "quote": "+56 9 5550 0138"
+      },
+      {
+        "id": "v1",
+        "entity_id": "flare",
+        "label": "HEALTH",
+        "quote": "The fibromyalgia flare in October was bad"
+      },
+      {
+        "id": "v2",
+        "entity_id": "missed",
+        "label": "EMPLOYMENT",
+        "quote": "I missed four Mondays"
+      },
+      {
+        "id": "cr",
+        "entity_id": "cristobal",
+        "label": "PERSON",
+        "quote": "Cristóbal Reyes"
+      },
+      {
+        "id": "v3",
+        "entity_id": "timesheet",
+        "label": "EMPLOYMENT",
+        "quote": "the timesheet still shows them as unauthorised"
+      },
+      {
+        "id": "v4",
+        "entity_id": "tablets",
+        "label": "HEALTH",
+        "quote": "new tablets 50 mg at night, not in the morning like before"
+      },
+      {
+        "id": "ce",
+        "entity_id": "cecilia",
+        "label": "PERSON",
+        "quote": "Cecilia"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "lf",
+        "entity_id": "lorena",
+        "quote": "Lorena Figueroa",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "pn",
+        "entity_id": "clinic-phone",
+        "quote": "+56 9 5550 0138",
+        "label": "PHONE",
+        "action": "PLACEHOLDER",
+        "relevance": "uncertain",
+        "reason": "The clinic's phone number is a direct identifier; whether it is needed for organising the note is unclear, so it is masked and any utility loss is minor."
+      },
+      {
+        "kind": "entity",
+        "target_id": "v1",
+        "entity_id": "flare",
+        "quote": "The fibromyalgia flare in October was bad",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "uncertain",
+        "reason": "Plausibly useful context for the note and permitted to disclose; the task does not say whether health detail is needed."
+      },
+      {
+        "kind": "entity",
+        "target_id": "v2",
+        "entity_id": "missed",
+        "quote": "I missed four Mondays",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "uncertain",
+        "reason": "Plausibly relevant to the work follow-up; the task does not settle whether it is needed."
+      },
+      {
+        "kind": "entity",
+        "target_id": "cr",
+        "entity_id": "cristobal",
+        "quote": "Cristóbal Reyes",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "v3",
+        "entity_id": "timesheet",
+        "quote": "the timesheet still shows them as unauthorised",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "uncertain",
+        "reason": "May matter to the form or work follow-up; relevance is not established by the vague task."
+      },
+      {
+        "kind": "entity",
+        "target_id": "v4",
+        "entity_id": "tablets",
+        "quote": "new tablets 50 mg at night, not in the morning like before",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "uncertain",
+        "reason": "A dose-timing change that could matter to someone reading the note; the task does not say."
+      },
+      {
+        "kind": "entity",
+        "target_id": "ce",
+        "entity_id": "cecilia",
+        "quote": "Cecilia",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "new tablets 50 mg at night, not in the morning like before."
+      },
+      {
+        "quote": "can drive me on the 13th if she gets the day off, otherwise I take the 8:15 bus."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "Pain clinic appointment moved to 13 January, Dr [PERSON_1]'s secretary called from [PHONE], I need to tell work something. The fibromyalgia flare in October was bad, I missed four Mondays, and my supervisor [PERSON_2] was fine about it but the timesheet still shows them as unauthorised. Maybe ask for the home-office day to be written down? Pharmacy: new tablets 50 mg at night, not in the morning like before. [PERSON_3] can drive me on the 13th if she gets the day off, otherwise I take the 8:15 bus. Also the gym is 24,900 pesos a month, cancel? Not sure if that matters for the form."
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "d28488bc79944fd8ab07033a8b7f84d5",
+    "id": "d28488bc79944fd8ab07033a8b7f84d5:c4-hr-improvement-plan-control",
+    "family_id": "d28488bc79944fd8ab07033a8b7f84d5:c4-hr-improvement-plan-family",
+    "source_id": "d28488bc79944fd8ab07033a8b7f84d5:c4-hr-improvement-plan-source",
+    "persona_id": "d28488bc79944fd8ab07033a8b7f84d5:c4-hr-improvement-plan-persona",
+    "template_id": "d28488bc79944fd8ab07033a8b7f84d5:c4-hr-improvement-plan-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Leandro Ibarra, senior support analyst, has missed the agreed resolution target of 85 per cent in each of the last three months, with results of 71, 74 and 69. The plan runs eight weeks from 1 December, with a check-in every second Thursday with his team lead, Rocío Valdivia. If he reaches 80 per cent by week four and 85 per cent by week eight, the plan closes with no further action; if not, HR will meet him to discuss the next step. His salary and bonus are not affected while the plan runs. Leandro told Rocío that the new ticketing tool slows him down, so we agreed he gets two hours of tool training in week one. Please keep the tone factual and do not mention the customer complaint from Mendoza, which is still under review.",
+    "task": "Draft the outline of a performance improvement plan letter with the timeline, targets, review points and support offered.",
+    "entities": [
+      {
+        "id": "l1",
+        "entity_id": "leandro",
+        "label": "PERSON",
+        "quote": "Leandro Ibarra"
+      },
+      {
+        "id": "g1",
+        "entity_id": "results",
+        "label": "EMPLOYMENT",
+        "quote": "has missed the agreed resolution target of 85 per cent in each of the last three months, with results of 71, 74 and 69"
+      },
+      {
+        "id": "r1",
+        "entity_id": "rocio",
+        "label": "PERSON",
+        "quote": "Rocío Valdivia"
+      },
+      {
+        "id": "g2",
+        "entity_id": "plan-outcome",
+        "label": "EMPLOYMENT",
+        "quote": "If he reaches 80 per cent by week four and 85 per cent by week eight, the plan closes with no further action; if not, HR will meet him to discuss the next step"
+      },
+      {
+        "id": "g3",
+        "entity_id": "pay",
+        "label": "EMPLOYMENT",
+        "quote": "His salary and bonus are not affected while the plan runs"
+      },
+      {
+        "id": "l2",
+        "entity_id": "leandro",
+        "label": "PERSON",
+        "quote": "Leandro",
+        "occurrence": 2
+      },
+      {
+        "id": "r2",
+        "entity_id": "rocio",
+        "label": "PERSON",
+        "quote": "Rocío",
+        "occurrence": 2
+      },
+      {
+        "id": "g4",
+        "entity_id": "training",
+        "label": "EMPLOYMENT",
+        "quote": "we agreed he gets two hours of tool training in week one"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "l1",
+        "entity_id": "leandro",
+        "quote": "Leandro Ibarra",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "g1",
+        "entity_id": "results",
+        "quote": "has missed the agreed resolution target of 85 per cent in each of the last three months, with results of 71, 74 and 69",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "r1",
+        "entity_id": "rocio",
+        "quote": "Rocío Valdivia",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "g2",
+        "entity_id": "plan-outcome",
+        "quote": "If he reaches 80 per cent by week four and 85 per cent by week eight, the plan closes with no further action; if not, HR will meet him to discuss the next step",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "g3",
+        "entity_id": "pay",
+        "quote": "His salary and bonus are not affected while the plan runs",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "l2",
+        "entity_id": "leandro",
+        "quote": "Leandro",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "r2",
+        "entity_id": "rocio",
+        "quote": "Rocío",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary",
+        "occurrence": 2
+      },
+      {
+        "kind": "entity",
+        "target_id": "g4",
+        "entity_id": "training",
+        "quote": "we agreed he gets two hours of tool training in week one",
+        "label": "EMPLOYMENT",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "has missed the agreed resolution target of 85 per cent in each of the last three months, with results of 71, 74 and 69."
+      },
+      {
+        "quote": "The plan runs eight weeks from 1 December, with a check-in every second Thursday with his team lead,"
+      },
+      {
+        "quote": "If he reaches 80 per cent by week four and 85 per cent by week eight, the plan closes with no further action; if not, HR will meet him to discuss the next step."
+      },
+      {
+        "quote": "His salary and bonus are not affected while the plan runs."
+      },
+      {
+        "quote": "that the new ticketing tool slows him down, so we agreed he gets two hours of tool training in week one."
+      },
+      {
+        "quote": "Please keep the tone factual and do not mention the customer complaint from Mendoza, which is still under review."
+      }
+    ],
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "d28488bc79944fd8ab07033a8b7f84d5:generator",
+      "generator_model": "claude-sonnet-5-5"
+    },
+    "review": {
+      "status": "pending"
+    },
+    "approved_output": "[PERSON_1], senior support analyst, has missed the agreed resolution target of 85 per cent in each of the last three months, with results of 71, 74 and 69. The plan runs eight weeks from 1 December, with a check-in every second Thursday with his team lead, [PERSON_2]. If he reaches 80 per cent by week four and 85 per cent by week eight, the plan closes with no further action; if not, HR will meet him to discuss the next step. His salary and bonus are not affected while the plan runs. [PERSON_1] told [PERSON_2] that the new ticketing tool slows him down, so we agreed he gets two hours of tool training in week one. Please keep the tone factual and do not mention the customer complaint from Mendoza, which is still under review."
+  }
+]

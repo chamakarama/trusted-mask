@@ -1,0 +1,3096 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-availability",
+  "family_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-family",
+  "source_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes from my call with the Lakeside Cubs swim club about joining as a poolside helper. Every adult helper needs a basic criminal-record certificate dated within the last three months. The volunteer lead, Sunita Karki, said the club will not accept a photocopy and wants the original posted or handed in to Bishal Gurung at the front desk.\n\nI work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am. I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free. Sunita said this is fine as long as the club knows early.\n\nMy application went in through the online portal on 14 October and the reference number is APP-58213-KT. The portal said it could take up to 14 working days, and Sunita told me to ring her if I hear nothing by 6 November. She also said I must not start shadowing until the certificate arrives, even for a trial hour.",
+  "task": "Write the availability section of my volunteer application: which sessions I can reliably attend and what the club should plan around.",
+  "entities": [
+   {
+    "id": "sun1",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita Karki"
+   },
+   {
+    "id": "bis",
+    "entity_id": "bishal",
+    "label": "PERSON",
+    "quote": "Bishal Gurung"
+   },
+   {
+    "id": "emp1",
+    "entity_id": "emp-1",
+    "label": "EMPLOYMENT",
+    "quote": "I work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am"
+   },
+   {
+    "id": "emp2",
+    "entity_id": "emp-2",
+    "label": "EMPLOYMENT",
+    "quote": "I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free"
+   },
+   {
+    "id": "sun2",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "occurrence": 2
+   },
+   {
+    "id": "ref",
+    "entity_id": "app-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "APP-58213-KT"
+   },
+   {
+    "id": "sun3",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "occurrence": 3
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "sun1",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita Karki",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "bis",
+    "entity_id": "bishal",
+    "label": "PERSON",
+    "quote": "Bishal Gurung",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp1",
+    "entity_id": "emp-1",
+    "label": "EMPLOYMENT",
+    "quote": "I work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp2",
+    "entity_id": "emp-2",
+    "label": "EMPLOYMENT",
+    "quote": "I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sun2",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "app-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "APP-58213-KT",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Application reference is an account-style identifier and the availability text does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sun3",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am."
+   },
+   {
+    "quote": "I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free."
+   },
+   {
+    "quote": "said this is fine as long as the club knows early."
+   }
+  ],
+  "approved_output": "Notes from my call with the Lakeside Cubs swim club about joining as a poolside helper. Every adult helper needs a basic criminal-record certificate dated within the last three months. The volunteer lead, [PERSON_1], said the club will not accept a photocopy and wants the original posted or handed in to [PERSON_2] at the front desk.\n\nI work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am. I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free. [PERSON_1] said this is fine as long as the club knows early.\n\nMy application went in through the online portal on 14 October and the reference number is [ACCOUNT_ID]. The portal said it could take up to 14 working days, and [PERSON_1] told me to ring her if I hear nothing by 6 November. She also said I must not start shadowing until the certificate arrives, even for a trial hour.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-status-message",
+  "family_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-family",
+  "source_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:swim-club-night-shifts-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes from my call with the Lakeside Cubs swim club about joining as a poolside helper. Every adult helper needs a basic criminal-record certificate dated within the last three months. The volunteer lead, Sunita Karki, said the club will not accept a photocopy and wants the original posted or handed in to Bishal Gurung at the front desk.\n\nI work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am. I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free. Sunita said this is fine as long as the club knows early.\n\nMy application went in through the online portal on 14 October and the reference number is APP-58213-KT. The portal said it could take up to 14 working days, and Sunita told me to ring her if I hear nothing by 6 November. She also said I must not start shadowing until the certificate arrives, even for a trial hour.",
+  "task": "Draft a message to the volunteer lead asking where my certificate application stands and whether I can shadow a session in the meantime.",
+  "entities": [
+   {
+    "id": "sun1",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita Karki"
+   },
+   {
+    "id": "bis",
+    "entity_id": "bishal",
+    "label": "PERSON",
+    "quote": "Bishal Gurung"
+   },
+   {
+    "id": "emp1",
+    "entity_id": "emp-1",
+    "label": "EMPLOYMENT",
+    "quote": "I work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am"
+   },
+   {
+    "id": "emp2",
+    "entity_id": "emp-2",
+    "label": "EMPLOYMENT",
+    "quote": "I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free"
+   },
+   {
+    "id": "sun2",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "occurrence": 2
+   },
+   {
+    "id": "ref",
+    "entity_id": "app-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "APP-58213-KT"
+   },
+   {
+    "id": "sun3",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "occurrence": 3
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "sun1",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita Karki",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "bis",
+    "entity_id": "bishal",
+    "label": "PERSON",
+    "quote": "Bishal Gurung",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nI work night shifts as a ward cleaner at a city hospital, three nights a week, usually Monday, Tuesday and Thursday, finishing at 7 am. I could not do any session that starts before 11 am on the mornings after those shifts, but Wednesday evenings and every Saturday are free. Sunita said this is fine as long as the club knows early.",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The status query needs the application timeline and shadowing rule, not the writer's night-shift pattern or workplace, which only matter for scheduling."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ref",
+    "entity_id": "app-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "APP-58213-KT",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The reference would help the club trace the application but is an account-style identifier, so the placeholder hides it; the user must add it back (exact reference lost)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sun3",
+    "entity_id": "sunita",
+    "label": "PERSON",
+    "quote": "Sunita",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My application went in through the online portal on 14 October and the reference number is"
+   },
+   {
+    "quote": "The portal said it could take up to 14 working days, and"
+   },
+   {
+    "quote": "told me to ring her if I hear nothing by 6 November."
+   },
+   {
+    "quote": "She also said I must not start shadowing until the certificate arrives, even for a trial hour."
+   }
+  ],
+  "approved_output": "Notes from my call with the Lakeside Cubs swim club about joining as a poolside helper. Every adult helper needs a basic criminal-record certificate dated within the last three months. The volunteer lead, [PERSON_1], said the club will not accept a photocopy and wants the original posted or handed in to [PERSON_2] at the front desk.\n\nMy application went in through the online portal on 14 October and the reference number is [ACCOUNT_ID]. The portal said it could take up to 14 working days, and [PERSON_1] told me to ring her if I hear nothing by 6 November. She also said I must not start shadowing until the certificate arrives, even for a trial hour.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:reading-partners-school-adjustments-note",
+  "family_id": "b637b739b8da442d839931343340edb3:reading-partners-school-family",
+  "source_id": "b637b739b8da442d839931343340edb3:reading-partners-school-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:reading-partners-school-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:reading-partners-school-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Reading Partners at Maplewood Primary starts on 3 February, with sessions every Tuesday and Thursday from 1:30 to 3:45 pm. The safeguarding officer, Anbarasi Selvam, checks each volunteer's enhanced check certificate at the front office before the first session and photocopies nothing.\n\nHer letter gives the certificate number from my check as 00467-219-883 and says it stays valid for the whole school year, so I do not need to renew it before July. If the number on the letter and the one on the certificate do not match, the front office will ask me to bring the original again, and Vignesh Thangavel from my team will have to cover the phones while I go.\n\nParking is limited, so volunteers use the church car park on Orchard Lane.\n\nI have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops. Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well. I would want something similar here, but I am not sure the library corner has anywhere quiet to sit.",
+  "task": "Write a note to the school asking for what I will need to get through a full afternoon session, and ask whether the library corner can work.",
+  "entities": [
+   {
+    "id": "anb",
+    "entity_id": "anbarasi",
+    "label": "PERSON",
+    "quote": "Anbarasi Selvam"
+   },
+   {
+    "id": "cert",
+    "entity_id": "cert-no",
+    "label": "ACCOUNT_ID",
+    "quote": "00467-219-883"
+   },
+   {
+    "id": "vig",
+    "entity_id": "vignesh",
+    "label": "PERSON",
+    "quote": "Vignesh Thangavel"
+   },
+   {
+    "id": "h1",
+    "entity_id": "health-1",
+    "label": "HEALTH",
+    "quote": "I have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops"
+   },
+   {
+    "id": "h2",
+    "entity_id": "health-2",
+    "label": "HEALTH",
+    "quote": "Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "anb",
+    "entity_id": "anbarasi",
+    "label": "PERSON",
+    "quote": "Anbarasi Selvam",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cert",
+    "entity_id": "cert-no",
+    "label": "ACCOUNT_ID",
+    "quote": "00467-219-883",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Certificate number is a document identifier and the note to the school does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "vig",
+    "entity_id": "vignesh",
+    "label": "PERSON",
+    "quote": "Vignesh Thangavel",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "health-1",
+    "label": "HEALTH",
+    "quote": "I have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "health-2",
+    "label": "HEALTH",
+    "quote": "Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Reading Partners at Maplewood Primary starts on 3 February, with sessions every Tuesday and Thursday from 1:30 to 3:45 pm."
+   },
+   {
+    "quote": "I have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops."
+   },
+   {
+    "quote": "Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well."
+   },
+   {
+    "quote": "I would want something similar here, but I am not sure the library corner has anywhere quiet to sit."
+   }
+  ],
+  "approved_output": "Reading Partners at Maplewood Primary starts on 3 February, with sessions every Tuesday and Thursday from 1:30 to 3:45 pm. The safeguarding officer, [PERSON_1], checks each volunteer's enhanced check certificate at the front office before the first session and photocopies nothing.\n\nHer letter gives the certificate number from my check as [ACCOUNT_ID] and says it stays valid for the whole school year, so I do not need to renew it before July. If the number on the letter and the one on the certificate do not match, the front office will ask me to bring the original again, and [PERSON_2] from my team will have to cover the phones while I go.\n\nParking is limited, so volunteers use the church car park on Orchard Lane.\n\nI have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops. Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well. I would want something similar here, but I am not sure the library corner has anywhere quiet to sit.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:reading-partners-school-first-day-checklist",
+  "family_id": "b637b739b8da442d839931343340edb3:reading-partners-school-family",
+  "source_id": "b637b739b8da442d839931343340edb3:reading-partners-school-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:reading-partners-school-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:reading-partners-school-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Reading Partners at Maplewood Primary starts on 3 February, with sessions every Tuesday and Thursday from 1:30 to 3:45 pm. The safeguarding officer, Anbarasi Selvam, checks each volunteer's enhanced check certificate at the front office before the first session and photocopies nothing.\n\nHer letter gives the certificate number from my check as 00467-219-883 and says it stays valid for the whole school year, so I do not need to renew it before July. If the number on the letter and the one on the certificate do not match, the front office will ask me to bring the original again, and Vignesh Thangavel from my team will have to cover the phones while I go.\n\nParking is limited, so volunteers use the church car park on Orchard Lane.\n\nI have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops. Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well. I would want something similar here, but I am not sure the library corner has anywhere quiet to sit.",
+  "task": "Make me a checklist of what to do and bring before my first session.",
+  "entities": [
+   {
+    "id": "anb",
+    "entity_id": "anbarasi",
+    "label": "PERSON",
+    "quote": "Anbarasi Selvam"
+   },
+   {
+    "id": "cert",
+    "entity_id": "cert-no",
+    "label": "ACCOUNT_ID",
+    "quote": "00467-219-883"
+   },
+   {
+    "id": "vig",
+    "entity_id": "vignesh",
+    "label": "PERSON",
+    "quote": "Vignesh Thangavel"
+   },
+   {
+    "id": "h1",
+    "entity_id": "health-1",
+    "label": "HEALTH",
+    "quote": "I have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops"
+   },
+   {
+    "id": "h2",
+    "entity_id": "health-2",
+    "label": "HEALTH",
+    "quote": "Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "anb",
+    "entity_id": "anbarasi",
+    "label": "PERSON",
+    "quote": "Anbarasi Selvam",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cert",
+    "entity_id": "cert-no",
+    "label": "ACCOUNT_ID",
+    "quote": "00467-219-883",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Certificate number is a document identifier; the checklist only needs the certificate itself, so the placeholder loses nothing."
+   },
+   {
+    "kind": "entity",
+    "target_id": "vig",
+    "entity_id": "vignesh",
+    "label": "PERSON",
+    "quote": "Vignesh Thangavel",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nI have type 1 diabetes, so I have to test my glucose and eat something every couple of hours, with a snack within reach in case it drops. Last term a different charity gave me a side room and a ten-minute break halfway through a long afternoon, and that worked well. I would want something similar here, but I am not sure the library corner has anywhere quiet to sit.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A pre-start checklist of documents and logistics does not need the volunteer's medical routine or past accommodations."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Reading Partners at Maplewood Primary starts on 3 February, with sessions every Tuesday and Thursday from 1:30 to 3:45 pm."
+   },
+   {
+    "quote": "checks each volunteer's enhanced check certificate at the front office before the first session"
+   },
+   {
+    "quote": "and says it stays valid for the whole school year, so I do not need to renew it before July."
+   },
+   {
+    "quote": "If the number on the letter and the one on the certificate do not match, the front office will ask me to bring the original again,"
+   },
+   {
+    "quote": "Parking is limited, so volunteers use the church car park on Orchard Lane."
+   }
+  ],
+  "approved_output": "Reading Partners at Maplewood Primary starts on 3 February, with sessions every Tuesday and Thursday from 1:30 to 3:45 pm. The safeguarding officer, [PERSON_1], checks each volunteer's enhanced check certificate at the front office before the first session and photocopies nothing.\n\nHer letter gives the certificate number from my check as [ACCOUNT_ID] and says it stays valid for the whole school year, so I do not need to renew it before July. If the number on the letter and the one on the certificate do not match, the front office will ask me to bring the original again, and [PERSON_2] from my team will have to cover the phones while I go.\n\nParking is limited, so volunteers use the church car park on Orchard Lane.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-treasurer-summary",
+  "family_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-family",
+  "source_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Quick update on the Pongal gathering at Greenfield Community Hall: the hall is booked from 4 to 9 pm on Saturday 18 January, and Meenakshi Balan is coordinating the rangoli table and the children's kolam contest. I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short, and I will only get it back if we sell more than 120 tickets, otherwise it stays with me. Please bring your own plates and cups because we do not have a dishwasher. Dinesh Palani said the sound system is free to borrow if we collect it by Friday noon, and he can help carry the speakers as well. Doors open at 3:30 for volunteers, and I would like everyone to wear the green armbands so guests know who to ask.",
+  "task": "Help me work out what to tell the committee treasurer about the money I have laid out and when I could get it back.",
+  "entities": [
+   {
+    "id": "mee",
+    "entity_id": "meenakshi",
+    "label": "PERSON",
+    "quote": "Meenakshi Balan"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-1",
+    "label": "FINANCIAL",
+    "quote": "I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-2",
+    "label": "FINANCIAL",
+    "quote": "I will only get it back if we sell more than 120 tickets, otherwise it stays with me"
+   },
+   {
+    "id": "din",
+    "entity_id": "dinesh",
+    "label": "PERSON",
+    "quote": "Dinesh Palani"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "mee",
+    "entity_id": "meenakshi",
+    "label": "PERSON",
+    "quote": "Meenakshi Balan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-1",
+    "label": "FINANCIAL",
+    "quote": "I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-2",
+    "label": "FINANCIAL",
+    "quote": "I will only get it back if we sell more than 120 tickets, otherwise it stays with me",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "din",
+    "entity_id": "dinesh",
+    "label": "PERSON",
+    "quote": "Dinesh Palani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short, and I will only get it back if we sell more than 120 tickets, otherwise it stays with me."
+   }
+  ],
+  "approved_output": "Quick update on the Pongal gathering at Greenfield Community Hall: the hall is booked from 4 to 9 pm on Saturday 18 January, and [PERSON_1] is coordinating the rangoli table and the children's kolam contest. I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short, and I will only get it back if we sell more than 120 tickets, otherwise it stays with me. Please bring your own plates and cups because we do not have a dishwasher. [PERSON_2] said the sound system is free to borrow if we collect it by Friday noon, and he can help carry the speakers as well. Doors open at 3:30 for volunteers, and I would like everyone to wear the green armbands so guests know who to ask.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-group-announcement",
+  "family_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-family",
+  "source_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:pongal-hall-deposit-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Quick update on the Pongal gathering at Greenfield Community Hall: the hall is booked from 4 to 9 pm on Saturday 18 January, and Meenakshi Balan is coordinating the rangoli table and the children's kolam contest. I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short, and I will only get it back if we sell more than 120 tickets, otherwise it stays with me. Please bring your own plates and cups because we do not have a dishwasher. Dinesh Palani said the sound system is free to borrow if we collect it by Friday noon, and he can help carry the speakers as well. Doors open at 3:30 for volunteers, and I would like everyone to wear the green armbands so guests know who to ask.",
+  "task": "Write a friendly announcement for the neighbourhood group chat with the timings, what to bring and who to ask on the day.",
+  "entities": [
+   {
+    "id": "mee",
+    "entity_id": "meenakshi",
+    "label": "PERSON",
+    "quote": "Meenakshi Balan"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-1",
+    "label": "FINANCIAL",
+    "quote": "I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-2",
+    "label": "FINANCIAL",
+    "quote": "I will only get it back if we sell more than 120 tickets, otherwise it stays with me"
+   },
+   {
+    "id": "din",
+    "entity_id": "dinesh",
+    "label": "PERSON",
+    "quote": "Dinesh Palani"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "mee",
+    "entity_id": "meenakshi",
+    "label": "PERSON",
+    "quote": "Meenakshi Balan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "I put down the 340-euro hall deposit from my own savings because the council grant arrived 200 euros short, and I will only get it back if we sell more than 120 tickets, otherwise it stays with me. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The announcement is about timings, what to bring and contacts; the organiser's personal deposit and repayment condition are not needed by guests."
+   },
+   {
+    "kind": "entity",
+    "target_id": "din",
+    "entity_id": "dinesh",
+    "label": "PERSON",
+    "quote": "Dinesh Palani",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the hall is booked from 4 to 9 pm on Saturday 18 January,"
+   },
+   {
+    "quote": "is coordinating the rangoli table and the children's kolam contest."
+   },
+   {
+    "quote": "Please bring your own plates and cups because we do not have a dishwasher."
+   },
+   {
+    "quote": "Doors open at 3:30 for volunteers, and I would like everyone to wear the green armbands so guests know who to ask."
+   }
+  ],
+  "approved_output": "Quick update on the Pongal gathering at Greenfield Community Hall: the hall is booked from 4 to 9 pm on Saturday 18 January, and [PERSON_1] is coordinating the rangoli table and the children's kolam contest. Please bring your own plates and cups because we do not have a dishwasher. [PERSON_2] said the sound system is free to borrow if we collect it by Friday noon, and he can help carry the speakers as well. Doors open at 3:30 for volunteers, and I would like everyone to wear the green armbands so guests know who to ask.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-explain-saturdays",
+  "family_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-family",
+  "source_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "For the Tihar mela at St Clement's Hall on 2 November, Roshan Shrestha has agreed to run the sel roti stall and Gita Neupane will manage the raffle table by the door. I can staff the entrance table at the planning sessions on the first and third Saturdays of October. The second and fourth Saturdays are out because my ex-husband has our two children on those weekends under the custody arrangement and I cannot swap them. The stall fees are paid through the hall office, so nobody needs to carry cash. We still need two more people to help move tables from the storage room at 8 am, and anyone with a car should say so by Thursday. Posters go up in the library and on the temple noticeboard this week, and the printed ones should be collected from the copy shop on Friday.",
+  "task": "Draft a reply to the organiser explaining why I can't make two of the planning Saturdays and what I can offer instead.",
+  "entities": [
+   {
+    "id": "ros",
+    "entity_id": "roshan",
+    "label": "PERSON",
+    "quote": "Roshan Shrestha"
+   },
+   {
+    "id": "git",
+    "entity_id": "gita",
+    "label": "PERSON",
+    "quote": "Gita Neupane"
+   },
+   {
+    "id": "fam1",
+    "entity_id": "family-1",
+    "label": "FAMILY",
+    "quote": "my ex-husband has our two children on those weekends under the custody arrangement"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ros",
+    "entity_id": "roshan",
+    "label": "PERSON",
+    "quote": "Roshan Shrestha",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "git",
+    "entity_id": "gita",
+    "label": "PERSON",
+    "quote": "Gita Neupane",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam1",
+    "entity_id": "family-1",
+    "label": "FAMILY",
+    "quote": "my ex-husband has our two children on those weekends under the custody arrangement",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I can staff the entrance table at the planning sessions on the first and third Saturdays of October."
+   },
+   {
+    "quote": "The second and fourth Saturdays are out because my ex-husband has our two children on those weekends under the custody arrangement and I cannot swap them."
+   }
+  ],
+  "approved_output": "For the Tihar mela at St Clement's Hall on 2 November, [PERSON_1] has agreed to run the sel roti stall and [PERSON_2] will manage the raffle table by the door. I can staff the entrance table at the planning sessions on the first and third Saturdays of October. The second and fourth Saturdays are out because my ex-husband has our two children on those weekends under the custody arrangement and I cannot swap them. The stall fees are paid through the hall office, so nobody needs to carry cash. We still need two more people to help move tables from the storage room at 8 am, and anyone with a car should say so by Thursday. Posters go up in the library and on the temple noticeboard this week, and the printed ones should be collected from the copy shop on Friday.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-rota-message",
+  "family_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-family",
+  "source_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:tihar-mela-planning-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "For the Tihar mela at St Clement's Hall on 2 November, Roshan Shrestha has agreed to run the sel roti stall and Gita Neupane will manage the raffle table by the door. I can staff the entrance table at the planning sessions on the first and third Saturdays of October. The second and fourth Saturdays are out because my ex-husband has our two children on those weekends under the custody arrangement and I cannot swap them. The stall fees are paid through the hall office, so nobody needs to carry cash. We still need two more people to help move tables from the storage room at 8 am, and anyone with a car should say so by Thursday. Posters go up in the library and on the temple noticeboard this week, and the printed ones should be collected from the copy shop on Friday.",
+  "task": "Write a short message for the volunteers' group chat saying who runs which stall and what help is still needed.",
+  "entities": [
+   {
+    "id": "ros",
+    "entity_id": "roshan",
+    "label": "PERSON",
+    "quote": "Roshan Shrestha"
+   },
+   {
+    "id": "git",
+    "entity_id": "gita",
+    "label": "PERSON",
+    "quote": "Gita Neupane"
+   },
+   {
+    "id": "fam1",
+    "entity_id": "family-1",
+    "label": "FAMILY",
+    "quote": "my ex-husband has our two children on those weekends under the custody arrangement"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ros",
+    "entity_id": "roshan",
+    "label": "PERSON",
+    "quote": "Roshan Shrestha",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "git",
+    "entity_id": "gita",
+    "label": "PERSON",
+    "quote": "Gita Neupane",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "The second and fourth Saturdays are out because my ex-husband has our two children on those weekends under the custody arrangement and I cannot swap them. ",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A group rota message about stalls and open jobs does not need the writer's custody arrangement."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "has agreed to run the sel roti stall and"
+   },
+   {
+    "quote": "will manage the raffle table by the door."
+   },
+   {
+    "quote": "We still need two more people to help move tables from the storage room at 8 am, and anyone with a car should say so by Thursday."
+   },
+   {
+    "quote": "The stall fees are paid through the hall office, so nobody needs to carry cash."
+   }
+  ],
+  "approved_output": "For the Tihar mela at St Clement's Hall on 2 November, [PERSON_1] has agreed to run the sel roti stall and [PERSON_2] will manage the raffle table by the door. I can staff the entrance table at the planning sessions on the first and third Saturdays of October. The stall fees are paid through the hall office, so nobody needs to carry cash. We still need two more people to help move tables from the storage room at 8 am, and anyone with a car should say so by Thursday. Posters go up in the library and on the temple noticeboard this week, and the printed ones should be collected from the copy shop on Friday.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-ask-for-help",
+  "family_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-family",
+  "source_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The Eastgate food bank wants every driver to complete a basic background check through its umbrella charity before the first delivery run, and Priyadharshini Kumar from the volunteer office will send the link once I confirm my email address. The check costs 18 pounds, which the charity reimburses after the first month. I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th. The form asks for two addresses from the last five years, a passport or driving licence number, and the name of someone who can confirm my identity. I am thinking of asking Muthu Pandian, my old landlord, to do that, though we did not part on good terms. Deliveries are on Wednesday and Saturday mornings, and drivers need to be at the warehouse by 8:15.",
+  "task": "Draft a message to the volunteer office asking how I can still start on time given my circumstances.",
+  "entities": [
+   {
+    "id": "pri",
+    "entity_id": "priya",
+    "label": "PERSON",
+    "quote": "Priyadharshini Kumar"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "fin-rent",
+    "label": "FINANCIAL",
+    "quote": "I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th"
+   },
+   {
+    "id": "mut",
+    "entity_id": "muthu",
+    "label": "PERSON",
+    "quote": "Muthu Pandian"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pri",
+    "entity_id": "priya",
+    "label": "PERSON",
+    "quote": "Priyadharshini Kumar",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "fin-rent",
+    "label": "FINANCIAL",
+    "quote": "I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mut",
+    "entity_id": "muthu",
+    "label": "PERSON",
+    "quote": "Muthu Pandian",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The check costs 18 pounds, which the charity reimburses after the first month."
+   },
+   {
+    "quote": "I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th."
+   }
+  ],
+  "approved_output": "The Eastgate food bank wants every driver to complete a basic background check through its umbrella charity before the first delivery run, and [PERSON_1] from the volunteer office will send the link once I confirm my email address. The check costs 18 pounds, which the charity reimburses after the first month. I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th. The form asks for two addresses from the last five years, a passport or driving licence number, and the name of someone who can confirm my identity. I am thinking of asking [PERSON_2], my old landlord, to do that, though we did not part on good terms. Deliveries are on Wednesday and Saturday mornings, and drivers need to be at the warehouse by 8:15.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-gather-list",
+  "family_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-family",
+  "source_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:food-bank-driver-check-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The Eastgate food bank wants every driver to complete a basic background check through its umbrella charity before the first delivery run, and Priyadharshini Kumar from the volunteer office will send the link once I confirm my email address. The check costs 18 pounds, which the charity reimburses after the first month. I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th. The form asks for two addresses from the last five years, a passport or driving licence number, and the name of someone who can confirm my identity. I am thinking of asking Muthu Pandian, my old landlord, to do that, though we did not part on good terms. Deliveries are on Wednesday and Saturday mornings, and drivers need to be at the warehouse by 8:15.",
+  "task": "List everything I need to gather before I start the check form, and who to contact.",
+  "entities": [
+   {
+    "id": "pri",
+    "entity_id": "priya",
+    "label": "PERSON",
+    "quote": "Priyadharshini Kumar"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "fin-rent",
+    "label": "FINANCIAL",
+    "quote": "I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th"
+   },
+   {
+    "id": "mut",
+    "entity_id": "muthu",
+    "label": "PERSON",
+    "quote": "Muthu Pandian"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "pri",
+    "entity_id": "priya",
+    "label": "PERSON",
+    "quote": "Priyadharshini Kumar",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "I am behind on my rent this quarter and cannot front even that amount until I am paid on the 28th. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A list of documents and contacts for the check form does not need the writer's rent arrears or pay date."
+   },
+   {
+    "kind": "entity",
+    "target_id": "mut",
+    "entity_id": "muthu",
+    "label": "PERSON",
+    "quote": "Muthu Pandian",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "from the volunteer office will send the link once I confirm my email address."
+   },
+   {
+    "quote": "The form asks for two addresses from the last five years, a passport or driving licence number, and the name of someone who can confirm my identity."
+   },
+   {
+    "quote": "I am thinking of asking"
+   },
+   {
+    "quote": "my old landlord, to do that, though we did not part on good terms."
+   }
+  ],
+  "approved_output": "The Eastgate food bank wants every driver to complete a basic background check through its umbrella charity before the first delivery run, and [PERSON_1] from the volunteer office will send the link once I confirm my email address. The check costs 18 pounds, which the charity reimburses after the first month. The form asks for two addresses from the last five years, a passport or driving licence number, and the name of someone who can confirm my identity. I am thinking of asking [PERSON_2], my old landlord, to do that, though we did not part on good terms. Deliveries are on Wednesday and Saturday mornings, and drivers need to be at the warehouse by 8:15.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-day-plan",
+  "family_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-family",
+  "source_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "From: Laxmi Basnet <laxmi.basnet@example.invalid>\nTo: Sagar Khadka <sagar.khadka@example.invalid>\nSubject: Riverside Walk stewarding, 14 June\n\nHi Sagar,\n\nThank you for signing up to steward the Riverside Charity Walk. Stewards meet at the boathouse at 7:30 am for a briefing and a high-vis vest, and the walk itself runs from 9 until about 1 pm along the 12 km route.\n\nYou mentioned that you had knee replacement surgery in March and your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes. That is no problem at all. There are two marshal points near the start line with a stool, and I can pair you with a second steward at either.\n\nI still need your signed volunteer form back by Friday, and the club will run the background check using the details on it. Please also reply with your mobile number in case the route changes on the day.\n\nBest wishes,\nLaxmi",
+  "task": "Plan my day as a steward, from the 7:30 briefing to the finish, including where I should be positioned and for how long at a time.",
+  "entities": [
+   {
+    "id": "lax1",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi Basnet"
+   },
+   {
+    "id": "em1",
+    "entity_id": "laxmi-email",
+    "label": "EMAIL",
+    "quote": "laxmi.basnet@example.invalid"
+   },
+   {
+    "id": "sag1",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar Khadka"
+   },
+   {
+    "id": "em2",
+    "entity_id": "sagar-email",
+    "label": "EMAIL",
+    "quote": "sagar.khadka@example.invalid"
+   },
+   {
+    "id": "sag2",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar",
+    "occurrence": 2
+   },
+   {
+    "id": "h1",
+    "entity_id": "health-knee-1",
+    "label": "HEALTH",
+    "quote": "you had knee replacement surgery in March"
+   },
+   {
+    "id": "h2",
+    "entity_id": "health-knee-2",
+    "label": "HEALTH",
+    "quote": "your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes"
+   },
+   {
+    "id": "lax2",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "lax1",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi Basnet",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em1",
+    "entity_id": "laxmi-email",
+    "label": "EMAIL",
+    "quote": "laxmi.basnet@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Sender address is a contact detail and the day plan does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sag1",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar Khadka",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em2",
+    "entity_id": "sagar-email",
+    "label": "EMAIL",
+    "quote": "sagar.khadka@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Recipient address is a contact detail and the day plan does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sag2",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "health-knee-1",
+    "label": "HEALTH",
+    "quote": "you had knee replacement surgery in March",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "health-knee-2",
+    "label": "HEALTH",
+    "quote": "your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "lax2",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Stewards meet at the boathouse at 7:30 am for a briefing and a high-vis vest, and the walk itself runs from 9 until about 1 pm along the 12 km route."
+   },
+   {
+    "quote": "You mentioned that you had knee replacement surgery in March and your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes."
+   },
+   {
+    "quote": "There are two marshal points near the start line with a stool, and I can pair you with a second steward at either."
+   }
+  ],
+  "approved_output": "From: [PERSON_1] <[EMAIL]>\nTo: [PERSON_2] <[EMAIL]>\nSubject: Riverside Walk stewarding, 14 June\n\nHi [PERSON_2],\n\nThank you for signing up to steward the Riverside Charity Walk. Stewards meet at the boathouse at 7:30 am for a briefing and a high-vis vest, and the walk itself runs from 9 until about 1 pm along the 12 km route.\n\nYou mentioned that you had knee replacement surgery in March and your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes. That is no problem at all. There are two marshal points near the start line with a stool, and I can pair you with a second steward at either.\n\nI still need your signed volunteer form back by Friday, and the club will run the background check using the details on it. Please also reply with your mobile number in case the route changes on the day.\n\nBest wishes,\n[PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-confirm-reply",
+  "family_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-family",
+  "source_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:riverside-walk-steward-email-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "From: Laxmi Basnet <laxmi.basnet@example.invalid>\nTo: Sagar Khadka <sagar.khadka@example.invalid>\nSubject: Riverside Walk stewarding, 14 June\n\nHi Sagar,\n\nThank you for signing up to steward the Riverside Charity Walk. Stewards meet at the boathouse at 7:30 am for a briefing and a high-vis vest, and the walk itself runs from 9 until about 1 pm along the 12 km route.\n\nYou mentioned that you had knee replacement surgery in March and your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes. That is no problem at all. There are two marshal points near the start line with a stool, and I can pair you with a second steward at either.\n\nI still need your signed volunteer form back by Friday, and the club will run the background check using the details on it. Please also reply with your mobile number in case the route changes on the day.\n\nBest wishes,\nLaxmi",
+  "task": "Write a short reply confirming I will be at the briefing and will return the signed form by Friday.",
+  "entities": [
+   {
+    "id": "lax1",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi Basnet"
+   },
+   {
+    "id": "em1",
+    "entity_id": "laxmi-email",
+    "label": "EMAIL",
+    "quote": "laxmi.basnet@example.invalid"
+   },
+   {
+    "id": "sag1",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar Khadka"
+   },
+   {
+    "id": "em2",
+    "entity_id": "sagar-email",
+    "label": "EMAIL",
+    "quote": "sagar.khadka@example.invalid"
+   },
+   {
+    "id": "sag2",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar",
+    "occurrence": 2
+   },
+   {
+    "id": "h1",
+    "entity_id": "health-knee-1",
+    "label": "HEALTH",
+    "quote": "you had knee replacement surgery in March"
+   },
+   {
+    "id": "h2",
+    "entity_id": "health-knee-2",
+    "label": "HEALTH",
+    "quote": "your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes"
+   },
+   {
+    "id": "lax2",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "lax1",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi Basnet",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em1",
+    "entity_id": "laxmi-email",
+    "label": "EMAIL",
+    "quote": "laxmi.basnet@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Sender address is a contact detail and a confirmation reply does not need it spelled out, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sag1",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar Khadka",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em2",
+    "entity_id": "sagar-email",
+    "label": "EMAIL",
+    "quote": "sagar.khadka@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Recipient address is a contact detail and the reply does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sag2",
+    "entity_id": "sagar",
+    "label": "PERSON",
+    "quote": "Sagar",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nYou mentioned that you had knee replacement surgery in March and your surgeon has cleared you for light walking only, no more than 4 km at a stretch and no standing still for more than 30 minutes. That is no problem at all. There are two marshal points near the start line with a stool, and I can pair you with a second steward at either.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A reply confirming attendance and the signed form does not need the surgery, mobility limits or the marshal-point arrangements."
+   },
+   {
+    "kind": "entity",
+    "target_id": "lax2",
+    "entity_id": "laxmi",
+    "label": "PERSON",
+    "quote": "Laxmi",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Stewards meet at the boathouse at 7:30 am for a briefing"
+   },
+   {
+    "quote": "I still need your signed volunteer form back by Friday, and the club will run the background check using the details on it."
+   }
+  ],
+  "approved_output": "From: [PERSON_1] <[EMAIL]>\nTo: [PERSON_2] <[EMAIL]>\nSubject: Riverside Walk stewarding, 14 June\n\nHi [PERSON_2],\n\nThank you for signing up to steward the Riverside Charity Walk. Stewards meet at the boathouse at 7:30 am for a briefing and a high-vis vest, and the walk itself runs from 9 until about 1 pm along the 12 km route.\n\nI still need your signed volunteer form back by Friday, and the club will run the background check using the details on it. Please also reply with your mobile number in case the route changes on the day.\n\nBest wishes,\n[PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-who-is-owed",
+  "family_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-family",
+  "source_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Fundraiser day helper sheet\n\nhelper\tcheck_status\tshift\ttask\nArulmozhi Natarajan\tcleared\t09:00-12:00\tcake stall\nGanesan Sivakumar\tpending\t09:00-12:00\tcake stall\nTharani Velu\tcleared\t12:00-15:00\tentrance\nKarthikeyan Ramu\tpending\t12:00-15:00\tparking\n\nfloat_and_costs\tamount\tpaid_by\tstatus\nchange float\t120\tArulmozhi Natarajan\tto be repaid from takings\ncake ingredients\t86.50\tTharani Velu\treceipt handed in\nhall cleaning fee\t45\tGanesan Sivakumar\tnot yet repaid, said he will wait until the end of the month",
+  "task": "Work out how much each helper is owed back and what is still outstanding.",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "occurrence": 1
+   },
+   {
+    "id": "g1",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "occurrence": 1
+   },
+   {
+    "id": "t1",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "occurrence": 1
+   },
+   {
+    "id": "k1",
+    "entity_id": "karthi",
+    "label": "PERSON",
+    "quote": "Karthikeyan Ramu"
+   },
+   {
+    "id": "fa",
+    "entity_id": "fin-float",
+    "label": "FINANCIAL",
+    "quote": "change float\t120"
+   },
+   {
+    "id": "a2",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "occurrence": 2
+   },
+   {
+    "id": "fb",
+    "entity_id": "fin-float-status",
+    "label": "FINANCIAL",
+    "quote": "to be repaid from takings"
+   },
+   {
+    "id": "fc",
+    "entity_id": "fin-cake",
+    "label": "FINANCIAL",
+    "quote": "cake ingredients\t86.50"
+   },
+   {
+    "id": "t2",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "occurrence": 2
+   },
+   {
+    "id": "fd",
+    "entity_id": "fin-cake-status",
+    "label": "FINANCIAL",
+    "quote": "receipt handed in"
+   },
+   {
+    "id": "fe",
+    "entity_id": "fin-clean",
+    "label": "FINANCIAL",
+    "quote": "hall cleaning fee\t45"
+   },
+   {
+    "id": "g2",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "occurrence": 2
+   },
+   {
+    "id": "ff",
+    "entity_id": "fin-clean-status",
+    "label": "FINANCIAL",
+    "quote": "not yet repaid, said he will wait until the end of the month"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "g1",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "t1",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "k1",
+    "entity_id": "karthi",
+    "label": "PERSON",
+    "quote": "Karthikeyan Ramu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fa",
+    "entity_id": "fin-float",
+    "label": "FINANCIAL",
+    "quote": "change float\t120",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "fb",
+    "entity_id": "fin-float-status",
+    "label": "FINANCIAL",
+    "quote": "to be repaid from takings",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fc",
+    "entity_id": "fin-cake",
+    "label": "FINANCIAL",
+    "quote": "cake ingredients\t86.50",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "t2",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "fd",
+    "entity_id": "fin-cake-status",
+    "label": "FINANCIAL",
+    "quote": "receipt handed in",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fe",
+    "entity_id": "fin-clean",
+    "label": "FINANCIAL",
+    "quote": "hall cleaning fee\t45",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "g2",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "ff",
+    "entity_id": "fin-clean-status",
+    "label": "FINANCIAL",
+    "quote": "not yet repaid, said he will wait until the end of the month",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "float_and_costs\tamount\tpaid_by\tstatus"
+   },
+   {
+    "quote": "change float\t120"
+   },
+   {
+    "quote": "to be repaid from takings"
+   },
+   {
+    "quote": "cake ingredients\t86.50"
+   },
+   {
+    "quote": "receipt handed in"
+   },
+   {
+    "quote": "hall cleaning fee\t45"
+   },
+   {
+    "quote": "not yet repaid, said he will wait until the end of the month"
+   }
+  ],
+  "approved_output": "Fundraiser day helper sheet\n\nhelper\tcheck_status\tshift\ttask\n[PERSON_1]\tcleared\t09:00-12:00\tcake stall\n[PERSON_2]\tpending\t09:00-12:00\tcake stall\n[PERSON_3]\tcleared\t12:00-15:00\tentrance\n[PERSON_4]\tpending\t12:00-15:00\tparking\n\nfloat_and_costs\tamount\tpaid_by\tstatus\nchange float\t120\t[PERSON_1]\tto be repaid from takings\ncake ingredients\t86.50\t[PERSON_3]\treceipt handed in\nhall cleaning fee\t45\t[PERSON_2]\tnot yet repaid, said he will wait until the end of the month",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-unchecked-helpers",
+  "family_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-family",
+  "source_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:fundraiser-helper-sheet-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Fundraiser day helper sheet\n\nhelper\tcheck_status\tshift\ttask\nArulmozhi Natarajan\tcleared\t09:00-12:00\tcake stall\nGanesan Sivakumar\tpending\t09:00-12:00\tcake stall\nTharani Velu\tcleared\t12:00-15:00\tentrance\nKarthikeyan Ramu\tpending\t12:00-15:00\tparking\n\nfloat_and_costs\tamount\tpaid_by\tstatus\nchange float\t120\tArulmozhi Natarajan\tto be repaid from takings\ncake ingredients\t86.50\tTharani Velu\treceipt handed in\nhall cleaning fee\t45\tGanesan Sivakumar\tnot yet repaid, said he will wait until the end of the month",
+  "task": "Which shifts still have helpers whose background check is not cleared, so I can arrange supervision?",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "occurrence": 1
+   },
+   {
+    "id": "g1",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "occurrence": 1
+   },
+   {
+    "id": "t1",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "occurrence": 1
+   },
+   {
+    "id": "k1",
+    "entity_id": "karthi",
+    "label": "PERSON",
+    "quote": "Karthikeyan Ramu"
+   },
+   {
+    "id": "fa",
+    "entity_id": "fin-float",
+    "label": "FINANCIAL",
+    "quote": "change float\t120"
+   },
+   {
+    "id": "a2",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "occurrence": 2
+   },
+   {
+    "id": "fb",
+    "entity_id": "fin-float-status",
+    "label": "FINANCIAL",
+    "quote": "to be repaid from takings"
+   },
+   {
+    "id": "fc",
+    "entity_id": "fin-cake",
+    "label": "FINANCIAL",
+    "quote": "cake ingredients\t86.50"
+   },
+   {
+    "id": "t2",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "occurrence": 2
+   },
+   {
+    "id": "fd",
+    "entity_id": "fin-cake-status",
+    "label": "FINANCIAL",
+    "quote": "receipt handed in"
+   },
+   {
+    "id": "fe",
+    "entity_id": "fin-clean",
+    "label": "FINANCIAL",
+    "quote": "hall cleaning fee\t45"
+   },
+   {
+    "id": "g2",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "occurrence": 2
+   },
+   {
+    "id": "ff",
+    "entity_id": "fin-clean-status",
+    "label": "FINANCIAL",
+    "quote": "not yet repaid, said he will wait until the end of the month"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "arul",
+    "label": "PERSON",
+    "quote": "Arulmozhi Natarajan",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "g1",
+    "entity_id": "ganesan",
+    "label": "PERSON",
+    "quote": "Ganesan Sivakumar",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "t1",
+    "entity_id": "tharani",
+    "label": "PERSON",
+    "quote": "Tharani Velu",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "k1",
+    "entity_id": "karthi",
+    "label": "PERSON",
+    "quote": "Karthikeyan Ramu",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nfloat_and_costs\tamount\tpaid_by\tstatus\nchange float\t120\tArulmozhi Natarajan\tto be repaid from takings\ncake ingredients\t86.50\tTharani Velu\treceipt handed in\nhall cleaning fee\t45\tGanesan Sivakumar\tnot yet repaid, said he will wait until the end of the month",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Supervision planning needs only the roster and check status; the float, ingredient and cleaning-fee repayments are not needed."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "helper\tcheck_status\tshift\ttask"
+   },
+   {
+    "quote": "pending\t09:00-12:00\tcake stall"
+   },
+   {
+    "quote": "pending\t12:00-15:00\tparking"
+   }
+  ],
+  "approved_output": "Fundraiser day helper sheet\n\nhelper\tcheck_status\tshift\ttask\n[PERSON_1]\tcleared\t09:00-12:00\tcake stall\n[PERSON_2]\tpending\t09:00-12:00\tcake stall\n[PERSON_3]\tcleared\t12:00-15:00\tentrance\n[PERSON_4]\tpending\t12:00-15:00\tparking",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:label-printer-escalation-customer-reply",
+  "family_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-family",
+  "source_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket escalated to level 2 after the customer called for the third time. The label printer at the Birgunj depot, a Rylon LP-440, stops after about 20 labels and shows error E-27, even after a power cycle and a fresh roll. We have already tried a different USB cable, a reinstall of driver version 5.2 and a test print from a second laptop, and the fault is the same everywhere, so it looks like the print head or the feed sensor rather than their software.\n\nWarranty check: the unit was bought in April last year, so it is still inside the 24-month warranty. Under our service terms the engineer's travel and labour are not charged during warranty, but if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless. The customer has not been told about the damage clause yet.\n\nCustomer contact is Hari Subedi, depot supervisor at Himal Freight Services, who asked for a visit before Friday. Please reply to him at hari.subedi@himalfreight.example.invalid and say that the engineer is Kavitha Rajendran.",
+  "task": "Draft the reply to the customer about the engineer visit and what they should expect on the invoice.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "fin-warranty",
+    "label": "FINANCIAL",
+    "quote": "Under our service terms the engineer's travel and labour are not charged during warranty"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-damage",
+    "label": "FINANCIAL",
+    "quote": "if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless"
+   },
+   {
+    "id": "har",
+    "entity_id": "hari",
+    "label": "PERSON",
+    "quote": "Hari Subedi"
+   },
+   {
+    "id": "org",
+    "entity_id": "cust-org",
+    "label": "ORG",
+    "quote": "Himal Freight Services"
+   },
+   {
+    "id": "em",
+    "entity_id": "hari-email",
+    "label": "EMAIL",
+    "quote": "hari.subedi@himalfreight.example.invalid"
+   },
+   {
+    "id": "kav",
+    "entity_id": "kavitha",
+    "label": "PERSON",
+    "quote": "Kavitha Rajendran"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-warranty",
+    "label": "FINANCIAL",
+    "quote": "Under our service terms the engineer's travel and labour are not charged during warranty",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-damage",
+    "label": "FINANCIAL",
+    "quote": "if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "har",
+    "entity_id": "hari",
+    "label": "PERSON",
+    "quote": "Hari Subedi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "cust-org",
+    "label": "ORG",
+    "quote": "Himal Freight Services",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer organisation name could identify the client; the reply text works with a generic placeholder at no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "hari-email",
+    "label": "EMAIL",
+    "quote": "hari.subedi@himalfreight.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact email is a direct identifier and the drafted text does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "kav",
+    "entity_id": "kavitha",
+    "label": "PERSON",
+    "quote": "Kavitha Rajendran",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the unit was bought in April last year, so it is still inside the 24-month warranty."
+   },
+   {
+    "quote": "Under our service terms the engineer's travel and labour are not charged during warranty, but if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless."
+   },
+   {
+    "quote": "The customer has not been told about the damage clause yet."
+   }
+  ],
+  "approved_output": "Ticket escalated to level 2 after the customer called for the third time. The label printer at the Birgunj depot, a Rylon LP-440, stops after about 20 labels and shows error E-27, even after a power cycle and a fresh roll. We have already tried a different USB cable, a reinstall of driver version 5.2 and a test print from a second laptop, and the fault is the same everywhere, so it looks like the print head or the feed sensor rather than their software.\n\nWarranty check: the unit was bought in April last year, so it is still inside the 24-month warranty. Under our service terms the engineer's travel and labour are not charged during warranty, but if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless. The customer has not been told about the damage clause yet.\n\nCustomer contact is [PERSON_1], depot supervisor at [ORG], who asked for a visit before Friday. Please reply to him at [EMAIL] and say that the engineer is [PERSON_2].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:label-printer-escalation-technical-summary",
+  "family_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-family",
+  "source_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:label-printer-escalation-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Ticket escalated to level 2 after the customer called for the third time. The label printer at the Birgunj depot, a Rylon LP-440, stops after about 20 labels and shows error E-27, even after a power cycle and a fresh roll. We have already tried a different USB cable, a reinstall of driver version 5.2 and a test print from a second laptop, and the fault is the same everywhere, so it looks like the print head or the feed sensor rather than their software.\n\nWarranty check: the unit was bought in April last year, so it is still inside the 24-month warranty. Under our service terms the engineer's travel and labour are not charged during warranty, but if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless. The customer has not been told about the damage clause yet.\n\nCustomer contact is Hari Subedi, depot supervisor at Himal Freight Services, who asked for a visit before Friday. Please reply to him at hari.subedi@himalfreight.example.invalid and say that the engineer is Kavitha Rajendran.",
+  "task": "Write the technical summary for the level 2 engineer: symptoms, what has been tried and which parts are suspected.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "fin-warranty",
+    "label": "FINANCIAL",
+    "quote": "Under our service terms the engineer's travel and labour are not charged during warranty"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-damage",
+    "label": "FINANCIAL",
+    "quote": "if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless"
+   },
+   {
+    "id": "har",
+    "entity_id": "hari",
+    "label": "PERSON",
+    "quote": "Hari Subedi"
+   },
+   {
+    "id": "org",
+    "entity_id": "cust-org",
+    "label": "ORG",
+    "quote": "Himal Freight Services"
+   },
+   {
+    "id": "em",
+    "entity_id": "hari-email",
+    "label": "EMAIL",
+    "quote": "hari.subedi@himalfreight.example.invalid"
+   },
+   {
+    "id": "kav",
+    "entity_id": "kavitha",
+    "label": "PERSON",
+    "quote": "Kavitha Rajendran"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "\n\nWarranty check: the unit was bought in April last year, so it is still inside the 24-month warranty. Under our service terms the engineer's travel and labour are not charged during warranty, but if the engineer finds liquid damage the visit is billed at 55 euros an hour plus 0.40 euros per kilometre, and parts are charged regardless. The customer has not been told about the damage clause yet.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Fault diagnosis does not depend on warranty status or on what the visit would cost the customer."
+   },
+   {
+    "kind": "entity",
+    "target_id": "har",
+    "entity_id": "hari",
+    "label": "PERSON",
+    "quote": "Hari Subedi",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "cust-org",
+    "label": "ORG",
+    "quote": "Himal Freight Services",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer organisation name could identify the client and the technical summary does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "hari-email",
+    "label": "EMAIL",
+    "quote": "hari.subedi@himalfreight.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Contact email is a direct identifier and the technical summary does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "kav",
+    "entity_id": "kavitha",
+    "label": "PERSON",
+    "quote": "Kavitha Rajendran",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The label printer at the Birgunj depot, a Rylon LP-440, stops after about 20 labels and shows error E-27, even after a power cycle and a fresh roll."
+   },
+   {
+    "quote": "We have already tried a different USB cable, a reinstall of driver version 5.2 and a test print from a second laptop, and the fault is the same everywhere, so it looks like the print head or the feed sensor rather than their software."
+   }
+  ],
+  "approved_output": "Ticket escalated to level 2 after the customer called for the third time. The label printer at the Birgunj depot, a Rylon LP-440, stops after about 20 labels and shows error E-27, even after a power cycle and a fresh roll. We have already tried a different USB cable, a reinstall of driver version 5.2 and a test print from a second laptop, and the fault is the same everywhere, so it looks like the print head or the feed sensor rather than their software.\n\nCustomer contact is [PERSON_1], depot supervisor at [ORG], who asked for a visit before Friday. Please reply to him at [EMAIL] and say that the engineer is [PERSON_2].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-over-limit-check",
+  "family_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-family",
+  "source_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Submitting my claim for the Colombo supplier visit, 9 to 12 March, which my line manager Nandhini Raghavan approved before I booked. The purpose was to walk through the audit findings on the packaging line with the supplier's quality lead, Yazhini Elango, and to agree a corrective plan by the end of April. The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy, and I have not asked the finance controller for an exception. Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined. Please send the reimbursement to IBAN DE00 5555 0000 7777 1234 56. I kept every receipt, and the flights were booked two weeks ahead.",
+  "task": "Work out which parts of my claim go over the policy limits and what total I should expect to be declined.",
+  "entities": [
+   {
+    "id": "nan",
+    "entity_id": "nandhini",
+    "label": "PERSON",
+    "quote": "Nandhini Raghavan"
+   },
+   {
+    "id": "yaz",
+    "entity_id": "yazhini",
+    "label": "PERSON",
+    "quote": "Yazhini Elango"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-hotel",
+    "label": "FINANCIAL",
+    "quote": "The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-exception",
+    "label": "FINANCIAL",
+    "quote": "I have not asked the finance controller for an exception"
+   },
+   {
+    "id": "f3",
+    "entity_id": "fin-meals",
+    "label": "FINANCIAL",
+    "quote": "Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined"
+   },
+   {
+    "id": "ib",
+    "entity_id": "iban-claim",
+    "label": "IBAN",
+    "quote": "DE00 5555 0000 7777 1234 56"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nan",
+    "entity_id": "nandhini",
+    "label": "PERSON",
+    "quote": "Nandhini Raghavan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "yaz",
+    "entity_id": "yazhini",
+    "label": "PERSON",
+    "quote": "Yazhini Elango",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-hotel",
+    "label": "FINANCIAL",
+    "quote": "The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-exception",
+    "label": "FINANCIAL",
+    "quote": "I have not asked the finance controller for an exception",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "fin-meals",
+    "label": "FINANCIAL",
+    "quote": "Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ib",
+    "entity_id": "iban-claim",
+    "label": "IBAN",
+    "quote": "DE00 5555 0000 7777 1234 56",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Bank account number is a payment identifier and the limit check does not need it, so it is replaced with no utility loss."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy, and I have not asked the finance controller for an exception."
+   },
+   {
+    "quote": "Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined."
+   }
+  ],
+  "approved_output": "Submitting my claim for the Colombo supplier visit, 9 to 12 March, which my line manager [PERSON_1] approved before I booked. The purpose was to walk through the audit findings on the packaging line with the supplier's quality lead, [PERSON_2], and to agree a corrective plan by the end of April. The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy, and I have not asked the finance controller for an exception. Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined. Please send the reimbursement to IBAN [IBAN]. I kept every receipt, and the flights were booked two weeks ahead.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-team-summary",
+  "family_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-family",
+  "source_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:colombo-visit-expense-claim-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Submitting my claim for the Colombo supplier visit, 9 to 12 March, which my line manager Nandhini Raghavan approved before I booked. The purpose was to walk through the audit findings on the packaging line with the supplier's quality lead, Yazhini Elango, and to agree a corrective plan by the end of April. The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy, and I have not asked the finance controller for an exception. Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined. Please send the reimbursement to IBAN DE00 5555 0000 7777 1234 56. I kept every receipt, and the flights were booked two weeks ahead.",
+  "task": "Write the visit summary for our team update covering purpose, who we met and what was agreed.",
+  "entities": [
+   {
+    "id": "nan",
+    "entity_id": "nandhini",
+    "label": "PERSON",
+    "quote": "Nandhini Raghavan"
+   },
+   {
+    "id": "yaz",
+    "entity_id": "yazhini",
+    "label": "PERSON",
+    "quote": "Yazhini Elango"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-hotel",
+    "label": "FINANCIAL",
+    "quote": "The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-exception",
+    "label": "FINANCIAL",
+    "quote": "I have not asked the finance controller for an exception"
+   },
+   {
+    "id": "f3",
+    "entity_id": "fin-meals",
+    "label": "FINANCIAL",
+    "quote": "Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined"
+   },
+   {
+    "id": "ib",
+    "entity_id": "iban-claim",
+    "label": "IBAN",
+    "quote": "DE00 5555 0000 7777 1234 56"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nan",
+    "entity_id": "nandhini",
+    "label": "PERSON",
+    "quote": "Nandhini Raghavan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "yaz",
+    "entity_id": "yazhini",
+    "label": "PERSON",
+    "quote": "Yazhini Elango",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "The hotel cost 148 dollars a night for three nights, which is 8 dollars a night over the cap in the travel policy, and I have not asked the finance controller for an exception. Meals came to 96 dollars in total, but the policy only covers 30 dollars a day for the three days, so I expect part of that to be declined. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A team update on the visit's purpose and outcome does not need the hotel and meal costs or the policy-cap discussion."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ib",
+    "entity_id": "iban-claim",
+    "label": "IBAN",
+    "quote": "DE00 5555 0000 7777 1234 56",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Bank account number is a payment identifier and the team summary does not need it, so it is replaced with no utility loss."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Submitting my claim for the Colombo supplier visit, 9 to 12 March,"
+   },
+   {
+    "quote": "The purpose was to walk through the audit findings on the packaging line with the supplier's quality lead,"
+   },
+   {
+    "quote": "and to agree a corrective plan by the end of April."
+   }
+  ],
+  "approved_output": "Submitting my claim for the Colombo supplier visit, 9 to 12 March, which my line manager [PERSON_1] approved before I booked. The purpose was to walk through the audit findings on the packaging line with the supplier's quality lead, [PERSON_2], and to agree a corrective plan by the end of April. Please send the reimbursement to IBAN [IBAN]. I kept every receipt, and the flights were booked two weeks ahead.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-supplier-owes",
+  "family_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-family",
+  "source_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from Orbitrade Supplies reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and Pema Sherpa counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\nSabina Tamang in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the Janakpur site until Thursday, so message me on +977 9812 340 771 rather than calling the office.",
+  "task": "Work out what the supplier owes us for this delivery and what I still have to check before accounts will process it.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "fin-credit",
+    "label": "FINANCIAL",
+    "quote": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-offset",
+    "label": "FINANCIAL",
+    "quote": "it will be offset against the next invoice rather than paid out"
+   },
+   {
+    "id": "org",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Orbitrade Supplies"
+   },
+   {
+    "id": "pem",
+    "entity_id": "pema",
+    "label": "PERSON",
+    "quote": "Pema Sherpa"
+   },
+   {
+    "id": "sab",
+    "entity_id": "sabina",
+    "label": "PERSON",
+    "quote": "Sabina Tamang"
+   },
+   {
+    "id": "ph",
+    "entity_id": "mobile",
+    "label": "PHONE",
+    "quote": "+977 9812 340 771"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-credit",
+    "label": "FINANCIAL",
+    "quote": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-offset",
+    "label": "FINANCIAL",
+    "quote": "it will be offset against the next invoice rather than paid out",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Orbitrade Supplies",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Supplier name could reveal a commercial relationship and the reconciliation does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pem",
+    "entity_id": "pema",
+    "label": "PERSON",
+    "quote": "Pema Sherpa",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sab",
+    "entity_id": "sabina",
+    "label": "PERSON",
+    "quote": "Sabina Tamang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "mobile",
+    "label": "PHONE",
+    "quote": "+977 9812 340 771",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Mobile number is a direct identifier and the reconciliation does not need it, so it is replaced with no utility loss."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out."
+   },
+   {
+    "quote": "Accounts will only release the offset if the receiving report is signed by Friday."
+   },
+   {
+    "quote": "I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim."
+   },
+   {
+    "quote": "counted 460 cartons on the pallets."
+   }
+  ],
+  "approved_output": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from [ORG] reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and [PERSON_1] counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\n[PERSON_2] in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the Janakpur site until Thursday, so message me on [PHONE] rather than calling the office.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-warehouse-instructions",
+  "family_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-family",
+  "source_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from Orbitrade Supplies reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and Pema Sherpa counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\nSabina Tamang in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the Janakpur site until Thursday, so message me on +977 9812 340 771 rather than calling the office.",
+  "task": "Write the instructions for the warehouse team about the damaged cartons and what they need to upload before Friday noon.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "fin-credit",
+    "label": "FINANCIAL",
+    "quote": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-offset",
+    "label": "FINANCIAL",
+    "quote": "it will be offset against the next invoice rather than paid out"
+   },
+   {
+    "id": "org",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Orbitrade Supplies"
+   },
+   {
+    "id": "pem",
+    "entity_id": "pema",
+    "label": "PERSON",
+    "quote": "Pema Sherpa"
+   },
+   {
+    "id": "sab",
+    "entity_id": "sabina",
+    "label": "PERSON",
+    "quote": "Sabina Tamang"
+   },
+   {
+    "id": "ph",
+    "entity_id": "mobile",
+    "label": "PHONE",
+    "quote": "+977 9812 340 771"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Warehouse handling of damaged cartons and the upload deadline do not depend on the credit-note value or offset terms."
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "supplier",
+    "label": "ORG",
+    "quote": "Orbitrade Supplies",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Supplier name could reveal a commercial relationship and the warehouse instructions do not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "pem",
+    "entity_id": "pema",
+    "label": "PERSON",
+    "quote": "Pema Sherpa",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sab",
+    "entity_id": "sabina",
+    "label": "PERSON",
+    "quote": "Sabina Tamang",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "mobile",
+    "label": "PHONE",
+    "quote": "+977 9812 340 771",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Mobile number is a direct identifier and the warehouse instructions do not need it, so it is replaced with no utility loss."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved."
+   },
+   {
+    "quote": "in accounts needs the signed report by Friday noon."
+   },
+   {
+    "quote": "Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend."
+   }
+  ],
+  "approved_output": "Receiving report: the delivery of 500 cartons of thermal paper rolls from [ORG] reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and [PERSON_1] counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\n[PERSON_2] in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the Janakpur site until Thursday, so message me on [PHONE] rather than calling the office.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:navaratri-fee-waiver-statement",
+  "family_id": "b637b739b8da442d839931343340edb3:navaratri-fee-waiver-family",
+  "source_id": "b637b739b8da442d839931343340edb3:navaratri-fee-waiver-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:navaratri-fee-waiver-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:navaratri-fee-waiver-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Hello, I am writing about the stall fee for the Navaratri craft fair at Hillcrest Community Centre. My name is Anjali Rai and I make handmade jute bags, which I sell from home. This year my household income is about 1,150 euros a month after my husband's hours were cut, and our rent is 640 euros, so I cannot pay the 85-euro stall fee in one go. The flyer says the committee can waive up to half of the fee if the applicant sends a short statement before 20 September. I would be able to pay 40 euros now and the rest after the fair if my sales cover it. You can reach me on 07700 900431 or at anjali.rai@example.invalid. Senthil Murugan told me last year that the committee treats these requests confidentially, so please tell me if you need proof of my figures.",
+  "task": "Help me turn this into a clear, polite fee-waiver statement for the committee, using my real numbers.",
+  "entities": [
+   {
+    "id": "anj",
+    "entity_id": "anjali",
+    "label": "PERSON",
+    "quote": "Anjali Rai"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-income",
+    "label": "FINANCIAL",
+    "quote": "my household income is about 1,150 euros a month after my husband's hours were cut"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-rent",
+    "label": "FINANCIAL",
+    "quote": "our rent is 640 euros"
+   },
+   {
+    "id": "f3",
+    "entity_id": "fin-instalment",
+    "label": "FINANCIAL",
+    "quote": "I would be able to pay 40 euros now and the rest after the fair if my sales cover it"
+   },
+   {
+    "id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "07700 900431"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "anjali.rai@example.invalid"
+   },
+   {
+    "id": "sen",
+    "entity_id": "senthil",
+    "label": "PERSON",
+    "quote": "Senthil Murugan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "anj",
+    "entity_id": "anjali",
+    "label": "PERSON",
+    "quote": "Anjali Rai",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-income",
+    "label": "FINANCIAL",
+    "quote": "my household income is about 1,150 euros a month after my husband's hours were cut",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-rent",
+    "label": "FINANCIAL",
+    "quote": "our rent is 640 euros",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "fin-instalment",
+    "label": "FINANCIAL",
+    "quote": "I would be able to pay 40 euros now and the rest after the fair if my sales cover it",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "phone",
+    "label": "PHONE",
+    "quote": "07700 900431",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Phone number is a direct identifier and the statement text does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "anjali.rai@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Email address is a direct identifier and the statement text does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sen",
+    "entity_id": "senthil",
+    "label": "PERSON",
+    "quote": "Senthil Murugan",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "This year my household income is about 1,150 euros a month after my husband's hours were cut, and our rent is 640 euros, so I cannot pay the 85-euro stall fee in one go."
+   },
+   {
+    "quote": "The flyer says the committee can waive up to half of the fee if the applicant sends a short statement before 20 September."
+   },
+   {
+    "quote": "I would be able to pay 40 euros now and the rest after the fair if my sales cover it."
+   }
+  ],
+  "approved_output": "Hello, I am writing about the stall fee for the Navaratri craft fair at Hillcrest Community Centre. My name is [PERSON_1] and I make handmade jute bags, which I sell from home. This year my household income is about 1,150 euros a month after my husband's hours were cut, and our rent is 640 euros, so I cannot pay the 85-euro stall fee in one go. The flyer says the committee can waive up to half of the fee if the applicant sends a short statement before 20 September. I would be able to pay 40 euros now and the rest after the fair if my sales cover it. You can reach me on [PHONE] or at [EMAIL]. [PERSON_2] told me last year that the committee treats these requests confidentially, so please tell me if you need proof of my figures.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:river-cleanup-briefing-checklist",
+  "family_id": "b637b739b8da442d839931343340edb3:river-cleanup-briefing-family",
+  "source_id": "b637b739b8da442d839931343340edb3:river-cleanup-briefing-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:river-cleanup-briefing-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:river-cleanup-briefing-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Volunteer briefing for Saturday's river clean-up at Greenfield Park. Meet at the bandstand at 8:30 am; hot drinks are provided by the cafe beside the east gate. Everyone needs sturdy shoes, and gloves and litter pickers are handed out at the registration table. Children under 12 can take part only with an adult. The park has two bag drop points, one by the north gate and one beside the playground, and full bags should be left there rather than carried to the car park. The rangers' office will collect them by noon. Anyone who has completed the council's online safety quiz can lead a group of up to eight people; the quiz takes about ten minutes and the link is on the council website. Wet weather plan: if the river is above the marker post at the footbridge on Friday evening, the clean-up moves to the playground fields.",
+  "task": "Turn this into a short checklist for the volunteer briefing sheet.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "Meet at the bandstand at 8:30 am;"
+   },
+   {
+    "quote": "Children under 12 can take part only with an adult."
+   },
+   {
+    "quote": "if the river is above the marker post at the footbridge on Friday evening, the clean-up moves to the playground fields."
+   }
+  ],
+  "approved_output": "Volunteer briefing for Saturday's river clean-up at Greenfield Park. Meet at the bandstand at 8:30 am; hot drinks are provided by the cafe beside the east gate. Everyone needs sturdy shoes, and gloves and litter pickers are handed out at the registration table. Children under 12 can take part only with an adult. The park has two bag drop points, one by the north gate and one beside the playground, and full bags should be left there rather than carried to the car park. The rangers' office will collect them by noon. Anyone who has completed the council's online safety quiz can lead a group of up to eight people; the quiz takes about ten minutes and the link is on the council website. Wet weather plan: if the river is above the marker post at the footbridge on Friday evening, the clean-up moves to the playground fields.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:thaipusam-meeting-notes-organise",
+  "family_id": "b637b739b8da442d839931343340edb3:thaipusam-meeting-notes-family",
+  "source_id": "b637b739b8da442d839931343340edb3:thaipusam-meeting-notes-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:thaipusam-meeting-notes-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:thaipusam-meeting-notes-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes after the Thaipusam planning meeting on Sunday. Ilakkiya Chandran offered to coordinate the volunteer check forms with the temple office and said she will collect them by Wednesday. She asked for her stall to be on the ground floor because she had a hip operation in the spring and the stairs to the upper hall are hard for her. Tamilselvan Arasu will bring the sound equipment if the hall confirms the booking, otherwise we use the speakers from the school. We agreed the kitchen team should be six people, but nobody knows yet whether the caterer needs a separate helper for the sweets. Kalaivani Sundar said the printer in the temple office is broken, so we should email the forms to her at kalaivani.sundar@example.invalid. Still to decide: whether children can join the procession, and who holds the spare keys. Call the office on 020 7946 0231 if anything changes.",
+  "task": "Help me organise this note.",
+  "entities": [
+   {
+    "id": "ila",
+    "entity_id": "ilakkiya",
+    "label": "PERSON",
+    "quote": "Ilakkiya Chandran"
+   },
+   {
+    "id": "hip",
+    "entity_id": "health-hip",
+    "label": "HEALTH",
+    "quote": "she had a hip operation in the spring"
+   },
+   {
+    "id": "tam",
+    "entity_id": "tamilselvan",
+    "label": "PERSON",
+    "quote": "Tamilselvan Arasu"
+   },
+   {
+    "id": "kal",
+    "entity_id": "kalaivani",
+    "label": "PERSON",
+    "quote": "Kalaivani Sundar"
+   },
+   {
+    "id": "em",
+    "entity_id": "kal-email",
+    "label": "EMAIL",
+    "quote": "kalaivani.sundar@example.invalid"
+   },
+   {
+    "id": "ph",
+    "entity_id": "office-phone",
+    "label": "PHONE",
+    "quote": "020 7946 0231"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ila",
+    "entity_id": "ilakkiya",
+    "label": "PERSON",
+    "quote": "Ilakkiya Chandran",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hip",
+    "entity_id": "health-hip",
+    "label": "HEALTH",
+    "quote": "she had a hip operation in the spring",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Task does not say whether this matters; plausibly useful context that is permitted to stay."
+   },
+   {
+    "kind": "entity",
+    "target_id": "tam",
+    "entity_id": "tamilselvan",
+    "label": "PERSON",
+    "quote": "Tamilselvan Arasu",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "kal",
+    "entity_id": "kalaivani",
+    "label": "PERSON",
+    "quote": "Kalaivani Sundar",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "kal-email",
+    "label": "EMAIL",
+    "quote": "kalaivani.sundar@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Email address is a direct identifier; the task does not show whether it is needed, so it is hidden and the user can add it back (possible utility loss)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "office-phone",
+    "label": "PHONE",
+    "quote": "020 7946 0231",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Phone number is a direct identifier; the task does not show whether it is needed, so it is hidden and the user can add it back (possible utility loss)."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "She asked for her stall to be on the ground floor because she had a hip operation in the spring and the stairs to the upper hall are hard for her."
+   },
+   {
+    "quote": "We agreed the kitchen team should be six people, but nobody knows yet whether the caterer needs a separate helper for the sweets."
+   },
+   {
+    "quote": "Still to decide: whether children can join the procession, and who holds the spare keys."
+   }
+  ],
+  "approved_output": "Notes after the Thaipusam planning meeting on Sunday. [PERSON_1] offered to coordinate the volunteer check forms with the temple office and said she will collect them by Wednesday. She asked for her stall to be on the ground floor because she had a hip operation in the spring and the stairs to the upper hall are hard for her. [PERSON_2] will bring the sound equipment if the hall confirms the booking, otherwise we use the speakers from the school. We agreed the kitchen team should be six people, but nobody knows yet whether the caterer needs a separate helper for the sweets. [PERSON_3] said the printer in the temple office is broken, so we should email the forms to her at [EMAIL]. Still to decide: whether children can join the procession, and who holds the spare keys. Call the office on [PHONE] if anything changes.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:bakery-refund-ticket-customer-reply",
+  "family_id": "b637b739b8da442d839931343340edb3:bakery-refund-ticket-family",
+  "source_id": "b637b739b8da442d839931343340edb3:bakery-refund-ticket-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:bakery-refund-ticket-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:bakery-refund-ticket-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: refund status for billing error\n\nHi team, customer Kamal Pokharel (account KR-2210-ABD at Trailhead Bakery Ltd) wrote in again. On 3 October he was charged 189.00 euros for the annual plan instead of the 129.00-euro startup tier he signed up for, a difference of 60.00 euros. We confirmed the error on 9 October and issued a refund of 60.00 euros to the original card, which normally takes 5 to 7 business days. He says it has not arrived and he cannot reconcile his books until it does. Please do not promise a date earlier than 18 October, when the bank window ends, and do not offer a further discount unless a manager approves it. Reply to him at kamal@trailheadbakery.example.invalid.",
+  "task": "Draft the reply to the customer explaining the refund amount and when it should reach him.",
+  "entities": [
+   {
+    "id": "kam",
+    "entity_id": "kamal",
+    "label": "PERSON",
+    "quote": "Kamal Pokharel"
+   },
+   {
+    "id": "acc",
+    "entity_id": "cust-account",
+    "label": "ACCOUNT_ID",
+    "quote": "KR-2210-ABD"
+   },
+   {
+    "id": "org",
+    "entity_id": "cust-org",
+    "label": "ORG",
+    "quote": "Trailhead Bakery Ltd"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-charge",
+    "label": "FINANCIAL",
+    "quote": "he was charged 189.00 euros for the annual plan instead of the 129.00-euro startup tier he signed up for, a difference of 60.00 euros"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-refund",
+    "label": "FINANCIAL",
+    "quote": "issued a refund of 60.00 euros to the original card, which normally takes 5 to 7 business days"
+   },
+   {
+    "id": "em",
+    "entity_id": "cust-email",
+    "label": "EMAIL",
+    "quote": "kamal@trailheadbakery.example.invalid"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "kam",
+    "entity_id": "kamal",
+    "label": "PERSON",
+    "quote": "Kamal Pokharel",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "acc",
+    "entity_id": "cust-account",
+    "label": "ACCOUNT_ID",
+    "quote": "KR-2210-ABD",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer account number is a direct identifier and the reply does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "cust-org",
+    "label": "ORG",
+    "quote": "Trailhead Bakery Ltd",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer company name could identify the client and the reply wording does not need it, so it is replaced with no utility loss."
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-charge",
+    "label": "FINANCIAL",
+    "quote": "he was charged 189.00 euros for the annual plan instead of the 129.00-euro startup tier he signed up for, a difference of 60.00 euros",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-refund",
+    "label": "FINANCIAL",
+    "quote": "issued a refund of 60.00 euros to the original card, which normally takes 5 to 7 business days",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "cust-email",
+    "label": "EMAIL",
+    "quote": "kamal@trailheadbakery.example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer email is a direct identifier and the drafted text does not need it, so it is replaced with no utility loss."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "On 3 October he was charged 189.00 euros for the annual plan instead of the 129.00-euro startup tier he signed up for, a difference of 60.00 euros."
+   },
+   {
+    "quote": "We confirmed the error on 9 October and issued a refund of 60.00 euros to the original card, which normally takes 5 to 7 business days."
+   },
+   {
+    "quote": "Please do not promise a date earlier than 18 October, when the bank window ends, and do not offer a further discount unless a manager approves it."
+   }
+  ],
+  "approved_output": "Subject: refund status for billing error\n\nHi team, customer [PERSON_1] (account [ACCOUNT_ID] at [ORG]) wrote in again. On 3 October he was charged 189.00 euros for the annual plan instead of the 129.00-euro startup tier he signed up for, a difference of 60.00 euros. We confirmed the error on 9 October and issued a refund of 60.00 euros to the original card, which normally takes 5 to 7 business days. He says it has not arrived and he cannot reconcile his books until it does. Please do not promise a date earlier than 18 October, when the bank window ends, and do not offer a further discount unless a manager approves it. Reply to him at [EMAIL].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "b637b739b8da442d839931343340edb3",
+  "id": "b637b739b8da442d839931343340edb3:finance-sync-week-44-tidy-up",
+  "family_id": "b637b739b8da442d839931343340edb3:finance-sync-week-44-family",
+  "source_id": "b637b739b8da442d839931343340edb3:finance-sync-week-44-source",
+  "persona_id": "b637b739b8da442d839931343340edb3:finance-sync-week-44-persona",
+  "template_id": "b637b739b8da442d839931343340edb3:finance-sync-week-44-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Finance sync notes, week 44. Dipesh Bhandari confirmed that the vendor payment run goes out on Thursday and that two invoices are held until the purchase orders are matched. Thenmozhi Palaniappan thinks the freight accrual for October is probably about 12,300 euros, but the carrier has not sent its statement. Overtime for the two temporary data-entry staff came to 410 euros this week, which is more than the 300 euros we planned. Refunds to customers are on hold until the new bank form is signed, and the bank form needs the company IBAN DE00 3030 8888 1212 3434 56 on page two. Open question: whether the overtime should be charged to the support cost centre or to the project budget. Dipesh will ask the controller on Monday.",
+  "task": "Tidy this note up for the team.",
+  "entities": [
+   {
+    "id": "dip1",
+    "entity_id": "dipesh",
+    "label": "PERSON",
+    "quote": "Dipesh Bhandari"
+   },
+   {
+    "id": "the",
+    "entity_id": "thenmozhi",
+    "label": "PERSON",
+    "quote": "Thenmozhi Palaniappan"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fin-accrual",
+    "label": "FINANCIAL",
+    "quote": "the freight accrual for October is probably about 12,300 euros, but the carrier has not sent its statement"
+   },
+   {
+    "id": "f2",
+    "entity_id": "fin-overtime",
+    "label": "FINANCIAL",
+    "quote": "Overtime for the two temporary data-entry staff came to 410 euros this week, which is more than the 300 euros we planned"
+   },
+   {
+    "id": "ib",
+    "entity_id": "company-iban",
+    "label": "IBAN",
+    "quote": "DE00 3030 8888 1212 3434 56"
+   },
+   {
+    "id": "dip2",
+    "entity_id": "dipesh",
+    "label": "PERSON",
+    "quote": "Dipesh",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "dip1",
+    "entity_id": "dipesh",
+    "label": "PERSON",
+    "quote": "Dipesh Bhandari",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "the",
+    "entity_id": "thenmozhi",
+    "label": "PERSON",
+    "quote": "Thenmozhi Palaniappan",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fin-accrual",
+    "label": "FINANCIAL",
+    "quote": "the freight accrual for October is probably about 12,300 euros, but the carrier has not sent its statement",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Task does not say whether the accrual estimate matters; it is a hedged working figure with no confidentiality marker, so it stays."
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fin-overtime",
+    "label": "FINANCIAL",
+    "quote": "Overtime for the two temporary data-entry staff came to 410 euros this week, which is more than the 300 euros we planned",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "Task does not say whether the overtime variance matters; it is the team's own working figure with no confidentiality marker, so it stays."
+   },
+   {
+    "kind": "entity",
+    "target_id": "ib",
+    "entity_id": "company-iban",
+    "label": "IBAN",
+    "quote": "DE00 3030 8888 1212 3434 56",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "Company bank account number is a payment identifier; the task does not show whether it is needed, so it is hidden and the user can add it back (possible utility loss)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dip2",
+    "entity_id": "dipesh",
+    "label": "PERSON",
+    "quote": "Dipesh",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Refunds to customers are on hold until the new bank form is signed,"
+   },
+   {
+    "quote": "Open question: whether the overtime should be charged to the support cost centre or to the project budget."
+   }
+  ],
+  "approved_output": "Finance sync notes, week 44. [PERSON_1] confirmed that the vendor payment run goes out on Thursday and that two invoices are held until the purchase orders are matched. [PERSON_2] thinks the freight accrual for October is probably about 12,300 euros, but the carrier has not sent its statement. Overtime for the two temporary data-entry staff came to 410 euros this week, which is more than the 300 euros we planned. Refunds to customers are on hold until the new bank form is signed, and the bank form needs the company IBAN [IBAN] on page two. Open question: whether the overtime should be charged to the support cost centre or to the project budget. [PERSON_1] will ask the controller on Monday.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "b637b739b8da442d839931343340edb3:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

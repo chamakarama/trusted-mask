@@ -1,0 +1,3539 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-kitchen-note",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Dear Mr Dyer,\n\nThank you for returning the lunch registration form for Jasper. From Monday 16 November he joins the hot lunch rota at Ysgol Bryn Celyn.\n\nYou told us he has a severe allergy to sesame and a milder reaction to raw celery. His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain. He may have the pasta bake only if the kitchen confirms the sauce contains neither.\n\nJasper's dinner account still shows 38.40 pounds owing for last half term. You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid. You mentioned you may ask about help with costs if your hours at the garage are cut in the new year.\n\nIf anything changes, please ring Eirlys Beynon in the kitchen on 01632 960417.\n\nKind regards,\nRhiannon Pugh\nSchool office",
+  "task": "Draft a short note for the lunch-hall staff so they know how to look after my son once he starts school lunches.",
+  "entities": [
+   {
+    "id": "dyer",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Dyer"
+   },
+   {
+    "id": "jasper1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 1
+   },
+   {
+    "id": "jasper2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 2
+   },
+   {
+    "id": "h1",
+    "entity_id": "allergy-claim",
+    "label": "HEALTH",
+    "quote": "You told us he has a severe allergy to sesame and a milder reaction to raw celery."
+   },
+   {
+    "id": "h2",
+    "entity_id": "pen-and-tray-claim",
+    "label": "HEALTH",
+    "quote": "His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain."
+   },
+   {
+    "id": "h3",
+    "entity_id": "pasta-bake-claim",
+    "label": "HEALTH",
+    "quote": "He may have the pasta bake only if the kitchen confirms the sauce contains neither."
+   },
+   {
+    "id": "f1",
+    "entity_id": "balance-claim",
+    "label": "FINANCIAL",
+    "quote": "dinner account still shows 38.40 pounds owing for last half term"
+   },
+   {
+    "id": "f2",
+    "entity_id": "payment-terms-claim",
+    "label": "FINANCIAL",
+    "quote": "You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid."
+   },
+   {
+    "id": "e1",
+    "entity_id": "hours-claim",
+    "label": "EMPLOYMENT",
+    "quote": "You mentioned you may ask about help with costs if your hours at the garage are cut in the new year."
+   },
+   {
+    "id": "eirlys",
+    "entity_id": "kitchen-contact",
+    "label": "PERSON",
+    "quote": "Eirlys Beynon"
+   },
+   {
+    "id": "phone",
+    "entity_id": "kitchen-phone",
+    "label": "PHONE",
+    "quote": "01632 960417"
+   },
+   {
+    "id": "rhiannon",
+    "entity_id": "office-sender",
+    "label": "PERSON",
+    "quote": "Rhiannon Pugh"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "dyer",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Dyer",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "jasper1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "allergy-claim",
+    "label": "HEALTH",
+    "quote": "You told us he has a severe allergy to sesame and a milder reaction to raw celery.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "pen-and-tray-claim",
+    "label": "HEALTH",
+    "quote": "His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "pasta-bake-claim",
+    "label": "HEALTH",
+    "quote": "He may have the pasta bake only if the kitchen confirms the sauce contains neither.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "Jasper's dinner account still shows 38.40 pounds owing for last half term. You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid. You mentioned you may ask about help with costs if your hours at the garage are cut in the new year.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The lunch-hall note needs no account arrears, payment terms or the parent's work hours; none of it affects how the child is looked after at lunch."
+   },
+   {
+    "kind": "entity",
+    "target_id": "eirlys",
+    "entity_id": "kitchen-contact",
+    "label": "PERSON",
+    "quote": "Eirlys Beynon",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "kitchen-phone",
+    "label": "PHONE",
+    "quote": "01632 960417",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A direct phone number is a contact identifier; the task does not need it, so nothing useful is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "rhiannon",
+    "entity_id": "office-sender",
+    "label": "PERSON",
+    "quote": "Rhiannon Pugh",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "From Monday 16 November he joins the hot lunch rota at Ysgol Bryn Celyn."
+   },
+   {
+    "quote": "You told us he has a severe allergy to sesame and a milder reaction to raw celery."
+   },
+   {
+    "quote": "His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain."
+   },
+   {
+    "quote": "He may have the pasta bake only if the kitchen confirms the sauce contains neither."
+   }
+  ],
+  "approved_output": "Dear Mr [PERSON_1],\n\nThank you for returning the lunch registration form for [PERSON_2]. From Monday 16 November he joins the hot lunch rota at Ysgol Bryn Celyn.\n\nYou told us he has a severe allergy to sesame and a milder reaction to raw celery. His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain. He may have the pasta bake only if the kitchen confirms the sauce contains neither.\n\nIf anything changes, please ring [PERSON_3] in the kitchen on [PHONE].\n\nKind regards,\n[PERSON_4]\nSchool office",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-account-reply",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:bryn-celyn-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Dear Mr Dyer,\n\nThank you for returning the lunch registration form for Jasper. From Monday 16 November he joins the hot lunch rota at Ysgol Bryn Celyn.\n\nYou told us he has a severe allergy to sesame and a milder reaction to raw celery. His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain. He may have the pasta bake only if the kitchen confirms the sauce contains neither.\n\nJasper's dinner account still shows 38.40 pounds owing for last half term. You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid. You mentioned you may ask about help with costs if your hours at the garage are cut in the new year.\n\nIf anything changes, please ring Eirlys Beynon in the kitchen on 01632 960417.\n\nKind regards,\nRhiannon Pugh\nSchool office",
+  "task": "Help me write back to the school office about where things stand with my son's account before the end of term.",
+  "entities": [
+   {
+    "id": "dyer",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Dyer"
+   },
+   {
+    "id": "jasper1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 1
+   },
+   {
+    "id": "jasper2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 2
+   },
+   {
+    "id": "h1",
+    "entity_id": "allergy-claim",
+    "label": "HEALTH",
+    "quote": "You told us he has a severe allergy to sesame and a milder reaction to raw celery."
+   },
+   {
+    "id": "h2",
+    "entity_id": "pen-and-tray-claim",
+    "label": "HEALTH",
+    "quote": "His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain."
+   },
+   {
+    "id": "h3",
+    "entity_id": "pasta-bake-claim",
+    "label": "HEALTH",
+    "quote": "He may have the pasta bake only if the kitchen confirms the sauce contains neither."
+   },
+   {
+    "id": "f1",
+    "entity_id": "balance-claim",
+    "label": "FINANCIAL",
+    "quote": "dinner account still shows 38.40 pounds owing for last half term"
+   },
+   {
+    "id": "f2",
+    "entity_id": "payment-terms-claim",
+    "label": "FINANCIAL",
+    "quote": "You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid."
+   },
+   {
+    "id": "e1",
+    "entity_id": "hours-claim",
+    "label": "EMPLOYMENT",
+    "quote": "You mentioned you may ask about help with costs if your hours at the garage are cut in the new year."
+   },
+   {
+    "id": "eirlys",
+    "entity_id": "kitchen-contact",
+    "label": "PERSON",
+    "quote": "Eirlys Beynon"
+   },
+   {
+    "id": "phone",
+    "entity_id": "kitchen-phone",
+    "label": "PHONE",
+    "quote": "01632 960417"
+   },
+   {
+    "id": "rhiannon",
+    "entity_id": "office-sender",
+    "label": "PERSON",
+    "quote": "Rhiannon Pugh"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "dyer",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Dyer",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "jasper1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "You told us he has a severe allergy to sesame and a milder reaction to raw celery. His adrenaline pen stays in the school office, and the kitchen must not serve him anything from the bakery tray, even if it looks plain. He may have the pasta bake only if the kitchen confirms the sauce contains neither.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A reply about the dinner account does not need allergy details, adrenaline pen storage or kitchen handling rules."
+   },
+   {
+    "kind": "entity",
+    "target_id": "jasper2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Jasper",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "balance-claim",
+    "label": "FINANCIAL",
+    "quote": "dinner account still shows 38.40 pounds owing for last half term",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "payment-terms-claim",
+    "label": "FINANCIAL",
+    "quote": "You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e1",
+    "entity_id": "hours-claim",
+    "label": "EMPLOYMENT",
+    "quote": "You mentioned you may ask about help with costs if your hours at the garage are cut in the new year.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "eirlys",
+    "entity_id": "kitchen-contact",
+    "label": "PERSON",
+    "quote": "Eirlys Beynon",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "kitchen-phone",
+    "label": "PHONE",
+    "quote": "01632 960417",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A direct phone number is a contact identifier; the task does not need it, so nothing useful is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "rhiannon",
+    "entity_id": "office-sender",
+    "label": "PERSON",
+    "quote": "Rhiannon Pugh",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "dinner account still shows 38.40 pounds owing for last half term."
+   },
+   {
+    "quote": "You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid."
+   },
+   {
+    "quote": "You mentioned you may ask about help with costs if your hours at the garage are cut in the new year."
+   }
+  ],
+  "approved_output": "Dear Mr [PERSON_1],\n\nThank you for returning the lunch registration form for [PERSON_2]. From Monday 16 November he joins the hot lunch rota at Ysgol Bryn Celyn.\n\n[PERSON_2]'s dinner account still shows 38.40 pounds owing for last half term. You can pay online or send cash in a named envelope, but we cannot top up the account until the arrears are cleared, and hot lunches stop after 31 December if the balance is unpaid. You mentioned you may ask about help with costs if your hours at the garage are cut in the new year.\n\nIf anything changes, please ring [PERSON_3] in the kitchen on [PHONE].\n\nKind regards,\n[PERSON_4]\nSchool office",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-physio-prep",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Coach Osian Thackeray stopped me after Tuesday training. Gwenllian has been sitting out sprint drills since half term because her left knee swells up after hard matches, and her physio, Imogen Fairbrother, wants her limited to 30 minutes per game until the scan result comes back. Osian said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing.\n\nThe under-12s spring fee is 85 pounds, due by 5 December. I paid 40 by bank transfer on the 14th, so 45 is left. Winifred Bate, the club treasurer, said families who are short can apply to the hardship fund, and I may ask about it if my shifts at the depot stay as short as this month.\n\nThe next away match is Saturday 21 November at Llanfair Rovers, kick-off 10:30, with the minibus leaving the clubhouse at 8:45. Players need shin pads, a water bottle and the signed consent form, and the manager will text by 7:30 if the pitch is frozen.",
+  "task": "Help me prepare for my daughter's next appointment with the specialist: what to report and what to ask about match time.",
+  "entities": [
+   {
+    "id": "coach1",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Osian Thackeray"
+   },
+   {
+    "id": "coach2",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Osian",
+    "occurrence": 2
+   },
+   {
+    "id": "gwen",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Gwenllian"
+   },
+   {
+    "id": "imogen",
+    "entity_id": "physio",
+    "label": "PERSON",
+    "quote": "Imogen Fairbrother"
+   },
+   {
+    "id": "winifred",
+    "entity_id": "treasurer",
+    "label": "PERSON",
+    "quote": "Winifred Bate"
+   },
+   {
+    "id": "h1",
+    "entity_id": "knee-claim",
+    "label": "HEALTH",
+    "quote": "has been sitting out sprint drills since half term because her left knee swells up after hard matches"
+   },
+   {
+    "id": "h2",
+    "entity_id": "minutes-limit-claim",
+    "label": "HEALTH",
+    "quote": "wants her limited to 30 minutes per game until the scan result comes back"
+   },
+   {
+    "id": "h3",
+    "entity_id": "cup-tie-claim",
+    "label": "HEALTH",
+    "quote": "said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing"
+   },
+   {
+    "id": "f1",
+    "entity_id": "paid-claim",
+    "label": "FINANCIAL",
+    "quote": "I paid 40 by bank transfer on the 14th, so 45 is left"
+   },
+   {
+    "id": "f2",
+    "entity_id": "hardship-claim",
+    "label": "FINANCIAL",
+    "quote": "families who are short can apply to the hardship fund"
+   },
+   {
+    "id": "e1",
+    "entity_id": "shifts-claim",
+    "label": "EMPLOYMENT",
+    "quote": "my shifts at the depot stay as short as this month"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "coach1",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Osian Thackeray",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "gwen",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Gwenllian",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "knee-claim",
+    "label": "HEALTH",
+    "quote": "has been sitting out sprint drills since half term because her left knee swells up after hard matches",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "imogen",
+    "entity_id": "physio",
+    "label": "PERSON",
+    "quote": "Imogen Fairbrother",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "minutes-limit-claim",
+    "label": "HEALTH",
+    "quote": "wants her limited to 30 minutes per game until the scan result comes back",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "coach2",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Osian",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "cup-tie-claim",
+    "label": "HEALTH",
+    "quote": "said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "The under-12s spring fee is 85 pounds, due by 5 December. I paid 40 by bank transfer on the 14th, so 45 is left. Winifred Bate, the club treasurer, said families who are short can apply to the hardship fund, and I may ask about it if my shifts at the depot stay as short as this month.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Preparing for a specialist appointment needs the injury and playing-time limits, not the club fee balance, hardship fund or the parent's shifts."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "has been sitting out sprint drills since half term because her left knee swells up after hard matches, and her physio,"
+   },
+   {
+    "quote": "wants her limited to 30 minutes per game until the scan result comes back."
+   },
+   {
+    "quote": "said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing."
+   }
+  ],
+  "approved_output": "Coach [PERSON_1] stopped me after Tuesday training. [PERSON_2] has been sitting out sprint drills since half term because her left knee swells up after hard matches, and her physio, [PERSON_3], wants her limited to 30 minutes per game until the scan result comes back. [PERSON_1] said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing.\n\nThe next away match is Saturday 21 November at Llanfair Rovers, kick-off 10:30, with the minibus leaving the clubhouse at 8:45. Players need shin pads, a water bottle and the signed consent form, and the manager will text by 7:30 if the pitch is frozen.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-treasurer-message",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:u12-football-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Coach Osian Thackeray stopped me after Tuesday training. Gwenllian has been sitting out sprint drills since half term because her left knee swells up after hard matches, and her physio, Imogen Fairbrother, wants her limited to 30 minutes per game until the scan result comes back. Osian said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing.\n\nThe under-12s spring fee is 85 pounds, due by 5 December. I paid 40 by bank transfer on the 14th, so 45 is left. Winifred Bate, the club treasurer, said families who are short can apply to the hardship fund, and I may ask about it if my shifts at the depot stay as short as this month.\n\nThe next away match is Saturday 21 November at Llanfair Rovers, kick-off 10:30, with the minibus leaving the clubhouse at 8:45. Players need shin pads, a water bottle and the signed consent form, and the manager will text by 7:30 if the pitch is frozen.",
+  "task": "Draft a message to the club treasurer about what is left on the spring fee and whether I could ask for help with it.",
+  "entities": [
+   {
+    "id": "coach1",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Osian Thackeray"
+   },
+   {
+    "id": "coach2",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Osian",
+    "occurrence": 2
+   },
+   {
+    "id": "gwen",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Gwenllian"
+   },
+   {
+    "id": "imogen",
+    "entity_id": "physio",
+    "label": "PERSON",
+    "quote": "Imogen Fairbrother"
+   },
+   {
+    "id": "winifred",
+    "entity_id": "treasurer",
+    "label": "PERSON",
+    "quote": "Winifred Bate"
+   },
+   {
+    "id": "h1",
+    "entity_id": "knee-claim",
+    "label": "HEALTH",
+    "quote": "has been sitting out sprint drills since half term because her left knee swells up after hard matches"
+   },
+   {
+    "id": "h2",
+    "entity_id": "minutes-limit-claim",
+    "label": "HEALTH",
+    "quote": "wants her limited to 30 minutes per game until the scan result comes back"
+   },
+   {
+    "id": "h3",
+    "entity_id": "cup-tie-claim",
+    "label": "HEALTH",
+    "quote": "said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing"
+   },
+   {
+    "id": "f1",
+    "entity_id": "paid-claim",
+    "label": "FINANCIAL",
+    "quote": "I paid 40 by bank transfer on the 14th, so 45 is left"
+   },
+   {
+    "id": "f2",
+    "entity_id": "hardship-claim",
+    "label": "FINANCIAL",
+    "quote": "families who are short can apply to the hardship fund"
+   },
+   {
+    "id": "e1",
+    "entity_id": "shifts-claim",
+    "label": "EMPLOYMENT",
+    "quote": "my shifts at the depot stay as short as this month"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "Coach Osian Thackeray stopped me after Tuesday training. Gwenllian has been sitting out sprint drills since half term because her left knee swells up after hard matches, and her physio, Imogen Fairbrother, wants her limited to 30 minutes per game until the scan result comes back. Osian said he will rotate her on and off and will not pick her for the full 70-minute cup tie unless the physio clears her in writing.\n\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A fee message to the treasurer does not need the child's knee problem, physio limits or the coach's selection conditions."
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "paid-claim",
+    "label": "FINANCIAL",
+    "quote": "I paid 40 by bank transfer on the 14th, so 45 is left",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "winifred",
+    "entity_id": "treasurer",
+    "label": "PERSON",
+    "quote": "Winifred Bate",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "hardship-claim",
+    "label": "FINANCIAL",
+    "quote": "families who are short can apply to the hardship fund",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e1",
+    "entity_id": "shifts-claim",
+    "label": "EMPLOYMENT",
+    "quote": "my shifts at the depot stay as short as this month",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The under-12s spring fee is 85 pounds, due by 5 December."
+   },
+   {
+    "quote": "I paid 40 by bank transfer on the 14th, so 45 is left."
+   },
+   {
+    "quote": ", the club treasurer, said families who are short can apply to the hardship fund, and I may ask about it if my shifts at the depot stay as short as this month."
+   }
+  ],
+  "approved_output": "The under-12s spring fee is 85 pounds, due by 5 December. I paid 40 by bank transfer on the 14th, so 45 is left. [PERSON_1], the club treasurer, said families who are short can apply to the hardship fund, and I may ask about it if my shifts at the depot stay as short as this month.\n\nThe next away match is Saturday 21 November at Llanfair Rovers, kick-off 10:30, with the minibus leaving the clubhouse at 8:45. Players need shin pads, a water bottle and the signed consent form, and the manager will text by 7:30 if the pitch is frozen.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-week-plan",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Met Lucinda Marsh, the family liaison officer at Ysgol Pen-y-Bryn, about Dylan's lunches. He has been refusing school dinners since September, and the cook says he leaves most of the food. We agreed he will try a packed lunch on Mondays and Wednesdays and school dinners on the other days, and she will tell me if he skips them again.\n\nDylan lives with me from Sunday to Thursday and with his father, Edmund Thorne, on Fridays and every second weekend, so the Friday lunch order comes from Edmund's side. Lucinda suggested a shared note in his bag listing what he ate, and I said Edmund would only agree to that if it goes through the school office, not through me.\n\nThe school also confirmed that Dylan qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January. Until then I should keep paying through the school app on Sunday evenings.",
+  "task": "Set out a weekly plan for who deals with my son's lunches each day and how updates from school reach both parents.",
+  "entities": [
+   {
+    "id": "lucinda1",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda Marsh"
+   },
+   {
+    "id": "lucinda2",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda",
+    "occurrence": 2
+   },
+   {
+    "id": "dylan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 1
+   },
+   {
+    "id": "dylan2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 2
+   },
+   {
+    "id": "dylan3",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 3
+   },
+   {
+    "id": "edmund1",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund Thorne"
+   },
+   {
+    "id": "edmund2",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund",
+    "occurrence": 2
+   },
+   {
+    "id": "edmund3",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund",
+    "occurrence": 3
+   },
+   {
+    "id": "fam1",
+    "entity_id": "custody-days-claim",
+    "label": "FAMILY",
+    "quote": "lives with me from Sunday to Thursday and with his father"
+   },
+   {
+    "id": "fam2",
+    "entity_id": "custody-fridays-claim",
+    "label": "FAMILY",
+    "quote": "on Fridays and every second weekend, so the Friday lunch order comes from"
+   },
+   {
+    "id": "fam3",
+    "entity_id": "parent-conflict-claim",
+    "label": "FAMILY",
+    "quote": "would only agree to that if it goes through the school office, not through me"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "free-meals-claim",
+    "label": "FINANCIAL",
+    "quote": "qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "lucinda1",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda Marsh",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dylan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dylan2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam1",
+    "entity_id": "custody-days-claim",
+    "label": "FAMILY",
+    "quote": "lives with me from Sunday to Thursday and with his father",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "edmund1",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund Thorne",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam2",
+    "entity_id": "custody-fridays-claim",
+    "label": "FAMILY",
+    "quote": "on Fridays and every second weekend, so the Friday lunch order comes from",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "edmund2",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "lucinda2",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "edmund3",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund",
+    "occurrence": 3,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam3",
+    "entity_id": "parent-conflict-claim",
+    "label": "FAMILY",
+    "quote": "would only agree to that if it goes through the school office, not through me",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "\n\nThe school also confirmed that Dylan qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January. Until then I should keep paying through the school app on Sunday evenings.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A lunch-handling plan does not need the benefit-based meal eligibility, daily charge or payment routine."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "We agreed he will try a packed lunch on Mondays and Wednesdays and school dinners on the other days, and she will tell me if he skips them again."
+   },
+   {
+    "quote": "lives with me from Sunday to Thursday and with his father,"
+   },
+   {
+    "quote": "on Fridays and every second weekend, so the Friday lunch order comes from"
+   },
+   {
+    "quote": "'s side."
+   },
+   {
+    "quote": "suggested a shared note in his bag listing what he ate, and I said"
+   },
+   {
+    "quote": "would only agree to that if it goes through the school office, not through me."
+   }
+  ],
+  "approved_output": "Met [PERSON_1], the family liaison officer at Ysgol Pen-y-Bryn, about [PERSON_2]'s lunches. He has been refusing school dinners since September, and the cook says he leaves most of the food. We agreed he will try a packed lunch on Mondays and Wednesdays and school dinners on the other days, and she will tell me if he skips them again.\n\n[PERSON_2] lives with me from Sunday to Thursday and with his father, [PERSON_3], on Fridays and every second weekend, so the Friday lunch order comes from [PERSON_3]'s side. [PERSON_1] suggested a shared note in his bag listing what he ate, and I said [PERSON_3] would only agree to that if it goes through the school office, not through me.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-payments",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-plan-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Met Lucinda Marsh, the family liaison officer at Ysgol Pen-y-Bryn, about Dylan's lunches. He has been refusing school dinners since September, and the cook says he leaves most of the food. We agreed he will try a packed lunch on Mondays and Wednesdays and school dinners on the other days, and she will tell me if he skips them again.\n\nDylan lives with me from Sunday to Thursday and with his father, Edmund Thorne, on Fridays and every second weekend, so the Friday lunch order comes from Edmund's side. Lucinda suggested a shared note in his bag listing what he ate, and I said Edmund would only agree to that if it goes through the school office, not through me.\n\nThe school also confirmed that Dylan qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January. Until then I should keep paying through the school app on Sunday evenings.",
+  "task": "Work out what I should still be paying for my son's school dinners before they become free, and set up a simple routine for it.",
+  "entities": [
+   {
+    "id": "lucinda1",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda Marsh"
+   },
+   {
+    "id": "lucinda2",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda",
+    "occurrence": 2
+   },
+   {
+    "id": "dylan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 1
+   },
+   {
+    "id": "dylan2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 2
+   },
+   {
+    "id": "dylan3",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 3
+   },
+   {
+    "id": "edmund1",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund Thorne"
+   },
+   {
+    "id": "edmund2",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund",
+    "occurrence": 2
+   },
+   {
+    "id": "edmund3",
+    "entity_id": "father",
+    "label": "PERSON",
+    "quote": "Edmund",
+    "occurrence": 3
+   },
+   {
+    "id": "fam1",
+    "entity_id": "custody-days-claim",
+    "label": "FAMILY",
+    "quote": "lives with me from Sunday to Thursday and with his father"
+   },
+   {
+    "id": "fam2",
+    "entity_id": "custody-fridays-claim",
+    "label": "FAMILY",
+    "quote": "on Fridays and every second weekend, so the Friday lunch order comes from"
+   },
+   {
+    "id": "fam3",
+    "entity_id": "parent-conflict-claim",
+    "label": "FAMILY",
+    "quote": "would only agree to that if it goes through the school office, not through me"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "free-meals-claim",
+    "label": "FINANCIAL",
+    "quote": "qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "lucinda1",
+    "entity_id": "liaison",
+    "label": "PERSON",
+    "quote": "Lucinda Marsh",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dylan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Dylan lives with me from Sunday to Thursday and with his father, Edmund Thorne, on Fridays and every second weekend, so the Friday lunch order comes from Edmund's side. Lucinda suggested a shared note in his bag listing what he ate, and I said Edmund would only agree to that if it goes through the school office, not through me.\n\n",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A payment routine does not need the shared-parenting arrangement, the father's conditions or the school-note discussion."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dylan3",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Dylan",
+    "occurrence": 3,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "free-meals-claim",
+    "label": "FINANCIAL",
+    "quote": "qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January."
+   },
+   {
+    "quote": "Until then I should keep paying through the school app on Sunday evenings."
+   }
+  ],
+  "approved_output": "Met [PERSON_1], the family liaison officer at Ysgol Pen-y-Bryn, about [PERSON_2]'s lunches. He has been refusing school dinners since September, and the cook says he leaves most of the food. We agreed he will try a packed lunch on Mondays and Wednesdays and school dinners on the other days, and she will tell me if he skips them again.\n\nThe school also confirmed that [PERSON_2] qualifies for free school meals from January because my universal credit claim went through, so the 2.60 pounds daily charge stops on 5 January. Until then I should keep paying through the school app on Sunday evenings.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-centre-email",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The Year 5 residential at Llangrannog costs 214 pounds, with a 60-pound deposit due by 12 December, and Sian Pritchard in the office says the balance can be spread over three payments. My daughter Cerys is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities. I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents. The coach leaves the school gate at 8:15 on 9 March, and parents may wave from the car park as long as nobody brings dogs.",
+  "task": "Draft an email for the activity centre's kitchen and instructors about what they need to be ready for when my daughter arrives.",
+  "entities": [
+   {
+    "id": "sian",
+    "entity_id": "office-staff",
+    "label": "PERSON",
+    "quote": "Sian Pritchard"
+   },
+   {
+    "id": "cerys",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Cerys"
+   },
+   {
+    "id": "h1",
+    "entity_id": "nut-allergy-claim",
+    "label": "HEALTH",
+    "quote": "is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities"
+   },
+   {
+    "id": "emp1",
+    "entity_id": "job-loss-claim",
+    "label": "EMPLOYMENT",
+    "quote": "I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "sian",
+    "entity_id": "office-staff",
+    "label": "PERSON",
+    "quote": "Sian Pritchard",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cerys",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Cerys",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "nut-allergy-claim",
+    "label": "HEALTH",
+    "quote": "is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents. ",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "An email to the activity centre needs the allergy and trip context, not the parent's job loss or redundancy pay or the confidentiality request about instalments."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The Year 5 residential at Llangrannog"
+   },
+   {
+    "quote": "My daughter"
+   },
+   {
+    "quote": "is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities."
+   }
+  ],
+  "approved_output": "The Year 5 residential at Llangrannog costs 214 pounds, with a 60-pound deposit due by 12 December, and [PERSON_1] in the office says the balance can be spread over three payments. My daughter [PERSON_2] is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities. The coach leaves the school gate at 8:15 on 9 March, and parents may wave from the car park as long as nobody brings dogs.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-payment-request",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:llangrannog-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The Year 5 residential at Llangrannog costs 214 pounds, with a 60-pound deposit due by 12 December, and Sian Pritchard in the office says the balance can be spread over three payments. My daughter Cerys is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities. I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents. The coach leaves the school gate at 8:15 on 9 March, and parents may wave from the car park as long as nobody brings dogs.",
+  "task": "Write to the school office about how I can manage the trip payments, and ask that the arrangement stays between us.",
+  "entities": [
+   {
+    "id": "sian",
+    "entity_id": "office-staff",
+    "label": "PERSON",
+    "quote": "Sian Pritchard"
+   },
+   {
+    "id": "cerys",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Cerys"
+   },
+   {
+    "id": "h1",
+    "entity_id": "nut-allergy-claim",
+    "label": "HEALTH",
+    "quote": "is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities"
+   },
+   {
+    "id": "emp1",
+    "entity_id": "job-loss-claim",
+    "label": "EMPLOYMENT",
+    "quote": "I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents."
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "sian",
+    "entity_id": "office-staff",
+    "label": "PERSON",
+    "quote": "Sian Pritchard",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "My daughter Cerys is allergic to cashew and almond, not peanut as I first told the office, and she carries two auto-injectors that her teacher must hold during outdoor activities. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A payment-arrangement request does not need the child's allergy details or auto-injector handling."
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp1",
+    "entity_id": "job-loss-claim",
+    "label": "EMPLOYMENT",
+    "quote": "I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents.",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The Year 5 residential at Llangrannog costs 214 pounds, with a 60-pound deposit due by 12 December, and"
+   },
+   {
+    "quote": "in the office says the balance can be spread over three payments."
+   },
+   {
+    "quote": "I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents."
+   }
+  ],
+  "approved_output": "The Year 5 residential at Llangrannog costs 214 pounds, with a 60-pound deposit due by 12 December, and [PERSON_1] in the office says the balance can be spread over three payments. I lost my job at the packing plant last month, so the instalments depend on my redundancy pay arriving first, and I would rather the school did not mention that to other parents. The coach leaves the school gate at 8:15 on 9 March, and parents may wave from the car park as long as nobody brings dogs.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-review-brief",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Swim club said Ioan's squad moves to Thursday 6:15 pm sessions at Pontardawe Leisure Centre from January, and the lane fee goes up to 32 pounds a month. Ioan was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts. His mother, Bronwen Tudor, and I share the lifts, but I cannot collect him on Thursdays because I look after my own mother then, so we must settle the rota before the gala entry deadline on 10 January. Coach Aled Mortimer wants entry times confirmed by Friday and says Ioan will not be entered in the 100 metres butterfly unless the surgeon agrees in writing.",
+  "task": "Put together a short briefing for my son's next hospital review: what he has been told to do and avoid at training, and what is planned for the gala.",
+  "entities": [
+   {
+    "id": "ioan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 1
+   },
+   {
+    "id": "ioan2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 2
+   },
+   {
+    "id": "ioan3",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 3
+   },
+   {
+    "id": "bronwen",
+    "entity_id": "other-parent",
+    "label": "PERSON",
+    "quote": "Bronwen Tudor"
+   },
+   {
+    "id": "aled",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Aled Mortimer"
+   },
+   {
+    "id": "h1",
+    "entity_id": "surgery-claim",
+    "label": "HEALTH",
+    "quote": "was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts"
+   },
+   {
+    "id": "h2",
+    "entity_id": "butterfly-clearance-claim",
+    "label": "HEALTH",
+    "quote": "will not be entered in the 100 metres butterfly unless the surgeon agrees in writing"
+   },
+   {
+    "id": "fam1",
+    "entity_id": "caring-claim",
+    "label": "FAMILY",
+    "quote": "I cannot collect him on Thursdays because I look after my own mother then"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ioan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ioan2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "surgery-claim",
+    "label": "HEALTH",
+    "quote": "was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "His mother, Bronwen Tudor, and I share the lifts, but I cannot collect him on Thursdays because I look after my own mother then, so we must settle the rota before the gala entry deadline on 10 January. ",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A hospital-review briefing does not need the lift sharing, the writer's caring commitments on Thursdays or the other parent's involvement."
+   },
+   {
+    "kind": "entity",
+    "target_id": "aled",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Aled Mortimer",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ioan3",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 3,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "butterfly-clearance-claim",
+    "label": "HEALTH",
+    "quote": "will not be entered in the 100 metres butterfly unless the surgeon agrees in writing",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts."
+   },
+   {
+    "quote": "wants entry times confirmed by Friday and says"
+   },
+   {
+    "quote": "will not be entered in the 100 metres butterfly unless the surgeon agrees in writing."
+   }
+  ],
+  "approved_output": "Swim club said [PERSON_1]'s squad moves to Thursday 6:15 pm sessions at Pontardawe Leisure Centre from January, and the lane fee goes up to 32 pounds a month. [PERSON_1] was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts. Coach [PERSON_2] wants entry times confirmed by Friday and says [PERSON_1] will not be entered in the 100 metres butterfly unless the surgeon agrees in writing.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-lift-message",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:swim-squad-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Swim club said Ioan's squad moves to Thursday 6:15 pm sessions at Pontardawe Leisure Centre from January, and the lane fee goes up to 32 pounds a month. Ioan was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts. His mother, Bronwen Tudor, and I share the lifts, but I cannot collect him on Thursdays because I look after my own mother then, so we must settle the rota before the gala entry deadline on 10 January. Coach Aled Mortimer wants entry times confirmed by Friday and says Ioan will not be entered in the 100 metres butterfly unless the surgeon agrees in writing.",
+  "task": "Draft a message to the other parent to sort out the Thursday lifts before the gala entries close.",
+  "entities": [
+   {
+    "id": "ioan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 1
+   },
+   {
+    "id": "ioan2",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 2
+   },
+   {
+    "id": "ioan3",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 3
+   },
+   {
+    "id": "bronwen",
+    "entity_id": "other-parent",
+    "label": "PERSON",
+    "quote": "Bronwen Tudor"
+   },
+   {
+    "id": "aled",
+    "entity_id": "coach",
+    "label": "PERSON",
+    "quote": "Aled Mortimer"
+   },
+   {
+    "id": "h1",
+    "entity_id": "surgery-claim",
+    "label": "HEALTH",
+    "quote": "was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts"
+   },
+   {
+    "id": "h2",
+    "entity_id": "butterfly-clearance-claim",
+    "label": "HEALTH",
+    "quote": "will not be entered in the 100 metres butterfly unless the surgeon agrees in writing"
+   },
+   {
+    "id": "fam1",
+    "entity_id": "caring-claim",
+    "label": "FAMILY",
+    "quote": "I cannot collect him on Thursdays because I look after my own mother then"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ioan1",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Ioan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Ioan was told to skip butterfly sets after his shoulder surgery in October, though the surgeon says he can do freestyle and backstroke if nothing hurts. ",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A lift-rota message does not need the surgery, swimming restrictions or surgeon guidance."
+   },
+   {
+    "kind": "entity",
+    "target_id": "bronwen",
+    "entity_id": "other-parent",
+    "label": "PERSON",
+    "quote": "Bronwen Tudor",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fam1",
+    "entity_id": "caring-claim",
+    "label": "FAMILY",
+    "quote": "I cannot collect him on Thursdays because I look after my own mother then",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " Coach Aled Mortimer wants entry times confirmed by Friday and says Ioan will not be entered in the 100 metres butterfly unless the surgeon agrees in writing.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The coach's entry condition rests on the child's medical clearance; a lift-rota message needs neither it nor the surgeon reference."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "His mother,"
+   },
+   {
+    "quote": "and I share the lifts, but I cannot collect him on Thursdays because I look after my own mother then, so we must settle the rota before the gala entry deadline on 10 January."
+   }
+  ],
+  "approved_output": "Swim club said [PERSON_1]'s squad moves to Thursday 6:15 pm sessions at Pontardawe Leisure Centre from January, and the lane fee goes up to 32 pounds a month. His mother, [PERSON_2], and I share the lifts, but I cannot collect him on Thursdays because I look after my own mother then, so we must settle the rota before the gala entry deadline on 10 January.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-matchday-plan",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: Under-14 netball, tournament day details\n\nHello Carys,\n\nThanks for sending the forms back for Megan. Here is what the committee has agreed:\n\n* Tournament: Saturday 14 November at Cwmbran Sports Hall, first whistle 9:40. The squad meets at the car park by 8:30.\n* Megan is playing wing attack. She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight.\n* Subs: the club still has no payment for the autumn term (68 pounds). We can split it into two payments of 34 pounds if you let Dorothy Hale, our treasurer, know by Friday. Late fees apply after 30 November.\n* Please bring a packed lunch with no nuts. The hall cafe takes cash only.\n\nRegards\nLowri Garland, welfare officer\nlowri.garland@example.invalid",
+  "task": "Put together a matchday plan for my daughter for Saturday: timings, what to pack and anything the team staff should be told.",
+  "entities": [
+   {
+    "id": "carys",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Carys"
+   },
+   {
+    "id": "megan1",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 1
+   },
+   {
+    "id": "megan2",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 2
+   },
+   {
+    "id": "dorothy",
+    "entity_id": "treasurer",
+    "label": "PERSON",
+    "quote": "Dorothy Hale"
+   },
+   {
+    "id": "lowri",
+    "entity_id": "welfare-officer",
+    "label": "PERSON",
+    "quote": "Lowri Garland"
+   },
+   {
+    "id": "email",
+    "entity_id": "welfare-email",
+    "label": "EMAIL",
+    "quote": "lowri.garland@example.invalid"
+   },
+   {
+    "id": "h1",
+    "entity_id": "asthma-claim",
+    "label": "HEALTH",
+    "quote": "She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight"
+   },
+   {
+    "id": "f1",
+    "entity_id": "arrears-claim",
+    "label": "FINANCIAL",
+    "quote": "the club still has no payment for the autumn term (68 pounds)"
+   },
+   {
+    "id": "f2",
+    "entity_id": "instalment-claim",
+    "label": "FINANCIAL",
+    "quote": "split it into two payments of 34 pounds"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "carys",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Carys",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "megan1",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "megan2",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "asthma-claim",
+    "label": "HEALTH",
+    "quote": "She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "* Subs: the club still has no payment for the autumn term (68 pounds). We can split it into two payments of 34 pounds if you let Dorothy Hale, our treasurer, know by Friday. Late fees apply after 30 November.\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A matchday plan needs no subscription arrears, instalment offer or late-fee terms."
+   },
+   {
+    "kind": "entity",
+    "target_id": "lowri",
+    "entity_id": "welfare-officer",
+    "label": "PERSON",
+    "quote": "Lowri Garland",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "email",
+    "entity_id": "welfare-email",
+    "label": "EMAIL",
+    "quote": "lowri.garland@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A direct email address is a contact identifier and the plan does not need it, so nothing useful is lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Tournament: Saturday 14 November at Cwmbran Sports Hall, first whistle 9:40."
+   },
+   {
+    "quote": "The squad meets at the car park by 8:30."
+   },
+   {
+    "quote": "is playing wing attack."
+   },
+   {
+    "quote": "She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight."
+   },
+   {
+    "quote": "Please bring a packed lunch with no nuts."
+   },
+   {
+    "quote": "The hall cafe takes cash only."
+   }
+  ],
+  "approved_output": "Subject: Under-14 netball, tournament day details\n\nHello [PERSON_1],\n\nThanks for sending the forms back for [PERSON_2]. Here is what the committee has agreed:\n\n* Tournament: Saturday 14 November at Cwmbran Sports Hall, first whistle 9:40. The squad meets at the car park by 8:30.\n* [PERSON_2] is playing wing attack. She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight.\n* Please bring a packed lunch with no nuts. The hall cafe takes cash only.\n\nRegards\n[PERSON_3], welfare officer\n[EMAIL]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-club-reply",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:netball-email-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Subject: Under-14 netball, tournament day details\n\nHello Carys,\n\nThanks for sending the forms back for Megan. Here is what the committee has agreed:\n\n* Tournament: Saturday 14 November at Cwmbran Sports Hall, first whistle 9:40. The squad meets at the car park by 8:30.\n* Megan is playing wing attack. She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight.\n* Subs: the club still has no payment for the autumn term (68 pounds). We can split it into two payments of 34 pounds if you let Dorothy Hale, our treasurer, know by Friday. Late fees apply after 30 November.\n* Please bring a packed lunch with no nuts. The hall cafe takes cash only.\n\nRegards\nLowri Garland, welfare officer\nlowri.garland@example.invalid",
+  "task": "Draft my reply to the welfare officer's email, covering what the club is still waiting on from me.",
+  "entities": [
+   {
+    "id": "carys",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Carys"
+   },
+   {
+    "id": "megan1",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 1
+   },
+   {
+    "id": "megan2",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 2
+   },
+   {
+    "id": "dorothy",
+    "entity_id": "treasurer",
+    "label": "PERSON",
+    "quote": "Dorothy Hale"
+   },
+   {
+    "id": "lowri",
+    "entity_id": "welfare-officer",
+    "label": "PERSON",
+    "quote": "Lowri Garland"
+   },
+   {
+    "id": "email",
+    "entity_id": "welfare-email",
+    "label": "EMAIL",
+    "quote": "lowri.garland@example.invalid"
+   },
+   {
+    "id": "h1",
+    "entity_id": "asthma-claim",
+    "label": "HEALTH",
+    "quote": "She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight"
+   },
+   {
+    "id": "f1",
+    "entity_id": "arrears-claim",
+    "label": "FINANCIAL",
+    "quote": "the club still has no payment for the autumn term (68 pounds)"
+   },
+   {
+    "id": "f2",
+    "entity_id": "instalment-claim",
+    "label": "FINANCIAL",
+    "quote": "split it into two payments of 34 pounds"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "carys",
+    "entity_id": "parent",
+    "label": "PERSON",
+    "quote": "Carys",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "megan1",
+    "entity_id": "player",
+    "label": "PERSON",
+    "quote": "Megan",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "* Megan is playing wing attack. She told the coach her asthma is worse in cold halls, so her inhaler goes in the team first aid bag and she can swap off after any quarter if she feels tight.\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A reply about what the club is waiting for does not need the player's position or asthma and inhaler handling."
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "arrears-claim",
+    "label": "FINANCIAL",
+    "quote": "the club still has no payment for the autumn term (68 pounds)",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "instalment-claim",
+    "label": "FINANCIAL",
+    "quote": "split it into two payments of 34 pounds",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dorothy",
+    "entity_id": "treasurer",
+    "label": "PERSON",
+    "quote": "Dorothy Hale",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "lowri",
+    "entity_id": "welfare-officer",
+    "label": "PERSON",
+    "quote": "Lowri Garland",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "email",
+    "entity_id": "welfare-email",
+    "label": "EMAIL",
+    "quote": "lowri.garland@example.invalid",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A direct email address is a contact identifier and the reply does not need it, so nothing useful is lost."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "* Subs: the club still has no payment for the autumn term (68 pounds)."
+   },
+   {
+    "quote": "We can split it into two payments of 34 pounds if you let"
+   },
+   {
+    "quote": ", our treasurer, know by Friday."
+   },
+   {
+    "quote": "Late fees apply after 30 November."
+   }
+  ],
+  "approved_output": "Subject: Under-14 netball, tournament day details\n\nHello [PERSON_1],\n\nThanks for sending the forms back for [PERSON_2]. Here is what the committee has agreed:\n\n* Tournament: Saturday 14 November at Cwmbran Sports Hall, first whistle 9:40. The squad meets at the car park by 8:30.\n* Subs: the club still has no payment for the autumn term (68 pounds). We can split it into two payments of 34 pounds if you let [PERSON_3], our treasurer, know by Friday. Late fees apply after 30 November.\n* Please bring a packed lunch with no nuts. The hall cafe takes cash only.\n\nRegards\n[PERSON_4], welfare officer\n[EMAIL]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-nurse-summary",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Lunch account export, week of 3 November\ndate,type,detail,amount_gbp\n03 Nov,balance,Opening balance carried over,-4.40\n03 Nov,meal,Pasta bake,2.60\n04 Nov,meal,Chicken curry with rice,2.60\n04 Nov,health,Elis sent to the office after a reaction to the sauce - antihistamine given and no pen needed,\n05 Nov,meal,Packed lunch brought from home,0.00\n06 Nov,payment,Sioned Parry (gran) topped up by bank transfer,10.00\n06 Nov,meal,Fish fingers and peas,2.60\n07 Nov,balance,Account balance after the last lunch,-2.20",
+  "task": "Write up this week's lunches for the school nurse, listing what was eaten and anything she should look into.",
+  "entities": [
+   {
+    "id": "elis",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Elis"
+   },
+   {
+    "id": "sioned",
+    "entity_id": "grandparent",
+    "label": "PERSON",
+    "quote": "Sioned Parry"
+   },
+   {
+    "id": "h1",
+    "entity_id": "reaction-claim",
+    "label": "HEALTH",
+    "quote": "sent to the office after a reaction to the sauce - antihistamine given and no pen needed"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "opening-balance-claim",
+    "label": "FINANCIAL",
+    "quote": "Opening balance carried over,-4.40"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "topup-claim",
+    "label": "FINANCIAL",
+    "quote": "topped up by bank transfer,10.00"
+   },
+   {
+    "id": "fin3",
+    "entity_id": "closing-balance-claim",
+    "label": "FINANCIAL",
+    "quote": "Account balance after the last lunch,-2.20"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "section",
+    "quote": "03 Nov,balance,Opening balance carried over,-4.40\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A nurse summary does not need the account's opening balance."
+   },
+   {
+    "kind": "entity",
+    "target_id": "elis",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Elis",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "reaction-claim",
+    "label": "HEALTH",
+    "quote": "sent to the office after a reaction to the sauce - antihistamine given and no pen needed",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "06 Nov,payment,Sioned Parry (gran) topped up by bank transfer,10.00\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The grandparent's top-up and amount are payment details with no bearing on what was eaten or any reaction."
+   },
+   {
+    "kind": "section",
+    "quote": "\n07 Nov,balance,Account balance after the last lunch,-2.20",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A nurse summary does not need the closing account balance."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "03 Nov,meal,Pasta bake"
+   },
+   {
+    "quote": "04 Nov,meal,Chicken curry with rice"
+   },
+   {
+    "quote": "04 Nov,health,"
+   },
+   {
+    "quote": "sent to the office after a reaction to the sauce - antihistamine given and no pen needed,"
+   },
+   {
+    "quote": "05 Nov,meal,Packed lunch brought from home"
+   },
+   {
+    "quote": "06 Nov,meal,Fish fingers and peas"
+   }
+  ],
+  "approved_output": "Lunch account export, week of 3 November\ndate,type,detail,amount_gbp\n03 Nov,meal,Pasta bake,2.60\n04 Nov,meal,Chicken curry with rice,2.60\n04 Nov,health,[PERSON_1] sent to the office after a reaction to the sauce - antihistamine given and no pen needed,\n05 Nov,meal,Packed lunch brought from home,0.00\n06 Nov,meal,Fish fingers and peas,2.60",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-balance-check",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:lunch-ledger-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Lunch account export, week of 3 November\ndate,type,detail,amount_gbp\n03 Nov,balance,Opening balance carried over,-4.40\n03 Nov,meal,Pasta bake,2.60\n04 Nov,meal,Chicken curry with rice,2.60\n04 Nov,health,Elis sent to the office after a reaction to the sauce - antihistamine given and no pen needed,\n05 Nov,meal,Packed lunch brought from home,0.00\n06 Nov,payment,Sioned Parry (gran) topped up by bank transfer,10.00\n06 Nov,meal,Fish fingers and peas,2.60\n07 Nov,balance,Account balance after the last lunch,-2.20",
+  "task": "Check whether the top-up covered this week's lunches and tell me what I still owe.",
+  "entities": [
+   {
+    "id": "elis",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Elis"
+   },
+   {
+    "id": "sioned",
+    "entity_id": "grandparent",
+    "label": "PERSON",
+    "quote": "Sioned Parry"
+   },
+   {
+    "id": "h1",
+    "entity_id": "reaction-claim",
+    "label": "HEALTH",
+    "quote": "sent to the office after a reaction to the sauce - antihistamine given and no pen needed"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "opening-balance-claim",
+    "label": "FINANCIAL",
+    "quote": "Opening balance carried over,-4.40"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "topup-claim",
+    "label": "FINANCIAL",
+    "quote": "topped up by bank transfer,10.00"
+   },
+   {
+    "id": "fin3",
+    "entity_id": "closing-balance-claim",
+    "label": "FINANCIAL",
+    "quote": "Account balance after the last lunch,-2.20"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "opening-balance-claim",
+    "label": "FINANCIAL",
+    "quote": "Opening balance carried over,-4.40",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "04 Nov,health,Elis sent to the office after a reaction to the sauce - antihistamine given and no pen needed,\n",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Checking the balance arithmetic does not need the child's reaction note or treatment given."
+   },
+   {
+    "kind": "entity",
+    "target_id": "sioned",
+    "entity_id": "grandparent",
+    "label": "PERSON",
+    "quote": "Sioned Parry",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin2",
+    "entity_id": "topup-claim",
+    "label": "FINANCIAL",
+    "quote": "topped up by bank transfer,10.00",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin3",
+    "entity_id": "closing-balance-claim",
+    "label": "FINANCIAL",
+    "quote": "Account balance after the last lunch,-2.20",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "03 Nov,balance,Opening balance carried over,-4.40"
+   },
+   {
+    "quote": "03 Nov,meal,Pasta bake,2.60"
+   },
+   {
+    "quote": "04 Nov,meal,Chicken curry with rice,2.60"
+   },
+   {
+    "quote": "05 Nov,meal,Packed lunch brought from home,0.00"
+   },
+   {
+    "quote": "06 Nov,payment,"
+   },
+   {
+    "quote": "(gran) topped up by bank transfer,10.00"
+   },
+   {
+    "quote": "06 Nov,meal,Fish fingers and peas,2.60"
+   },
+   {
+    "quote": "07 Nov,balance,Account balance after the last lunch,-2.20"
+   }
+  ],
+  "approved_output": "Lunch account export, week of 3 November\ndate,type,detail,amount_gbp\n03 Nov,balance,Opening balance carried over,-4.40\n03 Nov,meal,Pasta bake,2.60\n04 Nov,meal,Chicken curry with rice,2.60\n05 Nov,meal,Packed lunch brought from home,0.00\n06 Nov,payment,[PERSON_1] (gran) topped up by bank transfer,10.00\n06 Nov,meal,Fish fingers and peas,2.60\n07 Nov,balance,Account balance after the last lunch,-2.20",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-board-costs",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "We have three sealed bids for the corrugated packaging contract. Calder & Wynne Packaging offers delivery every second Tuesday, Fenwick Board Supplies offers delivery every Friday, and Marram Cartons has not confirmed its second-year terms. Harriet Whitlock wants the shortlist to weigh delivery reliability as well as unit price.\n\nIn March we paid Calder & Wynne's invoice 20418 twenty-four days after the due date, and their credit team charged a 640-pound late fee. Dilwyn Probert in finance wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November.\n\nOur Newport depot only takes deliveries on Tuesday and Thursday mornings. The depot manager says Friday deliveries would need a second forklift driver on shift, so any Friday bid must cover that cost. Contracts are to be signed by 12 December.",
+  "task": "Write the cost-history paragraph for a board paper reviewing the packaging supplier relationship.",
+  "entities": [
+   {
+    "id": "org1",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne Packaging"
+   },
+   {
+    "id": "org2",
+    "entity_id": "supplier-fenwick",
+    "label": "ORG",
+    "quote": "Fenwick Board Supplies"
+   },
+   {
+    "id": "org3",
+    "entity_id": "supplier-marram",
+    "label": "ORG",
+    "quote": "Marram Cartons"
+   },
+   {
+    "id": "harriet",
+    "entity_id": "procurement-lead",
+    "label": "PERSON",
+    "quote": "Harriet Whitlock"
+   },
+   {
+    "id": "org4",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne",
+    "occurrence": 2
+   },
+   {
+    "id": "inv",
+    "entity_id": "invoice-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "20418"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "late-payment-claim",
+    "label": "FINANCIAL",
+    "quote": "twenty-four days after the due date, and their credit team charged a 640-pound late fee"
+   },
+   {
+    "id": "dilwyn",
+    "entity_id": "finance-colleague",
+    "label": "PERSON",
+    "quote": "Dilwyn Probert"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "fee-booking-claim",
+    "label": "FINANCIAL",
+    "quote": "wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "org1",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne Packaging",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Competing bidder identity is commercially sensitive in sealed bids and the cost history does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "org2",
+    "entity_id": "supplier-fenwick",
+    "label": "ORG",
+    "quote": "Fenwick Board Supplies",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Competing bidder identity is commercially sensitive in sealed bids and the cost history does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "org3",
+    "entity_id": "supplier-marram",
+    "label": "ORG",
+    "quote": "Marram Cartons",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Competing bidder identity is commercially sensitive in sealed bids and the cost history does not need it."
+   },
+   {
+    "kind": "entity",
+    "target_id": "harriet",
+    "entity_id": "procurement-lead",
+    "label": "PERSON",
+    "quote": "Harriet Whitlock",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org4",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne",
+    "occurrence": 2,
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The supplier that charged the fee is needed to attribute it, but its name stays hidden as [ORG]; the board paragraph loses the explicit supplier name."
+   },
+   {
+    "kind": "entity",
+    "target_id": "inv",
+    "entity_id": "invoice-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "20418",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Invoice reference is an account identifier; the paragraph needs the lateness and fee, not the number."
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "late-payment-claim",
+    "label": "FINANCIAL",
+    "quote": "twenty-four days after the due date, and their credit team charged a 640-pound late fee",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "dilwyn",
+    "entity_id": "finance-colleague",
+    "label": "PERSON",
+    "quote": "Dilwyn Probert",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin2",
+    "entity_id": "fee-booking-claim",
+    "label": "FINANCIAL",
+    "quote": "wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "In March we paid"
+   },
+   {
+    "quote": "'s invoice"
+   },
+   {
+    "quote": "twenty-four days after the due date, and their credit team charged a 640-pound late fee."
+   },
+   {
+    "quote": "in finance wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November."
+   }
+  ],
+  "approved_output": "We have three sealed bids for the corrugated packaging contract. [ORG] offers delivery every second Tuesday, [ORG] offers delivery every Friday, and [ORG] has not confirmed its second-year terms. [PERSON_1] wants the shortlist to weigh delivery reliability as well as unit price.\n\nIn March we paid [ORG]'s invoice [ACCOUNT_ID] twenty-four days after the due date, and their credit team charged a 640-pound late fee. [PERSON_2] in finance wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November.\n\nOur Newport depot only takes deliveries on Tuesday and Thursday mornings. The depot manager says Friday deliveries would need a second forklift driver on shift, so any Friday bid must cover that cost. Contracts are to be signed by 12 December.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-depot-brief",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:packaging-tender-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "We have three sealed bids for the corrugated packaging contract. Calder & Wynne Packaging offers delivery every second Tuesday, Fenwick Board Supplies offers delivery every Friday, and Marram Cartons has not confirmed its second-year terms. Harriet Whitlock wants the shortlist to weigh delivery reliability as well as unit price.\n\nIn March we paid Calder & Wynne's invoice 20418 twenty-four days after the due date, and their credit team charged a 640-pound late fee. Dilwyn Probert in finance wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November.\n\nOur Newport depot only takes deliveries on Tuesday and Thursday mornings. The depot manager says Friday deliveries would need a second forklift driver on shift, so any Friday bid must cover that cost. Contracts are to be signed by 12 December.",
+  "task": "Draft the goods-in section of a briefing for the depot team on what each of the three bids would mean for deliveries.",
+  "entities": [
+   {
+    "id": "org1",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne Packaging"
+   },
+   {
+    "id": "org2",
+    "entity_id": "supplier-fenwick",
+    "label": "ORG",
+    "quote": "Fenwick Board Supplies"
+   },
+   {
+    "id": "org3",
+    "entity_id": "supplier-marram",
+    "label": "ORG",
+    "quote": "Marram Cartons"
+   },
+   {
+    "id": "harriet",
+    "entity_id": "procurement-lead",
+    "label": "PERSON",
+    "quote": "Harriet Whitlock"
+   },
+   {
+    "id": "org4",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne",
+    "occurrence": 2
+   },
+   {
+    "id": "inv",
+    "entity_id": "invoice-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "20418"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "late-payment-claim",
+    "label": "FINANCIAL",
+    "quote": "twenty-four days after the due date, and their credit team charged a 640-pound late fee"
+   },
+   {
+    "id": "dilwyn",
+    "entity_id": "finance-colleague",
+    "label": "PERSON",
+    "quote": "Dilwyn Probert"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "fee-booking-claim",
+    "label": "FINANCIAL",
+    "quote": "wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "org1",
+    "entity_id": "supplier-calder",
+    "label": "ORG",
+    "quote": "Calder & Wynne Packaging",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The briefing compares bidders' delivery patterns, but the bidder name is hidden as an unnumbered [ORG]; bids cannot be told apart in the output (disclosed utility loss)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "org2",
+    "entity_id": "supplier-fenwick",
+    "label": "ORG",
+    "quote": "Fenwick Board Supplies",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The briefing compares bidders' delivery patterns, but the bidder name is hidden as an unnumbered [ORG]; bids cannot be told apart in the output (disclosed utility loss)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "org3",
+    "entity_id": "supplier-marram",
+    "label": "ORG",
+    "quote": "Marram Cartons",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Bidder identity is commercially sensitive in sealed bids; only the absence of confirmed terms matters."
+   },
+   {
+    "kind": "entity",
+    "target_id": "harriet",
+    "entity_id": "procurement-lead",
+    "label": "PERSON",
+    "quote": "Harriet Whitlock",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "In March we paid Calder & Wynne's invoice 20418 twenty-four days after the due date, and their credit team charged a 640-pound late fee. Dilwyn Probert in finance wants that fee booked to the procurement budget, not the warehouse, unless the supplier waives it by 30 November.\n\n",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A depot goods-in briefing does not need a past late-payment fee, its booking to a budget, or the invoice reference."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "offers delivery every second Tuesday,"
+   },
+   {
+    "quote": "offers delivery every Friday, and"
+   },
+   {
+    "quote": "has not confirmed its second-year terms."
+   },
+   {
+    "quote": "Our Newport depot only takes deliveries on Tuesday and Thursday mornings."
+   },
+   {
+    "quote": "The depot manager says Friday deliveries would need a second forklift driver on shift, so any Friday bid must cover that cost."
+   }
+  ],
+  "approved_output": "We have three sealed bids for the corrugated packaging contract. [ORG] offers delivery every second Tuesday, [ORG] offers delivery every Friday, and [ORG] has not confirmed its second-year terms. [PERSON_1] wants the shortlist to weigh delivery reliability as well as unit price.\n\nOur Newport depot only takes deliveries on Tuesday and Thursday mornings. The depot manager says Friday deliveries would need a second forklift driver on shift, so any Friday bid must cover that cost. Contracts are to be signed by 12 December.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-cost-flag",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The nightly sync between the orders database and the invoicing service failed on 3 and 4 November because the queue worker ran out of memory after the batch size was raised from 500 to 2,000 rows. Rolling the batch size back to 500 on the 5th fixed it, and Nathan Pickersgill confirmed the retry job now finishes in about 40 minutes. We owe the customer, Penrose Veterinary Group, service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours. Seren Cadwallader approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed. The fix, which streams rows instead of loading them all, is scheduled for release 4.18 on 20 November.",
+  "task": "Work out what this incident has cost us so far and what finance needs to be told before month end.",
+  "entities": [
+   {
+    "id": "nathan",
+    "entity_id": "engineer",
+    "label": "PERSON",
+    "quote": "Nathan Pickersgill"
+   },
+   {
+    "id": "penrose",
+    "entity_id": "customer",
+    "label": "ORG",
+    "quote": "Penrose Veterinary Group"
+   },
+   {
+    "id": "seren",
+    "entity_id": "approver",
+    "label": "PERSON",
+    "quote": "Seren Cadwallader"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "credits-claim",
+    "label": "FINANCIAL",
+    "quote": "service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "node-cost-claim",
+    "label": "FINANCIAL",
+    "quote": "approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nathan",
+    "entity_id": "engineer",
+    "label": "PERSON",
+    "quote": "Nathan Pickersgill",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "penrose",
+    "entity_id": "customer",
+    "label": "ORG",
+    "quote": "Penrose Veterinary Group",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Customer identity is confidential business information; the cost summary only needs the fact that credits are owed to a customer."
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "credits-claim",
+    "label": "FINANCIAL",
+    "quote": "service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "seren",
+    "entity_id": "approver",
+    "label": "PERSON",
+    "quote": "Seren Cadwallader",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin2",
+    "entity_id": "node-cost-claim",
+    "label": "FINANCIAL",
+    "quote": "approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "We owe the customer,"
+   },
+   {
+    "quote": "service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours."
+   },
+   {
+    "quote": "approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed."
+   }
+  ],
+  "approved_output": "The nightly sync between the orders database and the invoicing service failed on 3 and 4 November because the queue worker ran out of memory after the batch size was raised from 500 to 2,000 rows. Rolling the batch size back to 500 on the 5th fixed it, and [PERSON_1] confirmed the retry job now finishes in about 40 minutes. We owe the customer, [ORG], service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours. [PERSON_2] approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed. The fix, which streams rows instead of loading them all, is scheduled for release 4.18 on 20 November.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-postmortem",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:orders-sync-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "The nightly sync between the orders database and the invoicing service failed on 3 and 4 November because the queue worker ran out of memory after the batch size was raised from 500 to 2,000 rows. Rolling the batch size back to 500 on the 5th fixed it, and Nathan Pickersgill confirmed the retry job now finishes in about 40 minutes. We owe the customer, Penrose Veterinary Group, service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours. Seren Cadwallader approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed. The fix, which streams rows instead of loading them all, is scheduled for release 4.18 on 20 November.",
+  "task": "Write the engineering post-incident summary: what failed, why, what fixed it and when the permanent change ships.",
+  "entities": [
+   {
+    "id": "nathan",
+    "entity_id": "engineer",
+    "label": "PERSON",
+    "quote": "Nathan Pickersgill"
+   },
+   {
+    "id": "penrose",
+    "entity_id": "customer",
+    "label": "ORG",
+    "quote": "Penrose Veterinary Group"
+   },
+   {
+    "id": "seren",
+    "entity_id": "approver",
+    "label": "PERSON",
+    "quote": "Seren Cadwallader"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "credits-claim",
+    "label": "FINANCIAL",
+    "quote": "service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "node-cost-claim",
+    "label": "FINANCIAL",
+    "quote": "approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nathan",
+    "entity_id": "engineer",
+    "label": "PERSON",
+    "quote": "Nathan Pickersgill",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "We owe the customer, Penrose Veterinary Group, service credits of 3,150 euros under the 99.5 percent uptime clause because the failure lasted 31 hours. Seren Cadwallader approved paying for an extra worker node at 190 euros a month until the code fix ships, but only if the credits are not disputed. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "An engineering post-incident summary does not need the customer's service-credit amount, the temporary node spend or the approval condition."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The nightly sync between the orders database and the invoicing service failed on 3 and 4 November because the queue worker ran out of memory after the batch size was raised from 500 to 2,000 rows."
+   },
+   {
+    "quote": "Rolling the batch size back to 500 on the 5th fixed it, and"
+   },
+   {
+    "quote": "confirmed the retry job now finishes in about 40 minutes."
+   },
+   {
+    "quote": "The fix, which streams rows instead of loading them all, is scheduled for release 4.18 on 20 November."
+   }
+  ],
+  "approved_output": "The nightly sync between the orders database and the invoicing service failed on 3 and 4 November because the queue worker ran out of memory after the batch size was raised from 500 to 2,000 rows. Rolling the batch size back to 500 on the 5th fixed it, and [PERSON_1] confirmed the retry job now finishes in about 40 minutes. The fix, which streams rows instead of loading them all, is scheduled for release 4.18 on 20 November.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-test-plan",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Brecon Sensor Works has pushed the thermal chamber delivery for our validation lab to 1 December and offered a loan unit, and Idris Parry says the firmware freeze cannot move, so the first soak test must start on the loan unit or be cancelled. The loan unit only holds temperatures down to minus 20, not the minus 40 in the spec, so Idris plans to run the minus 40 cycles after delivery. Freya Holloway in finance has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back, and she wants the purchase order reference 77316 quoted on any rental invoice. Our procurement lead has told the vendor we will not accept partial shipments, whatever the lead time. Idris is out on the 14th, so the test plan must be approved before then.",
+  "task": "Draft the interim test plan for the validation lab covering what can run on the loan unit and what has to wait.",
+  "entities": [
+   {
+    "id": "vendor",
+    "entity_id": "chamber-vendor",
+    "label": "ORG",
+    "quote": "Brecon Sensor Works"
+   },
+   {
+    "id": "idris1",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris Parry"
+   },
+   {
+    "id": "idris2",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 2
+   },
+   {
+    "id": "freya",
+    "entity_id": "finance-partner",
+    "label": "PERSON",
+    "quote": "Freya Holloway"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "rental-budget-claim",
+    "label": "FINANCIAL",
+    "quote": "has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back"
+   },
+   {
+    "id": "po",
+    "entity_id": "purchase-order-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "77316"
+   },
+   {
+    "id": "idris3",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 3
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "vendor",
+    "entity_id": "chamber-vendor",
+    "label": "ORG",
+    "quote": "Brecon Sensor Works",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "Vendor identity is a commercial relationship detail; the test plan needs only that the chamber is late and a loan unit exists."
+   },
+   {
+    "kind": "entity",
+    "target_id": "idris1",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris Parry",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "idris2",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "Freya Holloway in finance has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back, and she wants the purchase order reference 77316 quoted on any rental invoice. ",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A technical test plan does not need the finance partner's rental budget, credit condition or purchase order reference."
+   },
+   {
+    "kind": "entity",
+    "target_id": "idris3",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 3,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "has pushed the thermal chamber delivery for our validation lab to 1 December and offered a loan unit, and"
+   },
+   {
+    "quote": "says the firmware freeze cannot move, so the first soak test must start on the loan unit or be cancelled."
+   },
+   {
+    "quote": "The loan unit only holds temperatures down to minus 20, not the minus 40 in the spec, so"
+   },
+   {
+    "quote": "plans to run the minus 40 cycles after delivery."
+   },
+   {
+    "quote": "is out on the 14th, so the test plan must be approved before then."
+   }
+  ],
+  "approved_output": "[ORG] has pushed the thermal chamber delivery for our validation lab to 1 December and offered a loan unit, and [PERSON_1] says the firmware freeze cannot move, so the first soak test must start on the loan unit or be cancelled. The loan unit only holds temperatures down to minus 20, not the minus 40 in the spec, so [PERSON_1] plans to run the minus 40 cycles after delivery. Our procurement lead has told the vendor we will not accept partial shipments, whatever the lead time. [PERSON_1] is out on the 14th, so the test plan must be approved before then.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-cost-signoff",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:thermal-chamber-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Brecon Sensor Works has pushed the thermal chamber delivery for our validation lab to 1 December and offered a loan unit, and Idris Parry says the firmware freeze cannot move, so the first soak test must start on the loan unit or be cancelled. The loan unit only holds temperatures down to minus 20, not the minus 40 in the spec, so Idris plans to run the minus 40 cycles after delivery. Freya Holloway in finance has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back, and she wants the purchase order reference 77316 quoted on any rental invoice. Our procurement lead has told the vendor we will not accept partial shipments, whatever the lead time. Idris is out on the 14th, so the test plan must be approved before then.",
+  "task": "Prepare the request for finance to sign off the interim cost while the chamber is late.",
+  "entities": [
+   {
+    "id": "vendor",
+    "entity_id": "chamber-vendor",
+    "label": "ORG",
+    "quote": "Brecon Sensor Works"
+   },
+   {
+    "id": "idris1",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris Parry"
+   },
+   {
+    "id": "idris2",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 2
+   },
+   {
+    "id": "freya",
+    "entity_id": "finance-partner",
+    "label": "PERSON",
+    "quote": "Freya Holloway"
+   },
+   {
+    "id": "fin1",
+    "entity_id": "rental-budget-claim",
+    "label": "FINANCIAL",
+    "quote": "has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back"
+   },
+   {
+    "id": "po",
+    "entity_id": "purchase-order-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "77316"
+   },
+   {
+    "id": "idris3",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 3
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "vendor",
+    "entity_id": "chamber-vendor",
+    "label": "ORG",
+    "quote": "Brecon Sensor Works",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The request concerns the late vendor, but the name is hidden as [ORG]; the sign-off request cannot name the vendor (disclosed utility loss)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "idris1",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris Parry",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "idris2",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "freya",
+    "entity_id": "finance-partner",
+    "label": "PERSON",
+    "quote": "Freya Holloway",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin1",
+    "entity_id": "rental-budget-claim",
+    "label": "FINANCIAL",
+    "quote": "has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "po",
+    "entity_id": "purchase-order-ref",
+    "label": "ACCOUNT_ID",
+    "quote": "77316",
+    "action": "PLACEHOLDER",
+    "relevance": "essential",
+    "reason": "The purchase order reference is needed to quote on the invoice but is an account identifier shown as [ACCOUNT_ID]; exact reference cannot be checked from the output (disclosed utility loss)."
+   },
+   {
+    "kind": "entity",
+    "target_id": "idris3",
+    "entity_id": "test-engineer",
+    "label": "PERSON",
+    "quote": "Idris",
+    "occurrence": 3,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "has pushed the thermal chamber delivery for our validation lab to 1 December and offered a loan unit, and"
+   },
+   {
+    "quote": "in finance has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back, and she wants the purchase order reference"
+   },
+   {
+    "quote": "quoted on any rental invoice."
+   }
+  ],
+  "approved_output": "[ORG] has pushed the thermal chamber delivery for our validation lab to 1 December and offered a loan unit, and [PERSON_1] says the firmware freeze cannot move, so the first soak test must start on the loan unit or be cancelled. The loan unit only holds temperatures down to minus 20, not the minus 40 in the spec, so [PERSON_1] plans to run the minus 40 cycles after delivery. [PERSON_2] in finance has agreed a 2,400-pound rental budget for the interim if the vendor does not credit it back, and she wants the purchase order reference [ACCOUNT_ID] quoted on any rental invoice. Our procurement lead has told the vendor we will not accept partial shipments, whatever the lead time. [PERSON_1] is out on the 14th, so the test plan must be approved before then.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:egg-meeting-meeting-list",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:egg-meeting-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:egg-meeting-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:egg-meeting-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:egg-meeting-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "I'm meeting Delyth Mason, the catering manager at Ysgol Rhydfelen, on Thursday about my daughter Annest's school dinners. Annest reacts to egg, and her allergist, Dr Hugh Lambert, said she tolerates it only in hard-baked cake, never in quiche, omelette or mayonnaise. Her adrenaline pen is 0.15 mg and the school keeps one in the office and one in her class bag. She had a reaction in June when a supply cook put egg in the pasta bake, and we were told then that labels would be checked every day. I want written confirmation that the sauce and fritters are now egg-free, and that nobody gives her a pudding without checking the label first. Her brother Tomos is on the same lunch rota, has no allergies, and can keep his usual plate.",
+  "task": "Turn this into a clear list of requests and questions for the catering meeting, keeping the allergy details exactly right.",
+  "entities": [
+   {
+    "id": "delyth",
+    "entity_id": "catering-manager",
+    "label": "PERSON",
+    "quote": "Delyth Mason"
+   },
+   {
+    "id": "annest1",
+    "entity_id": "daughter",
+    "label": "PERSON",
+    "quote": "Annest",
+    "occurrence": 1
+   },
+   {
+    "id": "annest2",
+    "entity_id": "daughter",
+    "label": "PERSON",
+    "quote": "Annest",
+    "occurrence": 2
+   },
+   {
+    "id": "hugh",
+    "entity_id": "allergist",
+    "label": "PERSON",
+    "quote": "Hugh Lambert"
+   },
+   {
+    "id": "h1",
+    "entity_id": "egg-reaction-claim",
+    "label": "HEALTH",
+    "quote": "reacts to egg"
+   },
+   {
+    "id": "h2",
+    "entity_id": "baked-egg-claim",
+    "label": "HEALTH",
+    "quote": "she tolerates it only in hard-baked cake, never in quiche, omelette or mayonnaise"
+   },
+   {
+    "id": "h3",
+    "entity_id": "pen-claim",
+    "label": "HEALTH",
+    "quote": "Her adrenaline pen is 0.15 mg and the school keeps one in the office and one in her class bag."
+   },
+   {
+    "id": "h4",
+    "entity_id": "june-reaction-claim",
+    "label": "HEALTH",
+    "quote": "She had a reaction in June when a supply cook put egg in the pasta bake"
+   },
+   {
+    "id": "tomos",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Tomos"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "delyth",
+    "entity_id": "catering-manager",
+    "label": "PERSON",
+    "quote": "Delyth Mason",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "annest1",
+    "entity_id": "daughter",
+    "label": "PERSON",
+    "quote": "Annest",
+    "occurrence": 1,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "annest2",
+    "entity_id": "daughter",
+    "label": "PERSON",
+    "quote": "Annest",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "egg-reaction-claim",
+    "label": "HEALTH",
+    "quote": "reacts to egg",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hugh",
+    "entity_id": "allergist",
+    "label": "PERSON",
+    "quote": "Hugh Lambert",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "baked-egg-claim",
+    "label": "HEALTH",
+    "quote": "she tolerates it only in hard-baked cake, never in quiche, omelette or mayonnaise",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "pen-claim",
+    "label": "HEALTH",
+    "quote": "Her adrenaline pen is 0.15 mg and the school keeps one in the office and one in her class bag.",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h4",
+    "entity_id": "june-reaction-claim",
+    "label": "HEALTH",
+    "quote": "She had a reaction in June when a supply cook put egg in the pasta bake",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tomos",
+    "entity_id": "brother",
+    "label": "PERSON",
+    "quote": "Tomos",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "reacts to egg, and her allergist,"
+   },
+   {
+    "quote": "said she tolerates it only in hard-baked cake, never in quiche, omelette or mayonnaise."
+   },
+   {
+    "quote": "Her adrenaline pen is 0.15 mg and the school keeps one in the office and one in her class bag."
+   },
+   {
+    "quote": "She had a reaction in June when a supply cook put egg in the pasta bake, and we were told then that labels would be checked every day."
+   },
+   {
+    "quote": "I want written confirmation that the sauce and fritters are now egg-free, and that nobody gives her a pudding without checking the label first."
+   }
+  ],
+  "approved_output": "I'm meeting [PERSON_1], the catering manager at Ysgol Rhydfelen, on Thursday about my daughter [PERSON_2]'s school dinners. [PERSON_2] reacts to egg, and her allergist, Dr [PERSON_3], said she tolerates it only in hard-baked cake, never in quiche, omelette or mayonnaise. Her adrenaline pen is 0.15 mg and the school keeps one in the office and one in her class bag. She had a reaction in June when a supply cook put egg in the pasta bake, and we were told then that labels would be checked every day. I want written confirmation that the sauce and fritters are now egg-free, and that nobody gives her a pudding without checking the label first. Her brother [PERSON_4] is on the same lunch rota, has no allergies, and can keep his usual plate.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:u10-reminder-group-chat",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:u10-reminder-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:u10-reminder-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:u10-reminder-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:u10-reminder-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Reminder for Saturday: the under-10s play Rhosymedre Juniors at Cefn Park, kick-off at 10:00, and the pitch is the one nearest the bowling green. Please park on Station Road, because the club car park is closed for resurfacing until the end of November. Players should wear the red shirts, black shorts and red socks, and bring shin pads and a water bottle. The tea hut will sell hot chocolate for 1.50 pounds and flapjacks for 80p. If it rains hard, the match goes ahead on the 3G pitch at the leisure centre instead, so check the club website after 8:00. Tuesday training stays in the sports hall until Christmas, 5:30 to 6:30.",
+  "task": "Turn this into a short friendly reminder for the parents' group chat.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "approved_output": "Reminder for Saturday: the under-10s play Rhosymedre Juniors at Cefn Park, kick-off at 10:00, and the pitch is the one nearest the bowling green. Please park on Station Road, because the club car park is closed for resurfacing until the end of November. Players should wear the red shirts, black shorts and red socks, and bring shin pads and a water bottle. The tea hut will sell hot chocolate for 1.50 pounds and flapjacks for 80p. If it rains hard, the match goes ahead on the 3G pitch at the leisure centre instead, so check the club website after 8:00. Tuesday training stays in the sports hall until Christmas, 5:30 to 6:30.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:dinner-notes-organise",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-notes-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-notes-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-notes-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:dinner-notes-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Notes for Friday. Gethin's dinner account is 12.40 pounds in credit, I think, though the app showed 11.90 yesterday. His teacher, Dewi Brackley, said he has been swapping his fruit for crisps at lunch. Mushrooms still make him sick, which the GP says is not a true allergy, so I have not put it on the form. The school wants the lunch form back by 21 November, signed, with a contact number, which is 01632 960744. Check whether he needs swimming kit on Monday. Ask about the Christmas dinner order and whether the vouchers from his gran can be used.",
+  "task": "Help me organise these notes.",
+  "entities": [
+   {
+    "id": "gethin",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Gethin"
+   },
+   {
+    "id": "f1",
+    "entity_id": "balance-claim",
+    "label": "FINANCIAL",
+    "quote": "12.40 pounds in credit, I think, though the app showed 11.90 yesterday"
+   },
+   {
+    "id": "dewi",
+    "entity_id": "teacher",
+    "label": "PERSON",
+    "quote": "Dewi Brackley"
+   },
+   {
+    "id": "h1",
+    "entity_id": "mushroom-claim",
+    "label": "HEALTH",
+    "quote": "Mushrooms still make him sick, which the GP says is not a true allergy, so I have not put it on the form"
+   },
+   {
+    "id": "phone",
+    "entity_id": "contact-phone",
+    "label": "PHONE",
+    "quote": "01632 960744"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "gethin",
+    "entity_id": "child",
+    "label": "PERSON",
+    "quote": "Gethin",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "balance-claim",
+    "label": "FINANCIAL",
+    "quote": "12.40 pounds in credit, I think, though the app showed 11.90 yesterday",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "The task does not say whether the account balance matters; it is plausibly useful to the parent and permitted to keep."
+   },
+   {
+    "kind": "entity",
+    "target_id": "dewi",
+    "entity_id": "teacher",
+    "label": "PERSON",
+    "quote": "Dewi Brackley",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "mushroom-claim",
+    "label": "HEALTH",
+    "quote": "Mushrooms still make him sick, which the GP says is not a true allergy, so I have not put it on the form",
+    "action": "KEEP",
+    "relevance": "uncertain",
+    "reason": "The task does not say whether the food reaction matters for the notes; it is plausibly useful and permitted to keep."
+   },
+   {
+    "kind": "entity",
+    "target_id": "phone",
+    "entity_id": "contact-phone",
+    "label": "PHONE",
+    "quote": "01632 960744",
+    "action": "PLACEHOLDER",
+    "relevance": "uncertain",
+    "reason": "A direct phone number is a contact identifier; it is protected whether or not the notes need it, and the form still needs the real number from the parent."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "The school wants the lunch form back by 21 November, signed, with a contact number, which is"
+   },
+   {
+    "quote": "Check whether he needs swimming kit on Monday."
+   },
+   {
+    "quote": "Ask about the Christmas dinner order and whether the vouchers from his gran can be used."
+   }
+  ],
+  "approved_output": "Notes for Friday. [PERSON_1]'s dinner account is 12.40 pounds in credit, I think, though the app showed 11.90 yesterday. His teacher, [PERSON_2], said he has been swapping his fruit for crisps at lunch. Mushrooms still make him sick, which the GP says is not a true allergy, so I have not put it on the form. The school wants the lunch form back by 21 November, signed, with a contact number, which is [PHONE]. Check whether he needs swimming kit on Monday. Ask about the Christmas dinner order and whether the vouchers from his gran can be used.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:racking-approval-approval-draft",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:racking-approval-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:racking-approval-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:racking-approval-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:racking-approval-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Please draft the approval request for replacing the racking at the Wrexham warehouse. Pennard Steel quoted 18,600 pounds with installation in January, and Alder Lift Services quoted 21,250 pounds with installation in December. Aneira Brooks, the budget holder, says the racking line has 20,000 pounds left this year and that any overspend cannot be moved into next year's budget. Pennard wants a 30 percent deposit paid to account XX00 EXMP 0000 1111 2222 33, but Aneira has said she will only release it after the safety inspection on 10 December. The cheaper quote excludes removal of the old racking, which Alder includes in its price.",
+  "task": "Draft the approval request for the racking replacement, comparing the two quotes against the money left and recommending what to do.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "pennard-quote-claim",
+    "label": "FINANCIAL",
+    "quote": "quoted 18,600 pounds with installation in January"
+   },
+   {
+    "id": "f2",
+    "entity_id": "alder-quote-claim",
+    "label": "FINANCIAL",
+    "quote": "quoted 21,250 pounds with installation in December"
+   },
+   {
+    "id": "aneira1",
+    "entity_id": "budget-holder",
+    "label": "PERSON",
+    "quote": "Aneira Brooks"
+   },
+   {
+    "id": "f3",
+    "entity_id": "budget-left-claim",
+    "label": "FINANCIAL",
+    "quote": "says the racking line has 20,000 pounds left this year and that any overspend cannot be moved into next year's budget"
+   },
+   {
+    "id": "f4",
+    "entity_id": "deposit-claim",
+    "label": "FINANCIAL",
+    "quote": "wants a 30 percent deposit paid to account"
+   },
+   {
+    "id": "iban",
+    "entity_id": "deposit-account",
+    "label": "IBAN",
+    "quote": "XX00 EXMP 0000 1111 2222 33"
+   },
+   {
+    "id": "aneira2",
+    "entity_id": "budget-holder",
+    "label": "PERSON",
+    "quote": "Aneira",
+    "occurrence": 2
+   },
+   {
+    "id": "f5",
+    "entity_id": "release-condition-claim",
+    "label": "FINANCIAL",
+    "quote": "has said she will only release it after the safety inspection on 10 December"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "pennard-quote-claim",
+    "label": "FINANCIAL",
+    "quote": "quoted 18,600 pounds with installation in January",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "alder-quote-claim",
+    "label": "FINANCIAL",
+    "quote": "quoted 21,250 pounds with installation in December",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "aneira1",
+    "entity_id": "budget-holder",
+    "label": "PERSON",
+    "quote": "Aneira Brooks",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "budget-left-claim",
+    "label": "FINANCIAL",
+    "quote": "says the racking line has 20,000 pounds left this year and that any overspend cannot be moved into next year's budget",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f4",
+    "entity_id": "deposit-claim",
+    "label": "FINANCIAL",
+    "quote": "wants a 30 percent deposit paid to account",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "iban",
+    "entity_id": "deposit-account",
+    "label": "IBAN",
+    "quote": "XX00 EXMP 0000 1111 2222 33",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "reason": "A bank account number is a direct payment identifier; the approval request only needs the deposit percentage and release condition, so nothing useful is lost."
+   },
+   {
+    "kind": "entity",
+    "target_id": "aneira2",
+    "entity_id": "budget-holder",
+    "label": "PERSON",
+    "quote": "Aneira",
+    "occurrence": 2,
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f5",
+    "entity_id": "release-condition-claim",
+    "label": "FINANCIAL",
+    "quote": "has said she will only release it after the safety inspection on 10 December",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Pennard Steel quoted 18,600 pounds with installation in January, and Alder Lift Services quoted 21,250 pounds with installation in December."
+   },
+   {
+    "quote": ", the budget holder, says the racking line has 20,000 pounds left this year and that any overspend cannot be moved into next year's budget."
+   },
+   {
+    "quote": "Pennard wants a 30 percent deposit paid to account"
+   },
+   {
+    "quote": "has said she will only release it after the safety inspection on 10 December."
+   },
+   {
+    "quote": "The cheaper quote excludes removal of the old racking, which Alder includes in its price."
+   }
+  ],
+  "approved_output": "Please draft the approval request for replacing the racking at the Wrexham warehouse. Pennard Steel quoted 18,600 pounds with installation in January, and Alder Lift Services quoted 21,250 pounds with installation in December. [PERSON_1], the budget holder, says the racking line has 20,000 pounds left this year and that any overspend cannot be moved into next year's budget. Pennard wants a 30 percent deposit paid to account [IBAN], but [PERSON_1] has said she will only release it after the safety inspection on 10 December. The cheaper quote excludes removal of the old racking, which Alder includes in its price.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "63fc676187ba4509be5f81d5f6212eb0",
+  "id": "63fc676187ba4509be5f81d5f6212eb0:build-log-build-fix",
+  "family_id": "63fc676187ba4509be5f81d5f6212eb0:build-log-family",
+  "source_id": "63fc676187ba4509be5f81d5f6212eb0:build-log-source",
+  "persona_id": "63fc676187ba4509be5f81d5f6212eb0:build-log-persona",
+  "template_id": "63fc676187ba4509be5f81d5f6212eb0:build-log-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "text": "Build 2291 failed at the lint step on the release branch. The log shows 14 warnings from eslint and one error: unused variable retryCount in src/queue/worker.js at line 88. The tests were skipped after the lint failure, and the Docker image was not built. We run Node 20 and eslint 8.57 in CI, and the warning limit is set to 10. Last week's build 2284 passed with 9 warnings. I want to know whether to fix the warnings first or only the error, and whether raising the limit to 15 is a reasonable short-term option.",
+  "task": "Explain why this build failed and give me a practical order of fixes.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [],
+  "approved_output": "Build 2291 failed at the lint step on the release branch. The log shows 14 warnings from eslint and one error: unused variable retryCount in src/queue/worker.js at line 88. The tests were skipped after the lint failure, and the Docker image was not built. We run Node 20 and eslint 8.57 in CI, and the warning limit is set to 10. Last week's build 2284 passed with 9 warnings. I want to know whether to fix the warnings first or only the error, and whether raising the limit to 15 is a reasonable short-term option.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "63fc676187ba4509be5f81d5f6212eb0:generator",
+   "generator_model": "claude-sonnet-5-5"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]
