@@ -206,7 +206,9 @@ def fit(model,jobs,output,epochs=2,steps_per_epoch=None,learning_rate=1e-5,head_
     optimizer=torch.optim.AdamW([{'params':model.net.backbone.parameters(),'lr':learning_rate},
                                   {'params':heads,'lr':head_lr}],weight_decay=.01)
     if model.model_id.startswith('deberta-v3-large'):
-        model.net.backbone.gradient_checkpointing_enable()
+        # DeBERTa shares relative-position tensors across layers. Reentrant
+        # checkpointing can backward through their graph twice after unfreezing.
+        model.net.backbone.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant':False})
     step=0;started=time.time();seen=defaultdict(set);metrics=[]
     autocast=(lambda:torch.autocast('cuda',dtype=torch.bfloat16)) if model.device.startswith('cuda') else contextlib.nullcontext
     for epoch in range(epochs):
