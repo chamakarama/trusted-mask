@@ -39,7 +39,7 @@ Each row below covers the same 64 cases. Direct targets are gold ALIAS/PLACEHOLD
 
 ## UI interpretation
 
-The current browser code already sends the opening line as task context (`mask/web/static/app.js`). If the backend receives no task, `PreviewService.preview` uses the complete message as task context (`mask/web/server.py`). Neither is equivalent to calling the engine with an empty string. A separate intended-use field would provide a clearer input, but these weights did not turn that clarity into better source edits in the tests above.
+The current browser code already sends the opening line as task context (`mask/web/static/app.js`). If the backend receives no task, `ModelService.preview` uses the complete message as task context (`mask/web/server.py`). Neither is equivalent to calling the engine with an empty string. A separate intended-use field would provide a clearer input, but these weights did not turn that clarity into better source edits in the tests above.
 
 The truly empty engine task caused DeBERTa to miss two additional direct edit targets, while even the vague nonempty task matched the explicit task. The engine explicitly retains contextual candidates on empty tasks. This is not evidence that the model understood the detailed intended use better: the task gate and contextual misclassification can explain the change. MiniLM had no output differences even with an empty engine task.
 
