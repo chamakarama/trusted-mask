@@ -1,41 +1,44 @@
 /*
  * Mask design tokens. Light theme only.
- * One accent (ink blue). Highlight colours are muted and always paired with an icon and a label.
+ * White page, very light grey surfaces, hairlines; one muted ink-blue accent (the export button).
+ * Transformations are translucent highlighter strokes.
  */
 :root {
-  /* surfaces */
+  /* surfaces: white page, two very light greys, hairlines at 6-8% ink; no dark outlines anywhere */
   --surface: #ffffff;
-  --surface-2: #f8f8f7;
-  --surface-3: #f1f1ef;
-  --surface-hover: #f4f4f2;
-  --border: #e4e4e1;
-  --border-strong: #cfcfcb;
+  --surface-2: #fafaf9;      /* data panel */
+  --surface-3: #f2f2f1;      /* quiet fills: skeletons, bars */
+  --surface-box: #f5f5f4;    /* purpose box */
+  --surface-hover: #f3f3f2;  /* row hover on the panel (opaque, for sticky cells) */
+  --border: rgba(20, 20, 18, 0.07);
+  --border-strong: rgba(20, 20, 18, 0.13);
   --hairline: 1px solid var(--border);
 
-  /* text */
-  --text: #1b1c1e;
-  --text-2: #4d5056;
-  --text-3: #6f737a; /* 4.6:1 on white */
+  /* text: ink, secondary, muted (>= 55% ink, 4.8:1 on white, 4.6:1 on the panel) */
+  --text: #17181a;
+  --text-2: #505257;
+  --text-3: #707175;
+  --text-faint: #b9b9b6;     /* row numbers and null dashes only (decorative) */
   --text-inverse: #ffffff;
 
-  /* accent */
-  --accent: #2d55c8;
-  --accent-hover: #2448ad;
-  --accent-soft: #eef2fc;
-  --accent-text: #2448ad;
-  --focus: #2d55c8;
+  /* the one saturated element: a muted ink blue */
+  --accent: #3a5596;
+  --accent-hover: #2f4880;
+  --accent-soft: #eef1f8;
+  --accent-text: #34508f;
+  --focus: rgba(23, 24, 26, 0.30);
 
   /* status */
-  --ok: #1d7a4e;
-  --ok-soft: #e8f4ee;
+  --ok: #2c7350;
+  --ok-soft: #ecf4ef;
   --fail: #b3261e;
   --fail-soft: #fcecea;
-  --warn: #8a5300;
-  --warn-soft: #fff4e0;
-  --warn-border: #f0cf8f;
-  --neutral-soft: #f1f1ef;
+  --warn: #965a00;           /* warm amber, 5.3:1 on white */
+  --warn-soft: #fff6e6;
+  --warn-border: #f1d8a8;
+  --neutral-soft: #f2f2f1;
 
-  /* transformation highlights: fg (text/icon), bg (fill), line (underline/border) */
+/* transformation highlights: fg (text/icon), bg (fill), line (underline/border) */
   --hl-keep-fg: #4d5056;      --hl-keep-bg: transparent;  --hl-keep-line: #cfcfcb;
   --hl-tokenize-fg: #5b45b0;  --hl-tokenize-bg: #f2effb;  --hl-tokenize-line: #c9bff0;
   --hl-generalize-fg: #0e6f62;--hl-generalize-bg: #e8f4f1;--hl-generalize-line: #a9d6cc;
@@ -44,32 +47,33 @@
   --hl-derive-fg: #5a7319;    --hl-derive-bg: #f1f5e6;    --hl-derive-line: #c8d8a0;
   --hl-review-fg: #8a5300;    --hl-review-bg: #fff4e0;    --hl-review-line: #e0a64a;
 
-  /* highlighter marker strokes (translucent, per method) */
-  --mk-generalize: rgba(255, 212, 0, 0.42);
-  --mk-keep: rgba(64, 196, 99, 0.30);
-  --mk-tokenize: rgba(255, 146, 43, 0.36);
-  --mk-redact: rgba(255, 92, 160, 0.30);
-  --mk-derive: rgba(120, 140, 255, 0.28);
-  --mk-suppress: rgba(120, 124, 130, 0.55);
-  --mk-review: #d9820b;
-  --mk-label: #6f737a;
+  /* highlighter strokes: translucent pastels (over white they read as #fff3a3, #ffd9a8, #ffc9d9, #d5f0d0, #e2dcff) */
+  --mk-generalize: rgba(255, 226, 40, 0.42);   /* yellow */
+  --mk-tokenize: rgba(255, 160, 60, 0.40);     /* orange */
+  --mk-redact: rgba(255, 110, 155, 0.36);      /* pink */
+  --mk-keep: rgba(110, 196, 98, 0.30);         /* green */
+  --mk-derive: rgba(130, 110, 255, 0.24);      /* lavender */
+  --mk-suppress: #d4d4d1;                      /* light grey dash */
+  --mk-review: #d08a1c;                        /* amber wave */
+  --mk-label: #707175;
 
-  /* type */
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  /* type: Geist for UI, Geist Mono (tabular) for data. Scale 11 / 12.5 / 13.5 / 15 / 18 */
+  --font-sans: "Geist", "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --fs-11: 11px;
-  --fs-12: 12px;
-  --fs-13: 13px;
-  --fs-14: 14px;
-  --fs-16: 16px;
+  --fs-12: 12.5px;
+  --fs-13: 13.5px;
+  --fs-14: 13.5px;
+  --fs-15: 15px;
+  --fs-16: 15px;
   --fs-18: 18px;
   --lh-tight: 1.25;
   --lh: 1.45;
   --fw-regular: 400;
-  --fw-medium: 520;
-  --fw-semibold: 600;
+  --fw-medium: 500;
+  --fw-semibold: 560;
 
-  /* spacing (4px grid) */
+  /* spacing: 8px scale (4 for hairline adjustments) */
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -79,23 +83,24 @@
   --s-8: 32px;
   --s-10: 40px;
 
-  --radius-s: 4px;
-  --radius: 6px;
-  --radius-l: 8px;
+  --radius-s: 6px;
+  --radius: 8px;
+  --radius-l: 12px;
+  --shadow-float: 0 8px 30px rgba(0, 0, 0, 0.06);
 
   /* data grid */
-  --row-h: 32px;
-  --header-h: 72px;
-  --rownum-w: 56px;
+  --row-h: 36px;
+  --header-h: 52px;
+  --rownum-w: 48px;
 
   /* motion */
-  --dur-fast: 150ms;
-  --dur: 200ms;
-  --dur-slow: 250ms;
-  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 140ms;
+  --dur: 180ms;
+  --dur-slow: 180ms;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
 
-  --sheet-edge: -1px 0 0 var(--border);
+  --sheet-edge: -1px 0 0 var(--border), var(--shadow-float);
 }
 
 @media (prefers-reduced-motion: reduce) {

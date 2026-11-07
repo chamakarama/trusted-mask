@@ -39,6 +39,7 @@ export function PurposePane() {
 
   return (
     <div className="purpose">
+      <div className="ask-box">
       <form className="ask" onSubmit={(e) => { e.preventDefault(); send(); }}>
         <label htmlFor="goal-input" className="sr-only" id="purpose-title">What is this data for, and who receives it?</label>
         <textarea
@@ -65,6 +66,7 @@ export function PurposePane() {
         {questions > 0 && !open && <span className="spec-dot" aria-hidden="true" />}
         <IconChevronV size={14} up={open} />
       </button>
+      </div>
       {open && (
         <div className="spec-section" id="spec-section">
           {interpreting && <p className="reply muted">Reading…</p>}

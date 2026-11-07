@@ -10,9 +10,9 @@ import { IconSort } from "../lib/icons";
 import { useRows } from "./useRows";
 import { SpanText } from "./SpanText";
 
-const ROW_H = 32;
-const HEADER_H = 46;
-const ROWNUM_W = 56;
+const ROW_H = 36;
+const HEADER_H = 52;
+const ROWNUM_W = 48;
 
 interface Active { r: number; c: number } // r = -1 is the header row
 
@@ -226,7 +226,7 @@ const HeaderCell = memo(function HeaderCell({
   const needsReview = !!(dec?.needsReview || (!dec && d?.needsReview));
   return (
     <div
-      className={`grid-hcell ${selected ? "is-selected" : ""} ${removed ? "is-removed" : ""}`}
+      className={`grid-hcell ${selected ? "is-selected" : ""} ${col.isNumeric ? "is-num" : ""} ${removed ? "is-removed" : ""}`}
       role="columnheader"
       aria-colindex={index + 2}
       aria-sort={sortDir === "asc" ? "ascending" : sortDir === "desc" ? "descending" : "none"}
@@ -280,7 +280,7 @@ const Cell = memo(function Cell({
   else content = value;
   return (
     <div
-      className={`grid-cell ${selected ? "is-selected" : ""} ${col.isText ? "is-text" : ""} ${removed ? "is-removed" : ""}`}
+      className={`grid-cell ${selected ? "is-selected" : ""} ${col.isText ? "is-text" : ""} ${col.isNumeric ? "is-num" : ""} ${removed ? "is-removed" : ""}`}
       role="gridcell"
       aria-colindex={colIndex + 2}
       aria-selected={selected}
