@@ -1,0 +1,65 @@
+{
+  "counts": {
+    "records": 6,
+    "gold_spans": 22,
+    "gold_detection_spans": 22,
+    "detected_gold_exact": 8,
+    "gold_action_correct": 12,
+    "gold_relevance_correct": 0,
+    "required_removal": 16,
+    "required_removed": 8,
+    "direct_required": 12,
+    "direct_removed": 8,
+    "required_facts": 18,
+    "facts_retained": 18,
+    "ready": 0,
+    "unsupported": 0,
+    "predicted_spans": 10,
+    "benign_characters": 2356,
+    "benign_characters_changed": 0,
+    "required_section_drops": 4,
+    "sections_dropped": 0,
+    "gold_keep_characters": 1175,
+    "gold_keep_characters_changed": 0
+  },
+  "gold_span_action_accuracy_diagnostic": 0.5454545454545454,
+  "exact_detector_recall": 0.36363636363636365,
+  "exact_detector_precision": 0.8,
+  "draft_benign_character_change_rate": 0.0,
+  "gold_span_relevance_accuracy_diagnostic": 0.0,
+  "draft_required_removal_coverage": 0.5,
+  "draft_direct_removal_coverage": 0.6666666666666666,
+  "draft_exact_fact_retention": 1.0,
+  "draft_privacy_misses": 8,
+  "draft_section_drop_recall": 0.0,
+  "draft_keep_character_change_rate": 0.0,
+  "automatic_coverage": 0.0,
+  "latency_seconds": {
+    "median": 0.0017990059999988262,
+    "p95": 0.002045319999979256
+  },
+  "runtime_versions": {
+    "pipeline": "privacy-edit-pipeline.2",
+    "policy": "consumer-v1-pilot.2",
+    "model_training_policy": "unknown",
+    "model_bundle_sha256": null
+  },
+  "release_pass": false,
+  "independent_evidence": false,
+  "limitations": [
+    "Fresh agent-authored long diagnostics; not independently audited or used for selection",
+    "draft metrics include review outputs and are not successful automatic exports",
+    "gold-span classification is diagnostic, not end-to-end privacy",
+    "span coverage does not measure inference attacks or downstream utility"
+  ],
+  "context_sensitivity": {
+    "task_swap_groups": 3,
+    "groups_with_changed_output": 0
+  },
+  "reporting_metadata_correction": {
+    "previous_sha256": "572d46ec455bc07f57226b4bb8b2a851232876ab4ae61c2e2784262e26cfb7e4",
+    "previous_limitation": "50 model-reviewed short dev records; no human audit or independent final test",
+    "metrics_and_predictions_unchanged": true
+  },
+  "evaluation_role": "fresh_diagnostic"
+}

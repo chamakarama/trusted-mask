@@ -1,5 +1,7 @@
 # Shared local pilot bundles
 
+The newer three-candidate reviewed-data bundles are also published in this repository through Git LFS. See [training-2026-11-07 download and verification instructions](bundled_weights/training-2026-11-07/README.md). They use separate paths and do not replace the historical pilots below.
+
 The repository includes both current English pilot bundles. Large weights use Git LFS; tokenizers, feature vocabularies and integrity manifests are ordinary Git files. Other experiments, caches, virtual environments and generated exports remain ignored.
 
 From the repository root, after cloning or pulling:

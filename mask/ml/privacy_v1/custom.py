@@ -7,12 +7,12 @@ from .features import action_features, bio_labels, decode_bio, token_features, t
 
 
 class LinearHead:
-    def fit(self, features, labels):
+    def fit(self, features, labels, c=1.0, max_iter=500):
         from sklearn.feature_extraction import DictVectorizer
         from sklearn.linear_model import LogisticRegression
         vectorizer = DictVectorizer(dtype=np.float64)
         matrix = vectorizer.fit_transform(features)
-        classifier = LogisticRegression(C=1.0, max_iter=500, random_state=17)
+        classifier = LogisticRegression(C=c, max_iter=max_iter, random_state=17)
         classifier.fit(matrix, labels)
         self.vocabulary = vectorizer.vocabulary_
         self.classes = list(classifier.classes_)
@@ -55,7 +55,9 @@ class CustomModel:
     model_id = "custom-a-pilot"
 
     @classmethod
-    def train(cls, records):
+    def train(cls, records, c=1.0, max_iter=500):
+        if not records or any(r["split"] != "train" for r in records):
+            raise ValueError("Training accepts only nonempty train records")
         model = cls()
         tag_features, tag_labels, features, action_labels, rel_labels = [], [], [], [], []
         seen_detection = set()
@@ -74,9 +76,9 @@ class CustomModel:
                 features.append(action_features(text, span, record["task"], record.get("context", "")))
                 action_labels.append(label["action"])
                 rel_labels.append(label["relevance"])
-        model.detector = LinearHead().fit(tag_features, tag_labels)
-        model.action = LinearHead().fit(features, action_labels)
-        model.relevance = LinearHead().fit(features, rel_labels)
+        model.detector = LinearHead().fit(tag_features, tag_labels, c, max_iter)
+        model.action = LinearHead().fit(features, action_labels, c, max_iter)
+        model.relevance = LinearHead().fit(features, rel_labels, c, max_iter)
         return model
 
     def detect(self, text):

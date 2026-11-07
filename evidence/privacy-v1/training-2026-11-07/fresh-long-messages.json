@@ -1,0 +1,374 @@
+[
+  {
+    "id": "fresh-rehab-0",
+    "family_id": "fresh-rehab",
+    "split": "diagnostic",
+    "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+    "task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+    "spans": [
+      {
+        "start": 228,
+        "end": 238,
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 247,
+        "end": 273,
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 275,
+        "end": 526,
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "start": 528,
+        "end": 699,
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary"
+      }
+    ],
+    "detection_spans": [
+      {
+        "start": 228,
+        "end": 238,
+        "label": "PERSON"
+      },
+      {
+        "start": 247,
+        "end": 273,
+        "label": "EMAIL"
+      },
+      {
+        "start": 275,
+        "end": 526,
+        "label": "HEALTH"
+      },
+      {
+        "start": 528,
+        "end": 699,
+        "label": "HEALTH"
+      }
+    ],
+    "required_facts": [
+      "pain settles when I rest",
+      "have not noticed numbness",
+      "too early to judge whether they help"
+    ],
+    "words": 112,
+    "notice": "Fresh agent-authored diagnostic only; not human-audited, not training or dev selection data. Detection boundaries for contextual sections are coarse."
+  },
+  {
+    "id": "fresh-rehab-1",
+    "family_id": "fresh-rehab",
+    "split": "diagnostic",
+    "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+    "task": "Summarise both the shoulder symptoms and the past counselling history.",
+    "spans": [
+      {
+        "start": 228,
+        "end": 238,
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 247,
+        "end": 273,
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 275,
+        "end": 526,
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "start": 528,
+        "end": 699,
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "detection_spans": [
+      {
+        "start": 228,
+        "end": 238,
+        "label": "PERSON"
+      },
+      {
+        "start": 247,
+        "end": 273,
+        "label": "EMAIL"
+      },
+      {
+        "start": 275,
+        "end": 526,
+        "label": "HEALTH"
+      },
+      {
+        "start": 528,
+        "end": 699,
+        "label": "HEALTH"
+      }
+    ],
+    "required_facts": [
+      "pain settles when I rest",
+      "recurring nightmares",
+      "no current treatment plan"
+    ],
+    "words": 112,
+    "notice": "Fresh agent-authored diagnostic only; not human-audited, not training or dev selection data. Detection boundaries for contextual sections are coarse."
+  },
+  {
+    "id": "fresh-budget-0",
+    "family_id": "fresh-budget",
+    "split": "diagnostic",
+    "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+    "task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+    "spans": [
+      {
+        "start": 307,
+        "end": 318,
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 327,
+        "end": 354,
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 357,
+        "end": 555,
+        "label": "FINANCIAL",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "start": 557,
+        "end": 723,
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary"
+      }
+    ],
+    "detection_spans": [
+      {
+        "start": 307,
+        "end": 318,
+        "label": "PERSON"
+      },
+      {
+        "start": 327,
+        "end": 354,
+        "label": "EMAIL"
+      },
+      {
+        "start": 357,
+        "end": 555,
+        "label": "FINANCIAL"
+      },
+      {
+        "start": 557,
+        "end": 723,
+        "label": "HEALTH"
+      }
+    ],
+    "required_facts": [
+      "84 euros per month",
+      "16 euros per month",
+      "only three months"
+    ],
+    "words": 116,
+    "notice": "Fresh agent-authored diagnostic only; not human-audited, not training or dev selection data. Detection boundaries for contextual sections are coarse."
+  },
+  {
+    "id": "fresh-budget-1",
+    "family_id": "fresh-budget",
+    "split": "diagnostic",
+    "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+    "task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+    "spans": [
+      {
+        "start": 307,
+        "end": 318,
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 327,
+        "end": 354,
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 357,
+        "end": 555,
+        "label": "FINANCIAL",
+        "action": "DROP",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 557,
+        "end": 723,
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "detection_spans": [
+      {
+        "start": 307,
+        "end": 318,
+        "label": "PERSON"
+      },
+      {
+        "start": 327,
+        "end": 354,
+        "label": "EMAIL"
+      },
+      {
+        "start": 357,
+        "end": 555,
+        "label": "FINANCIAL"
+      },
+      {
+        "start": 557,
+        "end": 723,
+        "label": "HEALTH"
+      }
+    ],
+    "required_facts": [
+      "recurring migraines",
+      "have not established what causes them",
+      "appointment is still pending"
+    ],
+    "words": 116,
+    "notice": "Fresh agent-authored diagnostic only; not human-audited, not training or dev selection data. Detection boundaries for contextual sections are coarse."
+  },
+  {
+    "id": "fresh-workshop-0",
+    "family_id": "fresh-workshop",
+    "split": "diagnostic",
+    "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+    "task": "Write a workshop logistics update; remove the unrelated private family note.",
+    "spans": [
+      {
+        "start": 368,
+        "end": 378,
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 387,
+        "end": 413,
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 652,
+        "end": 790,
+        "label": "FAMILY",
+        "action": "DROP",
+        "relevance": "unnecessary"
+      }
+    ],
+    "detection_spans": [
+      {
+        "start": 368,
+        "end": 378,
+        "label": "PERSON"
+      },
+      {
+        "start": 387,
+        "end": 413,
+        "label": "EMAIL"
+      },
+      {
+        "start": 652,
+        "end": 790,
+        "label": "FAMILY"
+      }
+    ],
+    "required_facts": [
+      "twelve confirmed participants",
+      "room for four more",
+      "Two borrowed sewing machines have not arrived yet",
+      "still needs to confirm"
+    ],
+    "words": 120,
+    "notice": "Fresh agent-authored diagnostic only; not human-audited, not training or dev selection data. Detection boundaries for contextual sections are coarse."
+  },
+  {
+    "id": "fresh-workshop-1",
+    "family_id": "fresh-workshop",
+    "split": "diagnostic",
+    "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+    "task": "Summarise the family situation only; the workshop details are not needed.",
+    "spans": [
+      {
+        "start": 368,
+        "end": 378,
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 387,
+        "end": 413,
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary"
+      },
+      {
+        "start": 652,
+        "end": 790,
+        "label": "FAMILY",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "detection_spans": [
+      {
+        "start": 368,
+        "end": 378,
+        "label": "PERSON"
+      },
+      {
+        "start": 387,
+        "end": 413,
+        "label": "EMAIL"
+      },
+      {
+        "start": 652,
+        "end": 790,
+        "label": "FAMILY"
+      }
+    ],
+    "required_facts": [
+      "difficult separation",
+      "asked me not to discuss"
+    ],
+    "words": 120,
+    "notice": "Fresh agent-authored diagnostic only; not human-audited, not training or dev selection data. Detection boundaries for contextual sections are coarse."
+  }
+]

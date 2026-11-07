@@ -12,13 +12,15 @@ from .data import digest, load_records
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--track", choices=("custom-a", "encoder-b"), required=True)
+    parser.add_argument("--track", choices=("custom-a", "encoder-b", "deberta-v3-base"), required=True)
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--base", type=Path)
     parser.add_argument("--device", choices=("cpu", "mps", "cuda"), default="cpu")
     parser.add_argument("--epochs", type=int, default=1)
     parser.add_argument("--max-steps", type=int)
+    parser.add_argument("--learning-rate", type=float, default=3e-5)
+    parser.add_argument("--c", type=float, default=1.0)
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Output already exists; use a new versioned directory")
@@ -31,15 +33,15 @@ def main():
     start = time.perf_counter()
     if args.track == "custom-a":
         from .custom import CustomModel
-        model = CustomModel.train(train)
-        details = {"algorithm": "sparse_logistic_regression", "C": 1.0, "max_iter": 500, "seed": 17}
+        model = CustomModel.train(train, c=args.c)
+        details = {"algorithm": "sparse_logistic_regression", "C": args.c, "max_iter": 500, "seed": 17}
     else:
         if args.base is None:
             parser.error("Encoder requires --base pointing to a pinned local checkpoint")
         from .encoder import EncoderModel
         model = EncoderModel.from_pretrained(args.base, device=args.device)
-        details = model.train_records(train, epochs=args.epochs, max_steps=args.max_steps)
-        details.update({"learning_rate": 3e-5, "seed": 17, "source": model.source})
+        details = model.train_records(train, epochs=args.epochs, max_steps=args.max_steps, learning_rate=args.learning_rate)
+        details.update({"learning_rate": args.learning_rate, "seed": 17, "source": model.source})
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=args.output.parent, prefix=".training-") as temp:
         destination = Path(temp) / "bundle"

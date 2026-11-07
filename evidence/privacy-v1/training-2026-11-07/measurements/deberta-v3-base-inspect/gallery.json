@@ -1,0 +1,60 @@
+{
+  "counts": {
+    "records": 6,
+    "gold_spans": 58,
+    "gold_detection_spans": 58,
+    "detected_gold_exact": 38,
+    "gold_action_correct": 53,
+    "gold_relevance_correct": 52,
+    "required_removal": 47,
+    "required_removed": 38,
+    "direct_required": 42,
+    "direct_removed": 38,
+    "required_facts": 24,
+    "facts_retained": 24,
+    "ready": 0,
+    "unsupported": 0,
+    "predicted_spans": 49,
+    "benign_characters": 2388,
+    "benign_characters_changed": 0,
+    "required_section_drops": 4,
+    "sections_dropped": 0,
+    "gold_keep_characters": 659,
+    "gold_keep_characters_changed": 0
+  },
+  "gold_span_action_accuracy_diagnostic": 0.9137931034482759,
+  "exact_detector_recall": 0.6551724137931034,
+  "exact_detector_precision": 0.7755102040816326,
+  "draft_benign_character_change_rate": 0.0,
+  "gold_span_relevance_accuracy_diagnostic": 0.896551724137931,
+  "draft_required_removal_coverage": 0.8085106382978723,
+  "draft_direct_removal_coverage": 0.9047619047619048,
+  "draft_exact_fact_retention": 1.0,
+  "draft_privacy_misses": 9,
+  "draft_section_drop_recall": 0.0,
+  "draft_keep_character_change_rate": 0.0,
+  "automatic_coverage": 0.0,
+  "latency_seconds": {
+    "median": 0.09044151099988085,
+    "p95": 0.5019441459999143
+  },
+  "runtime_versions": {
+    "pipeline": "privacy-edit-pipeline.2",
+    "policy": "consumer-v1-pilot.2",
+    "model_training_policy": "consumer-v1-pilot.2",
+    "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+  },
+  "release_pass": false,
+  "independent_evidence": false,
+  "limitations": [
+    "Training demonstrations; not held-out generalisation evidence",
+    "draft metrics include review outputs and are not successful automatic exports",
+    "gold-span classification is diagnostic, not end-to-end privacy",
+    "span coverage does not measure inference attacks or downstream utility"
+  ],
+  "context_sensitivity": {
+    "task_swap_groups": 0,
+    "groups_with_changed_output": 0
+  },
+  "evaluation_role": "training_demonstration"
+}
