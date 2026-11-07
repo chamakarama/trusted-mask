@@ -19,16 +19,18 @@
   ],
   "decisions": [
     {"kind": "entity", "target_id": "m1", "entity_id": "account-lead", "quote": "Priya Nair", "label": "PERSON", "action": "ALIAS", "relevance": "unnecessary"},
-    {"kind": "entity", "target_id": "m2", "entity_id": "client", "quote": "Oriole Works", "label": "ORG", "action": "PLACEHOLDER", "relevance": "unnecessary"},
-    {"kind": "entity", "target_id": "m3", "entity_id": "quote-price", "quote": "87,400 euros", "label": "FINANCIAL", "action": "PLACEHOLDER", "relevance": "unnecessary"},
+    {"kind": "entity", "target_id": "m2", "entity_id": "client", "quote": "Oriole Works", "label": "ORG", "action": "PLACEHOLDER", "relevance": "unnecessary", "reason": "The client identity is confidential; the generic onboarding follow-up only needs the customer role."},
+    {"kind": "entity", "target_id": "m3", "entity_id": "quote-price", "quote": "87,400 euros", "label": "FINANCIAL", "action": "PLACEHOLDER", "relevance": "unnecessary", "reason": "The unapproved price is forbidden for external disclosure and is not needed to ask about blocked onboarding steps."},
     {"kind": "section", "quote": "\n\nSeparately, an internal payroll note says the proposed salary is 96,000 euros.", "label": "FINANCIAL", "action": "DROP", "relevance": "unnecessary", "reason": "The unrelated payroll paragraph contains confidential compensation and no facts needed for the generic procurement follow-up."}
   ],
   "required_facts": [
     {"quote": "Our account lead,"},
-    {"quote": "a shorter onboarding checklist and a clear owner for each step"},
+    {"quote": "met the confidential client"},
+    {"quote": "The customer asked for a shorter onboarding checklist and a clear owner for each step."},
     {"quote": "Keep the tone professional and do not promise a delivery date."},
-    {"quote": "it is not approved for external disclosure"},
-    {"quote": "asks which steps are blocked without repeating internal pricing"}
+    {"quote": "The confidential draft quote is"},
+    {"quote": "it is not approved for external disclosure."},
+    {"quote": "We need wording that asks which steps are blocked without repeating internal pricing."}
   ],
   "approved_output": "Please help turn these notes into a generic procurement follow-up. Our account lead, [PERSON_1], met the confidential client [ORG] yesterday. The customer asked for a shorter onboarding checklist and a clear owner for each step. Keep the tone professional and do not promise a delivery date. The confidential draft quote is [FINANCIAL]; it is not approved for external disclosure. We need wording that asks which steps are blocked without repeating internal pricing.",
   "provenance": {"synthetic": true, "human_audited": false, "generator_id": "0123456789abcdef0123456789abcdef:corporate-fixture-author", "generator_model": "documentation-fixture"},

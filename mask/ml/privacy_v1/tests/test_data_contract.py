@@ -181,3 +181,49 @@ def test_merge_rejects_mixed_schemas():
     compiled = compile_records([raw], allow_unreviewed=True)
     with pytest.raises(ValueError, match="one schema"):
         merge_records([[raw], compiled])
+
+
+def test_source_id_cannot_cover_different_texts_in_one_split():
+    first, second = example(), example()
+    second["id"] += ":different-source"
+    second["text"] += " Please use concise bullets."
+    second["approved_output"] += " Please use concise bullets."
+    with pytest.raises(ValueError, match="One source_id"):
+        validate_records([first, second])
+
+
+@pytest.mark.parametrize("key", ["source_id", "family_id", "persona_id", "template_id"])
+def test_identical_text_requires_consistent_group_ids(key):
+    first, second = example(), example()
+    second["id"] += ":other-task"
+    second["task"] += " Use concise bullets."
+    second[key] += ":different"
+    with pytest.raises(ValueError, match="Identical text"):
+        validate_records([first, second])
+
+
+def test_task_swaps_share_groups_but_paraphrases_can_share_family():
+    first, second = example(), example()
+    second["id"] += ":other-task"
+    second["task"] += " Use concise bullets."
+    third = copy.deepcopy(first)
+    third["id"] += ":related-source"
+    third["source_id"] += ":related-source"
+    third["text"] += " Please use concise bullets."
+    third["approved_output"] += " Please use concise bullets."
+    assert validate_records([first, second, third]) == [first, second, third]
+
+
+def test_compiled_data_retains_group_consistency_checks():
+    first = compile_records([accepted(example())])[0]
+    second = copy.deepcopy(first)
+    second["id"] += ":other-task"
+    second["task"] += " Use concise bullets."
+    second["source_id"] += ":different"
+    with pytest.raises(ValueError, match="Identical text"):
+        validate_records([first, second])
+    second["source_id"] = first["source_id"]
+    second["text"] += " Please use concise bullets."
+    second["approved_output"] += " Please use concise bullets."
+    with pytest.raises(ValueError, match="One source_id"):
+        validate_records([first, second])

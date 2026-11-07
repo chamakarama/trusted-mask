@@ -213,8 +213,9 @@ def _source_signature(record):
 
 
 def validate_records(records):
-    """Fail on reused groups, exact texts or near-identical templates across splits."""
+    """Check source/group consistency and group/template leakage across splits."""
     ids, registries, signatures, source_annotations = set(), {}, {}, {}
+    source_texts, text_groups = {}, {}
     shingle_index, prior_shingles, prior_splits = {}, [], []
     for record in records:
         validate_record(record)
@@ -233,6 +234,15 @@ def validate_records(records):
         # Preserve historical pilot evidence; stronger template checks apply to v2.
         if record.get("schema_version") != 2 and record.get("training_schema") != SCHEMA:
             continue
+        group_keys = ("source_id", "family_id", "persona_id", "template_id")
+        groups = tuple(_require_string(record, key) for key in group_keys)
+        source_id, text = groups[0], record["text"]
+        if source_id in source_texts and source_texts[source_id] != text:
+            raise ValueError("One source_id must identify one exact source text; paraphrases need distinct source_ids")
+        if text in text_groups and text_groups[text] != groups:
+            raise ValueError("Identical text must share source/family/persona/template IDs; deduplicate independent copies before merging")
+        source_texts[source_id] = text
+        text_groups[text] = groups
         detection = record.get("entities", record.get("detection_spans", []))
         annotation_key = tuple(sorted((e["start"], e["end"], e["label"]) for e in detection))
         if record["text"] in source_annotations and source_annotations[record["text"]] != annotation_key:
