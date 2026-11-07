@@ -184,7 +184,7 @@ async function handle(req: WorkerRequest): Promise<void> {
       if (!session.executed || session.executed.planHash !== proposal.planHash) throw new Error("execute the plan before exporting");
       if (!session.evaluation || session.evaluation.planHash !== proposal.planHash) throw new Error("evaluate the plan before exporting");
       if (!session.goal) throw new Error("no goal");
-      const { receipt, files } = createExportService().build({ manifest, goal: session.goal, proposal, executed: session.executed, evaluation: session.evaluation });
+      const { receipt, files } = await createExportService().build({ manifest, goal: session.goal, proposal, executed: session.executed, evaluation: session.evaluation });
       const payload = files.map((f) => ({ name: f.name, data: f.data.buffer.slice(f.data.byteOffset, f.data.byteOffset + f.data.byteLength) as ArrayBuffer, mime: f.mime }));
       post({ kind: "exported", requestId, receipt, files: payload }, payload.map((f) => f.data));
       return;

@@ -13,5 +13,5 @@ export interface ExportInput {
 
 export interface ExportService {
   /** Serialises the exact executed tables (no regeneration) plus the sanitised report. */
-  build(input: ExportInput): { receipt: ExportReceipt; files: ExportFile[] };
+  build(input: ExportInput): Promise<{ receipt: ExportReceipt; files: ExportFile[] }>;
 }
