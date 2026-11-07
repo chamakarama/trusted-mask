@@ -80,11 +80,10 @@ export function CorridorPanel({ rel, level, band, origin, ranked, shortlist, sel
 
   return (
     <section className="panel" aria-labelledby="decision-title">
+      <div className="list-head"><h2 id="decision-title">Top {shortlist} routes to look at</h2><span>trips over 4 weeks</span></div>
       <p className={`status status-${status.tone}`} role="status">
         {status.tone === "ok" ? <IconCheck /> : status.tone === "warn" ? <IconWarn /> : <IconInfo />}<span>{status.text}</span>
       </p>
-
-      <div className="list-head"><h2 id="decision-title">Top {shortlist} routes to look at</h2><span>trips over 4 weeks</span></div>
       <ol className="shortlist">
         {top.map((c) => {
           const r = range(c);
@@ -94,13 +93,12 @@ export function CorridorPanel({ rel, level, band, origin, ranked, shortlist, sel
                 <span className="rank" aria-hidden="true">{c.rank}</span>
                 <span className="card-body">
                   <span className="route">{areaLabel(c.origin_area)} <IconArrow /> <span className="sr-only">to</span>{areaLabel(c.destination_area)}</span>
-                  <span className="value"><strong>{fmt(c.trips)}</strong> trips</span>
+                  <span className="value"><strong>{fmt(c.trips)}</strong> trips{noisy.has(c.rank) && <span className="badge badge-warn"><IconWarn /> could be noise</span>}</span>
                   <span className="meter" aria-hidden="true">
                     <span className="meter-bar" style={{ width: at(c.trips) }} />
                     {r && <span className="meter-range" style={{ left: at(r[0]), width: `calc(${at(r[1])} - ${at(r[0])})` }} />}
                   </span>
                   <span className="pm">
-                    {noisy.has(c.rank) && <span className="badge badge-warn"><IconWarn /> could be noise</span>}
                     <span>{r ? `noise range ${fmt(r[0])}–${fmt(r[1])} · ` : ""}about {fmt(c.trips / days)} per weekday</span>
                   </span>
                 </span>

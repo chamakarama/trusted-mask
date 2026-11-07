@@ -27,8 +27,8 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   const pending = useRef<AbortController | null>(null);
   const begin = () => { pending.current?.abort(); pending.current = null; setBusy(false); return ++gen.current; };
   useEffect(() => () => { gen.current++; pending.current?.abort(); }, [rel.id]); // release change or unmount
-  const answerBox = useRef<HTMLDivElement>(null);
-  useEffect(() => { if (answer) answerBox.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, [answer]);
+  const box = useRef<HTMLElement>(null);
+  useEffect(() => { if (answer) box.current?.scrollIntoView({ block: "start", behavior: "smooth" }); }, [answer]);
 
   const checkHealth = () => {
     const ctl = new AbortController();
@@ -85,16 +85,16 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   };
 
   return (
-    <section className="panel assistant" aria-labelledby="assist-title">
+    <section ref={box} className="panel assistant" aria-labelledby="assist-title">
       <div className="panel-head">
         <h2 id="assist-title">Ask a question</h2>
-        <span className={`badge ${live ? "badge-ok" : ""}`}><span className={`dot ${live ? "dot-ok" : live === false ? "dot-off" : "dot-wait"}`} /> {live === null ? "checking AI…" : live ? "AI on" : "AI offline"}</span>
+        <span className={`badge ${live ? "badge-ok" : ""}`}>{live === null ? "checking AI…" : live ? "AI on" : "AI offline"}</span>
       </div>
       {live !== false ? (
         <>
           <form className="ask" onSubmit={(e) => { e.preventDefault(); void ask(); }}>
             <label className="sr-only" htmlFor="ask-input">Question</label>
-            <input id="ask-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Busiest evening routes from Turku area 208?" maxLength={400} />
+            <input id="ask-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Evening routes from Turku area 208?" maxLength={400} />
             <button type="submit" disabled={!q.trim() || busy || !live}>{busy ? "…" : "Ask"}</button>
           </form>
           <p className="tiny muted ask-note">Your question is sent as written to Anthropic's Claude API (through a helper on this computer), so don't type personal details. Claude only turns it into a request: no operator records or release numbers are sent, and every number comes from the published tables.</p>
@@ -103,7 +103,7 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
         <p className="tiny muted ask-note">Typed questions need the AI helper on this computer. The suggested questions below work without it. <button className="link" onClick={() => checkHealth()}>Check again</button></p>
       )}
       {answer && (
-        <div ref={answerBox} className={`answer ${answer.kind === "answer" ? "" : "answer-refusal"}`} aria-live="polite">
+        <div className={`answer ${answer.kind === "answer" ? "" : "answer-refusal"}`} aria-live="polite">
           {answer.kind !== "answer" && <h3><IconWarn /> {TITLE[answer.kind]}</h3>}
           {answer.source === "model" && answer.request && (
             <p className="tiny readas">Read as: {BAND_LABEL[answer.request.hour_band]} · from {answer.request.origin_area ? areaLabel(answer.request.origin_area) : "anywhere"} · top {answer.request.limit}</p>

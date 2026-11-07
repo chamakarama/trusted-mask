@@ -127,7 +127,7 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
           );
         })}
         {corridors.filter((c) => c.rank <= highlight && !isMuted(c)).map((c) => {
-          const p = badgeAt(c);
+          const p = badgeAt(c, 0.5);
           return (
             <g key={`b-${c.id}`} className={`rank-badge ${selected && selected !== c.id ? "badge-dim" : ""}`} aria-hidden="true">
               <circle cx={p.x} cy={p.y} r={9} /><text x={p.x} y={p.y + 4} textAnchor="middle">{c.rank}</text>

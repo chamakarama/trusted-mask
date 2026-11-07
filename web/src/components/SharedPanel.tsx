@@ -17,7 +17,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
   return (
     <div className="layout">
       <header className="hero">
-        <div className="eyebrow">What's shared · Release <span className="keep-case">{rel.id}</span></div>
+        <div className="eyebrow">Release {rel.id}</div>
         <h1>Three tables of protected counts. Nothing else left the bus company.</h1>
         <p className="lede">Published openly for anyone, mainly transport planners. Period: {period}.</p>
       </header>

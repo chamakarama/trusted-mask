@@ -69,21 +69,22 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m.addSource("arcs", { type: "geojson", data: empty });
       m.addSource("pts", { type: "geojson", data: empty });
       m.addSource("ranks", { type: "geojson", data: empty });
-      // one soft halo per area, area ~ released journeys starting there (halos never merge into a blob, unlike a heatmap)
+      // one ring per drawn area, ring area ~ released journeys starting there (rings never merge into a blob, unlike a heatmap)
       m.addLayer({ id: "heat", type: "circle", source: "heat", paint: {
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, ["+", 3, ["*", 20, ["sqrt", ["get", "w"]]]], 13, ["+", 8, ["*", 52, ["sqrt", ["get", "w"]]]]],
         "circle-color": BLUE[450],
-        "circle-opacity": 0.24,
-        "circle-blur": 0.45,
+        "circle-opacity": ["case", ["get", "involved"], 0.12, 0],
+        "circle-stroke-width": 1, "circle-stroke-color": BLUE[450],
+        "circle-stroke-opacity": ["case", ["get", "involved"], 0.45, 0],
       } });
       m.addLayer({ id: "arcs-casing", type: "line", source: "arcs", layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": "#fcfcfb", "line-width": ["+", ["get", "w"], 3], "line-opacity": 0.9 } });
+        paint: { "line-color": "#fcfcfb", "line-width": ["+", ["get", "w"], 3], "line-opacity": ["case", ["get", "sel"], 0.9, ["get", "strong"], 0.9, 0] } });
       m.addLayer({ id: "arcs-muted", type: "line", source: "arcs", filter: ["==", ["get", "muted"], true], layout: { "line-cap": "butt", "line-join": "round" },
         paint: { "line-color": ["case", ["get", "sel"], "#12171f", "#8d8981"], "line-width": ["max", ["get", "w"], 3], "line-dasharray": [2, 1.6],
           "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, 0.9] } });
       m.addLayer({ id: "arcs", type: "line", source: "arcs", filter: ["!=", ["get", "muted"], true], layout: { "line-cap": "round", "line-join": "round" },
         paint: { "line-color": ["case", ["get", "sel"], "#12171f", ["get", "strong"], BLUE[650], BLUE[300]], "line-width": ["get", "w"],
-          "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, ["get", "strong"], 0.95, 0.8] } });
+          "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, ["get", "strong"], 0.95, 0.5] } });
       m.addLayer({ id: "pts", type: "circle", source: "pts", paint: {
         "circle-radius": ["case", ["any", ["get", "involved"], ["get", "origin"]], ["get", "r"], 2.5], "circle-color": ["case", ["get", "origin"], BLUE[650], ["get", "involved"], "#3b4250", "#8f8c84"],
         "circle-opacity": ["case", ["any", ["get", "involved"], ["get", "origin"]], 1, 0.45], "circle-stroke-color": "#fcfcfb", "circle-stroke-width": ["case", ["any", ["get", "involved"], ["get", "origin"]], 2, 0] } });
@@ -91,9 +92,9 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
         "text-field": ["case", ["any", ["get", "involved"], ["get", "origin"]], ["get", "label"], ""], "text-font": ["Noto Sans Bold"], "text-size": 12.5, "text-offset": [0, 1.05], "text-anchor": "top", "text-optional": true },
         paint: { "text-color": "#12171f", "text-halo-color": "#ffffff", "text-halo-width": 3, "text-halo-blur": 0 } });
       m.addLayer({ id: "rank-dots", type: "circle", source: "ranks", paint: { "circle-radius": 10, "circle-color": BLUE[700], "circle-stroke-color": "#fcfcfb", "circle-stroke-width": 2,
-        "circle-opacity": ["case", ["get", "dim"], 0.2, 1], "circle-stroke-opacity": ["case", ["get", "dim"], 0.2, 1] } });
+        "circle-opacity": ["case", ["get", "dim"], 0, 1], "circle-stroke-opacity": ["case", ["get", "dim"], 0, 1] } });
       m.addLayer({ id: "rank-text", type: "symbol", source: "ranks", layout: { "text-field": ["get", "rank"], "text-font": ["Noto Sans Bold"], "text-size": 12, "text-allow-overlap": true, "text-ignore-placement": true },
-        paint: { "text-color": "#ffffff", "text-opacity": ["case", ["get", "dim"], 0.25, 1] } });
+        paint: { "text-color": "#ffffff", "text-opacity": ["case", ["get", "dim"], 0, 1] } });
       const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
       m.on("mousemove", "arcs", (e) => {
         m.getCanvas().style.cursor = "pointer";
@@ -143,7 +144,7 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
     const maxTrips = tripsMax ?? Math.max(1, ...corridors.map((c) => c.trips));
     const involved = new Set(corridors.flatMap((c) => [c.origin_area, c.destination_area]));
     (m.getSource("heat") as GeoJSONSource).setData({ type: "FeatureCollection", features: pts.map((p) => ({
-      type: "Feature", properties: { w: (outgoing.get(p.id) ?? 0) / maxOut }, geometry: { type: "Point", coordinates: [p.lon, p.lat] } })) });
+      type: "Feature", properties: { w: (outgoing.get(p.id) ?? 0) / maxOut, involved: involved.has(p.id) || origin === p.id }, geometry: { type: "Point", coordinates: [p.lon, p.lat] } })) });
     const ordered = [...corridors].sort((a, b) => b.rank - a.rank);
     (m.getSource("arcs") as GeoJSONSource).setData({ type: "FeatureCollection", features: ordered.flatMap((c) => {
       const a = byId.get(c.origin_area), d = byId.get(c.destination_area);

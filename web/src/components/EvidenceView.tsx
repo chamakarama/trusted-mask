@@ -41,7 +41,7 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
   return (
     <div className="layout">
       <header className="hero">
-        <div className="eyebrow">Is it safe? · tests on the synthetic data</div>
+        <div className="eyebrow">Tests on the synthetic data</div>
         <h1>Sharing rows would expose {pct(four.unicity, 1)} of cards. RouteSafe shares none.</h1>
         <p className="lede">Test results on the synthetic data. They compare the release with the exact data, which only works because this data is synthetic: a real operator would run them privately before publishing.</p>
       </header>

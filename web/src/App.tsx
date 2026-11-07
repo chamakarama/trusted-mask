@@ -145,8 +145,8 @@ export function App() {
           <div className="release-box">
             {entry && (
               <div className="chips" role="status">
-                <span className="chip"><span className="dot dot-info" />{entry.fixture ? "test fixture" : "synthetic data"}</span>
-                <span className="chip"><span className="dot dot-warn" />not yet independently audited</span>
+                <span className="chip">{entry.fixture ? "test fixture" : "synthetic data"}</span>
+                <span className="chip chip-warn">not yet independently audited</span>
                 {rel && <span className="chip chip-ok"><IconCheck /> files verified</span>}
               </div>
             )}
@@ -187,7 +187,7 @@ export function App() {
                 <div className="kpi-value">{!best ? "–" : topNoise ? "No clear busiest route" : <><span className="nw">{areaLabel(best.origin_area)}</span> → <span className="nw">{areaLabel(best.destination_area)}</span></>}</div>
                 <div className="kpi-sub">{!best ? "" : topNoise && rely ? `top is ${fmt(best.trips)} trips, below the ${fmt(rely.radius)} noise level` : `${fmt(best.trips)} trips over 4 weeks`}</div></div>
               <div className="kpi"><div className="kpi-label">Passenger records shared</div><div className="kpi-value">0</div><div className="kpi-sub">no card numbers, no exact times</div></div>
-              <div className="kpi"><div className="kpi-label">Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card · lower = more private</div></div>
+              <div className="kpi"><div className="kpi-label">Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card<br />lower = more private</div></div>
               <div className={`kpi ${someNoise ? "kpi-warn" : check ? "kpi-ok" : ""}`}>
                 <div className="kpi-label">{someNoise && <IconWarn />} Top {SHORTLIST} check</div>
                 <div className="kpi-value">{rel.manifest.fixture ? "–" : topNoise ? "Could be noise" : someNoise ? "Some could be noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
@@ -211,7 +211,7 @@ export function App() {
                     {legend.strong && <div className="legend-row"><span className="legend-arc" /> top {SHORTLIST} routes</div>}
                     {legend.weak && <div className="legend-row"><span className="legend-arc thin" /> next {ON_MAP - SHORTLIST}</div>}
                     {floor !== null && legend.muted && <div className="legend-row"><span className="legend-arc muted" /> could be noise (under {fmt(floor)})</div>}
-                    {legend.glow && <div className="legend-row"><span className={`legend-dot ${schematic ? "" : "legend-glow"}`} /> {schematic ? "bigger dot = more trips start here" : "glow = trips starting here"}</div>}
+                    {legend.glow && <div className="legend-row"><span className={`legend-dot ${schematic ? "" : "legend-glow"}`} /> {schematic ? "bigger dot = more trips start here" : "ring size = trips starting here"}</div>}
                   </div>
                   <details className="mapcap">
                     <summary><span>Protected counts with random noise, never anyone's journeys · destinations estimated, not observed.</span> <span className="mapcap-more"><IconInfo /> About this map</span></summary>

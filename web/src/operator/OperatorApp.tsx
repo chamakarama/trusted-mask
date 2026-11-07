@@ -64,7 +64,7 @@ export function OperatorApp() {
       <header className="topbar">
         <div className="topbar-inner">
           <div className="brand"><span className="logo"><Logo /></span><div className="wordmark"><b>RouteSafe operator</b><small>Private · runs inside the bus company · never published</small></div></div>
-          <div className="release-box"><div className="chips"><span className="chip"><IconLock /> private workbench</span><span className="chip"><span className="dot dot-warn" />not yet independently audited</span></div></div>
+          <div className="release-box"><div className="chips"><span className="chip"><IconLock /> private workbench</span><span className="chip chip-warn">not yet independently audited</span></div></div>
         </div>
       </header>
       <main className="page">
