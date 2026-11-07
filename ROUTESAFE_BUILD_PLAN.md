@@ -1,5 +1,11 @@
 # RouteSafe build plan
 
+
+> **Audience update from the project lead, 7 November 2026:** judging also includes hackathon participants, most of whom are beginners. Participants judge from videos: each sees two videos, chooses the better one, and repeats this 20 times. This is lead-provided event context, not a claim about scoring weights or video duration. The product and video must communicate their purpose immediately, with an obvious visual hook and minimal unnecessary text.
+>
+> **Design consequence:** open on the actual city map and a visible useful action. Show one causal journey: data → protected statistics → map → a saved planning choice. Give each owner step one goal, one visible output and one primary action. Use short labels and visual changes; move method detail into disclosure panels. Keep the synthetic-data label, uncertainty and measured failures readable. Do not substitute slogans, invented impact or a prettier dataset for evidence.
+
+
 Prepared 6 November 2026. **Planning only: no product has been implemented or experimentally validated by this document.** Read this first, then [the interface contract](planning/INTERFACES.md) and [the coordination guide and launch prompts](planning/COORDINATION.md). Together these are the build brief for GPT-6 Astra and Opus 5.5 at maximum effort. The allocation is practical, not a claim about model superiority.
 
 ## 1. Recommendation and intended outcome

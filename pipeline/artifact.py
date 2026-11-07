@@ -4,7 +4,7 @@ import csv,hashlib,io,json,re,math
 from datetime import datetime,timezone
 from pathlib import Path
 import jsonschema
-from pipeline.geography import zone_centres
+from pipeline.geography import zone_centres, validate_city_grid
 from pipeline.mobility import CAPS,EPS,COLUMNS,VALUES,BANDS,DATES
 
 SCHEMA=Path(__file__).resolve().parents[1]/'contracts/manifest.schema.json'
@@ -15,7 +15,7 @@ ROW_EXTRA=['noisy_value','noise_lower','noise_upper','evidence_status']
 def encode(obj): return (json.dumps(obj,ensure_ascii=False,sort_keys=True,indent=2,allow_nan=False)+'\n').encode()
 def sha(b): return hashlib.sha256(b).hexdigest()
 
-def build(release_id,source_commit,domains,noisy,geometry,fixture=False,city=False):
+def build(release_id,source_commit,domains,noisy,geometry,fixture=False,city=False,city_provenance=None):
     if not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}',release_id): raise ValueError('INVALID_RELEASE_ID')
     stats={}; payload={}
     for f,domain in domains.items():
@@ -51,7 +51,8 @@ def build(release_id,source_commit,domains,noisy,geometry,fixture=False,city=Fal
         'licenses':['TrustED PETs Proving Ground 2026 data/docs: CC BY 4.0, Since AI ry.','Public synthetic stops use upstream geography attribution; see supplied NOTICE.md.','OpenDP: MIT; upstream toolkit: MIT.']}
     if city:
         if fixture: raise ValueError('INVALID_CITY_FIXTURE')
-        zone_centres(geometry, polygons=True)
+        manifest['synthetic_provenance']=city_provenance
+        validate_city_grid(geometry)
         manifest.update(policy_version='city-grid-32-64-64-epsilon1-v1', schema_version='1.1', data_class='team_synthetic', publisher='RouteSafe team-generated city scenario; fictional travel on real Turku geography', public_domain_version='turku-analysis-grid-v1')
         manifest['licenses']=['Team-generated fictional travel and rectangular analysis grid: CC BY 4.0.', 'Basemap: OpenStreetMap contributors; see map attribution.', 'OpenDP: MIT.']
         manifest['limitations']=[x.replace('Synthetic benchmark, not real transport findings.', 'Team-generated synthetic scenario, not actual Turku travel or the supplied benchmark.') for x in manifest['limitations']]
@@ -87,6 +88,7 @@ def verify(path):
     if set(stats)!=set(CAPS): raise ValueError('ARTIFACT_INVALID: families')
     geo=json.loads((path/'public_areas.geojson').read_text())
     areas=list(zone_centres(geo,polygons=version=='1.1'))
+    if version=='1.1': validate_city_grid(geo)
     for f,rows in stats.items():
         seen=set()
         for row in rows:

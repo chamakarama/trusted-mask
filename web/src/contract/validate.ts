@@ -104,6 +104,15 @@ export async function validateRelease(files: Map<string, Uint8Array>, schema: ob
     const exact = (o: unknown, keys: string[]) => !!o && typeof o === "object" && !Array.isArray(o) && Object.keys(o).sort().join() === [...keys].sort().join();
     if (!exact(geo, ["type", "features"]) || geo.type !== "FeatureCollection" || !Array.isArray(geo.features)) fail("ARTIFACT_INVALID", "geometry must be exactly {type: FeatureCollection, features}");
     if (!Array.isArray(geo.features) || geo.features.length < 1 || geo.features.length > 100) fail("ARTIFACT_INVALID", "geometry size");
+    if (manifest.schema_version === "1.1") {
+      const expected: Record<string, number[][][]> = {};
+      const round = (n:number) => Math.round(n * 1e8) / 1e8;
+      for(let row=0;row<5;row++)for(let col=0;col<5;col++) {
+        const x0=round(22.20+.03*col),x1=round(22.20+.03*(col+1)),y0=round(60.40+.02*row),y1=round(60.40+.02*(row+1));
+        expected[`TRK-G${String(row*5+col+1).padStart(2,'0')}`]=[[[x0,y0],[x1,y0],[x1,y1],[x0,y1],[x0,y0]]];
+      }
+      if(geo.features.length!==25 || geo.features.some((f:any)=>JSON.stringify(f.geometry?.coordinates)!==JSON.stringify(expected[f.properties?.area_id]))) fail("DOMAIN_MISMATCH","frozen Turku grid v1");
+    }
     const boxes: number[][] = [];
     for (const f of Array.isArray(geo.features) ? geo.features : []) {
       if (!exact(f, ["type", "properties", "geometry"]) || f.type !== "Feature") { fail("ARTIFACT_INVALID", "feature must be exactly {type, properties, geometry}"); break; }

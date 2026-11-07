@@ -41,24 +41,9 @@ Required files:
 - `taps.csv`: `card_id,ts,stop_id,line,fare_product` using the existing mobility adapter.
 - `stops.csv`: `stop_id,area,municipality,lat,lon,lines`; every stop lies within its declared public zone.
 - `public-zones.geojson`: 1–100 non-overlapping, axis-aligned rectangles in lon/lat. Each feature has exactly `area_id,name,municipality,source`. No holes, arbitrary geometry fields or private-derived boundaries. Target scenario: 25 fixed artificial Turku grid zones, never presented as official neighbourhoods.
-- `metadata.json`, including at least:
+- `metadata.json`: the native PR #12 generator record, checked without rewriting it. Required provenance includes `dataset_class: team-generated-synthetic`, `generator_version`, `population_seed`, `generator_source_sha256`, canonical `configuration` and `configuration_sha256`, `period` with `start/end/timezone`, `geography_provenance.id: turku-analysis-grid-v1`, and file hashes/sizes for the three production input files. The publisher verifies those hashes and copies only a five-field public provenance summary into the city manifest.
 
-```json
-{
-  "data_class": "team_synthetic",
-  "generator_version": "city-generator-v1",
-  "seed": 20261107,
-  "public_domain_version": "turku-analysis-grid-v1",
-  "period": {
-    "start_date": "2025-10-06",
-    "end_date_inclusive": "2025-11-02",
-    "timezone": "Europe/Helsinki"
-  },
-  "geography_sha256": "SHA256_OF_EXACT_PUBLIC_ZONES_FILE_BYTES"
-}
-```
-
-Additional generator config/provenance belongs in this private metadata or adjacent documentation. Truth stays in a separate `truth/` directory: it is never scanned, imported into the publisher or copied to the recipient. Generator inputs and truth must remain git-ignored. Align the metadata adapter with the generator PR before the first city publication; do not edit frozen inputs after review.
+Generate the frozen full demo with `python -m simulation.generate --config simulation/config/turku-grid-v1.json --seed 20251106 --cards 20000 --output simulation/private/turku-grid-v1-seed-20251106-cards-20000`, then use that directory for `--city-input`. Keep its canonical configuration and metadata unchanged. Truth stays in a separate `truth/` directory: it is never scanned, imported into the publisher or copied to the recipient. Raw generator outputs and truth remain git-ignored. See [simulation/README.md](../simulation/README.md) for the six declared populations and reproduction checks.
 
 The service snapshots every top-level CSV inspected by the scanner, plus city geography/metadata. Review and evaluation are tied to that fingerprint and the candidate manifest hash. Changes invalidate downstream steps. City publication requires committed, clean production code and OpenDP 0.16.0. It reserves and commits once in `private/workflow/city-ledger.sqlite`; retries reuse the exact artifact. Do not change runtime/ledger directories to reset spent budget. A failed reservation requires accounting review, not a redraw.
 

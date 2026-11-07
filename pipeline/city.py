@@ -6,7 +6,7 @@ import os
 import tempfile
 
 from pipeline import artifact
-from pipeline.geography import zone_centres
+from pipeline.geography import zone_centres, validate_city_grid
 from pipeline.mobility import load, prepare, EPS
 from privacy.ledger import reserve, commit
 from privacy.mechanism import draw
@@ -22,26 +22,45 @@ def fingerprint(folder, names=INPUTS):
 
 
 def validate_metadata(folder):
+    """Read only generator metadata and publisher inputs; never traverse its truth entries."""
+    folder = Path(folder)
     metadata = json.loads((folder/'metadata.json').read_text())
-    if not isinstance(metadata, dict) or metadata.get('data_class') != 'team_synthetic':
-        raise ValueError('INVALID_METADATA: team_synthetic data_class required')
-    if not metadata.get('generator_version') or type(metadata.get('seed')) is not int:
-        raise ValueError('INVALID_METADATA: generator_version and integer seed required')
-    if metadata.get('public_domain_version') != 'turku-analysis-grid-v1':
-        raise ValueError('INVALID_METADATA: public_domain_version required')
-    period = metadata.get('period', {})
-    if any(period.get(k) != v for k,v in {'start_date':'2025-10-06','end_date_inclusive':'2025-11-02','timezone':'Europe/Helsinki'}.items()):
+    if not isinstance(metadata, dict) or metadata.get('dataset_class') != 'team-generated-synthetic':
+        raise ValueError('INVALID_METADATA: team-generated-synthetic dataset_class required')
+    if not isinstance(metadata.get('generator_version'),str) or not metadata['generator_version'] or type(metadata.get('population_seed')) is not int:
+        raise ValueError('INVALID_METADATA: generator_version and population_seed required')
+    if metadata.get('geography_provenance',{}).get('id') != 'turku-analysis-grid-v1':
+        raise ValueError('INVALID_METADATA: geography id required')
+    if metadata.get('period') != {'start':'2025-10-06','end':'2025-11-02','timezone':'Europe/Helsinki'}:
         raise ValueError('INVALID_METADATA: supported period required')
-    expected = hashlib.sha256((folder/'public-zones.geojson').read_bytes()).hexdigest()
-    if metadata.get('geography_sha256') != expected:
-        raise ValueError('INVALID_METADATA: geography checksum mismatch')
+    config = metadata.get('configuration')
+    config_hash = hashlib.sha256((json.dumps(config,indent=2,sort_keys=True,ensure_ascii=False)+'\n').encode()).hexdigest()
+    if config_hash != metadata.get('configuration_sha256'):
+        raise ValueError('INVALID_METADATA: configuration checksum')
+    if not isinstance(config,dict) or config.get('period') != metadata['period'] or config.get('geography') != metadata['geography_provenance']:
+        raise ValueError('INVALID_METADATA: configuration agreement')
+    import re
+    if not re.fullmatch('[0-9a-f]{64}',metadata.get('generator_source_sha256','')):
+        raise ValueError('INVALID_METADATA: source checksum')
+    for name in ('taps.csv','stops.csv','public-zones.geojson'):
+        record = metadata.get('files',{}).get(name,{})
+        if record.get('sha256') != hashlib.sha256((folder/name).read_bytes()).hexdigest() or record.get('bytes') != (folder/name).stat().st_size:
+            raise ValueError('INVALID_METADATA: input checksum '+name)
     return metadata
+
+
+def public_provenance(folder):
+    metadata = validate_metadata(folder)
+    return {'generator_version':metadata['generator_version'], 'population_seed':metadata['population_seed'],
+            'generator_source_sha256':metadata['generator_source_sha256'], 'configuration_sha256':metadata['configuration_sha256'],
+            'geography_sha256':metadata['files']['public-zones.geojson']['sha256']}
 
 
 def prepare_city(folder):
     folder = Path(folder)
     validate_metadata(folder)
     geometry = json.loads((folder/'public-zones.geojson').read_text())
+    validate_city_grid(geometry)
     centres = zone_centres(geometry, polygons=True)
     taps, stops = load(folder)
     if set(stops.area) != set(centres):
@@ -73,7 +92,7 @@ def publish(folder, output, ledger, release_id):
         return {'release_id': release_id, 'manifest_sha256': receipt, 'reused': True}
     if output.exists():
         raise ValueError('RELEASE_CONFLICT: output exists; reservation remains spent')
-    payload = artifact.build(release_id, revision, domains, draw(bounded), geometry, city=True)
+    payload = artifact.build(release_id, revision, domains, draw(bounded), geometry, city=True, city_provenance=public_provenance(immutable))
     output.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix='.city-', dir=output.parent))/'bundle'
     artifact.write(staging, payload)

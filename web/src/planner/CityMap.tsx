@@ -5,7 +5,7 @@ maplibregl.setWorkerUrl(workerUrl);
 import {type Map as MLMap, type GeoJSONSource} from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type {Release} from '../data/release';
-import type {Estimate} from './model';
+import {label,number,type Estimate} from './model';
 
 interface Props {rel:Release; values:({area:Release['areas'][number]}&Estimate)[]; maximum:number; anchor:string|null; selected:string|null; onSelect:(id:string)=>void; onUnavailable:()=>void}
 export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onUnavailable}:Props) {
@@ -32,6 +32,7 @@ export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onU
       m.addLayer({id:'zone-edge',type:'line',source:'zones',paint:{'line-color':['case',['get','selected'],'#172f2b','#6c8d85'],'line-width':['case',['get','selected'],3,.7],'line-opacity':.9}});
       m.addLayer({id:'zone-uncertain',type:'line',source:'zones',filter:['==',['get','uncertain'],true],paint:{'line-color':'#6b7d78','line-width':1,'line-dasharray':[2,3]}});
       m.addLayer({id:'zone-points',type:'circle',source:'centres',filter:['==',['get','marker'],true],paint:{'circle-radius':['+',8,['*',20,['sqrt',['get','intensity']]]],'circle-color':colour,'circle-opacity':['case',['get','uncertain'],.35,.8],'circle-stroke-color':['case',['get','selected'],'#172f2b','#ffffff'],'circle-stroke-width':['case',['get','selected'],3,1.5]}});
+      m.addLayer({id:'zone-label',type:'symbol',source:'centres',filter:['==',['get','marker'],false],layout:{'text-field':['get','caption'],'text-size':12,'text-font':['Noto Sans Regular'],'text-allow-overlap':false},paint:{'text-color':'#173d35','text-halo-color':'#ffffff','text-halo-width':1.5}});
       m.addLayer({id:'connection-line',type:'line',source:'connection',paint:{'line-color':'#173d35','line-width':3,'line-dasharray':[2,2]}});
       for(const layer of ['zone-fill','zone-points']){m.on('click',layer,e=>{const id=e.features?.[0]?.properties?.id;if(typeof id==='string')callback.current(id);});m.on('mouseenter',layer,()=>m.getCanvas().style.cursor='pointer');m.on('mouseleave',layer,()=>m.getCanvas().style.cursor='');}
       const bounds=new maplibregl.LngLatBounds();rel.areas.forEach(a=>{bounds.extend([a.lon,a.lat]);if(a.geometry?.type==='Polygon')a.geometry.coordinates[0].forEach((p:[number,number])=>bounds.extend(p));});
@@ -42,7 +43,7 @@ export default function CityMap({rel,values,maximum,anchor,selected,onSelect,onU
   },[rel.id]);
   useEffect(()=>{
     const m=map.current;if(!ready||!m)return;
-    const features=values.map(v=>({type:'Feature',properties:{id:v.area.id,intensity:Math.min(1,v.rate/maximum),uncertain:v.uncertain,selected:v.area.id===anchor||v.area.id===selected,marker:v.area.geometry?.type!=='Polygon'},geometry:v.area.geometry??{type:'Point',coordinates:[v.area.lon,v.area.lat]}}));
+    const features=values.map(v=>({type:'Feature',properties:{id:v.area.id,caption:`${label(rel,v.area.id)}\n${number(v.rate)}/h`,intensity:Math.min(1,v.rate/maximum),uncertain:v.uncertain,selected:v.area.id===anchor||v.area.id===selected,marker:v.area.geometry?.type!=='Polygon'},geometry:v.area.geometry??{type:'Point',coordinates:[v.area.lon,v.area.lat]}}));
     (m.getSource('zones') as GeoJSONSource).setData({type:'FeatureCollection',features:features.filter(f=>f.geometry.type==='Polygon')} as any);
     (m.getSource('centres') as GeoJSONSource).setData({type:'FeatureCollection',features:features.map((f,i)=>({...f,geometry:{type:'Point',coordinates:[values[i].area.lon,values[i].area.lat]}}))} as any);
     const a=rel.areas.find(x=>x.id===anchor),b=rel.areas.find(x=>x.id===selected);

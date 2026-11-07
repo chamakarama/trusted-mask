@@ -414,6 +414,40 @@
         "type": "string",
         "minLength": 1
       }
+    },
+    "synthetic_provenance": {
+      "type": "object",
+      "properties": {
+        "generator_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "population_seed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generator_source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "configuration_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "geography_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "generator_version",
+        "population_seed",
+        "generator_source_sha256",
+        "configuration_sha256",
+        "geography_sha256"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
@@ -434,7 +468,8 @@
     "families",
     "resources",
     "limitations",
-    "licenses"
+    "licenses",
+    "synthetic_provenance"
   ],
   "additionalProperties": false,
   "$schema": "https://json-schema.org/draft/2020-12/schema"

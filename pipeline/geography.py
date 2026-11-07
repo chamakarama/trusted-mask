@@ -51,3 +51,17 @@ def zone_centres(geo, *, polygons=False):
         boxes.append(box)
         centres[ident] = [sum(xs)/2, sum(ys)/2]
     return centres
+
+
+def validate_city_grid(geo):
+    """Bind the versioned city domain to its frozen public 5×5 extent."""
+    zone_centres(geo, polygons=True)
+    expected = {}
+    xs = [round(22.20 + .15*i/5,8) for i in range(6)]
+    ys = [round(60.40 + .10*i/5,8) for i in range(6)]
+    for row in range(5):
+        for col in range(5):
+            x0,x1,y0,y1=xs[col],xs[col+1],ys[row],ys[row+1]
+            expected[f'TRK-G{row*5+col+1:02d}']=[[[x0,y0],[x1,y0],[x1,y1],[x0,y1],[x0,y0]]]
+    actual={f['properties']['area_id']:f['geometry']['coordinates'] for f in geo['features']}
+    if actual != expected: raise ValueError('DOMAIN_MISMATCH: frozen Turku grid v1')
