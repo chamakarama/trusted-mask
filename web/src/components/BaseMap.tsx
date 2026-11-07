@@ -69,30 +69,31 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m.addSource("arcs", { type: "geojson", data: empty });
       m.addSource("pts", { type: "geojson", data: empty });
       m.addSource("ranks", { type: "geojson", data: empty });
-      m.addLayer({ id: "heat", type: "heatmap", source: "heat", paint: {
-        "heatmap-weight": ["get", "w"],
-        "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 9, 1.1, 13, 2],
-        "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 9, 26, 11, 48, 13, 90],
-        "heatmap-opacity": 0.8,
-        "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(205,226,251,0)", 0.15, "rgba(205,226,251,0.55)", 0.35, BLUE[250], 0.6, BLUE[450], 0.85, BLUE[650], 1, BLUE[700]],
+      // one soft halo per area, area ~ released journeys starting there (halos never merge into a blob, unlike a heatmap)
+      m.addLayer({ id: "heat", type: "circle", source: "heat", paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, ["+", 3, ["*", 20, ["sqrt", ["get", "w"]]]], 13, ["+", 8, ["*", 52, ["sqrt", ["get", "w"]]]]],
+        "circle-color": BLUE[450],
+        "circle-opacity": 0.24,
+        "circle-blur": 0.45,
       } });
       m.addLayer({ id: "arcs-casing", type: "line", source: "arcs", layout: { "line-cap": "round", "line-join": "round" },
         paint: { "line-color": "#fcfcfb", "line-width": ["+", ["get", "w"], 3], "line-opacity": 0.9 } });
       m.addLayer({ id: "arcs-muted", type: "line", source: "arcs", filter: ["==", ["get", "muted"], true], layout: { "line-cap": "butt", "line-join": "round" },
-        paint: { "line-color": ["case", ["get", "sel"], "#12171f", "#a8a59c"], "line-width": ["get", "w"], "line-dasharray": [2, 1.6],
+        paint: { "line-color": ["case", ["get", "sel"], "#12171f", "#8d8981"], "line-width": ["max", ["get", "w"], 3], "line-dasharray": [2, 1.6],
           "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, 0.9] } });
       m.addLayer({ id: "arcs", type: "line", source: "arcs", filter: ["!=", ["get", "muted"], true], layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": ["case", ["get", "sel"], "#12171f", ["get", "strong"], BLUE[650], BLUE[250]], "line-width": ["get", "w"],
-          "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, ["get", "strong"], 0.95, 0.5] } });
+        paint: { "line-color": ["case", ["get", "sel"], "#12171f", ["get", "strong"], BLUE[650], BLUE[300]], "line-width": ["get", "w"],
+          "line-opacity": ["case", ["get", "sel"], 1, ["get", "dim"], 0.15, ["get", "strong"], 0.95, 0.8] } });
       m.addLayer({ id: "pts", type: "circle", source: "pts", paint: {
-        "circle-radius": ["get", "r"], "circle-color": ["case", ["get", "origin"], BLUE[650], ["get", "involved"], "#3b4250", "#8f8c84"],
-        "circle-stroke-color": "#fcfcfb", "circle-stroke-width": 2 } });
+        "circle-radius": ["case", ["any", ["get", "involved"], ["get", "origin"]], ["get", "r"], 2.5], "circle-color": ["case", ["get", "origin"], BLUE[650], ["get", "involved"], "#3b4250", "#8f8c84"],
+        "circle-opacity": ["case", ["any", ["get", "involved"], ["get", "origin"]], 1, 0.45], "circle-stroke-color": "#fcfcfb", "circle-stroke-width": ["case", ["any", ["get", "involved"], ["get", "origin"]], 2, 0] } });
       m.addLayer({ id: "pt-labels", type: "symbol", source: "pts", layout: {
-        "text-field": ["case", ["any", ["get", "involved"], ["get", "origin"]], ["get", "label"], ""], "text-font": ["Noto Sans Bold"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top", "text-optional": true },
-        paint: { "text-color": "#12171f", "text-halo-color": "#fcfcfb", "text-halo-width": 1.6 } });
-      m.addLayer({ id: "rank-dots", type: "circle", source: "ranks", paint: { "circle-radius": 10, "circle-color": BLUE[700], "circle-stroke-color": "#fcfcfb", "circle-stroke-width": 2 } });
+        "text-field": ["case", ["any", ["get", "involved"], ["get", "origin"]], ["get", "label"], ""], "text-font": ["Noto Sans Bold"], "text-size": 12.5, "text-offset": [0, 1.05], "text-anchor": "top", "text-optional": true },
+        paint: { "text-color": "#12171f", "text-halo-color": "#ffffff", "text-halo-width": 3, "text-halo-blur": 0 } });
+      m.addLayer({ id: "rank-dots", type: "circle", source: "ranks", paint: { "circle-radius": 10, "circle-color": BLUE[700], "circle-stroke-color": "#fcfcfb", "circle-stroke-width": 2,
+        "circle-opacity": ["case", ["get", "dim"], 0.2, 1], "circle-stroke-opacity": ["case", ["get", "dim"], 0.2, 1] } });
       m.addLayer({ id: "rank-text", type: "symbol", source: "ranks", layout: { "text-field": ["get", "rank"], "text-font": ["Noto Sans Bold"], "text-size": 12, "text-allow-overlap": true, "text-ignore-placement": true },
-        paint: { "text-color": "#ffffff" } });
+        paint: { "text-color": "#ffffff", "text-opacity": ["case", ["get", "dim"], 0.25, 1] } });
       const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
       m.on("mousemove", "arcs", (e) => {
         m.getCanvas().style.cursor = "pointer";
@@ -116,8 +117,9 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       m.on("mouseenter", "pts", () => (m.getCanvas().style.cursor = "pointer"));
       m.on("mouseleave", "pts", () => (m.getCanvas().style.cursor = ""));
       m.on("click", "pts", (e) => { const id = e.features?.[0]?.properties?.id; if (id) cb.current.onOrigin(String(id)); });
-      // basemap place/road names compete with the data labels: hide them (our own layers stay)
-      for (const l of m.getStyle().layers ?? []) if (l.type === "symbol" && !OURS.has(l.id)) m.setLayoutProperty(l.id, "visibility", "none");
+      // basemap place/road names compete with the data labels, and dashed rail lines look like the grey "could be noise"
+      // routes: hide both (our own layers stay)
+      for (const l of m.getStyle().layers ?? []) if (!OURS.has(l.id) && (l.type === "symbol" || /rail/i.test(l.id))) m.setLayoutProperty(l.id, "visibility", "none");
       setReady(true);
     });
     void timer;
@@ -155,7 +157,7 @@ export function BaseMap({ pts, outgoing, corridors, highlight, selected, origin,
       const a = byId.get(c.origin_area), d = byId.get(c.destination_area);
       if (!a || !d) return [];
       const line = curve([a.lon, a.lat], [d.lon, d.lat]);
-      return [{ type: "Feature" as const, properties: { rank: String(c.rank) }, geometry: { type: "Point" as const, coordinates: line[Math.floor(line.length * 0.3)] } }];
+      return [{ type: "Feature" as const, properties: { rank: String(c.rank), dim: !!selected && selected !== c.id }, geometry: { type: "Point" as const, coordinates: line[Math.floor(line.length * 0.3)] } }];
     }) });
     (m.getSource("pts") as GeoJSONSource).setData({ type: "FeatureCollection", features: pts.map((p) => ({
       type: "Feature", properties: { id: p.id, label: areaLabel(p.label), r: 3.5 + 6 * Math.sqrt((outgoing.get(p.id) ?? 0) / maxOut), involved: involved.has(p.id), origin: origin === p.id },

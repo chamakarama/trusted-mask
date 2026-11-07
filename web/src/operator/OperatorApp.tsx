@@ -56,6 +56,8 @@ export function OperatorApp() {
   const people = fields.filter((f) => f.role === "direct_identifier").length;
   const combined = fields.filter((f) => f.role === "quasi_identifier" || f.role === "technical_identifier").length;
   const unclear = fields.filter((f) => f.role === "unknown").length;
+  const stopRows = used.map((f, i) => (!USE[key(f)] && f.table === "stops" ? i : -1)).filter((i) => i >= 0);
+  const stopSpan = stopRows.length > 1 && stopRows[stopRows.length - 1] - stopRows[0] === stopRows.length - 1 ? stopRows : null;
 
   return (
     <div className="app operator">
@@ -79,8 +81,8 @@ export function OperatorApp() {
               <div className="kpis-group"><span className="kpis-group-label">Scanner found</span>
                 <div className="kpis-op">
                   <div><strong>{fields.length}</strong><span>columns scanned</span></div>
-                  <div><strong>{people}</strong><span>point straight to a person</span></div>
-                  <div><strong>{combined}</strong><span>can identify someone when combined</span></div>
+                  <div className="tile-bad"><strong>{people}</strong><span>point straight to a person</span></div>
+                  <div className="tile-warn"><strong>{combined}</strong><span>can identify someone when combined</span></div>
                 </div>
               </div>
               <div className="kpis-group"><span className="kpis-group-label">Release uses</span>
@@ -119,12 +121,14 @@ export function OperatorApp() {
                 <table className="table optable">
                   <thead><tr><th>Column</th><th>Scanner says</th><th>What happens</th><th>Person check</th></tr></thead>
                   <tbody>
-                    {used.map((f) => (
+                    {used.map((f, i) => (
                       <tr key={key(f)} className={f.needs_review && !reviews[key(f)] ? "row-review" : ""}>
                         <td><code>{f.table}.{f.column}</code></td>
                         <td><span className={`role role-${f.role}`}>{ROLE[f.role] ?? f.role}</span>{f.art9_hint && <span className="badge badge-warn"><IconWarn /> may reveal health</span>}
                           <div className="tiny muted">{cap(f.reason)}</div></td>
-                        <td className="small">{USE[key(f)] ?? (f.table === "stops" ? STOP_USE : f.policy.handling)}</td>
+                        {stopSpan && i === stopSpan[0] ? <td className="small span-cell" rowSpan={stopSpan.length}>{STOP_USE}</td>
+                          : stopSpan && stopSpan.includes(i) ? null
+                          : <td className="small">{USE[key(f)] ?? (f.table === "stops" ? STOP_USE : f.policy.handling)}</td>}
                         <td>{f.needs_review
                           ? <label className={`check ${reviews[key(f)] ? "check-done" : "check-todo"}`}><input type="checkbox" checked={!!reviews[key(f)]} onChange={() => toggle(key(f))} /> {reviews[key(f)] ? "checked by a person" : "needs a person's OK"}</label>
                           : <span className="badge">handled by release policy</span>}</td>

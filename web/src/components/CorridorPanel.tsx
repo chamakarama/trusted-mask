@@ -101,7 +101,7 @@ export function CorridorPanel({ rel, level, band, origin, ranked, shortlist, sel
                   </span>
                   <span className="pm">
                     {noisy.has(c.rank) && <span className="badge badge-warn"><IconWarn /> could be noise</span>}
-                    <span>{r ? `noise range ${fmt(r[0])}–${fmt(r[1])}` : ""}{r && noisy.has(c.rank) ? "" : `${r ? " · " : ""}about ${fmt(c.trips / days)} per weekday`}</span>
+                    <span>{r ? `noise range ${fmt(r[0])}–${fmt(r[1])} · ` : ""}about {fmt(c.trips / days)} per weekday</span>
                   </span>
                 </span>
               </button>
@@ -111,7 +111,7 @@ export function CorridorPanel({ rel, level, band, origin, ranked, shortlist, sel
         {!top.length && <li className="empty">Nothing here. <button className="link" onClick={() => onOrigin(null)}>Show all</button></li>}
       </ol>
 
-      {rely && <p className="capnote"><IconInfo /><span>Noise ranges cover only the random noise around the capped counts. The per-card cap can reduce counts.{capGap
+      {rely && <p className="capnote"><span>Noise ranges cover only the random noise around the capped counts. The per-card cap can reduce counts.{capGap
         ? ` In the synthetic test, after capping and noise, the ten busiest exact-ranked morning routes were ${Math.round(capGap[0] * 100)}–${Math.round(capGap[1] * 100)}% below their exact inferred counts.`
         : ""}</span></p>}
 

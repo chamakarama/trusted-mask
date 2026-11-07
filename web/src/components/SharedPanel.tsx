@@ -1,6 +1,6 @@
 import { fmt } from "../data/derive";
 import { niceDate, releaseUrl, type Release } from "../data/release";
-import { IconCheck, IconDownload, IconInfo, IconLock, IconShield, IconWarn } from "./Icons";
+import { IconCheck, IconDownload, IconWarn } from "./Icons";
 
 const NICE: Record<string, string> = {
   "od_matrix.csv": "Routes between areas (CSV)", "line_hour.csv": "Boardings per line and hour (CSV)", "daily.csv": "Taps per day (CSV)",
@@ -17,14 +17,15 @@ export function SharedPanel({ rel }: { rel: Release }) {
   return (
     <div className="layout">
       <header className="hero">
-        <div className="eyebrow">What's shared · Release {rel.id}</div>
+        <div className="eyebrow">What's shared · Release <span className="keep-case">{rel.id}</span></div>
         <h1>Three tables of protected counts. Nothing else left the bus company.</h1>
         <p className="lede">Published openly for anyone, mainly transport planners. Period: {period}.</p>
       </header>
 
-      <div className="shared-grid" aria-label="What the bus company shared">
+      <h2 className="section-label" id="shared-title">What the bus company shared</h2>
+      <div className="shared-grid" aria-labelledby="shared-title">
         <div className="shared-card">
-          <h3><IconCheck /> What's inside</h3>
+          <h3>What's inside</h3>
           <ul className="plain">
             <li><strong>Routes:</strong> trips from area to area, per time of day, added up over the 4 weeks (weekdays)</li>
             <li><strong>Lines:</strong> boardings on each line, per hour of the day</li>
@@ -33,7 +34,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
           <p className="small muted">Every number has random noise added. Area names and points come from the public stop list.</p>
         </div>
         <div className="shared-card">
-          <h3><IconLock /> What's not inside</h3>
+          <h3>What's not inside</h3>
           <ul className="plain not-list">
             <li>no rows of taps, no travel-card numbers</li>
             <li>no exact times (only time-of-day bands, clock hours and dates)</li>
@@ -43,7 +44,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
           </ul>
         </div>
         <div className="shared-card">
-          <h3><IconShield /> How it was protected</h3>
+          <h3>How it was protected</h3>
           <ul className="plain">
             <li>Each travel card counts at most {p.families.od.cap} trips for routes and {p.families.line_hour.cap} for lines and days.</li>
             <li>Then random noise is added (OpenDP {p.families.od.library_version}), with a total privacy budget of ε = {p.epsilon_release} per card.</li>
@@ -57,7 +58,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
         <div className="block-head"><div><h2 id="fit-title">Who it's for and what it's fit for</h2></div></div>
         <div className="fit-grid">
           <div className="fit-card fit-good">
-            <h4><IconCheck /> Good for</h4>
+            <h4>Good for</h4>
             <ul className="plain small">
               <li>The morning shortlist of busiest routes (checked against the exact data on this synthetic test)</li>
               <li>When the busy lines peak, and taps per day</li>
@@ -65,7 +66,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
             </ul>
           </div>
           <div className="fit-card fit-bad">
-            <h4><IconWarn /> Not good for</h4>
+            <h4>Not good for</h4>
             <ul className="plain small">
               <li>Small or night routes: many are small enough to be pure noise</li>
               <li>Exact counts: the per-card cap can undercount frequent riders' trips</li>
@@ -74,7 +75,7 @@ export function SharedPanel({ rel }: { rel: Release }) {
             </ul>
           </div>
           <div className="fit-card fit-info">
-            <h4><IconInfo /> What we assume</h4>
+            <h4>What we assume</h4>
             <ul className="plain small">
               <li><strong>Attacker:</strong> any outsider, who may have public directories, social check-ins or a leaked fitness app, or saw a neighbour at a stop. They try to learn whether a card is in the data or what else it did.</li>
               <li><strong>Repeat releases add up:</strong> each one spends another ε, so a yearly budget must be planned.</li>

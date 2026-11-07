@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { execute, PRESETS, refuse, validateIntent, type Answer } from "../assistant/intent";
 import { BAND_LABEL } from "../data/derive";
 import { areaLabel, type Release } from "../data/release";
-import { IconSpark, IconWarn } from "./Icons";
+import { IconWarn } from "./Icons";
 
 interface Props { rel: Release; onEvidence: (resultId: string) => void; onApply: (band: string, origin: string | null) => void; onIntent?: (band: string, origin: string | null, firstId: string | null) => void }
 
@@ -27,6 +27,8 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   const pending = useRef<AbortController | null>(null);
   const begin = () => { pending.current?.abort(); pending.current = null; setBusy(false); return ++gen.current; };
   useEffect(() => () => { gen.current++; pending.current?.abort(); }, [rel.id]); // release change or unmount
+  const answerBox = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (answer) answerBox.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, [answer]);
 
   const checkHealth = () => {
     const ctl = new AbortController();
@@ -86,7 +88,7 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
     <section className="panel assistant" aria-labelledby="assist-title">
       <div className="panel-head">
         <h2 id="assist-title">Ask a question</h2>
-        <span className={`badge ${live ? "badge-ok" : ""}`}><IconSpark /> {live === null ? "checking AI…" : live ? "AI on" : "AI offline"}</span>
+        <span className={`badge ${live ? "badge-ok" : ""}`}><span className={`dot ${live ? "dot-ok" : live === false ? "dot-off" : "dot-wait"}`} /> {live === null ? "checking AI…" : live ? "AI on" : "AI offline"}</span>
       </div>
       {live !== false ? (
         <>
@@ -100,11 +102,8 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
       ) : (
         <p className="tiny muted ask-note">Typed questions need the AI helper on this computer. The suggested questions below work without it. <button className="link" onClick={() => checkHealth()}>Check again</button></p>
       )}
-      <div className="presets">
-        {PRESETS.map((p) => <button key={p.id} className="preset" onClick={() => show(p.run(rel))}>{p.question}</button>)}
-      </div>
       {answer && (
-        <div className={`answer ${answer.kind === "answer" ? "" : "answer-refusal"}`} aria-live="polite">
+        <div ref={answerBox} className={`answer ${answer.kind === "answer" ? "" : "answer-refusal"}`} aria-live="polite">
           {answer.kind !== "answer" && <h3><IconWarn /> {TITLE[answer.kind]}</h3>}
           {answer.source === "model" && answer.request && (
             <p className="tiny readas">Read as: {BAND_LABEL[answer.request.hour_band]} · from {answer.request.origin_area ? areaLabel(answer.request.origin_area) : "anywhere"} · top {answer.request.limit}</p>
@@ -126,6 +125,9 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
           </p>
         </div>
       )}
+      <div className="presets">
+        {PRESETS.map((p) => <button key={p.id} className="preset" onClick={() => show(p.run(rel))}>{p.question}</button>)}
+      </div>
     </section>
   );
 }

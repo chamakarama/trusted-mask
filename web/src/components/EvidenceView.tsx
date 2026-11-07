@@ -3,7 +3,7 @@ import { oddsBound } from "../data/evidence";
 import { areaLabel, type Release } from "../data/release";
 import { BeforeAfter } from "./BeforeAfter";
 import { Tradeoff } from "./Tradeoff";
-import { IconCheck, IconInfo, IconShield, IconWarn } from "./Icons";
+import { IconWarn } from "./Icons";
 
 const pct = (x: number, d = 0) => `${(100 * x).toFixed(d)}%`;
 const two = (x: number) => x.toFixed(2);
@@ -48,7 +48,7 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
 
       <div className="vs">
         <article className="vs-card vs-bad">
-          <div className="vs-head"><IconWarn /> If the rows were shared</div>
+          <div className="vs-head">If the rows were shared</div>
           <div className="hero-num">{pct(four.unicity, 1)}</div>
           <p>of travel cards are <strong>picked out from just 4 sightings</strong> (a stop and an hour), even with names removed. A picked-out card reveals that card's recorded boardings in this dataset.</p>
           <svg viewBox={`0 0 ${W} ${curve.length * rowH + 22}`} className="curve" role="img" aria-label="Share of cards picked out by 2, 3 and 4 sightings">
@@ -68,7 +68,7 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           </svg>
         </article>
         <article className="vs-card vs-good">
-          <div className="vs-head"><IconCheck /> RouteSafe</div>
+          <div className="vs-head">RouteSafe</div>
           <div className="hero-num">0 rows</div>
           <p>shared: only three tables of protected counts. The lookup attack has nothing to search. That is not the same as zero risk (see below).</p>
           <div className="vs-stats">
@@ -115,7 +115,7 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           <p className="warnbox"><IconWarn /><span>Area-level routes miss our own 20% target, so this is not a final setting yet. Use the shortlist, not single numbers.</span></p>
         </article>
         <article className="ev-card">
-          <h3><IconShield /> What ε = {eps} means</h3>
+          <h3>What ε = {eps} means</h3>
           <ul className="plain small ink2">
             <li><strong>Card in or out?</strong> Take two versions of the data that differ only by one card, with everyone else's records the same. Any result the release could show is at most {inOut.factor.toFixed(1)}× more likely under one version than the other.</li>
             <li><strong>Example:</strong> someone who knew all the other records and was 50/50 on whether this card is in can get to at most {pct(inOut.posterior)}.</li>
@@ -125,7 +125,7 @@ export function EvidenceView({ rel, ev }: { rel: Release; ev: any | null | undef
           <p className="fine">This compares two fixed versions of the data. It does not cover what data about related people (family, colleagues) might reveal. Assumes one card's records for the whole 4-week period, this one release, total budget ε = {eps}.</p>
         </article>
         <article className="ev-card">
-          <h3><IconInfo /> What's still risky</h3>
+          <h3>What's still risky</h3>
           <ul className="plain small ink2">
             {e7 ? (
               <li><strong>Membership test (simulated):</strong> for {e7.n} preselected synthetic cards, an attacker who knew every other card's records and the card's whole history detected {pct(e7.tprLo, 1)}–{pct(e7.tprHi, 1)} of membership cases at about {pct(e7.fpr)} false alarms (random guessing: {pct(e7.fpr)}). One specific attack, not proof of zero risk.</li>

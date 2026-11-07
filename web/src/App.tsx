@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AssistantPanel } from "./components/AssistantPanel";
 import { BaseMap } from "./components/BaseMap";
 import { BAND_SHORT, CorridorPanel, RouteFilters } from "./components/CorridorPanel";
 import { WhenView } from "./components/DemandViews";
 import { EvidenceView } from "./components/EvidenceView";
-import { IconCheck, IconInfo, IconLock, IconShield, IconWarn, Logo } from "./components/Icons";
+import { IconCheck, IconInfo, IconWarn, Logo } from "./components/Icons";
 import { MapView } from "./components/MapView";
 import { SharedPanel } from "./components/SharedPanel";
 import { BAND_PHRASE, BANDS, commonEnd, fmt, outgoingAt, points, rankAt, shortlistReliability, type Level } from "./data/derive";
@@ -40,6 +40,7 @@ export function App() {
   const [origin, setOrigin] = useState<string | null>(init.origin);
   const [selected, setSelected] = useState<string | null>(init.corridor);
   const [schematic, setSchematic] = useState(init.schematic);
+  const sideBody = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     loadIndex().then((ix) => {
@@ -110,7 +111,13 @@ export function App() {
     setView("routes");
     setSelected(id);
   };
+  const pickRoute = (id: string) => {
+    setSelected(id);
+    window.setTimeout(() => sideBody.current?.querySelector(".detail")?.scrollIntoView({ block: "nearest", behavior: "smooth" }), 60);
+  };
   const best = ranked[0];
+  const isMuted = (c: { noisy_value: number }) => floor !== null && c.noisy_value <= floor;
+  const legend = { strong: shown.slice(0, SHORTLIST).some((c) => !isMuted(c)), weak: shown.slice(SHORTLIST).some((c) => !isMuted(c)), muted: shown.some(isMuted), glow: [...outgoing.values()].some((v) => v > 0) };
   const period = rel ? `${niceDate(rel.manifest.period.start_date, false)} – ${niceDate(rel.manifest.period.end_date_inclusive)}` : "";
   const onRoutes = !!rel && !error && view === "routes";
 
@@ -165,7 +172,7 @@ export function App() {
             <h1 id="routes-title">Where do people travel {BAND_PHRASE[band]}?</h1>
             <div className="bandbar" role="radiogroup" aria-label="Time of day">
               {BANDS.map((b) => (
-                <button key={b} role="radio" aria-checked={b === band} className={`band ${b === band ? "band-on" : ""}`} onClick={() => { setBand(b); setSelected(null); }}>
+                <button key={b} role="radio" aria-checked={b === band} className={`band ${b === band ? "band-on" : ""}`} onClick={() => { setBand(b); setSelected(null); sideBody.current?.scrollTo({ top: 0, behavior: "smooth" }); }}>
                   {BAND_SHORT[b][0]}<small>{BAND_SHORT[b][1]}</small>
                 </button>
               ))}
@@ -179,10 +186,10 @@ export function App() {
               <div className="kpi"><div className="kpi-label">Busiest route ({BAND_SHORT[band][1]})</div>
                 <div className="kpi-value">{!best ? "–" : topNoise ? "No clear busiest route" : <><span className="nw">{areaLabel(best.origin_area)}</span> → <span className="nw">{areaLabel(best.destination_area)}</span></>}</div>
                 <div className="kpi-sub">{!best ? "" : topNoise && rely ? `top is ${fmt(best.trips)} trips, below the ${fmt(rely.radius)} noise level` : `${fmt(best.trips)} trips over 4 weeks`}</div></div>
-              <div className="kpi"><div className="kpi-label"><IconLock /> Passenger records shared</div><div className="kpi-value">0</div><div className="kpi-sub">no card numbers, no exact times</div></div>
-              <div className="kpi"><div className="kpi-label"><IconShield /> Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card · lower = more private</div></div>
+              <div className="kpi"><div className="kpi-label">Passenger records shared</div><div className="kpi-value">0</div><div className="kpi-sub">no card numbers, no exact times</div></div>
+              <div className="kpi"><div className="kpi-label">Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card · lower = more private</div></div>
               <div className={`kpi ${someNoise ? "kpi-warn" : check ? "kpi-ok" : ""}`}>
-                <div className="kpi-label">{someNoise ? <IconWarn /> : check ? <IconCheck /> : <IconInfo />} Top {SHORTLIST} check</div>
+                <div className="kpi-label">{someNoise && <IconWarn />} Top {SHORTLIST} check</div>
                 <div className="kpi-value">{rel.manifest.fixture ? "–" : topNoise ? "Could be noise" : someNoise ? "Some could be noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
                 <div className="kpi-sub">{rel.manifest.fixture ? "test fixture: no claims" : topNoise ? "too small to tell from noise" : someNoise ? "some shortlisted routes are within the noise range" : check && level === "area" ? "re-runs gave the same top 3 (synthetic test)" : check ? "town pairs match exact data (synthetic test)" : band === "06-09" && origin ? "only the unfiltered morning top 3 was tested" : "only weekday mornings were tested"}</div>
               </div>
@@ -191,19 +198,21 @@ export function App() {
               {schematic
                 ? <div className="map" style={{ position: "absolute", inset: 0 }}>
                     <MapView pts={pts} outgoing={outgoing} derived={level === "municipality"} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST}
-                      selected={selected} origin={origin} onSelect={setSelected} onOrigin={(a) => { setOrigin(a); setSelected(null); }} floor={floor} tripsMax={tripsMax} outMax={outMax} />
+                      selected={selected} origin={origin} onSelect={pickRoute} onOrigin={(a) => { setOrigin(a); setSelected(null); }} floor={floor} tripsMax={tripsMax} outMax={outMax} />
                   </div>
                 : <BaseMap key={level} pts={pts} outgoing={outgoing} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST} selected={selected} origin={origin}
-                    onSelect={setSelected} onOrigin={(a) => { setOrigin((o) => (o === a ? null : a)); setSelected(null); }} onFail={() => setSchematic(true)} floor={floor} tripsMax={tripsMax} outMax={outMax} />}
+                    onSelect={pickRoute} onOrigin={(a) => { setOrigin((o) => (o === a ? null : a)); setSelected(null); }} onFail={() => setSchematic(true)} floor={floor} tripsMax={tripsMax} outMax={outMax} />}
               <div className="map-overlay">
                 <div className="glass">
                   <strong>{topNoise ? `${BAND_SHORT[band][0]}: too few trips to read` : someNoise ? `${BAND_SHORT[band][0]}: some top routes could be noise` : takeaway
                     ? `${takeaway.count} of the ${shown.length} busiest ${BAND_SHORT[band][0].toLowerCase()} routes ${takeaway.side === "end" ? "end" : "start"} in ${areaLabel(takeaway.place)}`
                     : `${BAND_SHORT[band][0]} trips ${BAND_SHORT[band][1]}`}</strong>
-                  <div className="legend-row"><span className="legend-arc" /> top {SHORTLIST} routes</div>
-                  <div className="legend-row"><span className="legend-arc thin" /> next {ON_MAP - SHORTLIST}</div>
-                  {floor !== null && shown.some((c) => c.noisy_value <= floor) && <div className="legend-row"><span className="legend-arc muted" /> could be noise (under {fmt(floor)})</div>}
-                  <div className="legend-row"><span className="legend-dot" /> {schematic ? "bigger dot = more trips start here" : "glow = trips starting here"}</div>
+                  <div className="map-legend">
+                    {legend.strong && <div className="legend-row"><span className="legend-arc" /> top {SHORTLIST} routes</div>}
+                    {legend.weak && <div className="legend-row"><span className="legend-arc thin" /> next {ON_MAP - SHORTLIST}</div>}
+                    {floor !== null && legend.muted && <div className="legend-row"><span className="legend-arc muted" /> could be noise (under {fmt(floor)})</div>}
+                    {legend.glow && <div className="legend-row"><span className={`legend-dot ${schematic ? "" : "legend-glow"}`} /> {schematic ? "bigger dot = more trips start here" : "glow = trips starting here"}</div>}
+                  </div>
                 </div>
               </div>
               <div className="map-toggle"><button onClick={() => setSchematic(!schematic)}>{schematic ? "Street map" : "Simple diagram"}</button></div>
@@ -215,11 +224,11 @@ export function App() {
             </div>
           </section>
 
-          <div className="side-body">
+          <div className="side-body" ref={sideBody}>
             <CorridorPanel rel={rel} level={level} band={band} origin={origin}
               ranked={ranked} shortlist={SHORTLIST} selected={selected} rely={rely} check={check} capLoss={evFor?.cap_loss_fraction?.od ?? null}
               capGap={capGap} bandCheck={bandCheck}
-              onOrigin={(a) => { setOrigin(a); setSelected(null); }} onSelect={setSelected} />
+              onOrigin={(a) => { setOrigin(a); setSelected(null); }} onSelect={pickRoute} />
             <AssistantPanel rel={rel} onEvidence={selectCorridor} onApply={(b, o) => { setBand(b); setOrigin(o); setSelected(null); }}
               onIntent={(b, o, id) => { setLevel("area"); setBand(b); setOrigin(o); setSelected(id); }} />
             <p className="side-foot">{ATTRIBUTION}</p>

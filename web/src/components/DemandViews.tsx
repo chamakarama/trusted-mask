@@ -1,7 +1,6 @@
 import { useState, type MouseEvent } from "react";
 import { cellRadius, dailySeries, familyScale, fmt, hourTotals, lineTotals, noiseRadius } from "../data/derive";
 import { niceDate, type Release } from "../data/release";
-import { IconShield } from "./Icons";
 
 const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 // validated sequential blue ramp (dataviz reference palette), lightest = smallest clearly-real value
@@ -18,7 +17,7 @@ function useTip() {
   return { show, hide, el };
 }
 
-const Noise = () => <span className="badge"><IconShield /> noise added</span>;
+const Noise = () => <span className="tag">noise added</span>;
 
 /** Line x hour heatmap of released weekday boardings (whole period). Cells inside the noise range are grey. */
 export function LineHourView({ rel }: { rel: Release }) {
@@ -41,7 +40,7 @@ export function LineHourView({ rel }: { rel: Release }) {
       </div>
       <div className="legend">
         <span><span className="scale-bar" aria-hidden="true" style={{ marginRight: 8, width: 140 }} />fewer → more boardings</span>
-        {!fixture && <span><span className="swatch sw-noise" />within {fmt(r)} of zero: could be zero. Coloured cells can still be noise.</span>}
+        {!fixture && <span><span className="swatch sw-noise" />Grey = within {fmt(r)} of zero, so it could be zero. Coloured cells can still be noise.</span>}
       </div>
       <div className="heat-wrap" onMouseLeave={hide}>
         <table className="heat">
@@ -91,7 +90,7 @@ export function DailyView({ rel }: { rel: Release }) {
       <div className="block-head">
         <div>
           <h2 id="daily-title">Taps per day</h2>
-          <p className="sub">All recorded taps on each date, including weekends.</p>
+          <p className="sub">All recorded taps, including weekends.</p>
         </div>
         <Noise />
       </div>
@@ -102,9 +101,9 @@ export function DailyView({ rel }: { rel: Release }) {
       </div>
       <div onMouseLeave={hide}>
         <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-labelledby="daily-title">
-          {[0, 0.25, 0.5, 0.75, 1].map((t) => (
-            <g key={t}><line x1={L} x2={W - R} y1={y(top * t)} y2={y(top * t)} className={t === 0 ? "base" : "grid"} />
-              <text x={L - 8} y={y(top * t) + 4} className="axis" textAnchor="end">{t === 0 ? "0" : `${Math.round((top * t) / 1000)}K`}</text></g>
+          {Array.from({ length: top / 10000 + 1 }, (_, i) => i * 10000).map((v) => (
+            <g key={v}><line x1={L} x2={W - R} y1={y(v)} y2={y(v)} className={v === 0 ? "base" : "grid"} />
+              <text x={L - 8} y={y(v) + 4} className="axis" textAnchor="end">{v === 0 ? "0" : `${v / 1000}K`}</text></g>
           ))}
           {days.map((d, i) => {
             const x = L + i * slot + (slot - bw) / 2, h = y(0) - y(d.tap_events), weekend = d.weekday === 0 || d.weekday === 6, rr = Math.min(4, h);

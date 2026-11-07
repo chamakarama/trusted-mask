@@ -111,14 +111,6 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
             </path>
           );
         })}
-        {corridors.filter((c) => c.rank <= highlight && !isMuted(c)).map((c) => {
-          const p = badgeAt(c);
-          return (
-            <g key={`b-${c.id}`} className="rank-badge" aria-hidden="true">
-              <circle cx={p.x} cy={p.y} r={9} /><text x={p.x} y={p.y + 4} textAnchor="middle">{c.rank}</text>
-            </g>
-          );
-        })}
         {pts.map((a) => {
           const p = proj.get(a.id)!;
           const r = 3 + 7 * Math.sqrt((out.get(a.id) ?? 0) / maxOut);
@@ -131,6 +123,14 @@ export function MapView({ pts, outgoing, corridors, highlight, selected, origin,
               <title>{areaLabel(a.id)}</title>
               <circle cx={p.x} cy={p.y} r={r} />
               {named.has(a.id) && <text x={p.x + r + 4} y={p.y + 4}>{areaLabel(a.id)}</text>}
+            </g>
+          );
+        })}
+        {corridors.filter((c) => c.rank <= highlight && !isMuted(c)).map((c) => {
+          const p = badgeAt(c);
+          return (
+            <g key={`b-${c.id}`} className={`rank-badge ${selected && selected !== c.id ? "badge-dim" : ""}`} aria-hidden="true">
+              <circle cx={p.x} cy={p.y} r={9} /><text x={p.x} y={p.y + 4} textAnchor="middle">{c.rank}</text>
             </g>
           );
         })}
