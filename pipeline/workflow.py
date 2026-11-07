@@ -39,7 +39,7 @@ PACKAGE = ROOT/'TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026'
 
 
 def city_registration(digest):
-    registrations=[(BUNDLED_CITY,BUNDLED_RECEIPT),(ROOT/'releases/kupittaa-hackathon-v1',ROOT/'evidence/kupittaa-hackathon/release-receipt.json')]
+    registrations=[(ROOT/'releases/kupittaa-day-v2',ROOT/'evidence/kupittaa-day-v2/release-receipt.json'),(BUNDLED_CITY,BUNDLED_RECEIPT),(ROOT/'releases/kupittaa-hackathon-v1',ROOT/'evidence/kupittaa-hackathon/release-receipt.json')]
     for source,receipt_path in registrations:
         if source.exists() and receipt_path.exists():
             record=json.loads(receipt_path.read_text())
