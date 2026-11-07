@@ -1,0 +1,108 @@
+{
+  "counts": {
+    "records": 96,
+    "gold_spans": 384,
+    "detected_gold_exact": 96,
+    "gold_action_correct": 288,
+    "gold_relevance_correct": 288,
+    "required_removal": 288,
+    "required_removed": 162,
+    "direct_required": 192,
+    "direct_removed": 114,
+    "required_facts": 96,
+    "facts_retained": 48,
+    "ready": 0,
+    "unsupported": 0,
+    "predicted_spans": 372,
+    "benign_characters": 2256,
+    "benign_characters_changed": 324
+  },
+  "gold_span_action_accuracy_diagnostic": 0.75,
+  "exact_detector_recall": 0.25,
+  "exact_detector_precision": 0.25806451612903225,
+  "draft_benign_character_change_rate": 0.14361702127659576,
+  "gold_span_relevance_accuracy_diagnostic": 0.75,
+  "draft_required_removal_coverage": 0.5625,
+  "draft_direct_removal_coverage": 0.59375,
+  "draft_exact_fact_retention": 0.5,
+  "automatic_coverage": 0.0,
+  "latency_seconds": {
+    "median": 0.0016180829843506217,
+    "p95": 0.0017847500275820494
+  },
+  "release_pass": false,
+  "independent_evidence": false,
+  "limitations": [
+    "programmatic pilot labels are not independently audited",
+    "draft metrics include review outputs and are not successful automatic exports",
+    "gold-span classification is diagnostic, not end-to-end privacy",
+    "span coverage does not measure inference attacks or downstream utility"
+  ],
+  "model": {
+    "bundle_schema": 1,
+    "release_validated": false,
+    "track": "custom-a",
+    "dataset_sha256": "25ef62d08a47431402048f8c16a55d3c1e5e1d33145625230d17e4d85d3fad64",
+    "train_records": 288,
+    "train_families": 6,
+    "training": {
+      "algorithm": "sparse_logistic_regression",
+      "C": 1.0,
+      "max_iter": 500,
+      "seed": 17
+    },
+    "elapsed_seconds": 12.026288833003491,
+    "machine": "macOS-27.0.1-arm64-arm-64bit",
+    "device": "cpu",
+    "calibrated": false,
+    "purpose": "engineering_pilot_only",
+    "files": {
+      "action.json": "38323af04243f781db560b0f55de74daf141ead90cad4d4cf52b248a801c876f",
+      "action.npz": "f26cbbaaa65b9a1ae551dd5b16d7e13538718e6a8643807cdd7e28389daf3e1b",
+      "detector.json": "c81a5fe8dcf1aa61e50a96be1b7a7769c096d274b990fef079261a9b2161901a",
+      "detector.npz": "d591c9f6bf24b126ceda0d61aec8b547ebc3f4f2413eeebb5b874d541e817005",
+      "relevance.json": "80badf701c67d01e2fa130bdfb35899ef26320132438b9258ebbb35ef9d3a381",
+      "relevance.npz": "346affac4bbed18b22730168eaf94f43fa6957b3c2cc428e1b9884342eeaedfb"
+    },
+    "contract_version": "privacy-v1-pilot.1",
+    "policy_version": "consumer-v1-pilot.1",
+    "label_order": [
+      "PERSON",
+      "EMAIL",
+      "PHONE",
+      "ADDRESS",
+      "USERNAME",
+      "ACCOUNT_ID",
+      "NATIONAL_ID",
+      "PAYMENT_CARD",
+      "IBAN",
+      "SECRET",
+      "DATE",
+      "AGE",
+      "LOCATION",
+      "ORG",
+      "HEALTH",
+      "FINANCIAL",
+      "EMPLOYMENT",
+      "FAMILY"
+    ],
+    "action_order": [
+      "KEEP",
+      "DROP",
+      "ALIAS",
+      "ROLE",
+      "GENERALISE",
+      "PLACEHOLDER"
+    ],
+    "relevance_order": [
+      "essential",
+      "unnecessary",
+      "uncertain"
+    ]
+  },
+  "baseline": "goal-agnostic",
+  "dataset_sha256": "25ef62d08a47431402048f8c16a55d3c1e5e1d33145625230d17e4d85d3fad64",
+  "split": "dev",
+  "families": 2,
+  "bundle_bytes": 164876
+}

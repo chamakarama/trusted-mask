@@ -1,0 +1,24 @@
+@font-face {
+  font-family: Inter;
+  src: url('/font.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root { color-scheme: dark; background: #090909; color: #e4e4e7; font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 280px; }
+main { min-height: 100dvh; max-width: 1240px; margin: 0 auto; padding: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-content: center; }
+textarea { width: 100%; height: min(58vh, 520px); min-height: 260px; padding: 26px; resize: none; border: 1px solid #28282b; border-radius: 12px; background: #101012; color: #e4e4e7; font: 400 15px/1.85 Inter, sans-serif; letter-spacing: -.15px; outline: none; transition: border-color 150ms; }
+textarea::placeholder { color: #74747c; }
+textarea:focus-visible { border-color: #62626a; }
+.purpose { grid-column: 1 / -1; display: grid; gap: 8px; font-size: 13px; }
+.optional, .purpose small { color: #85858d; font-weight: 400; }
+.purpose input { width: 100%; padding: 13px 16px; border: 1px solid #28282b; border-radius: 10px; background: #101012; color: #e4e4e7; font: 400 14px/1.5 Inter, sans-serif; outline: none; }
+.purpose input::placeholder { color: #74747c; }
+.purpose input:focus-visible { border-color: #62626a; }
+.purpose small { font-size: 12px; line-height: 1.5; }
+.result { min-width: 0; }
+.result textarea { display: block; }
+#status { min-height: 1.5em; margin: 9px 2px 0; color: #a1a1aa; font-size: 12px; line-height: 1.5; }
+@media (max-width: 640px) { main { grid-template-columns: 1fr; gap: 16px; padding: 24px; } textarea { height: 36dvh; min-height: 220px; padding: 22px; } }
+@media (prefers-reduced-motion: reduce) { textarea { transition: none; } }

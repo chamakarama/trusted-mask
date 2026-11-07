@@ -1,43 +1,46 @@
 # Mask
 
-**Describe the analysis. Review how your data will be protected. Export the approved result.**
+**Useful AI conversations. Less unnecessary personal disclosure.**
 
-Mask is a planned purpose-aware data protection tool for the TrustED PETs Transformer challenge. It will identify data types and relationships, recommend protection recipes, evaluate the combined output, and show the exact changes before export.
+Mask is a local privacy-editor prototype. It identifies private details, substitutes stable labels such as `[PERSON_1]`, and proposes task-dependent edits while preserving useful facts. The current focus is readable English messages around 100 words. Outputs require review; there is no automatic forwarding to a cloud AI or validated anonymity claim.
 
-The central ML task is **choosing how to transform information**. A goal-conditioned model will rank valid recipes with softmax. Detection, method preference and measured disclosure risk are separate outputs.
+Both model approaches are implemented: custom sparse classifiers and a fine-tuned MiniLM encoder. They share the edit pipeline, file adapters and evaluation contracts. The current pilot weights and synthetic pilot dataset are included; better reviewed training data and independent evaluation are the next steps.
 
-## Status
+## Run the local message demo
 
-A working vertical slice exists in [`mask/`](mask/README.md): import → goal → deterministic proposal → transformed preview → confirmed export, in the browser. A learned selector and a benchmark adapter are in progress; see the Mask README for what is measured and what is not. The previous transport application has been removed from the active checkout. Its results do not establish Mask's performance.
-
-- [Architecture and implementation plan](planning/MASK_PLAN.md)
-- [Claude implementation handoff and team workstreams](planning/CLAUDE_BUILD_BRIEF.md)
-- [Challenge materials and evaluation sources](MATERIALS.md)
-- [Retained detector baseline](petpilot/README.md)
-
-## Planned workflow
-
-1. Write the intended analysis and specify the recipient/output setting.
-2. Import CSV tables, including supported text columns, and inspect the data.
-3. Review proposed recipes with labelled colour highlights and explanations.
-4. Inspect uncertainty and measured privacy/utility effects; revise if needed.
-5. Confirm the exact plan and export transformed files with a sanitised report.
-
-The private developer panel will expose candidate scores, evidence, parameters and evaluation results. Raw previews, original redacted content, token mappings and evaluation truth are excluded from the shareable report.
-
-## Available components
-
-The original synthetic challenge package is preserved under `TRUSTED_SinceAI2026_FINAL/`. Its mobility dataset is part of the supplied benchmark, not an active transport product.
-
-`petpilot/` is the existing generic rules-based column scanner, not the planned learned selector or a span-redaction engine. Install its requirements if needed and run its regression checks:
+From the repository root:
 
 ```sh
-python -m pip install -r petpilot/requirements.txt
-python -m unittest discover -s petpilot/tests -t .
+git lfs install
+git lfs pull --include="mask/ml/privacy_v1/artifacts/**,mask/ml/privacy_v1/bundled_weights/**"
+python3 -m mask.ml.privacy_v1.restore_bundles
+python3 -m venv mask/ml/privacy_v1/.venv
+mask/ml/privacy_v1/.venv/bin/python -m pip install -r mask/ml/privacy_v1/requirements.lock
+mask/ml/privacy_v1/.venv/bin/python -m mask.web.server
 ```
 
-## Recovery and attribution
+Open **http://127.0.0.1:8787**. Paste a message and optionally provide its intended use; the proposed protected payload appears beside it. Blank intended use uses the message itself as context. The payload includes a short instruction allowing the receiving AI to reuse placeholders. All inference stays local.
 
-The previous application is recoverable from Git at commit `23eedc29d6f2a3cd945cac2a4307e91e6427af77`. This reset does not rewrite history. Local runtime files and a copy of the retired application were moved to `/private/tmp/mask-retired-bfz9ordp`; this temporary directory is not durable storage.
+The default bundle is encoder B. See [model setup and provenance](mask/ml/privacy_v1/MODEL_BUNDLES.md) to run custom A. Python APIs and CLI adapters also support bounded CSV and values-only XLSX.
 
-Challenge data/documentation retain their upstream CC BY 4.0 attribution; supplied toolkit code retains its MIT license. See the package notices and [materials guide](MATERIALS.md).
+## Existing table-review demo
+
+The original table UI remains intact, including typography, divider, highlights, explanations, review controls and export:
+
+```sh
+npm ci --prefix mask
+npm run dev --prefix mask
+```
+
+Open **http://localhost:5173**. This interface uses the existing institutional table pipeline; it is separate from the new Python message models. Its code, fixtures, learned selector, label provenance and benchmark adapter remain available. Both servers have entries in `.claude/launch.json`.
+
+## Work and evidence
+
+- [Current model plan](planning/LOCAL_MODEL_PLAN.md) and [implementation brief](planning/CLAUDE_BUILD_BRIEF.md)
+- [Shared training-data producer prompt](mask/ml/privacy_v1/annotation/TRAINING_DATA_PROMPT.md) and [annotation contract](mask/ml/privacy_v1/annotation/README.md)
+- [Python model/API/CLI instructions](mask/ml/privacy_v1/README.md)
+- [Latest pipeline results and known failures](evidence/privacy-v1/pipeline-v2/REPORT.md)
+- [Table UI](mask/README.md), [institutional ML baseline](mask/ml/README.md), [benchmark adapter](mask/bench/README.md)
+- [Challenge materials and licences](MATERIALS.md)
+
+The unused standalone scanner, duplicate challenge ZIP/presentation files and superseded plans have been removed from the active tree. The supplied unpacked evaluation package and measured outcomes remain available. Earlier work is recoverable in Git history.

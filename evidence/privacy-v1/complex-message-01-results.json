@@ -1,0 +1,809 @@
+{
+  "fixture": {
+    "purpose": "Synthetic exploratory stress case; not independent release evaluation",
+    "task": "Help me prepare questions for a clinician about the symptoms, medication timeline and blood-pressure readings. Preserve the measurements, doses, timing and uncertainty. Omit identifying details and unrelated financial or employment information.",
+    "text": "I'm Noura Haddad, born on 1991-06-14. My patient ID is HX-48271 and I live at 47 Willow Lane. You can reach me at noura.haddad@example.invalid or +1 202 555 0147. Dr. Leon Mercer at Riverside Clinic asked me to write down what happened before our next appointment.\n\nThree weeks ago my blood pressure was 120/80. Last Monday it was 145/95 after I walked upstairs. I started taking 5 mg daily two weeks ago, then changed to 10 mg daily on Friday. Since then I have felt dizzy twice, but I have not fainted. I am not sure whether the medication, poor sleep or something else explains this.\n\nMy mother had heart disease at age 52, which may be relevant. My partner, Mateo Silva, has been helping me record the readings. Please keep the distinction between my symptoms and my mother's medical history.\n\nI also work at Cedarbridge Analytics, earn 4200 euros per month and pay 1250 euros in rent. Those details are unrelated to the medical questions.\n\nFor completeness, my portal username is nhaddad_91 and the temporary password is DEMO-only-7qP9. They were copied into this note by mistake. The appointment reminder also contains reference RX-93726; please do not include login details or contact information in the summary.",
+    "identifiers_expected_removed": [
+      "Noura Haddad",
+      "1991-06-14",
+      "HX-48271",
+      "47 Willow Lane",
+      "noura.haddad@example.invalid",
+      "+1 202 555 0147",
+      "Leon Mercer",
+      "Mateo Silva",
+      "nhaddad_91",
+      "DEMO-only-7qP9",
+      "RX-93726"
+    ],
+    "unrelated_details_expected_removed": [
+      "Cedarbridge Analytics",
+      "4200 euros",
+      "1250 euros"
+    ],
+    "required_fact_strings": [
+      "120/80",
+      "145/95",
+      "5 mg daily",
+      "two weeks ago",
+      "10 mg daily",
+      "on Friday",
+      "dizzy twice",
+      "not fainted",
+      "not sure",
+      "My mother had heart disease at age 52"
+    ]
+  },
+  "word_count": 206,
+  "runs": {
+    "custom-a-pilot": {
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I'm Noura [HEALTH], born on [DATE]. [HEALTH] patient ID [ACCOUNT_ID] [FINANCIAL] [HEALTH] [HEALTH] at [ADDRESS]. You can reach me at [EMAIL] or [PHONE]. [MASK_PERSON_1]. Leon [MASK_PERSON_2] at Riverside Clinic asked me to write down what [HEALTH] before our next appointment.\n\n[HEALTH][MASK_PERSON_3][HEALTH][MASK_PERSON_4][HEALTH]\n\n[HEALTH][AGE], which may be relevant. My partner, Mateo Silva, has been helping me record the readings. Please keep the distinction between my symptoms and my mother's medical history.\n\n[HEALTH] at Cedarbridge Analytics, earn [FINANCIAL] per month [HEALTH] [FINANCIAL] in [FINANCIAL]. [MASK_PERSON_5] details are unrelated to the medical questions.\n\nFor completeness, my portal username is [HEALTH] the temporary password is [FINANCIAL]. They were copied into this note by [HEALTH]. The appointment reminder also contains reference [HEALTH]; please [HEALTH] details or contact information [HEALTH] the summary.",
+        "model_version": "custom-a-pilot",
+        "edits": [
+          {
+            "start": 10,
+            "end": 16,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9955901680036869
+          },
+          {
+            "start": 26,
+            "end": 36,
+            "label": "DATE",
+            "action": "PLACEHOLDER",
+            "replacement": "[DATE]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9938168626366938
+          },
+          {
+            "start": 38,
+            "end": 40,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.995172622234707
+          },
+          {
+            "start": 52,
+            "end": 54,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 1.0
+          },
+          {
+            "start": 55,
+            "end": 63,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.948394112606682
+          },
+          {
+            "start": 64,
+            "end": 67,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9865980065989677
+          },
+          {
+            "start": 68,
+            "end": 74,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9950556958622053
+          },
+          {
+            "start": 78,
+            "end": 92,
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "replacement": "[ADDRESS]",
+            "reason": "direct_identifier_policy",
+            "score": 1.0
+          },
+          {
+            "start": 114,
+            "end": 142,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": 1.0
+          },
+          {
+            "start": 146,
+            "end": 161,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": 1.0
+          },
+          {
+            "start": 163,
+            "end": 165,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": 0.895034946221262
+          },
+          {
+            "start": 172,
+            "end": 178,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": 0.895034946221262
+          },
+          {
+            "start": 227,
+            "end": 235,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9955901680036869
+          },
+          {
+            "start": 266,
+            "end": 317,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9726299958889238
+          },
+          {
+            "start": 317,
+            "end": 323,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": 0.8803835145500135
+          },
+          {
+            "start": 323,
+            "end": 437,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.989088969444263
+          },
+          {
+            "start": 437,
+            "end": 443,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": 0.8927051228113972
+          },
+          {
+            "start": 443,
+            "end": 586,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.7476654730032142
+          },
+          {
+            "start": 588,
+            "end": 623,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9957908366338137
+          },
+          {
+            "start": 623,
+            "end": 625,
+            "label": "AGE",
+            "action": "PLACEHOLDER",
+            "replacement": "[AGE]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.966163864277075
+          },
+          {
+            "start": 798,
+            "end": 809,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9950556958622053
+          },
+          {
+            "start": 841,
+            "end": 851,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9434030102679426
+          },
+          {
+            "start": 862,
+            "end": 874,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9865980065989677
+          },
+          {
+            "start": 875,
+            "end": 880,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9434030102679426
+          },
+          {
+            "start": 884,
+            "end": 888,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9451151786357853
+          },
+          {
+            "start": 890,
+            "end": 895,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_5]",
+            "reason": "direct_identifier_policy",
+            "score": 0.8992444452196254
+          },
+          {
+            "start": 985,
+            "end": 999,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9865980065989677
+          },
+          {
+            "start": 1026,
+            "end": 1040,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.992334210181967
+          },
+          {
+            "start": 1077,
+            "end": 1084,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.993732920548862
+          },
+          {
+            "start": 1135,
+            "end": 1143,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9955901680036869
+          },
+          {
+            "start": 1152,
+            "end": 1172,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9946171127671626
+          },
+          {
+            "start": 1204,
+            "end": 1206,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9955901680036869
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 625,
+            "end": 796,
+            "label": "HEALTH",
+            "reason": "review_fallback"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "uncertain_treatment"
+        ],
+        "coverage": {
+          "scanned_characters": 1219,
+          "total_characters": 1219,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me prepare questions for a clinician about the symptoms, medication timeline and blood-pressure readings. Preserve the measurements, doses, timing and uncertainty. Omit identifying details and unrelated financial or employment information.",
+        "protected_history": []
+      },
+      "elapsed_seconds": 0.017016875033732504,
+      "identifiers_still_present": [
+        "Mateo Silva"
+      ],
+      "unrelated_details_still_present": [
+        "Cedarbridge Analytics"
+      ],
+      "required_fact_strings_missing": [
+        "120/80",
+        "145/95",
+        "5 mg daily",
+        "two weeks ago",
+        "10 mg daily",
+        "on Friday",
+        "dizzy twice",
+        "not fainted",
+        "not sure",
+        "My mother had heart disease at age 52"
+      ],
+      "identifier_source_residuals": [
+        {
+          "synthetic_identifier": "Noura Haddad",
+          "unedited_source_characters": "Noura "
+        },
+        {
+          "synthetic_identifier": "Leon Mercer",
+          "unedited_source_characters": "Leon "
+        },
+        {
+          "synthetic_identifier": "Mateo Silva",
+          "unedited_source_characters": "Mateo Silva"
+        }
+      ]
+    },
+    "encoder-b-pilot": {
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I'm [MASK_PERSON_1], born on [DATE][ACCOUNT_ID]. [FINANCIAL] patient ID [ACCOUNT_ID] [MASK_PERSON_2][ACCOUNT_ID][PHONE] and I live at [ADDRESS]. You can reach [FINANCIAL] at [EMAIL] or [PHONE]. [PHONE]. [MASK_PERSON_3] at [MASK_PERSON_4] asked [FINANCIAL] to write down what happened before our next appointment.\n\nThree weeks ago my blood pressure was 120/80. Last Monday it was 145/95 after I walked upstairs. I started taking 5 mg daily two weeks ago, then changed to 10 mg daily on Friday. Since then I have felt dizzy twice, but I have not fainted. I am not sure whether the medication, poor sleep or something else explains this.\n\nMy mother had heart disease at age 52[HEALTH][MASK_PERSON_5][HEALTH][MASK_PERSON_6][HEALTH]\n\n[FINANCIAL] also work at [MASK_PERSON_7], earn [FINANCIAL] and [FINANCIAL]. Those details are unrelated to the medical questions.\n\nFor completeness, my portal username is [MASK_PERSON_8][USERNAME][MASK_PERSON_9] and the temporary password is [ACCOUNT_ID][SECRET][ACCOUNT_ID][PHONE]. They were copied into this note by mistake. The appointment reminder also contains reference [ACCOUNT_ID][MASK_PERSON_10][ACCOUNT_ID][PHONE]; please do not include log[FINANCIAL] details or contact information in the summary.",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 4,
+            "end": 16,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9836944542391934
+          },
+          {
+            "start": 26,
+            "end": 30,
+            "label": "DATE",
+            "action": "PLACEHOLDER",
+            "replacement": "[DATE]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9489464348265025
+          },
+          {
+            "start": 30,
+            "end": 36,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9979017582411084
+          },
+          {
+            "start": 38,
+            "end": 40,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.756444137608111
+          },
+          {
+            "start": 52,
+            "end": 54,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.978880550200821
+          },
+          {
+            "start": 55,
+            "end": 56,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": 0.8579491392507453
+          },
+          {
+            "start": 56,
+            "end": 58,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9975344590614347
+          },
+          {
+            "start": 58,
+            "end": 63,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": 0.996463128411987
+          },
+          {
+            "start": 78,
+            "end": 92,
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "replacement": "[ADDRESS]",
+            "reason": "direct_identifier_policy",
+            "score": 0.8411675705533657
+          },
+          {
+            "start": 108,
+            "end": 110,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9761598062330364
+          },
+          {
+            "start": 114,
+            "end": 142,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9980564670701451
+          },
+          {
+            "start": 146,
+            "end": 161,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9980240568258673
+          },
+          {
+            "start": 163,
+            "end": 165,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": 0.8929998897171673
+          },
+          {
+            "start": 167,
+            "end": 178,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9873068521113817
+          },
+          {
+            "start": 182,
+            "end": 198,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": 0.993626229236493
+          },
+          {
+            "start": 205,
+            "end": 207,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.8894728457527059
+          },
+          {
+            "start": 625,
+            "end": 662,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9354458257579157
+          },
+          {
+            "start": 662,
+            "end": 673,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_5]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9776131387233831
+          },
+          {
+            "start": 673,
+            "end": 771,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9363291252389826
+          },
+          {
+            "start": 771,
+            "end": 777,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_6]",
+            "reason": "review_fallback",
+            "score": 0.6475701124200861
+          },
+          {
+            "start": 777,
+            "end": 796,
+            "label": "HEALTH",
+            "action": "PLACEHOLDER",
+            "replacement": "[HEALTH]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.8851514662142224
+          },
+          {
+            "start": 798,
+            "end": 799,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9353440728914733
+          },
+          {
+            "start": 813,
+            "end": 834,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_7]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9931772089068097
+          },
+          {
+            "start": 841,
+            "end": 861,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9737400379246703
+          },
+          {
+            "start": 866,
+            "end": 888,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9708031445032888
+          },
+          {
+            "start": 985,
+            "end": 992,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_8]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9956982519039562
+          },
+          {
+            "start": 992,
+            "end": 993,
+            "label": "USERNAME",
+            "action": "PLACEHOLDER",
+            "replacement": "[USERNAME]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9503098182128158
+          },
+          {
+            "start": 993,
+            "end": 995,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_9]",
+            "reason": "direct_identifier_policy",
+            "score": 0.989960515214632
+          },
+          {
+            "start": 1026,
+            "end": 1030,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9974981722279346
+          },
+          {
+            "start": 1030,
+            "end": 1035,
+            "label": "SECRET",
+            "action": "PLACEHOLDER",
+            "replacement": "[SECRET]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9979585042700916
+          },
+          {
+            "start": 1035,
+            "end": 1036,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9980360341190402
+          },
+          {
+            "start": 1036,
+            "end": 1040,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9980772537107595
+          },
+          {
+            "start": 1135,
+            "end": 1136,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9908618717299486
+          },
+          {
+            "start": 1136,
+            "end": 1137,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[MASK_PERSON_10]",
+            "reason": "review_fallback",
+            "score": 0.6815276587656587
+          },
+          {
+            "start": 1137,
+            "end": 1138,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9980557992982375
+          },
+          {
+            "start": 1138,
+            "end": 1143,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": 0.9980499216376206
+          },
+          {
+            "start": 1170,
+            "end": 1172,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "model_proposal_with_policy_mask",
+            "score": 0.9449140746235491
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 0,
+            "end": 1,
+            "label": "HEALTH",
+            "reason": "model_proposal_with_policy_mask"
+          },
+          {
+            "start": 23,
+            "end": 25,
+            "label": "HEALTH",
+            "reason": "model_proposal_with_policy_mask"
+          },
+          {
+            "start": 68,
+            "end": 69,
+            "label": "HEALTH",
+            "reason": "model_proposal_with_policy_mask"
+          },
+          {
+            "start": 222,
+            "end": 242,
+            "label": "HEALTH",
+            "reason": "review_fallback"
+          },
+          {
+            "start": 243,
+            "end": 246,
+            "label": "FINANCIAL",
+            "reason": "model_proposal_with_policy_mask"
+          },
+          {
+            "start": 247,
+            "end": 263,
+            "label": "HEALTH",
+            "reason": "review_fallback"
+          },
+          {
+            "start": 266,
+            "end": 586,
+            "label": "HEALTH",
+            "reason": "model_proposal_with_policy_mask"
+          },
+          {
+            "start": 588,
+            "end": 623,
+            "label": "HEALTH",
+            "reason": "review_fallback"
+          },
+          {
+            "start": 623,
+            "end": 625,
+            "label": "AGE",
+            "reason": "review_fallback"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "uncertain_treatment"
+        ],
+        "coverage": {
+          "scanned_characters": 1219,
+          "total_characters": 1219,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "[HEALTH]",
+        "protected_history": []
+      },
+      "elapsed_seconds": 1.7648054170422256,
+      "identifiers_still_present": [],
+      "unrelated_details_still_present": [],
+      "required_fact_strings_missing": [],
+      "identifier_source_residuals": []
+    }
+  }
+}

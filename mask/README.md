@@ -1,8 +1,10 @@
 # Mask
 
+**Current priority (7 November 2026):** improve the [local English privacy models](../planning/LOCAL_MODEL_PLAN.md) with reviewed training data and independent evaluation. The [message preview](web/README.md) and [Python models/API](ml/privacy_v1/README.md) are implemented; [current pilot bundles](ml/privacy_v1/MODEL_BUNDLES.md) are included through Git LFS. This table-review UI remains intact and uses its separate institutional pipeline. Provider forwarding, broad Team B annotation and CS-S2/CS-S3 expansion are deferred. The following sections document this runnable table baseline.
+
 Purpose-aware data protection for the TrustED PETs challenge. Describe the analysis and who receives the data, import CSV tables, review exactly how each column and text span will be transformed, and export the approved result with a sanitised report. Everything runs in the browser (TypeScript, Vite, React); a Web Worker owns the session.
 
-Status 7 November 2026: the vertical slice works end to end on the supplied synthetic customer-service data with the deterministic policy selector. A learned selector exists and loads, but it has only been trained on Team A annotations (train split) with no held-out validation or test labels yet, so it has no reportable results. The benchmark adapter around `pets-eval` is being finished (see "In progress").
+Baseline status 7 November 2026: the vertical slice works end to end on the supplied synthetic customer-service data with the deterministic policy selector. A learned selector exists and loads, but it has only been trained on Team A annotations (train split) with no held-out validation or test labels yet, so it has no held-out results. The benchmark adapter and full-size CS-S1 reports now exist; see `bench/README.md`. Some earlier handoff notes below are historical and do not set the current priority.
 
 ## Run
 
@@ -52,7 +54,7 @@ Open for Astra / teammate agents (see `ml/README.md`, `ml/labels/BATCHES.md`, th
 3. Run candidate plans through the benchmark adapter (`bench/README.md`, once merged) for the customer-service scenarios and `scripts/labels/select_targets.ts` to derive benchmark-qualifying targets with plan context.
 4. `export_features`, `export_policy_baseline`, then `python3 -I ml/train.py`; report held-out test numbers against the fixed policy and the goal-agnostic ablation. Never tune on customer_service.
 
-## In progress at handoff
+## Earlier handoff notes (historical)
 
 - Benchmark adapter (`bench/`, `scripts/bench/`): stages executed plans privately with row maps, runs the supplied attacks, residual checks, text leakage and utility tasks, and writes `BenchmarkReport` JSON with per-test status. Includes a retained-identifier positive control, a utility-destroying control and a deliberately failed representation test.
 - Interface polish: grouped metric chips, inline span-mark styling, suggestion chips that send, export-stale handling, stage timing in the developer panel.

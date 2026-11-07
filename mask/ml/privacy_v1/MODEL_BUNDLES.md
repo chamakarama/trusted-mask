@@ -1,0 +1,29 @@
+# Shared local pilot bundles
+
+The repository includes both current English pilot bundles. Large weights use Git LFS; tokenizers, feature vocabularies and integrity manifests are ordinary Git files. Other experiments, caches, virtual environments and generated exports remain ignored.
+
+From the repository root, after cloning or pulling:
+
+```sh
+git lfs install
+git lfs pull --include="mask/ml/privacy_v1/artifacts/**,mask/ml/privacy_v1/bundled_weights/**"
+python3 -m mask.ml.privacy_v1.restore_bundles
+python3 -m venv mask/ml/privacy_v1/.venv
+mask/ml/privacy_v1/.venv/bin/python -m pip install -r mask/ml/privacy_v1/requirements.lock
+HF_HUB_OFFLINE=1 mask/ml/privacy_v1/.venv/bin/python -c 'from mask.ml.privacy_v1.bundle import verify; [verify("mask/ml/privacy_v1/artifacts/" + name) for name in ("custom-a-pilot", "encoder-b-pilot")]; print("Both bundles verified")'
+mask/ml/privacy_v1/.venv/bin/python -m mask.web.server
+```
+
+The larger encoder weight file is stored as chunks of at most 24 MiB to avoid interrupted uploads. The standard-library restoration command reconstructs the exact original file and checks its original manifest checksum; it never downloads or changes weights. Existing valid weights are left untouched, and differing files are not overwritten.
+
+Then open `http://127.0.0.1:8787`. The default is encoder B. To compare A, restart with `--model mask/ml/privacy_v1/artifacts/custom-a-pilot`.
+
+These are the original engineering pilots trained on the checked-in synthetic `data/pilot.jsonl` (288 train / 96 development records). They are not independently validated privacy releases. They have no supervised DROP examples. The current pipeline requires review, and the [measured failures](../../../evidence/privacy-v1/pipeline-v2/REPORT.md) remain part of the handoff. Git LFS publication does not change weights or model status.
+
+## Provenance and third-party notices
+
+- Custom A uses project-authored sparse features and three logistic classifiers. Its bundle has no pretrained encoder.
+- Encoder B is fine-tuned from Microsoft's [MiniLM-L12-H384-uncased](https://huggingface.co/microsoft/MiniLM-L12-H384-uncased/tree/44acabbec0ef496f6dbc93adadea57f376b7c0ec), pinned to revision `44acabbec0ef496f6dbc93adadea57f376b7c0ec`. The bundled `source.json` preserves this source identity.
+- The upstream model card declares MIT licensing. A copy of that pinned card is retained in [licenses/minilm/UPSTREAM_MODEL_CARD.md](licenses/minilm/UPSTREAM_MODEL_CARD.md); Microsoft's [MIT notice](licenses/minilm/LICENSE) is copied from the [UniLM repository](https://github.com/microsoft/unilm/blob/master/LICENSE). The original model is described in *MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers*, Wang et al., 2020, arXiv:2002.10957.
+
+Per-file checksums and original training-policy versions remain in each bundle's `manifest.json`. A Git LFS pointer is not a model file: fetch LFS objects before checking integrity or starting the demo. Inference does not download anything automatically.

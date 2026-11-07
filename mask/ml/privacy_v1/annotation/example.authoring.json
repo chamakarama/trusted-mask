@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "shard_id": "0123456789abcdef0123456789abcdef",
+  "id": "0123456789abcdef0123456789abcdef:example-health",
+  "family_id": "0123456789abcdef0123456789abcdef:example-family",
+  "persona_id": "0123456789abcdef0123456789abcdef:example-persona",
+  "source_id": "0123456789abcdef0123456789abcdef:example-source",
+  "template_id": "0123456789abcdef0123456789abcdef:example-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me prepare questions about the readings and symptoms for a clinician. The unrelated budgeting details are not needed.",
+  "text": "My partner, Mateo Silva, helped me record a few readings this week. My blood pressure was 120/80 on Monday and 135/85 on Wednesday. I felt dizzy once but did not faint. I take 5 mg daily and have not changed the dose. Please help me prepare clear questions for my appointment, keeping the measurements and uncertainty intact.\n\nFor an unrelated budgeting task, my monthly rent is 900 euros.",
+  "entities": [
+    {"id": "m1", "entity_id": "partner", "quote": "Mateo Silva", "label": "PERSON"},
+    {"id": "m2", "entity_id": "readings", "quote": "My blood pressure was 120/80 on Monday and 135/85 on Wednesday.", "label": "HEALTH"},
+    {"id": "m3", "entity_id": "symptoms", "quote": "I felt dizzy once but did not faint.", "label": "HEALTH"},
+    {"id": "m4", "entity_id": "medication", "quote": "I take 5 mg daily and have not changed the dose.", "label": "HEALTH"},
+    {"id": "m5", "entity_id": "rent", "quote": "my monthly rent is 900 euros", "label": "FINANCIAL"}
+  ],
+  "decisions": [
+    {"kind": "entity", "target_id": "m1", "entity_id": "partner", "quote": "Mateo Silva", "label": "PERSON", "action": "ALIAS", "relevance": "unnecessary"},
+    {"kind": "entity", "target_id": "m2", "entity_id": "readings", "quote": "My blood pressure was 120/80 on Monday and 135/85 on Wednesday.", "label": "HEALTH", "action": "KEEP", "relevance": "essential"},
+    {"kind": "entity", "target_id": "m3", "entity_id": "symptoms", "quote": "I felt dizzy once but did not faint.", "label": "HEALTH", "action": "KEEP", "relevance": "essential"},
+    {"kind": "entity", "target_id": "m4", "entity_id": "medication", "quote": "I take 5 mg daily and have not changed the dose.", "label": "HEALTH", "action": "KEEP", "relevance": "essential"},
+    {"kind": "section", "quote": "\n\nFor an unrelated budgeting task, my monthly rent is 900 euros.", "label": "FINANCIAL", "action": "DROP", "relevance": "unnecessary", "reason": "The separate rent paragraph is not needed for clinician questions and contains no required medical facts."}
+  ],
+  "required_facts": [
+    {"quote": "My partner,"},
+    {"quote": "120/80 on Monday"},
+    {"quote": "135/85 on Wednesday"},
+    {"quote": "dizzy once but did not faint"},
+    {"quote": "5 mg daily and have not changed the dose"}
+  ],
+  "approved_output": "My partner, [PERSON_1], helped me record a few readings this week. My blood pressure was 120/80 on Monday and 135/85 on Wednesday. I felt dizzy once but did not faint. I take 5 mg daily and have not changed the dose. Please help me prepare clear questions for my appointment, keeping the measurements and uncertainty intact.",
+  "provenance": {"synthetic": true, "human_audited": false, "generator_id": "0123456789abcdef0123456789abcdef:fixture-author", "generator_model": "documentation-fixture"},
+  "review": {"status": "pending"}
+}

@@ -1,0 +1,146 @@
+{
+  "purpose": "Synthetic integration smoke, not held-out model evaluation",
+  "word_count": 99,
+  "source": {
+    "task": "Help me prepare questions for a clinician. Keep measurements, timing, uncertainty and the distinction between my symptoms and my partner\u2019s observations.",
+    "text": "My name is Imani Hart. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, Omar Vale, wrote down the readings; Omar Vale did not have these symptoms. My email is imani.hart@example.invalid, my patient ID is HX-73104, and my password is demo-copper-82. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis."
+  },
+  "models": {
+    "custom-a-pilot": {
+      "explicit_task": {
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nTask: Help me prepare questions for a clinician. Keep measurements, timing, uncertainty and the distinction between my symptoms and my partner\u2019s observations.\n\nMy name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; Omar [PERSON_3] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_text": "My name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; Omar [PERSON_3] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_task": "Help me prepare questions for a clinician. Keep measurements, timing, uncertainty and the distinction between my symptoms and my partner\u2019s observations.",
+        "model_version": "custom-a-pilot",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.1",
+          "model_bundle_sha256": "7ebc578749ee6d74e5e7b5af0ee8f60adc591ca31707852a75d0058b21286595"
+        },
+        "context_mode": "explicit_task",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 6,
+        "retained_types": [
+          "FAMILY",
+          "HEALTH"
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "section_requires_explicit_drop",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 582,
+          "total_characters": 582,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      },
+      "message_only": {
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nMy name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; Omar [PERSON_3] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_text": "My name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; Omar [PERSON_3] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_task": "My name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; Omar [PERSON_3] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "model_version": "custom-a-pilot",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.1",
+          "model_bundle_sha256": "7ebc578749ee6d74e5e7b5af0ee8f60adc591ca31707852a75d0058b21286595"
+        },
+        "context_mode": "message_only",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 6,
+        "retained_types": [
+          "FAMILY",
+          "HEALTH"
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 582,
+          "total_characters": 582,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      }
+    },
+    "encoder-b-pilot": {
+      "explicit_task": {
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nTask: Help me prepare questions for a clinician. Keep measurements, timing, uncertainty and the distinction between my symptoms and my partner\u2019s observations.\n\nMy name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; [PERSON_2] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_text": "My name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; [PERSON_2] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_task": "Help me prepare questions for a clinician. Keep measurements, timing, uncertainty and the distinction between my symptoms and my partner\u2019s observations.",
+        "model_version": "encoder-b-pilot",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.1",
+          "model_bundle_sha256": "f46bd046d06193035f94fa3e246039c955cb85049a24978d160f686d8c26b6c9"
+        },
+        "context_mode": "explicit_task",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 6,
+        "retained_types": [
+          "FAMILY",
+          "HEALTH"
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "section_requires_explicit_drop",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 582,
+          "total_characters": 582,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      },
+      "message_only": {
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nMy name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; [PERSON_2] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_text": "My name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; [PERSON_2] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "protected_task": "My name is [PERSON_1]. Please help me prepare questions for my appointment. My blood pressure was 118/78 on Monday and 136/86 yesterday after exercise. I take 5 mg each morning, and I have not changed the dose. I felt dizzy once but did not faint. My partner, [PERSON_2], wrote down the readings; [PERSON_2] did not have these symptoms. My email is [EMAIL], my patient ID is [ACCOUNT_ID], and my password is [SECRET]. Those details were copied from the appointment note. I am unsure whether poor sleep explains the difference, so please do not assume a diagnosis.",
+        "model_version": "encoder-b-pilot",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.1",
+          "model_bundle_sha256": "f46bd046d06193035f94fa3e246039c955cb85049a24978d160f686d8c26b6c9"
+        },
+        "context_mode": "message_only",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 6,
+        "retained_types": [
+          "FAMILY",
+          "HEALTH"
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 582,
+          "total_characters": 582,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      }
+    }
+  }
+}

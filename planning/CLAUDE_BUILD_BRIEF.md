@@ -1,149 +1,56 @@
-# Mask — implementation handoff
+# Mask — current implementation brief
 
-## Mission
+Updated 7 November 2026. **Immediate priority: readable, useful output for approximately 100-word English messages within the user's under-19-hour demo deadline.** Speed and model size are secondary for this milestone. Follow the immediate demo profile in [LOCAL_MODEL_PLAN.md](LOCAL_MODEL_PLAN.md); the full local-model release remains the longer-term objective.
 
-Build **Mask**, a fast, clear tool that adapts data protection to the user's intended analysis. The user describes what they need, imports data, reviews the proposed transformations, and exports the confirmed result.
+**Current status:** both pilot models, the corrected edit pipeline, optional-intended-use message preview, file adapters and data-authoring tools are implemented. The pilot bundles are shared through Git LFS. Start with [reviewed synthetic data production](../mask/ml/privacy_v1/annotation/TRAINING_DATA_PROMPT.md), then train/evaluate both tracks. See [the current report](../evidence/privacy-v1/pipeline-v2/REPORT.md). Preserve both demo UIs (`mask/src/` and `mask/web/`) and their assets. The broader sequence below describes the full objective, including gates that remain unfinished.
 
-Our promise is: **the right protection, at the right level of detail, for the task.** The core decision is how to transform information: preserve useful structure while reducing unnecessary disclosure. The product must feel effortless, and its transformations must actually execute and be evaluated.
+## Latest demo requirements
 
-Treat this document as the product and delivery brief. Read [MASK_PLAN.md](MASK_PLAN.md) for technical details and [MATERIALS.md](../MATERIALS.md) for the challenge sources. Implement a working vertical slice; do not stop at another planning document or a visual mockup.
+- Preserve useful wording and relationships, replacing private names with stable numbered references. The user's expected transformation is `My partner, Mateo Silva, recorded my blood pressure.` → `My partner, [PERSON_1], recorded my blood pressure.` Do not remove the person reference as the default name treatment.
+- Prioritise ALIAS/PLACEHOLDER inside useful text, and support coherent whole-clause/section DROP when that content is genuinely unnecessary. Do not delete a section containing required facts, replace necessary prose with fragments, or treat every sensitive category as removable. Add labels for these choices; the pilot has no trained DROP examples yet.
+- Similar-to-training scenarios are acceptable for the rehearsed demo. Keep them separate from unfamiliar-message checks and independent evaluation. Include finance, work, support and everyday messages alongside health. Record failures and show review states; no claim of universal generalisation.
+- Future provider requests should include the fixed note: `Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.` Keep application instructions separate from source content, and keep original values/maps local.
+- Fix boundaries/execution, build reviewed synthetic training data, improve the encoder first, rerun the custom comparison, then connect a minimal review UI. Defer model compression and strict latency/size targets for this demo. This priority does not make either existing pilot a validated release or authorise a hidden remote rewriting dependency.
 
-## Current repository and environment
+## Deliverable
 
-- Repository: `/Users/markp/Code/sinceai-trusted` on the originating computer. Resolve the checkout path on other machines.
-- The previous bus/transport product has been removed. Build Mask without restoring its maps, product scope or old interface.
-- The original synthetic challenge package is preserved in `TRUSTED_SinceAI2026_FINAL/`. Keep these supplied materials unchanged.
-- `petpilot/` is a reusable rules-based column detector. It is not a trained selector or a complete text-redaction system. See its README and regression tests.
-- No Mask UI, learned method selector or end-to-end Mask export service exists yet. The existing reset contains intentional uncommitted deletions; inspect Git status and preserve them.
-- We have three computers and teammate-managed Google Cloud instances available for training. Hardware, GPUs, runtime limits and budgets are not specified. Make jobs configurable and runnable on a small local subset before cloud execution. Coordinate instance use with the teammate; do not provision additional paid resources by assumption.
-- The user intends to run the lead implementation in their Claude Fable 5.1 / Ultracode setup, with Opus and Sonnet agents available if needed. These are user-provided environment names, not dependencies of Mask. Use the actual available models and tools; do not assume undocumented capabilities.
+For the immediate milestone, deliver the improved local message path, clean review interface and honest rehearsal/robustness results. The full release still requires an offline model bundle, tokenizer/policy/rule assets, a local Python API and CLI, message and CSV/XLSX adapters, a human-audited independent evaluation report and a measured local runtime profile. A demo alone does not complete that full release.
 
-## Two equally important workstreams
+English is the first supported language. Finnish and Swedish follow only after separate training/evaluation. Development happens mainly on this computer. Cloud training compute is available when useful; the plan does not depend on three computers or teammates.
 
-### A. Product experience
+## Required two-option experiment
 
-Build a polished white, minimalist workspace. This is a primary deliverable, not a skin to add after the model is finished.
+Build and fairly compare both options. **A: our custom Mask classifier**, trained from scratch on explicit text/character features, detected categories, schema/row context, goal features and interactions; improve the original approach rather than merely rerun the old institutional model. **B: a pretrained encoder with our task heads**, initially the available 33M English `microsoft/MiniLM-L12-H384-uncased`, fine-tuned for detection, relevance and treatment. MiniLM is a challenger, not the predetermined architecture.
 
-**Desktop layout:** chat/purpose on the left, data/import/review on the right. The original request repeated “left”; this brief interprets it as a two-pane layout. Use a narrower conversation pane and a larger data workspace, with resizable proportions if practical. On small screens, stack or switch panes while preserving state.
+Detect private spans independently of the goal, then choose task-conditioned treatments. A uses rule candidates plus custom features, adding a lightweight feature-based learned tagger when detection errors justify it; B can share encoder weights across detection/action passes. Preserve structured-identifier rules, action definitions, policy masks and deterministic execution in both. An arbitrary goal cannot override invariants.
 
-Visual direction:
+Use identical approved source data, grouped splits, context information, labels, adapters and release gates. Separate detector performance, treatment accuracy on common spans, and real end-to-end privacy/fidelity. Give each track a bounded documented tuning budget, compare at matched automatic coverage, and measure its complete deployed footprint and latency. A cannot silently use a pretrained encoder while being labelled custom-only.
 
-- White main surfaces, subtle off-white secondary surfaces, dark readable text, restrained borders and generous spacing.
-- One restrained accent colour; muted semantic colours for transformation highlights. No dark dashboard, decorative gradients, oversized cards or visual clutter.
-- Precise typography and alignment. Keep the data area dense enough to inspect real tables comfortably.
-- Smooth, purposeful transitions for importing, opening details, switching original/protected views and updating proposals. Aim initially for roughly 150–250 ms transitions; respect reduced-motion preferences. Avoid layout jumps, fake progress and animations that delay work.
+Choose using validation data and a predeclared quality/size/speed rule. Prefer smaller/faster when it meets the gates and acceptable quality margins; use the encoder if its measured quality improvement justifies the cost. If neither qualifies, fix the bottleneck rather than declare a winner. Freeze both finalists and the validation-selected release candidate before final test; do not select or tune on that test. Retain both result sets and the selection rationale.
 
-Interaction:
+Actions are keep, drop, stable alias, supported role substitution, faithful generalisation and typed placeholder. Uncertainty or unsupported cases return review instead of ready output. No invented clinical facts, ages, dates or places. Preserve necessary numbers, units, negation, timing and relationships. The product minimises unnecessary disclosure, not every sensitive fact; list intentionally retained sensitive information.
 
-1. The left pane accepts the goal conversationally and shows a compact editable interpretation: analytical task, recipient and required detail. Ask only for missing information that changes the proposal.
-2. The right pane starts as a clear drop zone/file picker. Support CSV first, including text columns and multiple related tables. Show parsing errors, file/table names and a usable preview.
-3. After analysis, the same workspace becomes the review surface. Preserve context and scroll position instead of sending the user through a wizard.
-4. Provide original/protected comparison, labelled colour highlights and filters for method, data type, uncertainty and items needing review. Distinguish a display filter from a transformation that removes records.
-5. Selecting a changed field or span reveals what changed, why it serves the goal, alternatives and relevant evidence. Show a concise reason first; technical detail expands on demand.
-6. Allow edits to supported parameters and methods, then recompute affected checks. Keep edits reversible before confirmation. Disable stale export when input, goal or plan changes.
-7. One clear confirmation/export action downloads the exact reviewed artifact and a sanitised report.
+The Token Company is inspiration for a small classifier and deterministic middleware, not a dependency or a source of Mask performance claims. Compression labels and privacy labels solve different problems.
 
-Keep the private **Developer panel** collapsed by default. It should expose detections, candidate recipes and scores, parameters, relationship risks, model versions, actual evaluation results and the original content affected by redaction. This is private review content, not part of the public export. Show “model preference” separately from detection confidence and measured risk; never show a single unexplained “safe percentage.”
+## Scope and sequence
 
-Support keyboard navigation, visible focus, readable contrast and labels/icons alongside colour. Virtualise large previews and bound browser memory; UI responsiveness must not depend on rendering every row.
+1. Freeze the common policy, label/action schemas, source-family splits, supported identifiers, comparison rule and release criteria. Measure this computer's hardware/runtime.
+2. Build both pilot loops: shared pilot data → train custom A / fine-tune encoder B → export → offline text protection with identical source offsets and deterministic edits.
+3. Add CSV and ordinary values-only XLSX using the same model. Supply schema/row context, scan all exported cells, preserve useful types/structure, and reconstruct a new protected file. Explicitly reject formulas, macros, encryption and unsupported embedded content in v1. Never copy hidden raw metadata into outputs.
+4. Scale the same reviewed data for both; train A locally and B on cloud if useful. Diagnose detection versus treatment failures with development/validation only. Keep related sources in one split.
+5. Package A's features/weights and B's ONNX model, testing applicable quantisation and prediction/edit parity. Calibrate both deployed runtimes, select on validation, freeze finalists and run the independent comparison. Count every feature/encoder/rule asset in footprint measurements.
+6. Deliver the chosen model/API/files and A/B report only when the shared release gates pass for its stated scope. Trying both is required; shipping both is not. A failed gate means another documented iteration, not a ready claim.
 
-### B. Functional system and ML
+## Reuse and coordination
 
-The pipeline is:
+Preserve the existing app, design, detector/executor infrastructure, legacy labels/models, frozen institutional splits and benchmark history. Use the proposed new `mask/ml/privacy_v1/` namespace. Old institutional annotations are auxiliary material only when compatible and reviewed; they are not prompt-specific validation. Existing challenge-data lexicons make those data unsuitable as fresh blind detector evidence.
 
-**Import → understand content/relationships → interpret goal → rank valid recipes → execute and evaluate a complete plan → review → confirm/export.**
+Agents can generate synthetic cases and propose/challenge annotations, but agent agreement is not gold. Audit disagreements and stratified agreements, and independently adjudicate the release set. Make false negatives, over-removal, contextual necessity, numerical/factual corruption, chunk-boundary misses, rare spreadsheet leaks and multi-turn accumulation visible in evaluation.
 
-Begin with an executable deterministic policy baseline so the UI can connect to real transformations while the learned selector is trained. The two selectors must share the same contract. Clearly report which one produced a proposal.
+Keep development on this computer with explicit file ownership. Cloud jobs should use pinned code/data/config manifests, synthetic or authorised data, resumable checkpoints and bounded runs. No foundation-model training or new distributed infrastructure is required.
 
-Separate these responsibilities:
+## Defer
 
-| Component | Responsibility |
-|---|---|
-| Detection | Classify fields and text spans; identify relationships and uncertainty |
-| Goal interpretation | Produce a structured goal plus an embedding; retain recipient and constraints explicitly |
-| Recipe registry | Specify supported transformations, scope, parameters and preconditions |
-| Method selector | Rank valid recipes conditioned on data, goal and relationship context |
-| Joint evaluator | Measure the combined output's task utility and specified disclosure risks |
-| Export service | Execute/serve the confirmed artifact and sanitised report |
+Defer broad UI redesign, third-party browser extensions, extra institutional scenarios, broad Team B label completion, multilingual claims, OCR/PDF and unconstrained generative rewriting. A minimal demo review UI is now in scope. Prepare the receiving-AI instruction contract without treating provider integration as already implemented. The demo profile above takes precedence over the longer-term sequence where they differ.
 
-Start with keep, suppress, typed text redaction, scoped keyed tokenisation, and supported date/numeric generalisation. Add location generalisation when a reliable mapping exists. Aggregation and differential privacy operate at query/table scope and require their own executors and evaluation; do not simulate them by adding arbitrary cell noise.
-
-Use a field or linked-field group for structured transformations, a span for redaction, and a table/query for aggregation. Preserve necessary joins through consistent token scopes. Check combined risks rather than choosing every cell independently.
-
-**ML formulation:** rank valid alternative recipes with a goal-conditioned softmax. Train on raw logits with categorical cross-entropy for one best target, or justified soft targets/acceptable alternatives where more than one recipe is suitable. Combined operations can be one recipe or a validated sequence; softmax does not make all privacy operations mutually exclusive.
-
-Use a small classifier over frozen embeddings and structured features first. Compare multinomial logistic regression with interaction features against a small MLP if useful. The goal must interact with candidate/data features so changing the goal can actually change ranking. There is no requirement to train a foundation model or run distributed training.
-
-Mask incompatible methods before softmax. Abstain when all candidates are invalid or the input is unsupported. A high score is not an anonymity guarantee. Check the proposed complete plan, preserve failed checks, and choose a deterministic validated proposal instead of sampling methods for export.
-
-## Active-build addition: adversarial benchmark adapter
-
-Implement the [required benchmark integration in the technical plan](MASK_PLAN.md#required-adversarial-benchmark-integration) as part of the functional workstream. The supplied package provides attacker knowledge, attack code, utility tasks and reference baselines. Connect these to real transformed outputs; a model confidence score or LLM judgement is not an attack result.
-
-The development loop is: **generate candidate complete plans → execute → run attacks and utility tasks → review qualifying plans → create training targets → train the softmax selector**. No differentiation through the attack code is required. Retain plan context when creating per-field labels, because risks depend on combined choices.
-
-The pipeline owner builds private benchmark staging, correct row mappings and a versioned adapter. The ML owner uses development results for supervision and reserves independent held-out evaluation. The UX owner displays test coverage, measured risk and retained utility separately from recipe preference. Implement this against the current application architecture without replacing work already underway merely to match an illustrative stack choice.
-
-For the first customer-service demo, combine the supplied customer-table linkage attack with text-leakage checks and relevant task-utility tests. The customer-table attack does not establish safety of transcripts or all joins. Expose missing coverage and record `evaluated`, `not_applicable`, `unsupported` and `failed` distinctly; missing tests are never zero risk.
-
-Keep truth, attacker inputs and scoring rowmaps out of production features and shareable artifacts. Preserve correct toolkit representation handling so a transformed row-level table is not accidentally scored as synthetic. Ordinary uploads may lack ground truth: report unavailable measurements honestly. Optional organiser-hidden attacks are future independent checks, not results we already possess.
-
-Acceptance: execute multiple candidate plans on a new supported synthetic input, produce reproducible privacy/utility reports and reviewed targets, compare on frozen held-out cases, and verify export isolation. Include a deliberately leaky candidate, a utility-destroying candidate and a failed/unsupported test to prove the reporting behaves correctly. See the technical plan for source links and the full protocol.
-
-## Training labels with ChatGPT or Claude agents
-
-Yes: use agents to accelerate annotation and goal/scenario generation on synthetic development data. Treat their output as **candidate supervision**, not verified truth.
-
-1. Freeze train/validation/test source assignments before generating variants or annotations. Keep related people, conversations, source schemas and derived transformations together as appropriate. Preserve the organiser's hidden evaluation split.
-2. Give a labelling agent the permitted recipe registry, synthetic source context, structured goal and threat assumptions. Request structured output: selected recipe, parameters, acceptable alternatives, concise rationale and unresolved questions. Do not request fabricated certainty percentages.
-3. Use a second agent to challenge feasibility, unnecessary disclosure and lost utility. Agreement is a useful triage signal, not independent validation.
-4. Validate recipe IDs, parameters, scope and compatibility programmatically. Execute candidate recipes and run applicable utility/attack tests. Send disagreements and failed checks for human review; audit a stratified sample of agreements as well.
-5. Store label provenance: source group/split, goal, candidate set, chosen recipe, alternatives, annotator model/prompt version, reviewer status and measured outcomes. Mark unreviewed/weak labels explicitly.
-6. Keep final test targets independent of the teacher labels used for training. Report agreement with the teacher separately from task utility, leakage and attack outcomes. Use organiser scoring where available.
-
-The supplied field/span annotations label content, not optimal treatments. The unlabelled HR dataset was inspected during prior scanner development; do not call it a new blind test or report accuracy without independent labels. Many rows and paraphrased goals are not necessarily independent training examples.
-
-## Three-computer execution plan
-
-| Owner/workspace | Primary work | Handoff |
-|---|---|---|
-| Computer 1 — product | UI, interaction states, review experience, frontend integration | Components against agreed fixtures/contracts; keyboard/responsive checks |
-| Computer 2 — pipeline | Import, detector adapter, recipe executors, API, export, joint evaluation | Working deterministic end-to-end baseline and contract tests |
-| Computer 3 — ML/data | Label pipeline, splits, features, training, calibration, model evaluation | Versioned examples, reproducible training jobs and model artifact |
-| Teammate's cloud instances | Approved annotation/embedding batches and training/evaluation jobs | Checkpoints, metrics, logs and inference-ready artifacts |
-
-Use separate branches/worktrees or clones with explicit file ownership. The lead owns shared contracts and merges. Avoid concurrent edits to the same files. Opus/Sonnet agents may handle bounded tasks with clear deliverables; the lead remains responsible for integration and evidence.
-
-Inspect cloud hardware before selecting batch sizes. Start with a local smoke run, then parallel independent experiments/data batches where useful. Make runs resumable, seedable and configurable; record code revision, data/split hash, embedding/feature versions, recipe-registry version, configuration and environment. Transfer approved synthetic material only. Keep truth and attacker data isolated from production model features.
-
-A model handoff must include weights, feature preprocessing, embedding requirements, class/recipe mapping, calibration metadata, training provenance and evaluation results. Reject incompatible model/registry versions rather than guessing.
-
-## Shared contracts before parallel implementation
-
-Agree on typed schemas and representative fixtures first. Keep the schema implementation in one owned location and generate/share client types where practical.
-
-- `DatasetManifest`: input hash/version, tables, types, internal row IDs and relationships.
-- `GoalSpec`: task, recipient, output form, measures, resolution, required joins, unresolved fields and version.
-- `Detection`: field/span references, categories, evidence, uncertainty and relationship references.
-- `Recipe`: ID/version, supported scope/types, parameter schema and executor requirements.
-- `Proposal`: input/goal versions, selector/version, valid candidates/scores, selected recipes, parameters, reasons and review state.
-- `Evaluation`: plan/output versions, metric definitions, results, thresholds, failures and unsupported checks.
-- `ExportReceipt`: confirmed plan/input/output hashes, artifact references and sanitised report.
-
-Model UI states explicitly: empty, importing, profiling, needs input, proposing, evaluating, review ready, updating, exporting, complete, failed/cancelled. Discard stale asynchronous responses after changes. Stable row/span references must survive sorting and filtering. Mock fixtures are permitted for parallel UI development but must be visibly development-only; never present fixture metrics as measured results.
-
-## Milestones and acceptance
-
-1. **Agree contracts and first demonstration.** Use customer-service structured/text data and two concrete purposes. Define recipes, evaluators and split boundaries.
-2. **Deliver a real vertical slice.** Import → goal → deterministic proposal → actual transformed preview → confirm → download. Establish the white two-pane design and smooth state transitions now.
-3. **Produce reviewed training examples.** Run agent annotation, schema validation, actual candidate-plan execution through the adversarial/utility benchmark adapter, and human audits. Freeze evaluation before tuning.
-4. **Integrate the learned selector.** Replace the baseline behind the same API. Compare against fixed policies and a goal-agnostic selector on held-out data. Report failures and abstentions.
-5. **Finish experience and evidence.** Test new supported inputs, goal changes, altered parameters, rare/unknown fields, cross-field risks, broken joins, stale requests and exact preview/export consistency.
-
-Done means a new supported synthetic input is genuinely processed; changing the analytical purpose can change justified recipes; the approved downloaded file matches the preview; and before/after measurements show what remains useful and what risks remain. The demonstration must include actual outputs and the developer trace. No unsupported-domain or universal-anonymity claims.
-
-## Lead-agent operating instructions
-
-Read current repository state and the source brief before editing. Treat this as authorisation to build the local Mask implementation. Make routine implementation decisions autonomously and use specialist agents when helpful. Prefer a small coherent architecture; a practical default is a TypeScript web client and Python service/training code, but adapt to verified environment constraints.
-
-Build and test incrementally, keeping a runnable baseline throughout. Explanations must reflect executed decisions. Do not fabricate benchmarks, infer production readiness from synthetic tests, or silently replace unavailable models with mocked intelligence. Report what is implemented, what was measured, and what remains uncertain. Public deployment, competition submission and new paid infrastructure are separate actions, not implied by this implementation handoff.
+Read the full model plan for data volumes, metrics, proposed acceptance gates, source links, model packaging and phase exit conditions. All proposed paths/commands must be implemented and verified before documenting them as runnable. Retain actual failures and limits; do not lower gates after seeing test results or count review-only outcomes as successful automatic protection.

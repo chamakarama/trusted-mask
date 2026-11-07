@@ -1,5 +1,4 @@
-# Preserve the supplied archive and large data files with Git LFS.
-"TRUSTED_SinceAI2026_FINAL/2026.11_SinceAI_TrustEDpresentation.mp4" filter=lfs diff=lfs merge=lfs -text
+# Keep large supplied data and current local model weights in Git LFS.
 "TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/customer_service/turns.csv" filter=lfs diff=lfs merge=lfs -text
 "TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/cyber/proxy_logs.csv" filter=lfs diff=lfs merge=lfs -text
 "TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/data/cyber/signin_logs.csv" filter=lfs diff=lfs merge=lfs -text
@@ -15,4 +14,5 @@
 "TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/truth/energy__meter_readings_hourly.csv" filter=lfs diff=lfs merge=lfs -text
 "TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/truth/mobility__taps.csv" filter=lfs diff=lfs merge=lfs -text
 "TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026/truth/smart_city__wifi_probes.csv" filter=lfs diff=lfs merge=lfs -text
-"TRUSTED_SinceAI2026_FINAL/TRUSTED_PETS_PROVING_GROUND_2026 (1).zip" filter=lfs diff=lfs merge=lfs -text
+mask/ml/privacy_v1/bundled_weights/encoder-b-pilot/model.part-* filter=lfs diff=lfs merge=lfs -text
+mask/ml/privacy_v1/artifacts/custom-a-pilot/*.npz filter=lfs diff=lfs merge=lfs -text

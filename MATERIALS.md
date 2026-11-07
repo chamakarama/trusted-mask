@@ -1,6 +1,6 @@
 # Mask challenge materials
 
-The supplied `TRUSTED_SinceAI2026_FINAL/` folder is unchanged. It includes the original archive, synthetic datasets, toolkit, challenge PDF, detailed brief, and partner presentation. Large members use Git LFS: run `git lfs pull` and `git lfs fsck` before experiments. A file starting with `version https://git-lfs.github.com/spec/v1` is a pointer, not data.
+The supplied `TRUSTED_SinceAI2026_FINAL/` folder retains the challenge PDF, detailed brief, and unpacked synthetic dataset/evaluation package. The duplicate ZIP and partner presentation video/transcript were removed during cleanup; they remain recoverable from Git history. The unpacked package, its licences, benchmark data and evaluation inputs are unchanged. Large members use Git LFS: run `git lfs pull` and `git lfs fsck` before experiments. A file starting with `version https://git-lfs.github.com/spec/v1` is a pointer, not data.
 
 ## Owning sources
 

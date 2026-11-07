@@ -1,0 +1,74 @@
+{
+  "counts": {
+    "records": 96,
+    "gold_spans": 384,
+    "detected_gold_exact": 190,
+    "gold_action_correct": 384,
+    "gold_relevance_correct": 384,
+    "required_removal": 288,
+    "required_removed": 286,
+    "direct_required": 192,
+    "direct_removed": 190,
+    "required_facts": 96,
+    "facts_retained": 96,
+    "ready": 0,
+    "unsupported": 0
+  },
+  "gold_span_action_accuracy_diagnostic": 1.0,
+  "exact_detector_recall": 0.4947916666666667,
+  "gold_span_relevance_accuracy_diagnostic": 1.0,
+  "draft_required_removal_coverage": 0.9930555555555556,
+  "draft_direct_removal_coverage": 0.9895833333333334,
+  "draft_exact_fact_retention": 1.0,
+  "automatic_coverage": 0.0,
+  "latency_seconds": {
+    "median": 0.08676420903066173,
+    "p95": 0.11145079199923202
+  },
+  "release_pass": false,
+  "independent_evidence": false,
+  "limitations": [
+    "programmatic pilot labels are not independently audited",
+    "draft metrics include review outputs and are not successful automatic exports",
+    "gold-span classification is diagnostic, not end-to-end privacy",
+    "span coverage does not measure inference attacks or downstream utility"
+  ],
+  "model": {
+    "bundle_schema": 1,
+    "release_validated": false,
+    "track": "encoder-b",
+    "dataset_sha256": "25ef62d08a47431402048f8c16a55d3c1e5e1d33145625230d17e4d85d3fad64",
+    "train_records": 288,
+    "train_families": 6,
+    "training": {
+      "steps": 1200,
+      "epochs_requested": 1,
+      "mean_training_loss": 0.6916210195135015,
+      "bounded_smoke_run": false,
+      "learning_rate": 3e-05,
+      "seed": 17,
+      "source": {
+        "repository": "microsoft/MiniLM-L12-H384-uncased",
+        "revision": "44acabbec0ef496f6dbc93adadea57f376b7c0ec"
+      }
+    },
+    "elapsed_seconds": 125.79816066700732,
+    "machine": "macOS-27.0.1-arm64-arm-64bit",
+    "device": "cpu",
+    "calibrated": false,
+    "purpose": "engineering_pilot_only",
+    "files": {
+      "config.json": "7e211f6ce4f657301769510d047f6b093534d9e782b3e57c0ce0315bf4b775ab",
+      "model.safetensors": "83bb16647b0df43c2c00ca5cc8a51468b34c9a8375e6d92a0c3012e90f0c75f9",
+      "source.json": "429348e37802d2fd9c03aad70e8a4de91926d96de8e1242322d4e55f4c0444ef",
+      "special_tokens_map.json": "db2125f1bad0c53ca9803b6c6e51c5426251dcb969886c1d7cae2cfc1746aca7",
+      "tokenizer.json": "6152a4be83b19d7d0c4a05a06f38bdd01e1dfdc71ece8ad3f440fd63d4293c14",
+      "tokenizer_config.json": "be6afb007b76fbb45197e1adb47024fefa587cf84b6f8d47ebc5d382e90db903",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    }
+  },
+  "dataset_sha256": "25ef62d08a47431402048f8c16a55d3c1e5e1d33145625230d17e4d85d3fad64",
+  "split": "dev",
+  "families": 2,
+  "bundle_bytes": 134482640
+}
