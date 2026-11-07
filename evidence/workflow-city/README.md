@@ -40,3 +40,7 @@ The evaluator validates population seed/config/card count, records NumPy version
 ## Open gates
 
 The artifact is for an exploratory local demonstration. Broad utility remains failed. No claim is made for street-level routes, congestion, real-city service recommendations, production authentication/approval, a completed video, deployment, external submission or an unfamiliar-user study. Mobile layout and keyboard/screen-reader checks need a fuller human pass. Basemap tiles require a network connection; the area list remains the fallback. The map and worker remain large deferred downloads.
+
+## Route view correction
+
+The latest view replaces zone arcs with street-following demand over public Föli bus geometry and makes that the default. Analysis zones are an advanced view. See [route-network.md](route-network.md) for provenance, assumptions, 45 frontend checks and the 47-file public build check. [Current screenshot](street-routes.png). Earlier `travel-demand.png` records the superseded arc view. No actual route-choice or bus-capacity accuracy is claimed.

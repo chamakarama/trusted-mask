@@ -580,3 +580,17 @@ Synthetic data is appropriate for demonstrating this decision loop if demand and
 Public schedule structure can follow [GTFS Schedule](https://gtfs.org/documentation/schedule/reference/) (routes, trips, stops, stop times, shapes and service calendars). Where supplied, [GTFS Realtime](https://gtfs.org/documentation/realtime/reference/) includes occupancy fields; availability and reliability must be checked for the chosen operator. Vehicle capacity and modelled demand still need explicit provenance. These references describe possible inputs, not evidence that Turku feeds or capacity data have been integrated.
 
 **Status:** demand exploration implemented; capacity comparison, route assignment and the extra-departure scenario are planned, not implemented. This clarification supersedes earlier congestion-focused framing.
+
+## 15. Correction: actual street-following route view replaces zone arcs
+
+The lead rejected zone heatmaps and centre-to-centre curves as the main visual. The default is now a street-following route-demand view; analysis zones are hidden under advanced views. No grid or zone arcs appear in the default map. Time controls, a compact legend, segment selection and connection exploration remain.
+
+The implementation bundles Föli public GTFS bus-shape geometry (CC BY 4.0, retrieved 7 November 2026). A declared shortest-directed-distance model maps the fixed public zone centres onto those shapes. It assigns all 600 non-self directional pairs, sums signed protected OD cells once per shared segment, and clamps only after aggregation. Colour/width use a fixed scale across all time bands; faint segments have noise intervals including zero. Clicking a segment shows its aggregate and time profile, then its contributing connections. Pair highlights follow the same network geometry.
+
+This is **real route geometry with modelled synthetic demand**, not observed passenger routes, identified line loads, timetable-valid itineraries or measured unmet demand. The 2026 network is later than the synthetic 2025 period. Nearest-centre access walks, same-zone routes, transfer constraints, schedules and capacity are not modelled. Geometry coverage and assignment are not evidence of route-choice accuracy. Model assumptions and noise limits remain visible; no new release or privacy draw was made. See [route provenance and checks](../evidence/workflow-city/route-network.md).
+
+The route model is a limited visual prototype of stage 3 in section 14. Capacity comparisons and extra-departure scenarios remain unimplemented. It supersedes section 13's schematic Travel flows presentation.
+
+## 16. Second application and private-to-shared workflow improvements
+
+The lead proposed ScamChorus: banks collaborate on scam patterns while victims' calls remain private. The concrete demo and an audit of the current workflow are specified in [SCAMCHORUS_EXTENSION.md](SCAMCHORUS_EXTENSION.md). This is a proposed second application, not a claim that the existing transport publisher can safely process calls or that cross-bank infrastructure exists.

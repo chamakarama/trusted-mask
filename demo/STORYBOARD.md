@@ -6,11 +6,11 @@ Target a clear 100–115 second cut within the existing 120-second project limit
 
 | Time | Actual screen/action | One idea to communicate |
 |---|---|---|
-| 0–7 s | Open the city **Travel flows** view, morning. Show the map immediately. | “Where should we investigate adding more buses? Start with travel demand, without exposing individual journeys.” |
+| 0–7 s | Open the city **route-demand** view, morning. Show the map immediately. | “Where should we investigate adding more buses? Start with travel demand, without exposing individual journeys.” |
 | 7–18 s | Data owner: choose the generated dataset; show the private-to-public boundary. | A data owner has journeys. A planner needs useful patterns. |
 | 18–35 s | Show four key fields, the aggregate-planning purpose, then the four protection steps. | Identifiers stay inside; contributions are limited; calibrated noise protects the shared counts. |
 | 35–45 s | Show the actual result, its failed accuracy target and the limited-use acknowledgement. Open the exact release. | These are measured results, with limits. |
-| 45–70 s | **Area demand**: select Zone 18. **Show origins**: inspect one connection. Switch morning/afternoon and show the changed pattern. | Where demand concentrates, how places connect, and when it changes. |
+| 45–70 s | Select a bright street segment. Inspect a contributing connection. Switch morning/afternoon and show the changed pattern. | Where demand concentrates, how places connect, and when it changes. |
 | 70–88 s | Save a connection and another area; open the shortlist; export the planning summary. | A concrete output for further investigation. |
 | 88–103 s | One quiet limits frame over the map; show Data & limits if useful. | Synthetic travel; artificial zones; 31.2% count error misses the target. Exploration only. |
 | 103–115 s | Return to a clean map with the product name and the completed data → protection → map sequence. | A coherent prototype, with a clear path to better data and validated utility. |
@@ -20,8 +20,8 @@ Target a clear 100–115 second cut within the existing 120-second project limit
 - Show the actual working UI at a readable scale. Use short on-screen labels, visible clicks, and one action at a time.
 - First-frame comprehension test: in five seconds, can a beginner say what the product does and who would use it?
 - Prefer a visible map change to a paragraph describing it. Keep primary actions above the fold. Avoid opening multiple technical disclosures during the main cut.
-- Keep the synthetic-data label and meaningful uncertainty visible. Never imply that bright paths are measured congestion, GPS traces or actual street routes.
-- The orange flow layer shows up to 30 released non-self zone connections. Curves are schematic. The target decision is where more bus service could help. The current build shows demand only; it does not compare available service or recommend a number of extra buses.
+- Keep the synthetic-data label and meaningful uncertainty visible. Never imply that bright paths are measured congestion or observed passenger GPS traces; route geometry is public, demand and assignment are synthetic/modelled.
+- The route layer follows public Föli bus shapes and aggregates modelled demand on shared segments. The default hides the analysis-zone grid. Paths are assigned from public zone centres by a declared shortest-distance model, not observed passenger journeys. The target decision is where more bus service could help. The current build shows demand only; it does not compare available service or recommend a number of extra buses.
 - Use the same immutable city release throughout. Do not regenerate noise, pick another seed, alter counts or conceal a failed metric for a better shot.
 - Processing may be shortened in the edit, with an honest transition. Do not turn a mock animation into evidence that a real job ran.
 - Captions must remain readable on a small video player. Keep technical details in the repository and Data & limits panel.
@@ -38,3 +38,5 @@ Target a clear 100–115 second cut within the existing 120-second project limit
 ## Before recording
 
 Use [web/README.md](../web/README.md) to start the checked builds. Start the private workflow with the frozen generated input if demonstrating the complete owner flow. The public build already includes the immutable city artifact. Verify both URLs, the release name, all visible labels, the map tile connection and the downloaded summary. Capture a local backup. Human review of the finished cut and external submission remain outstanding.
+
+Optional second-application cut: see [ScamChorus and workflow improvements](../planning/SCAMCHORUS_EXTENSION.md). Do not show its proposed screens as a working system until the privacy-specific adapter and recipient artifact are built and tested.
