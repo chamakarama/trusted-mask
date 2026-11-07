@@ -27,7 +27,7 @@ def validate_metadata(folder):
     metadata = json.loads((folder/'metadata.json').read_text())
     if not isinstance(metadata, dict) or metadata.get('dataset_class') != 'team-generated-synthetic':
         raise ValueError('INVALID_METADATA: team-generated-synthetic dataset_class required')
-    if not isinstance(metadata.get('generator_version'),str) or not metadata['generator_version'] or type(metadata.get('population_seed')) is not int:
+    if not isinstance(metadata.get('generator_version'),str) or not 1 <= len(metadata['generator_version']) <= 80 or type(metadata.get('population_seed')) is not int or metadata['population_seed'] < 0:
         raise ValueError('INVALID_METADATA: generator_version and population_seed required')
     if metadata.get('geography_provenance',{}).get('id') != 'turku-analysis-grid-v1':
         raise ValueError('INVALID_METADATA: geography id required')
