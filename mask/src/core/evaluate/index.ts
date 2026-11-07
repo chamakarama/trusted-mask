@@ -1,3 +1,5 @@
 import type { JointEvaluator } from "./types";
+import { createJointEvaluator } from "./evaluator";
 export * from "./types";
-export function createEvaluator(): JointEvaluator { return { evaluate: () => { throw new Error("JointEvaluator.evaluate is not implemented yet"); } }; }
+export { sampleRows, binMidpoint } from "./evaluator";
+export function createEvaluator(): JointEvaluator { return createJointEvaluator(); }

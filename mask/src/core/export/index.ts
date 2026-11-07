@@ -1,3 +1,5 @@
 import type { ExportService } from "./types";
+import { createService } from "./service";
 export * from "./types";
-export function createExportService(): ExportService { return { build: async () => { throw new Error("ExportService.build is not implemented yet"); } }; }
+export { buildReport, CORE_LIMITATION } from "./service";
+export function createExportService(): ExportService { return createService(); }
