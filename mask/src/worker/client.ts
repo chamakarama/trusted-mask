@@ -7,10 +7,10 @@ import type { WorkerRequest, WorkerResponse } from "@/contracts";
 type ResponseFor<K extends WorkerResponse["kind"]> = Extract<WorkerResponse, { kind: K }>;
 type RequestOf<K extends WorkerRequest["kind"]> = Omit<Extract<WorkerRequest, { kind: K }>, "requestId" | "kind">;
 
-const RESPONSE_KIND: Record<WorkerRequest["kind"], WorkerResponse["kind"]> = {
-  import: "imported", profile: "profiled", propose: "proposed", execute: "executed", evaluate: "evaluated",
-  rows: "rows", cell: "cell", export: "exported", embed: "embedded", loadModel: "modelLoaded", cancel: "cancelled",
-};
+interface ResponseKindMap {
+  import: "imported"; profile: "profiled"; propose: "proposed"; execute: "executed"; evaluate: "evaluated";
+  rows: "rows"; cell: "cell"; export: "exported"; embed: "embedded"; loadModel: "modelLoaded"; cancel: "cancelled";
+}
 
 export interface ProgressEvent { requestId: string; stage: string; done: number; total: number; message?: string }
 
@@ -38,7 +38,7 @@ export class PipelineClient {
   }
 
   /** Sends a request; a newer request of the same kind makes this one stale (its promise rejects with "superseded"). */
-  request<K extends WorkerRequest["kind"]>(kind: K, body: RequestOf<K>, transfer: Transferable[] = []): Promise<ResponseFor<(typeof RESPONSE_KIND)[K]>> {
+  request<K extends WorkerRequest["kind"]>(kind: K, body: RequestOf<K>, transfer: Transferable[] = []): Promise<ResponseFor<ResponseKindMap[K]>> {
     const requestId = `${kind}-${++this.seq}`;
     const prev = this.latest.get(kind);
     if (prev && this.pending.has(prev)) { this.pending.get(prev)!.reject(new Error("superseded")); this.pending.delete(prev); }
