@@ -1,15 +1,29 @@
-"""Loopback-only HTTP adapter for the existing Protector API. No provider calls."""
+"""Loopback-only HTTP adapter: local protection preview, then an explicitly approved round trip to one AI provider.
+
+Raw input never leaves this process. The provider receives only the stored protected payload of an approved preview;
+the alias-to-name map stays in server memory and is applied to the reply locally, for display only.
+"""
 import argparse
 import json
 import os
+import queue
+import re
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from .provider import ProviderError, configured_provider
+from .restore import TOKEN, Restorer
+from .session import PreviewStore, SessionError
+
 ROOT = Path(__file__).resolve().parent
 MASK = ROOT.parent
 MAX_BODY = 256 * 1024
+CLIENT_ID = re.compile(r"[A-Za-z0-9_-]{8,64}")
+# Application-authored, shown in "What the AI saw". The page renders replies as plain text, never Markdown/HTML.
+REPLY_FORMAT = "Reply in plain text without Markdown formatting."
 ASSETS = {
     "/": (ROOT / "static/index.html", "text/html; charset=utf-8"),
     "/app.js": (ROOT / "static/app.js", "text/javascript; charset=utf-8"),
@@ -22,12 +36,53 @@ class Busy(Exception):
     pass
 
 
+def _person_map(source, edits, payload_user):
+    """Reverse map for PERSON aliases this pass generated and that actually occur in the outbound content."""
+    mapping = {}
+    for edit in edits or []:
+        try:
+            if edit.get("label") != "PERSON" or edit.get("action") != "ALIAS":
+                continue
+            alias, start, end = edit["replacement"], edit["start"], edit["end"]
+        except (AttributeError, KeyError, TypeError):
+            continue
+        if (isinstance(alias, str) and TOKEN.fullmatch(alias) and alias in payload_user
+                and isinstance(start, int) and isinstance(end, int) and 0 <= start < end <= len(source)):
+            mapping.setdefault(alias, source[start:end])
+    return mapping
+
+
+def _chips(source, edits, protected):
+    """Protected text split into plain runs and changed runs. Only replacements are exposed, never originals."""
+    try:
+        parts, cursor = [], 0
+        for edit in sorted(edits, key=lambda e: (e["start"], e["end"])):
+            start, end, replacement = edit["start"], edit["end"], edit["replacement"]
+            if start < cursor or not isinstance(replacement, str):
+                raise ValueError
+            if start > cursor:
+                parts.append({"text": source[cursor:start]})
+            parts.append({"text": replacement, "label": str(edit["label"]), "action": str(edit["action"])})
+            cursor = end
+        if cursor < len(source):
+            parts.append({"text": source[cursor:]})
+        if "".join(part["text"] for part in parts) != protected:
+            raise ValueError
+        return parts
+    except (KeyError, TypeError, ValueError):
+        return [{"text": protected}]
+
+
 class ModelService:
-    def __init__(self, protector):
+    def __init__(self, protector, provider=None, provider_info=None, reply_timeout=None):
         self.protector = protector
         self.lock = threading.Lock()
+        self.store = PreviewStore()
+        self.provider = provider
+        self.provider_info = provider_info or {"provider": None, "configured": False, "reason": "API not configured"}
+        self.reply_timeout = float(reply_timeout or os.environ.get("MASK_TIMEOUT_SECONDS", "90"))
 
-    def preview(self, text, task=None):
+    def preview(self, text, task=None, client="default"):
         if not self.lock.acquire(blocking=False):
             raise Busy()
         try:
@@ -56,7 +111,29 @@ class ModelService:
             if message_only and payload is not None:
                 result["status"] = "needs_review"
                 review_reasons.append("message_used_as_intended_use")
+            session = None
+            if payload is None:
+                self.store.invalidate_client(client)
+            else:
+                # The provider gets the application-authored instruction as a system prompt and the protected content
+                # as the user turn: exactly the reviewed payload, split at the same seam.
+                system = "\n\n".join(part for part in (
+                    instruction.strip() if isinstance(instruction, str) else "", REPLY_FORMAT) if part)
+                user = protected_text if message_only else f"Task: {protected_task.strip()}\n\n{protected_text}"
+                task_edits = next((r.get("edits", []) for r in result.get("context_reports", [])
+                                   if isinstance(r, dict) and r.get("component") == "task"), [])
+                reverse_map = _person_map(text, result.get("edits"), user)
+                if not message_only:
+                    for alias, name in _person_map(task, task_edits, user).items():
+                        reverse_map.setdefault(alias, name)
+                session = self.store.create(system, user, reverse_map, client)
             return {
+                "preview_id": session.id if session else None,
+                "provider_request": {"system": session.system, "user": session.user} if session else None,
+                "protected_view": {
+                    "task": _chips(task, task_edits, protected_task) if session and not message_only else None,
+                    "message": _chips(text, result.get("edits", []), protected_text) if session else None,
+                },
                 "status": result["status"],
                 "payload": payload,
                 "protected_text": protected_text if payload is not None else None,
@@ -105,38 +182,61 @@ def make_server(service, port=8787):
             self.end_headers()
             try:
                 self.wfile.write(body)
-            except (BrokenPipeError, ConnectionResetError):
-                pass  # User edited the source and cancelled this obsolete request.
+            except OSError:
+                pass  # The page edited the source and aborted this obsolete request (BrokenPipe/Reset/Aborted).
 
         def do_GET(self):
             if not self._same_origin():
                 return self._send(403, {"error": "This preview is available only from its local page."})
             path = urlsplit(self.path).path
             if path == "/api/health":
+                info = service.provider_info
                 return self._send(200, {"status": "available", "model": service.protector.model.model_id,
-                                        "inference": "local", "provider_connected": False})
+                                        "inference": "local", "provider_connected": bool(info.get("configured")),
+                                        "provider": {k: info.get(k) for k in ("provider", "model", "mock", "reason")}})
             asset = ASSETS.get(path)
             if not asset:
                 return self._send(404, {"error": "Not found."})
             return self._send(200, asset[0].read_bytes(), asset[1])
 
-        def do_POST(self):
-            if not self._same_origin() or self.headers.get("X-Mask-Request") != "preview":
-                return self._send(403, {"error": "Open the local Mask page to preview a message."})
-            if urlsplit(self.path).path != "/api/preview":
-                return self._send(404, {"error": "Not found."})
+        def _read_json(self):
             if self.headers.get_content_type() != "application/json" or self.headers.get("Transfer-Encoding"):
-                return self._send(415, {"error": "A JSON message is required."})
+                self._send(415, {"error": "A JSON message is required."})
+                return None
             try:
                 length = int(self.headers.get("Content-Length", "0"))
             except ValueError:
-                return self._send(400, {"error": "Invalid request size."})
+                self._send(400, {"error": "Invalid request size."})
+                return None
             if not 0 < length <= MAX_BODY:
-                return self._send(413, {"error": "The message is too large for this preview."})
+                self._send(413, {"error": "The message is too large for this preview."})
+                return None
             try:
-                request = json.loads(self.rfile.read(length))
+                return json.loads(self.rfile.read(length))
             except (ValueError, UnicodeError, TimeoutError):
-                return self._send(400, {"error": "The message could not be read."})
+                self._send(400, {"error": "The message could not be read."})
+                return None
+
+        def do_POST(self):
+            path = urlsplit(self.path).path
+            routes = {"/api/preview": ("preview", self._preview), "/api/reset": ("preview", self._reset),
+                      "/api/send": ("send", self._send_protected), "/api/cancel": ("send", self._cancel)}
+            route = routes.get(path)
+            if not self._same_origin() or self.headers.get("X-Mask-Request") not in ("preview", "send"):
+                return self._send(403, {"error": "Open the local Mask page to preview a message."})
+            if route is None:
+                return self._send(404, {"error": "Not found."})
+            if self.headers.get("X-Mask-Request") != route[0]:
+                return self._send(403, {"error": "Open the local Mask page to preview a message."})
+            client = self.headers.get("X-Mask-Client", "default")
+            if client != "default" and not CLIENT_ID.fullmatch(client):
+                return self._send(400, {"error": "Invalid page ID."})
+            self.client = client
+            request = self._read_json()
+            if request is not None:
+                route[1](request)
+
+        def _preview(self, request):
             if (not isinstance(request, dict) or set(request) not in ({"text"}, {"text", "task"})
                     or not isinstance(request.get("text"), str)
                     or "task" in request and not isinstance(request["task"], str)):
@@ -148,13 +248,106 @@ def make_server(service, port=8787):
             if len(text) > (4000 if task is None else 32000) or task is not None and len(task) > 4000:
                 return self._send(413, {"error": "Use a shorter message or purpose."})
             try:
-                result = service.preview(text, task)
+                result = service.preview(text, task, self.client)
             except Busy:
                 return self._send(429, {"error": "The local model is finishing another preview. Try again shortly."})
             except Exception:
                 # Exception strings may contain private input. Expose neither traceback nor values.
+                service.store.invalidate_client(self.client)
                 return self._send(500, {"error": "The local model could not finish. Try a shorter message."})
             return self._send(200, result)
+
+        def _reset(self, request):
+            if request != {}:
+                return self._send(400, {"error": "Invalid request."})
+            service.store.invalidate_client(self.client)
+            return self._send(200, {"status": "reset"})
+
+        def _cancel(self, request):
+            if not isinstance(request, dict) or set(request) != {"preview_id"}:
+                return self._send(400, {"error": "Invalid request."})
+            return self._send(200, {"cancelled": service.store.cancel(request["preview_id"])})
+
+        def _event(self, name, data):
+            self.wfile.write(f"event: {name}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n".encode("utf-8"))
+            self.wfile.flush()
+
+        def _send_protected(self, request):
+            if not isinstance(request, dict) or set(request) != {"preview_id"}:
+                return self._send(400, {"error": "Invalid request."})
+            provider = service.provider
+            if provider is None:
+                return self._send(503, {"code": "not_configured", "error": "API not configured."})
+            try:
+                preview = service.store.begin_send(request["preview_id"])
+            except SessionError as error:
+                return self._send(409, {"code": error.code, "error": error.message})
+            # Only the stored, reviewed payload goes out. The reverse map is used below, locally, and nowhere else.
+            system, user, cancel = preview.system, preview.user, preview.cancel
+            restorer = Restorer(preview.reverse_map)
+            events = queue.Queue()
+
+            def produce():
+                try:
+                    for kind, value in provider.stream(system, user, cancel):
+                        events.put((kind, value))
+                        if kind == "done" or cancel.is_set():
+                            return
+                except ProviderError as error:
+                    events.put(("error", {"code": error.code, "message": error.message}))
+                except Exception:
+                    events.put(("error", {"code": "provider", "message": "The AI reply failed. Try again."}))
+                finally:
+                    events.put(("end", None))
+
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("X-Content-Type-Options", "nosniff")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.close_connection = True
+            threading.Thread(target=produce, daemon=True).start()
+            deadline = time.monotonic() + service.reply_timeout
+            final = "error"
+            try:
+                self._event("start", {k: service.provider_info.get(k) for k in ("provider", "model", "mock")})
+                while True:
+                    if cancel.is_set():
+                        stale = preview.state == "invalidated"
+                        final = "cancelled"
+                        self._event("cancelled", {"reason": "stale" if stale else "user"})
+                        break
+                    if time.monotonic() > deadline:
+                        cancel.set()
+                        self._event("error", {"code": "timeout", "message": "The AI took too long to reply. Try again."})
+                        break
+                    try:
+                        kind, value = events.get(timeout=0.2)
+                    except queue.Empty:
+                        continue
+                    if kind == "text" and isinstance(value, str) and value:
+                        self._event("delta", {"raw": value, "segments": restorer.feed(value)})
+                    elif kind == "done":
+                        tail = restorer.flush()
+                        if tail:
+                            self._event("delta", {"raw": "", "segments": tail})
+                        self._event("done", {"restored": restorer.restored_count, "names": len(restorer.restored_aliases),
+                                             "stop_reason": (value or {}).get("stop_reason")})
+                        final = "complete"
+                        break
+                    elif kind == "error":
+                        self._event("error", value)
+                        break
+                    elif kind == "end":
+                        self._event("error", {"code": "provider", "message": "The AI reply ended unexpectedly."})
+                        break
+            except OSError:
+                final = "cancelled"             # browser closed or aborted: stop the provider too
+            finally:
+                if final != "complete":
+                    cancel.set()
+                service.store.finish(preview, final)
 
         def do_OPTIONS(self):
             self._send(403, {"error": "Cross-origin requests are not supported."})
@@ -176,7 +369,11 @@ def main():
     from mask.ml.privacy_v1.bundle import load_model
     from mask.ml.privacy_v1.engine import Protector
     print("Loading the local privacy model…", flush=True)
-    service = ModelService(Protector(load_model(args.model)))
+    provider, info = configured_provider()
+    service = ModelService(Protector(load_model(args.model)), provider, info)
+    label = (f"{info['provider']} ({info['model']})" + (" - MOCK, no AI is called" if info.get("mock") else "")
+             if info.get("configured") else "API not configured (set ANTHROPIC_API_KEY or MASK_PROVIDER=mock)")
+    print(f"Cloud AI: {label}", flush=True)
     server = make_server(service, args.port)
     print(f"Mask is ready at http://127.0.0.1:{args.port} — Ctrl+C to stop.", flush=True)
     try:

@@ -157,7 +157,7 @@ def test_static_health_and_path_traversal(api):
     base, _ = api
     response = request(base, path="/")
     assert response.status == 200
-    assert b"What the AI gets" in response.read()
+    assert b"What the AI will see" in response.read()
     assert "frame-ancestors 'none'" in response.headers["Content-Security-Policy"]
     health = json.load(request(base, path="/api/health"))
     assert health["provider_connected"] is False

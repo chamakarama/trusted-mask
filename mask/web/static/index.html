@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light" />
     <title>Mask</title>
     <link rel="icon" href="data:," />
     <link rel="preload" href="/font.woff2" as="font" type="font/woff2" crossorigin />
@@ -12,16 +12,58 @@
   </head>
   <body>
     <main>
-      <label class="purpose" for="task">
-        <span>Intended use <span class="optional">(optional)</span></span>
-        <input id="task" type="text" placeholder="What do you want the AI to do?" maxlength="4000" autocomplete="off" spellcheck="false" aria-describedby="purpose-hint" />
-        <small id="purpose-hint">Leave blank if your message already includes the request.</small>
-      </label>
-      <textarea id="message" aria-label="Your message" placeholder="Your message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
-      <div class="result">
-        <textarea id="output" aria-label="What the AI gets" aria-describedby="status" placeholder="What the AI gets" readonly spellcheck="false"></textarea>
-        <p id="status" role="status" aria-live="polite"></p>
-      </div>
+      <section class="compose" aria-label="Your message">
+        <label class="field" for="task">
+          <span>Intended use <span class="muted">(optional)</span></span>
+          <input id="task" type="text" placeholder="What should the AI do?" maxlength="4000" autocomplete="off" spellcheck="false" aria-describedby="purpose-hint" />
+          <small id="purpose-hint" class="muted">Leave blank if your message already says it.</small>
+        </label>
+        <label class="field grow" for="message">
+          <span>Your message <span class="muted">— stays on this computer</span></span>
+          <textarea id="message" placeholder="Paste or type a message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
+        </label>
+      </section>
+
+      <section class="flow" aria-label="Protected message and reply">
+        <ol class="steps" id="steps" aria-label="Progress">
+          <li data-step="protecting">Protect</li>
+          <li data-step="review">Review</li>
+          <li data-step="sending">Send</li>
+          <li data-step="receiving">Reply</li>
+          <li data-step="complete">Names restored</li>
+        </ol>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span>What the AI will see</span>
+            <span id="change-count" class="muted"></span>
+          </div>
+          <div id="protected" class="protected" tabindex="0" aria-label="Protected message" aria-describedby="status"><p class="placeholder">Your protected message appears here.</p></div>
+        </div>
+
+        <div class="actions">
+          <button id="send" type="button" class="primary" disabled>Send protected message</button>
+          <button id="stop" type="button" hidden>Stop</button>
+          <button id="retry" type="button" hidden>Retry</button>
+          <span id="provider" class="provider muted"></span>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+
+        <div class="panel reply-panel">
+          <div class="tabs" role="tablist" aria-label="Reply views">
+            <button type="button" role="tab" id="tab-reply" aria-controls="view-reply" aria-selected="true">Reply</button>
+            <button type="button" role="tab" id="tab-sent" aria-controls="view-sent" aria-selected="false" tabindex="-1">What the AI saw</button>
+            <button type="button" role="tab" id="tab-raw" aria-controls="view-raw" aria-selected="false" tabindex="-1">Raw AI reply</button>
+            <span id="mock-badge" class="badge" hidden>Mock reply — no AI was called</span>
+          </div>
+          <div id="view-reply" class="view reply" role="tabpanel" aria-labelledby="tab-reply" tabindex="0"></div>
+          <div id="view-sent" class="view" role="tabpanel" aria-labelledby="tab-sent" tabindex="0" hidden>
+            <p class="view-label">Instruction</p><pre id="sent-system"></pre>
+            <p class="view-label">Message</p><pre id="sent-user"></pre>
+          </div>
+          <pre id="view-raw" class="view" role="tabpanel" aria-labelledby="tab-raw" tabindex="0" hidden></pre>
+        </div>
+      </section>
     </main>
   </body>
 </html>
