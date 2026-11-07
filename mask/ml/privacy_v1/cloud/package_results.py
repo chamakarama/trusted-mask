@@ -8,6 +8,24 @@ root = Path('out')
 destination = Path('deliverables')
 destination.mkdir(exist_ok=False)
 summary = {}
+# Early reports used a generic dev-set limitation sentence for every split.
+# Correct only that reporting metadata, retaining its prior value and checksum.
+for path in sorted(root.rglob('*.json')):
+    value = json.loads(path.read_text())
+    if not isinstance(value, dict) or 'counts' not in value or 'limitations' not in value:
+        continue
+    if value['limitations'][0] != '50 model-reviewed short dev records; no human audit or independent final test':
+        continue
+    role = 'training_demonstration' if path.name == 'gallery.json' else 'fresh_diagnostic' if path.name.startswith('fresh') else 'dev'
+    value['reporting_metadata_correction'] = {'previous_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+        'previous_limitation': value['limitations'][0], 'metrics_and_predictions_unchanged': True}
+    value['evaluation_role'] = role
+    value['limitations'][0] = {
+        'dev': 'Model-reviewed short dev records; no human audit or independent final test',
+        'training_demonstration': 'Training demonstrations; not held-out generalisation evidence',
+        'fresh_diagnostic': 'Fresh agent-authored long diagnostics; not independently audited or used for selection',
+    }[role]
+    path.write_text(json.dumps(value, indent=2) + '\n')
 for track in ('custom-a', 'encoder-b', 'deberta-v3-base'):
     selection = root / track / 'selection.json'
     if not selection.exists():
@@ -18,6 +36,9 @@ for track in ('custom-a', 'encoder-b', 'deberta-v3-base'):
     archive = destination / f'{track}.tar.gz'
     with tarfile.open(archive, 'w:gz', compresslevel=1) as tar:
         tar.add(bundle, arcname=track)
+        notice = Path('mask/ml/privacy_v1/licenses') / ('minilm' if track == 'encoder-b' else track)
+        if notice.exists():
+            tar.add(notice, arcname='third_party/' + track)
     summary[track] = {'status': 'selected', 'bundle': str(bundle), 'selection': chosen,
                       'cpu_parity': json.loads((root / track / 'cpu-parity.json').read_text()) if (root / track / 'cpu-parity.json').exists() else None}
 archive = destination / 'training-evidence.tar.gz'

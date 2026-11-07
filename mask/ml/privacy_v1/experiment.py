@@ -59,7 +59,14 @@ def diagnostics(model, records, destination):
     report['context_sensitivity'] = {
         'task_swap_groups': len(pairs),
         'groups_with_changed_output': sum(len({r['result']['protected_text'] for r in g}) > 1 for g in pairs)}
-    report['limitations'][0] = '50 model-reviewed short dev records; no human audit or independent final test'
+    splits = {r['split'] for r in records}
+    role = 'dev' if splits == {'dev'} else 'training_demonstration' if splits == {'train'} else 'fresh_diagnostic'
+    report['evaluation_role'] = role
+    report['limitations'][0] = {
+        'dev': 'Model-reviewed short dev records; no human audit or independent final test',
+        'training_demonstration': 'Training demonstrations; not held-out generalisation evidence',
+        'fresh_diagnostic': 'Fresh agent-authored long diagnostics; not independently audited or used for selection',
+    }[role]
     write(destination, report)
     write(destination.with_suffix('.outputs.json'), outputs)
     return report

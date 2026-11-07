@@ -38,3 +38,14 @@ def test_selection_does_not_reward_abstaining_on_every_record():
     good = selection_key({'counts': base})
     bad = selection_key({'counts': base | {'unsupported': 50, 'required_removed': 10}})
     assert good < bad
+
+
+def test_report_distinguishes_training_demonstrations_from_dev(tmp_path):
+    from mask.ml.privacy_v1.engine import RulesModel
+    from mask.ml.privacy_v1.experiment import diagnostics
+    train, dev = canonical()
+    demo_report = diagnostics(RulesModel(), train[:1], tmp_path / 'demo.json')
+    dev_report = diagnostics(RulesModel(), dev[:1], tmp_path / 'dev.json')
+    assert demo_report['evaluation_role'] == 'training_demonstration'
+    assert dev_report['evaluation_role'] == 'dev'
+    assert 'not held-out' in demo_report['limitations'][0]
