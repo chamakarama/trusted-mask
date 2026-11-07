@@ -49,7 +49,7 @@ Before a full cloud run, overfit a small **training-only** subset of task pairs 
 
 ## 3. Train and compare
 
-Prioritize a working **DeBERTa-v3-base** candidate. With available compute, run **DeBERTa-v3-large** as the larger comparison using the same frozen splits, objectives and evaluation. Pin pretrained revisions, dependency versions and seeds. Give large its own truthful model identifier and compatible loader/bundle support; do not save it under the base track. Starting both from their pinned pretrained checkpoints gives the cleaner model-size comparison. Keep current trained DeBERTa and MiniLM checkpoints as fixed baselines; another custom-model run is lower priority.
+Train **both DeBERTa-v3-base and DeBERTa-v3-large** using the same frozen splits, objectives and evaluation. Both runs are required; the user has confirmed that training is fast and compute is available. Verify the shared pipeline on base first, then run concurrently if resources permit. Pin pretrained revisions, dependency versions and seeds. Give large its own truthful model identifier and compatible loader/bundle support; do not save it under the base track. Starting both from their pinned pretrained checkpoints gives the cleaner model-size comparison. Keep current trained DeBERTa and MiniLM checkpoints as fixed baselines; another custom-model run is lower priority.
 
 Use a small, bounded schedule with early stopping; for example a few epochs and one or two conservative encoder learning rates, with separately recorded new-head settings. Tune on dev only. Record source/family sampling, loss weights, precision and actual optimizer counts. If the base pipeline has not passed its sanity check, an expensive large run is premature.
 
@@ -57,7 +57,7 @@ Do not choose by token accuracy or the number of DROP predictions alone. Select 
 
 ## 4. Evaluate and deliver
 
-Compare fixed current DeBERTa, rules-only, the new base, and new large (if trained), using identical pipeline settings where possible. Include a goal-agnostic ablation of each new model. Separate weight gains from changes to inference/gates. Reuse `evidence/privacy-v1/intended-task-v1/` diagnostics and add the newly held-out task pairs.
+Compare fixed current DeBERTa, rules-only, the new base, and new large, using identical pipeline settings where possible. Include a goal-agnostic ablation of each new model. Separate weight gains from changes to inference/gates. Reuse `evidence/privacy-v1/intended-task-v1/` diagnostics and add the newly held-out task pairs.
 
 Report on each dev set separately:
 
@@ -72,4 +72,8 @@ Use dev results to set a deletion threshold that improves correct removals witho
 
 Publish configs, split manifests, training commands, metrics and original/protected examples under a fresh evidence directory. Include a concise base-versus-large comparison, chosen checkpoint and known limitations. Save the selected bundles with tokenizer/config, section head, model architecture/version, pinned source revision, license/provenance and SHA256 manifest. Verify the real application loader and CPU inference from the published bundle; report approximate memory and cold/warm latency on a 100-word example. Preserve old bundles for rollback.
 
-Commit code, data split manifests and reports; push selected downloadable weights through the repository's existing Git LFS/bundle mechanism, with checksums and extraction/loading instructions. A private cloud-bucket-only path is not a completed handoff. Do not overwrite teammates' UI work or silently switch the live demo model. Provide the branch, artifact locations and exact integration command when finished.
+Immediately after each model finishes and its checkpoint is saved, push its downloadable weights through the repository's existing Git LFS/bundle mechanism, with checksums and extraction/loading instructions. Do not wait for the other model or full evaluation. Mark evaluation status accurately and update it after testing. Commit code, data split manifests and reports as they become available. A private cloud-bucket-only path is not a completed handoff. Do not overwrite teammates' UI work or silently switch the live demo model. Provide the branch, artifact locations and exact integration command when finished.
+
+## Overnight delivery target
+
+Aim for a usable handoff by 06:00 Helsinki time on 8 November. After each upload, verify download and loading through the real application loader, run a CPU smoke test, inspect a few 100–180 word messages and matched task pairs, and run both frozen dev sets. Check aliases, local restoration where supported, useful-fact retention, vague/no-edit controls, and actual section deletion. Provide exact demo launch commands for both models and three tested examples with real outputs. Preserve current demo weights as a fallback and report unfinished work plainly.
