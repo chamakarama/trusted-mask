@@ -28,6 +28,14 @@ ASSETS = {
     "/": (ROOT / "static/index.html", "text/html; charset=utf-8"),
     "/app.js": (ROOT / "static/app.js", "text/javascript; charset=utf-8"),
     "/styles.css": (ROOT / "static/styles.css", "text/css; charset=utf-8"),
+    "/favicon.svg": (ROOT / "static/favicon.svg", "image/svg+xml"),
+    "/favicon.ico": (ROOT / "static/favicon.ico", "image/x-icon"),
+    "/apple-touch-icon.png": (ROOT / "static/apple-touch-icon.png", "image/png"),
+    "/icon-192.png": (ROOT / "static/icon-192.png", "image/png"),
+    "/icon-512.png": (ROOT / "static/icon-512.png", "image/png"),
+    "/logo.svg": (ROOT / "static/logo.svg", "image/svg+xml"),
+    "/logo-dark.svg": (ROOT / "static/logo-dark.svg", "image/svg+xml"),
+    "/site.webmanifest": (ROOT / "static/site.webmanifest", "application/manifest+json"),
     "/font.woff2": (MASK / "public/fonts/InterVariable.woff2", "font/woff2"),
 }
 
