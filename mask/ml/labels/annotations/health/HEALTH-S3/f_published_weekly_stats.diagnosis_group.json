@@ -1,17 +1,17 @@
 {
   "taskId": "HEALTH-S3::f:published_weekly_stats.diagnosis_group",
   "chosen": {
-    "key": "suppress"
+    "key": "keep"
   },
   "acceptable": [
     {
-      "key": "generalize_category_rare@minGroup=10"
+      "key": "suppress"
     }
   ],
-  "rationale": "Special-category diagnosis in a weekly stats table not used by the admission model, LOS or vital-sign tasks. Vendor has no need; removal minimises membership and rare-patient exposure.",
+  "rationale": "Diagnosis group is health data, but here it is a coarse category (18 groups, none rare) on published weekly aggregate counts, not individual records. Low disclosure risk; it is the main dimension of the table.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

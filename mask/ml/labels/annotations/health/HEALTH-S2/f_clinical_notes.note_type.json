@@ -1,17 +1,17 @@
 {
- "taskId": "HEALTH-S2::f:clinical_notes.note_type",
- "chosen": {
-  "key": "suppress"
- },
- "acceptable": [
-  {
-   "key": "generalize_category_rare@minGroup=10"
+  "taskId": "HEALTH-S2::f:clinical_notes.note_type",
+  "chosen": {
+    "key": "suppress"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    }
+  ],
+  "rationale": "Public aggregate ED release; note type is not needed by any utility task (ED counts, age bands, arrival curve). Two balanced categories are harmless, but row-level notes metadata has no place in an aggregate output, so remove it.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Note type is not used by weekly ILI, hour-of-day or DP workloads. Remove it; merging small groups would also be harmless.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

@@ -1,17 +1,17 @@
 {
- "taskId": "HEALTH-S2::f:published_weekly_stats.municipality",
- "chosen": {
-  "key": "generalize_category_rare@minGroup=10"
- },
- "acceptable": [
-  {
-   "key": "generalize_category_rare@minGroup=5"
+  "taskId": "HEALTH-S2::f:published_weekly_stats.municipality",
+  "chosen": {
+    "key": "keep"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Municipality resolution is explicitly required for injury trends. 27 values, none rare. Keeping serves the purpose; cell-size suppression belongs at the aggregate level.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Municipality is needed for the trend breakdown, but small places in a publicly differenced release are re-identifiable. Merging places under 10 keeps usable geography while lowering small-cell risk.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

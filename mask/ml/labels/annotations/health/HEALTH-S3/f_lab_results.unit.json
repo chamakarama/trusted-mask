@@ -1,17 +1,17 @@
 {
   "taskId": "HEALTH-S3::f:lab_results.unit",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=10"
+    "key": "keep"
   },
   "acceptable": [
     {
-      "key": "keep"
+      "key": "suppress"
     }
   ],
-  "rationale": "Unit is non-sensitive metadata; it is only useful alongside values. Merging groups under 10 is a cheap safeguard.",
+  "rationale": "Non-sensitive measurement unit with eight common values and no rare category. It cannot identify anyone and may be needed to interpret lab values; low risk, so keep. Removal also acceptable since no task uses it.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

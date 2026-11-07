@@ -8,7 +8,7 @@ The central ML task is **choosing how to transform information**. A goal-conditi
 
 ## Status
 
-Planning only. No Mask UI, trained method selector or end-to-end export pipeline exists yet. The previous transport application has been removed from the active checkout. Its results do not establish Mask's performance.
+A working vertical slice exists in [`mask/`](mask/README.md): import → goal → deterministic proposal → transformed preview → confirmed export, in the browser. A learned selector and a benchmark adapter are in progress; see the Mask README for what is measured and what is not. The previous transport application has been removed from the active checkout. Its results do not establish Mask's performance.
 
 - [Architecture and implementation plan](planning/MASK_PLAN.md)
 - [Claude implementation handoff and team workstreams](planning/CLAUDE_BUILD_BRIEF.md)

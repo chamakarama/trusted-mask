@@ -1,17 +1,17 @@
 {
- "taskId": "HEALTH-S2::f:clinical_notes.language",
- "chosen": {
-  "key": "suppress"
- },
- "acceptable": [
-  {
-   "key": "generalize_category_rare@minGroup=10"
+  "taskId": "HEALTH-S2::f:clinical_notes.language",
+  "chosen": {
+    "key": "suppress"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    }
+  ],
+  "rationale": "Public open-data release for weekly load by age band and municipality; note language is unused and Swedish or English notes narrow the population. Remove.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Note language is not needed for any listed utility task and Swedish or English narrows the patient population. Drop it; merging rare values is an acceptable fallback.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

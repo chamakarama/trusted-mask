@@ -1,17 +1,13 @@
 {
- "taskId": "HEALTH-S2::f:ed_visits.icd10_primary",
- "chosen": {
-  "key": "generalize_category_rare@minGroup=10"
- },
- "acceptable": [
-  {
-   "key": "generalize_category_rare@minGroup=5"
+  "taskId": "HEALTH-S2::f:ed_visits.icd10_primary",
+  "chosen": {
+    "key": "suppress"
+  },
+  "acceptable": [],
+  "rationale": "Art. 9 diagnosis code, the only valid candidate. Rare codes are near-unique and mental-health/pregnancy codes are sensitive; public release needs only aggregates.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Needed to identify ILI and injury visits, so keep but merge rare codes, which are near-unique and include sensitive F and O codes. Group size 10 gives margin for small-cell risk.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

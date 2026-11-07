@@ -1,20 +1,17 @@
 {
   "taskId": "HEALTH-S2::f:lab_results.test_code",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=10"
+    "key": "suppress"
   },
   "acceptable": [
     {
       "key": "keep"
-    },
-    {
-      "key": "generalize_category_rare@minGroup=5"
     }
   ],
-  "rationale": "Test code is a non-sensitive category with 15 values. Merging rare codes costs little while avoiding tiny cells; lab tests are not needed for the dashboard anyway.",
+  "rationale": "Lab data is not used by the ED weekly dashboard tasks. Merging is invalid since no category is rare. Keeping gives a public audience row-level lab detail with no benefit; remove.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

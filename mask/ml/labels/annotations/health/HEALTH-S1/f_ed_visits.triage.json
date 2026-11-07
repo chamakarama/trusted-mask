@@ -1,17 +1,17 @@
 {
- "taskId": "HEALTH-S1::f:ed_visits.triage",
- "chosen": {
-  "key": "keep"
- },
- "acceptable": [
-  {
-   "key": "generalize_category_rare@minGroup=5"
+  "taskId": "HEALTH-S1::f:ed_visits.triage",
+  "chosen": {
+    "key": "keep"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Median length of stay by triage level is an explicit utility task, so triage is required. Only five coarse levels, none rare.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Triage level is the grouping for median length of stay (H-U2). Five categories, none rare, so keeping is justified for the controlled research use.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

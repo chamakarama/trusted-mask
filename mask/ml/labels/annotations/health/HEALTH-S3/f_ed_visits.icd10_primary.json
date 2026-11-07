@@ -1,20 +1,17 @@
 {
- "taskId": "HEALTH-S3::f:ed_visits.icd10_primary",
- "chosen": {
-  "key": "generalize_category_rare@minGroup=10"
- },
- "acceptable": [
-  {
-   "key": "keep"
+  "taskId": "HEALTH-S3::f:ed_visits.icd10_primary",
+  "chosen": {
+    "key": "suppress"
   },
-  {
-   "key": "generalize_category_rare@minGroup=5"
+  "acceptable": [
+    {
+      "key": "keep"
+    }
+  ],
+  "rationale": "Special-category diagnosis with 50 codes, some near-unique. The model predicts admission from triage-time information; a final diagnosis is not known at triage and would leak the outcome. No listed utility task needs it.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Primary diagnosis is a required predictor, but it is special-category and rare codes can be near-unique. Merging groups under 10 keeps common diagnoses and limits memorisation.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }
