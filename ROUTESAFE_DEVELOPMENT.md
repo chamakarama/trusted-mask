@@ -62,12 +62,12 @@ The offline package includes the synthetic-only evidence summary and exact verif
 
 ## Quick local preview without Python
 
-Use a separate folder to preserve any active builder checkout. This pinned version includes the reviewed fixed-domain noise ranges, synthetic membership evidence, assistant cancellation on newer actions and default-HEAD release sync:
+Use a separate folder to preserve any active builder checkout. This pinned version is the redesigned UI reviewed at 93ad641 and integrated at 32efd39. It includes the fixed-domain noise ranges, synthetic membership evidence and assistant cancellation on newer actions. For the concise current startup and recording checklist, see planning/MORNING_HANDOFF.md:
 
 ```sh
 git clone https://github.com/Chintufp/Since-AI-hackathon---WAWS.git routesafe-reviewed-ui
 cd routesafe-reviewed-ui
-git checkout 89d7152
+git checkout --detach 32efd39
 npm ci --prefix web
 npm run sync --prefix web -- --ref HEAD
 npm run dev --prefix web -- --host 127.0.0.1 --port 5175

@@ -1,5 +1,7 @@
 # RouteSafe continuation checkpoint
 
+For the concise morning startup, current demo recording path and human decisions, read **planning/MORNING_HANDOFF.md** first.
+
 Reviewed application baseline: **93ad641** (PR #10; Astra acceptance and detailed limits in evidence/e6/ui-93ad641-review.md). Previous fallback: **2e8e023**, including scanner email sweep, fixed-domain uncertainty, E7 synthetic evidence, before/after and policy trade-off charts, preset scope and assistant cancellation (6 November 2026). Later documentation/evidence commits do not redraw the release. This is a working experimental foundation, not a prediction of competition placement.
 
 ## Resume safely
