@@ -1,17 +1,17 @@
 {
- "taskId": "HEALTH-S2::f:published_weekly_stats.week",
- "chosen": {
-  "key": "keep"
- },
- "acceptable": [
-  {
-   "key": "generalize_category_rare@minGroup=10"
+  "taskId": "HEALTH-S2::f:published_weekly_stats.week",
+  "chosen": {
+    "key": "keep"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Weekly resolution is the stated time grain of the dashboard and trends need it. ISO week is already coarse and not rare-category. Removing it would destroy the trend purpose.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "ISO week is exactly the resolution the weekly dashboard needs and is already coarse. Removing it would destroy the trend utility; weekly granularity is low risk.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

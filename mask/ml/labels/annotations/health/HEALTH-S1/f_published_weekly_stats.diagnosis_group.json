@@ -1,17 +1,17 @@
 {
   "taskId": "HEALTH-S1::f:published_weekly_stats.diagnosis_group",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=5"
+    "key": "keep"
   },
   "acceptable": [
     {
-      "key": "keep"
+      "key": "suppress"
     }
   ],
-  "rationale": "Diagnosis mix is a stated need and no category is rare (smallest about 50 rows), so merging is harmless but guards against rare groups. Art. 9 data stays in a controlled research setting; removal would defeat the diagnosis-pattern purpose.",
+  "rationale": "Coarse diagnosis grouping in aggregate published statistics; consistent with the diagnosis-pattern purpose, no rare groups, controlled recipient. Removal also acceptable.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

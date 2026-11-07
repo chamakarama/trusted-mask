@@ -1,17 +1,17 @@
 {
- "taskId": "HEALTH-S1::f:ed_visits.sex",
- "chosen": {
-  "key": "generalize_category_rare@minGroup=5"
- },
- "acceptable": [
-  {
-   "key": "keep"
+  "taskId": "HEALTH-S1::f:ed_visits.sex",
+  "chosen": {
+    "key": "keep"
+  },
+  "acceptable": [
+    {
+      "key": "tokenize_keyed@format=token,scope=dataset"
+    }
+  ],
+  "rationale": "Sex is a coarse quasi-identifier with balanced groups and is useful for stratifying LOS and revisits. Controlled environment makes keeping proportionate.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Sex is part of the k-anonymity quasi-identifier set and is useful for stratification. Two balanced categories, so rare merging is a harmless safeguard. It is derivable from the HETU anyway.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

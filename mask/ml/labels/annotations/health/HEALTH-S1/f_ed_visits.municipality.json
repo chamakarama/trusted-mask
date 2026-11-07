@@ -1,20 +1,17 @@
 {
- "taskId": "HEALTH-S1::f:ed_visits.municipality",
- "chosen": {
-  "key": "generalize_category_rare@minGroup=5"
- },
- "acceptable": [
-  {
-   "key": "keep"
+  "taskId": "HEALTH-S1::f:ed_visits.municipality",
+  "chosen": {
+    "key": "keep"
   },
-  {
-   "key": "generalize_category_rare@minGroup=10"
+  "acceptable": [
+    {
+      "key": "tokenize_keyed@format=token,scope=dataset"
+    }
+  ],
+  "rationale": "Diagnosis mix in the largest municipalities needs real place names, so a token would lose meaning. 28 values, none rare; controlled research recipient.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Municipality is needed for the diagnosis mix by place; 28 categories with none rare, so merging below 5 costs nothing and covers the non-resident trap. Keep as a grouping quasi-identifier within the controlled setting.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }

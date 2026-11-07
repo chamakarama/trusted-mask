@@ -1,20 +1,17 @@
 {
   "taskId": "HEALTH-S2::f:lab_results.unit",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=10"
+    "key": "suppress"
   },
   "acceptable": [
     {
       "key": "keep"
-    },
-    {
-      "key": "generalize_category_rare@minGroup=5"
     }
   ],
-  "rationale": "Unit is a low-cardinality non-sensitive category; merging rare values guards small cells in the public release.",
+  "rationale": "Unit is harmless on its own (8 common values) but no utility task uses lab results. Row-level lab data is not part of the aggregate public output, so remove.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

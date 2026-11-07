@@ -5,13 +5,13 @@
   },
   "acceptable": [
     {
-      "key": "generalize_category_rare@minGroup=10"
+      "key": "keep"
     }
   ],
-  "rationale": "Sex-specific ranges reveal patient sex, and lab results are not needed for the listed tasks. Removal avoids that leak.",
+  "rationale": "No utility task uses lab results. Sex-specific ranges (B-Hb, P-Krea) leak patient sex as an extra quasi-identifier signal, and it is not needed to train the triage model. Data minimisation favours removal.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

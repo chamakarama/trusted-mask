@@ -1,20 +1,17 @@
 {
   "taskId": "HEALTH-S2::f:lab_results.test_name",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=10"
+    "key": "suppress"
   },
   "acceptable": [
     {
       "key": "keep"
-    },
-    {
-      "key": "generalize_category_rare@minGroup=5"
     }
   ],
-  "rationale": "Non-sensitive test name with few categories; rare-merge keeps cells large for public release without losing meaningful utility.",
+  "rationale": "Lab test names are not needed for ED load, ILI or arrival-curve tasks. No rare categories, so merging is moot. Least disclosure for a public release is removal.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

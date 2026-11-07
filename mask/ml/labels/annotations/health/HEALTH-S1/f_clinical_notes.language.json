@@ -1,20 +1,17 @@
 {
   "taskId": "HEALTH-S1::f:clinical_notes.language",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=5"
+    "key": "suppress"
   },
   "acceptable": [
     {
-      "key": "keep"
-    },
-    {
-      "key": "suppress"
+      "key": "tokenize_keyed@format=token,scope=dataset"
     }
   ],
-  "rationale": "Language is a minor quasi-identifier that narrows the population, but all three categories exceed 2.8% share, so rare-merging protects without hurting any utility task.",
+  "rationale": "No listed utility task uses note language, and Swedish or English notes narrow the patient population for linkage. Nothing is lost by removal.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

@@ -1,17 +1,17 @@
 {
   "taskId": "HEALTH-S2::f:ed_visits.municipality",
   "chosen": {
-    "key": "generalize_category_rare@minGroup=10"
+    "key": "keep"
   },
   "acceptable": [
     {
-      "key": "generalize_category_rare@minGroup=5"
+      "key": "suppress"
     }
   ],
-  "rationale": "Municipality is a required grouping for the public dashboard. Merging rare places into other keeps cells large enough for anonymity and differencing resistance; non-resident marker is folded away.",
+  "rationale": "Municipality is a required grouping at municipality resolution, and no category is rare (28 values, smallest share 0.2%). Keeping it serves the injury-trend task; small cells must be handled at aggregation, and the non-resident trap is noted.",
   "unresolved": [],
   "annotator": {
     "model": "claude-sonnet-5-5",
-    "promptVersion": "annotator-1"
+    "promptVersion": "annotator-2"
   }
 }

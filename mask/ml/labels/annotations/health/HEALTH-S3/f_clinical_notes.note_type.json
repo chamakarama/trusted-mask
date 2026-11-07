@@ -1,20 +1,17 @@
 {
- "taskId": "HEALTH-S3::f:clinical_notes.note_type",
- "chosen": {
-  "key": "suppress"
- },
- "acceptable": [
-  {
-   "key": "keep"
+  "taskId": "HEALTH-S3::f:clinical_notes.note_type",
+  "chosen": {
+    "key": "keep"
   },
-  {
-   "key": "generalize_category_rare@minGroup=10"
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Two balanced, non-sensitive values (physician / nurse_triage). Negligible re-identification risk and may help describe the data; no category is rare. Removal would also be acceptable since no listed task needs it.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-2"
   }
- ],
- "rationale": "Not sensitive, but the notes table adds nothing to the listed ED-visit utility tasks. Removing it with the other note columns is simplest; keeping it would be low risk.",
- "unresolved": [],
- "annotator": {
-  "model": "claude-sonnet-5-5",
-  "promptVersion": "annotator-1"
- }
 }
