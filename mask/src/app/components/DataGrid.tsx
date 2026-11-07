@@ -4,14 +4,14 @@ import type { CellChange, HighlightKind, RowView } from "@/contracts";
 import { getRecipe } from "@/core/registry";
 import { useAppState, useController } from "../store/store";
 import type { AppState } from "../store/state";
-import { gridColumns, rowFilterOf, highlightOf, methodKind, paramSummary, type GridColumn } from "../lib/model";
+import { gridColumns, rowFilterOf, highlightOf, methodKind, methodWord, paramSummary, type GridColumn } from "../lib/model";
 import { CONFIDENCE_LABEL, HIGHLIGHT_LABEL, ROLE_LABEL, fmtInt, subtypeLabel } from "../lib/labels";
-import { HighlightIcon, IconAlert, IconSort } from "../lib/icons";
+import { IconSort } from "../lib/icons";
 import { useRows } from "./useRows";
 import { SpanText } from "./SpanText";
 
 const ROW_H = 32;
-const HEADER_H = 72;
+const HEADER_H = 46;
 const ROWNUM_W = 56;
 
 interface Active { r: number; c: number } // r = -1 is the header row
@@ -149,7 +149,7 @@ export function DataGrid({ table }: { table: string }) {
           {vRows.map((vr) => {
             const row = rows.rowAt(vr.index);
             return (
-              <div key={vr.key} className={`grid-row ${vr.index % 2 ? "odd" : ""}`} role="row" aria-rowindex={vr.index + 2} style={{ transform: `translateY(${vr.start}px)`, width, height: ROW_H }}>
+              <div key={vr.key} className="grid-row" role="row" aria-rowindex={vr.index + 2} style={{ transform: `translateY(${vr.start}px)`, width, height: ROW_H }}>
                 <div className="grid-rownum num" role="rowheader" aria-colindex={1} style={{ width: ROWNUM_W }}>{row ? row.row + 1 : ""}</div>
                 {vCols.map((vc) => {
                   const col = columns[vc.index]!;
@@ -221,6 +221,7 @@ const HeaderCell = memo(function HeaderCell({
   const kind = col.status === "suppressed" ? "suppress" : col.status === "derived" ? "derive" : methodKind(dec);
   const recipe = dec?.selected ? getRecipe(dec.selected.recipeId) : null;
   const params = paramSummary(dec);
+  const tip = [col.title, d ? `${ROLE_LABEL[d.role]} · ${subtypeLabel(d.subtype)} · detection confidence ${CONFIDENCE_LABEL[d.confidence]}` : "", recipe ? `${recipe.name}${params ? ` (${params})` : ""}: ${recipe.summary}` : ""].filter(Boolean).join("\n");
   const removed = col.status === "suppressed";
   const needsReview = !!(dec?.needsReview || (!dec && d?.needsReview));
   return (
@@ -233,9 +234,10 @@ const HeaderCell = memo(function HeaderCell({
       tabIndex={tabbable ? 0 : -1}
       style={{ transform: `translateX(${left}px)`, width, height: HEADER_H }}
       onClick={onSelect}
+      title={tip}
     >
       <div className="h-line1">
-        <span className="h-name" title={col.title}>{col.title}</span>
+        <span className="h-name">{col.title}</span>
         <button
           className={`h-sort ${sortDir ? "on" : ""}`}
           tabIndex={-1}
@@ -246,24 +248,14 @@ const HeaderCell = memo(function HeaderCell({
         </button>
       </div>
       <div className="h-line2">
-        {d ? (
-          <>
-            <span className={`role role-${d.role}`} title={`${ROLE_LABEL[d.role]} · ${subtypeLabel(d.subtype)}`}>{subtypeLabel(d.subtype)}</span>
-            <span className={`conf conf-${d.confidence}`} title={`Detection confidence: ${CONFIDENCE_LABEL[d.confidence]} (rule strength, not a risk score)`}>
-              <span className="conf-bars" aria-hidden="true"><i /><i /><i /></span>
-              <span className="sr-only">confidence {d.confidence}</span>
-            </span>
-            {needsReview && <span className="h-review" title="Needs review"><IconAlert size={12} label="Needs review" /></span>}
-          </>
-        ) : col.status === "derived" ? <span className="muted xsmall">from {col.sourceColumn}</span> : <span className="muted xsmall">{review ? "" : "Detecting…"}</span>}
-      </div>
-      <div className="h-line3">
-        {review && kind && (
-          <span className={`hl-tag hl-${kind} ${protectedView ? "" : "quiet"}`} title={recipe ? `${recipe.name}: ${recipe.summary}` : undefined}>
-            <HighlightIcon kind={kind} size={12} />
-            <span className="h-method">{removed ? "Removed" : col.status === "derived" ? "Derived" : recipe?.name ?? HIGHLIGHT_LABEL[kind]}{params ? ` · ${params}` : ""}</span>
-          </span>
-        )}
+        {review && kind === "keep" ? (
+          <span className="h-sub">kept</span>
+        ) : review && kind ? (
+          <span className={`h-method mk mk-${kind} ${protectedView ? "" : "quiet"}`}>{methodWord(dec, col.status) || HIGHLIGHT_LABEL[kind].toLowerCase()}</span>
+        ) : d ? (
+          <span className="h-sub">{subtypeLabel(d.subtype).toLowerCase()}</span>
+        ) : col.status === "derived" ? <span className="h-sub">from {col.sourceColumn}</span> : <span className="h-sub">{review ? "" : "…"}</span>}
+        {needsReview && <span className="h-review" title={(dec?.reviewReasons ?? d?.reviewReasons ?? []).join("; ") || "Needs review"}>review</span>}
       </div>
     </div>
   );
@@ -276,17 +268,19 @@ const Cell = memo(function Cell({
   protectedView: boolean; tabbable: boolean; selected: boolean; selectedSpan: number | undefined; devOpen: boolean; onSelect: (spanIndex?: number) => void;
 }) {
   const removed = protectedView && col.status === "suppressed";
-  const kind: HighlightKind | null = protectedView && change && !change.spans && !col.isText ? change.kind : null;
-  const reviewDot = protectedView && change?.kind === "review";
+  const review = protectedView && change?.kind === "review";
+  // the wash colour is the method; "needs review" is an extra underline, not a different colour
+  const kind: HighlightKind | null = protectedView && change && !change.spans && !col.isText ? (methodKind(col.decision) ?? (change.kind === "review" ? null : change.kind)) : null;
   let content: React.ReactNode;
   if (value === undefined) content = <span className="cell-loading" aria-hidden="true" />;
-  else if (removed) content = <span className="cell-removed">removed</span>;
+  else if (removed) content = <span className="mk-strike" aria-label="removed" />;
   else if (value === null) content = <span className="cell-null" aria-label="empty">—</span>;
   else if (protectedView && change?.spans?.length) content = <SpanText text={value} spans={change.spans} selected={selected ? selectedSpan : undefined} devOpen={devOpen} onSpan={(i) => onSelect(i)} />;
+  else if (kind && kind !== "keep") content = <span className={`mk mk-${kind} ${review ? "mk-needs-review" : ""}`}>{value}</span>;
   else content = value;
   return (
     <div
-      className={`grid-cell ${kind ? `hl hl-${kind} is-changed` : ""} ${selected ? "is-selected" : ""} ${col.isText ? "is-text" : ""} ${removed ? "is-removed" : ""}`}
+      className={`grid-cell ${selected ? "is-selected" : ""} ${col.isText ? "is-text" : ""} ${removed ? "is-removed" : ""}`}
       role="gridcell"
       aria-colindex={colIndex + 2}
       aria-selected={selected}
@@ -296,10 +290,9 @@ const Cell = memo(function Cell({
       onClick={() => onSelect()}
       title={typeof value === "string" && value.length > 40 && !change?.spans ? value : undefined}
     >
-      {reviewDot && <span className="cell-review" aria-label="needs review" />}
       <span className="cell-text">{content}</span>
     </div>
   );
 });
 
-export { highlightOf };
+export { highlightOf, paramSummary };

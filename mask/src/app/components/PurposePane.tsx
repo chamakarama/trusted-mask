@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useAppState, useController } from "../store/store";
-import { GoalCard } from "./GoalCard";
-import { IconSend } from "../lib/icons";
+import { GoalQuestions, GoalReply, SpecFields } from "./GoalCard";
+import { IconChevronV, IconSend } from "../lib/icons";
 
 const EXAMPLES = [
   "An external vendor will find the main contact reasons and handle time by intent.",
@@ -9,80 +9,84 @@ const EXAMPLES = [
   "Publish monthly statistics of contacts by channel and region.",
 ];
 
+/**
+ * The question box is the main object of the left side. It keeps the purpose as written; editing it and
+ * pressing Enter refines the specification. A thin bar under it opens the specification and any questions.
+ */
 export function PurposePane() {
   const s = useAppState();
   const c = useController();
   const [text, setText] = useState("");
-  const listRef = useRef<HTMLOListElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [open, setOpen] = useState(false);
   const interpreting = s.pending.interpret !== undefined;
+  const questions = s.goal && !s.goalAccepted ? s.goal.unresolved.length : 0;
+  const notes = s.thread.filter((t) => t.role === "mask" && t.kind === "note");
+  const lastNote = notes[notes.length - 1];
+  const seenQuestions = useRef(0);
 
-  // Keep the latest request and the start of Mask's reply in view: scroll so the last user message sits
-  // at the top of the thread (scrolling to the bottom would hide the card header behind a tall card).
-  const lastUserId = [...s.thread].reverse().find((t) => t.role === "user")?.id;
-  useEffect(() => {
-    const list = listRef.current;
-    if (!list) return;
-    const msg = lastUserId ? list.querySelector<HTMLElement>(`[data-id="${lastUserId}"]`) : null;
-    const top = msg ? msg.offsetTop - 8 : list.scrollHeight;
-    if (typeof list.scrollTo === "function") list.scrollTo({ top, behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-    else list.scrollTop = top;
-  }, [s.thread.length, lastUserId, interpreting]);
+  // show the purpose that produced the current goal (e.g. after a programmatic or example send)
+  useEffect(() => { if (s.goal && !text) setText(s.goal.rawText); }, [s.goal?.rawText]); // eslint-disable-line react-hooks/exhaustive-deps
+  // a new question opens the section once, so it is not missed
+  useEffect(() => { if (questions > seenQuestions.current) setOpen(true); seenQuestions.current = questions; }, [questions]);
 
-  const send = () => {
-    const t = text.trim();
-    if (!t || interpreting) return;
-    setText("");
-    void c.submitGoal(t);
+  const send = (t = text) => {
+    const v = t.trim();
+    if (!v || interpreting) return;
+    setText(v);
+    void c.submitGoal(v);
   };
+  const unchanged = !!s.goal && text.trim() === s.goal.rawText.trim();
 
   return (
     <div className="purpose">
-      <div className="pane-head">
-        <h2 id="purpose-title">Purpose</h2>
-        <span className="muted small">What the data is for and who receives it</span>
-      </div>
-
-      <ol className="thread" ref={listRef} aria-label="Conversation">
-        {s.thread.length === 0 && (
-          <li className="thread-intro">
-            <p>Describe the analysis and who will receive the result. Mask uses this to choose how much detail each field keeps.</p>
-            <p className="muted small examples-hint">Start from an example, then refine below:</p>
-            <div className="examples" aria-label="Examples">
-              {EXAMPLES.map((ex) => (
-                <button key={ex} className="example" onClick={() => { void c.submitGoal(ex); inputRef.current?.focus(); }}>{ex}</button>
-              ))}
-            </div>
-          </li>
-        )}
-        {s.thread.map((t) => {
-          if (t.role === "user") return <li key={t.id} data-id={t.id} className="msg msg-user"><p>{t.text}</p></li>;
-          if (t.kind === "note") return <li key={t.id} className={`msg msg-note tone-${t.tone}`}><p>{t.text}</p></li>;
-          return <li key={t.id} className="msg msg-mask"><GoalCard /></li>;
-        })}
-        {interpreting && <li className="msg msg-pending" aria-live="polite"><span className="muted small">Reading your description…</span></li>}
-      </ol>
-
-      <form className="composer" onSubmit={(e) => { e.preventDefault(); send(); }}>
-        <label htmlFor="goal-input" className="sr-only">Describe the purpose</label>
+      <form className="ask" onSubmit={(e) => { e.preventDefault(); send(); }}>
+        <label htmlFor="goal-input" className="sr-only" id="purpose-title">What is this data for, and who receives it?</label>
         <textarea
           id="goal-input"
-          ref={inputRef}
-          rows={3}
+          rows={5}
           value={text}
-          placeholder={s.goal ? "Add detail or correct the interpretation…" : "e.g. A vendor will analyse contact reasons and handle time by intent"}
+          placeholder="What is this data for, and who receives it?"
           onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); }
-          }}
+          onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }}
+          aria-describedby="ask-hint"
         />
-        <div className="composer-foot">
-          <span className="muted xsmall">Enter to send · Shift+Enter for a new line</span>
-          <button type="submit" className="btn btn-primary btn-small" disabled={!text.trim() || interpreting} aria-label="Send">
-            <IconSend size={14} /> Send
-          </button>
-        </div>
+        <span id="ask-hint" className="sr-only">Enter to send, Shift+Enter for a new line.</span>
+        <button type="submit" className="ask-send" disabled={!text.trim() || interpreting || unchanged} aria-label="Send" title="Send (Enter)">
+          {interpreting ? <span className="spinner" aria-hidden="true" /> : <IconSend size={15} />}
+        </button>
       </form>
+      <button
+        className={`spec-bar ${open ? "is-open" : ""}`}
+        aria-expanded={open}
+        aria-controls="spec-section"
+        aria-label={`Specification${questions ? `, ${questions} open question${questions > 1 ? "s" : ""}` : ""}`}
+        onClick={() => setOpen((x) => !x)}
+      >
+        {questions > 0 && !open && <span className="spec-dot" aria-hidden="true" />}
+        <IconChevronV size={14} up={open} />
+      </button>
+      {open && (
+        <div className="spec-section" id="spec-section">
+          {interpreting && <p className="reply muted">Reading…</p>}
+          {s.goal ? (
+            <>
+              <GoalReply />
+              {lastNote && lastNote.role === "mask" && lastNote.kind === "note" && <p className={`spec-note tone-${lastNote.tone}`}>{lastNote.text}</p>}
+              <GoalQuestions />
+              <h3 className="spec-heading">Specification</h3>
+              <SpecFields />
+            </>
+          ) : (
+            <>
+              {lastNote && lastNote.role === "mask" && lastNote.kind === "note" && <p className={`spec-note tone-${lastNote.tone}`}>{lastNote.text}</p>}
+              <p className="muted small">Describe the analysis and who receives the result. For example:</p>
+              <div className="examples" aria-label="Examples">
+                {EXAMPLES.map((ex) => <button key={ex} className="example" onClick={() => send(ex)}>{ex}</button>)}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
