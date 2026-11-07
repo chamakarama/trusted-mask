@@ -1,5 +1,7 @@
 """Bounded private demo uploads and portable verified recipient files."""
 import io
+import csv
+from datetime import datetime
 import json
 import stat
 import zipfile
@@ -64,3 +66,38 @@ def protected_document(source):
                    'integrity':'Original nine release files are embedded verbatim below. The planner validates their contract and checksums locally. Hashes establish consistency, not publisher authenticity.'},
         'aggregate_destinations':summaries,
         'files':{name:(source/name).read_text() for name in sorted(artifact.PAYLOADS|{'manifest.json','checksums.sha256'})}}
+
+
+def raw_document(folder):
+    folder = Path(folder)
+    metadata = city.validate_metadata(folder)
+    if metadata['generator_version'] != 'kupittaa-day-2':
+        raise ValueError('Only the frozen full-day synthetic demo is supported')
+    stops = list(csv.DictReader((folder / 'stops.csv').open()))
+    stop_index = {s['stop_id']: i for i, s in enumerate(stops)}
+    cards = {}
+    epoch = datetime(2025, 10, 6)
+    count = 0
+    with (folder / 'taps.csv').open() as stream:
+        for row in csv.DictReader(stream):
+            card = cards.setdefault(row['card_id'], {
+                'card_id': row['card_id'], 'line': row['line'],
+                'fare_product': row['fare_product'], 'events': []})
+            if (card['line'], card['fare_product']) != (row['line'], row['fare_product']):
+                raise ValueError('This compact demo format requires constant line/fare per card')
+            seconds = (datetime.fromisoformat(row['ts']) - epoch).total_seconds()
+            if seconds % 60 or not 0 <= seconds < 28 * 86400:
+                raise ValueError('Unsupported timestamp')
+            card['events'].extend([int(seconds // 60), stop_index[row['stop_id']]])
+            count += 1
+    return {
+        'format': 'routesafe-raw-demo-v1', 'scenario_id': 'kupittaa-day-v2',
+        'protection': 'NONE — raw individual synthetic boarding records',
+        'read_me': {
+            'contents': 'All original synthetic boarding records, including card IDs, exact times, stops, line and fare. No sampling, aggregation, clipping or privacy noise.',
+            'encoding': 'Each card has events [minute_offset, stop_index, minute_offset, stop_index, ...]. Exact local timestamp = 2025-10-06 00:00:00 + minute_offset minutes. stop_index is zero-based into stops. line and fare_product apply to every event of that card. Decode with Python for individual histories or aggregates.',
+            'scenario': 'Entirely fictional Since AI day. TRK-G14 Kupittaa, TRK-G12 lunch, TRK-G08 Alko-run shopping area, TRK-G09 food, TRK-G13 afterparty. Invented 30–31 October 2025 event dates and exaggerated attendance; no real people or shop customers.',
+            'planner': 'Open this JSON through Open data file in RouteSafe. It computes uncapped inferred demand locally and labels it RAW / unprotected. No file content is uploaded.',
+            'limits': 'Boardings are observed within the synthetic source. Destinations remain inferred by next boarding and daily closure, not actual arrivals. Compact encoding is lossless, not anonymization.'},
+        'epoch_local': '2025-10-06 00:00:00', 'timezone': 'Europe/Helsinki',
+        'record_count': count, 'stops': stops, 'cards': list(cards.values())}

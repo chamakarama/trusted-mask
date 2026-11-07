@@ -30,7 +30,7 @@ from pipeline.mobility import load, validate, prepare, STOP_COLS, CAPS, EPS, COL
 from pipeline.public import sync_release
 from pipeline.snapshot import snapshot, fingerprint
 from pipeline.planning_task import evaluate_areas
-from pipeline.transfer import extract_upload, raw_demo_zip, protected_document, MAX_UPLOAD
+from pipeline.transfer import extract_upload, raw_demo_zip, protected_document, raw_document, MAX_UPLOAD
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLED_CITY = ROOT/'releases/city-turku-v1'
@@ -242,12 +242,37 @@ class Workflow:
         self.save()
         return self.public_state()
 
-    def upload(self, data, revision):
+    def upload(self, data, revision, content_type="application/zip"):
         if revision!=self.state['revision']:raise ValueError('STALE_REVISION: refresh before uploading')
+        if not 0<len(data)<=MAX_UPLOAD:raise ValueError('UPLOAD_TOO_LARGE: maximum 16 MB')
+        if content_type not in ('application/zip','application/json'):raise ValueError('RAW_JSON_OR_ZIP_REQUIRED')
         uploads=self.runtime/'uploads';uploads.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(prefix='.upload-',dir=uploads) as stage:
             folder=Path(stage)
-            extract_upload(data,folder)
+            if content_type=='application/json':
+                def unique_fields(pairs):
+                    result={}
+                    for key,value in pairs:
+                        if key in result:raise ValueError('INVALID_JSON: duplicate field')
+                        result[key]=value
+                    return result
+                try:doc=json.loads(data,object_pairs_hook=unique_fields)
+                except (UnicodeDecodeError,RecursionError) as exc:raise ValueError('INVALID_RAW_JSON') from exc
+                if isinstance(doc,dict) and doc.get('format')=='routesafe-protected-v1':
+                    raise ValueError('ALREADY_PROTECTED: open this file in the planner. Upload 01-RAW.json here.')
+                if not isinstance(doc,dict) or doc.get('format')!='routesafe-raw-demo-v1':
+                    raise ValueError('RAW_JSON_REQUIRED: choose 01-RAW.json or the original raw ZIP.')
+                reference=self.demo_input or self.datasets.get('city',{}).get('path')
+                if not reference:raise ValueError('RAW_DEMO_UNAVAILABLE: start with the registered full-day input')
+                # Snapshot the registered native input, then require exact equivalence
+                # with the uploaded lossless encoding before accepting those bytes.
+                for name in city.INPUTS:(folder/name).write_bytes((reference/name).read_bytes())
+                if not city_registration(city.fingerprint(folder)):
+                    raise ValueError('UNREGISTERED_DATASET: configured source is not a reviewed release')
+                if doc!=raw_document(folder):
+                    raise ValueError('RAW_JSON_CHANGED: this demo accepts the original 01-RAW.json. Changed data requires a reviewed release and privacy budget.')
+            else:
+                extract_upload(data,folder)
             city.validate_metadata(folder)
             digest=city.fingerprint(folder)
             # This demonstration reuses its registered publication. Changed populations
@@ -350,14 +375,15 @@ def handler_for(workflow, port):
         def do_POST(self):
             if not self.valid_host() or self.headers.get('Origin') != origin or not secrets.compare_digest(self.headers.get('X-Workflow-Token',''),token): return self.respond(403, {'error':'ORIGIN_OR_TOKEN_REFUSED'})
             if urlparse(self.path).path=='/api/upload':
-                if self.headers.get('Content-Type')!='application/zip':return self.respond(415,{'error':'ZIP_REQUIRED'})
+                content_type=self.headers.get('Content-Type')
+                if content_type not in ('application/zip','application/json'):return self.respond(415,{'error':'RAW_JSON_OR_ZIP_REQUIRED'})
                 if not workflow.lock.acquire(blocking=False):return self.respond(409,{'error':'JOB_RUNNING'})
                 try:
                     size=int(self.headers.get('Content-Length','0'));revision=int(self.headers.get('X-Workflow-Revision','-1'))
-                    if not 0<size<=MAX_UPLOAD:raise ValueError('UPLOAD_TOO_LARGE: maximum 16 MB ZIP')
+                    if not 0<size<=MAX_UPLOAD:raise ValueError('UPLOAD_TOO_LARGE: maximum 16 MB')
                     data=self.rfile.read(size)
                     if len(data)!=size:raise ValueError('UPLOAD_INCOMPLETE')
-                    result=workflow.upload(data,revision)
+                    result=workflow.upload(data,revision,content_type)
                     return self.respond(200,{**result,'csrf':token})
                 except (ValueError,OSError) as exc:return self.respond(409,{'error':str(exc)[:300]})
                 finally:workflow.lock.release()

@@ -48,3 +48,25 @@ def test_protected_export_has_only_verified_public_members_and_derived_sums():
     morning=next(r for r in doc['aggregate_destinations'] if r['destination_area']=='TRK-G18' and r['departure_band']=='06-09')
     assert morning['protected_period_trips']==96392
     text=json.dumps(doc);assert 'SYN-C000001' not in text and 'HACK-C' not in text
+
+
+def test_raw_json_upload_matches_registered_input_and_rejects_protected_or_changed_data(tmp_path):
+    from simulation.hackathon_day import generate
+    from pipeline.transfer import raw_document
+    source=tmp_path/'input';generate(source)
+    w=Workflow(tmp_path/'runtime',source)
+    doc=raw_document(source)
+    result=w.upload(json.dumps(doc).encode(),0,'application/json')
+    assert result['completed']==0 and result['dataset_id']=='city'
+    assert city.fingerprint(w.datasets['city']['path'])==city.fingerprint(source)
+    before=w.state.copy()
+    with pytest.raises(ValueError,match='STALE'):
+        w.upload(json.dumps(doc).encode(),0,'application/json')
+    with pytest.raises(ValueError,match='ALREADY_PROTECTED'):
+        w.upload(b'{"format":"routesafe-protected-v1"}',result['revision'],'application/json')
+    with pytest.raises(ValueError,match='duplicate field'):
+        w.upload(b'{"format":"one","format":"two"}',result['revision'],'application/json')
+    doc['cards'][0]['events'][0]+=1
+    with pytest.raises(ValueError,match='RAW_JSON_CHANGED'):
+        w.upload(json.dumps(doc).encode(),result['revision'],'application/json')
+    assert w.state==before

@@ -33,3 +33,15 @@ Keep the short ChatGPT demonstration, with actual responses in a fresh chat: agg
 Verification: 79 Python tests and 50 frontend tests passed; both builds and the 68-file public-boundary check passed. Backend testing exercised the v2 upload-to-share workflow and exact artifact reuse. Browser checks confirmed both pages, actual recipient preview, story-mode morning/evening/night selection, explicit direction changes and the retained night warning. The matching v2 protected JSON from the Downloads package was also verified and opened locally in the browser. Real-world utility, an independent privacy audit and the external ChatGPT response remain unverified.
 
 ![Evening demand preview](planner-evening.png)
+
+## Two-file handoff
+
+The local demo package now has `01-RAW.json` and `02-PROTECTED.json` at its top level. The raw JSON is 2,818,362 bytes and preserves all 203,556 original records in reversible per-card encoding; the protected JSON is 1,101,662 bytes and contains the unchanged release. Original CSVs and sanitization ZIP remain in Supporting files. Neither raw file is committed or copied to the public build.
+
+The planner's **Open data file** accepts both. Raw mode computes inferred counts in the browser, labels them unprotected, and applies no contribution cap or noise. Protected import retains its existing contract validation. Browser QA opened both actual packaged files and switched from raw to protected successfully; morning Kupittaa values were 1,000 and 1,039 trips per weekday respectively. A map remount fixes the dataset-switch lifecycle failure found during this check. External ChatGPT attachment and response have not been exercised.
+
+Verification for this extension: 52 frontend tests passed, including malformed raw records and protected-verifier rejection of raw data. The Python round-trip check reconstructs every raw source field and compares the full record multiset. The planner build and public-boundary check passed.
+
+The operator now accepts that same raw JSON as well as its ZIP. It matches the lossless encoding against a snapshot of the registered input, then runs the normal validation/review/protection flow with unchanged publication/accounting rules. Altered records, duplicate JSON fields, stale revisions and already-protected uploads are rejected. The focused workflow/simulation suite passes 20 tests, including full raw round-trip preservation.
+
+An isolated end-to-end run used the actual Downloads `01-RAW.json`, completed all six internal transitions through Share, and confirmed the portable result equals Downloads `02-PROTECTED.json`. It reused manifest `0792b058…`; no new noise or release was generated. The running operator was restarted with JSON support, and its upload control was verified in the browser.

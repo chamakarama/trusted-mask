@@ -92,3 +92,11 @@ Use the existing static server on port 8791 and open `http://127.0.0.1:8791/?rel
 The generator, independent invented population and criteria were frozen at `ff8fb0d` before the single publication. Existing city and v1 releases remain immutable. All five deliberately large target patterns rank first in this draw, but the night lower noise bound is zero and fine-pair count error is 52.8%. See [full-day evidence](../evidence/kupittaa-day-v2/README.md). This does not establish real-world planning utility.
 
 Keep the optional ChatGPT segment: show actual answers to an aggregate planning question and a specific commuter question in a fresh chat. Explain **grouping, contribution limits and calibrated noise**. Do not add an IDs-removed comparison or use a model refusal as privacy proof.
+
+## Two files for ChatGPT and the planner
+
+`python -m demo.package_files --input simulation/private/kupittaa-day-v2 --release releases/kupittaa-day-v2 --output private/two-file-demo` creates `01-RAW.json` and `02-PROTECTED.json`. The former retains every individual boarding in a lossless compact encoding with decoding instructions; the latter is the existing verified protected release. These are presentation files, not an additional publication or a new privacy draw. Keep raw output outside the public build.
+
+Both open through **Open data file** in the planner. Raw mode derives uncapped inferred OD counts locally, labels the map **RAW · UNPROTECTED**, and does not claim privacy or noise bounds. Protected mode continues to use the strict protected-release verifier. Switching files resets the map safely; no file contents are transmitted. Raw format support is limited to the full-day synthetic demo. The owner workbench accepts the same raw JSON or its original registered ZIP for sanitization. It verifies exact equivalence to the registered native input; changed records are refused. Protected JSON is identified as already protected and directed to the planner.
+
+For the external AI demonstration, attach each JSON in a separate fresh chat and ask it to use Python to decode/analyse the file. Never show the protected chat the raw file first. An external AI upload/response has not been tested by the implementation.

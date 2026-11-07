@@ -11,6 +11,8 @@ export interface DailyCell { date: string; tap_events: number; noisy_value: numb
 
 export interface Release {
   id: string;
+  rawPreview?: boolean;
+  scenarioId?: string;
   localFiles?: Record<string,string>;
   manifestHash?: string;
   manifest: any;
