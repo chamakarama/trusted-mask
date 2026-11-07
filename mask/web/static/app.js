@@ -1,371 +1,223 @@
-// Mask round trip: protect locally -> review -> send the approved protected message -> stream the reply ->
-// restore known names locally (the server does the restoring; this page only renders text, never HTML).
-const $ = (id) => document.getElementById(id);
-const message = $("message");
-const task = $("task");
-const protectedView = $("protected");
-const changeCount = $("change-count");
-const sendButton = $("send");
-const stopButton = $("stop");
-const retryButton = $("retry");
-const providerLabel = $("provider");
-const status = $("status");
-const steps = $("steps");
-const reply = $("view-reply");
-const raw = $("view-raw");
-const sentSystem = $("sent-system");
-const sentUser = $("sent-user");
-const mockBadge = $("mock-badge");
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-const reduceMotion = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const ORDER = ["protecting", "review", "sending", "receiving", "complete"];
-
-let revision = 0;
-let timer = null;
-let previewController = null;
-let sendController = null;
-let current = null;            // { id, request } of the reviewed preview
-let provider = { configured: false };
-let state = "idle";
-let stepIndex = -1;
-// Scopes previews to this page so another open tab cannot invalidate this one's approval or reply.
-const pageId = (window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 64);
-
-function post(path, kind, body, signal) {
-  return fetch(path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Mask-Request": kind, "X-Mask-Client": pageId },
-    body: JSON.stringify(body),
-    cache: "no-store",
-    signal,
-  });
+const examples = [
+  "Can you tell me about the medicine I was prescribed and explain why I was given it, based on the medical records below?\nPATIENT DETAILS\nName: Alex Bennett\nDate of birth: 14 June 1995\nPatient number: PT-482071\nEmail: alex.bennett@example.com\n\nVISIT — 29 October 2026\nReason: Runny nose and frequent sneezing.\nMedication prescribed: Cetirizine.\nFollow-up: Contact the clinic if symptoms persist.\n\nVISIT — 14 September 2026\nReason: Persistent itching around the anus.\nPatient reports: “My ass is really itchy, especially at night.”\nExamination and follow-up notes recorded separately.\n\nVISIT — 20 May 2026\nReason: Left wrist pain after a fall while cycling.\nAssessment: Wrist sprain.\nFollow-up: Symptoms improving.",
+  "What are the three main things our customers are complaining about in these support tickets? Count the tickets in each category and suggest one practical improvement for each.\n\nHere’s the export from our support system:\n\ncustomer_id,customer_name,email,complaint\nC-1042,Emma Wilson,emma.wilson@example.com,\"I was charged twice for the same order. Please refund the extra payment.\"\nC-2087,Oliver Davis,oliver.davis@example.com,\"I returned my order two weeks ago and still haven’t received my refund. Please send an update to oliver.davis@example.com.\"\nC-3156,Sofia Martin,sofia.martin@example.com,\"The password-reset email never arrives, so I can’t get into my account.\"\nC-4093,Noah Taylor,noah.taylor@example.com,\"My payment failed on screen, so I tried again. Now I can see two charges for one order.\"\nC-5028,Amelia Brown,amelia.brown@example.com,\"Support confirmed my refund ten days ago, but the money still hasn’t arrived.\"\nC-6074,Lucas Harris,lucas.harris@example.com,\"Hi, Lucas Harris here. I’ve been billed twice for a single purchase and need the duplicate charge reversed.\""
+];
+const message = document.getElementById("message");
+const output = document.getElementById("output");
+const filter = document.getElementById("filter");
+const example = document.getElementById("example");
+const pageId = crypto.randomUUID();
+const sendNote = document.getElementById("send-note");
+const replyLabel = document.getElementById("reply-label");
+const send = document.getElementById("send"), replySection = document.getElementById("reply-section");
+const reply = document.getElementById("reply"), revert = document.getElementById("revert");
+let previewId = null, sendingController = null, replyRaw = "", replyParts = [], replyDone = false;
+const motionAllowed = () => !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+function post(path, body, signal) {
+  return fetch(path, { method: "POST", headers: { "Content-Type": "application/json", "X-Mask-Request": "send", "X-Mask-Client": pageId }, body: JSON.stringify(body), cache: "no-store", signal });
 }
-
-function setState(next, text = "", isError = false) {
-  state = next;
-  if (ORDER.includes(next)) stepIndex = ORDER.indexOf(next);
-  else if (next === "idle") stepIndex = -1;
-  else if (next === "unavailable") stepIndex = 0;
-  const failed = ["error", "cancelled", "unavailable"].includes(next);
-  [...steps.children].forEach((item, index) => {
-    item.classList.toggle("done", index < stepIndex);
-    item.classList.toggle("now", index === stepIndex);
-    item.classList.toggle("fail", failed && index === stepIndex);
-    if (index === stepIndex) item.setAttribute("aria-current", "step"); else item.removeAttribute("aria-current");
-  });
-  status.textContent = text;
-  status.classList.toggle("error", isError);
-  reply.classList.toggle("streaming", next === "sending" || next === "receiving");
-  updateButtons();
+let exampleIndex = 0, revision = 0, controller = null, timers = [];
+function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+function reset() {
+  if (sendingController && previewId) void post("/api/cancel", {preview_id: previewId}).catch(() => {});
+  sendingController?.abort(); sendingController = null;
+  previewId = null; send.hidden = true; sendNote.hidden = true; send.disabled = false; send.classList.remove("sending");
+  replySection.hidden = true; reply.replaceChildren(); replyRaw = ""; replyParts = []; replyDone = false;
+  revert.disabled = true;
+  revision++; controller?.abort(); controller = null; clearTimers();
+  output.hidden = true; output.replaceChildren(); message.hidden = false;
+  filter.textContent = "Filter"; filter.title = ""; filter.disabled = !message.value.trim();
+  message.setAttribute("aria-busy", "false");
+  void fetch("/api/reset", { method: "POST", headers: { "Content-Type": "application/json", "X-Mask-Request": "preview", "X-Mask-Client": pageId }, body: "{}" }).catch(() => {});
 }
-
-function updateButtons() {
-  const streaming = state === "sending" || state === "receiving";
-  sendButton.disabled = !(state === "review" && current && provider.configured);
-  sendButton.textContent = provider.configured || !current ? "Send protected message" : "API not configured";
-  stopButton.hidden = !streaming;
-  retryButton.hidden = !((state === "error" || state === "cancelled") && current && provider.configured);
+function showProtected(text, target = output) {
+  target.replaceChildren();
+  appendProtected(text, target);
 }
-
-function placeholder(text) {
-  const p = document.createElement("p");
-  p.className = "placeholder";
-  p.textContent = text;
-  return p;
-}
-
-const ACTION_CLASS = { ALIAS: "alias", PLACEHOLDER: "placeholder", GENERALISE: "generalise", DROP: "drop" };
-const ACTION_HINT = {
-  ALIAS: "name replaced with a label; restored on this computer when the reply arrives",
-  PLACEHOLDER: "replaced with a generic placeholder; never restored",
-  GENERALISE: "made less exact",
-  DROP: "removed before sending",
-};
-
-function chipNodes(parts, counter) {
-  return parts.map((part) => {
-    if (!part.label) return document.createTextNode(String(part.text ?? ""));
-    const chip = document.createElement("span");
-    const action = String(part.action || "PLACEHOLDER").toUpperCase();
-    const label = String(part.label);
-    chip.className = `chip ${ACTION_CLASS[action] || "placeholder"}`;
-    chip.textContent = action === "DROP" ? `${label.toLowerCase()} removed` : String(part.text ?? "");
-    chip.title = `${label}: ${ACTION_HINT[action] || "changed"}`;
-    chip.setAttribute("aria-label", `${chip.textContent} (${label}, ${ACTION_HINT[action] || "changed"})`);
-    chip.style.setProperty("--i", String(counter.n++));
-    return chip;
-  });
-}
-
-function renderProtected(view, request) {
-  const counter = { n: 0 };
-  const nodes = [];
-  if (Array.isArray(view?.task)) {
-    const line = document.createElement("span");
-    line.className = "task-line";
-    line.append("Task: ", ...chipNodes(view.task, counter));
-    nodes.push(line);
+function appendProtected(text, target) {
+  let cursor = 0;
+  for (const match of text.matchAll(/\[[A-Z]+(?:_[A-Z]+)*(?:_\d+)?\]/g)) {
+    target.append(document.createTextNode(text.slice(cursor, match.index)));
+    const token = document.createElement("span"); token.className = "token"; token.textContent = match[0]; target.append(token);
+    cursor = match.index + match[0].length;
   }
-  nodes.push(...(Array.isArray(view?.message) ? chipNodes(view.message, counter) : [document.createTextNode(request.user)]));
-  protectedView.classList.remove("animate");
-  protectedView.replaceChildren(...nodes);
-  if (!reduceMotion) {
-    void protectedView.offsetWidth;   // restart the chip animation
-    protectedView.classList.add("animate");
+  target.append(document.createTextNode(text.slice(cursor)));
+}
+function transform(data, source, version) {
+  message.hidden = true; output.hidden = false; output.replaceChildren();
+  const finish = () => {
+    if (version !== revision) return;
+    showProtected(data.protected_text); message.value = data.protected_text;
+    filter.textContent = "Filter"; filter.disabled = true; controller = null;
+    message.setAttribute("aria-busy", "false");
+    previewId = data.preview_id || null; send.hidden = !previewId; sendNote.hidden = !previewId; send.disabled = false;
+  };
+  const parts = data.protected_view?.message;
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches || !Array.isArray(parts) || !parts.some(p => Number.isInteger(p.start))) { finish(); return; }
+  const characters = Array.from(source);
+  for (const part of parts) {
+    if (!Number.isInteger(part.start)) { output.append(document.createTextNode(part.text)); continue; }
+    const span = document.createElement("span");
+    span.textContent = characters.slice(part.start, part.end).join(""); output.append(span);
+    if (part.action === "DROP") {
+      span.replaceChildren(...Array.from(span.textContent, letter => {
+        const dust = document.createElement("span"); dust.className = "dust"; dust.textContent = letter; return dust;
+      }));
+    } else timers.push(setTimeout(() => {
+      if (version !== revision) return;
+      span.textContent = part.text; span.className = "token morph";
+    }, 230));
   }
-  changeCount.textContent = counter.n === 0 ? "No changes needed" : `${counter.n} change${counter.n === 1 ? "" : "s"}`;
-  sentSystem.textContent = request.system ?? "(none)";
-  sentUser.textContent = request.user;
+  timers.push(setTimeout(finish, 800));
 }
-
-function clearReply() {
-  reply.replaceChildren();
-  raw.textContent = "";
-  mockBadge.hidden = true;
-}
-
-async function preview(currentRevision, attempt = 0) {
-  if (currentRevision !== revision || !message.value.trim()) return;
-  const controller = new AbortController();
-  previewController = controller;
-  setState("protecting", "Protecting on this computer…");
-  protectedView.classList.add("busy");
-  protectedView.setAttribute("aria-busy", "true");
-  const timeout = setTimeout(() => controller.abort(), 60000);
+async function protect() {
+  if (filter.disabled || !message.value.trim()) return;
+  const version = revision, source = message.value;
+  controller = new AbortController(); const requestController = controller;
+  filter.disabled = true; filter.textContent = "Filtering…"; message.setAttribute("aria-busy", "true");
+  const timeout = setTimeout(() => requestController.abort(), 60000);
   try {
-    const body = { text: message.value, ...(task.value.trim() ? { task: task.value.trim() } : {}) };
-    const response = await post("/api/preview", "preview", body, controller.signal);
+    // The opening request is local task context; the complete message is still scanned.
+    const task = source.split("\n")[0].trim();
+    const response = await fetch("/api/preview", {
+      method: "POST", headers: { "Content-Type": "application/json", "X-Mask-Request": "preview", "X-Mask-Client": pageId },
+      body: JSON.stringify({ text: source, task }), signal: requestController.signal, cache: "no-store",
+    });
     const data = await response.json();
-    if (currentRevision !== revision) return;
-    if (response.status === 429 && attempt < 2) {
-      timer = setTimeout(() => void preview(currentRevision, attempt + 1), 750);
-      return;
-    }
-    if (!response.ok) throw new Error("Preview unavailable. Try again.");
-    if (!data.coverage?.complete || !["ready", "needs_review"].includes(data.status) || typeof data.payload !== "string"
-        || typeof data.preview_id !== "string" || typeof data.provider_request?.user !== "string") {
-      throw new Error("Try a shorter message.");
-    }
-    current = { id: data.preview_id, request: data.provider_request };
-    renderProtected(data.protected_view, data.provider_request);
-    let note = "Check what the AI will see, then send.";
-    if (data.context_mode === "message_only") note += " Intended use taken from your message.";
-    setState("review", note);
+    if (version !== revision) return;
+    if (!response.ok || !data.coverage?.complete || !["ready", "needs_review"].includes(data.status) || typeof data.protected_text !== "string") throw new Error("No complete preview. Try a shorter message.");
+    transform(data, source, version);
   } catch (error) {
-    if (currentRevision !== revision) return;
-    current = null;
-    changeCount.textContent = "";
-    protectedView.replaceChildren(placeholder(error.name === "AbortError" ? "Try a shorter message."
-      : error instanceof TypeError ? "Local model unavailable." : error.message));
-    setState("unavailable", "No protected preview available.", true);
-  } finally {
-    clearTimeout(timeout);
-    if (currentRevision === revision) {
-      previewController = null;
-      protectedView.classList.remove("busy");
-      protectedView.setAttribute("aria-busy", "false");
+    if (version !== revision) return;
+    filter.textContent = "Couldn’t filter — try again";
+    filter.title = error.name === "AbortError" ? "The local model timed out." : "The local model could not complete this message.";
+    filter.disabled = false; controller = null; message.setAttribute("aria-busy", "false");
+  } finally { clearTimeout(timeout); }
+}
+message.addEventListener("input", reset);
+filter.addEventListener("click", () => void protect());
+example.addEventListener("click", () => {
+  message.value = examples[exampleIndex]; exampleIndex = (exampleIndex + 1) % examples.length;
+  reset(); message.scrollTop = 0;
+  example.title = exampleIndex === 1 ? "Next example: support tickets" : "Next example: medical records";
+});
+function edit() {
+  if (controller) return;
+  output.hidden = true; message.hidden = false; message.focus();
+}
+output.addEventListener("click", edit);
+output.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); edit(); } });
+
+function revealReply() {
+  if (!replySection.hidden) return;
+  replySection.hidden = false;
+  requestAnimationFrame(() => {
+    if (!replySection.hidden) replySection.scrollIntoView({behavior: motionAllowed() ? "smooth" : "auto", block: "start"});
+  });
+}
+function renderRaw() {
+  const nearBottom = reply.scrollHeight - reply.scrollTop - reply.clientHeight < 60;
+  // Buffer incomplete placeholders, including multi-word types such as ACCOUNT_ID.
+  const partial = /\[[A-Z][A-Z_0-9]*$|\[$/.exec(replyRaw);
+  showProtected(replyDone || !partial ? replyRaw : replyRaw.slice(0, partial.index), reply);
+  if (nearBottom) reply.scrollTop = reply.scrollHeight;
+}
+async function sendProtected() {
+  if (!previewId || send.disabled || sendingController) return;
+  const version = revision, id = previewId;
+  const active = new AbortController(); sendingController = active;
+  send.disabled = true; send.classList.add("sending"); send.title = "Waiting for Claude…";
+  replyRaw = ""; replyParts = []; replyDone = false; revert.disabled = true;
+  reply.replaceChildren(); replySection.hidden = true;
+  replyLabel.textContent = "Claude is replying…"; revealReply();
+  const timeout = setTimeout(() => active.abort(), 150000);
+  let reader, finished = false;
+  const live = () => version === revision && !active.signal.aborted;
+  function event(frame) {
+    let name = "", lines = [];
+    for (const line of frame.split("\n")) {
+      if (line.startsWith("event:")) name = line.slice(6).trim();
+      if (line.startsWith("data:")) lines.push(line.slice(5).trimStart());
     }
-  }
-}
-
-function abortStream() {
-  const controller = sendController;
-  sendController = null;
-  controller?.abort();
-}
-
-function invalidate() {
-  const currentRevision = ++revision;
-  clearTimeout(timer);
-  previewController?.abort();
-  previewController = null;
-  abortStream();
-  // The old preview and its approval die now, not when the next preview arrives.
-  if (current) void post("/api/reset", "preview", {}).catch(() => {});
-  current = null;
-  protectedView.classList.remove("animate");
-  protectedView.replaceChildren(placeholder("Your protected message appears here."));
-  changeCount.textContent = "";
-  sentSystem.textContent = "";
-  sentUser.textContent = "";
-  clearReply();
-  setState("idle");
-  if (message.value.trim()) timer = setTimeout(() => void preview(currentRevision), 450);
-}
-
-function appendText(container, text) {
-  if (!text) return;
-  const last = container.lastChild;
-  if (last && last.nodeType === 3) last.appendData(text);
-  else container.append(document.createTextNode(text));
-}
-
-function appendSegments(segments) {
-  for (const segment of Array.isArray(segments) ? segments : []) {
-    const text = String(segment?.text ?? "");
-    if (typeof segment?.alias === "string") {
-      const name = document.createElement("span");
-      name.className = reduceMotion ? "name settled" : "name reveal";
-      name.textContent = text;
-      name.title = `Restored on this computer from ${segment.alias}`;
-      reply.append(name);
-      if (!reduceMotion) setTimeout(() => name.classList.add("settled"), 1400);
-    } else {
-      appendText(reply, text);
-    }
-  }
-}
-
-function parseFrame(frame) {
-  let name = "message";
-  const data = [];
-  for (const line of frame.split("\n")) {
-    if (line.startsWith("event: ")) name = line.slice(7).trim();
-    else if (line.startsWith("data: ")) data.push(line.slice(6));
+    const data = JSON.parse(lines.join("\n") || "{}");
+    if (name === "delta") {
+      replyLabel.textContent = "Claude’s reply";
+      if (typeof data.raw === "string") replyRaw += data.raw;
+      if (Array.isArray(data.segments)) replyParts.push(...data.segments);
+      revealReply(); reply.classList.add("reply-streaming"); renderRaw();
+    } else if (name === "done") {
+      if (!replyRaw.trim()) throw new Error("Claude returned no text. Try sending again.");
+      finished = true; replyDone = true; renderRaw();
+      revert.disabled = !replyParts.some(part => typeof part.alias === "string");
+      revert.title = data.stop_reason === "max_tokens" ? "The reply reached its length limit." : "Restore known person names on this device only.";
+    } else if (name === "error") throw new Error(data.message || "Claude could not finish. Try sending again.");
+    else if (name === "cancelled") throw new Error("Reply stopped. Try sending again.");
   }
   try {
-    return { name, data: JSON.parse(data.join("\n") || "{}") };
-  } catch {
-    return { name: "error", data: { message: "The reply could not be read." } };
-  }
-}
-
-// Returns true for a terminal event.
-function handleEvent({ name, data }) {
-  if (name === "start") {
-    mockBadge.hidden = !data.mock;
-    return false;
-  }
-  if (name === "delta") {
-    if (state === "sending") setState("receiving", "Receiving — names are put back on this computer as they arrive.");
-    appendSegments(data.segments);
-    appendText(raw, typeof data.raw === "string" ? data.raw : "");
-    return false;
-  }
-  if (name === "done") {
-    const count = Number(data.names) || 0;
-    setState("complete", count ? `Done. ${count} name${count === 1 ? "" : "s"} put back on this computer — the AI never saw ${count === 1 ? "it" : "them"}.`
-      : "Done. No names needed putting back.");
-    return true;
-  }
-  if (name === "cancelled") {
-    setState("cancelled", data.reason === "stale" ? "Stopped because the message changed." : "Stopped. You can retry the same protected message.");
-    return true;
-  }
-  if (name === "error") {
-    setState("error", String(data.message || "The AI reply failed. Try again."), true);
-    return true;
-  }
-  return false;
-}
-
-async function send() {
-  if (!current || !provider.configured || sendController || !["review", "error", "cancelled"].includes(state)) return;
-  const currentRevision = revision;
-  const controller = new AbortController();
-  sendController = controller;
-  const preview_id = current.id;
-  clearReply();
-  selectTab(tabs[0], false);
-  setState("sending", `Sending the protected message to ${provider.mock ? "the mock provider" : "the AI"}…`);
-  const timeout = setTimeout(() => controller.abort(), 180000);
-  const live = () => currentRevision === revision && sendController === controller;
-  try {
-    const response = await post("/api/send", "send", { preview_id }, controller.signal);
+    const response = await post("/api/send", {preview_id:id}, active.signal);
     if (!live()) return;
-    if (!response.ok) {
-      let data = {};
-      try { data = await response.json(); } catch { /* keep the generic message */ }
-      if (!live()) return;
-      if (data.code === "stale") {
-        // Expired on the server: protect the same text again; the user reviews before anything is sent.
-        sendController = null;
-        current = null;
-        setState("idle", "That preview expired. Protecting again — review before sending.");
-        void preview(++revision);
-        return;
-      }
-      if (data.code === "not_configured") provider = { configured: false };
-      setState("error", String(data.error || "The AI could not be reached. Try again."), true);
-      return;
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-    let finished = false;
+    if (!response.ok) { const data = await response.json(); throw new Error(data.error || "Could not reach Claude."); }
+    if (!response.body) throw new Error("Streaming is unavailable in this browser.");
+    reader = response.body.getReader(); const decoder = new TextDecoder(); let buffer = "";
     while (!finished) {
-      const { value, done } = await reader.read();
-      if (!live()) { void reader.cancel?.().catch?.(() => {}); return; }
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
+      const {value,done} = await reader.read(); if (!live()) return;
+      buffer += done ? decoder.decode() : decoder.decode(value,{stream:true});
       let cut;
-      while (!finished && (cut = buffer.indexOf("\n\n")) >= 0) {
-        const frame = buffer.slice(0, cut);
-        buffer = buffer.slice(cut + 2);
-        finished = handleEvent(parseFrame(frame));
+      while (!finished && (cut=buffer.indexOf("\n\n")) >= 0) {
+        const frame=buffer.slice(0,cut); buffer=buffer.slice(cut+2); if(frame.trim()) event(frame);
       }
+      if(done) break;
     }
-    if (!finished && live()) setState("error", "The reply ended unexpectedly. Try again.", true);
-  } catch (error) {
-    if (!live()) return;
-    if (error.name === "AbortError") setState("error", "The AI took too long to reply. Try again.", true);
-    else setState("error", "Could not reach the local server. Try again.", true);
+    if(!finished) throw new Error("Reply interrupted. Try sending again.");
+  } catch(error) {
+    if(version !== revision) return;
+    replyDone=false; replyParts=[]; revert.disabled=true;
+    replyLabel.textContent = "Claude’s reply";
+    revealReply(); renderRaw();
+    reply.append(document.createTextNode((replyRaw ? "\n\n" : "") + (active.signal.aborted ? "Claude timed out. Try sending again." : error.message)));
+    send.disabled=false;
+    void post("/api/cancel",{preview_id:id}).catch(()=>{});
   } finally {
     clearTimeout(timeout);
-    if (sendController === controller) sendController = null;
-    updateButtons();
+    if(!finished) { try { await reader?.cancel(); } catch {} }
+    if(version===revision) { sendingController=null;send.classList.remove("sending");send.title="Send this protected message to Claude";reply.classList.remove("reply-streaming"); }
   }
 }
-
-function stop() {
-  if (!sendController || !current) return;
-  void post("/api/cancel", "send", { preview_id: current.id }).catch(() => {});
-  abortStream();
-  setState("cancelled", "Stopped. You can retry the same protected message.");
-}
-
-function selectTab(tab, focus = true) {
-  for (const item of tabs) {
-    const selected = item === tab;
-    item.setAttribute("aria-selected", String(selected));
-    item.tabIndex = selected ? 0 : -1;
-    $(item.getAttribute("aria-controls")).hidden = !selected;
+send.addEventListener("click",()=>void sendProtected());
+revert.addEventListener("click",()=>{
+  if(!replyDone || revert.disabled) return;
+  revert.disabled=true; const version=revision; reply.replaceChildren();
+  let index=0, pendingText="";
+  for(const part of replyParts) {
+    if(!part.alias) {pendingText += part.text;continue;}
+    appendProtected(pendingText, reply); pendingText="";
+    const name=document.createElement("span"); name.className=motionAllowed()?"token":"restored";
+    name.textContent=motionAllowed()?part.alias:part.text; name.title="Restored locally from "+part.alias;
+    reply.append(name);
+    if(motionAllowed()) timers.push(setTimeout(()=>{
+      if(version!==revision)return;
+      name.textContent=part.text;name.className="restored morph";
+    },180+Math.min(index++,5)*65));
   }
-  if (focus) tab.focus();
-}
-
-async function loadProvider() {
-  try {
-    const response = await fetch("/api/health", { cache: "no-store", headers: { "X-Mask-Request": "preview" } });
-    const data = await response.json();
-    const info = data.provider || {};
-    provider = { configured: data.provider_connected === true, mock: info.mock === true, model: info.model, name: info.provider };
-  } catch {
-    provider = { configured: false };
-  }
-  providerLabel.textContent = !provider.configured ? "API not configured"
-    : provider.mock ? "Mock provider — no AI is called"
-    : `${provider.name === "anthropic" ? "Claude" : String(provider.name)} · ${String(provider.model)}`;
-  updateButtons();
-}
-
-message.addEventListener("input", invalidate);
-task.addEventListener("input", invalidate);
-sendButton.addEventListener("click", () => void send());
-retryButton.addEventListener("click", () => void send());
-stopButton.addEventListener("click", stop);
-tabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => selectTab(tab));
-  tab.addEventListener("keydown", (event) => {
-    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-    event.preventDefault();
-    selectTab(tabs[(index + (event.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]);
-  });
+  appendProtected(pendingText, reply);
 });
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && (event.ctrlKey || event.metaKey) && state === "review") { event.preventDefault(); void send(); }
-  if (event.key === "Escape" && (state === "sending" || state === "receiving")) stop();
+window.addEventListener("pagehide",()=>{
+  if(sendingController && previewId) void post("/api/cancel",{preview_id:previewId}).catch(()=>{});
+  sendingController?.abort();
 });
 
-setState("idle");
-void loadProvider();
+const themeButton = document.getElementById("theme");
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const label = theme === "light" ? "Switch to dark mode" : "Switch to light mode";
+  themeButton.setAttribute("aria-label", label); themeButton.title = label;
+  themeButton.setAttribute("aria-pressed", String(theme === "light"));
+}
+let savedTheme;
+try { savedTheme = localStorage.getItem("mask-theme"); } catch {}
+setTheme(savedTheme === "light" ? "light" : "dark");
+themeButton.addEventListener("click", () => {
+  const theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  setTheme(theme);
+  try { localStorage.setItem("mask-theme", theme); } catch {}
+});

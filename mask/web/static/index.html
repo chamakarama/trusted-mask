@@ -1,69 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
-    <title>Mask</title>
-    <link rel="icon" href="data:," />
-    <link rel="preload" href="/font.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="/app.js" type="module"></script>
-  </head>
-  <body>
-    <main>
-      <section class="compose" aria-label="Your message">
-        <label class="field" for="task">
-          <span>Intended use <span class="muted">(optional)</span></span>
-          <input id="task" type="text" placeholder="What should the AI do?" maxlength="4000" autocomplete="off" spellcheck="false" aria-describedby="purpose-hint" />
-          <small id="purpose-hint" class="muted">Leave blank if your message already says it.</small>
-        </label>
-        <label class="field grow" for="message">
-          <span>Your message <span class="muted">— stays on this computer</span></span>
-          <textarea id="message" placeholder="Paste or type a message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
-        </label>
-      </section>
-
-      <section class="flow" aria-label="Protected message and reply">
-        <ol class="steps" id="steps" aria-label="Progress">
-          <li data-step="protecting">Protect</li>
-          <li data-step="review">Review</li>
-          <li data-step="sending">Send</li>
-          <li data-step="receiving">Reply</li>
-          <li data-step="complete">Names restored</li>
-        </ol>
-
-        <div class="panel">
-          <div class="panel-head">
-            <span>What the AI will see</span>
-            <span id="change-count" class="muted"></span>
-          </div>
-          <div id="protected" class="protected" tabindex="0" aria-label="Protected message" aria-describedby="status"><p class="placeholder">Your protected message appears here.</p></div>
-        </div>
-
-        <div class="actions">
-          <button id="send" type="button" class="primary" disabled>Send protected message</button>
-          <button id="stop" type="button" hidden>Stop</button>
-          <button id="retry" type="button" hidden>Retry</button>
-          <span id="provider" class="provider muted"></span>
-        </div>
-        <p id="status" class="status" role="status" aria-live="polite"></p>
-
-        <div class="panel reply-panel">
-          <div class="tabs" role="tablist" aria-label="Reply views">
-            <button type="button" role="tab" id="tab-reply" aria-controls="view-reply" aria-selected="true">Reply</button>
-            <button type="button" role="tab" id="tab-sent" aria-controls="view-sent" aria-selected="false" tabindex="-1">What the AI saw</button>
-            <button type="button" role="tab" id="tab-raw" aria-controls="view-raw" aria-selected="false" tabindex="-1">Raw AI reply</button>
-            <span id="mock-badge" class="badge" hidden>Mock reply — no AI was called</span>
-          </div>
-          <div id="view-reply" class="view reply" role="tabpanel" aria-labelledby="tab-reply" tabindex="0"></div>
-          <div id="view-sent" class="view" role="tabpanel" aria-labelledby="tab-sent" tabindex="0" hidden>
-            <p class="view-label">Instruction</p><pre id="sent-system"></pre>
-            <p class="view-label">Message</p><pre id="sent-user"></pre>
-          </div>
-          <pre id="view-raw" class="view" role="tabpanel" aria-labelledby="tab-raw" tabindex="0" hidden></pre>
-        </div>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Mask</title>
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#111113" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <main>
+    <div class="toolbar"><span class="brand"><svg class="logo-mark" width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo-bg" width="32" height="32" rx="8"/><ellipse cx="16" cy="15.6" rx="8.6" ry="10" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="1.7"/><path d="M16 6.2C20.6 6.2 24.6 9 24.6 14.4C24.6 19 22.4 23.6 18.8 24.6C17.6 24.9 17 24.2 16.9 23.2L16.6 19.6C16.2 18.6 15.6 17.9 15.6 16.9C15.6 15.9 16.1 15.3 16.1 14.2Z" fill="#fff"/><path class="logo-bg" d="M18 13.6Q20.3 11.8 22.4 13.4Q20.3 15.3 18 13.6Z"/></svg><span class="wordmark">Mask</span></span><span class="toolbar-actions"><button id="theme" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button><button id="example" type="button" title="Load the medical example; click again for support tickets">try an example</button></span></div>
+    <div class="box">
+      <textarea id="message" aria-label="Your message" placeholder="Your message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
+      <div id="output" role="textbox" aria-label="Filtered message" aria-readonly="true" tabindex="0" hidden></div>
+    </div>
+    <div class="actions"><button id="filter" class="action-button" type="button" disabled>Filter</button><button id="send" type="button" aria-label="Send to Claude" title="Send this protected message to Claude" hidden><span>Send to Claude</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <p id="send-note" hidden>Only the filtered message is sent.</p>
+    <section id="reply-section" aria-label="Chatbot reply" hidden>
+      <p id="reply-label">Claude’s reply</p>
+      <div class="box"><div id="reply" role="region" aria-label="Chatbot response" tabindex="0"></div></div>
+      <button id="revert" class="action-button" type="button" disabled>Restore names on this device</button>
+    </section>
+  </main>
+</body>
 </html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Mask</title>
+    <link rel="icon" href="data:," />
+    <style>
+      @font-face {
+        font-family: Inter;
+        src: url('./mask/public/fonts/InterVariable.woff2') format('woff2');
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      :root { color-scheme: dark; background: #090909; color: #e4e4e7; font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 280px; }
+      main { min-height: 100dvh; max-width: 1240px; margin: 0 auto; padding: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-content: center; }
+      textarea { width: 100%; height: min(58vh, 520px); min-height: 260px; padding: 26px; resize: none; border: 1px solid #28282b; border-radius: 12px; background: #101012; color: #e4e4e7; font: 400 15px/1.85 Inter, sans-serif; letter-spacing: -.15px; outline: none; transition: border-color 150ms; }
+      textarea::placeholder { color: #74747c; }
+      textarea:focus-visible { border-color: #62626a; }
+      @media (max-width: 640px) { main { grid-template-columns: 1fr; gap: 16px; padding: 24px; } textarea { height: 36dvh; min-height: 220px; padding: 22px; } }
+      @media (prefers-reduced-motion: reduce) { textarea { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <textarea id="message" aria-label="Your message" placeholder="Your message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
+      <textarea id="output" aria-label="What the AI gets" placeholder="What the AI gets" readonly spellcheck="false"></textarea>
+    </main>
+    <!-- Layout opens directly. Inference requires a same-origin POST /api/preview
+         accepting {text} and returning {status, payload, coverage: {complete}}.
+         No model or provider credentials are embedded in this file. -->
+    <script>
+      const message = document.getElementById("message");
+      const output = document.getElementById("output");
+      let revision = 0;
+      let timer = null;
+      let controller = null;
+
+      async function preview(currentRevision, attempt = 0) {
+        if (currentRevision !== revision || !message.value.trim()) return;
+        const requestController = new AbortController();
+        controller = requestController;
+        output.placeholder = "…";
+        output.setAttribute("aria-busy", "true");
+        const timeout = setTimeout(() => requestController.abort(), 60000);
+        try {
+          const response = await fetch("/api/preview", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-Mask-Request": "preview" },
+            body: JSON.stringify({ text: message.value }),
+            cache: "no-store",
+            signal: requestController.signal,
+          });
+          const data = await response.json();
+          if (currentRevision !== revision) return;
+          if (response.status === 429 && attempt < 2) {
+            timer = setTimeout(() => void preview(currentRevision, attempt + 1), 750);
+            return;
+          }
+          if (!response.ok) throw new Error("Preview unavailable. Try again.");
+          if (!data.coverage?.complete || !["ready", "needs_review"].includes(data.status)
+              || typeof data.payload !== "string") {
+            throw new Error("Try a shorter message.");
+          }
+          output.value = data.payload;
+          output.placeholder = "What the AI gets";
+          output.title = data.status === "needs_review" ? "Draft — review before sharing" : "Protected preview";
+        } catch (error) {
+          if (currentRevision !== revision) return;
+          output.value = "";
+          output.placeholder = error.name === "AbortError" ? "Try a shorter message."
+            : error instanceof TypeError ? "Local model unavailable." : error.message;
+        } finally {
+          clearTimeout(timeout);
+          if (currentRevision === revision) {
+            controller = null;
+            output.setAttribute("aria-busy", "false");
+          }
+        }
+      }
+
+      message.addEventListener("input", () => {
+        const currentRevision = ++revision;
+        clearTimeout(timer);
+        controller?.abort();
+        controller = null;
+        output.value = "";
+        output.title = "";
+        output.placeholder = "What the AI gets";
+        output.setAttribute("aria-busy", "false");
+        if (message.value.trim()) timer = setTimeout(() => void preview(currentRevision), 450);
+      });
+    </script>
+  </body>
+</html>
