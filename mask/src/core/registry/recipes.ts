@@ -83,7 +83,7 @@ export const RECIPES: RecipeDef[] = [
     scope: ["field"], appliesTo: { subtypes: ["TIMESTAMP", "DATE", "BIRTH_DATE"], inferredTypes: ["date", "datetime"] },
     params: [
       { key: "resolution", label: "Resolution", type: "enum", default: "hour", description: "Output precision.",
-        options: [{ value: "15min", label: "15 minutes" }, { value: "hour", label: "Hour" }, { value: "day", label: "Day" }, { value: "week", label: "ISO week" }, { value: "month", label: "Month" }, { value: "year", label: "Year" }], editable: true },
+        options: [{ value: "minute", label: "Minute" }, { value: "15min", label: "15 minutes" }, { value: "hour", label: "Hour" }, { value: "day", label: "Day" }, { value: "week", label: "ISO week" }, { value: "month", label: "Month" }, { value: "year", label: "Year" }], editable: true },
     ],
     preconditions: ["parseable_datetime"],
     executor: "generalize_datetime",

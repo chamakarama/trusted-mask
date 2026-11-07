@@ -8,7 +8,7 @@ export function paramBundles(recipe: RecipeDef, det: FieldDetection | undefined)
   const d = defaultParams(recipe.id);
   switch (recipe.id) {
     case "generalize_datetime":
-      return (det?.subtype === "BIRTH_DATE" ? ["month", "year"] : ["15min", "hour", "day", "week", "month"]).map((r) => ({ ...d, resolution: r }));
+      return (det?.subtype === "BIRTH_DATE" ? ["month", "year"] : ["minute", "15min", "hour", "day", "week", "month"]).map((r) => ({ ...d, resolution: r }));
     case "generalize_numeric_bin":
       if (det?.subtype === "AGE") return [{ width: 5, topCode: 90 }, { width: 10, topCode: 90 }];
       if (det?.subtype === "DURATION") return [{ width: 60, topCode: 0 }, { width: 300, topCode: 0 }];
