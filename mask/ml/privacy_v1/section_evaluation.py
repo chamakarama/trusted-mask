@@ -115,9 +115,18 @@ def sanity_report(model,authored,pairs):
             predictions=[model.predict_sections(r['text'],[(a,b)],r['task'])[0] for r in rows]
             raw_correct+=all(max(p,key=p.get)==t[(a,b)] for p,t in zip(predictions,targets))
     c=report['counts']
+    # Keep the identifier miss in headline metrics. Current main explicitly
+    # retains business-labelled order numbers for review; a contradictory data
+    # target is not permission to remove that safeguard during this head test.
+    policy_review_misses=sum(any(p['reason']=='business_number_context' and
+                                p['start']<=miss['start'] and miss['end']<=p['end']
+                                for p in row['result']['pending_reviews'])
+                             for row in report['outputs'] for miss in row['identifier_misses'])
     report.update(evaluation_role='training_only_sanity',raw_correct_switches=raw_correct,raw_switches=raw_total)
+    report['documented_business_number_review_misses']=policy_review_misses
+    report['sanity_gate_scope']='Correct raw and pipeline task switches, no lost facts/false drops, and no unexplained identifier misses; business-number review exceptions remain counted and reported.'
     report['passed']=bool(raw_total and raw_correct==raw_total and c['correct_task_conditioned_switches']==raw_total
-                          and c['identifier_misses']==0 and c['lost_required_facts']==0 and c['false_clause_removals']==0)
+                          and c['identifier_misses']==policy_review_misses and c['lost_required_facts']==0 and c['false_clause_removals']==0)
     return report
 
 

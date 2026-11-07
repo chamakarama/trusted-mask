@@ -75,7 +75,7 @@ def prepare_jobs(model, records, authored):
     if not records or any(r['split']!='train' for r in records+authored):
         raise ValueError('Optimizer jobs require only train records')
     jobs={'tag':[],'action':[],'section':[]}
-    seen=set(); lengths=Counter(); section_counts=Counter()
+    seen=set(); lengths=Counter(); section_counts=Counter(); auxiliary=0
     for record in records:
         text=record['text']
         if text not in seen:
@@ -97,10 +97,29 @@ def prepare_jobs(model, records, authored):
             allowed=allowed_actions(span,text[span.start:span.end])
             jobs['action'].append({'input':encoded,'target':(ACTIONS.index(entry['action']),RELEVANCE.index(entry['relevance'])),
                                    'allowed':[a in allowed for a in ACTIONS], 'id':record['id'],'family':record['family_id']})
+        # Runtime vetoes use detected contextual fragments as well as complete
+        # clauses. A fragment wholly inside an explicit gold DROP clause needs
+        # task-matched supervision too; otherwise it only learns essential KEEP
+        # from the paired retained task and incorrectly vetoes the section head.
+        explicit={(e['start'],e['end'],e['label']) for e in record['spans']}
+        for section in section_targets(record,CLAUSE_MODE):
+            if section['target']!='unnecessary':continue
+            for entry in record['detection_spans']:
+                if (entry['label'] not in ('HEALTH','FINANCIAL','EMPLOYMENT','FAMILY') or
+                    (entry['start'],entry['end'],entry['label']) in explicit or
+                    not section['start']<=entry['start']<entry['end']<=section['end']):continue
+                span=Span(entry['start'],entry['end'],entry['label'])
+                encoded=model._action_input(text,span,record['task'],record.get('context',''))
+                encoded={k:v[0].cpu().tolist() for k,v in encoded.items()}
+                allowed=allowed_actions(span,text[span.start:span.end])
+                jobs['action'].append({'input':encoded,'target':(ACTIONS.index('DROP'),RELEVANCE.index('unnecessary')),
+                                      'allowed':[a in allowed for a in ACTIONS], 'id':record['id'],
+                                      'family':record['family_id'],'derived_from':'fully_covering_explicit_unnecessary_clause'})
+                auxiliary+=1
     for record in authored:
         for section in section_targets(record,CLAUSE_MODE):
             target=section['target']
-            unchanged=record['approved_output']==record['text']
+            unchanged=record['text'][section['start']:section['end']] in record['approved_output']
             if target is None and not unchanged:
                 section_counts['unlabelled_excluded']+=1
                 continue
@@ -118,6 +137,7 @@ def prepare_jobs(model, records, authored):
                 raise ValueError('No silent truncation: '+mode+' '+item['id'])
             lengths[mode]=max(lengths[mode],size)
     return jobs,{'jobs':{k:len(v) for k,v in jobs.items()},'max_tokens':dict(lengths),'section_targets':dict(section_counts),
+                 'auxiliary_context_fragment_drop_jobs':auxiliary,
                  'unique_detection_sources':len(seen),'optimizer_record_ids':sorted({j['id'] for xs in jobs.values() for j in xs})}
 
 
@@ -234,10 +254,13 @@ def fit(model,jobs,output,epochs=2,steps_per_epoch=None,learning_rate=1e-5,head_
     return checkpoint,metrics
 
 
-def package(checkpoint,output,track,metadata):
+def package(checkpoint,output,track,metadata,pretrained):
     """Package immediately after fitting; full evaluation is deliberately later."""
     destination=Path(output)/track
     shutil.copytree(checkpoint,destination)
+    notices=destination/'third_party';notices.mkdir()
+    shutil.copyfile(Path(__file__).parent/'licenses/deberta-v3-base/LICENSE',notices/'LICENSE')
+    shutil.copyfile(Path(pretrained)/'README.md',notices/'UPSTREAM_MODEL_CARD.md')
     write_manifest(destination,metadata)
     archive=Path(output)/(track+'.tar.gz')
     with tarfile.open(archive,'w:gz',compresslevel=1) as tar:
@@ -259,11 +282,19 @@ def main():
     if args.smoke:records,authored,pairs=sanity_subset(records,authored)
     model=EncoderModel.from_pretrained(args.base,args.device,runtime=dict(RUNTIME))
     jobs,audit=prepare_jobs(model,records,authored)
+    audit['architecture']={'model_type':model.net.backbone.config.model_type,
+                           'layers':model.net.backbone.config.num_hidden_layers,
+                           'hidden_size':model.net.backbone.config.hidden_size,
+                           'tokenizer_size':len(model.tokenizer),
+                           'embedding_rows':model.net.backbone.get_input_embeddings().num_embeddings,
+                           'marker_ids':model.tokenizer.convert_tokens_to_ids(['[unused0]','[unused1]','[unused2]','[unused3]']),
+                           'section_head_shapes':{k:list(v.shape) for k,v in model.net.section.state_dict().items()}}
     (args.output/'input-audit.json').write_text(json.dumps(audit,indent=2)+'\n')
     metadata={'track':model.source['repository'].split('/')[-1],'source':model.source,
               'architecture_version':'section-relevance-v1','split_manifest_sha256':digest(args.split/'split-manifest.json'),
               'train_records':len(records),'optimizer_train_sha256':manifest['files']['train.jsonl'],
               'seed':17,'evaluation_status':'pending','smoke_only':args.smoke,
+              'architecture':audit['architecture'],
               'source_commit':Path('SOURCE_COMMIT').read_text().strip() if Path('SOURCE_COMMIT').exists() else subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()}
     (args.output/'run.json').write_text(json.dumps(metadata,indent=2)+'\n')
     checkpoint,metrics=fit(model,jobs,args.output,epochs=args.epochs,steps_per_epoch=args.steps,
@@ -277,7 +308,7 @@ def main():
         print(json.dumps({'sanity':{k:v for k,v in report.items() if k!='outputs'}}),flush=True)
         if not report['passed']:raise RuntimeError('Train-only pipeline sanity gate failed; do not scale training')
     else:
-        package(checkpoint,args.output,metadata['track'],metadata)
+        package(checkpoint,args.output,metadata['track'],metadata,args.base)
 
 
 if __name__=='__main__':main()

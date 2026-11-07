@@ -24,7 +24,9 @@ def protect_segment(protector, text, task, context, aliases, learned, entities, 
     units = list(section_units(text, CLAUSE_MODE))
     if len(units) > MAX_SECTIONS:
         raise ValueError('Too many clause sections')
-    entities = list(entities)
+    entities = [Span(s.start,s.end-2,s.label,s.source)
+                if s.label=='PERSON' and text[s.start:s.end].endswith(("'s",'’s'))
+                and plausible_person(text[s.start:s.end-2]) else s for s in entities]
     # The detector must first identify a full person name. Short-token propagation
     # is permitted only for a unique full-name match, never for ambiguous people.
     values = [text[s.start:s.end] for s in entities if s.label == 'PERSON']

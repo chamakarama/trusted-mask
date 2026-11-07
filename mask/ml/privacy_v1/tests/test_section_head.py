@@ -52,6 +52,12 @@ def test_full_short_aliases_and_distinct_people():
     assert len({aliases.get('PERSON',v) for v in ('Alina Birch','Alina Stone','Alina')})==3
 
 
+def test_person_possessive_is_preserved_with_stable_short_alias():
+    text="Alina Birch's account is closed. Alina's brother confirmed it."
+    result=Protector(SectionModel()).protect_text(text,'Draft the shipping request')
+    assert result.protected_text=="[PERSON_1]'s account is closed. [PERSON_1]'s brother confirmed it."
+
+
 @pytest.mark.parametrize('task',['','Help me','Summarise the information.'])
 def test_missing_and_vague_task_never_deletes(task):
     model=SectionModel()
