@@ -61,13 +61,16 @@ export function OperatorApp() {
     <div className="app operator">
       <header className="topbar">
         <div className="topbar-inner">
-          <div className="brand"><span className="logo"><Logo /></span><div className="wordmark">RouteSafe operator<small>Private · runs inside the bus company · never published</small></div></div>
-          <div />
-          <div className="release-box"><div className="chips"><span className="chip-dark"><IconLock /> private workbench</span><span className="chip-dark"><span className="dot dot-warn" />not yet independently audited</span></div></div>
+          <div className="brand"><span className="logo"><Logo /></span><div className="wordmark"><b>RouteSafe operator</b><small>Private · runs inside the bus company · never published</small></div></div>
+          <div className="release-box"><div className="chips"><span className="chip"><IconLock /> private workbench</span><span className="chip"><span className="dot dot-warn" />not yet independently audited</span></div></div>
         </div>
       </header>
       <main className="page">
-        <div className="headline"><div><h1>From raw taps to a protected release</h1><p>Four steps. The scanner explains each column; the release policy decides; only protected counts leave.</p></div></div>
+        <header className="hero">
+          <div className="eyebrow">Operator workbench · private</div>
+          <h1>From raw taps to a protected release</h1>
+          <p className="lede">Four steps. The scanner explains each column; the release policy decides; only protected counts leave.</p>
+        </header>
         <ol className="steps">
           <li className="panel">
             <h2><span className="step-num">1</span>What's in the bus data?</h2>
@@ -87,12 +90,12 @@ export function OperatorApp() {
                 </div>
               </div>
             </div>
-            <p className="tiny muted">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.probeTotal} adversarial test columns (they also helped shape these rules), it labels {SCANNER_CHECK.probeRight} exactly right and marks {SCANNER_CHECK.probeUnknown} "unknown" (codes with meaningless names). None is wrongly called safe. That's why {unclear} unclear columns here are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
+            <p className="fine">How good is the scanner? On the organisers' {SCANNER_CHECK.devDatasets} sample datasets it finds {Math.round(SCANNER_CHECK.devRecall * 100)}% of sensitive columns, but its rules were tuned on them. On {SCANNER_CHECK.probeTotal} adversarial test columns (they also helped shape these rules), it labels {SCANNER_CHECK.probeRight} exactly right and marks {SCANNER_CHECK.probeUnknown} "unknown" (codes with meaningless names). None is wrongly called safe. That's why {unclear} unclear columns here are marked for a person to check, and why the release policy, not the scanner, decides what is published.</p>
           </li>
 
           <li className="panel">
             <h2><span className="step-num">2</span>Who gets the data?</h2>
-            <div className="seg" role="radiogroup" aria-label="Who receives the data">
+            <div className="seg purpose" role="radiogroup" aria-label="Who receives the data">
               <button role="radio" aria-checked={purpose === "public"} className={`seg-btn ${purpose === "public" ? "seg-on" : ""}`} onClick={() => setPurpose("public")}>Anyone: open demand statistics</button>
               <button role="radio" aria-checked={purpose === "rows"} className={`seg-btn ${purpose === "rows" ? "seg-on" : ""}`} onClick={() => setPurpose("rows")}>A consultancy: everyone's journey rows</button>
             </div>
@@ -134,7 +137,7 @@ export function OperatorApp() {
                 <summary>{dropped.length} columns left out (names, e-mails, phones, card registry, bikes…)</summary>
                 <ul className="plain small">{dropped.map((f) => <li key={key(f)}><code>{f.table}.{f.column}</code> · {ROLE[f.role] ?? f.role}{f.needs_review ? " · flagged for a person's check; excluded from this release" : ""}</li>)}</ul>
               </details>
-              <p className="tiny muted">Checks are stored only in this browser for the demo. Scanner findings never give a column permission to be released; the publisher only writes the fixed release tables.</p>
+              <p className="fine">Checks are stored only in this browser for the demo. Scanner findings never give a column permission to be released; the publisher only writes the fixed release tables.</p>
             </li>
           )}
 

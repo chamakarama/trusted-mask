@@ -31,18 +31,22 @@ export function LineHourView({ rel }: { rel: Release }) {
   const fixture = !!rel.manifest.fixture;
   const real = (v: number) => fixture || v > r;
   return (
-    <section className="panel wide" aria-labelledby="lh-title">
-      <div className="panel-head">
+    <section className="block" aria-labelledby="lh-title">
+      <div className="block-head">
         <div>
-          <div className="eyebrow">Heatmap</div>
           <h2 id="lh-title">Busiest bus lines by hour</h2>
-          <p className="small ink2">Weekday boardings over the 4 weeks. Darker = more boardings.{!fixture && <> <span className="swatch sw-noise" />Grey = within {fmt(r)} of zero, so it could be zero. Coloured cells can still be noise.</>}</p>
+          <p className="sub">Weekday boardings over the 4 weeks. Darker = more boardings.</p>
         </div>
         <Noise />
+      </div>
+      <div className="legend">
+        <span><span className="scale-bar" aria-hidden="true" style={{ marginRight: 8, width: 140 }} />fewer → more boardings</span>
+        {!fixture && <span><span className="swatch sw-noise" />within {fmt(r)} of zero: could be zero. Coloured cells can still be noise.</span>}
       </div>
       <div className="heat-wrap" onMouseLeave={hide}>
         <table className="heat">
           <caption className="sr-only">Released weekday boardings per line (rows) and hour of day (columns)</caption>
+          <colgroup><col className="c-line" />{Array.from({ length: 24 }, (_, h) => <col key={h} />)}<col className="c-total" /></colgroup>
           <thead>
             <tr><th scope="col"><span className="sr-only">Line</span></th>{Array.from({ length: 24 }, (_, h) => <th key={h} scope="col" className="hour">{h % 3 === 0 ? hh(h) : ""}<span className="sr-only">{h}:00</span></th>)}<th scope="col" className="num">Total</th></tr>
           </thead>
@@ -66,8 +70,7 @@ export function LineHourView({ rel }: { rel: Release }) {
         </table>
         {el}
       </div>
-      <div className="scale">{!fixture && <><span className="swatch sw-noise" /><span>could be zero</span></>}<span className="scale-bar" aria-hidden="true" /><span>more boardings</span></div>
-      <p className="tiny muted">{fixture ? "Test fixture: illustrative numbers, no noise claims. " : `Each cell on its own is ±${fmt(r)} (95%, noise only). Across all ${fmt(rel.lineHour.length)} cells at once the range is ±${fmt(reach)}, so a few empty cells can still look busy. `}Totals add the signed estimates, then clamp at zero. “Other lines” = lines missing from the public line list. Routes per line and dates per line are not part of this release.</p>
+      <p className="fine">{fixture ? "Test fixture: illustrative numbers, no noise claims. " : `Each cell on its own is ±${fmt(r)} (95%, noise only). Across all ${fmt(rel.lineHour.length)} cells at once the range is ±${fmt(reach)}, so a few empty cells can still look busy. `}Totals add the signed estimates, then clamp at zero. “Other lines” = lines missing from the public line list. Routes per line and dates per line are not part of this release.</p>
     </section>
   );
 }
@@ -84,14 +87,18 @@ export function DailyView({ rel }: { rel: Release }) {
   const y = (v: number) => T + (H - T - B) * (1 - Math.max(0, v) / top);
   const { show, hide, el } = useTip();
   return (
-    <section className="panel wide" aria-labelledby="daily-title">
-      <div className="panel-head">
+    <section className="block" aria-labelledby="daily-title">
+      <div className="block-head">
         <div>
-          <div className="eyebrow">Daily</div>
           <h2 id="daily-title">Taps per day</h2>
-          <p className="small ink2"><span className="swatch sw-weekday" />weekdays <span className="swatch sw-weekend" style={{ marginLeft: 10 }} />weekends{!fixture && <> <span className="whisker-key" style={{ marginLeft: 10 }} />±{fmt(r)} noise range for each day on its own</>}</p>
+          <p className="sub">All recorded taps on each date, including weekends.</p>
         </div>
         <Noise />
+      </div>
+      <div className="legend">
+        <span><span className="swatch sw-weekday" />weekdays</span>
+        <span><span className="swatch sw-weekend" />weekends</span>
+        {!fixture && <span><span className="whisker-key" />±{fmt(r)} noise range for each day on its own</span>}
       </div>
       <div onMouseLeave={hide}>
         <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-labelledby="daily-title">
@@ -118,7 +125,7 @@ export function DailyView({ rel }: { rel: Release }) {
         </svg>
         {el}
       </div>
-      <p className="tiny muted">All recorded taps, including weekends.{fixture ? "" : " Whiskers: 95% noise range for each day on its own (not for all days at once)."} The clock change on 26 Oct is not adjusted.</p>
+      <p className="fine">{fixture ? "" : "Whiskers: 95% noise range for each day on its own (not for all days at once). "}The clock change on 26 Oct is not adjusted.</p>
     </section>
   );
 }
@@ -130,12 +137,11 @@ export function WhenView({ rel }: { rel: Release }) {
   const busiest = lineTotals(rel).find((l) => l.line !== "unknown");
   return (
     <div className="layout">
-      <div className="headline">
-        <div>
-          <h1>Boardings peak at {hh(am)}–{hh(am + 1)} and {hh(pm)}–{hh(pm + 1)}{busiest ? `; Line ${busiest.line} is the busiest` : ""}</h1>
-          <p>A boarding is one weekday tap when getting on a bus (double taps removed); taps per day count every recorded tap. {niceDate(rel.manifest.period.start_date, false)} – {niceDate(rel.manifest.period.end_date_inclusive)} · protected counts with random noise.</p>
-        </div>
-      </div>
+      <header className="hero">
+        <div className="eyebrow">When people travel · {niceDate(rel.manifest.period.start_date, false)} – {niceDate(rel.manifest.period.end_date_inclusive)}</div>
+        <h1>Boardings peak at {hh(am)}–{hh(am + 1)} and {hh(pm)}–{hh(pm + 1)}{busiest ? `; Line ${busiest.line} is the busiest` : ""}</h1>
+        <p className="lede">A boarding is one weekday tap when getting on a bus (double taps removed); taps per day count every recorded tap. Protected counts with random noise.</p>
+      </header>
       <LineHourView rel={rel} />
       <DailyView rel={rel} />
     </div>

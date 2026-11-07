@@ -30,14 +30,14 @@ This goes with `demo/STORYBOARD.md`, which sets the narration and what must be o
 
 | Time | Where | Do exactly this |
 |---|---|---|
-| 0:00 | Tab 1, *Where people go*, Morning | Let the map and shortlist show for 2 seconds. Hover route 1. |
+| 0:00 | Tab 1, *Where people go*, Morning | Let the map and the top-3 list in the left panel show for 2 seconds. Hover route 1 on the map. |
 | 0:08 | Tab 1 | Click **Is it safe?**. Point at the red 97.5% card, then the green "0 rows" card. Scroll a little to *Before and after*. |
 | 0:24 | Tab 2, operator | Show step 1 (tiles 48 · 4 · 17 \| 11 · 37), then scroll to the step 3 table (*Person check* column). |
 | 0:40 | Tab 2 | In step 2, click **A consultancy: everyone's journey rows**. The refusal appears. |
 | 0:46 | Tab 2 | Click **Anyone: open demand statistics**, then scroll to step 4 (ε = 1, pending review). |
 | 0:56 | Tab 1 | Click **Where people go**. Click route card 1. |
-| 1:04 | Tab 1, *Ask a question* | Type `Which morning routes are busiest?` and press Enter. Point at "Read as: Morning 06–09 · from anywhere · top 3" and at 5,491. |
-| 1:20 | Tab 1 | Click **Night** in the time-of-day bar. Point at the amber "Could be pure noise" note and the grey dashed routes. |
+| 1:04 | Tab 1, *Ask a question* | Scroll the left panel down to *Ask a question*. Type `Which morning routes are busiest?` and press Enter. Point at "Read as: Morning 06–09 · from anywhere · top 3" and at 5,491. |
+| 1:20 | Tab 1 | Click **Night** in the time-of-day bar at the top of the left panel (it stays in view). Point at the amber "Could be pure noise" note and the grey dashed routes. |
 | 1:32 | Tab 1 | Click **Is it safe?** and scroll to *How close are the numbers?* and *What ε = 1 means*. |
 | 1:48 | Tab 1 | Click **What's shared** and scroll to the download list. |
 | 1:56 | | Stop. |

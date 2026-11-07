@@ -9,11 +9,30 @@ export const BAND_SHORT: Record<string, [string, string]> = {
 /** What the synthetic exact-data test says about THIS shortlist (only weekday mornings, all start areas, were tested). */
 export interface ShortlistCheck { exact: number; draws: number; townOverlap: number | null; k: number }
 
+/** Detail level (areas or towns) and start area. Lives in the sidebar head, above the list it filters. */
+export function RouteFilters({ level, origin, originOptions, onLevel, onOrigin }: {
+  level: Level; origin: string | null; originOptions: Point[]; onLevel: (l: Level) => void; onOrigin: (a: string | null) => void;
+}) {
+  return (
+    <div className="controls">
+      <div className="seg" role="radiogroup" aria-label="Detail level">
+        <button role="radio" aria-checked={level === "area"} className={`seg-btn ${level === "area" ? "seg-on" : ""}`} onClick={() => onLevel("area")}>Areas</button>
+        <button role="radio" aria-checked={level === "municipality"} className={`seg-btn ${level === "municipality" ? "seg-on" : ""}`} onClick={() => onLevel("municipality")}>Towns</button>
+      </div>
+      <label className="field">
+        <span>Starting from</span>
+        <select value={origin ?? ""} onChange={(e) => onOrigin(e.target.value || null)}>
+          <option value="">{level === "area" ? "Anywhere" : "Any town"}</option>
+          {[...originOptions].sort((a, b) => a.id.localeCompare(b.id)).map((a) => <option key={a.id} value={a.id}>{areaLabel(a.id)}</option>)}
+        </select>
+      </label>
+    </div>
+  );
+}
+
 interface Props {
   rel: Release;
   level: Level;
-  originOptions: Point[];
-  onLevel: (l: Level) => void;
   band: string;
   origin: string | null;
   ranked: Corridor[];
@@ -28,15 +47,17 @@ interface Props {
   onSelect: (id: string) => void;
 }
 
-export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin, ranked, shortlist, selected, rely, check, capLoss, capGap = null, bandCheck = null, onOrigin, onSelect }: Props) {
+export function CorridorPanel({ rel, level, band, origin, ranked, shortlist, selected, rely, check, capLoss, capGap = null, bandCheck = null, onOrigin, onSelect }: Props) {
   const days = weekdaysInPeriod(rel);
   const top = ranked.slice(0, shortlist);
-  const max = Math.max(1, ...top.map((c) => c.trips));
   const sel = ranked.find((c) => c.id === selected) ?? null;
   const cap = rel.manifest.privacy.families.od.cap;
   const fixture = !!rel.manifest.fixture;
   const noisy = new Set(rely?.noiseOnly ?? []);
   const range = (c: Corridor) => (rely ? rangeOf(c.noisy_value, rely.radius) : null);
+  // one scale for the three bars, wide enough for the largest noise range, so bar AND range can be compared
+  const scale = Math.max(1, ...top.map((c) => range(c)?.[1] ?? c.trips));
+  const at = (v: number) => `${Math.min(100, (100 * Math.max(0, v)) / scale)}%`;
 
   let status: { tone: "ok" | "warn" | "info"; text: string };
   if (fixture) {
@@ -59,26 +80,11 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
 
   return (
     <section className="panel" aria-labelledby="decision-title">
-      <div className="eyebrow">Shortlist</div>
-      <h2 id="decision-title">Top {shortlist} routes to look at</h2>
-      <div className="controls">
-        <div className="seg" role="radiogroup" aria-label="Detail level">
-          <button role="radio" aria-checked={level === "area"} className={`seg-btn ${level === "area" ? "seg-on" : ""}`} onClick={() => onLevel("area")}>Areas</button>
-          <button role="radio" aria-checked={level === "municipality"} className={`seg-btn ${level === "municipality" ? "seg-on" : ""}`} onClick={() => onLevel("municipality")}>Towns</button>
-        </div>
-        <label className="field">
-          <span>Starting from</span>
-          <select value={origin ?? ""} onChange={(e) => onOrigin(e.target.value || null)}>
-            <option value="">{level === "area" ? "Anywhere" : "Any town"}</option>
-            {[...originOptions].sort((a, b) => a.id.localeCompare(b.id)).map((a) => <option key={a.id} value={a.id}>{areaLabel(a.id)}</option>)}
-          </select>
-        </label>
-      </div>
-
       <p className={`status status-${status.tone}`} role="status">
         {status.tone === "ok" ? <IconCheck /> : status.tone === "warn" ? <IconWarn /> : <IconInfo />}<span>{status.text}</span>
       </p>
 
+      <div className="list-head"><h2 id="decision-title">Top {shortlist} routes to look at</h2><span>trips over 4 weeks</span></div>
       <ol className="shortlist">
         {top.map((c) => {
           const r = range(c);
@@ -87,11 +93,16 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
               <button className={`card ${selected === c.id ? "card-on" : ""} ${noisy.has(c.rank) ? "card-noise" : ""}`} onClick={() => onSelect(c.id)} aria-pressed={selected === c.id}>
                 <span className="rank" aria-hidden="true">{c.rank}</span>
                 <span className="card-body">
-                  <span className="route">{areaLabel(c.origin_area)} <IconArrow /> <span className="sr-only">to</span>{areaLabel(c.destination_area)}
-                    {noisy.has(c.rank) && <span className="badge badge-warn"><IconWarn /> could be noise</span>}</span>
-                  <span className="value"><strong>{fmt(c.trips)}</strong> trips · about {fmt(c.trips / days)} per weekday</span>
-                  {r && <span className="pm">noise range {fmt(r[0])}–{fmt(r[1])}</span>}
-                  <span className="meter" aria-hidden="true"><span style={{ width: `${(100 * c.trips) / max}%` }} /></span>
+                  <span className="route">{areaLabel(c.origin_area)} <IconArrow /> <span className="sr-only">to</span>{areaLabel(c.destination_area)}</span>
+                  <span className="value"><strong>{fmt(c.trips)}</strong> trips</span>
+                  <span className="meter" aria-hidden="true">
+                    <span className="meter-bar" style={{ width: at(c.trips) }} />
+                    {r && <span className="meter-range" style={{ left: at(r[0]), width: `calc(${at(r[1])} - ${at(r[0])})` }} />}
+                  </span>
+                  <span className="pm">
+                    {noisy.has(c.rank) && <span className="badge badge-warn"><IconWarn /> could be noise</span>}
+                    <span>{r ? `noise range ${fmt(r[0])}–${fmt(r[1])}` : ""}{r && noisy.has(c.rank) ? "" : `${r ? " · " : ""}about ${fmt(c.trips / days)} per weekday`}</span>
+                  </span>
                 </span>
               </button>
             </li>
@@ -100,20 +111,9 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
         {!top.length && <li className="empty">Nothing here. <button className="link" onClick={() => onOrigin(null)}>Show all</button></li>}
       </ol>
 
-      {rely && <p className="tiny muted capnote">Noise ranges cover only the random noise around the capped counts. The per-card cap can reduce counts.{capGap
+      {rely && <p className="capnote"><IconInfo /><span>Noise ranges cover only the random noise around the capped counts. The per-card cap can reduce counts.{capGap
         ? ` In the synthetic test, after capping and noise, the ten busiest exact-ranked morning routes were ${Math.round(capGap[0] * 100)}–${Math.round(capGap[1] * 100)}% below their exact inferred counts.`
-        : ""}</p>}
-
-      <details className="limits">
-        <summary>What these numbers can't tell you</summary>
-        <ul className="plain small">
-          {rely && <li><strong>Noise:</strong> each range holds for all {fmt(rely.candidates)} released route numbers at once (95%), so it stays valid however you filter or pick. It covers only the random noise on the capped counts.</li>}
-          <li><strong>Capped:</strong> each travel card counts at most {cap} trips, so frequent riders' trips can be undercounted{capLoss !== null ? ` (the cap leaves out about ${Math.round(capLoss * 100)}% of all route trips)` : ""}.</li>
-          <li><strong>Estimated destinations:</strong> where the same card next starts a journey (quick transfers removed), not observed.</li>
-          <li><strong>Trips, not people:</strong> one person can make many trips.</li>
-          {level === "municipality" && <li><strong>Towns:</strong> each town number adds up the areas' signed estimates and then clamps at zero, with no new noise.</li>}
-        </ul>
-      </details>
+        : ""}</span></p>}
 
       {sel && (
         <details className="detail" open>
@@ -127,6 +127,17 @@ export function CorridorPanel({ rel, level, originOptions, onLevel, band, origin
           </dl>
         </details>
       )}
+
+      <details className="limits">
+        <summary>What these numbers can't tell you</summary>
+        <ul className="plain small">
+          {rely && <li><strong>Noise:</strong> each range holds for all {fmt(rely.candidates)} released route numbers at once (95%), so it stays valid however you filter or pick. It covers only the random noise on the capped counts.</li>}
+          <li><strong>Capped:</strong> each travel card counts at most {cap} trips, so frequent riders' trips can be undercounted{capLoss !== null ? ` (the cap leaves out about ${Math.round(capLoss * 100)}% of all route trips)` : ""}.</li>
+          <li><strong>Estimated destinations:</strong> where the same card next starts a journey (quick transfers removed), not observed.</li>
+          <li><strong>Trips, not people:</strong> one person can make many trips.</li>
+          {level === "municipality" && <li><strong>Towns:</strong> each town number adds up the areas' signed estimates and then clamps at zero, with no new noise.</li>}
+        </ul>
+      </details>
 
       {ranked.length > shortlist && (
         <details className="more">

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AssistantPanel } from "./components/AssistantPanel";
 import { BaseMap } from "./components/BaseMap";
-import { BAND_SHORT, CorridorPanel } from "./components/CorridorPanel";
+import { BAND_SHORT, CorridorPanel, RouteFilters } from "./components/CorridorPanel";
 import { WhenView } from "./components/DemandViews";
 import { EvidenceView } from "./components/EvidenceView";
 import { IconCheck, IconInfo, IconLock, IconShield, IconWarn, Logo } from "./components/Icons";
@@ -17,6 +17,7 @@ const VIEWS: { id: View; label: string }[] = [
 ];
 const LEGACY: Record<string, View> = { corridors: "routes", lines: "when", daily: "when", evidence: "safe" };
 const SHORTLIST = 3, ON_MAP = 10;
+const ATTRIBUTION = "Synthetic data: TrustED PETs Proving Ground 2026 by Since AI ry (CC BY 4.0); stop locations derive from GeoNames postcode centroids (CC BY 4.0). Not real Turku travel. This page can only show, sort and add up the published numbers; it has no access to the bus company's records.";
 
 function readUrl() {
   const u = new URLSearchParams(location.search);
@@ -111,14 +112,23 @@ export function App() {
   };
   const best = ranked[0];
   const period = rel ? `${niceDate(rel.manifest.period.start_date, false)} – ${niceDate(rel.manifest.period.end_date_inclusive)}` : "";
+  const onRoutes = !!rel && !error && view === "routes";
 
   return (
-    <div className="app">
+    <div className={`app ${onRoutes ? "is-routes" : ""}`}>
       <header className="topbar">
         <div className="topbar-inner">
           <div className="brand">
             <span className="logo"><Logo /></span>
-            <div className="wordmark">RouteSafe<small>Bus demand without passenger histories</small></div>
+            <div className="wordmark">
+              <b>RouteSafe</b>
+              <label className="release-pick">
+                <span className="sr-only">Release</span>
+                <select value={releaseId ?? ""} onChange={(e) => { setReleaseId(e.target.value); setSelected(null); }}>
+                  {index?.map((r) => <option key={r.release_id} value={r.release_id}>{r.fixture ? `${r.release_id} (test data)` : `Release ${r.release_id}`}</option>)}
+                </select>
+              </label>
+            </div>
           </div>
           <nav className="tabs" aria-label="Views">
             {VIEWS.map((v) => (
@@ -126,110 +136,106 @@ export function App() {
             ))}
           </nav>
           <div className="release-box">
-            <label className="release-pick">
-              <span className="sr-only">Release</span>
-              <select value={releaseId ?? ""} onChange={(e) => { setReleaseId(e.target.value); setSelected(null); }}>
-                {index?.map((r) => <option key={r.release_id} value={r.release_id}>{r.fixture ? `${r.release_id} (test data)` : `Release ${r.release_id}`}</option>)}
-              </select>
-            </label>
             {entry && (
               <div className="chips" role="status">
-                <span className="chip-dark"><span className="dot dot-info" />{entry.fixture ? "test fixture" : "synthetic data"}</span>
-                <span className="chip-dark"><span className="dot dot-warn" />not yet independently audited</span>
-                {rel && <span className="chip-dark"><IconCheck /> files verified</span>}
+                <span className="chip"><span className="dot dot-info" />{entry.fixture ? "test fixture" : "synthetic data"}</span>
+                <span className="chip"><span className="dot dot-warn" />not yet independently audited</span>
+                {rel && <span className="chip chip-ok"><IconCheck /> files verified</span>}
               </div>
             )}
           </div>
         </div>
       </header>
 
-      <main className="page">
-        {error && (
+      {error && (
+        <main className="page">
           <section className="state state-error" role="alert">
             <h2><IconWarn /> {error.title}</h2>
             <ul>{error.lines.slice(0, 8).map((l) => <li key={l}><code>{l}</code></li>)}</ul>
             <p>Nothing from this release is shown. Pick another release above.</p>
           </section>
-        )}
-        {!error && !rel && <section className="state" aria-busy="true"><div className="skeleton" /><p className="muted">Checking the release files…</p></section>}
+        </main>
+      )}
+      {!error && !rel && <main className="page"><section className="state" aria-busy="true"><div className="skeleton" /><p className="muted">Checking the release files…</p></section></main>}
 
-        {rel && !error && view === "routes" && (
-          <>
-            <div className="headline">
-              <div>
-                <h1>Where do people travel {BAND_PHRASE[band]}?</h1>
-                <p>Weekday bus trips between areas, {period} · protected counts with random noise, never anyone's journeys · destinations estimated, not observed.</p>
-              </div>
-              <div className="timebar">
-                <span className="timebar-label">Time of day</span>
-                <div className="bandbar" role="radiogroup" aria-label="Time of day">
-                  {BANDS.map((b) => (
-                    <button key={b} role="radio" aria-checked={b === band} className={`band ${b === band ? "band-on" : ""}`} onClick={() => { setBand(b); setSelected(null); }}>
-                      {BAND_SHORT[b][0]}<small>{BAND_SHORT[b][1]}</small>
-                    </button>
-                  ))}
-                </div>
-              </div>
+      {onRoutes && rel && (
+        <main className="routes">
+          <section className="side-head" aria-labelledby="routes-title">
+            <div className="eyebrow">Weekday bus trips · {period}</div>
+            <h1 id="routes-title">Where do people travel {BAND_PHRASE[band]}?</h1>
+            <div className="bandbar" role="radiogroup" aria-label="Time of day">
+              {BANDS.map((b) => (
+                <button key={b} role="radio" aria-checked={b === band} className={`band ${b === band ? "band-on" : ""}`} onClick={() => { setBand(b); setSelected(null); }}>
+                  {BAND_SHORT[b][0]}<small>{BAND_SHORT[b][1]}</small>
+                </button>
+              ))}
             </div>
+            <RouteFilters level={level} origin={origin} originOptions={pts}
+              onLevel={(l) => { setLevel(l); setOrigin(null); setSelected(null); }} onOrigin={(a) => { setOrigin(a); setSelected(null); }} />
+          </section>
+
+          <section className="mapcol" aria-label="Map">
             <div className="kpis">
               <div className="kpi"><div className="kpi-label">Busiest route ({BAND_SHORT[band][1]})</div>
                 <div className="kpi-value">{!best ? "–" : topNoise ? "No clear busiest route" : <><span className="nw">{areaLabel(best.origin_area)}</span> → <span className="nw">{areaLabel(best.destination_area)}</span></>}</div>
                 <div className="kpi-sub">{!best ? "" : topNoise && rely ? `top is ${fmt(best.trips)} trips, below the ${fmt(rely.radius)} noise level` : `${fmt(best.trips)} trips over 4 weeks`}</div></div>
               <div className="kpi"><div className="kpi-label"><IconLock /> Passenger records shared</div><div className="kpi-value">0</div><div className="kpi-sub">no card numbers, no exact times</div></div>
               <div className="kpi"><div className="kpi-label"><IconShield /> Privacy budget</div><div className="kpi-value">ε = {rel.manifest.privacy.epsilon_release}</div><div className="kpi-sub">per travel card · lower = more private</div></div>
-              <div className={`kpi ${someNoise ? "kpi-warn" : ""}`}>
+              <div className={`kpi ${someNoise ? "kpi-warn" : check ? "kpi-ok" : ""}`}>
                 <div className="kpi-label">{someNoise ? <IconWarn /> : check ? <IconCheck /> : <IconInfo />} Top {SHORTLIST} check</div>
                 <div className="kpi-value">{rel.manifest.fixture ? "–" : topNoise ? "Could be noise" : someNoise ? "Some could be noise" : check && level === "area" ? `${check.exact} of ${check.draws}` : check ? `${check.townOverlap} of ${check.k}` : "Not tested"}</div>
                 <div className="kpi-sub">{rel.manifest.fixture ? "test fixture: no claims" : topNoise ? "too small to tell from noise" : someNoise ? "some shortlisted routes are within the noise range" : check && level === "area" ? "re-runs gave the same top 3 (synthetic test)" : check ? "town pairs match exact data (synthetic test)" : band === "06-09" && origin ? "only the unfiltered morning top 3 was tested" : "only weekday mornings were tested"}</div>
               </div>
             </div>
-            <div className="layout layout-corridors">
-              <section className="mapcard" aria-label="Map">
-                <div className="mapwrap">
-                  {schematic
-                    ? <div className="map" style={{ position: "absolute", inset: 0 }}>
-                        <MapView pts={pts} outgoing={outgoing} derived={level === "municipality"} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST}
-                          selected={selected} origin={origin} onSelect={setSelected} onOrigin={(a) => { setOrigin(a); setSelected(null); }} floor={floor} tripsMax={tripsMax} outMax={outMax} />
-                      </div>
-                    : <BaseMap key={level} pts={pts} outgoing={outgoing} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST} selected={selected} origin={origin}
-                        onSelect={setSelected} onOrigin={(a) => { setOrigin((o) => (o === a ? null : a)); setSelected(null); }} onFail={() => setSchematic(true)} floor={floor} tripsMax={tripsMax} outMax={outMax} />}
-                  <div className="map-overlay">
-                    <div className="glass">
-                      <strong>{topNoise ? `${BAND_SHORT[band][0]}: too few trips to read` : someNoise ? `${BAND_SHORT[band][0]}: some top routes could be noise` : takeaway
-                        ? `${takeaway.count} of the ${shown.length} busiest ${BAND_SHORT[band][0].toLowerCase()} routes ${takeaway.side === "end" ? "end" : "start"} in ${areaLabel(takeaway.place)}`
-                        : `${BAND_SHORT[band][0]} trips ${BAND_SHORT[band][1]}`}</strong>
-                      <div className="legend-row"><span className="legend-arc" /> top {SHORTLIST} routes</div>
-                      <div className="legend-row"><span className="legend-arc thin" /> next {ON_MAP - SHORTLIST}</div>
-                      {floor !== null && shown.some((c) => c.noisy_value <= floor) && <div className="legend-row"><span className="legend-arc muted" /> could be noise (under {fmt(floor)})</div>}
-                      <div className="legend-row"><span className="legend-dot" /> {schematic ? "bigger dot = more trips start here" : "glow = trips starting here"}</div>
-                    </div>
+            <div className="mapwrap">
+              {schematic
+                ? <div className="map" style={{ position: "absolute", inset: 0 }}>
+                    <MapView pts={pts} outgoing={outgoing} derived={level === "municipality"} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST}
+                      selected={selected} origin={origin} onSelect={setSelected} onOrigin={(a) => { setOrigin(a); setSelected(null); }} floor={floor} tripsMax={tripsMax} outMax={outMax} />
                   </div>
-                  <div className="map-toggle"><button onClick={() => setSchematic(!schematic)}>{schematic ? "Street map" : "Simple diagram"}</button></div>
+                : <BaseMap key={level} pts={pts} outgoing={outgoing} corridors={ranked.slice(0, ON_MAP)} highlight={SHORTLIST} selected={selected} origin={origin}
+                    onSelect={setSelected} onOrigin={(a) => { setOrigin((o) => (o === a ? null : a)); setSelected(null); }} onFail={() => setSchematic(true)} floor={floor} tripsMax={tripsMax} outMax={outMax} />}
+              <div className="map-overlay">
+                <div className="glass">
+                  <strong>{topNoise ? `${BAND_SHORT[band][0]}: too few trips to read` : someNoise ? `${BAND_SHORT[band][0]}: some top routes could be noise` : takeaway
+                    ? `${takeaway.count} of the ${shown.length} busiest ${BAND_SHORT[band][0].toLowerCase()} routes ${takeaway.side === "end" ? "end" : "start"} in ${areaLabel(takeaway.place)}`
+                    : `${BAND_SHORT[band][0]} trips ${BAND_SHORT[band][1]}`}</strong>
+                  <div className="legend-row"><span className="legend-arc" /> top {SHORTLIST} routes</div>
+                  <div className="legend-row"><span className="legend-arc thin" /> next {ON_MAP - SHORTLIST}</div>
+                  {floor !== null && shown.some((c) => c.noisy_value <= floor) && <div className="legend-row"><span className="legend-arc muted" /> could be noise (under {fmt(floor)})</div>}
+                  <div className="legend-row"><span className="legend-dot" /> {schematic ? "bigger dot = more trips start here" : "glow = trips starting here"}</div>
                 </div>
-                <div className="mapcap">
-                  Curves join start and end areas; they are not bus lines or roads. Dots are area centres averaged from the public stop list; areas are postcode zones, so numbers repeat across towns.{" "}
-                  {schematic ? "Simple diagram: distances are not to scale." : "Street map © OpenStreetMap contributors via OpenFreeMap; it never receives any data from this release."}
-                </div>
-              </section>
-              <aside className="side">
-                <CorridorPanel rel={rel} level={level} originOptions={pts} onLevel={(l) => { setLevel(l); setOrigin(null); setSelected(null); }} band={band} origin={origin}
-                  ranked={ranked} shortlist={SHORTLIST} selected={selected} rely={rely} check={check} capLoss={evFor?.cap_loss_fraction?.od ?? null}
-                  capGap={capGap} bandCheck={bandCheck}
-                  onOrigin={(a) => { setOrigin(a); setSelected(null); }} onSelect={setSelected} />
-                <AssistantPanel rel={rel} onEvidence={selectCorridor} onApply={(b, o) => { setBand(b); setOrigin(o); setSelected(null); }}
-                  onIntent={(b, o, id) => { setLevel("area"); setBand(b); setOrigin(o); setSelected(id); }} />
-              </aside>
+              </div>
+              <div className="map-toggle"><button onClick={() => setSchematic(!schematic)}>{schematic ? "Street map" : "Simple diagram"}</button></div>
+              <details className="mapcap">
+                <summary><IconInfo /> About this map</summary>
+                <p>Curves join start and end areas; they are not bus lines or roads. Dots are area centres averaged from the public stop list; areas are postcode zones, so numbers repeat across towns.{" "}
+                  {schematic ? "Simple diagram: distances are not to scale." : "Street map © OpenStreetMap contributors via OpenFreeMap; it never receives any data from this release."}</p>
+              </details>
             </div>
-          </>
-        )}
-        {rel && !error && view === "when" && <WhenView rel={rel} />}
-        {rel && !error && view === "safe" && <EvidenceView rel={rel} ev={ev} />}
-        {rel && !error && view === "shared" && <SharedPanel rel={rel} />}
-      </main>
+          </section>
 
-      <footer className="foot">
-        Synthetic data: TrustED PETs Proving Ground 2026 by Since AI ry (CC BY 4.0); stop locations derive from GeoNames postcode centroids (CC BY 4.0). Not real Turku travel. This page can only show, sort and add up the published numbers; it has no access to the bus company's records.
-      </footer>
+          <div className="side-body">
+            <CorridorPanel rel={rel} level={level} band={band} origin={origin}
+              ranked={ranked} shortlist={SHORTLIST} selected={selected} rely={rely} check={check} capLoss={evFor?.cap_loss_fraction?.od ?? null}
+              capGap={capGap} bandCheck={bandCheck}
+              onOrigin={(a) => { setOrigin(a); setSelected(null); }} onSelect={setSelected} />
+            <AssistantPanel rel={rel} onEvidence={selectCorridor} onApply={(b, o) => { setBand(b); setOrigin(o); setSelected(null); }}
+              onIntent={(b, o, id) => { setLevel("area"); setBand(b); setOrigin(o); setSelected(id); }} />
+            <p className="side-foot">{ATTRIBUTION}</p>
+          </div>
+        </main>
+      )}
+
+      {rel && !error && view !== "routes" && (
+        <main className="page">
+          {view === "when" && <WhenView rel={rel} />}
+          {view === "safe" && <EvidenceView rel={rel} ev={ev} />}
+          {view === "shared" && <SharedPanel rel={rel} />}
+        </main>
+      )}
+
+      {!onRoutes && <footer className="foot">{ATTRIBUTION}</footer>}
     </div>
   );
 }

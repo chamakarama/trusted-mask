@@ -19,13 +19,15 @@ export function Tradeoff({ t, released }: { t: any; released: { epsilon: number;
   const pct = (v: number) => `${Math.round(100 * v)}%`;
   const allPass = runs.every((r) => r.decision_pass_count === r.draws);
   return (
-    <section className="ba tradeoff">
-      <h3>The trade-off: more privacy costs accuracy <span className="tiny muted">synthetic evaluation, predeclared policy search</span></h3>
-      <p className="small ink2 ba-legend">
-        <span className="swatch" style={{ background: E1 }} />ε = {eps[0]} (more private)
-        {eps[1] !== undefined && <><span className="swatch" style={{ background: E2, marginLeft: 12 }} />ε = {eps[1]}</>}
-        <span style={{ marginLeft: 12 }}>· bar = route error (volume-weighted, median of draws)</span>
-      </p>
+    <section className="tradeoff block" aria-labelledby="tradeoff-title">
+      <h2 id="tradeoff-title">The trade-off: more privacy costs accuracy</h2>
+      <p className="sub">synthetic evaluation, predeclared policy search</p>
+      <div className="legend ba-legend">
+        <span><span className="swatch" style={{ background: E1 }} />ε = {eps[0]} (more private)</span>
+        {eps[1] !== undefined && <span><span className="swatch" style={{ background: E2 }} />ε = {eps[1]}</span>}
+        <span className="muted">bar = route error (volume-weighted, median of draws)</span>
+      </div>
+      <div className="ba-split">
       <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="Route error for each candidate policy: per-card cap and epsilon">
         {[0, 0.5, 1].map((f) => (
           <g key={f}><line x1={L} x2={W - R} y1={y(top * f)} y2={y(top * f)} className={f === 0 ? "base" : "grid"} />
@@ -55,7 +57,8 @@ export function Tradeoff({ t, released }: { t: any; released: { epsilon: number;
         })}
         <text x={L} y={H - 4} className="axis">per-card route cap (trips per card)</text>
       </svg>
-      <p className="tiny muted">Higher ε permits more noise reduction and a weaker privacy guarantee. A small cap drops many trips; a big cap needs more noise; 32 was the best area cap tried. {allPass ? "Every candidate met the decision target (at least 2 of 3 routes overlap and at most 10% regret) in all its noise draws. " : ""}Run on {t.development_cards ? `${Math.round(t.development_cards / 1000)}k of ${Math.round((t.all_cards ?? 0) / 1000)}k` : "half of the"} cards; these subset results are not directly comparable with the full release. Town bars answer a coarser question; they do not establish area-level accuracy. No candidate met every error target.</p>
+      <p className="fine">Higher ε permits more noise reduction and a weaker privacy guarantee. A small cap drops many trips; a big cap needs more noise; 32 was the best area cap tried. {allPass ? "Every candidate met the decision target (at least 2 of 3 routes overlap and at most 10% regret) in all its noise draws. " : ""}Run on {t.development_cards ? `${Math.round(t.development_cards / 1000)}k of ${Math.round((t.all_cards ?? 0) / 1000)}k` : "half of the"} cards; these subset results are not directly comparable with the full release. Town bars answer a coarser question; they do not establish area-level accuracy. No candidate met every error target.</p>
+      </div>
     </section>
   );
 }

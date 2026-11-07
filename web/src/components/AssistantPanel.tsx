@@ -83,9 +83,9 @@ export function AssistantPanel({ rel, onEvidence, onApply, onIntent }: Props) {
   };
 
   return (
-    <section className="panel" aria-labelledby="assist-title">
+    <section className="panel assistant" aria-labelledby="assist-title">
       <div className="panel-head">
-        <div><div className="eyebrow">Ask the data</div><h2 id="assist-title">Ask a question</h2></div>
+        <h2 id="assist-title">Ask a question</h2>
         <span className={`badge ${live ? "badge-ok" : ""}`}><IconSpark /> {live === null ? "checking AI…" : live ? "AI on" : "AI offline"}</span>
       </div>
       {live !== false ? (
