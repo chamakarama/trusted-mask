@@ -40,14 +40,20 @@ export function ReviewToolbar() {
       )}
       <div className="review-line small">
         {e ? (
-          <button className="checks-sum" aria-expanded={open === "checks"} aria-controls="checks-panel" onClick={() => setOpen(open === "checks" ? null : "checks")}>
+          <button
+            className="checks-sum"
+            aria-expanded={open === "checks"}
+            aria-controls="checks-panel"
+            title={`${sum.ok} ok${sum.review ? ` · ${sum.review} to review` : ""}${sum.blocking ? ` · ${sum.blocking} blocking` : ""}${sum.unmeasurable ? ` · ${sum.unmeasurable} not measurable` : ""} · coverage ${covered} of ${cov.length}`}
+            onClick={() => setOpen(open === "checks" ? null : "checks")}
+          >
+            <span className="sum-label">Checks<span className="sr-only">:</span></span>
+            <span className="sum-item"><span className="dot dot-ok" aria-hidden="true" /><span className="num">{sum.ok}</span><span className="sr-only"> ok</span></span>
+            {sum.review > 0 && <span className="sum-item sum-review"><span className="dot dot-warn" aria-hidden="true" /><span className="num">{sum.review}</span><span className="sum-word"> to review</span></span>}
+            {sum.blocking > 0 && <span className="sum-item sum-block"><span className="dot dot-fail" aria-hidden="true" /><span className="num">{sum.blocking}</span><span className="sum-word"> blocking</span></span>}
+            {sum.unmeasurable > 0 && <span className="sum-item sum-unm"><span className="dot dot-none" aria-hidden="true" /><span className="num">{sum.unmeasurable}</span><span className="sr-only"> not measurable</span></span>}
+            <span className="sum-cov">coverage <span className="num">{covered}/{cov.length}</span></span>
             <IconChevron size={12} open={open === "checks"} />
-            <span>Checks:</span>
-            <span className="num">{sum.ok} ok</span>
-            {sum.review > 0 && <span className="sum-review"> · <span className="num">{sum.review}</span> to review</span>}
-            {sum.blocking > 0 && <span className="sum-block"> · <span className="num">{sum.blocking}</span> blocking</span>}
-            {sum.unmeasurable > 0 && <span className="sum-unm"> · <span className="num">{sum.unmeasurable}</span> not measurable</span>}
-            <span className="muted"> · Coverage {covered}/{cov.length}</span>
           </button>
         ) : <span className="muted">{s.proposal ? "Measuring…" : s.detections ? "Describe the purpose on the left to get a proposal." : ""}</span>}
         <span className="review-tools">

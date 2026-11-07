@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ControllerContext, useAppState, useController } from "./store/store";
 import type { Controller } from "./controller";
 import { PurposePane } from "./components/PurposePane";
@@ -50,6 +50,9 @@ function Shell() {
     return () => window.removeEventListener("keydown", onKey);
   }, [c]);
 
+  const [purposeW, setPurposeW] = useState(readPurposeWidth);
+  useEffect(() => { try { localStorage.setItem(WIDTH_KEY, String(purposeW)); } catch { /* storage unavailable */ } }, [purposeW]);
+
   return (
     <div className="app">
       <a className="skip-link" href="#data-pane">Skip to data</a>
@@ -61,10 +64,11 @@ function Shell() {
         </div>
       )}
       <h1 className="wordmark"><span className="wordmark-mark" aria-hidden="true" />mask</h1>
-      <main className="canvas">
+      <main className="canvas" style={{ "--purpose-w": `${purposeW}px` } as React.CSSProperties}>
         <section className="left-float" aria-labelledby="purpose-title">
           <PurposePane />
         </section>
+        <Divider width={purposeW} onChange={setPurposeW} />
         <section className="right-float" id="data-pane" aria-labelledby="data-title" tabIndex={-1}>
           <DataPane />
         </section>
@@ -73,6 +77,62 @@ function Shell() {
       {s.devOpen && <DevPanel />}
       <div className="sr-only" aria-live="polite" aria-atomic="true">{s.announce}</div>
     </div>
+  );
+}
+
+const WIDTH_KEY = "mask.purposeWidth";
+const MIN_W = 240;
+const MAX_W = 560;
+const DEFAULT_W = 300;
+const clampW = (w: number) => Math.round(Math.max(MIN_W, Math.min(MAX_W, w)));
+function readPurposeWidth(): number {
+  try {
+    const v = Number(localStorage.getItem(WIDTH_KEY));
+    return Number.isFinite(v) && v > 0 ? clampW(v) : DEFAULT_W;
+  } catch { return DEFAULT_W; }
+}
+
+/** The divider between the purpose column and the data panel: drag or arrow keys resize the purpose column. */
+function Divider({ width, onChange }: { width: number; onChange: (w: number) => void }) {
+  const [dragging, setDragging] = useState(false);
+  const start = useRef<{ x: number; w: number } | null>(null);
+  useEffect(() => {
+    if (!dragging) return;
+    document.body.classList.add("is-resizing");
+    const move = (e: PointerEvent) => { if (start.current) onChange(clampW(start.current.w + e.clientX - start.current.x)); };
+    const up = () => { start.current = null; setDragging(false); };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+    return () => {
+      document.body.classList.remove("is-resizing");
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
+    };
+  }, [dragging, onChange]);
+  return (
+    <div
+      className={`divider ${dragging ? "is-dragging" : ""}`}
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Resize the purpose column"
+      aria-valuemin={MIN_W}
+      aria-valuemax={MAX_W}
+      aria-valuenow={width}
+      tabIndex={0}
+      onPointerDown={(e) => { if (e.button !== 0) return; e.preventDefault(); start.current = { x: e.clientX, w: width }; setDragging(true); }}
+      onDoubleClick={() => onChange(DEFAULT_W)}
+      onKeyDown={(e) => {
+        const step = e.shiftKey ? 32 : 8;
+        if (e.key === "ArrowLeft") onChange(clampW(width - step));
+        else if (e.key === "ArrowRight") onChange(clampW(width + step));
+        else if (e.key === "Home") onChange(MIN_W);
+        else if (e.key === "End") onChange(MAX_W);
+        else return;
+        e.preventDefault();
+      }}
+    />
   );
 }
 

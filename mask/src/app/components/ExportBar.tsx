@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppState, useController } from "../store/store";
 import { canExport } from "../store/state";
 import { fmtBytes, fmtInt, shortHash } from "../lib/labels";
-import { IconCheck, IconDownload, IconAlert } from "../lib/icons";
+import { IconCheck, IconAlert } from "../lib/icons";
 
 /** One primary action. Enabled only for a settled plan whose execution and evaluation match the proposal. */
 export function ExportBar() {
@@ -44,7 +44,7 @@ export function ExportBar() {
           </span>
         )}
         <button className="btn btn-primary export-btn" disabled={!ok} onClick={() => void c.exportNow()}>
-          <IconDownload size={14} /> Confirm and export
+          Confirm and export
         </button>
       </div>
       {showFiles && !done && (

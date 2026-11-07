@@ -22,13 +22,45 @@ export function DataGrid({ table }: { table: string }) {
   const filter = rowFilterOf(s);
   const version = s.view === "protected" ? s.executed?.outputHash ?? "" : s.manifest?.inputHash ?? "";
   const rows = useRows(ctl.backend, { table, view: s.view === "protected" && s.executed ? "protected" : "original", sort: s.sort, filter, version });
-  const columns = useMemo(() => gridColumns(s, table, rows.columns),
+  const baseColumns = useMemo(() => gridColumns(s, table, rows.columns),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [s.manifest, s.detections, s.proposal, s.executed, s.view, table, rows.columns]);
+  // the grid fills the panel: columns keep their content width, the last one takes what is left
+  const [viewW, setViewW] = useState(0);
+  const columns = useMemo(() => {
+    if (!viewW || !baseColumns.length) return baseColumns;
+    const used = ROWNUM_W + baseColumns.reduce((a, c) => a + c.width, 0);
+    const spare = viewW - used;
+    if (spare <= 0) return baseColumns;
+    const lastCol = baseColumns[baseColumns.length - 1]!;
+    return [...baseColumns.slice(0, -1), { ...lastCol, width: lastCol.width + spare }];
+  }, [baseColumns, viewW]);
   const tm = s.manifest?.tables.find((t) => t.name === table);
   const total = rows.total ?? 0;
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const measure = () => setViewW(el.clientWidth);
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  // rows fade in once, when the table first has rows (not on scroll)
+  const [intro, setIntro] = useState<"wait" | "on" | "off">("wait");
+  const hasRows = (rows.total ?? 0) > 0;
+  useEffect(() => {
+    if (intro !== "wait" || !hasRows) return;
+    setIntro("on");
+  }, [hasRows, intro]);
+  useEffect(() => {
+    if (intro !== "on") return;
+    const t = window.setTimeout(() => setIntro("off"), 1400);
+    return () => window.clearTimeout(t);
+  }, [intro]);
   const rowV = useVirtualizer({
     count: total, getScrollElement: () => scrollRef.current, estimateSize: () => ROW_H, overscan: 12,
     initialRect: { width: 1200, height: 640 }, paddingStart: HEADER_H, getItemKey: (i) => rows.rowAt(i)?.row ?? `i${i}`,
@@ -108,10 +140,11 @@ export function DataGrid({ table }: { table: string }) {
   const filtered = !!filter;
 
   return (
-    <div className="grid-wrap">
+    <div className={`grid-wrap ${intro === "on" ? "is-intro" : ""}`}>
       <div
         ref={scrollRef}
         className={`grid-scroll ${rows.showingPrevious ? "is-loading" : ""}`}
+        style={{ height: rows.total === null ? undefined : HEADER_H + Math.max(rows.total, 4) * ROW_H + 8 }}
         role="grid"
         aria-label={`${table}, ${protectedView ? "protected" : "original"} view`}
         aria-rowcount={total + 1}
@@ -121,7 +154,7 @@ export function DataGrid({ table }: { table: string }) {
         onFocus={() => setFocusWithin(true)}
         onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocusWithin(false); }}
       >
-        <div className="grid-inner" style={{ width, height }}>
+        <div className="grid-inner" key={protectedView ? "protected" : "original"} style={{ width, height }}>
           <div className="grid-header" role="row" aria-rowindex={1} style={{ width, height: HEADER_H }}>
             <div className="grid-corner" role="columnheader" aria-colindex={1} style={{ width: ROWNUM_W }}><span className="sr-only">Row</span>#</div>
             {vCols.map((vc) => {
@@ -149,7 +182,7 @@ export function DataGrid({ table }: { table: string }) {
           {vRows.map((vr) => {
             const row = rows.rowAt(vr.index);
             return (
-              <div key={vr.key} className="grid-row" role="row" aria-rowindex={vr.index + 2} style={{ transform: `translateY(${vr.start}px)`, width, height: ROW_H }}>
+              <div key={vr.key} className="grid-row" role="row" aria-rowindex={vr.index + 2} style={{ transform: `translateY(${vr.start}px)`, width, height: ROW_H, "--i": Math.min(vr.index, 12) } as React.CSSProperties}>
                 <div className="grid-rownum num" role="rowheader" aria-colindex={1} style={{ width: ROWNUM_W }}>{row ? row.row + 1 : ""}</div>
                 {vCols.map((vc) => {
                   const col = columns[vc.index]!;
