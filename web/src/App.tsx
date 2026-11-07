@@ -213,14 +213,14 @@ export function App() {
                     {floor !== null && legend.muted && <div className="legend-row"><span className="legend-arc muted" /> could be noise (under {fmt(floor)})</div>}
                     {legend.glow && <div className="legend-row"><span className={`legend-dot ${schematic ? "" : "legend-glow"}`} /> {schematic ? "bigger dot = more trips start here" : "glow = trips starting here"}</div>}
                   </div>
+                  <details className="mapcap">
+                    <summary><span>Protected counts with random noise, never anyone's journeys · destinations estimated, not observed.</span> <span className="mapcap-more"><IconInfo /> About this map</span></summary>
+                    <p>Curves join start and end areas; they are not bus lines or roads. Dots are area centres averaged from the public stop list; areas are postcode zones, so numbers repeat across towns.{" "}
+                      {schematic ? "Simple diagram: distances are not to scale." : "Street map © OpenStreetMap contributors via OpenFreeMap; it never receives any data from this release."}</p>
+                  </details>
                 </div>
               </div>
               <div className="map-toggle"><button onClick={() => setSchematic(!schematic)}>{schematic ? "Street map" : "Simple diagram"}</button></div>
-              <details className="mapcap">
-                <summary><IconInfo /> About this map</summary>
-                <p>Curves join start and end areas; they are not bus lines or roads. Dots are area centres averaged from the public stop list; areas are postcode zones, so numbers repeat across towns.{" "}
-                  {schematic ? "Simple diagram: distances are not to scale." : "Street map © OpenStreetMap contributors via OpenFreeMap; it never receives any data from this release."}</p>
-              </details>
             </div>
           </section>
 

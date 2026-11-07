@@ -235,11 +235,13 @@ code { font-family: var(--mono); font-size: .84em; }
 .map-toggle { position: absolute; right: 14px; top: 14px; }
 .map-toggle button { border: 1px solid var(--line-2); background: var(--surface); border-radius: 8px; padding: 6px 12px; font-size: .78rem; font-weight: 650; cursor: pointer; box-shadow: 0 1px 2px rgb(16 24 40 / 8%); color: var(--ink-2); }
 .map-toggle button:hover { color: var(--ink); }
-.mapcap { position: absolute; left: 14px; bottom: 14px; max-width: min(480px, calc(100% - 150px)); }
-.mapcap summary { pointer-events: auto; cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 600; color: var(--ink-2);
-  background: var(--surface); border: 1px solid var(--line-2); border-radius: 6px; padding: 4px 10px; box-shadow: 0 1px 2px rgb(16 24 40 / 8%); }
+/* inside the legend card: the reading note is always visible; the longer note opens below it */
+.mapcap { margin-top: 7px; padding-top: 6px; border-top: 1px solid var(--line); }
+.mapcap summary { cursor: pointer; list-style: none; display: block; font-size: .74rem; color: var(--muted); line-height: 1.45; }
+.mapcap-more { display: inline-flex; align-items: center; gap: 4px; color: var(--accent); font-weight: 650; white-space: nowrap; }
+.mapcap summary:hover .mapcap-more { text-decoration: underline; }
 .mapcap summary::-webkit-details-marker { display: none; }
-.mapcap p { margin: 6px 0 0; background: var(--surface); border: 1px solid var(--line-2); border-radius: 8px; padding: 9px 12px; font-size: .74rem; color: var(--ink-2); box-shadow: 0 1px 2px rgb(16 24 40 / 8%); line-height: 1.5; }
+.mapcap p { margin: 6px 0 0; font-size: .74rem; color: var(--ink-2); line-height: 1.5; }
 .maplibregl-popup-content { font: 13px/1.4 var(--font); border-radius: 10px !important; padding: 8px 11px !important; box-shadow: 0 6px 20px rgb(16 24 40 / 18%) !important; }
 .maplibregl-ctrl-attrib { font-size: 10px; }
 .maplibregl-ctrl-group { border-radius: 8px !important; box-shadow: 0 1px 2px rgb(16 24 40 / 10%) !important; border: 1px solid var(--line-2); }
@@ -511,7 +513,6 @@ details.block > summary { font-size: .95rem; padding: 12px 0; }
   .area text { font-size: 15px; }
   .map-overlay { max-width: calc(100% - 128px); }
   .glass { font-size: .72rem; }
-  .mapcap { max-width: calc(100% - 28px); bottom: 10px; }
   .kpi { padding: 9px 12px 10px; }
   .kpi-value { font-size: 1rem; }
 }
