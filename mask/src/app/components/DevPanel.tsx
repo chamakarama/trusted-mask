@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CONTRACTS_VERSION, MASK_VERSION } from "@/contracts";
 import { REGISTRY_VERSION } from "@/core/registry";
 import { useAppState, useController } from "../store/store";
@@ -167,15 +167,35 @@ function Versions() {
   );
 }
 
+const STEP_ORDER = ["import", "profile", "interpret", "propose", "execute", "evaluate", "export", "model"] as const;
+
 function Timing() {
   const s = useAppState();
-  const rows = Object.entries(s.timings);
-  if (!rows.length) return <p className="muted">Nothing has run yet.</p>;
+  const steps = STEP_ORDER.filter((k) => s.timings[k] !== undefined);
+  const stages = Object.entries(s.stageTimings).sort((a, b) => STEP_ORDER.indexOf(a[1].step) - STEP_ORDER.indexOf(b[1].step));
+  if (!steps.length) return <p className="muted">Nothing has run yet.</p>;
   return (
-    <dl className="dev-kv">
-      {rows.map(([k, v]) => <Fragment key={k}><dt>{k}</dt><dd className="num">{fmtMs(v ?? 0)}</dd></Fragment>)}
-      {s.evaluation && <><dt>evaluator reported</dt><dd className="num">{fmtMs(s.evaluation.durationMs)}</dd></>}
-    </dl>
+    <div>
+      <h4>Per step (wall time in this tab, latest run)</h4>
+      <table className="dev-table timing">
+        <thead><tr><th>Step</th><th className="num">Time</th><th>Progress stages reported by the worker</th></tr></thead>
+        <tbody>
+          {steps.map((k) => (
+            <tr key={k}>
+              <td>{k}</td>
+              <td className="num">{fmtMs(s.timings[k] ?? 0)}</td>
+              <td>
+                {stages.filter(([, v]) => v.step === k).map(([name, v]) => (
+                  <span key={name} className="stage"><span className="mono">{name}</span> <span className="num">{fmtMs(v.ms)}</span> <span className="muted num">({v.events} events)</span></span>
+                ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="muted xsmall">Stage times run from a stage's first progress event to the next stage (or the end of the step). Steps without progress events show only the total.</p>
+      {s.executed && <p className="num">Executor reported {fmtMs(s.executed.durationMs)}{s.evaluation ? ` · evaluator reported ${fmtMs(s.evaluation.durationMs)}` : ""}</p>}
+    </div>
   );
 }
 

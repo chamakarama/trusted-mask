@@ -297,7 +297,7 @@ const Cell = memo(function Cell({
       title={typeof value === "string" && value.length > 40 && !change?.spans ? value : undefined}
     >
       {reviewDot && <span className="cell-review" aria-label="needs review" />}
-      {content}
+      <span className="cell-text">{content}</span>
     </div>
   );
 });

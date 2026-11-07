@@ -72,6 +72,8 @@ export interface AppState {
   devOpen: boolean;
   devTab: DevTab;
   timings: Partial<Record<Step, number>>;
+  /** per progress stage (worker stage names): elapsed ms between the step start and its last progress event */
+  stageTimings: Record<string, { ms: number; events: number; step: Step }>;
   /** text for the polite live region */
   announce: string;
 }
@@ -81,7 +83,7 @@ export const initialState = (source: AppState["source"] = "worker"): AppState =>
   manifest: null, detections: null, thread: [], goal: null, answers: {}, goalAccepted: false,
   selectorId: "policy", model: null, proposal: null, overrides: [], history: [], executed: null, evaluation: null,
   exported: null, exportStale: false, view: "original", activeTable: null, filters: EMPTY_FILTERS, metricFocus: null,
-  sort: null, selection: null, devOpen: false, devTab: "decisions", timings: {}, announce: "",
+  sort: null, selection: null, devOpen: false, devTab: "decisions", timings: {}, stageTimings: {}, announce: "",
 });
 
 export type Action =
@@ -91,11 +93,12 @@ export type Action =
   | { type: "profiled"; tag: number; detections: DetectionSet; ms: number }
   | { type: "interpreted"; tag: number; goal: GoalSpec; ms: number; note?: string }
   | { type: "proposed"; tag: number; proposal: Proposal; ms: number }
-  | { type: "executed"; tag: number; executed: ExecutedSummary }
+  | { type: "executed"; tag: number; executed: ExecutedSummary; ms?: number }
   | { type: "evaluated"; tag: number; evaluation: Evaluation; ms: number }
   | { type: "exported"; tag: number; result: ExportResult; ms: number }
   | { type: "failed"; step: Step; tag: number; message: string }
   | { type: "modelLoaded"; tag: number; modelId: string; registryVersion: string }
+  | { type: "stageTimings"; timings: Record<string, { ms: number; events: number; step: Step }> }
   | { type: "cancel" }
   | { type: "userMessage"; id: string; text: string }
   | { type: "note"; id: string; text: string; tone: "neutral" | "warn" | "error" }
@@ -209,7 +212,7 @@ export function reducer(s: AppState, a: Action): AppState {
     case "executed": {
       if (!isCurrent(s, "execute", a.tag)) return s;
       if (!s.proposal || a.executed.planHash !== s.proposal.planHash) return clearPending(s, "execute"); // stale plan: drop it
-      return { ...clearPending(s, "execute"), executed: a.executed, timings: { ...s.timings, execute: a.executed.durationMs } };
+      return { ...clearPending(s, "execute"), executed: a.executed, timings: { ...s.timings, execute: a.ms ?? a.executed.durationMs } };
     }
     case "evaluated": {
       if (!isCurrent(s, "evaluate", a.tag)) return s;
@@ -239,6 +242,8 @@ export function reducer(s: AppState, a: Action): AppState {
       if (!isCurrent(s, "model", a.tag)) return s;
       return { ...clearPending(s, "model"), model: { modelId: a.modelId, registryVersion: a.registryVersion } };
     }
+    case "stageTimings":
+      return { ...s, stageTimings: { ...s.stageTimings, ...a.timings } };
     case "cancel": {
       const inflight = (["import", "profile", "propose", "execute", "evaluate", "export"] as Step[]).find((k) => s.pending[k] !== undefined);
       if (!inflight) return s;

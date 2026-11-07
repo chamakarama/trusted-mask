@@ -108,10 +108,11 @@ export function rowFilterOf(s: AppState): RowFilter | undefined {
     if (f.onlyChanged) out.onlyChanged = true;
     let units: string[] | null = null;
     if (f.roles.length) units = unitsWithRoles(s, f.roles);
-    const m = s.metricFocus ? s.evaluation?.metrics.find((x) => x.id === s.metricFocus) : undefined;
-    if (m?.unitIds?.length) {
+    // metricFocus is a metric id; the same id appears once per scope, so take the union of their units
+    const focusUnits = s.metricFocus ? (s.evaluation?.metrics ?? []).filter((x) => x.id === s.metricFocus).flatMap((x) => x.unitIds ?? []) : [];
+    if (focusUnits.length) {
       // metric units may be span units: the worker tags text-cell changes with the parent field unit
-      const expanded = new Set(m.unitIds.flatMap((id) => [id, s.proposal?.units.find((u) => u.id === id)?.parentUnitId].filter(Boolean) as string[]));
+      const expanded = new Set(focusUnits.flatMap((id) => [id, s.proposal?.units.find((u) => u.id === id)?.parentUnitId].filter(Boolean) as string[]));
       units = units ? units.filter((u) => expanded.has(u)) : [...expanded];
     }
     if (units) out.unitIds = units.length ? units : ["__none__"];
