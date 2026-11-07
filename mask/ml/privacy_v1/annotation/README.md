@@ -12,7 +12,7 @@ Source facts and desired transformations need independent review. A structurally
 
 ## Consumer and corporate coverage
 
-Allocate approximately 50% of distinct source families to consumer use and 50% to corporate use, starting with the first wave. Corporate scenarios include sales/procurement, internal finance, HR, customer operations, engineering credentials and internal operations. Protect confidential business information even when it contains no personal identifiers. Include mixed public/private material and clean business negatives; preserve useful generic code, public facts and harmless technical details.
+Allocate approximately 70% of distinct source families to consumer use and 30% to corporate use, starting with the first wave. Count distinct families rather than task-swapped copies: target 14 consumer / 6 corporate for 20 families, or 70 / 30 for 100 families. Treat this as a sampling target; do not discard accepted records or relax review standards to force an exact ratio. Corporate scenarios include sales/procurement, internal finance, HR, customer operations, engineering credentials and internal operations. Protect confidential business information even when it contains no personal identifiers. Include mixed public/private material and clean business negatives; preserve useful generic code, public facts and harmless technical details.
 
 The [corporate authoring example](example.corporate.authoring.json) demonstrates a private employee alias, a confidential client name, a protected commercial price and an unrelated payroll section DROP. Its fixture IDs must be replaced with fresh claimed namespaces for new data. The clinical example remains useful consumer coverage.
 
