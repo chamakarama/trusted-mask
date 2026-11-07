@@ -60,7 +60,7 @@ function Shell() {
           <a href="./">Leave fixture</a>
         </div>
       )}
-      <h1 className="wordmark">mask</h1>
+      <h1 className="wordmark"><span className="wordmark-mark" aria-hidden="true" />mask</h1>
       <main className="canvas">
         <section className="left-float" aria-labelledby="purpose-title">
           <PurposePane />

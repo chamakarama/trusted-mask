@@ -47,13 +47,17 @@ export interface GridColumn {
   detection?: FieldDetection;
   decision?: Decision;
   isText: boolean;
+  /** numeric values: right-aligned in the grid */
+  isNumeric?: boolean;
 }
 
-export function columnWidth(meanLength: number, maxLength: number, isText: boolean): number {
-  if (isText) return 440;
-  const est = 20 + 7.4 * Math.min(maxLength, Math.max(meanLength * 1.25, 6));
-  return Math.round(Math.max(96, Math.min(300, est)));
+export function columnWidth(meanLength: number, maxLength: number, isText: boolean, title = ""): number {
+  if (isText) return 460;
+  const est = 26 + 7.6 * Math.min(maxLength, Math.max(meanLength * 1.25, 6));
+  const head = 44 + 6.8 * title.length; // keep the column name readable
+  return Math.round(Math.max(104, Math.min(300, Math.max(est, Math.min(head, 220)))));
 }
+const isNumericType = (t: string | undefined) => t === "integer" || t === "number";
 
 export function gridColumns(s: AppState, table: string, outputNames: string[] | null): GridColumn[] {
   const tm = s.manifest?.tables.find((t) => t.name === table);
@@ -72,7 +76,8 @@ export function gridColumns(s: AppState, table: string, outputNames: string[] | 
         return {
           key: name, title: name, sourceColumn: src, unitId: oc?.unitId ?? null, status: oc?.status ?? null, detection: det,
           decision: decisionFor(s.proposal, oc?.unitId), isText,
-          width: oc?.status === "derived" ? 128 : st ? columnWidth(st.stats.meanLength, st.stats.maxLength, isText) : 140,
+          isNumeric: oc?.status === "kept" && isNumericType(st?.inferredType),
+          width: oc?.status === "derived" ? 128 : st ? Math.max(columnWidth(st.stats.meanLength, st.stats.maxLength, isText, name), oc?.status === "transformed" && !isText ? 150 : 0) : 140,
         };
       });
     }
@@ -83,7 +88,8 @@ export function gridColumns(s: AppState, table: string, outputNames: string[] | 
     const isText = det?.role === "free_text";
     return {
       key: c.name, title: c.name, sourceColumn: c.name, unitId: unit?.id ?? null, status: null, detection: det,
-      decision: decisionFor(s.proposal, unit?.id), isText, width: columnWidth(c.stats.meanLength, c.stats.maxLength, isText),
+      decision: decisionFor(s.proposal, unit?.id), isText, isNumeric: isNumericType(c.inferredType),
+      width: columnWidth(c.stats.meanLength, c.stats.maxLength, isText, c.name),
     };
   });
 }
