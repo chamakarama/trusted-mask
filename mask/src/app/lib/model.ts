@@ -141,3 +141,26 @@ export function paramSummary(d: Decision | undefined): string {
     .filter(Boolean)
     .join(", ");
 }
+
+/** One quiet word for a column's method, shown under the column name. */
+export function methodWord(d: Decision | undefined, status: OutputColumn["status"] | null): string {
+  if (status === "suppressed") return "removed";
+  if (status === "derived") return "derived";
+  if (!d) return "";
+  if (!d.selected) return "removed";
+  const p = d.selected.params;
+  switch (d.selected.recipeId) {
+    case "keep": return "kept";
+    case "suppress": return "removed";
+    case "tokenize_keyed": return "token";
+    case "redact_text": return "redacted";
+    case "redact_typed": return "label";
+    case "redact_surrogate": return "surrogate";
+    case "generalize_datetime": return String(p.resolution ?? "coarser");
+    case "generalize_numeric_bin": return "binned";
+    case "generalize_postcode": return `${String(p.digits ?? "")}-digit`.replace(/^-/, "");
+    case "generalize_category_rare": return "merged";
+    case "derive_hetu": return "derived";
+    default: return d.selected.recipeId;
+  }
+}

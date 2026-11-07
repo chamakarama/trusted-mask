@@ -22,7 +22,7 @@ export function mapSpans(protectedText: string, spans: SpanChange[]): MappedSpan
   return out;
 }
 
-/** Protected text with labelled inline marks for each replaced span. */
+/** Protected text with highlighter marks for each replaced span, the type label shown small after it. */
 export function SpanText({ text, spans, selected, devOpen, onSpan }: {
   text: string; spans: SpanChange[]; selected?: number; devOpen: boolean; onSpan?: (i: number) => void;
 }) {
@@ -36,17 +36,22 @@ export function SpanText({ text, spans, selected, devOpen, onSpan }: {
     const kind = rid === "keep" ? "keep" : getRecipe(rid).highlight;
     const label = subtypeLabel(m.span.label);
     const removed = m.span.replacement.length === 0;
+    const shown = text.slice(m.start, m.end);
+    // a typed placeholder already names its type; anything else gets the type written small after it
+    const selfLabelled = /^\[[A-Z_]+\]$/.test(shown);
     parts.push(
       <mark
         key={m.index}
-        className={`span hl-${kind} ${selected === m.index ? "is-selected" : ""} ${removed ? "is-empty" : ""}`}
+        className={`span mk mk-${kind} ${selected === m.index ? "is-selected" : ""} ${removed ? "is-empty" : ""}`}
         data-label={m.span.label}
-        title={`${label} · ${rid === "keep" ? "kept" : getRecipe(rid).name}${devOpen ? " · original visible in the developer panel" : ""}`}
+        aria-label={`${label}, ${rid === "keep" ? "kept" : getRecipe(rid).name.toLowerCase()}${removed ? ", removed" : `: ${shown}`}`}
+        title={`${label} · ${rid === "keep" ? "kept" : getRecipe(rid).name}${devOpen ? " · original in the developer panel" : ""}`}
         onClick={onSpan ? (e) => { e.stopPropagation(); onSpan(m.index); } : undefined}
       >
-        {removed ? <span className="span-gone">{label.toLowerCase()} removed</span> : text.slice(m.start, m.end)}
+        {removed ? <span className="span-gone">{label.toLowerCase()}</span> : shown}
       </mark>,
     );
+    if (!selfLabelled && !removed) parts.push(<small key={`l${m.index}`} className="mk-label" aria-hidden="true">{label.toLowerCase()}</small>);
     last = m.end;
   }
   if (last < text.length) parts.push(text.slice(last));

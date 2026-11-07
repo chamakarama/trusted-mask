@@ -47,6 +47,10 @@ export const IconCode = (p: P) => <Svg {...p}><path d="M5.5 4.5L2 8l3.5 3.5M10.5
 export const IconChevron = ({ open, ...p }: P & { open?: boolean }) => (
   <Svg {...p}><path d={open ? "M4 6l4 4 4-4" : "M6 4l4 4-4 4"} /></Svg>
 );
+/** Vertical chevron: down when closed (˅), up when open. */
+export const IconChevronV = ({ up, ...p }: P & { up?: boolean }) => (
+  <Svg {...p}><path d={up ? "M4 10l4-4 4 4" : "M4 6l4 4 4-4"} /></Svg>
+);
 export const IconInfo = (p: P) => <Svg {...p}><circle cx="8" cy="8" r="5.5" /><path d="M8 7.2v3.6M8 5.2v.2" /></Svg>;
 export const IconLock = (p: P) => <Svg {...p}><rect x="3.5" y="7" width="9" height="6.5" rx="1" /><path d="M5.5 7V5a2.5 2.5 0 015 0v2" /></Svg>;
 export const IconDot = (p: P) => <Svg {...p}><circle cx="8" cy="8" r="2.5" fill="currentColor" stroke="none" /></Svg>;

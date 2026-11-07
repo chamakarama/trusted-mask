@@ -3,30 +3,29 @@ import { EmptyState } from "./EmptyState";
 import { StatusStrip } from "./StatusStrip";
 import { TableTabs } from "./TableTabs";
 import { ReviewToolbar } from "./ReviewToolbar";
-import { EvaluationBar } from "./EvaluationBar";
 import { DataGrid } from "./DataGrid";
 import { DetailDrawer } from "./DetailDrawer";
 import { ExportBar } from "./ExportBar";
-import { DevPanel } from "./DevPanel";
 
 function ViewToggle() {
   const s = useAppState();
   const c = useController();
-  const enabled = !!s.executed;
+  if (!s.executed) return null;
   return (
-    <div className="seg" role="radiogroup" aria-label="View">
-      {(["original", "protected"] as const).map((v) => (
-        <button
-          key={v}
-          role="radio"
-          aria-checked={s.view === v}
-          className={s.view === v ? "on" : ""}
-          disabled={!enabled}
-          title={enabled ? `${v === "original" ? "Original" : "Protected"} (${v[0]})` : "Available once a plan has been applied"}
-          onClick={() => c.store.dispatch({ type: "setView", view: v })}
-        >
-          {v === "original" ? "Original" : "Protected"}<kbd aria-hidden="true">{v[0]}</kbd>
-        </button>
+    <div className="view-toggle" role="radiogroup" aria-label="View">
+      {(["original", "protected"] as const).map((v, i) => (
+        <span key={v}>
+          {i > 0 && <span className="sep" aria-hidden="true">/</span>}
+          <button
+            role="radio"
+            aria-checked={s.view === v}
+            className={s.view === v ? "on" : ""}
+            title={`${v === "original" ? "Original" : "Protected"} (${v[0]})`}
+            onClick={() => c.store.dispatch({ type: "setView", view: v })}
+          >
+            {v === "original" ? "Original" : "Protected"}
+          </button>
+        </span>
       ))}
     </div>
   );
@@ -52,33 +51,33 @@ function ImportNotes() {
 export function DataPane() {
   const s = useAppState();
   const dim = s.phase === "updating";
-  if (!s.manifest) {
-    return (
-      <div className="data">
-        <div className="pane-head"><h2 id="data-title">Data</h2></div>
-        <StatusStrip />
-        <EmptyState />
-        {s.devOpen && <DevPanel />}
-      </div>
-    );
-  }
   return (
     <div className="data">
-      <div className="data-head">
-        <h2 id="data-title" className="sr-only">Data</h2>
-        <TableTabs />
-        <ViewToggle />
+      <h2 id="data-title" className="sr-only">Data</h2>
+      <div className={`panel ${s.manifest ? "has-data" : "is-empty"}`}>
+        {!s.manifest ? (
+          <div className="panel-empty">
+            <EmptyState />
+            <StatusStrip />
+          </div>
+        ) : (
+          <>
+            <ViewToggle />
+            <TableTabs />
+            <div className="panel-main">
+              <ImportNotes />
+              <div className={`grid-area ${dim ? "is-stale" : ""}`} id="grid-panel" role="tabpanel" aria-labelledby={s.activeTable ? `tab-${s.activeTable}` : undefined}>
+                {s.activeTable && <DataGrid key={s.activeTable} table={s.activeTable} />}
+                <DetailDrawer />
+              </div>
+              <StatusStrip />
+              <ReviewToolbar />
+            </div>
+          </>
+        )}
       </div>
-      <StatusStrip />
-      <ImportNotes />
-      {s.evaluation && <EvaluationBar />}
-      <ReviewToolbar />
-      <div className={`grid-area ${dim ? "is-stale" : ""}`} id="grid-panel" role="tabpanel" aria-labelledby={s.activeTable ? `tab-${s.activeTable}` : undefined}>
-        {s.activeTable && <DataGrid key={s.activeTable} table={s.activeTable} />}
-        <DetailDrawer />
-      </div>
-      {s.proposal && <ExportBar />}
-      {s.devOpen && <DevPanel />}
+      {/* the export row's space is reserved so the panel never moves when a proposal arrives */}
+      <div className="export-slot">{s.proposal && <ExportBar />}</div>
     </div>
   );
 }

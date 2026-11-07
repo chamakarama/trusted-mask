@@ -76,7 +76,7 @@ function Alternatives({ d, onPick, disabled }: { d: Decision; onPick: (c: Candid
         return (
           <li key={`${c.recipeId}-${i}`} className={`alt ${chosen ? "is-chosen" : ""}`}>
             <button className="alt-btn" disabled={chosen || disabled} onClick={() => onPick(c)} aria-label={chosen ? `${c.label}, current choice` : `Use ${c.label}`}>
-              <span className={`hl-tag hl-${def.highlight}`}><HighlightIcon kind={def.highlight} size={12} /></span>
+              <span className={`alt-mark mk mk-${def.highlight}`} aria-hidden="true" />
               <span className="alt-text">
                 <span className="alt-label">{c.label}{chosen && <span className="muted"> · current</span>}</span>
                 <span className="alt-sum muted xsmall">{def.summary}</span>
@@ -187,12 +187,12 @@ export function DetailDrawer() {
 
             {d ? (
               <section className="d-reason">
-                <div className="d-tags">
-                  {mk && <span className={`hl-tag hl-${mk}`}><HighlightIcon kind={mk} size={12} />{recipe?.name ?? HIGHLIGHT_LABEL[mk]}</span>}
-                  {kind === "review" && <span className="hl-tag hl-review"><HighlightIcon kind="review" size={12} />Needs review</span>}
-                  {d.source === "user" && <span className="pill accent">Edited by you</span>}
-                  {d.abstained && <span className="pill warn">No transformation chosen</span>}
-                </div>
+                <p className="d-tags small">
+                  {mk && <span className={`mk mk-${mk}`}>{(recipe?.name ?? HIGHLIGHT_LABEL[mk]).toLowerCase()}</span>}
+                  {kind === "review" && <span className="d-review"> · needs review</span>}
+                  {d.source === "user" && <span className="muted"> · edited by you</span>}
+                  {d.abstained && <span className="d-review"> · no transformation chosen</span>}
+                </p>
                 <p className="reason">{d.reason}</p>
                 {d.needsReview && d.reviewReasons.length > 0 && (
                   <ul className="review-reasons small">{d.reviewReasons.map((r) => <li key={r}><IconAlert size={12} /> {r}</li>)}</ul>
@@ -219,8 +219,8 @@ export function DetailDrawer() {
                   ) : (
                     <>
                       <div className="diff-row"><span className="diff-k">Original</span><p className="diff-v mono">{cell.original ?? "—"}</p></div>
-                      <div className="diff-row"><span className="diff-k">Protected</span><p className={`diff-v mono ${kind ? `hl hl-${kind}` : ""}`}>
-                        {s.executed ? (cell.protected ?? (mk === "suppress" ? <em className="muted">removed</em> : "—")) : <em className="muted">not applied yet</em>}
+                      <div className="diff-row"><span className="diff-k">Protected</span><p className="diff-v mono">
+                        {s.executed ? (cell.protected !== null ? <span className={kind && mk !== "keep" ? `mk mk-${mk}` : ""}>{cell.protected}</span> : mk === "suppress" ? <span className="mk-strike" aria-label="removed" /> : "—") : <em className="muted">not applied yet</em>}
                       </p></div>
                     </>
                   )}
@@ -261,8 +261,8 @@ export function DetailDrawer() {
                       <li key={u.id}>
                         <button className="span-unit" onClick={() => setSpanUnitId(u.id)}>
                           <span>{subtypeLabel(u.spanLabel ?? "")}</span>
-                          {k && <span className={`hl-tag hl-${k}`}><HighlightIcon kind={k} size={12} />{sd?.selected ? getRecipe(sd.selected.recipeId).name : HIGHLIGHT_LABEL[k]}</span>}
-                          {sd?.needsReview && <IconAlert size={12} label="Needs review" />}
+                          {k && <span className={`mk mk-${k}`}>{(sd?.selected ? getRecipe(sd.selected.recipeId).name : HIGHLIGHT_LABEL[k]).toLowerCase()}</span>}
+                          {sd?.needsReview && <span className="d-review">review</span>}
                         </button>
                       </li>
                     );
@@ -298,7 +298,7 @@ export function DetailDrawer() {
                 <h4>Evidence</h4>
                 <p className="small">
                   {ROLE_LABEL[det.role]} · {subtypeLabel(det.subtype)} · detection confidence {CONFIDENCE_LABEL[det.confidence]}
-                  {det.art9 && <span className="pill warn">special category</span>}
+                  {det.art9 && <span className="d-review"> · special category</span>}
                 </p>
                 <ul className="evidence xsmall">
                   {det.evidence.map((ev) => <li key={ev.ruleId + ev.description}>{ev.description}{ev.matchRate !== undefined ? <span className="muted num"> · {fmtPct(ev.matchRate)} of sampled values</span> : null}</li>)}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { MetricResult, ThreatCoverage } from "@/contracts";
 import { useAppState, useController } from "../store/store";
 import { BASIS_LABEL, METRIC_KIND_LABEL, METRIC_STATUS_LABEL, TEST_STATUS_LABEL, fmtMetricValue, fmtThreshold } from "../lib/labels";
@@ -51,85 +50,63 @@ function GroupDetail({ g }: { g: MetricGroup }) {
   );
 }
 
-/** Measured risk, utility and integrity checks (one chip per check), then threat coverage. Never one score. */
-export function EvaluationBar() {
+/** Counts for the one-line summary. Hard failures are counted separately and shown as their own red line. */
+export function checkSummary(groups: MetricGroup[]) {
+  const ok = groups.filter((g) => g.status === "evaluated" && !g.fail).length;
+  const review = groups.filter((g) => g.fail && !g.hardFail).length;
+  const blocking = groups.filter((g) => g.hardFail).length;
+  const unmeasurable = groups.filter((g) => g.status === "unsupported" || g.status === "failed").length;
+  const na = groups.filter((g) => g.status === "not_applicable").length;
+  return { ok, review, blocking, unmeasurable, na };
+}
+
+/** Expanded checks: grouped list (one row per check), per-scope detail, then threat coverage and benchmark. */
+export function ChecksPanel() {
   const s = useAppState();
   const c = useController();
-  const [showThreats, setShowThreats] = useState(false);
   const e = s.evaluation!;
   const groups = groupMetrics(e.metrics);
-  const focused = groups.find((g) => g.id === s.metricFocus);
-  const stale = s.phase === "updating" || e.planHash !== s.proposal?.planHash;
+  const cov = e.coverage ?? [];
   const b = e.benchmark;
   const bc = (st: Status) => b?.tests.filter((t) => t.status === st).length ?? 0;
-  const cov = e.coverage ?? [];
-  const uncovered = cov.filter((x) => x.status !== "evaluated");
-  const cc = (st: Status) => cov.filter((x) => x.status === st).length;
-  let lastKind: string | null = null;
-
+  const kinds = (["risk", "utility", "integrity"] as const).map((k) => ({ k, items: groups.filter((g) => g.kind === k) })).filter((x) => x.items.length);
   return (
-    <section className={`evalbar ${stale ? "is-stale" : ""}`} aria-label="Checks">
-      {e.hardFailures.length > 0 && (
-        <div className="hard-fail-line" role="alert">
-          <IconAlert size={14} />
-          <span><strong>Export blocked.</strong> {e.hardFailures.slice(0, 3).join(" · ")}{e.hardFailures.length > 3 ? ` · and ${e.hardFailures.length - 3} more` : ""}</span>
+    <div className="checks-panel" id="checks-panel">
+      {kinds.map(({ k, items }) => (
+        <div key={k} className="checks-group" role="group" aria-label={METRIC_KIND_LABEL[k]}>
+          <h4>{METRIC_KIND_LABEL[k]}</h4>
+          <ul className="check-list">
+            {items.map((g) => {
+              const m = g.worst;
+              const open = s.metricFocus === g.id;
+              return (
+                <li key={g.id} className={`check tone-${tone(m)}`}>
+                  <button
+                    className="check-row"
+                    aria-expanded={open}
+                    aria-controls={`metric-detail-${g.id}`}
+                    onClick={() => c.store.dispatch({ type: "focusMetric", metricId: g.id })}
+                    title={`${g.name}\n${m.definition}`}
+                  >
+                    <StatusIcon status={m.status} passed={m.passed} />
+                    <span className="check-name">{g.name}</span>
+                    <span className="check-val num">{valueText(m)}</span>
+                    <span className="check-meta muted">
+                      {m.threshold && m.status === "evaluated" ? `target ${fmtThreshold(m)}${m.threshold.hard ? ", required" : ""}` : ""}
+                      {g.scopeNoun ? `${m.threshold && m.status === "evaluated" ? " · " : ""}worst of ${g.scopeNoun}` : ""}
+                    </span>
+                  </button>
+                  {open && <GroupDetail g={g} />}
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      )}
-      <div className="metric-row" role="group" aria-label="Checks">
-        {groups.map((g) => {
-          const kindKey = g.hardFail ? "blocking" : g.kind;
-          const label = kindKey !== lastKind ? (g.hardFail ? "Blocking" : METRIC_KIND_LABEL[g.kind]) : null;
-          lastKind = kindKey;
-          const m = g.worst;
-          return (
-            <span key={g.id} className="metric-slot">
-              {label && <span className="evalgroup-label">{label}</span>}
-              <button
-                className={`metric tone-${tone(m)}`}
-                aria-pressed={s.metricFocus === g.id}
-                aria-expanded={s.metricFocus === g.id}
-                aria-controls={`metric-detail-${g.id}`}
-                onClick={() => c.store.dispatch({ type: "focusMetric", metricId: g.id })}
-                title={`${g.name}\n${m.definition}\n${METRIC_STATUS_LABEL[g.status]}, ${BASIS_LABEL[m.basis]}${m.threshold ? `, target ${fmtThreshold(m)}${m.threshold.hard ? " (required)" : ""}` : ""}${g.scopeNoun ? `\nShowing the worst of ${g.scopeNoun}; click for each one` : ""}`}
-              >
-                <StatusIcon status={m.status} passed={m.passed} />
-                <span className="metric-name">{g.short}</span>
-                <span className="metric-value num">{valueText(m)}</span>
-                {m.threshold && m.status === "evaluated" && m.passed === false && <span className="metric-thr num">target {fmtThreshold(m)}</span>}
-                {g.scopeNoun && <span className="metric-count" aria-label={`worst of ${g.scopeNoun}`}>{g.scopeShort}</span>}
-              </button>
-            </span>
-          );
-        })}
-        <div className="coverage-line small">
-          <span className="evalgroup-label">Coverage</span>
-          <span className="cov-sum" title={uncovered.map((x) => `${x.description}: ${TEST_STATUS_LABEL[x.status].toLowerCase()}${x.statusReason ? ` (${x.statusReason})` : ""}`).join("\n") || undefined}>
-            <span className="num">{cc("evaluated")}</span>/<span className="num">{cov.length}</span> threats evaluated
-            {cc("unsupported") > 0 && <> · <span className="cov-unsup"><span className="num">{cc("unsupported")}</span> unsupported</span></>}
-            {cc("failed") > 0 && <> · <span className="cov-failed"><span className="num">{cc("failed")}</span> failed to run</span></>}
-            {cc("not_applicable") > 0 && <> · <span className="num">{cc("not_applicable")}</span> n/a</>}
-            </span>
-          {cov.length > 0 && (
-            <button className="btn-link" aria-expanded={showThreats} aria-controls="threat-list" onClick={() => setShowThreats((x) => !x)}>
-              {showThreats ? "Hide" : "Reasons"}
-            </button>
-          )}
-          <span className="bench">
-            {b ? (
-              <button className="btn-link" onClick={() => c.store.dispatch({ type: "toggleDev", open: true, tab: "benchmark" })}>
-                Benchmark: {bc("evaluated")} evaluated, {bc("unsupported")} unsupported, {bc("failed")} failed
-              </button>
-            ) : (
-              <span className="muted" title="Benchmark not available for this upload: no ground truth or attacker data.">· no benchmark for this upload</span>
-            )}
-          </span>
-        </div>
-      </div>
-      {focused && <GroupDetail g={focused} />}
-      {showThreats && !b && <p className="muted small">Benchmark not available for this upload: no ground truth or attacker data.</p>}
-      {showThreats && (
+      ))}
+      <div className="checks-group" role="group" aria-label="Coverage">
+        <h4>Coverage <span className="muted">· {cov.filter((x) => x.status === "evaluated").length} of {cov.length} threats evaluated</span></h4>
         <ul className="threats" id="threat-list">
-          {[...uncovered, ...cov.filter((x) => x.status === "evaluated")].map((t) => (
+          {[...cov.filter((x) => x.status !== "evaluated"), ...cov.filter((x) => x.status === "evaluated")].map((t) => (
             <li key={t.threatId} className={`threat tone-${covTone(t)}`}>
               <StatusIcon status={t.status} />
               <span><strong>{t.description}</strong>: {TEST_STATUS_LABEL[t.status].toLowerCase()}{t.statusReason ? ` (${t.statusReason})` : ""}
@@ -137,7 +114,14 @@ export function EvaluationBar() {
             </li>
           ))}
         </ul>
-      )}
-    </section>
+        <p className="small bench-line">
+          {b ? (
+            <button className="btn-link" onClick={() => c.store.dispatch({ type: "toggleDev", open: true, tab: "benchmark" })}>
+              Benchmark: {bc("evaluated")} tests evaluated, {bc("unsupported")} unsupported, {bc("failed")} failed
+            </button>
+          ) : <span className="muted">Benchmark not available for this upload: no ground truth or attacker data.</span>}
+        </p>
+      </div>
+    </div>
   );
 }
