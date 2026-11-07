@@ -1,6 +1,8 @@
 """Goal-independent pilot rules. No challenge-data name/place lexicons."""
 import re
-from .contracts import DIRECT, LABELS, Span
+from .contracts import ALL_LABELS, DIRECT, Span
+from .identifiers import CODE_REFERENCE, PLACEHOLDER_VALUE
+from .validators import iban, luhn  # noqa: F401  (re-exported for older imports)
 from .editing import text_units
 
 NAME_WORD = r"(?-i:[A-ZÀ-ÖØ-Þ][^\W\d_]*(?:['’-][^\W\d_]+)*)"
@@ -47,21 +49,6 @@ HEADER_LABELS = {
 }
 
 
-def luhn(value: str) -> bool:
-    digits = [int(c) for c in value if c.isdigit() and c.isascii()]
-    if not 13 <= len(digits) <= 19 or digits[0] not in (2, 3, 4, 5, 6):
-        return False
-    return sum((d * 2 - 9 if d * 2 > 9 else d * 2) if i % 2 else d
-               for i, d in enumerate(reversed(digits))) % 10 == 0
-
-
-def iban(value: str) -> bool:
-    value = re.sub(r"\s", "", value).upper()
-    if not re.fullmatch(r"[A-Z]{2}\d{2}[A-Z0-9]{11,30}", value):
-        return False
-    return int("".join(c if c.isdigit() else str(ord(c) - 55) for c in value[4:] + value[:4])) % 97 == 1
-
-
 def detect_rules(text: str, header: str = "") -> list[Span]:
     found = []
     for label, pattern in COMPILED:
@@ -75,13 +62,11 @@ def detect_rules(text: str, header: str = "") -> list[Span]:
                         end -= 1
                 if text[start:end].lower() in {"is", "was", "missing", "unknown", "unavailable", "not", "none"}:
                     continue
+                if label == "SECRET" and (CODE_REFERENCE.fullmatch(text[start:end])
+                                          or PLACEHOLDER_VALUE.fullmatch(text[start:end])):
+                    continue  # password = os.environ["..."] names where a secret lives; it is not one
             found.append(Span(start, end, label, "rule"))
-    for match in re.finditer(r"(?<!\d)(?:\d[ -]?){12,18}\d(?!\d)", text):
-        if luhn(match[0]):
-            found.append(Span(*match.span(), "PAYMENT_CARD", "rule"))
-    for match in re.finditer(r"\b[A-Z]{2}\d{2}(?:[ ]?[A-Z0-9]){11,30}\b", text):
-        if iban(match[0]):
-            found.append(Span(*match.span(), "IBAN", "rule"))
+    # Payment cards, IBANs and the other validated identifiers come from identifiers.detect_structured.
     # Clauses are candidates, not proof of a sensitive fact. Preserve all exact offsets.
     for start, end in text_units(text):
         for label, pattern in CONTEXTUAL.items():
@@ -104,7 +89,7 @@ def reconcile(text: str, spans: list[Span]) -> list[Span]:
         if not active:
             continue
         winner = max(active, key=lambda s: (s.label == "SECRET", s.label in DIRECT,
-                     s.source.endswith("rule"), -(s.end - s.start), -LABELS.index(s.label)))
+                     s.source.endswith("rule"), -(s.end - s.start), -ALL_LABELS.index(s.label)))
         if result and result[-1].end == a and (result[-1].label, result[-1].source) == (winner.label, winner.source):
             prev = result.pop()
             result.append(Span(prev.start, b, winner.label, winner.source))

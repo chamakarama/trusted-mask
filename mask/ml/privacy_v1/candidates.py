@@ -6,14 +6,20 @@ Rejected learned candidates are returned for review, never silently called safe.
 import re
 from .contracts import DIRECT, Span
 from .editing import expand_word, overlaps, text_units
-from .rules import detect_rules, iban, luhn
+from .identifiers import detect_structured, gate_learned
+from .rules import detect_rules
+from .validators import card, iban
 
 CONTEXT_TYPES = {"HEALTH", "FINANCIAL", "EMPLOYMENT", "FAMILY"}
 NON_NAMES = set("i me my mine you your yours he she her his we us our they their them this that these those it its "
                 "the a an and but or for to from of at by with without please explain help write my "
                 "monday tuesday wednesday thursday friday saturday sunday january february march april may june "
                 "july august september october november december today yesterday tomorrow last next three "
-                "dr mr mrs ms professor since then before after what why how where when".split())
+                "dr mr mrs ms professor since then before after what why how where when "
+                # greetings and sign-offs that open or close pasted non-English messages
+                "hi hello hey dear thanks regards kiitos terveisin moi hei hej tack halsningar mvh danke gruesse "
+                "hallo merci bonjour cordialement gracias saludos hola grazie saluti ciao bedankt groeten "
+                "dziekuje pozdrawiam obrigado".split())
 
 
 def plausible_person(value):
@@ -33,9 +39,9 @@ def plausible(span, value):
     if span.label == "PHONE":
         return digits >= 8 and bool(re.fullmatch(r"[+\d ().-]+", value))
     if span.label == "PAYMENT_CARD":
-        return luhn(value)
+        return bool(card(value))
     if span.label == "IBAN":
-        return iban(value)
+        return bool(iban(value))
     if span.label == "ADDRESS":
         return digits > 0 and len(value.split()) >= 2
     if span.label == "USERNAME":
@@ -51,8 +57,19 @@ def plausible(span, value):
     return False
 
 
+def _strip_quotes(text, span):
+    """Learned spans sometimes take the quotes around a value ('Anna Andersson' in SQL); edits must not."""
+    start, end = span.start, span.end
+    while start < end and text[start] in "\"'`‘’“”":
+        start += 1
+    while end > start and text[end-1] in "\"'`‘’“”":
+        end -= 1
+    return Span(start, end, span.label, span.source)
+
+
 def build_candidates(text, learned, header=""):
-    rules = detect_rules(text, header)
+    learned = list(learned)
+    rules = detect_rules(text, header) + detect_structured(text, learned)
     # A repeated, exactly spelled full name already identified in this source
     # must not depend on whether the tagger finds only its surname next time.
     known_names = {text[s.start:s.end] for s in rules if s.label == "PERSON"
@@ -72,7 +89,7 @@ def build_candidates(text, learned, header=""):
         span.validate(text)
         if any(a <= span.start and span.end <= b for a, b in placeholder_ranges):
             continue
-        normalized = expand_word(text, span)
+        normalized = _strip_quotes(text, expand_word(text, span))
         if normalized.start >= normalized.end:
             continue
         if span.label in CONTEXT_TYPES:
@@ -90,6 +107,10 @@ def build_candidates(text, learned, header=""):
             continue
         if any(overlaps(span, rule) for rule in entities if rule.source.endswith("rule")):
             continue  # Entity rules own values, but cannot suppress contextual vetoes.
+        gate = gate_learned(text, normalized)
+        if gate:
+            pending.append({"start": normalized.start, "end": normalized.end, "label": span.label, "reason": gate})
+            continue
         if plausible(normalized, text[normalized.start:normalized.end]):
             entities.append(normalized)
         else:
