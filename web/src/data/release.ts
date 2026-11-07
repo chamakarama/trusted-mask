@@ -49,14 +49,18 @@ export class ReleaseRefused extends Error {
 
 export async function loadRelease(id: string): Promise<Release> {
   const td = new TextDecoder();
-  const manifestBytes = await fetchBytes(releaseUrl(id, "manifest.json"));
   if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(id)) throw new Error("Invalid release ID");
+  const manifestBytes = await fetchBytes(releaseUrl(id, "manifest.json"));
   const manifest = JSON.parse(td.decode(manifestBytes));
   if (manifest.release_id !== id || !["1.0","1.1"].includes(manifest.schema_version) || !Array.isArray(manifest.resources)) throw new Error("Unsupported or inconsistent release");
   const files = new Map<string, Uint8Array>([["manifest.json", manifestBytes]]);
   // fetch only members the manifest lists AND the contract allowlists
   const wanted = manifest.resources.map((r: any) => r.path).filter((p: string) => (ALLOWED_MEMBERS as readonly string[]).includes(p));
-  await Promise.all([...wanted, "checksums.sha256"].map(async (p: string) => files.set(p, await fetchBytes(releaseUrl(id, p)))));
+  // Bound parallel reads so small local static servers do not drop release files.
+  const members: string[] = [...new Set<string>([...wanted, "checksums.sha256"])];
+  for (let start = 0; start < members.length; start += 3) {
+    await Promise.all(members.slice(start, start + 3).map(async p => files.set(p, await fetchBytes(releaseUrl(id, p)))));
+  }
   const schemaFile = manifest.schema_version === "1.1" ? "manifest-city.schema.json" : "manifest.schema.json";
   const schema = await (await fetch(`${base()}/contract/${schemaFile}`, { cache: "no-cache" })).json();
   const validation = await validateRelease(files, schema, sha256);

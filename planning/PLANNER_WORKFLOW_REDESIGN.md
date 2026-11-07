@@ -534,10 +534,49 @@ A polished mockup, a heatmap built from invented final values, a passing test co
 
 ## 13. Implementation checkpoint — 7 November 2026
 
-The main implementation is on `codex/workflow-city-implementation`, with startup and generator integration instructions in [web/README.md](../web/README.md). The independently generated data is being developed in a separate chat at the lead's request.
+The implementation is on `codex/workflow-city-implementation` in PR #13. PR #12's generator is integrated unchanged. Startup instructions are in [web/README.md](../web/README.md); measured outcomes and open gates are in [evidence/workflow-city/README.md](../evidence/workflow-city/README.md).
 
-Implemented: seven actual local owner steps; scanner/policy presentation; immutable input snapshots and revision invalidation; existing-release verification; separate city publisher/accounting path; measured candidate evaluation; explicit limited-use acknowledgement; verified ZIP/static handoff; city map with point/polygon support, fixed time scales, origin/destination drilldown, time profiles, per-release shortlist and CSV/HTML export. Fixture values remain explicitly illustrative.
+Implemented: seven actual local owner steps; scanner/policy presentation; immutable input snapshots and revision invalidation; release verification; separate city publication/accounting; measured candidate evaluation; limited-use acknowledgement; verified ZIP/static handoff; an actual city basemap with 25 shaded analysis polygons; fixed scales across time bands; origin/destination drilldown; time profiles; per-release shortlist and CSV/HTML export.
 
-The original benchmark remains unchanged and its 25.1% OD WAPE misses the 20% team target. A polished map must not conceal that result. The city generator and its measured utility remain a separate gate; point markers over the original release do not complete the polygon-heatmap requirement. No real-user study, production deployment or new city privacy result is claimed by this checkpoint.
+The additional **Travel flows** layer uses bright curved connections inspired by activity heatmaps. Width and colour encode released trips per weekday per hour. Clicking a connection opens its directional estimate and time profile. It shows at most 30 connections, excludes same-zone trips, and visibly labels paths as schematic. These are public zone-centre connections, not reconstructed journeys or measured street congestion. A street-level congestion layer requires independently supported route geometry and speed/delay or capacity measurements; synthetic versions must remain labelled fictional and be evaluated separately. Do not snap zone totals onto roads and imply the paths were observed.
 
-Before calling the whole redesign done: integrate the generator PR and frozen provenance, run the production city publisher from clean committed code, independently verify the release, finish the declared utility/seed checks, inspect the polygon flow on desktop/mobile, and conduct the unfamiliar-user task test. Retain failures and report scope reductions explicitly.
+The city artifact was published once from clean committed source `2403621`, independently verified, and committed as `releases/city-turku-v1`. Matching new workbenches reuse it rather than drawing again. The original Aura artifact is unchanged. City OD WAPE is **31.2%**, missing the 20% target; morning top-three overlap is **2/3**. All six declared populations were retained in 600 OD distribution simulations; none met the broad target and all midday decision tests failed. The original benchmark's 25.1% error remains a separate result.
+
+Verification: 70 Python checks and 41 frontend checks pass; both builds and the public boundary check pass. Desktop browser QA covers the actual workflow, map layers, directional selection, time change, shortlist and failure fallback. The current video script opens with the map and one visible planning action, tailored to the lead's beginner-participant voting context.
+
+The local implementation is demonstrable; the overall product is **not production validated**. Before declaring the redesign complete: perform the unfamiliar-user task test and fuller mobile/accessibility checks, resolve or narrow the failed utility requirements through a predeclared evaluation, record/rehearse the video, and complete human review. No deployment or external submission has occurred. The full completion definition in section 12 still applies.
+
+## 14. Clarified planner decision: where would more buses help?
+
+The lead clarified that “route congestion” means the need for more bus service on a connection, not road traffic congestion. This is the product decision to design around. The completed flow layer is the demand side of that decision; it does not yet estimate the service gap.
+
+### Visible user flow
+
+1. Open a city map with the time selector. The main question is **Where would more buses help?** Once comparable service evidence exists, colour route segments by the demand/service gap, with width showing passenger volume. Keep unknown capacity visibly distinct from low need. Until then, label the layer as travel demand.
+2. Select a route or corridor. A compact card shows **Demand**, **Current service**, and **Potential gap**, all for the same direction, date class and time window. Show buses/hour plus usable passenger capacity; do not confuse vehicle frequency with passenger throughput.
+3. Move the time selector to see whether the gap is a morning peak, afternoon peak or persistent issue. Retain a fixed comparable scale, uncertainty and source freshness.
+4. Try a hypothetical **+1 departure/hour** scenario. Show the modelled change and assumptions. A departure is not an extra fleet vehicle: vehicle requirements also depend on round-trip and layover times. Do not imply this schedules vehicles or optimises routes.
+5. Save a candidate service change with its evidence and uncertainty. Export a shortlist for planner review, not an automatic operational instruction.
+
+### Coherent data-to-decision stages
+
+| Stage | Goal | Required output / gate |
+|---|---|---|
+| 1. Define service | Identify actual line, direction, ordered stops, geometry and effective service dates | Versioned public network and schedule snapshot; no arbitrary mapping from zone pairs to bus lines |
+| 2. Protect demand | Produce privacy-reviewed estimates at a supported resolution | Existing immutable zone OD release remains unchanged; any new private-derived route/segment aggregate needs its own approved contract and cumulative budget review |
+| 3. Match demand to service | Estimate which trips use each route segment, accounting for alternatives and transfers | Explicit assignment method and uncertainty; boarding counts alone are not on-board loads; do not add OD and line-hour marginal tables together to fabricate a joint table |
+| 4. Compare supply | Compare demand and usable capacity for matching direction, segment and time | Scheduled/operated departures, vehicle capacities and occupancy/load evidence; missing values stay unknown; timestamps/service calendars validated |
+| 5. Model a change | Evaluate one clearly hypothetical service adjustment | Predeclared capacity/load target and displayed assumptions, sensitivity ranges and validation against held-out scenarios |
+| 6. Present and save | Make the evidence understandable in seconds | Map → three-number card → time comparison → scenario → saved candidate, with no mandatory technical dashboard |
+
+For a deliberately simplified synthetic segment model, demand is passengers crossing that segment per hour; service is departures/hour × usable passengers/departure. Comparing these can screen capacity pressure under stated load assumptions. Whole-route boardings or city OD volume cannot be substituted for segment loads. In real use, average hourly capacity can still conceal uneven headways and crowded individual departures. Recorded journeys also omit people who could not or chose not to travel; they do not directly measure unmet demand.
+
+### Synthetic extension and handoff
+
+Synthetic data is appropriate for demonstrating this decision loop if demand and supply are generated consistently and both are visibly fictional. Preserve PR #12's frozen baseline. Add a separate versioned scenario with public synthetic bus routes, schedules, vehicle capacities, and latent segment loads. Include high-demand/well-served, high-demand/underserved, sparse/uncertain, directional-peak, missing-capacity and overlapping-route cases. Declare scenarios, seeds, target errors and holdouts before looking at results. Keep latent truth private to evaluation; no curated final “needs more buses” score enters the public planner. Evaluate priority ranking and capacity-gap error separately from privacy protection and destination inference.
+
+**Prompt for a separate synthetic-data chat:** Extend the RouteSafe generator in a separate PR with a versioned fictional bus-service scenario for the decision “where would more departures help?”. Preserve PR #12 and its frozen outputs. Propose a public network/schedule/capacity schema and a coherent route/segment demand model first; include direction, calendars, transfers/alternative routes and separate latent truth. Freeze seeds and both positive and counterexample scenarios before evaluation. Do not publish private truth, alter the existing city release, draw a new protected release or change privacy accounting. Deliver reproducibility checks, source/config hashes, expected input/output contracts, held-out decision metrics and explicit model limitations. Coordinate the contract with the main implementation before merging.
+
+Public schedule structure can follow [GTFS Schedule](https://gtfs.org/documentation/schedule/reference/) (routes, trips, stops, stop times, shapes and service calendars). Where supplied, [GTFS Realtime](https://gtfs.org/documentation/realtime/reference/) includes occupancy fields; availability and reliability must be checked for the chosen operator. Vehicle capacity and modelled demand still need explicit provenance. These references describe possible inputs, not evidence that Turku feeds or capacity data have been integrated.
+
+**Status:** demand exploration implemented; capacity comparison, route assignment and the extra-departure scenario are planned, not implemented. This clarification supersedes earlier congestion-focused framing.

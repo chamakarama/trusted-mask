@@ -34,7 +34,13 @@
 | Devpost status and receipt | NOT SUBMITTED (human) |
 | Last logged-out access check and reviewer | TODO |
 
-## Measured results (synthetic benchmark)
+## Current implementation and video handoff — 7 November
+
+PR #13 integrates PR #12's synthetic city generator. The current planner opens on 25 shaded grid zones over Turku, with a second Travel flows layer, time bands, directional drilldown and shortlist export. The seven-step local owner workbench performs actual validation, review, release verification, evaluation and package handoff. The optional question assistant is not part of this core flow. The table above describes the original tabbed app and its AI helper; use the current navigation described here for recording.
+
+Use [the current storyboard](demo/STORYBOARD.md) and [startup instructions](web/README.md). The committed city artifact is `city-turku-v1`; its measured OD error is 31.2% against a 20% target and morning top-three overlap is 2/3. All 600 OD distribution simulations across six declared populations miss that error target. [City evidence and limitations](evidence/workflow-city/README.md) are separate from the unchanged Aura results below. The intended planner decision is where additional bus service could help. Current flows show demand only: matching service capacity and route assignment are a planned extension in section 14 of the redesign plan. No video, deployment or submission is claimed complete.
+
+## Measured results (original synthetic benchmark)
 
 All values come from `evidence/evidence-summary.json` for release `e1-aura-001`, unless another file is named. That immutable release was published by publisher commit `5438e3c`; the evaluation revision that produced the summary is later. The attack curve also appears in `evidence/e4/trajectory.json`.
 
