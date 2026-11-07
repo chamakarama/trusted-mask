@@ -45,12 +45,28 @@ export function fallbackGoal(text: string): GoalSpec {
 export class Controller {
   private seq = 0;
   private lastFiles: ImportFile[] = [];
+  /** progress stages seen during the current step, for per-stage timing */
+  private stageClock = new Map<string, { step: Step; first: number; last: number; events: number }>();
+
+  /** Turn the stages seen during `step` into elapsed times: each stage runs until the next one starts or the step ends. */
+  private flushStages(step: Step, end: number) {
+    const seen = [...this.stageClock.entries()].filter(([, v]) => v.step === step).sort((a, b) => a[1].first - b[1].first);
+    if (!seen.length) return;
+    const timings: Record<string, { ms: number; events: number; step: Step }> = {};
+    seen.forEach(([stage, v], i) => { timings[stage] = { ms: (seen[i + 1]?.[1].first ?? end) - v.first, events: v.events, step }; });
+    for (const [stage] of seen) this.stageClock.delete(stage);
+    this.dispatch({ type: "stageTimings", timings });
+  }
 
   constructor(readonly store: Store, readonly backend: Backend) {
     backend.onProgress((p) => {
       const s = store.getState();
       const step = (["export", "evaluate", "execute", "propose", "profile", "import"] as Step[]).find((k) => s.pending[k] !== undefined);
-      if (step) store.dispatch({ type: "progress", step, tag: s.pending[step]!, progress: p });
+      if (!step) return;
+      const t = now();
+      const clock = this.stageClock.get(p.stage);
+      if (clock && clock.step === step) { clock.last = t; clock.events += 1; } else this.stageClock.set(p.stage, { step, first: t, last: t, events: 1 });
+      store.dispatch({ type: "progress", step, tag: s.pending[step]!, progress: p });
     });
   }
 
@@ -62,10 +78,13 @@ export class Controller {
     const tag = ++this.seq;
     this.dispatch({ type: "start", step, tag });
     const t0 = now();
+    for (const [k, v] of this.stageClock) if (v.step === step) this.stageClock.delete(k);
     try {
       const value = await fn();
       if (this.state.pending[step] !== tag) return null;
-      return { tag, value, ms: now() - t0 };
+      const end = now();
+      this.flushStages(step, end);
+      return { tag, value, ms: end - t0 };
     } catch (e) {
       if (isSuperseded(e)) return null;
       this.dispatch({ type: "failed", step, tag, message: errMsg(e) });
@@ -193,7 +212,7 @@ export class Controller {
     const planHash = p.value.planHash;
     const e = await this.run("execute", () => this.backend.execute(planHash));
     if (!e) return;
-    this.dispatch({ type: "executed", tag: e.tag, executed: e.value });
+    this.dispatch({ type: "executed", tag: e.tag, executed: e.value, ms: e.ms });
     if (this.state.executed?.planHash !== planHash) return;
     const v = await this.run("evaluate", () => this.backend.evaluate(planHash));
     if (!v) return;

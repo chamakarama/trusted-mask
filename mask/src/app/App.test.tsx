@@ -60,12 +60,15 @@ describe("App", () => {
     expect(text()).toContain("Interpretation");
     expect(text()).toContain("Policy baseline");
     // risk and utility are separate labelled items; unsupported is stated, not shown as zero
-    expect(text()).toContain("Direct identifiers kept");
-    expect(text()).toContain("Joins preserved");
-    expect(text()).toContain("Leakage against independent labels");
-    expect(text()).toContain("not supported");
+    expect(text()).toContain("Direct IDs kept");
+    expect(text()).toContain("Joins");
+    expect(text()).toContain("Gold spans left");
+    expect(text()).toContain("unsupported");
+    const reasons = [...host!.querySelectorAll("button")].find((b) => b.textContent === "Reasons")!;
+    await act(async () => { reasons.click(); });
     expect(text()).toContain("Attribute inference via a leaked customer list");
     expect(text()).toContain("Benchmark not available for this upload");
+    expect(host!.querySelector('[title="Benchmark not available for this upload: no ground truth or attacker data."]')).not.toBeNull();
     const exportBtn = [...host!.querySelectorAll("button")].find((b) => b.textContent?.includes("Confirm and export")) as HTMLButtonElement;
     expect(exportBtn.disabled).toBe(false);
     expect(host!.querySelector("[role=grid]")).not.toBeNull();
@@ -112,5 +115,41 @@ describe("App", () => {
     expect(edited.evaluation!.metrics.find((m) => m.id === "k_anonymity")?.passed).toBe(true);
     await act(async () => { await c.undo(); });
     expect(c.store.getState().proposal!.planHash).toBe(base);
+  });
+
+  it("a suggestion chip sends immediately", async () => {
+    const c = new Controller(createStore(initialState("fixture")), new FixtureBackend());
+    mount(c);
+    const chip = host!.querySelector<HTMLButtonElement>(".example")!;
+    await act(async () => { chip.click(); });
+    await settle();
+    const s = c.store.getState();
+    expect(s.thread[0]).toMatchObject({ role: "user", text: chip.textContent });
+    expect(s.goal).not.toBeNull();
+    expect(host!.querySelector<HTMLTextAreaElement>("#goal-input")!.value).toBe("");
+  });
+
+  it("an edit after export flips back to review with an export-stale marker and a collapsed receipt", async () => {
+    const c = new Controller(createStore(initialState("fixture")), new FixtureBackend());
+    mount(c);
+    await act(async () => { await startFixtureSession(c); await c.answer("repeat_contacts", "yes"); });
+    await settle();
+    await act(async () => { await c.exportNow(); });
+    await settle();
+    expect(c.store.getState().error).toBeNull();
+    expect(c.store.getState().phase).toBe("complete");
+    const show = [...host!.querySelectorAll("button")].find((b) => b.textContent === "Show receipt")!;
+    await act(async () => { show.click(); });
+    expect(host!.querySelector(".receipt")).not.toBeNull();
+    await act(async () => { await c.setOverride({ unitId: "f:customers.postcode", recipeId: "generalize_postcode", params: { digits: "2" } }); });
+    await settle();
+    const s = c.store.getState();
+    expect(s.phase).toBe("review_ready");
+    expect(s.exportStale).toBe(true);
+    expect(host!.querySelector(".receipt")).toBeNull();
+    expect(host!.querySelector("[data-testid=export-stale]")?.textContent).toContain("Export stale");
+    const btn = [...host!.querySelectorAll("button")].find((b) => b.textContent?.includes("Confirm and export")) as HTMLButtonElement;
+    expect(btn.disabled).toBe(false);
+    expect(Object.keys(s.timings)).toEqual(expect.arrayContaining(["import", "profile", "propose", "execute", "evaluate", "export"]));
   });
 });

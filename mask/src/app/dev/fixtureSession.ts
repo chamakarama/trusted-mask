@@ -534,11 +534,14 @@ export class FixtureBackend implements Backend {
       const n = t.data[0]?.length ?? 0;
       const lines = [cols.map((c) => csv(c.name)).join(",")];
       for (let r = 0; r < n; r++) lines.push(idx.map((ci) => csv(t.data[ci]?.[r] ?? null)).join(","));
-      return { name: `FIXTURE_${t.name}.csv`, data: enc.encode(lines.join("\n") + "\n").buffer as ArrayBuffer, mime: "text/csv" };
+      const bytes = enc.encode(lines.join("\n") + "\n");
+      return { name: `FIXTURE_${t.name}.csv`, bytes, data: bytes.buffer as ArrayBuffer, mime: "text/csv" };
     });
     const report = { fixture: true, note: "Development fixture export. Nothing in it was measured.", planHash, decisions: p.decisions.map((d) => ({ unit: d.unitId, recipe: d.selected?.recipeId ?? null, reason: d.reason })) };
-    files.push({ name: "FIXTURE_report.json", data: enc.encode(JSON.stringify(report, null, 2)).buffer as ArrayBuffer, mime: "application/json" });
-    const artifacts = files.map((f) => ({ name: f.name, kind: (f.name.endsWith(".json") ? "report" : "table") as "report" | "table", bytes: f.data.byteLength, sha256: sha256Hex(f.data) }));
+    const reportBytes = enc.encode(JSON.stringify(report, null, 2));
+    files.push({ name: "FIXTURE_report.json", bytes: reportBytes, data: reportBytes.buffer as ArrayBuffer, mime: "application/json" });
+    // hash the encoded bytes (not the ArrayBuffer): avoids cross-realm buffer checks in test environments
+    const artifacts = files.map((f) => ({ name: f.name, kind: (f.name.endsWith(".json") ? "report" : "table") as "report" | "table", bytes: f.bytes.byteLength, sha256: sha256Hex(f.bytes) }));
     const receipt = {
       version: 1, receiptId: `fixture-receipt-${planHash.slice(0, 6)}`, inputHash: p.inputHash, goalId: p.goalId, planHash, outputHash: this.exec.outputHash,
       artifacts, confirmedAt: new Date().toISOString(),
@@ -549,7 +552,7 @@ export class FixtureBackend implements Backend {
         decisions: [], metrics: [], hardFailures: [], unsupported: [], coverage: fixtureCoverage().map((c) => ({ threatId: c.threatId, description: c.description, status: c.status, evaluatedBy: c.evaluatedBy })), limitations: ["development fixture"], confirmedAt: new Date().toISOString(),
       },
     } as ExportReceipt;
-    return { receipt, files };
+    return { receipt, files: files.map(({ name, data, mime }) => ({ name, data, mime })) };
   }
   async loadModel(_url: string) {
     await tick();

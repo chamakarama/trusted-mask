@@ -17,10 +17,17 @@ export function PurposePane() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const interpreting = s.pending.interpret !== undefined;
 
+  // Keep the latest request and the start of Mask's reply in view: scroll so the last user message sits
+  // at the top of the thread (scrolling to the bottom would hide the card header behind a tall card).
+  const lastUserId = [...s.thread].reverse().find((t) => t.role === "user")?.id;
   useEffect(() => {
-    const el = listRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
-  }, [s.thread.length]);
+    const list = listRef.current;
+    if (!list) return;
+    const msg = lastUserId ? list.querySelector<HTMLElement>(`[data-id="${lastUserId}"]`) : null;
+    const top = msg ? msg.offsetTop - 8 : list.scrollHeight;
+    if (typeof list.scrollTo === "function") list.scrollTo({ top, behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    else list.scrollTop = top;
+  }, [s.thread.length, lastUserId, interpreting]);
 
   const send = () => {
     const t = text.trim();
@@ -40,15 +47,16 @@ export function PurposePane() {
         {s.thread.length === 0 && (
           <li className="thread-intro">
             <p>Describe the analysis and who will receive the result. Mask uses this to choose how much detail each field keeps.</p>
+            <p className="muted small examples-hint">Start from an example, then refine below:</p>
             <div className="examples" aria-label="Examples">
               {EXAMPLES.map((ex) => (
-                <button key={ex} className="example" onClick={() => { setText(ex); inputRef.current?.focus(); }}>{ex}</button>
+                <button key={ex} className="example" onClick={() => { void c.submitGoal(ex); inputRef.current?.focus(); }}>{ex}</button>
               ))}
             </div>
           </li>
         )}
         {s.thread.map((t) => {
-          if (t.role === "user") return <li key={t.id} className="msg msg-user"><p>{t.text}</p></li>;
+          if (t.role === "user") return <li key={t.id} data-id={t.id} className="msg msg-user"><p>{t.text}</p></li>;
           if (t.kind === "note") return <li key={t.id} className={`msg msg-note tone-${t.tone}`}><p>{t.text}</p></li>;
           return <li key={t.id} className="msg msg-mask"><GoalCard /></li>;
         })}

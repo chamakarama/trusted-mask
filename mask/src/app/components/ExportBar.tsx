@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppState, useController } from "../store/store";
 import { canExport } from "../store/state";
 import { fmtBytes, fmtInt, shortHash } from "../lib/labels";
@@ -9,6 +9,9 @@ export function ExportBar() {
   const s = useAppState();
   const c = useController();
   const [showFiles, setShowFiles] = useState(false);
+  const [showReceipt, setShowReceipt] = useState(false);
+  // a new export or any change afterwards collapses the receipt and file list
+  useEffect(() => { setShowReceipt(false); setShowFiles(false); }, [s.exported?.receipt.receiptId, s.exportStale]);
   const ok = canExport(s);
   const tables = s.executed?.tables ?? [];
   const done = s.phase === "complete" && s.exported && !s.exportStale;
@@ -27,9 +30,9 @@ export function ExportBar() {
       {done && s.exported ? (
         <div className="export-done">
           <p className="export-ok"><IconCheck size={14} /> Downloaded {s.exported.files.length} files.
-            <button className="btn-link small" onClick={() => setShowFiles((x) => !x)} aria-expanded={showFiles}>{showFiles ? "Hide receipt" : "Show receipt"}</button>
+            <button className="btn-link small" onClick={() => setShowReceipt((x) => !x)} aria-expanded={showReceipt}>{showReceipt ? "Hide receipt" : "Show receipt"}</button>
           </p>
-          {showFiles && (
+          {showReceipt && (
             <div className="receipt small">
               <p className="mono xsmall">plan {shortHash(s.exported.receipt.planHash, 16)} · input {shortHash(s.exported.receipt.inputHash, 16)} · output {shortHash(s.exported.receipt.outputHash, 16)}</p>
               <ul>
@@ -43,7 +46,9 @@ export function ExportBar() {
       ) : (
         <div className="export-main">
           <div className="export-what small">
-            {s.exported && s.exportStale && <p className="export-stale"><IconAlert size={12} /> The plan changed after your last export. Export again for the current version.</p>}
+            {s.exported && s.exportStale && (
+              <p className="export-stale" data-testid="export-stale"><IconAlert size={12} /> Export stale: the plan changed after your last export (receipt {s.exported.receipt.receiptId.slice(0, 12)}). Export again for the current version.</p>
+            )}
             <p>
               Will download {tables.length} protected {tables.length === 1 ? "table" : "tables"} and a sanitised report.{" "}
               <button className="btn-link" onClick={() => setShowFiles((x) => !x)} aria-expanded={showFiles}>{showFiles ? "Hide files" : "Show files"}</button>
