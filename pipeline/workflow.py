@@ -106,6 +106,9 @@ class Workflow:
                 raise ValueError('INPUT_CHANGED: validate the dataset again; existing budget remains spent')
 
     def action(self, action, body):
+        if action == 'prepare-demo':
+            if set(body) != {'revision'}: raise ValueError('INVALID_REQUEST')
+            return self.prepare_demo(body['revision'])
         allowed = {'select': {'dataset_id'}, 'validate': set(), 'review': {'acknowledged'}, 'purpose': {'purpose'}, 'publish': set(), 'accept': {'acknowledged'}, 'share': set()}
         if action not in allowed or set(body) != allowed[action] | {'revision'}:
             raise ValueError('INVALID_REQUEST: unknown action or fields')
@@ -241,6 +244,35 @@ class Workflow:
         self.state['revision'] += 1
         self.save()
         return self.public_state()
+
+    def prepare_demo(self, revision):
+        """One-click preparation for the registered synthetic recipe, not human approval."""
+        if type(revision) is not int or revision != self.state['revision']:
+            raise ValueError('STALE_REVISION: refresh before processing')
+        if self.state.get('dataset_id') != 'city' or not city_registration(self.fingerprint('city')):
+            raise ValueError('REGISTERED_DEMO_REQUIRED: upload the original synthetic demo file')
+        self.action('validate', {'revision': revision})
+        if not city_registration(self.state['fingerprint']):
+            raise ValueError('REGISTERED_DEMO_REQUIRED')
+        # The known demo policy supplies field handling and purpose. Do not record
+        # a human review or acknowledgement that never happened.
+        self.state.update(completed=2, fields_acknowledged=False,
+                          review_mode='automatic_registered_synthetic_demo',
+                          revision=self.state['revision']+1)
+        self.save()
+        self.action('purpose', {'revision': self.state['revision'], 'purpose': 'aggregate_transport_planning'})
+        self.action('publish', {'revision': self.state['revision']})
+        self.require(4)
+        if self.state.get('evaluation', {}).get('identity') != self.evaluation_identity():
+            raise ValueError('EVALUATION_STALE')
+        if artifact.verify(self.source()) != self.state['candidate']['manifest_sha256']:
+            raise ValueError('ARTIFACT_CHANGED')
+        self.state.update(completed=5, revision=self.state['revision']+1, acceptance={
+            'scope': 'Synthetic demonstration only; accuracy failures retained. Not validated for service decisions.',
+            'mode': 'automatic_registered_synthetic_demo', 'local_demo_acknowledgement': False,
+            'release_hash': self.state['candidate']['manifest_sha256']})
+        self.save()
+        return self.action('share', {'revision': self.state['revision']})
 
     def upload(self, data, revision, content_type="application/zip"):
         if revision!=self.state['revision']:raise ValueError('STALE_REVISION: refresh before uploading')

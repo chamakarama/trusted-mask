@@ -1,6 +1,6 @@
 # Current recording version
 
-Use **Latest full-day cut and protection message** below for `kupittaa-day-v2`. Earlier cuts document previous releases; their counts and evaluation results do not apply to v2.
+The owner interaction is now a single upload followed by download, with processing automatic and optional Details. Use **Latest full-day cut and protection message** below for `kupittaa-day-v2`. Earlier cuts document previous releases; their counts and evaluation results do not apply to v2.
 
 # RouteSafe — current city-map video cut
 

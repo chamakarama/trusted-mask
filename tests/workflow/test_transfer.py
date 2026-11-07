@@ -70,3 +70,28 @@ def test_raw_json_upload_matches_registered_input_and_rejects_protected_or_chang
     with pytest.raises(ValueError,match='RAW_JSON_CHANGED'):
         w.upload(json.dumps(doc).encode(),result['revision'],'application/json')
     assert w.state==before
+
+
+def test_automatic_demo_preparation_keeps_checks_without_claiming_human_review(tmp_path,monkeypatch):
+    from simulation.hackathon_day import generate
+    from pipeline.transfer import raw_document
+    source=tmp_path/'input';generate(source)
+    w=Workflow(tmp_path/'runtime',source)
+    w.upload(json.dumps(raw_document(source)).encode(),0,'application/json')
+    # Automatic mode may reuse the known release, never create a new publication.
+    monkeypatch.setattr(city,'publish',lambda *a,**k:pytest.fail('Unexpected new publication'))
+    result=w.action('prepare-demo',{'revision':w.state['revision']})
+    assert result['completed']==6
+    assert result['fields_acknowledged'] is False
+    assert result['acceptance']['local_demo_acknowledgement'] is False
+    assert result['acceptance']['mode']=='automatic_registered_synthetic_demo'
+    assert result['evaluation']['accuracy_pass'] is False
+    expected=protected_document(Path(__file__).resolve().parents[2]/'releases/kupittaa-day-v2')
+    assert json.loads(w.portable_bytes())==expected
+    before=w.state.copy()
+    with pytest.raises(ValueError,match='STALE'):
+        w.action('prepare-demo',{'revision':0})
+    monkeypatch.setattr(module,'city_registration',lambda _:None)
+    with pytest.raises(ValueError,match='REGISTERED_DEMO_REQUIRED'):
+        w.action('prepare-demo',{'revision':w.state['revision']})
+    assert w.state==before

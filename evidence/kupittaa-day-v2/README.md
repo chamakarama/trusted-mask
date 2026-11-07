@@ -45,3 +45,9 @@ Verification for this extension: 52 frontend tests passed, including malformed r
 The operator now accepts that same raw JSON as well as its ZIP. It matches the lossless encoding against a snapshot of the registered input, then runs the normal validation/review/protection flow with unchanged publication/accounting rules. Altered records, duplicate JSON fields, stale revisions and already-protected uploads are rejected. The focused workflow/simulation suite passes 20 tests, including full raw round-trip preservation.
 
 An isolated end-to-end run used the actual Downloads `01-RAW.json`, completed all six internal transitions through Share, and confirmed the portable result equals Downloads `02-PROTECTED.json`. It reused manifest `0792b058…`; no new noise or release was generated. The running operator was restarted with JSON support, and its upload control was verified in the browser.
+
+## Simplified operator
+
+The main owner screen now has two cards: upload raw data and download protected data. Upload automatically runs validation, registered demo policy selection, publication verification/reuse, evaluation and packaging. There are no wizard pages or checkboxes. Details contains the actual before/after rows and measured limits. The automatic demo record explicitly does not claim human review. All prior publication and accounting constraints remain in place. Backend coverage verifies that automation retains the failed accuracy result, returns the same protected JSON, refuses stale/unregistered runs, and never calls a new publisher.
+
+Verification: the operator build, 52 frontend tests and 20 workflow tests pass. Browser QA selected Downloads `01-RAW.json`, observed automatic processing reach Ready to share without any intermediate action, downloaded the result and compared it with `02-PROTECTED.json`: JSON equality passed. Screenshot: `operator-simple.png`.

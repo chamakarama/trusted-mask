@@ -1,6 +1,6 @@
 # RouteSafe planner and private data-owner workflow
 
-The planner is a static recipient application. The owner workbench is a separate local Python service. Only verified release bundles cross that boundary. The owner exposes five stages (Private input → Purpose → Protect → Check → Share), backed by seven internal checkpoints described in [the redesign plan](../planning/PLANNER_WORKFLOW_REDESIGN.md).
+The planner is a static recipient application. The owner workbench is a separate local Python service. Only verified release bundles cross that boundary. The owner has one screen: upload the registered raw JSON or ZIP, wait for automatic processing, then download the protected JSON. Validation, policy selection, evaluation and packaging remain backend checks. Technical details and the before/after preview are collapsed under Details.
 
 ## Run the complete local slice
 
@@ -71,7 +71,7 @@ The recipient’s **Morning priorities** action ranks destination areas from rel
 
 The private page (`http://127.0.0.1:8792/operator.html`) now accepts the registered synthetic ZIP through a file picker or drag-and-drop (16 MB compressed / 100 MB expanded). Start the service with `--city-input simulation/private/kupittaa-hackathon-v1 --runtime private/kupittaa-demo`; generate that ignored input once with `.venv/bin/python -m simulation.hackathon`. Unregistered inputs require a reviewed publication/accounting scope and are explicitly refused.
 
-After the five-stage review, **Download protected data** returns one portable JSON. The separate planner (`http://127.0.0.1:8791/?release=kupittaa-hackathon-v1`) opens that file locally through **Open protected file**. It verifies the embedded release, never posts file bytes, and does not use the convenience aggregate summary as a map input. The same protected JSON can be manually uploaded into a fresh external AI chat. The workbench supplies questions but does not send anything externally.
+After automatic processing, **Download protected data** returns one portable JSON. The separate planner (`http://127.0.0.1:8791/?release=kupittaa-hackathon-v1`) opens that file locally through **Open protected file**. It verifies the embedded release, never posts file bytes, and does not use the convenience aggregate summary as a map input. The same protected JSON can be manually uploaded into a fresh external AI chat. The workbench supplies questions but does not send anything externally.
 
 **Bus lines** exposes named Föli routes and searchable public stops, with the existing modelled demand on their shared street segments. It is not a line-load or live-service measurement. See [Kupittaa evidence](../evidence/kupittaa-hackathon/README.md) for the frozen scenario, exact limits and measured spike.
 
@@ -87,7 +87,7 @@ npm --prefix web run build:operator
 .venv/bin/python -m pipeline.workflow --city-input simulation/private/kupittaa-day-v2 --runtime private/kupittaa-day-demo --port 8792
 ```
 
-Use the existing static server on port 8791 and open `http://127.0.0.1:8791/?release=kupittaa-day-v2`. The owner page is `http://127.0.0.1:8792/operator.html`. Upload the registered raw ZIP, complete the review, download the protected JSON, then open it locally in the planner. Click **Follow the day** and use the five time bands. The selected area and From/To direction change visibly; **show whole city** returns to exploration. The large event pin has been removed.
+Use the existing static server on port 8791 and open `http://127.0.0.1:8791/?release=kupittaa-day-v2`. The owner page is `http://127.0.0.1:8792/operator.html`. Upload the registered raw JSON or ZIP, download the protected JSON when ready, then open it locally in the planner. Click **Follow the day** and use the five time bands. The selected area and From/To direction change visibly; **show whole city** returns to exploration. The large event pin has been removed.
 
 The generator, independent invented population and criteria were frozen at `ff8fb0d` before the single publication. Existing city and v1 releases remain immutable. All five deliberately large target patterns rank first in this draw, but the night lower noise bound is zero and fine-pair count error is 52.8%. See [full-day evidence](../evidence/kupittaa-day-v2/README.md). This does not establish real-world planning utility.
 
@@ -100,3 +100,7 @@ Keep the optional ChatGPT segment: show actual answers to an aggregate planning 
 Both open through **Open data file** in the planner. Raw mode derives uncapped inferred OD counts locally, labels the map **RAW · UNPROTECTED**, and does not claim privacy or noise bounds. Protected mode continues to use the strict protected-release verifier. Switching files resets the map safely; no file contents are transmitted. Raw format support is limited to the full-day synthetic demo. The owner workbench accepts the same raw JSON or its original registered ZIP for sanitization. It verifies exact equivalence to the registered native input; changed records are refused. Protected JSON is identified as already protected and directed to the planner.
 
 For the external AI demonstration, attach each JSON in a separate fresh chat and ask it to use Python to decode/analyse the file. Never show the protected chat the raw file first. An external AI upload/response has not been tested by the implementation.
+
+## Minimal operator
+
+The default owner UI is now upload → download. The upload invokes `prepare-demo`, restricted to a registered synthetic population. It validates the source, applies the predefined field/purpose policy, verifies/reuses the publication, evaluates it and packages the result. It records `automatic_registered_synthetic_demo`, not a fictitious human review or acknowledgement. Unregistered inputs remain refused; existing artifact checks and accounting are unchanged. Failed accuracy remains visible in a short result note and in Details. Errors stop before enabling download, and retries remain tied to the uploaded run. The older individual action API is retained for tests and diagnostic use.
