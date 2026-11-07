@@ -1,0 +1,2005 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-sleep-clinic",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-sleep",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-sleep",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-sleep",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-sleep",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this into a one-paragraph summary I can hand to the sleep clinic, keeping my age and every timing.",
+  "text": "Sleep diary, as promised. I'm 34, and for the last fortnight I've been getting to sleep around 1 a.m. and waking at 5:30, so roughly four and a half hours, though last Tuesday it might have been five, no wait, closer to four. I do not nap in the day and I have stopped coffee after noon. No sleeping tablets, nothing prescribed. My flatmate Sigrid says I talk in my sleep, which I can't confirm either way. Mood is flat but not low, and I haven't had any thoughts of self-harm. Weekends are better, about seven hours, I think.",
+  "entities": [
+   {
+    "id": "age",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "34"
+   },
+   {
+    "id": "sig",
+    "entity_id": "sig",
+    "label": "PERSON",
+    "quote": "Sigrid"
+   },
+   {
+    "id": "mood",
+    "entity_id": "mood",
+    "label": "HEALTH",
+    "quote": "Mood is flat but not low"
+   },
+   {
+    "id": "sh",
+    "entity_id": "sh",
+    "label": "HEALTH",
+    "quote": "I haven't had any thoughts of self-harm"
+   },
+   {
+    "id": "sl",
+    "entity_id": "sl",
+    "label": "HEALTH",
+    "quote": "getting to sleep around 1 a.m. and waking at 5:30"
+   },
+   {
+    "id": "tab",
+    "entity_id": "tab",
+    "label": "HEALTH",
+    "quote": "No sleeping tablets, nothing prescribed"
+   },
+   {
+    "id": "talk",
+    "entity_id": "talk",
+    "label": "HEALTH",
+    "quote": "I talk in my sleep"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "age",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sl",
+    "entity_id": "sl",
+    "quote": "getting to sleep around 1 a.m. and waking at 5:30",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tab",
+    "entity_id": "tab",
+    "quote": "No sleeping tablets, nothing prescribed",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sig",
+    "entity_id": "sig",
+    "quote": "Sigrid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "talk",
+    "entity_id": "talk",
+    "quote": "I talk in my sleep",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mood",
+    "entity_id": "mood",
+    "quote": "Mood is flat but not low",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sh",
+    "entity_id": "sh",
+    "quote": "I haven't had any thoughts of self-harm",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm 34"
+   },
+   {
+    "quote": "around 1 a.m. and waking at 5:30"
+   },
+   {
+    "quote": "closer to four"
+   },
+   {
+    "quote": "No sleeping tablets, nothing prescribed"
+   },
+   {
+    "quote": "haven't had any thoughts of self-harm"
+   },
+   {
+    "quote": "stopped coffee after noon"
+   },
+   {
+    "quote": "about seven hours, I think"
+   }
+  ],
+  "approved_output": "Sleep diary, as promised. I'm 34, and for the last fortnight I've been getting to sleep around 1 a.m. and waking at 5:30, so roughly four and a half hours, though last Tuesday it might have been five, no wait, closer to four. I do not nap in the day and I have stopped coffee after noon. No sleeping tablets, nothing prescribed. My flatmate [PERSON_1] says I talk in my sleep, which I can't confirm either way. Mood is flat but not low, and I haven't had any thoughts of self-harm. Weekends are better, about seven hours, I think.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-sleep-habits",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-sleep",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-sleep",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-sleep",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-sleep",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a bullet list of my sleep habits (timings, caffeine, naps) for a general sleep-tips thread. A rough age bracket is fine, and my mood isn't relevant there.",
+  "text": "Sleep diary, as promised. I'm 34, and for the last fortnight I've been getting to sleep around 1 a.m. and waking at 5:30, so roughly four and a half hours, though last Tuesday it might have been five, no wait, closer to four. I do not nap in the day and I have stopped coffee after noon. No sleeping tablets, nothing prescribed. My flatmate Sigrid says I talk in my sleep, which I can't confirm either way. Mood is flat but not low, and I haven't had any thoughts of self-harm. Weekends are better, about seven hours, I think.",
+  "entities": [
+   {
+    "id": "age",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "34"
+   },
+   {
+    "id": "sig",
+    "entity_id": "sig",
+    "label": "PERSON",
+    "quote": "Sigrid"
+   },
+   {
+    "id": "mood",
+    "entity_id": "mood",
+    "label": "HEALTH",
+    "quote": "Mood is flat but not low"
+   },
+   {
+    "id": "sh",
+    "entity_id": "sh",
+    "label": "HEALTH",
+    "quote": "I haven't had any thoughts of self-harm"
+   },
+   {
+    "id": "sl",
+    "entity_id": "sl",
+    "label": "HEALTH",
+    "quote": "getting to sleep around 1 a.m. and waking at 5:30"
+   },
+   {
+    "id": "tab",
+    "entity_id": "tab",
+    "label": "HEALTH",
+    "quote": "No sleeping tablets, nothing prescribed"
+   },
+   {
+    "id": "talk",
+    "entity_id": "talk",
+    "label": "HEALTH",
+    "quote": "I talk in my sleep"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "age",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "GENERALISE",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sl",
+    "entity_id": "sl",
+    "quote": "getting to sleep around 1 a.m. and waking at 5:30",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tab",
+    "entity_id": "tab",
+    "quote": "No sleeping tablets, nothing prescribed",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sig",
+    "entity_id": "sig",
+    "quote": "Sigrid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "talk",
+    "entity_id": "talk",
+    "quote": "I talk in my sleep",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "section",
+    "quote": " Mood is flat but not low, and I haven't had any thoughts of self-harm.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The mood and self-harm sentence has nothing to do with a list of sleep habits for a general tips thread, and no timing, caffeine or nap fact sits inside it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "around 1 a.m. and waking at 5:30"
+   },
+   {
+    "quote": "closer to four"
+   },
+   {
+    "quote": "I do not nap"
+   },
+   {
+    "quote": "stopped coffee after noon"
+   },
+   {
+    "quote": "No sleeping tablets"
+   },
+   {
+    "quote": "about seven hours, I think"
+   }
+  ],
+  "approved_output": "Sleep diary, as promised. I'm 30–39, and for the last fortnight I've been getting to sleep around 1 a.m. and waking at 5:30, so roughly four and a half hours, though last Tuesday it might have been five, no wait, closer to four. I do not nap in the day and I have stopped coffee after noon. No sleeping tablets, nothing prescribed. My flatmate [PERSON_1] says I talk in my sleep, which I can't confirm either way. Weekends are better, about seven hours, I think.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-vaccine-recap",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-vaccine",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-vaccine",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-vaccine",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-vaccine",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a short checklist for the practice nurse covering the vaccines, the temperature rule and any reactions.",
+  "text": "Hi Matthias,\n\nQuick recap for the practice nurse booking. Our son's 12-month jabs are due, and Clémence at the surgery said the MMR can go ahead even though he's had a mild cold, but not if his temperature is above 38 °C on the day. He's had no reaction to anything so far, no rash, no swelling. His second dose of the rotavirus vaccine was at 14 weeks, I believe, not 12. If anything changes before the appointment, ring me on 07700 900452 rather than the landline, which nobody checks.\n\nBest,\nEilidh",
+  "entities": [
+   {
+    "id": "mat",
+    "entity_id": "mat",
+    "label": "PERSON",
+    "quote": "Matthias"
+   },
+   {
+    "id": "cle",
+    "entity_id": "cle",
+    "label": "PERSON",
+    "quote": "Clémence"
+   },
+   {
+    "id": "eil",
+    "entity_id": "eil",
+    "label": "PERSON",
+    "quote": "Eilidh"
+   },
+   {
+    "id": "age",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "12-month"
+   },
+   {
+    "id": "cold",
+    "entity_id": "cold",
+    "label": "HEALTH",
+    "quote": "mild cold"
+   },
+   {
+    "id": "nr",
+    "entity_id": "nr",
+    "label": "HEALTH",
+    "quote": "no reaction to anything so far, no rash, no swelling"
+   },
+   {
+    "id": "rota",
+    "entity_id": "rota",
+    "label": "HEALTH",
+    "quote": "second dose of the rotavirus vaccine was at 14 weeks, I believe, not 12"
+   },
+   {
+    "id": "ph",
+    "entity_id": "ph",
+    "label": "PHONE",
+    "quote": "07700 900452"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "mat",
+    "entity_id": "mat",
+    "quote": "Matthias",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "age",
+    "entity_id": "age",
+    "quote": "12-month",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cle",
+    "entity_id": "cle",
+    "quote": "Clémence",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "cold",
+    "entity_id": "cold",
+    "quote": "mild cold",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "nr",
+    "entity_id": "nr",
+    "quote": "no reaction to anything so far, no rash, no swelling",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "rota",
+    "entity_id": "rota",
+    "quote": "second dose of the rotavirus vaccine was at 14 weeks, I believe, not 12",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "ph",
+    "quote": "07700 900452",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "eil",
+    "entity_id": "eil",
+    "quote": "Eilidh",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Our son's"
+   },
+   {
+    "quote": "MMR"
+   },
+   {
+    "quote": "above 38 °C"
+   },
+   {
+    "quote": "no rash, no swelling"
+   },
+   {
+    "quote": "14 weeks, I believe, not 12"
+   },
+   {
+    "quote": "rather than the landline"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nQuick recap for the practice nurse booking. Our son's 12-month jabs are due, and [PERSON_2] at the surgery said the MMR can go ahead even though he's had a mild cold, but not if his temperature is above 38 °C on the day. He's had no reaction to anything so far, no rash, no swelling. His second dose of the rotavirus vaccine was at 14 weeks, I believe, not 12. If anything changes before the appointment, ring me on [PHONE] rather than the landline, which nobody checks.\n\nBest,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-syrup-practice",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-syrup",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-syrup",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-syrup",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-syrup",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check the arithmetic and tell me whether rounding the dose to a measurable volume would be sensible.",
+  "text": "Check my arithmetic on this practice problem for my pharmacology module (it's from the course workbook, not a real patient). A syrup is labelled 125 mg per 5 ml. The textbook says to give 15 mg per kg per day, divided into three doses, for a child weighing 18 kg. So the daily total is 270 mg, each dose is 90 mg, and 90 mg is 3.6 ml. I got 3.6 ml but then second-guessed myself because one of the old exam papers had 4 ml. I also assumed we shouldn't round to the nearest 0.5 ml. Is that assumption sensible, or should I round to something a syringe can actually measure?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "125 mg per 5 ml"
+   },
+   {
+    "quote": "15 mg per kg per day"
+   },
+   {
+    "quote": "18 kg"
+   },
+   {
+    "quote": "270 mg"
+   },
+   {
+    "quote": "90 mg is 3.6 ml"
+   },
+   {
+    "quote": "had 4 ml"
+   }
+  ],
+  "approved_output": "Check my arithmetic on this practice problem for my pharmacology module (it's from the course workbook, not a real patient). A syrup is labelled 125 mg per 5 ml. The textbook says to give 15 mg per kg per day, divided into three doses, for a child weighing 18 kg. So the daily total is 270 mg, each dose is 90 mg, and 90 mg is 3.6 ml. I got 3.6 ml but then second-guessed myself because one of the old exam papers had 4 ml. I also assumed we shouldn't round to the nearest 0.5 ml. Is that assumption sensible, or should I round to something a syringe can actually measure?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-aunt-warfarin",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-warfarin",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-warfarin",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-warfarin",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-warfarin",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a short phone script for the pharmacy covering the dose, the missed dose, the allergy, the address correction and the deadline.",
+  "text": "Notes before I ring the pharmacy about my aunt Imogen's tablets:\n- Imogen takes warfarin 3 mg in the evening, not the 5 mg printed on the old box (I thought 4 at first, but no, it's 5)\n- She missed one dose two days ago and took it the next morning; no bruising, no nosebleeds\n- Penicillin allergy: a rash, not breathing trouble\n- The label has her old address, 14 Alder Court, but she moved to 9 Cobbler's Row\n- The pharmacist, Gerrit, wants the new address by email at imogen.p@example.invalid by Friday",
+  "entities": [
+   {
+    "id": "im1",
+    "entity_id": "imogen",
+    "label": "PERSON",
+    "quote": "Imogen",
+    "occurrence": 1
+   },
+   {
+    "id": "im2",
+    "entity_id": "imogen",
+    "label": "PERSON",
+    "quote": "Imogen",
+    "occurrence": 2
+   },
+   {
+    "id": "ger",
+    "entity_id": "ger",
+    "label": "PERSON",
+    "quote": "Gerrit"
+   },
+   {
+    "id": "w",
+    "entity_id": "w",
+    "label": "HEALTH",
+    "quote": "warfarin 3 mg in the evening"
+   },
+   {
+    "id": "miss",
+    "entity_id": "miss",
+    "label": "HEALTH",
+    "quote": "missed one dose two days ago and took it the next morning"
+   },
+   {
+    "id": "br",
+    "entity_id": "br",
+    "label": "HEALTH",
+    "quote": "no bruising, no nosebleeds"
+   },
+   {
+    "id": "al",
+    "entity_id": "al",
+    "label": "HEALTH",
+    "quote": "Penicillin allergy: a rash, not breathing trouble"
+   },
+   {
+    "id": "a1",
+    "entity_id": "a1",
+    "label": "ADDRESS",
+    "quote": "14 Alder Court"
+   },
+   {
+    "id": "a2",
+    "entity_id": "a2",
+    "label": "ADDRESS",
+    "quote": "9 Cobbler's Row"
+   },
+   {
+    "id": "em",
+    "entity_id": "em",
+    "label": "EMAIL",
+    "quote": "imogen.p@example.invalid"
+   },
+   {
+    "id": "fri",
+    "entity_id": "fri",
+    "label": "DATE",
+    "quote": "Friday"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "im1",
+    "entity_id": "imogen",
+    "quote": "Imogen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "im2",
+    "entity_id": "imogen",
+    "quote": "Imogen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "w",
+    "entity_id": "w",
+    "quote": "warfarin 3 mg in the evening",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "miss",
+    "entity_id": "miss",
+    "quote": "missed one dose two days ago and took it the next morning",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "br",
+    "entity_id": "br",
+    "quote": "no bruising, no nosebleeds",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "al",
+    "entity_id": "al",
+    "quote": "Penicillin allergy: a rash, not breathing trouble",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "a1",
+    "quote": "14 Alder Court",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "a2",
+    "quote": "9 Cobbler's Row",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ger",
+    "entity_id": "ger",
+    "quote": "Gerrit",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "em",
+    "quote": "imogen.p@example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fri",
+    "entity_id": "fri",
+    "quote": "Friday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "warfarin 3 mg in the evening"
+   },
+   {
+    "quote": "not the 5 mg printed on the old box"
+   },
+   {
+    "quote": "missed one dose two days ago"
+   },
+   {
+    "quote": "took it the next morning"
+   },
+   {
+    "quote": "no bruising, no nosebleeds"
+   },
+   {
+    "quote": "a rash, not breathing trouble"
+   },
+   {
+    "quote": "by Friday"
+   }
+  ],
+  "approved_output": "Notes before I ring the pharmacy about my aunt [PERSON_1]'s tablets:\n- [PERSON_1] takes warfarin 3 mg in the evening, not the 5 mg printed on the old box (I thought 4 at first, but no, it's 5)\n- She missed one dose two days ago and took it the next morning; no bruising, no nosebleeds\n- Penicillin allergy: a rash, not breathing trouble\n- The label has her old address, [ADDRESS], but she moved to [ADDRESS]\n- The pharmacist, [PERSON_2], wants the new address by email at [EMAIL] by Friday",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-invoice-chase-firm",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-invoice",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-invoice",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-invoice",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-invoice",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a firm but polite payment reminder. Keep the dates, the studio's name and the amounts exactly.",
+  "text": "Hi Jasper,\n\nJust a gentle nudge on the brand-guidelines invoice. It was sent on 3 March with 30-day terms, so the 2,400 euro balance fell due on 2 April, and as of today I've had no payment and no reply. I know the quarter-end rush at Fairlight Studio is heavy, but I do need this settled. A reminder that the 15% deposit (360 euros) was already paid in February, so the outstanding amount is 2,040, not 2,400 - sorry, ignore my first figure. Could you confirm a payment date by Friday?\n\nThanks so much,\nNiall",
+  "entities": [
+   {
+    "id": "jas",
+    "entity_id": "jas",
+    "label": "PERSON",
+    "quote": "Jasper"
+   },
+   {
+    "id": "nia",
+    "entity_id": "nia",
+    "label": "PERSON",
+    "quote": "Niall"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Fairlight Studio"
+   },
+   {
+    "id": "d1",
+    "entity_id": "d1",
+    "label": "DATE",
+    "quote": "3 March"
+   },
+   {
+    "id": "d2",
+    "entity_id": "d2",
+    "label": "DATE",
+    "quote": "2 April"
+   },
+   {
+    "id": "d3",
+    "entity_id": "d3",
+    "label": "DATE",
+    "quote": "February"
+   },
+   {
+    "id": "d4",
+    "entity_id": "d4",
+    "label": "DATE",
+    "quote": "Friday"
+   },
+   {
+    "id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "30-day terms"
+   },
+   {
+    "id": "f2",
+    "entity_id": "f2",
+    "label": "FINANCIAL",
+    "quote": "2,400 euro balance"
+   },
+   {
+    "id": "f3",
+    "entity_id": "f3",
+    "label": "FINANCIAL",
+    "quote": "15% deposit (360 euros) was already paid"
+   },
+   {
+    "id": "f4",
+    "entity_id": "f4",
+    "label": "FINANCIAL",
+    "quote": "outstanding amount is 2,040, not 2,400"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "jas",
+    "entity_id": "jas",
+    "quote": "Jasper",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d1",
+    "entity_id": "d1",
+    "quote": "3 March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "f1",
+    "quote": "30-day terms",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "f2",
+    "quote": "2,400 euro balance",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d2",
+    "entity_id": "d2",
+    "quote": "2 April",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "quote": "Fairlight Studio",
+    "label": "ORG",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "f3",
+    "quote": "15% deposit (360 euros) was already paid",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d3",
+    "entity_id": "d3",
+    "quote": "February",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f4",
+    "entity_id": "f4",
+    "quote": "outstanding amount is 2,040, not 2,400",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d4",
+    "entity_id": "d4",
+    "quote": "Friday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "nia",
+    "entity_id": "nia",
+    "quote": "Niall",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "30-day terms"
+   },
+   {
+    "quote": "2,400 euro balance"
+   },
+   {
+    "quote": "15% deposit (360 euros)"
+   },
+   {
+    "quote": "2,040, not 2,400"
+   },
+   {
+    "quote": "ignore my first figure"
+   },
+   {
+    "quote": "no payment and no reply"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nJust a gentle nudge on the brand-guidelines invoice. It was sent on 3 March with 30-day terms, so the 2,400 euro balance fell due on 2 April, and as of today I've had no payment and no reply. I know the quarter-end rush at Fairlight Studio is heavy, but I do need this settled. A reminder that the 15% deposit (360 euros) was already paid in February, so the outstanding amount is 2,040, not 2,400 - sorry, ignore my first figure. Could you confirm a payment date by Friday?\n\nThanks so much,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-invoice-chase-template",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-invoice",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-invoice",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-invoice",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-invoice",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a reusable chaser template for late-paying clients: keep the amounts and the payment terms, but I don't need the dates or who it's for.",
+  "text": "Hi Jasper,\n\nJust a gentle nudge on the brand-guidelines invoice. It was sent on 3 March with 30-day terms, so the 2,400 euro balance fell due on 2 April, and as of today I've had no payment and no reply. I know the quarter-end rush at Fairlight Studio is heavy, but I do need this settled. A reminder that the 15% deposit (360 euros) was already paid in February, so the outstanding amount is 2,040, not 2,400 - sorry, ignore my first figure. Could you confirm a payment date by Friday?\n\nThanks so much,\nNiall",
+  "entities": [
+   {
+    "id": "jas",
+    "entity_id": "jas",
+    "label": "PERSON",
+    "quote": "Jasper"
+   },
+   {
+    "id": "nia",
+    "entity_id": "nia",
+    "label": "PERSON",
+    "quote": "Niall"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Fairlight Studio"
+   },
+   {
+    "id": "d1",
+    "entity_id": "d1",
+    "label": "DATE",
+    "quote": "3 March"
+   },
+   {
+    "id": "d2",
+    "entity_id": "d2",
+    "label": "DATE",
+    "quote": "2 April"
+   },
+   {
+    "id": "d3",
+    "entity_id": "d3",
+    "label": "DATE",
+    "quote": "February"
+   },
+   {
+    "id": "d4",
+    "entity_id": "d4",
+    "label": "DATE",
+    "quote": "Friday"
+   },
+   {
+    "id": "f1",
+    "entity_id": "f1",
+    "label": "FINANCIAL",
+    "quote": "30-day terms"
+   },
+   {
+    "id": "f2",
+    "entity_id": "f2",
+    "label": "FINANCIAL",
+    "quote": "2,400 euro balance"
+   },
+   {
+    "id": "f3",
+    "entity_id": "f3",
+    "label": "FINANCIAL",
+    "quote": "15% deposit (360 euros) was already paid"
+   },
+   {
+    "id": "f4",
+    "entity_id": "f4",
+    "label": "FINANCIAL",
+    "quote": "outstanding amount is 2,040, not 2,400"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "jas",
+    "entity_id": "jas",
+    "quote": "Jasper",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d1",
+    "entity_id": "d1",
+    "quote": "3 March",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "f1",
+    "quote": "30-day terms",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "f2",
+    "quote": "2,400 euro balance",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d2",
+    "entity_id": "d2",
+    "quote": "2 April",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "quote": "Fairlight Studio",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "f3",
+    "quote": "15% deposit (360 euros) was already paid",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d3",
+    "entity_id": "d3",
+    "quote": "February",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f4",
+    "entity_id": "f4",
+    "quote": "outstanding amount is 2,040, not 2,400",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d4",
+    "entity_id": "d4",
+    "quote": "Friday",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "nia",
+    "entity_id": "nia",
+    "quote": "Niall",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "30-day terms"
+   },
+   {
+    "quote": "2,400 euro balance"
+   },
+   {
+    "quote": "15% deposit (360 euros)"
+   },
+   {
+    "quote": "2,040, not 2,400"
+   },
+   {
+    "quote": "ignore my first figure"
+   },
+   {
+    "quote": "no payment and no reply"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nJust a gentle nudge on the brand-guidelines invoice. It was sent on [DATE] with 30-day terms, so the 2,400 euro balance fell due on [DATE], and as of today I've had no payment and no reply. I know the quarter-end rush at [ORG] is heavy, but I do need this settled. A reminder that the 15% deposit (360 euros) was already paid in [DATE], so the outstanding amount is 2,040, not 2,400 - sorry, ignore my first figure. Could you confirm a payment date by [DATE]?\n\nThanks so much,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-pension-statement",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-pension",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-pension",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-pension",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-pension",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Explain in plain English what tax relief and employer contributions mean for these figures, and list questions to put to the provider, including about the old scheme.",
+  "text": "I've just opened my annual pension statement and I don't follow it. It lists my reference as QQ 123456 C, which I assume is my national insurance number, though I haven't double-checked. The pot is 48,300 pounds after contributions of 220 a month from me and 110 a month from my employer, Hartwell Printing. I'm not sure whether the 110 is before or after tax relief, and whether I'm meant to be paying 5% or 8% of salary. I left the old scheme at my previous job in 2019 and never transferred it, I think. I'm not confident about any of this, so please don't assume I've read it correctly.",
+  "entities": [
+   {
+    "id": "nid",
+    "entity_id": "nid",
+    "label": "NATIONAL_ID",
+    "quote": "QQ 123456 C"
+   },
+   {
+    "id": "fin",
+    "entity_id": "fin",
+    "label": "FINANCIAL",
+    "quote": "48,300 pounds after contributions of 220 a month from me and 110 a month from my employer"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Hartwell Printing"
+   },
+   {
+    "id": "fin2",
+    "entity_id": "fin2",
+    "label": "FINANCIAL",
+    "quote": "5% or 8% of salary"
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "left the old scheme at my previous job"
+   },
+   {
+    "id": "yr",
+    "entity_id": "yr",
+    "label": "DATE",
+    "quote": "2019"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "nid",
+    "entity_id": "nid",
+    "quote": "QQ 123456 C",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin",
+    "entity_id": "fin",
+    "quote": "48,300 pounds after contributions of 220 a month from me and 110 a month from my employer",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "quote": "Hartwell Printing",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "fin2",
+    "entity_id": "fin2",
+    "quote": "5% or 8% of salary",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "emp",
+    "quote": "left the old scheme at my previous job",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "yr",
+    "entity_id": "yr",
+    "quote": "2019",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "48,300 pounds"
+   },
+   {
+    "quote": "220 a month from me"
+   },
+   {
+    "quote": "110 a month from my employer"
+   },
+   {
+    "quote": "before or after tax relief"
+   },
+   {
+    "quote": "5% or 8% of salary"
+   },
+   {
+    "quote": "haven't double-checked"
+   },
+   {
+    "quote": "never transferred it, I think"
+   }
+  ],
+  "approved_output": "I've just opened my annual pension statement and I don't follow it. It lists my reference as [NATIONAL_ID], which I assume is my national insurance number, though I haven't double-checked. The pot is 48,300 pounds after contributions of 220 a month from me and 110 a month from my employer, [ORG]. I'm not sure whether the 110 is before or after tax relief, and whether I'm meant to be paying 5% or 8% of salary. I left the old scheme at my previous job in 2019 and never transferred it, I think. I'm not confident about any of this, so please don't assume I've read it correctly.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-tax-worked-example",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-taxex",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-taxex",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-taxex",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-taxex",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check the arithmetic and say whether 'a taxable gain of zero' is a fair description.",
+  "text": "Here's a worked example from my bookkeeping course. The example taxpayer has a salary of 41,500 and a personal allowance of 12,570, so taxable pay is 28,930. At a basic rate of 20% that gives 5,786 in tax. The example then adds a freelance mileage claim: 640 miles at 45p a mile, which I made 288 pounds. The course notes cite the HMRC guidance and a Vanguard fund factsheet for the capital gain question, where the gain is 900 against an allowance I first wrote as 6,000, no wait, 3,000. I get a final taxable gain of zero but I'm not sure that is the right way to describe it.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "28,930"
+   },
+   {
+    "quote": "5,786"
+   },
+   {
+    "quote": "640 miles at 45p a mile"
+   },
+   {
+    "quote": "288 pounds"
+   },
+   {
+    "quote": "gain is 900"
+   },
+   {
+    "quote": "no wait, 3,000"
+   }
+  ],
+  "approved_output": "Here's a worked example from my bookkeeping course. The example taxpayer has a salary of 41,500 and a personal allowance of 12,570, so taxable pay is 28,930. At a basic rate of 20% that gives 5,786 in tax. The example then adds a freelance mileage claim: 640 miles at 45p a mile, which I made 288 pounds. The course notes cite the HMRC guidance and a Vanguard fund factsheet for the capital gain question, where the gain is 900 against an allowance I first wrote as 6,000, no wait, 3,000. I get a final taxable gain of zero but I'm not sure that is the right way to describe it.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-budget-bullets",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-budget",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-budget",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-budget",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-budget",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Add up my monthly outgoings from this list, using the corrected take-home figure, and tell me what's left over and whether the energy and grocery estimates look risky.",
+  "text": "Budget check for the month. Take-home is 2,150 (it was 2,090 before the rise, I think, no wait, 2,110) - use 2,150.\n- Rent 1,020\n- Council tax 140, paid over 10 months not 12\n- Energy about 95 (the bill says 87.40 but I'm rounding up)\n- Phone 18 and broadband 27.50\n- Gerrit's leaving do is on the 12th and he's moving to the Antwerp office, so I should buy a card\n- Groceries roughly 260 a month, maybe 280 if the guests come\n- Train pass 64",
+  "entities": [
+   {
+    "id": "take",
+    "entity_id": "take",
+    "label": "FINANCIAL",
+    "quote": "Take-home is 2,150"
+   },
+   {
+    "id": "rent",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "Rent 1,020"
+   },
+   {
+    "id": "ct",
+    "entity_id": "ct",
+    "label": "FINANCIAL",
+    "quote": "Council tax 140"
+   },
+   {
+    "id": "en",
+    "entity_id": "en",
+    "label": "FINANCIAL",
+    "quote": "Energy about 95"
+   },
+   {
+    "id": "ph",
+    "entity_id": "ph",
+    "label": "FINANCIAL",
+    "quote": "Phone 18 and broadband 27.50"
+   },
+   {
+    "id": "gr",
+    "entity_id": "gr",
+    "label": "FINANCIAL",
+    "quote": "Groceries roughly 260 a month, maybe 280 if the guests come"
+   },
+   {
+    "id": "tr",
+    "entity_id": "tr",
+    "label": "FINANCIAL",
+    "quote": "Train pass 64"
+   },
+   {
+    "id": "ger",
+    "entity_id": "ger",
+    "label": "PERSON",
+    "quote": "Gerrit"
+   },
+   {
+    "id": "dd",
+    "entity_id": "dd",
+    "label": "DATE",
+    "quote": "the 12th"
+   },
+   {
+    "id": "loc",
+    "entity_id": "loc",
+    "label": "LOCATION",
+    "quote": "Antwerp"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "take",
+    "entity_id": "take",
+    "quote": "Take-home is 2,150",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "rent",
+    "entity_id": "rent",
+    "quote": "Rent 1,020",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ct",
+    "entity_id": "ct",
+    "quote": "Council tax 140",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "en",
+    "entity_id": "en",
+    "quote": "Energy about 95",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ph",
+    "entity_id": "ph",
+    "quote": "Phone 18 and broadband 27.50",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Gerrit's leaving do is on the 12th and he's moving to the Antwerp office, so I should buy a card",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A colleague's leaving-do and office-move note is unrelated to summing the monthly outgoings, and it holds no amount the sum needs."
+   },
+   {
+    "kind": "entity",
+    "target_id": "gr",
+    "entity_id": "gr",
+    "quote": "Groceries roughly 260 a month, maybe 280 if the guests come",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tr",
+    "entity_id": "tr",
+    "quote": "Train pass 64",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "use 2,150"
+   },
+   {
+    "quote": "Rent 1,020"
+   },
+   {
+    "quote": "Council tax 140, paid over 10 months not 12"
+   },
+   {
+    "quote": "the bill says 87.40"
+   },
+   {
+    "quote": "Phone 18 and broadband 27.50"
+   },
+   {
+    "quote": "maybe 280 if the guests come"
+   },
+   {
+    "quote": "Train pass 64"
+   }
+  ],
+  "approved_output": "Budget check for the month. Take-home is 2,150 (it was 2,090 before the rise, I think, no wait, 2,110) - use 2,150.\n- Rent 1,020\n- Council tax 140, paid over 10 months not 12\n- Energy about 95 (the bill says 87.40 but I'm rounding up)\n- Phone 18 and broadband 27.50\n- Groceries roughly 260 a month, maybe 280 if the guests come\n- Train pass 64",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-shift-swap-rota",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-shiftswap",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-shiftswap",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-shiftswap",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-shiftswap",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a polite message to the rota coordinator, keeping the shift times and my contract hours. The employer's name isn't needed.",
+  "text": "Hi Annelies, it's Callum from the warehouse team at Brightwater Logistics. Can we swap shifts? I'm down for the Friday late (2 p.m. to 10 p.m.) but my sister's flight lands that evening, so I'd need the Saturday early (6 a.m. to 2 p.m.) instead. I did a swap with Ruairi last month so it should be fine with the rota, and I'm not asking for extra hours, just the same 8. I'm on a part-time contract, 32 hours a week, so please check it doesn't push me over, or maybe it's 30 - I'd have to look. Thanks! Callum",
+  "entities": [
+   {
+    "id": "ann",
+    "entity_id": "ann",
+    "label": "PERSON",
+    "quote": "Annelies"
+   },
+   {
+    "id": "c1",
+    "entity_id": "callum",
+    "label": "PERSON",
+    "quote": "Callum",
+    "occurrence": 1
+   },
+   {
+    "id": "c2",
+    "entity_id": "callum",
+    "label": "PERSON",
+    "quote": "Callum",
+    "occurrence": 2
+   },
+   {
+    "id": "rua",
+    "entity_id": "rua",
+    "label": "PERSON",
+    "quote": "Ruairi"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Brightwater Logistics"
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "part-time contract, 32 hours a week"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ann",
+    "entity_id": "ann",
+    "quote": "Annelies",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "c1",
+    "entity_id": "callum",
+    "quote": "Callum",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "quote": "Brightwater Logistics",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "rua",
+    "entity_id": "rua",
+    "quote": "Ruairi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "emp",
+    "quote": "part-time contract, 32 hours a week",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "c2",
+    "entity_id": "callum",
+    "quote": "Callum",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Friday late (2 p.m. to 10 p.m.)"
+   },
+   {
+    "quote": "Saturday early (6 a.m. to 2 p.m.)"
+   },
+   {
+    "quote": "my sister's flight lands that evening"
+   },
+   {
+    "quote": "just the same 8"
+   },
+   {
+    "quote": "32 hours a week"
+   },
+   {
+    "quote": "or maybe it's 30"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1], it's [PERSON_2] from the warehouse team at [ORG]. Can we swap shifts? I'm down for the Friday late (2 p.m. to 10 p.m.) but my sister's flight lands that evening, so I'd need the Saturday early (6 a.m. to 2 p.m.) instead. I did a swap with [PERSON_3] last month so it should be fine with the rota, and I'm not asking for extra hours, just the same 8. I'm on a part-time contract, 32 hours a week, so please check it doesn't push me over, or maybe it's 30 - I'd have to look. Thanks! [PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-shift-swap-hr",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-shiftswap",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-shiftswap",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-shiftswap",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-shiftswap",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short note to HR asking whether this swap could affect my contracted hours. Include the employer's name and the contract details.",
+  "text": "Hi Annelies, it's Callum from the warehouse team at Brightwater Logistics. Can we swap shifts? I'm down for the Friday late (2 p.m. to 10 p.m.) but my sister's flight lands that evening, so I'd need the Saturday early (6 a.m. to 2 p.m.) instead. I did a swap with Ruairi last month so it should be fine with the rota, and I'm not asking for extra hours, just the same 8. I'm on a part-time contract, 32 hours a week, so please check it doesn't push me over, or maybe it's 30 - I'd have to look. Thanks! Callum",
+  "entities": [
+   {
+    "id": "ann",
+    "entity_id": "ann",
+    "label": "PERSON",
+    "quote": "Annelies"
+   },
+   {
+    "id": "c1",
+    "entity_id": "callum",
+    "label": "PERSON",
+    "quote": "Callum",
+    "occurrence": 1
+   },
+   {
+    "id": "c2",
+    "entity_id": "callum",
+    "label": "PERSON",
+    "quote": "Callum",
+    "occurrence": 2
+   },
+   {
+    "id": "rua",
+    "entity_id": "rua",
+    "label": "PERSON",
+    "quote": "Ruairi"
+   },
+   {
+    "id": "org",
+    "entity_id": "org",
+    "label": "ORG",
+    "quote": "Brightwater Logistics"
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "part-time contract, 32 hours a week"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "ann",
+    "entity_id": "ann",
+    "quote": "Annelies",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "c1",
+    "entity_id": "callum",
+    "quote": "Callum",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "org",
+    "entity_id": "org",
+    "quote": "Brightwater Logistics",
+    "label": "ORG",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "rua",
+    "entity_id": "rua",
+    "quote": "Ruairi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "emp",
+    "quote": "part-time contract, 32 hours a week",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "c2",
+    "entity_id": "callum",
+    "quote": "Callum",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Friday late (2 p.m. to 10 p.m.)"
+   },
+   {
+    "quote": "Saturday early (6 a.m. to 2 p.m.)"
+   },
+   {
+    "quote": "my sister's flight lands that evening"
+   },
+   {
+    "quote": "just the same 8"
+   },
+   {
+    "quote": "32 hours a week"
+   },
+   {
+    "quote": "or maybe it's 30"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1], it's [PERSON_2] from the warehouse team at Brightwater Logistics. Can we swap shifts? I'm down for the Friday late (2 p.m. to 10 p.m.) but my sister's flight lands that evening, so I'd need the Saturday early (6 a.m. to 2 p.m.) instead. I did a swap with [PERSON_3] last month so it should be fine with the rota, and I'm not asking for extra hours, just the same 8. I'm on a part-time contract, 32 hours a week, so please check it doesn't push me over, or maybe it's 30 - I'd have to look. Thanks! [PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-budget-fwd-vague",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-fwdbudget",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-fwdbudget",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-fwdbudget",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-fwdbudget",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me with this.",
+  "text": "Forwarding Gerrit's note so you've got it before Thursday's budget meeting. I haven't replied yet, mostly because I can't tell which figure is wrong, and I'd rather not guess.\n\n> Hi Ottilie, thanks for the draft. Two things. First, the vendor quote you sent is 14,500, but Fenella says the signed contract was 13,900, so one of us has a typo. Second, please copy Hugo on the final version using hugo.d@example.invalid, not the old list. I'm out Monday and Tuesday, no wait, only Tuesday, so reach Fenella if it can't wait.\n> Gerrit",
+  "entities": [
+   {
+    "id": "g1",
+    "entity_id": "gerrit",
+    "label": "PERSON",
+    "quote": "Gerrit",
+    "occurrence": 1
+   },
+   {
+    "id": "g2",
+    "entity_id": "gerrit",
+    "label": "PERSON",
+    "quote": "Gerrit",
+    "occurrence": 2
+   },
+   {
+    "id": "ott",
+    "entity_id": "ott",
+    "label": "PERSON",
+    "quote": "Ottilie"
+   },
+   {
+    "id": "f1",
+    "entity_id": "fenella",
+    "label": "PERSON",
+    "quote": "Fenella",
+    "occurrence": 1
+   },
+   {
+    "id": "f2",
+    "entity_id": "fenella",
+    "label": "PERSON",
+    "quote": "Fenella",
+    "occurrence": 2
+   },
+   {
+    "id": "hug",
+    "entity_id": "hug",
+    "label": "PERSON",
+    "quote": "Hugo"
+   },
+   {
+    "id": "em",
+    "entity_id": "em",
+    "label": "EMAIL",
+    "quote": "hugo.d@example.invalid"
+   },
+   {
+    "id": "thu",
+    "entity_id": "thu",
+    "label": "DATE",
+    "quote": "Thursday"
+   },
+   {
+    "id": "out",
+    "entity_id": "out",
+    "label": "DATE",
+    "quote": "Monday and Tuesday, no wait, only Tuesday"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "g1",
+    "entity_id": "gerrit",
+    "quote": "Gerrit",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "thu",
+    "entity_id": "thu",
+    "quote": "Thursday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ott",
+    "entity_id": "ott",
+    "quote": "Ottilie",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "fenella",
+    "quote": "Fenella",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "hug",
+    "entity_id": "hug",
+    "quote": "Hugo",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "em",
+    "quote": "hugo.d@example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "out",
+    "entity_id": "out",
+    "quote": "Monday and Tuesday, no wait, only Tuesday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "fenella",
+    "quote": "Fenella",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "g2",
+    "entity_id": "gerrit",
+    "quote": "Gerrit",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "uncertain",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "14,500"
+   },
+   {
+    "quote": "13,900"
+   },
+   {
+    "quote": "please copy"
+   },
+   {
+    "quote": "not the old list"
+   },
+   {
+    "quote": "I haven't replied yet, mostly because"
+   },
+   {
+    "quote": "no wait, only Tuesday"
+   }
+  ],
+  "approved_output": "Forwarding [PERSON_1]'s note so you've got it before Thursday's budget meeting. I haven't replied yet, mostly because I can't tell which figure is wrong, and I'd rather not guess.\n\n> Hi [PERSON_2], thanks for the draft. Two things. First, the vendor quote you sent is 14,500, but [PERSON_3] says the signed contract was 13,900, so one of us has a typo. Second, please copy [PERSON_4] on the final version using [EMAIL], not the old list. I'm out Monday and Tuesday, no wait, only Tuesday, so reach [PERSON_3] if it can't wait.\n> [PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

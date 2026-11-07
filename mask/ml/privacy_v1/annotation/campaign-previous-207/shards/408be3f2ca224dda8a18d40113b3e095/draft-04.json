@@ -1,0 +1,385 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-sleep-clinic-v3",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-sleep",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-sleep",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-sleep",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-sleep",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this into a one-paragraph summary I can hand to the sleep clinic, keeping my age and every timing.",
+  "text": "Sleep diary, as promised. I'm 34, and for the last fortnight I've been getting to sleep around 1 a.m. and waking at 5:30, so roughly four and a half hours, though last Tuesday it might have been five, no wait, closer to four. I do not nap in the day and I have stopped coffee after noon. No sleeping tablets, nothing prescribed. My flatmate Sigrid says I talk in my sleep, which I can't confirm either way. Mood is flat but not low, and I haven't had any thoughts of self-harm. Weekends are better, about seven hours, I think.",
+  "entities": [
+   {
+    "id": "age",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "34"
+   },
+   {
+    "id": "sig",
+    "entity_id": "sig",
+    "label": "PERSON",
+    "quote": "Sigrid"
+   },
+   {
+    "id": "mood",
+    "entity_id": "mood",
+    "label": "HEALTH",
+    "quote": "Mood is flat but not low"
+   },
+   {
+    "id": "sh",
+    "entity_id": "sh",
+    "label": "HEALTH",
+    "quote": "I haven't had any thoughts of self-harm"
+   },
+   {
+    "id": "sl",
+    "entity_id": "sl",
+    "label": "HEALTH",
+    "quote": "getting to sleep around 1 a.m. and waking at 5:30"
+   },
+   {
+    "id": "tab",
+    "entity_id": "tab",
+    "label": "HEALTH",
+    "quote": "No sleeping tablets, nothing prescribed"
+   },
+   {
+    "id": "talk",
+    "entity_id": "talk",
+    "label": "HEALTH",
+    "quote": "I talk in my sleep"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "age",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sl",
+    "entity_id": "sl",
+    "quote": "getting to sleep around 1 a.m. and waking at 5:30",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "tab",
+    "entity_id": "tab",
+    "quote": "No sleeping tablets, nothing prescribed",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sig",
+    "entity_id": "sig",
+    "quote": "Sigrid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "talk",
+    "entity_id": "talk",
+    "quote": "I talk in my sleep",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "mood",
+    "entity_id": "mood",
+    "quote": "Mood is flat but not low",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sh",
+    "entity_id": "sh",
+    "quote": "I haven't had any thoughts of self-harm",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm 34"
+   },
+   {
+    "quote": "around 1 a.m. and waking at 5:30"
+   },
+   {
+    "quote": "No sleeping tablets, nothing prescribed"
+   },
+   {
+    "quote": "haven't had any thoughts of self-harm"
+   },
+   {
+    "quote": "stopped coffee after noon"
+   },
+   {
+    "quote": "about seven hours, I think"
+   },
+   {
+    "quote": "I do not nap in the day"
+   },
+   {
+    "quote": "Mood is flat but not low"
+   },
+   {
+    "quote": "roughly four and a half hours"
+   },
+   {
+    "quote": "it might have been five, no wait, closer to four"
+   },
+   {
+    "quote": "which I can't confirm either way"
+   }
+  ],
+  "approved_output": "Sleep diary, as promised. I'm 34, and for the last fortnight I've been getting to sleep around 1 a.m. and waking at 5:30, so roughly four and a half hours, though last Tuesday it might have been five, no wait, closer to four. I do not nap in the day and I have stopped coffee after noon. No sleeping tablets, nothing prescribed. My flatmate [PERSON_1] says I talk in my sleep, which I can't confirm either way. Mood is flat but not low, and I haven't had any thoughts of self-harm. Weekends are better, about seven hours, I think.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "408be3f2ca224dda8a18d40113b3e095",
+  "id": "408be3f2ca224dda8a18d40113b3e095:w6-school-trip-permission-v3",
+  "family_id": "408be3f2ca224dda8a18d40113b3e095:fam-schooltrip",
+  "persona_id": "408be3f2ca224dda8a18d40113b3e095:persona-schooltrip",
+  "source_id": "408be3f2ca224dda8a18d40113b3e095:source-schooltrip",
+  "template_id": "408be3f2ca224dda8a18d40113b3e095:template-schooltrip",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a short summary for the trip coordinator: the permission, the medical points and who to call in an emergency. Her age isn't needed.",
+  "text": "Dear Mr Whitlock,\n\nThank you for the trip letter. Imogen is 11, so she's in the Year 6 residential group, and I'm giving permission for the full three nights, not just two. She has a nut allergy (EpiPen in her bag) and gets travel-sick on coaches, so please seat Imogen near the front. Her dad, Callum, works away on weeks when I'm on shift at the hospital, so for emergencies please try me first, then Callum. Is the final payment 85 or 95? Your letter says both on different pages.\n\nKind regards,\nClémence",
+  "entities": [
+   {
+    "id": "wh",
+    "entity_id": "wh",
+    "label": "PERSON",
+    "quote": "Whitlock"
+   },
+   {
+    "id": "i1",
+    "entity_id": "imogen",
+    "label": "PERSON",
+    "quote": "Imogen",
+    "occurrence": 1
+   },
+   {
+    "id": "i2",
+    "entity_id": "imogen",
+    "label": "PERSON",
+    "quote": "Imogen",
+    "occurrence": 2
+   },
+   {
+    "id": "age",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "11"
+   },
+   {
+    "id": "al",
+    "entity_id": "al",
+    "label": "HEALTH",
+    "quote": "a nut allergy (EpiPen in her bag)"
+   },
+   {
+    "id": "sick",
+    "entity_id": "sick",
+    "label": "HEALTH",
+    "quote": "gets travel-sick on coaches"
+   },
+   {
+    "id": "c1",
+    "entity_id": "callum",
+    "label": "PERSON",
+    "quote": "Callum",
+    "occurrence": 1
+   },
+   {
+    "id": "c2",
+    "entity_id": "callum",
+    "label": "PERSON",
+    "quote": "Callum",
+    "occurrence": 2
+   },
+   {
+    "id": "emp",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "on shift at the hospital"
+   },
+   {
+    "id": "cle",
+    "entity_id": "cle",
+    "label": "PERSON",
+    "quote": "Clémence"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "wh",
+    "entity_id": "wh",
+    "quote": "Whitlock",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "i1",
+    "entity_id": "imogen",
+    "quote": "Imogen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "age",
+    "entity_id": "age",
+    "quote": "11",
+    "label": "AGE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "al",
+    "entity_id": "al",
+    "quote": "a nut allergy (EpiPen in her bag)",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "sick",
+    "entity_id": "sick",
+    "quote": "gets travel-sick on coaches",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "i2",
+    "entity_id": "imogen",
+    "quote": "Imogen",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "c1",
+    "entity_id": "callum",
+    "quote": "Callum",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "emp",
+    "quote": "on shift at the hospital",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "c2",
+    "entity_id": "callum",
+    "quote": "Callum",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "cle",
+    "entity_id": "cle",
+    "quote": "Clémence",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "full three nights, not just two"
+   },
+   {
+    "quote": "please seat"
+   },
+   {
+    "quote": "near the front"
+   },
+   {
+    "quote": "Her dad,"
+   },
+   {
+    "quote": "works away on weeks when I'm"
+   },
+   {
+    "quote": "for emergencies please try me first, then"
+   },
+   {
+    "quote": "a nut allergy (EpiPen in her bag)"
+   },
+   {
+    "quote": "gets travel-sick on coaches"
+   },
+   {
+    "quote": "giving permission"
+   }
+  ],
+  "approved_output": "Dear Mr [PERSON_1],\n\nThank you for the trip letter. [PERSON_2] is [AGE], so she's in the Year 6 residential group, and I'm giving permission for the full three nights, not just two. She has a nut allergy (EpiPen in her bag) and gets travel-sick on coaches, so please seat [PERSON_2] near the front. Her dad, [PERSON_3], works away on weeks when I'm on shift at the hospital, so for emergencies please try me first, then [PERSON_3]. Is the final payment 85 or 95? Your letter says both on different pages.\n\nKind regards,\n[PERSON_4]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "408be3f2ca224dda8a18d40113b3e095:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W6 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

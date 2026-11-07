@@ -1,0 +1,455 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:health",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:health-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:health-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:health-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:health-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me prepare a concise question for my clinician about the symptoms and their timing.",
+    "text": "My cousin, Elian Moss, came with me to the appointment. I have felt dizzy after breakfast on three mornings this week, but I have not fainted. The feeling usually passes within ten minutes. I started a new exercise routine two weeks ago, although I do not know whether it is related. I would like to ask what information I should track before my next visit.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "e1",
+        "quote": "Elian Moss",
+        "label": "PERSON"
+      },
+      {
+        "id": "m2",
+        "entity_id": "e2",
+        "quote": "I have felt dizzy after breakfast on three mornings this week, but I have not fainted.",
+        "label": "HEALTH"
+      },
+      {
+        "id": "m3",
+        "entity_id": "duration",
+        "quote": "The feeling usually passes within ten minutes.",
+        "label": "HEALTH"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "e1",
+        "quote": "Elian Moss",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "e2",
+        "quote": "I have felt dizzy after breakfast on three mornings this week, but I have not fainted.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "duration",
+        "quote": "The feeling usually passes within ten minutes.",
+        "label": "HEALTH",
+        "action": "KEEP",
+        "relevance": "essential"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "My cousin,"
+      },
+      {
+        "quote": "came with me to the appointment."
+      },
+      {
+        "quote": "I have felt dizzy after breakfast on three mornings this week, but I have not fainted."
+      },
+      {
+        "quote": "The feeling usually passes within ten minutes."
+      },
+      {
+        "quote": "I started a new exercise routine two weeks ago, although I do not know whether it is related."
+      }
+    ],
+    "approved_output": "My cousin, [PERSON_1], came with me to the appointment. I have felt dizzy after breakfast on three mornings this week, but I have not fainted. The feeling usually passes within ten minutes. I started a new exercise routine two weeks ago, although I do not know whether it is related. I would like to ask what information I should track before my next visit.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:email",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:email-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:email-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:email-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:email-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me write a brief account support request without exposing contact details.",
+    "text": "Hello support team, my email is sora.marden@example.com. I cannot sign in after changing phones and the recovery screen keeps returning to the beginning. I have already tried a different browser, but I have not reset the account. Could you explain what recovery options are available and whether my saved preferences will remain intact? Please keep the tone courteous and concise.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "e1",
+        "quote": "sora.marden@example.com",
+        "label": "EMAIL"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "e1",
+        "quote": "sora.marden@example.com",
+        "label": "EMAIL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The email address identifies a contact and could expose their account contact details; the support request does not need the exact address."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "I cannot sign in after changing phones and the recovery screen keeps returning to the beginning."
+      },
+      {
+        "quote": "I have already tried a different browser, but I have not reset the account."
+      },
+      {
+        "quote": "Could you explain what recovery options are available and whether my saved preferences will remain intact?"
+      }
+    ],
+    "approved_output": "Hello support team, my email is [EMAIL]. I cannot sign in after changing phones and the recovery screen keeps returning to the beginning. I have already tried a different browser, but I have not reset the account. Could you explain what recovery options are available and whether my saved preferences will remain intact? Please keep the tone courteous and concise.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:housing",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:housing-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:housing-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:housing-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:housing-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Help me organise this note.",
+    "text": "My neighbour, Ivo Rell, mentioned that the shared hallway light flickers in the evening. It has not gone out completely, but the switch sometimes clicks twice. I wrote down that the building manager should check it before anyone replaces the bulb. I am unsure whether the same problem occurs in daylight, so please retain that uncertainty when arranging the note.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "e1",
+        "quote": "Ivo Rell",
+        "label": "PERSON"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "e1",
+        "quote": "Ivo Rell",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "It has not gone out completely, but the switch sometimes clicks twice."
+      },
+      {
+        "quote": "I am unsure whether the same problem occurs in daylight, so please retain that uncertainty when arranging the note."
+      },
+      {
+        "quote": "My neighbour,"
+      },
+      {
+        "quote": "mentioned that the shared hallway light flickers in the evening."
+      },
+      {
+        "quote": "I wrote down that the building manager should check it before anyone replaces the bulb."
+      }
+    ],
+    "approved_output": "My neighbour, [PERSON_1], mentioned that the shared hallway light flickers in the evening. It has not gone out completely, but the switch sometimes clicks twice. I wrote down that the building manager should check it before anyone replaces the bulb. I am unsure whether the same problem occurs in daylight, so please retain that uncertainty when arranging the note.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:study",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:study-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:study-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:study-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:study-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Make a study plan based on these constraints.",
+    "text": "I have four chapters to review before the exam. I can study for 45 minutes on Monday and Wednesday, but only 20 minutes on Friday. I find diagrams more useful than rereading and want a short practice quiz after each chapter. The exam date has not been confirmed, so do not assume a deadline. Leave time to revisit difficult material.",
+    "entities": [],
+    "decisions": [],
+    "required_facts": [
+      {
+        "quote": "I can study for 45 minutes on Monday and Wednesday, but only 20 minutes on Friday."
+      },
+      {
+        "quote": "I find diagrams more useful than rereading and want a short practice quiz after each chapter."
+      },
+      {
+        "quote": "The exam date has not been confirmed, so do not assume a deadline."
+      },
+      {
+        "quote": "I have four chapters to review before the exam."
+      },
+      {
+        "quote": "Leave time to revisit difficult material."
+      }
+    ],
+    "approved_output": "I have four chapters to review before the exam. I can study for 45 minutes on Monday and Wednesday, but only 20 minutes on Friday. I find diagrams more useful than rereading and want a short practice quiz after each chapter. The exam date has not been confirmed, so do not assume a deadline. Leave time to revisit difficult material.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:procure",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:procure-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:procure-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:procure-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:procure-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Draft a generic supplier follow-up for external AI, omitting confidential identities and pricing.",
+    "text": "Our buyer, Nella Quist, spoke to confidential supplier Reedvale Components about the delayed sample shipment. The supplier said the revised packing list is ready, but the collection time has not been confirmed. Ask for the collection window and the name of a shipping contact without promising a delivery date. The unapproved internal quote is 42,600 euros and must remain confidential.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "e1",
+        "quote": "Nella Quist",
+        "label": "PERSON"
+      },
+      {
+        "id": "m2",
+        "entity_id": "e2",
+        "quote": "Reedvale Components",
+        "label": "ORG"
+      },
+      {
+        "id": "m3",
+        "entity_id": "e3",
+        "quote": "42,600 euros",
+        "label": "FINANCIAL"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "e1",
+        "quote": "Nella Quist",
+        "label": "PERSON",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "m2",
+        "entity_id": "e2",
+        "quote": "Reedvale Components",
+        "label": "ORG",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The supplier identity is confidential; the generic follow-up can use the supplier role without naming it."
+      },
+      {
+        "kind": "entity",
+        "target_id": "m3",
+        "entity_id": "e3",
+        "quote": "42,600 euros",
+        "label": "FINANCIAL",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The unapproved internal quote would disclose confidential pricing; the onboarding request does not need the exact price."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "Our buyer,"
+      },
+      {
+        "quote": "spoke to confidential supplier"
+      },
+      {
+        "quote": "about the delayed sample shipment."
+      },
+      {
+        "quote": "The supplier said the revised packing list is ready, but the collection time has not been confirmed."
+      },
+      {
+        "quote": "Ask for the collection window and the name of a shipping contact without promising a delivery date."
+      }
+    ],
+    "approved_output": "Our buyer, [PERSON_1], spoke to confidential supplier [ORG] about the delayed sample shipment. The supplier said the revised packing list is ready, but the collection time has not been confirmed. Ask for the collection window and the name of a shipping contact without promising a delivery date. The unapproved internal quote is [FINANCIAL] and must remain confidential.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:credential",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:credential-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:credential-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:credential-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:credential-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Explain the troubleshooting steps without exposing the credential.",
+    "text": "An engineer wrote: my password is violet-harbor-73. The staging service returned a timeout after the certificate was renewed. A second attempt from the same machine also timed out, while the status page reported no outage. Suggest a short sequence of checks that does not require sharing the password. We have not established whether the certificate change caused the failure.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "e1",
+        "quote": "violet-harbor-73",
+        "label": "SECRET"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "e1",
+        "quote": "violet-harbor-73",
+        "label": "SECRET",
+        "action": "PLACEHOLDER",
+        "relevance": "unnecessary",
+        "reason": "The password could grant unauthorised account access if disclosed; troubleshooting can proceed without its value."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The staging service returned a timeout after the certificate was renewed."
+      },
+      {
+        "quote": "A second attempt from the same machine also timed out, while the status page reported no outage."
+      },
+      {
+        "quote": "We have not established whether the certificate change caused the failure."
+      }
+    ],
+    "approved_output": "An engineer wrote: my password is [SECRET]. The staging service returned a timeout after the certificate was renewed. A second attempt from the same machine also timed out, while the status page reported no outage. Suggest a short sequence of checks that does not require sharing the password. We have not established whether the certificate change caused the failure.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "4f59e31d4a9e4e1cad4146f077417b7d",
+    "id": "4f59e31d4a9e4e1cad4146f077417b7d:finance",
+    "family_id": "4f59e31d4a9e4e1cad4146f077417b7d:finance-family",
+    "persona_id": "4f59e31d4a9e4e1cad4146f077417b7d:finance-persona",
+    "source_id": "4f59e31d4a9e4e1cad4146f077417b7d:finance-source",
+    "template_id": "4f59e31d4a9e4e1cad4146f077417b7d:finance-template",
+    "split": "dev",
+    "language": "en",
+    "input_kind": "message",
+    "task": "Summarise the budget variance for an external assistant without disclosing the confidential amount.",
+    "text": "Our internal finance note says the confidential projected shortfall is 18,750 euros for the quarter. The estimate assumes the planned shipment arrives in March; it does not include a possible refund. Please outline what additional information we need before discussing the variance with management. The exact amount is not approved for external disclosure, even though it would help quantify the variance.",
+    "entities": [
+      {
+        "id": "m1",
+        "entity_id": "e1",
+        "quote": "18,750 euros",
+        "label": "FINANCIAL"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "m1",
+        "entity_id": "e1",
+        "quote": "18,750 euros",
+        "label": "FINANCIAL",
+        "action": "PLACEHOLDER",
+        "relevance": "essential",
+        "reason": "The exact internal shortfall is confidential financial information; its removal prevents exact numerical variance analysis."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The estimate assumes the planned shipment arrives in March; it does not include a possible refund."
+      },
+      {
+        "quote": "The exact amount is not approved for external disclosure, even though it would help quantify the variance."
+      },
+      {
+        "quote": "Our internal finance note says the confidential projected shortfall is"
+      },
+      {
+        "quote": "for the quarter."
+      }
+    ],
+    "approved_output": "Our internal finance note says the confidential projected shortfall is [FINANCIAL] for the quarter. The estimate assumes the planned shipment arrives in March; it does not include a possible refund. Please outline what additional information we need before discussing the variance with management. The exact amount is not approved for external disclosure, even though it would help quantify the variance.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "4f59e31d4a9e4e1cad4146f077417b7d:generator",
+      "generator_model": "gpt-6.1-terra"
+    },
+    "review": {
+      "status": "pending"
+    }
+  }
+]

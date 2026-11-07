@@ -1,0 +1,30 @@
+import json,pathlib
+p=pathlib.Path(__file__).parent.parent;s=p.name
+cases=[
+('bicycle','My bicycle chain slips when I pedal uphill, but it stays on during flat rides. I cleaned it last weekend and have not adjusted the gears. The rear wheel also makes a faint clicking sound. I would like a repair shop to inspect both issues and give an estimate before replacing any parts. I can bring the bicycle in on Tuesday afternoon.','Draft a repair shop enquiry.',None),
+('museum','We are planning a museum visit with two children. The museum opens at ten, and the guided tour starts at eleven if enough visitors sign up. One child needs a quiet break after about an hour. Please create a flexible outline that includes lunch and leaves the tour optional. We have not checked whether the cafe has space for a stroller.','Organise a flexible visit outline.',None),
+('recipe','I want to adapt a lentil soup recipe for four servings. The original makes two servings and uses 200 grams of lentils and 600 millilitres of stock. Double those amounts, but do not double the salt automatically because I want to taste it first. The cooking time may stay the same; I have not tested the larger batch.','Explain the ingredient changes.',None),
+('roof','Our building manager, Aro Fenwick, said the roof inspection is scheduled for next week. Residents should move bicycles away from the rear entrance before the inspection. The exact day has not been confirmed, and the front entrance will remain available. Draft a notice that asks residents to wait for the confirmed day before moving their bicycles.','Draft a resident notice.',('Aro Fenwick','PERSON','ALIAS','unnecessary','')),
+('exam','I have a language exam in six weeks and can practise listening on Monday and speaking on Thursday. I want to spend twenty minutes on each session. My reading score was lower than my listening score in the last practice test, but I do not know the exact difference. Add one reading session without inventing a score or a specific available day.','Create a study outline.',None),
+('garden2','The balcony herbs receive direct sun until noon, but the soil dries out quickly in the afternoon. I watered them yesterday and have not checked the moisture today. Help me make a simple observation log for the next week. Include a place to note soil moisture and leaf condition, but do not assume the plants need water every day.','Make an observation log outline.',None),
+('delivery2','My email address is tera.vesk@example.com. A grocery delivery arrived with one item missing, although the receipt lists it as supplied. I have checked the bags and the doorstep, but have not contacted the driver. Ask customer support how to report the missing item and whether a replacement is possible. Keep the message polite and do not include the email address.','Draft a customer support message.',('tera.vesk@example.com','EMAIL','PLACEHOLDER','unnecessary','The email address is a direct contact identifier; the message can be drafted without the exact address.')),
+('training','An operations coordinator, Riva Quen, is arranging a staff training session. The room holds twenty people, and the remote connection has not yet been tested. Ask attendees to confirm whether they will join in person or online. Do not promise a recording, because the trainer has not agreed to one. The agenda should reserve ten minutes for questions.','Draft a generic training invitation.',('Riva Quen','PERSON','ALIAS','unnecessary','')),
+('supply','The purchasing team received two samples from a supplier. One sample passed the visual inspection, while the other has not yet been inspected. Ask the supplier to confirm the material specification and provide handling instructions. The team should not approve the full shipment until the second inspection is complete. Keep the request neutral and do not imply either sample failed.','Draft a generic supplier enquiry.',None),
+('support','A service desk note says three users reported the same login error this morning. The password reset page loads, but no one has confirmed whether resets complete successfully. Ask the support team to check the reset flow and document the result before escalating. Do not claim a widespread outage, because the number of affected users is not yet known.','Create a concise support handoff.',None)]
+rs=[];ns=[]
+for slug,text,task,entity in cases:
+ rid=f'{s}:{slug}-08';es=[];ds=[];out=text;facts=[]
+ if entity:
+  q,l,a,rel,reason=entity;es=[{'id':'m1','entity_id':'e1','quote':q,'label':l}];d={'kind':'entity','target_id':'m1','entity_id':'e1','quote':q,'label':l,'action':a,'relevance':rel}
+  if reason:d['reason']=reason
+  ds=[d];out=out.replace(q,'[PERSON_1]' if a=='ALIAS' else f'[{l}]')
+ # Preserve complete source sentences except the identifier-containing sentence, split at the transformed value.
+ for sentence in text.split('. '):
+  sentence=sentence if sentence.endswith('.') else sentence+'.'
+  if entity and entity[0] in sentence:
+   left,right=sentence.split(entity[0]);facts.extend(x for x in (left,right) if x.strip(' ,.') and len(x.strip())>3)
+  elif sentence in text:facts.append(sentence)
+ rs.append({'schema_version':2,'shard_id':s,'id':rid,'family_id':f'{s}:{slug}-family','persona_id':f'{s}:{slug}-persona','source_id':f'{s}:{slug}-source','template_id':f'{s}:{slug}-template','split':'dev','language':'en','input_kind':'message','task':task,'text':text,'entities':es,'decisions':ds,'required_facts':[{'quote':x} for x in facts],'approved_output':out,'provenance':{'synthetic':True,'human_audited':False,'generator_id':f'{s}:generator','generator_model':'gpt-6.1-terra'},'review':{'status':'pending'}})
+ ns.append({'record_id':rid,'dependencies':[{'claim':q,'source_quotes':[q],'disclosable':True} for q in facts],'group_relationship':'Independent source, persona and template.'})
+(p/'draft-08.json').write_text(json.dumps(rs,ensure_ascii=False,indent=2))
+(p/'author-notes-08.jsonl').write_text(''.join(json.dumps(n,ensure_ascii=False)+'\n' for n in ns))

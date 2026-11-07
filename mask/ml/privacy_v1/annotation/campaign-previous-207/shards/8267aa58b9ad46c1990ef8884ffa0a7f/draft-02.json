@@ -1,0 +1,1023 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-gp-v2",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short update for my GP covering the diagnosis, the ibuprofen dose and timing, and what I have not taken.",
+  "text": "Quick summary before I forget. I went to urgent care after my ankle swelled up on the hike. The doctor there said it was a mild sprain, not a fracture, and the X-ray showed no break. They prescribed ibuprofen 400 mg, one tablet every 8 hours, for 5 days. I think I'd been taking it for 3 days, no wait, 4, before the swelling started to go down. I have not taken any aspirin. The swelling is now roughly 2 cm larger than my other ankle. My sister, Aigerim Bekova, drove me there and has stayed with me this week to help.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "onset",
+    "label": "HEALTH",
+    "quote": "ankle swelled up"
+   },
+   {
+    "id": "m2",
+    "entity_id": "sprain",
+    "label": "HEALTH",
+    "quote": "mild sprain"
+   },
+   {
+    "id": "m3",
+    "entity_id": "nofrac",
+    "label": "HEALTH",
+    "quote": "not a fracture"
+   },
+   {
+    "id": "m4",
+    "entity_id": "xray",
+    "label": "HEALTH",
+    "quote": "X-ray showed no break"
+   },
+   {
+    "id": "m5",
+    "entity_id": "rx",
+    "label": "HEALTH",
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days"
+   },
+   {
+    "id": "m6",
+    "entity_id": "duration",
+    "label": "HEALTH",
+    "quote": "taking it for 3 days, no wait, 4"
+   },
+   {
+    "id": "m7",
+    "entity_id": "noaspirin",
+    "label": "HEALTH",
+    "quote": "aspirin"
+   },
+   {
+    "id": "m8",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "swelling is now roughly 2 cm larger than my other ankle"
+   },
+   {
+    "id": "m9",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Aigerim Bekova"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "onset",
+    "quote": "ankle swelled up",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "sprain",
+    "quote": "mild sprain",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "nofrac",
+    "quote": "not a fracture",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "xray",
+    "quote": "X-ray showed no break",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rx",
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "duration",
+    "quote": "taking it for 3 days, no wait, 4",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "noaspirin",
+    "quote": "aspirin",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "swelling",
+    "quote": "swelling is now roughly 2 cm larger than my other ankle",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "sister",
+    "quote": "Aigerim Bekova",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": "not a fracture"
+   },
+   {
+    "quote": "showed no break"
+   },
+   {
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days"
+   },
+   {
+    "quote": "3 days, no wait, 4"
+   },
+   {
+    "quote": "have not taken any aspirin"
+   },
+   {
+    "quote": "roughly 2 cm larger than my other ankle"
+   }
+  ],
+  "approved_output": "Quick summary before I forget. I went to urgent care after my ankle swelled up on the hike. The doctor there said it was a mild sprain, not a fracture, and the X-ray showed no break. They prescribed ibuprofen 400 mg, one tablet every 8 hours, for 5 days. I think I'd been taking it for 3 days, no wait, 4, before the swelling started to go down. I have not taken any aspirin. The swelling is now roughly 2 cm larger than my other ankle. My sister, [PERSON_1], drove me there and has stayed with me this week to help.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-pharmacist-v2",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a short list of questions to ask the pharmacist about the ibuprofen.",
+  "text": "Quick summary before I forget. I went to urgent care after my ankle swelled up on the hike. The doctor there said it was a mild sprain, not a fracture, and the X-ray showed no break. They prescribed ibuprofen 400 mg, one tablet every 8 hours, for 5 days. I think I'd been taking it for 3 days, no wait, 4, before the swelling started to go down. I have not taken any aspirin. The swelling is now roughly 2 cm larger than my other ankle. My sister, Aigerim Bekova, drove me there and has stayed with me this week to help.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "onset",
+    "label": "HEALTH",
+    "quote": "ankle swelled up"
+   },
+   {
+    "id": "m2",
+    "entity_id": "sprain",
+    "label": "HEALTH",
+    "quote": "mild sprain"
+   },
+   {
+    "id": "m3",
+    "entity_id": "nofrac",
+    "label": "HEALTH",
+    "quote": "not a fracture"
+   },
+   {
+    "id": "m4",
+    "entity_id": "xray",
+    "label": "HEALTH",
+    "quote": "X-ray showed no break"
+   },
+   {
+    "id": "m5",
+    "entity_id": "rx",
+    "label": "HEALTH",
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days"
+   },
+   {
+    "id": "m6",
+    "entity_id": "duration",
+    "label": "HEALTH",
+    "quote": "taking it for 3 days, no wait, 4"
+   },
+   {
+    "id": "m7",
+    "entity_id": "noaspirin",
+    "label": "HEALTH",
+    "quote": "aspirin"
+   },
+   {
+    "id": "m8",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "swelling is now roughly 2 cm larger than my other ankle"
+   },
+   {
+    "id": "m9",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Aigerim Bekova"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "onset",
+    "quote": "ankle swelled up",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "sprain",
+    "quote": "mild sprain",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "nofrac",
+    "quote": "not a fracture",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "xray",
+    "quote": "X-ray showed no break",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rx",
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "duration",
+    "quote": "taking it for 3 days, no wait, 4",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "noaspirin",
+    "quote": "aspirin",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "swelling",
+    "quote": "swelling is now roughly 2 cm larger than my other ankle",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " My sister, Aigerim Bekova, drove me there and has stayed with me this week to help.",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "Who drove me and stayed with me is a personal aside that does not affect questions about the ibuprofen dose, and it holds none of the required facts."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "mild sprain"
+   },
+   {
+    "quote": "not a fracture"
+   },
+   {
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days"
+   },
+   {
+    "quote": "3 days, no wait, 4"
+   },
+   {
+    "quote": "have not taken any aspirin"
+   },
+   {
+    "quote": "roughly 2 cm larger than my other ankle"
+   }
+  ],
+  "approved_output": "Quick summary before I forget. I went to urgent care after my ankle swelled up on the hike. The doctor there said it was a mild sprain, not a fracture, and the X-ray showed no break. They prescribed ibuprofen 400 mg, one tablet every 8 hours, for 5 days. I think I'd been taking it for 3 days, no wait, 4, before the swelling started to go down. I have not taken any aspirin. The swelling is now roughly 2 cm larger than my other ankle.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-weekly-v2",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out how much I should set aside each week to have the insurance premium ready by the renewal, then show what is left each month after savings.",
+  "text": "Budget check for the month. Take-home pay is 2,450 euros. Rent is 1,020 and utilities average 135, which I think includes the internet. Groceries came to about 380 last month, plus 30 for cleaning supplies. My car insurance renews on 14 December and the premium is 612 euros, payable in one go. I'm not planning to pay it in instalments. I also want 150 a month going into savings, with nothing left over for eating out.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "income",
+    "label": "FINANCIAL",
+    "quote": "Take-home pay is 2,450 euros"
+   },
+   {
+    "id": "m2",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "Rent is 1,020"
+   },
+   {
+    "id": "m3",
+    "entity_id": "util",
+    "label": "FINANCIAL",
+    "quote": "utilities average 135"
+   },
+   {
+    "id": "m4",
+    "entity_id": "food",
+    "label": "FINANCIAL",
+    "quote": "Groceries came to about 380 last month"
+   },
+   {
+    "id": "m5",
+    "entity_id": "clean",
+    "label": "FINANCIAL",
+    "quote": "plus 30 for cleaning supplies"
+   },
+   {
+    "id": "m6",
+    "entity_id": "renewal",
+    "label": "DATE",
+    "quote": "14 December"
+   },
+   {
+    "id": "m7",
+    "entity_id": "premium",
+    "label": "FINANCIAL",
+    "quote": "the premium is 612 euros"
+   },
+   {
+    "id": "m8",
+    "entity_id": "savings",
+    "label": "FINANCIAL",
+    "quote": "150 a month going into savings"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "income",
+    "quote": "Take-home pay is 2,450 euros",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "rent",
+    "quote": "Rent is 1,020",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "util",
+    "quote": "utilities average 135",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "food",
+    "quote": "Groceries came to about 380 last month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "clean",
+    "quote": "plus 30 for cleaning supplies",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "renewal",
+    "quote": "14 December",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "premium",
+    "quote": "the premium is 612 euros",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "savings",
+    "quote": "150 a month going into savings",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Take-home pay is 2,450 euros"
+   },
+   {
+    "quote": "Rent is 1,020"
+   },
+   {
+    "quote": "utilities average 135, which I think includes the internet"
+   },
+   {
+    "quote": "Groceries came to about 380"
+   },
+   {
+    "quote": "plus 30 for cleaning supplies"
+   },
+   {
+    "quote": "premium is 612 euros, payable in one go"
+   },
+   {
+    "quote": "not planning to pay it in instalments"
+   },
+   {
+    "quote": "150 a month going into savings"
+   },
+   {
+    "quote": "renews on 14 December"
+   }
+  ],
+  "approved_output": "Budget check for the month. Take-home pay is 2,450 euros. Rent is 1,020 and utilities average 135, which I think includes the internet. Groceries came to about 380 last month, plus 30 for cleaning supplies. My car insurance renews on 14 December and the premium is 612 euros, payable in one go. I'm not planning to pay it in instalments. I also want 150 a month going into savings, with nothing left over for eating out.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-arithmetic-v2",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:budget-insurance-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic on the monthly figures and tell me how much remains each month.",
+  "text": "Budget check for the month. Take-home pay is 2,450 euros. Rent is 1,020 and utilities average 135, which I think includes the internet. Groceries came to about 380 last month, plus 30 for cleaning supplies. My car insurance renews on 14 December and the premium is 612 euros, payable in one go. I'm not planning to pay it in instalments. I also want 150 a month going into savings, with nothing left over for eating out.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "income",
+    "label": "FINANCIAL",
+    "quote": "Take-home pay is 2,450 euros"
+   },
+   {
+    "id": "m2",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "Rent is 1,020"
+   },
+   {
+    "id": "m3",
+    "entity_id": "util",
+    "label": "FINANCIAL",
+    "quote": "utilities average 135"
+   },
+   {
+    "id": "m4",
+    "entity_id": "food",
+    "label": "FINANCIAL",
+    "quote": "Groceries came to about 380 last month"
+   },
+   {
+    "id": "m5",
+    "entity_id": "clean",
+    "label": "FINANCIAL",
+    "quote": "plus 30 for cleaning supplies"
+   },
+   {
+    "id": "m6",
+    "entity_id": "renewal",
+    "label": "DATE",
+    "quote": "14 December"
+   },
+   {
+    "id": "m7",
+    "entity_id": "premium",
+    "label": "FINANCIAL",
+    "quote": "the premium is 612 euros"
+   },
+   {
+    "id": "m8",
+    "entity_id": "savings",
+    "label": "FINANCIAL",
+    "quote": "150 a month going into savings"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "income",
+    "quote": "Take-home pay is 2,450 euros",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "rent",
+    "quote": "Rent is 1,020",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "util",
+    "quote": "utilities average 135",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "food",
+    "quote": "Groceries came to about 380 last month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "clean",
+    "quote": "plus 30 for cleaning supplies",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "renewal",
+    "quote": "14 December",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "premium",
+    "quote": "the premium is 612 euros",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "savings",
+    "quote": "150 a month going into savings",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Take-home pay is 2,450 euros"
+   },
+   {
+    "quote": "Rent is 1,020"
+   },
+   {
+    "quote": "utilities average 135, which I think includes the internet"
+   },
+   {
+    "quote": "Groceries came to about 380"
+   },
+   {
+    "quote": "plus 30 for cleaning supplies"
+   },
+   {
+    "quote": "premium is 612 euros, payable in one go"
+   },
+   {
+    "quote": "not planning to pay it in instalments"
+   },
+   {
+    "quote": "150 a month going into savings"
+   }
+  ],
+  "approved_output": "Budget check for the month. Take-home pay is 2,450 euros. Rent is 1,020 and utilities average 135, which I think includes the internet. Groceries came to about 380 last month, plus 30 for cleaning supplies. My car insurance renews on [DATE] and the premium is 612 euros, payable in one go. I'm not planning to pay it in instalments. I also want 150 a month going into savings, with nothing left over for eating out.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:work-oneonone-actions-v2",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:work-oneonone",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:work-oneonone-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:work-oneonone-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:work-oneonone-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into an action list with owners and deadlines.",
+  "text": "Hi team, notes from today's one-to-one before I lose them. My manager, Tomás Echeverría, agreed I can move to a four-day week from the first quarter as long as the on-call rota is covered, which he thinks is not a problem. Haruto Kobayashi from finance will confirm the budget code by Friday, and I should not book the offsite hotel until he does. Tomás also wants the launch checklist cut from 18 items to 12, with the draft sent to him before Thursday's meeting.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "mgr",
+    "label": "PERSON",
+    "quote": "Tomás Echeverría"
+   },
+   {
+    "id": "m2",
+    "entity_id": "schedule",
+    "label": "EMPLOYMENT",
+    "quote": "four-day week"
+   },
+   {
+    "id": "m3",
+    "entity_id": "start",
+    "label": "DATE",
+    "quote": "first quarter"
+   },
+   {
+    "id": "m4",
+    "entity_id": "fin",
+    "label": "PERSON",
+    "quote": "Haruto Kobayashi"
+   },
+   {
+    "id": "m5",
+    "entity_id": "fri",
+    "label": "DATE",
+    "quote": "Friday"
+   },
+   {
+    "id": "m6",
+    "entity_id": "mgr",
+    "label": "PERSON",
+    "quote": "Tomás",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "thu",
+    "label": "DATE",
+    "quote": "Thursday"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "mgr",
+    "quote": "Tomás Echeverría",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "schedule",
+    "quote": "four-day week",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "start",
+    "quote": "first quarter",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "fin",
+    "quote": "Haruto Kobayashi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "fri",
+    "quote": "Friday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "mgr",
+    "quote": "Tomás",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "thu",
+    "quote": "Thursday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My manager,"
+   },
+   {
+    "quote": "four-day week from the first quarter"
+   },
+   {
+    "quote": "as long as the on-call rota is covered"
+   },
+   {
+    "quote": "which he thinks is not a problem"
+   },
+   {
+    "quote": "from finance will confirm the budget code by Friday"
+   },
+   {
+    "quote": "should not book the offsite hotel until he does"
+   },
+   {
+    "quote": "cut from 18 items to 12"
+   },
+   {
+    "quote": "before Thursday's meeting"
+   }
+  ],
+  "approved_output": "Hi team, notes from today's one-to-one before I lose them. My manager, [PERSON_1], agreed I can move to a four-day week from the first quarter as long as the on-call rota is covered, which he thinks is not a problem. [PERSON_2] from finance will confirm the budget code by Friday, and I should not book the offsite hotel until he does. [PERSON_1] also wants the launch checklist cut from 18 items to 12, with the draft sent to him before Thursday's meeting.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:plan-move-notes-v2",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:plan-move",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:plan-move-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:plan-move-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:plan-move-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me sort this out.",
+  "text": "Thinking out loud about the move. The new flat is at 14 Linden Row, and the keys are collected from the agent on the 3rd, I think, or maybe the 5th, I'll check. The van hire is 85 for the day, and my brother-in-law, Yusuf Demir, can help from 9 until about 1 but not after. I have not told my landlord yet, and my notice period is 30 days, not 60. I also owe my old flatmate 120 for the broadband, which I should pay before I leave.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "newflat",
+    "label": "ADDRESS",
+    "quote": "14 Linden Row"
+   },
+   {
+    "id": "m2",
+    "entity_id": "keys1",
+    "label": "DATE",
+    "quote": "the 3rd"
+   },
+   {
+    "id": "m3",
+    "entity_id": "keys2",
+    "label": "DATE",
+    "quote": "the 5th"
+   },
+   {
+    "id": "m4",
+    "entity_id": "van",
+    "label": "FINANCIAL",
+    "quote": "The van hire is 85"
+   },
+   {
+    "id": "m5",
+    "entity_id": "helper",
+    "label": "PERSON",
+    "quote": "Yusuf Demir"
+   },
+   {
+    "id": "m6",
+    "entity_id": "debt",
+    "label": "FINANCIAL",
+    "quote": "owe my old flatmate 120"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "newflat",
+    "quote": "14 Linden Row",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "keys1",
+    "quote": "the 3rd",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "keys2",
+    "quote": "the 5th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "van",
+    "quote": "The van hire is 85",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "helper",
+    "quote": "Yusuf Demir",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "debt",
+    "quote": "owe my old flatmate 120",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the 3rd, I think, or maybe the 5th"
+   },
+   {
+    "quote": "The van hire is 85 for the day"
+   },
+   {
+    "quote": "my brother-in-law,"
+   },
+   {
+    "quote": "from 9 until about 1 but not after"
+   },
+   {
+    "quote": "I have not told my landlord yet"
+   },
+   {
+    "quote": "notice period is 30 days, not 60"
+   },
+   {
+    "quote": "owe my old flatmate 120 for the broadband"
+   }
+  ],
+  "approved_output": "Thinking out loud about the move. The new flat is at [ADDRESS], and the keys are collected from the agent on the 3rd, I think, or maybe the 5th, I'll check. The van hire is 85 for the day, and my brother-in-law, [PERSON_1], can help from 9 until about 1 but not after. I have not told my landlord yet, and my notice period is 30 days, not 60. I also owe my old flatmate 120 for the broadband, which I should pay before I leave.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

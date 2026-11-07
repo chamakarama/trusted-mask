@@ -1,0 +1,1799 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:sleep-age-keep",
+  "family_id": "434727443d98430a98986016f36c4758:fam-sleep-age",
+  "persona_id": "434727443d98430a98986016f36c4758:per-sleep-age",
+  "source_id": "434727443d98430a98986016f36c4758:src-sleep-age",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-sleep-age",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a short summary for the sleep clinic doctor, keeping my age and when it started.",
+  "text": "Notes for my sleep clinic referral. I'm 34 and I've been waking at roughly 3:30 a.m. most nights since March, maybe four nights out of seven. No snoring that my partner, Ngozi, has noticed, and I don't drink caffeine after noon. I tried 3 mg of melatonin for a fortnight; it made no difference, so I stopped. Last Tuesday I slept a full 7 hours, which is unusual. Our flat is on the ground floor beside a bin store, so noise might be part of it, though I honestly can't say. Please keep my own wording where it's uncertain.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "34"
+   },
+   {
+    "id": "m2",
+    "entity_id": "h_wake",
+    "label": "HEALTH",
+    "quote": "waking at roughly 3:30 a.m. most nights"
+   },
+   {
+    "id": "m3",
+    "entity_id": "d_start",
+    "label": "DATE",
+    "quote": "March"
+   },
+   {
+    "id": "m4",
+    "entity_id": "p_ngozi",
+    "label": "PERSON",
+    "quote": "Ngozi"
+   },
+   {
+    "id": "m5",
+    "entity_id": "h_mel",
+    "label": "HEALTH",
+    "quote": "3 mg of melatonin for a fortnight"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d_tue",
+    "label": "DATE",
+    "quote": "Last Tuesday"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "h_wake",
+    "quote": "waking at roughly 3:30 a.m. most nights",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "d_start",
+    "quote": "March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "p_ngozi",
+    "quote": "Ngozi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "h_mel",
+    "quote": "3 mg of melatonin for a fortnight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d_tue",
+    "quote": "Last Tuesday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm 34"
+   },
+   {
+    "quote": "roughly 3:30 a.m."
+   },
+   {
+    "quote": "maybe four nights out of seven"
+   },
+   {
+    "quote": "No snoring that my partner,"
+   },
+   {
+    "quote": "3 mg of melatonin for a fortnight"
+   },
+   {
+    "quote": "it made no difference"
+   },
+   {
+    "quote": "a full 7 hours"
+   }
+  ],
+  "approved_output": "Notes for my sleep clinic referral. I'm 34 and I've been waking at roughly 3:30 a.m. most nights since March, maybe four nights out of seven. No snoring that my partner, [PERSON_1], has noticed, and I don't drink caffeine after noon. I tried 3 mg of melatonin for a fortnight; it made no difference, so I stopped. Last Tuesday I slept a full 7 hours, which is unusual. Our flat is on the ground floor beside a bin store, so noise might be part of it, though I honestly can't say. Please keep my own wording where it's uncertain.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:sleep-age-band",
+  "family_id": "434727443d98430a98986016f36c4758:fam-sleep-age",
+  "persona_id": "434727443d98430a98986016f36c4758:per-sleep-age",
+  "source_id": "434727443d98430a98986016f36c4758:src-sleep-age",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-sleep-age",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Condense this into a short symptom description for a sleep app's feedback form. The form only wants an age band and no exact dates.",
+  "text": "Notes for my sleep clinic referral. I'm 34 and I've been waking at roughly 3:30 a.m. most nights since March, maybe four nights out of seven. No snoring that my partner, Ngozi, has noticed, and I don't drink caffeine after noon. I tried 3 mg of melatonin for a fortnight; it made no difference, so I stopped. Last Tuesday I slept a full 7 hours, which is unusual. Our flat is on the ground floor beside a bin store, so noise might be part of it, though I honestly can't say. Please keep my own wording where it's uncertain.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "34"
+   },
+   {
+    "id": "m2",
+    "entity_id": "h_wake",
+    "label": "HEALTH",
+    "quote": "waking at roughly 3:30 a.m. most nights"
+   },
+   {
+    "id": "m3",
+    "entity_id": "d_start",
+    "label": "DATE",
+    "quote": "March"
+   },
+   {
+    "id": "m4",
+    "entity_id": "p_ngozi",
+    "label": "PERSON",
+    "quote": "Ngozi"
+   },
+   {
+    "id": "m5",
+    "entity_id": "h_mel",
+    "label": "HEALTH",
+    "quote": "3 mg of melatonin for a fortnight"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d_tue",
+    "label": "DATE",
+    "quote": "Last Tuesday"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "GENERALISE",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "h_wake",
+    "quote": "waking at roughly 3:30 a.m. most nights",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "d_start",
+    "quote": "March",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "p_ngozi",
+    "quote": "Ngozi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "h_mel",
+    "quote": "3 mg of melatonin for a fortnight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d_tue",
+    "quote": "Last Tuesday",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "roughly 3:30 a.m."
+   },
+   {
+    "quote": "maybe four nights out of seven"
+   },
+   {
+    "quote": "No snoring that my partner,"
+   },
+   {
+    "quote": "3 mg of melatonin for a fortnight"
+   },
+   {
+    "quote": "it made no difference"
+   },
+   {
+    "quote": "a full 7 hours"
+   }
+  ],
+  "approved_output": "Notes for my sleep clinic referral. I'm 30–39 and I've been waking at roughly 3:30 a.m. most nights since [DATE], maybe four nights out of seven. No snoring that my partner, [PERSON_1], has noticed, and I don't drink caffeine after noon. I tried 3 mg of melatonin for a fortnight; it made no difference, so I stopped. [DATE] I slept a full 7 hours, which is unusual. Our flat is on the ground floor beside a bin store, so noise might be part of it, though I honestly can't say. Please keep my own wording where it's uncertain.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:jabs-plan",
+  "family_id": "434727443d98430a98986016f36c4758:fam-jabs",
+  "persona_id": "434727443d98430a98986016f36c4758:per-jabs",
+  "source_id": "434727443d98430a98986016f36c4758:src-jabs",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-jabs",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Lay out a simple plan: which appointment slot to book and what to check before going.",
+  "text": "Can you help me sort out the catch-up jabs for the kids? The nursery manager, Folasade, says Seun's second MMR dose is due, and I'm fairly sure he had the first at 13 months, though my red book says 14, so treat it as 13 or 14. His sister Chiamaka had hers on time. The practice nurse, Ngozi, said they have morning slots on the 12th, 19th and 26th. I work Tuesdays and Thursdays, so the 12th, which is a Thursday, is out. Ngozi also said not to bring Seun if his temperature is over 38 °C on the day. Can you lay out a simple plan?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "p_fola",
+    "label": "PERSON",
+    "quote": "Folasade"
+   },
+   {
+    "id": "m2",
+    "entity_id": "p_seun",
+    "label": "PERSON",
+    "quote": "Seun",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "h_mmr",
+    "label": "HEALTH",
+    "quote": "second MMR dose is due"
+   },
+   {
+    "id": "m4",
+    "entity_id": "h_first",
+    "label": "HEALTH",
+    "quote": "had the first at 13 months, though my red book says 14"
+   },
+   {
+    "id": "m5",
+    "entity_id": "p_chia",
+    "label": "PERSON",
+    "quote": "Chiamaka"
+   },
+   {
+    "id": "m6",
+    "entity_id": "p_ngozi",
+    "label": "PERSON",
+    "quote": "Ngozi",
+    "occurrence": 1
+   },
+   {
+    "id": "m7",
+    "entity_id": "d_slots",
+    "label": "DATE",
+    "quote": "the 12th, 19th and 26th"
+   },
+   {
+    "id": "m8",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "work Tuesdays and Thursdays"
+   },
+   {
+    "id": "m9",
+    "entity_id": "d_12",
+    "label": "DATE",
+    "quote": "the 12th, which is a Thursday"
+   },
+   {
+    "id": "m10",
+    "entity_id": "p_ngozi",
+    "label": "PERSON",
+    "quote": "Ngozi",
+    "occurrence": 2
+   },
+   {
+    "id": "m11",
+    "entity_id": "p_seun",
+    "label": "PERSON",
+    "quote": "Seun",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "p_fola",
+    "quote": "Folasade",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "p_seun",
+    "quote": "Seun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "h_mmr",
+    "quote": "second MMR dose is due",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "h_first",
+    "quote": "had the first at 13 months, though my red book says 14",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "p_chia",
+    "quote": "Chiamaka",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "p_ngozi",
+    "quote": "Ngozi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "d_slots",
+    "quote": "the 12th, 19th and 26th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "emp",
+    "quote": "work Tuesdays and Thursdays",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "d_12",
+    "quote": "the 12th, which is a Thursday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "p_ngozi",
+    "quote": "Ngozi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m11",
+    "entity_id": "p_seun",
+    "quote": "Seun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "13 or 14"
+   },
+   {
+    "quote": "His sister"
+   },
+   {
+    "quote": "morning slots"
+   },
+   {
+    "quote": "the 12th, which is a Thursday, is out"
+   },
+   {
+    "quote": "work Tuesdays and Thursdays"
+   },
+   {
+    "quote": "over 38 °C"
+   }
+  ],
+  "approved_output": "Can you help me sort out the catch-up jabs for the kids? The nursery manager, [PERSON_1], says [PERSON_2]'s second MMR dose is due, and I'm fairly sure he had the first at 13 months, though my red book says 14, so treat it as 13 or 14. His sister [PERSON_3] had hers on time. The practice nurse, [PERSON_4], said they have morning slots on the 12th, 19th and 26th. I work Tuesdays and Thursdays, so the 12th, which is a Thursday, is out. [PERSON_4] also said not to bring [PERSON_2] if his temperature is over 38 °C on the day. Can you lay out a simple plan?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:caffeine-neg",
+  "family_id": "434727443d98430a98986016f36c4758:fam-caffeine",
+  "persona_id": "434727443d98430a98986016f36c4758:per-caffeine",
+  "source_id": "434727443d98430a98986016f36c4758:src-caffeine",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-caffeine",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic on the caffeine estimate and tell me whether the 100 mg figure holds.",
+  "text": "Quick check before I post this in the book club thread. I've been reading Why We Sleep by Matthew Walker, and the caffeine chapter puts the half-life at about 5 to 6 hours, so a 200 mg coffee at 3 p.m. should leave roughly 100 mg at 9 p.m. Someone said 8 hours, no wait, I think that was a figure for pregnancy, so I'm not using it. The NHS page I looked up says up to 400 mg a day is fine for most adults. Can you check my sums, and say whether the 100 mg figure still holds if I use 6 hours?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "about 5 to 6 hours"
+   },
+   {
+    "quote": "a 200 mg coffee at 3 p.m."
+   },
+   {
+    "quote": "roughly 100 mg at 9 p.m."
+   },
+   {
+    "quote": "no wait"
+   },
+   {
+    "quote": "up to 400 mg a day"
+   }
+  ],
+  "approved_output": "Quick check before I post this in the book club thread. I've been reading Why We Sleep by Matthew Walker, and the caffeine chapter puts the half-life at about 5 to 6 hours, so a 200 mg coffee at 3 p.m. should leave roughly 100 mg at 9 p.m. Someone said 8 hours, no wait, I think that was a figure for pregnancy, so I'm not using it. The NHS page I looked up says up to 400 mg a day is fine for most adults. Can you check my sums, and say whether the 100 mg figure still holds if I use 6 hours?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:allergy-list",
+  "family_id": "434727443d98430a98986016f36c4758:fam-allergy",
+  "persona_id": "434727443d98430a98986016f36c4758:per-allergy",
+  "source_id": "434727443d98430a98986016f36c4758:src-allergy",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-allergy",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clean checklist for my allergy clinic appointment.",
+  "text": "Allergy clinic prep list, in no particular order:\n- Reaction one was after the prawn pad thai: hives within 20 minutes, no breathing trouble\n- Reaction two (I think) was a cashew in a salad: lips swelled, took an antihistamine, 10 mg, and it settled in about an hour\n- Not sure if almond milk counts; no reaction so far, but I avoid it now\n- Ifeoma at the front desk wants the form back by Friday, and my sister Damilola is driving me\n- Separately, Winston asked me to cover his Saturday shift, and I said probably not, I'll tell him tonight\n- EpiPen: carry two, and check the expiry dates",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "h_r1",
+    "label": "HEALTH",
+    "quote": "hives within 20 minutes, no breathing trouble"
+   },
+   {
+    "id": "m2",
+    "entity_id": "h_r2",
+    "label": "HEALTH",
+    "quote": "lips swelled, took an antihistamine, 10 mg, and it settled in about an hour"
+   },
+   {
+    "id": "m3",
+    "entity_id": "p_ifeoma",
+    "label": "PERSON",
+    "quote": "Ifeoma"
+   },
+   {
+    "id": "m4",
+    "entity_id": "d_fri",
+    "label": "DATE",
+    "quote": "Friday"
+   },
+   {
+    "id": "m5",
+    "entity_id": "p_dami",
+    "label": "PERSON",
+    "quote": "Damilola"
+   },
+   {
+    "id": "m6",
+    "entity_id": "p_win",
+    "label": "PERSON",
+    "quote": "Winston"
+   },
+   {
+    "id": "m7",
+    "entity_id": "emp_shift",
+    "label": "EMPLOYMENT",
+    "quote": "cover his Saturday shift"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "h_r1",
+    "quote": "hives within 20 minutes, no breathing trouble",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "h_r2",
+    "quote": "lips swelled, took an antihistamine, 10 mg, and it settled in about an hour",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "p_ifeoma",
+    "quote": "Ifeoma",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "d_fri",
+    "quote": "Friday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "p_dami",
+    "quote": "Damilola",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Separately, Winston asked me to cover his Saturday shift, and I said probably not, I'll tell him tonight",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A colleague's Saturday shift-cover request is unrelated to the allergy clinic visit and contains none of the allergy facts the checklist needs."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "hives within 20 minutes"
+   },
+   {
+    "quote": "no breathing trouble"
+   },
+   {
+    "quote": "(I think)"
+   },
+   {
+    "quote": "10 mg"
+   },
+   {
+    "quote": "Not sure if almond milk counts"
+   },
+   {
+    "quote": "by Friday"
+   },
+   {
+    "quote": "my sister"
+   },
+   {
+    "quote": "carry two"
+   }
+  ],
+  "approved_output": "Allergy clinic prep list, in no particular order:\n- Reaction one was after the prawn pad thai: hives within 20 minutes, no breathing trouble\n- Reaction two (I think) was a cashew in a salad: lips swelled, took an antihistamine, 10 mg, and it settled in about an hour\n- Not sure if almond milk counts; no reaction so far, but I avoid it now\n- [PERSON_1] at the front desk wants the form back by Friday, and my sister [PERSON_2] is driving me\n- EpiPen: carry two, and check the expiry dates",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:pension-fees",
+  "family_id": "434727443d98430a98986016f36c4758:fam-pension",
+  "persona_id": "434727443d98430a98986016f36c4758:per-pension",
+  "source_id": "434727443d98430a98986016f36c4758:src-pension",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-pension",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Estimate roughly what an extra 150 a month for 10 years could add to the pot, and list what I should ask the pension provider.",
+  "text": "Hello,\n\nI'm 52 and have been in the workplace scheme since I started at the council, which I think was 2009, though my payslip says 2010. My latest statement shows a pot of 61,400 after fees of 0.45% a year. I'd like to know if paying an extra 150 a month for 10 years would meaningfully change that. Unrelated, but my landlord has put the rent up to 1,150 from March, which I'm furious about. I don't plan to retire before 65 and I'm not worried about risk. I can't tell whether the fees are quoted before or after the employer's contribution.\n\nThanks,\nDelroy",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "52"
+   },
+   {
+    "id": "m2",
+    "entity_id": "emp",
+    "label": "EMPLOYMENT",
+    "quote": "started at the council"
+   },
+   {
+    "id": "m3",
+    "entity_id": "d_start",
+    "label": "DATE",
+    "quote": "2009, though my payslip says 2010"
+   },
+   {
+    "id": "m4",
+    "entity_id": "f_pot",
+    "label": "FINANCIAL",
+    "quote": "a pot of 61,400 after fees of 0.45% a year"
+   },
+   {
+    "id": "m5",
+    "entity_id": "f_rent",
+    "label": "FINANCIAL",
+    "quote": "rent up to 1,150"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d_mar",
+    "label": "DATE",
+    "quote": "March"
+   },
+   {
+    "id": "m7",
+    "entity_id": "p_del",
+    "label": "PERSON",
+    "quote": "Delroy"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "age",
+    "quote": "52",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "emp",
+    "quote": "started at the council",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "d_start",
+    "quote": "2009, though my payslip says 2010",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "f_pot",
+    "quote": "a pot of 61,400 after fees of 0.45% a year",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " Unrelated, but my landlord has put the rent up to 1,150 from March, which I'm furious about.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The landlord's rent increase is unrelated to the pension question and holds none of the figures the estimate needs."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "p_del",
+    "quote": "Delroy",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm 52"
+   },
+   {
+    "quote": "61,400"
+   },
+   {
+    "quote": "0.45% a year"
+   },
+   {
+    "quote": "extra 150 a month for 10 years"
+   },
+   {
+    "quote": "before 65"
+   },
+   {
+    "quote": "not worried about risk"
+   },
+   {
+    "quote": "I think was 2009, though my payslip says 2010"
+   },
+   {
+    "quote": "before or after the employer's contribution"
+   }
+  ],
+  "approved_output": "Hello,\n\nI'm 52 and have been in the workplace scheme since I started at the council, which I think was 2009, though my payslip says 2010. My latest statement shows a pot of 61,400 after fees of 0.45% a year. I'd like to know if paying an extra 150 a month for 10 years would meaningfully change that. I don't plan to retire before 65 and I'm not worried about risk. I can't tell whether the fees are quoted before or after the employer's contribution.\n\nThanks,\n[PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:invoice-chaser",
+  "family_id": "434727443d98430a98986016f36c4758:fam-invoice",
+  "persona_id": "434727443d98430a98986016f36c4758:per-invoice",
+  "source_id": "434727443d98430a98986016f36c4758:src-invoice",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-invoice",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check whether the invoice arithmetic adds up, and draft a short, polite reply saying I'll confirm the payment status today.",
+  "text": "Got this chaser from a freelancer this morning, pasted below. Can you help me sort it out? I'm sure I paid the 540, but maybe it was only the 480 and I missed the extra revisions.\n\n> Hi Marcia, just a nudge about invoice 2024-117 for the logo work: 480 for the design plus 60 for the extra revisions, so 540 in total, due 30 days from the 3rd. Please pay to IBAN DE00 0000 0000 0000 0000 00 and quote the invoice number. If you've already paid, it may take 2 or 3 days to show on my side. Questions? Write to accounts@lindenstudio.example.invalid. Thanks, Kwesi",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "p_marcia",
+    "label": "PERSON",
+    "quote": "Marcia"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d_due",
+    "label": "DATE",
+    "quote": "the 3rd"
+   },
+   {
+    "id": "m3",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "DE00 0000 0000 0000 0000 00"
+   },
+   {
+    "id": "m4",
+    "entity_id": "em",
+    "label": "EMAIL",
+    "quote": "accounts@lindenstudio.example.invalid"
+   },
+   {
+    "id": "m5",
+    "entity_id": "p_kwesi",
+    "label": "PERSON",
+    "quote": "Kwesi"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "p_marcia",
+    "quote": "Marcia",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d_due",
+    "quote": "the 3rd",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "iban",
+    "quote": "DE00 0000 0000 0000 0000 00",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "em",
+    "quote": "accounts@lindenstudio.example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "p_kwesi",
+    "quote": "Kwesi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "480 for the design plus 60 for the extra revisions"
+   },
+   {
+    "quote": "540 in total"
+   },
+   {
+    "quote": "30 days from"
+   },
+   {
+    "quote": "2 or 3 days"
+   },
+   {
+    "quote": "I'm sure I paid the 540"
+   },
+   {
+    "quote": "maybe it was only the 480"
+   }
+  ],
+  "approved_output": "Got this chaser from a freelancer this morning, pasted below. Can you help me sort it out? I'm sure I paid the 540, but maybe it was only the 480 and I missed the extra revisions.\n\n> Hi [PERSON_1], just a nudge about invoice 2024-117 for the logo work: 480 for the design plus 60 for the extra revisions, so 540 in total, due 30 days from the 3rd. Please pay to IBAN [IBAN] and quote the invoice number. If you've already paid, it may take 2 or 3 days to show on my side. Questions? Write to [EMAIL]. Thanks, [PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:tax-worksheet",
+  "family_id": "434727443d98430a98986016f36c4758:fam-tax",
+  "persona_id": "434727443d98430a98986016f36c4758:per-tax",
+  "source_id": "434727443d98430a98986016f36c4758:src-tax",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-tax",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out my taxable income from the corrected figures and flag anything inconsistent or worth double-checking.",
+  "text": "First time doing my own return, so go gently. Worksheet so far:\n- Tax ID: SYN-4417-0092-X (they asked for it on page 1)\n- Salary 38,200, no wait, 38,750 after the payroll correction\n- Freelance income 2,400, expenses 610 (receipts for 540 of it)\n- Gift Aid donations: 120 total, not 12, I mistyped\n- Personal allowance from the guidance sheet: 12,570\n- Taxable = salary + freelance net - allowance, I think\n- Latoya says her accountant charges 90 an hour, which I won't be using\nNothing here is final until I find the receipts.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "nid",
+    "label": "NATIONAL_ID",
+    "quote": "SYN-4417-0092-X"
+   },
+   {
+    "id": "m2",
+    "entity_id": "f_sal",
+    "label": "FINANCIAL",
+    "quote": "Salary 38,200, no wait, 38,750 after the payroll correction"
+   },
+   {
+    "id": "m3",
+    "entity_id": "f_free",
+    "label": "FINANCIAL",
+    "quote": "Freelance income 2,400, expenses 610 (receipts for 540 of it)"
+   },
+   {
+    "id": "m4",
+    "entity_id": "f_gift",
+    "label": "FINANCIAL",
+    "quote": "Gift Aid donations: 120 total, not 12, I mistyped"
+   },
+   {
+    "id": "m5",
+    "entity_id": "p_lat",
+    "label": "PERSON",
+    "quote": "Latoya"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "nid",
+    "quote": "SYN-4417-0092-X",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "f_sal",
+    "quote": "Salary 38,200, no wait, 38,750 after the payroll correction",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "f_free",
+    "quote": "Freelance income 2,400, expenses 610 (receipts for 540 of it)",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "f_gift",
+    "quote": "Gift Aid donations: 120 total, not 12, I mistyped",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "p_lat",
+    "quote": "Latoya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "38,750"
+   },
+   {
+    "quote": "no wait"
+   },
+   {
+    "quote": "Freelance income 2,400"
+   },
+   {
+    "quote": "expenses 610"
+   },
+   {
+    "quote": "receipts for 540"
+   },
+   {
+    "quote": "120 total, not 12"
+   },
+   {
+    "quote": "12,570"
+   },
+   {
+    "quote": "salary + freelance net - allowance"
+   }
+  ],
+  "approved_output": "First time doing my own return, so go gently. Worksheet so far:\n- Tax ID: [NATIONAL_ID] (they asked for it on page 1)\n- Salary 38,200, no wait, 38,750 after the payroll correction\n- Freelance income 2,400, expenses 610 (receipts for 540 of it)\n- Gift Aid donations: 120 total, not 12, I mistyped\n- Personal allowance from the guidance sheet: 12,570\n- Taxable = salary + freelance net - allowance, I think\n- [PERSON_1] says her accountant charges 90 an hour, which I won't be using\nNothing here is final until I find the receipts.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:gym-neg",
+  "family_id": "434727443d98430a98986016f36c4758:fam-gymcost",
+  "persona_id": "434727443d98430a98986016f36c4758:per-gymcost",
+  "source_id": "434727443d98430a98986016f36c4758:src-gymcost",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-gymcost",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic and tell me which plan is cheaper over 12 months and over 6 months.",
+  "text": "Trying to decide between two gym plans before I commit. Planet Fitness is 24.99 a month with a 49 joining fee, and a local chain quoted me 31 a month with no joining fee but a 12-month minimum. I think the first is cheaper over a year, but maybe not if I quit after 6 months because of the fee. A Which? article also said you should never pay a joining fee if a promo is coming, which could save the 49. I'd rather not sign anything today, so I'm using the free trial first.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "24.99 a month with a 49 joining fee"
+   },
+   {
+    "quote": "31 a month with no joining fee"
+   },
+   {
+    "quote": "12-month minimum"
+   },
+   {
+    "quote": "quit after 6 months"
+   },
+   {
+    "quote": "save the 49"
+   }
+  ],
+  "approved_output": "Trying to decide between two gym plans before I commit. Planet Fitness is 24.99 a month with a 49 joining fee, and a local chain quoted me 31 a month with no joining fee but a 12-month minimum. I think the first is cheaper over a year, but maybe not if I quit after 6 months because of the fee. A Which? article also said you should never pay a joining fee if a promo is coming, which could save the 49. I'd rather not sign anything today, so I'm using the free trial first.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:flight-refund",
+  "family_id": "434727443d98430a98986016f36c4758:fam-flightrefund",
+  "persona_id": "434727443d98430a98986016f36c4758:per-flightrefund",
+  "source_id": "434727443d98430a98986016f36c4758:src-flightrefund",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-flightrefund",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short email to the airline asking for a refund to the original card rather than a voucher.",
+  "text": "Right, so the flight to the conference got cancelled on the airline's side. I paid 312.40 on my card, number 4000 0000 0000 0000, and they've offered either a voucher for 312.40 or a refund in 14 to 21 working days. Winston in finance says the voucher can't be expensed, so I want the refund. I did not accept the voucher and I haven't rebooked anything. Please draft the email, and don't mention the hotel, that's a separate claim, and I'm still waiting to hear on it, maybe another week or two.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "card",
+    "label": "PAYMENT_CARD",
+    "quote": "4000 0000 0000 0000"
+   },
+   {
+    "id": "m2",
+    "entity_id": "p_win",
+    "label": "PERSON",
+    "quote": "Winston"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "card",
+    "quote": "4000 0000 0000 0000",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "p_win",
+    "quote": "Winston",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I paid 312.40 on my card"
+   },
+   {
+    "quote": "voucher for 312.40"
+   },
+   {
+    "quote": "14 to 21 working days"
+   },
+   {
+    "quote": "can't be expensed"
+   },
+   {
+    "quote": "I did not accept the voucher"
+   },
+   {
+    "quote": "haven't rebooked anything"
+   },
+   {
+    "quote": "don't mention the hotel"
+   }
+  ],
+  "approved_output": "Right, so the flight to the conference got cancelled on the airline's side. I paid 312.40 on my card, number [PAYMENT_CARD], and they've offered either a voucher for 312.40 or a refund in 14 to 21 working days. [PERSON_1] in finance says the voucher can't be expensed, so I want the refund. I did not accept the voucher and I haven't rebooked anything. Please draft the email, and don't mention the hotel, that's a separate claim, and I'm still waiting to hear on it, maybe another week or two.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:shift-swap",
+  "family_id": "434727443d98430a98986016f36c4758:fam-shiftswap",
+  "persona_id": "434727443d98430a98986016f36c4758:per-shiftswap",
+  "source_id": "434727443d98430a98986016f36c4758:src-shiftswap",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-shiftswap",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a clear list of who covers which shift.",
+  "text": "Shift swap notes from today (messy, sorry). Kwesi can't do Saturday. Delroy offered to take Saturday if Kwesi takes his Tuesday close. Kwesi said yes, but only if Seun is happy to swap his Sunday opening, otherwise no deal. Seun is fine with that as long as he isn't also on Monday, and Delroy checked: Monday is Latoya's. So I think it's Kwesi on Tuesday close, Delroy on Saturday, Seun on Sunday opening and Latoya on Monday, but double-check me.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "p_kwesi",
+    "label": "PERSON",
+    "quote": "Kwesi",
+    "occurrence": 1
+   },
+   {
+    "id": "m2",
+    "entity_id": "p_del",
+    "label": "PERSON",
+    "quote": "Delroy",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "p_kwesi",
+    "label": "PERSON",
+    "quote": "Kwesi",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "p_kwesi",
+    "label": "PERSON",
+    "quote": "Kwesi",
+    "occurrence": 3
+   },
+   {
+    "id": "m5",
+    "entity_id": "p_seun",
+    "label": "PERSON",
+    "quote": "Seun",
+    "occurrence": 1
+   },
+   {
+    "id": "m6",
+    "entity_id": "p_seun",
+    "label": "PERSON",
+    "quote": "Seun",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "p_del",
+    "label": "PERSON",
+    "quote": "Delroy",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "p_lat",
+    "label": "PERSON",
+    "quote": "Latoya",
+    "occurrence": 1
+   },
+   {
+    "id": "m9",
+    "entity_id": "p_kwesi",
+    "label": "PERSON",
+    "quote": "Kwesi",
+    "occurrence": 4
+   },
+   {
+    "id": "m10",
+    "entity_id": "p_del",
+    "label": "PERSON",
+    "quote": "Delroy",
+    "occurrence": 3
+   },
+   {
+    "id": "m11",
+    "entity_id": "p_seun",
+    "label": "PERSON",
+    "quote": "Seun",
+    "occurrence": 3
+   },
+   {
+    "id": "m12",
+    "entity_id": "p_lat",
+    "label": "PERSON",
+    "quote": "Latoya",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "p_kwesi",
+    "quote": "Kwesi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "p_del",
+    "quote": "Delroy",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "p_kwesi",
+    "quote": "Kwesi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "p_kwesi",
+    "quote": "Kwesi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "p_seun",
+    "quote": "Seun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "p_seun",
+    "quote": "Seun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "p_del",
+    "quote": "Delroy",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "p_lat",
+    "quote": "Latoya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "p_kwesi",
+    "quote": "Kwesi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 4
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "p_del",
+    "quote": "Delroy",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m11",
+    "entity_id": "p_seun",
+    "quote": "Seun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "m12",
+    "entity_id": "p_lat",
+    "quote": "Latoya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "can't do Saturday"
+   },
+   {
+    "quote": "take Saturday if"
+   },
+   {
+    "quote": "takes his Tuesday close"
+   },
+   {
+    "quote": "swap his Sunday opening"
+   },
+   {
+    "quote": "otherwise no deal"
+   },
+   {
+    "quote": "isn't also on Monday"
+   },
+   {
+    "quote": "Monday is"
+   },
+   {
+    "quote": "but double-check me"
+   }
+  ],
+  "approved_output": "Shift swap notes from today (messy, sorry). [PERSON_1] can't do Saturday. [PERSON_2] offered to take Saturday if [PERSON_1] takes his Tuesday close. [PERSON_1] said yes, but only if [PERSON_3] is happy to swap his Sunday opening, otherwise no deal. [PERSON_3] is fine with that as long as he isn't also on Monday, and [PERSON_2] checked: Monday is [PERSON_4]'s. So I think it's [PERSON_1] on Tuesday close, [PERSON_2] on Saturday, [PERSON_3] on Sunday opening and [PERSON_4] on Monday, but double-check me.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:handover-deadlines",
+  "family_id": "434727443d98430a98986016f36c4758:fam-handover",
+  "persona_id": "434727443d98430a98986016f36c4758:per-handover",
+  "source_id": "434727443d98430a98986016f36c4758:src-handover",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-handover",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a handover checklist for the team, with the deadlines and who to ask.",
+  "text": "Fwd: handover before I go\n\nHi all, I'm out from the 14th to the 25th. Billing runs on the 18th and the usual reconciliation is due on the 22nd; Chiamaka has the login, so ask her for the shared sheet. I think the vendor deadline is the 16th, no, the 17th, I'll confirm. Also I have a physio appointment for my back on the 12th, so I'm leaving early that day. Anything urgent goes to Abena. Thanks, Tunde",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "d_away",
+    "label": "DATE",
+    "quote": "the 14th to the 25th"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d_bill",
+    "label": "DATE",
+    "quote": "the 18th"
+   },
+   {
+    "id": "m3",
+    "entity_id": "d_rec",
+    "label": "DATE",
+    "quote": "the 22nd"
+   },
+   {
+    "id": "m4",
+    "entity_id": "p_chia",
+    "label": "PERSON",
+    "quote": "Chiamaka"
+   },
+   {
+    "id": "m5",
+    "entity_id": "d_vendor",
+    "label": "DATE",
+    "quote": "the 16th, no, the 17th"
+   },
+   {
+    "id": "m6",
+    "entity_id": "h_physio",
+    "label": "HEALTH",
+    "quote": "a physio appointment for my back"
+   },
+   {
+    "id": "m7",
+    "entity_id": "d_12",
+    "label": "DATE",
+    "quote": "the 12th"
+   },
+   {
+    "id": "m8",
+    "entity_id": "p_abena",
+    "label": "PERSON",
+    "quote": "Abena"
+   },
+   {
+    "id": "m9",
+    "entity_id": "p_tunde",
+    "label": "PERSON",
+    "quote": "Tunde"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "d_away",
+    "quote": "the 14th to the 25th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d_bill",
+    "quote": "the 18th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "d_rec",
+    "quote": "the 22nd",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "p_chia",
+    "quote": "Chiamaka",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "d_vendor",
+    "quote": "the 16th, no, the 17th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " Also I have a physio appointment for my back on the 12th, so I'm leaving early that day.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A personal physio appointment is unrelated to the handover deadlines and contains no deadline or contact facts the checklist needs."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "p_abena",
+    "quote": "Abena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "p_tunde",
+    "quote": "Tunde",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "out from the 14th to the 25th"
+   },
+   {
+    "quote": "Billing runs on the 18th"
+   },
+   {
+    "quote": "reconciliation is due on the 22nd"
+   },
+   {
+    "quote": "no, the 17th, I'll confirm"
+   },
+   {
+    "quote": "ask her for the shared sheet"
+   },
+   {
+    "quote": "Anything urgent goes to"
+   }
+  ],
+  "approved_output": "Fwd: handover before I go\n\nHi all, I'm out from the 14th to the 25th. Billing runs on the 18th and the usual reconciliation is due on the 22nd; [PERSON_1] has the login, so ask her for the shared sheet. I think the vendor deadline is the 16th, no, the 17th, I'll confirm. Anything urgent goes to [PERSON_2]. Thanks, [PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "434727443d98430a98986016f36c4758",
+  "id": "434727443d98430a98986016f36c4758:handover-ooo",
+  "family_id": "434727443d98430a98986016f36c4758:fam-handover",
+  "persona_id": "434727443d98430a98986016f36c4758:per-handover",
+  "source_id": "434727443d98430a98986016f36c4758:src-handover",
+  "template_id": "434727443d98430a98986016f36c4758:tpl-handover",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a short out-of-office message covering when I'm away, my early finish before then, and who to contact. The billing and vendor details aren't needed.",
+  "text": "Fwd: handover before I go\n\nHi all, I'm out from the 14th to the 25th. Billing runs on the 18th and the usual reconciliation is due on the 22nd; Chiamaka has the login, so ask her for the shared sheet. I think the vendor deadline is the 16th, no, the 17th, I'll confirm. Also I have a physio appointment for my back on the 12th, so I'm leaving early that day. Anything urgent goes to Abena. Thanks, Tunde",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "d_away",
+    "label": "DATE",
+    "quote": "the 14th to the 25th"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d_bill",
+    "label": "DATE",
+    "quote": "the 18th"
+   },
+   {
+    "id": "m3",
+    "entity_id": "d_rec",
+    "label": "DATE",
+    "quote": "the 22nd"
+   },
+   {
+    "id": "m4",
+    "entity_id": "p_chia",
+    "label": "PERSON",
+    "quote": "Chiamaka"
+   },
+   {
+    "id": "m5",
+    "entity_id": "d_vendor",
+    "label": "DATE",
+    "quote": "the 16th, no, the 17th"
+   },
+   {
+    "id": "m6",
+    "entity_id": "h_physio",
+    "label": "HEALTH",
+    "quote": "a physio appointment for my back"
+   },
+   {
+    "id": "m7",
+    "entity_id": "d_12",
+    "label": "DATE",
+    "quote": "the 12th"
+   },
+   {
+    "id": "m8",
+    "entity_id": "p_abena",
+    "label": "PERSON",
+    "quote": "Abena"
+   },
+   {
+    "id": "m9",
+    "entity_id": "p_tunde",
+    "label": "PERSON",
+    "quote": "Tunde"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "d_away",
+    "quote": "the 14th to the 25th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " Billing runs on the 18th and the usual reconciliation is due on the 22nd; Chiamaka has the login, so ask her for the shared sheet. I think the vendor deadline is the 16th, no, the 17th, I'll confirm.",
+    "label": "EMPLOYMENT",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The billing, reconciliation and vendor-deadline details are outside an out-of-office message, which needs only the absence dates, the early finish and the contact."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "h_physio",
+    "quote": "a physio appointment for my back",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "d_12",
+    "quote": "the 12th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "p_abena",
+    "quote": "Abena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "p_tunde",
+    "quote": "Tunde",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "out from the 14th to the 25th"
+   },
+   {
+    "quote": "leaving early that day"
+   },
+   {
+    "quote": "Anything urgent goes to"
+   },
+   {
+    "quote": "physio appointment"
+   }
+  ],
+  "approved_output": "Fwd: handover before I go\n\nHi all, I'm out from the 14th to the 25th. Also I have a physio appointment for my back on the 12th, so I'm leaving early that day. Anything urgent goes to [PERSON_1]. Thanks, [PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "434727443d98430a98986016f36c4758:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W1 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

@@ -1,0 +1,1786 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-p1a",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-p1",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-p1",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-p1",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-p1",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "List which vaccinations my daughter might still be due, using her age and the dose timings, and flag anything I'm unsure about.",
+  "text": "Hi, I'm trying to work out where we are with my daughter Dilnoza Rahimova's vaccinations. She is 7 years old. I think she had her first MMR dose at 13 months, no wait, 14 months, and the second was meant to be at 3 years 4 months, but I never saw a confirmation. She had no reaction to the first one apart from a mild fever for one day. Her sister Layla is completely up to date, so ignore her. I just need a clear list of what Dilnoza might still be due.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "dil",
+    "quote": "Dilnoza Rahimova",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "age",
+    "quote": "7",
+    "label": "AGE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "mmr1",
+    "quote": "first MMR dose at 13 months, no wait, 14 months",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "mmr2",
+    "quote": "meant to be at 3 years 4 months",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m5",
+    "entity_id": "react",
+    "quote": "no reaction to the first one apart from a mild fever for one day",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON"
+   },
+   {
+    "id": "m7",
+    "entity_id": "dil",
+    "quote": "Dilnoza",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "dil",
+    "quote": "Dilnoza Rahimova",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "age",
+    "quote": "7",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mmr1",
+    "quote": "first MMR dose at 13 months, no wait, 14 months",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "mmr2",
+    "quote": "meant to be at 3 years 4 months",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "react",
+    "quote": "no reaction to the first one apart from a mild fever for one day",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "dil",
+    "quote": "Dilnoza",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my daughter"
+   },
+   {
+    "quote": "13 months, no wait, 14 months"
+   },
+   {
+    "quote": "3 years 4 months"
+   },
+   {
+    "quote": "no reaction to the first one"
+   },
+   {
+    "quote": "never saw a confirmation"
+   }
+  ],
+  "approved_output": "Hi, I'm trying to work out where we are with my daughter [PERSON_1]'s vaccinations. She is 7 years old. I think she had her first MMR dose at 13 months, no wait, 14 months, and the second was meant to be at 3 years 4 months, but I never saw a confirmation. She had no reaction to the first one apart from a mild fever for one day. Her sister [PERSON_2] is completely up to date, so ignore her. I just need a clear list of what [PERSON_1] might still be due.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-p1b",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-p1",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-p1",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-p1",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-p1",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write two sentences for the clinic's records on the first MMR dose timing and her reaction. Her age and the second dose aren't needed.",
+  "text": "Hi, I'm trying to work out where we are with my daughter Dilnoza Rahimova's vaccinations. She is 7 years old. I think she had her first MMR dose at 13 months, no wait, 14 months, and the second was meant to be at 3 years 4 months, but I never saw a confirmation. She had no reaction to the first one apart from a mild fever for one day. Her sister Layla is completely up to date, so ignore her. I just need a clear list of what Dilnoza might still be due.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "dil",
+    "quote": "Dilnoza Rahimova",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "age",
+    "quote": "7",
+    "label": "AGE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "mmr1",
+    "quote": "first MMR dose at 13 months, no wait, 14 months",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "mmr2",
+    "quote": "meant to be at 3 years 4 months",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m5",
+    "entity_id": "react",
+    "quote": "no reaction to the first one apart from a mild fever for one day",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON"
+   },
+   {
+    "id": "m7",
+    "entity_id": "dil",
+    "quote": "Dilnoza",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "dil",
+    "quote": "Dilnoza Rahimova",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "age",
+    "quote": "7",
+    "label": "AGE",
+    "action": "GENERALISE",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "mmr1",
+    "quote": "first MMR dose at 13 months, no wait, 14 months",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "mmr2",
+    "quote": "meant to be at 3 years 4 months",
+    "label": "HEALTH",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "react",
+    "quote": "no reaction to the first one apart from a mild fever for one day",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "dil",
+    "quote": "Dilnoza",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my daughter"
+   },
+   {
+    "quote": "I think"
+   },
+   {
+    "quote": "13 months, no wait, 14 months"
+   },
+   {
+    "quote": "no reaction to the first one apart from a mild fever for one day"
+   }
+  ],
+  "approved_output": "Hi, I'm trying to work out where we are with my daughter [PERSON_1]'s vaccinations. She is 0–9 years old. I think she had her first MMR dose at 13 months, no wait, 14 months, and the second was [HEALTH], but I never saw a confirmation. She had no reaction to the first one apart from a mild fever for one day. Her sister [PERSON_2] is completely up to date, so ignore her. I just need a clear list of what [PERSON_1] might still be due.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-p2x",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-p2",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-p2",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-p2",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-p2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic: work out the gap between the statement figure and my spreadsheet figure, and how much less I pay in a year at 250 a month than at 300.",
+  "text": "Pension statement question, mostly for myself. The Brightwell Pensions letter dated 3 March says my pot was 41,200 at the end of the tax year, but my own spreadsheet says 42,100, so there's a gap somewhere. I paid in 300 a month until June, then 250 after I dropped to part-time at a print shop. I think they may have missed the June payment, though I'm not sure. My adviser, Karim Benali, said to check the employer contributions first. I live in Leeds so the postal copy takes a week.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "org",
+    "quote": "Brightwell Pensions",
+    "label": "ORG"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d1",
+    "quote": "3 March",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "f1",
+    "quote": "41,200",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m4",
+    "entity_id": "f2",
+    "quote": "42,100",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "f3",
+    "quote": "300 a month",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d2",
+    "quote": "June",
+    "label": "DATE",
+    "occurrence": 1
+   },
+   {
+    "id": "m7",
+    "entity_id": "f4",
+    "quote": "250",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m8",
+    "entity_id": "emp",
+    "quote": "part-time at a print shop",
+    "label": "EMPLOYMENT"
+   },
+   {
+    "id": "m9",
+    "entity_id": "d3",
+    "quote": "June",
+    "label": "DATE",
+    "occurrence": 2
+   },
+   {
+    "id": "m10",
+    "entity_id": "karim",
+    "quote": "Karim Benali",
+    "label": "PERSON"
+   },
+   {
+    "id": "m11",
+    "entity_id": "leeds",
+    "quote": "Leeds",
+    "label": "LOCATION"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "org",
+    "quote": "Brightwell Pensions",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d1",
+    "quote": "3 March",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "f1",
+    "quote": "41,200",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "f2",
+    "quote": "42,100",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "f3",
+    "quote": "300 a month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d2",
+    "quote": "June",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "f4",
+    "quote": "250",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "emp",
+    "quote": "part-time at a print shop",
+    "label": "EMPLOYMENT",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "d3",
+    "quote": "June",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "karim",
+    "quote": "Karim Benali",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": " I live in Leeds so the postal copy takes a week.",
+    "label": "LOCATION",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The author's home town and the postal-copy delay have nothing to do with the arithmetic and contain no figures the calculation needs."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "41,200"
+   },
+   {
+    "quote": "42,100"
+   },
+   {
+    "quote": "300 a month"
+   },
+   {
+    "quote": "250"
+   },
+   {
+    "quote": "gap somewhere"
+   }
+  ],
+  "approved_output": "Pension statement question, mostly for myself. The [ORG] letter dated [DATE] says my pot was 41,200 at the end of the tax year, but my own spreadsheet says 42,100, so there's a gap somewhere. I paid in 300 a month until [DATE], then 250 after I dropped to [EMPLOYMENT]. I think they may have missed the [DATE] payment, though I'm not sure. My adviser, [PERSON_1], said to check the employer contributions first.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-p2y",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-p2",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-p2",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-p2",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-p2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a short email to the pension provider asking them to check whether my June payment was received and to confirm the statement figure, mentioning the letter date.",
+  "text": "Pension statement question, mostly for myself. The Brightwell Pensions letter dated 3 March says my pot was 41,200 at the end of the tax year, but my own spreadsheet says 42,100, so there's a gap somewhere. I paid in 300 a month until June, then 250 after I dropped to part-time at a print shop. I think they may have missed the June payment, though I'm not sure. My adviser, Karim Benali, said to check the employer contributions first. I live in Leeds so the postal copy takes a week.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "org",
+    "quote": "Brightwell Pensions",
+    "label": "ORG"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d1",
+    "quote": "3 March",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "f1",
+    "quote": "41,200",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m4",
+    "entity_id": "f2",
+    "quote": "42,100",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "f3",
+    "quote": "300 a month",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d2",
+    "quote": "June",
+    "label": "DATE",
+    "occurrence": 1
+   },
+   {
+    "id": "m7",
+    "entity_id": "f4",
+    "quote": "250",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m8",
+    "entity_id": "emp",
+    "quote": "part-time at a print shop",
+    "label": "EMPLOYMENT"
+   },
+   {
+    "id": "m9",
+    "entity_id": "d3",
+    "quote": "June",
+    "label": "DATE",
+    "occurrence": 2
+   },
+   {
+    "id": "m10",
+    "entity_id": "karim",
+    "quote": "Karim Benali",
+    "label": "PERSON"
+   },
+   {
+    "id": "m11",
+    "entity_id": "leeds",
+    "quote": "Leeds",
+    "label": "LOCATION"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "org",
+    "quote": "Brightwell Pensions",
+    "label": "ORG",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d1",
+    "quote": "3 March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "f1",
+    "quote": "41,200",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "f2",
+    "quote": "42,100",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "f3",
+    "quote": "300 a month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d2",
+    "quote": "June",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "f4",
+    "quote": "250",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "emp",
+    "quote": "part-time at a print shop",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "d3",
+    "quote": "June",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "karim",
+    "quote": "Karim Benali",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "section",
+    "quote": " I live in Leeds so the postal copy takes a week.",
+    "label": "LOCATION",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The author's home town and how long posted copies take are not needed in an email asking the provider to check a payment."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "41,200"
+   },
+   {
+    "quote": "42,100"
+   },
+   {
+    "quote": "I think they may have missed the June payment"
+   },
+   {
+    "quote": "though I'm not sure"
+   }
+  ],
+  "approved_output": "Pension statement question, mostly for myself. The Brightwell Pensions letter dated 3 March says my pot was 41,200 at the end of the tax year, but my own spreadsheet says 42,100, so there's a gap somewhere. I paid in 300 a month until June, then 250 after I dropped to part-time at a print shop. I think they may have missed the June payment, though I'm not sure. My adviser, [PERSON_1], said to check the employer contributions first.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-p3p",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-p3",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-p3",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-p3",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-p3",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clear shift-swap request for the rota channel with the shifts and dates, leaving out medical details.",
+  "text": "Hi Soraya,\n\nCould you take my Thursday late shift? It's the 4 to 10 one, so you'd get the late bonus too. I've already tried the group chat but nobody answered, and I'd rather not leave it to the last minute. I'm at the clinic for a follow-up on my back, nothing serious, and the physio thinks I'll be fine in about three weeks, maybe four. In return I'll cover your Saturday opening, and I can do the stocktake on the 14th, no, the 15th, since Karim is off.\n\nThanks so much,\nLayla",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sor",
+    "quote": "Soraya",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d1",
+    "quote": "Thursday",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "h1",
+    "quote": "at the clinic for a follow-up on my back, nothing serious",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "h2",
+    "quote": "I'll be fine in about three weeks, maybe four",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m5",
+    "entity_id": "d2",
+    "quote": "Saturday",
+    "label": "DATE"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d3",
+    "quote": "the 14th, no, the 15th",
+    "label": "DATE"
+   },
+   {
+    "id": "m7",
+    "entity_id": "karim",
+    "quote": "Karim",
+    "label": "PERSON"
+   },
+   {
+    "id": "m8",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sor",
+    "quote": "Soraya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d1",
+    "quote": "Thursday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " I'm at the clinic for a follow-up on my back, nothing serious, and the physio thinks I'll be fine in about three weeks, maybe four.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The clinic follow-up and recovery estimate are medical details the user asked to leave out, and the swap request does not depend on them."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "d2",
+    "quote": "Saturday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d3",
+    "quote": "the 14th, no, the 15th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "karim",
+    "quote": "Karim",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Thursday late shift"
+   },
+   {
+    "quote": "4 to 10"
+   },
+   {
+    "quote": "Saturday opening"
+   },
+   {
+    "quote": "the 14th, no, the 15th"
+   },
+   {
+    "quote": "stocktake"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nCould you take my Thursday late shift? It's the 4 to 10 one, so you'd get the late bonus too. I've already tried the group chat but nobody answered, and I'd rather not leave it to the last minute. In return I'll cover your Saturday opening, and I can do the stocktake on the 14th, no, the 15th, since [PERSON_2] is off.\n\nThanks so much,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-p3q",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-p3",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-p3",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-p3",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-p3",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a short update for my manager explaining the swap, why I'm at the clinic and the likely recovery time.",
+  "text": "Hi Soraya,\n\nCould you take my Thursday late shift? It's the 4 to 10 one, so you'd get the late bonus too. I've already tried the group chat but nobody answered, and I'd rather not leave it to the last minute. I'm at the clinic for a follow-up on my back, nothing serious, and the physio thinks I'll be fine in about three weeks, maybe four. In return I'll cover your Saturday opening, and I can do the stocktake on the 14th, no, the 15th, since Karim is off.\n\nThanks so much,\nLayla",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sor",
+    "quote": "Soraya",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d1",
+    "quote": "Thursday",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "h1",
+    "quote": "at the clinic for a follow-up on my back, nothing serious",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "h2",
+    "quote": "I'll be fine in about three weeks, maybe four",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m5",
+    "entity_id": "d2",
+    "quote": "Saturday",
+    "label": "DATE"
+   },
+   {
+    "id": "m6",
+    "entity_id": "d3",
+    "quote": "the 14th, no, the 15th",
+    "label": "DATE"
+   },
+   {
+    "id": "m7",
+    "entity_id": "karim",
+    "quote": "Karim",
+    "label": "PERSON"
+   },
+   {
+    "id": "m8",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sor",
+    "quote": "Soraya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d1",
+    "quote": "Thursday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "h1",
+    "quote": "at the clinic for a follow-up on my back, nothing serious",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "h2",
+    "quote": "I'll be fine in about three weeks, maybe four",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "d2",
+    "quote": "Saturday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "d3",
+    "quote": "the 14th, no, the 15th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "karim",
+    "quote": "Karim",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "layla",
+    "quote": "Layla",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Thursday late shift"
+   },
+   {
+    "quote": "Saturday opening"
+   },
+   {
+    "quote": "the 14th, no, the 15th"
+   },
+   {
+    "quote": "nothing serious"
+   },
+   {
+    "quote": "about three weeks, maybe four"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nCould you take my Thursday late shift? It's the 4 to 10 one, so you'd get the late bonus too. I've already tried the group chat but nobody answered, and I'd rather not leave it to the last minute. I'm at the clinic for a follow-up on my back, nothing serious, and the physio thinks I'll be fine in about three weeks, maybe four. In return I'll cover your Saturday opening, and I can do the stocktake on the 14th, no, the 15th, since [PERSON_2] is off.\n\nThanks so much,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-h1",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-h1",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-h1",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-h1",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-h1",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic on the sleep window, assuming 30 minutes to fall asleep, and the first-year cost of the ring plus subscription.",
+  "text": "Quick sanity check before I order a sleep ring. The blog I read says adults need 7 to 9 hours, and the NHS page says about the same. My plan is lights out at 22:30 and alarm at 6:45, which is 8 hours 15 minutes, right? Or do I lose the time it takes to fall asleep, maybe 20 minutes, no, more like 30? The ring costs 299 and the app subscription is 5.99 a month, so I want the first-year cost too. I mostly just want to stop scrolling in bed.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "lights out at 22:30"
+   },
+   {
+    "quote": "alarm at 6:45"
+   },
+   {
+    "quote": "maybe 20 minutes, no, more like 30"
+   },
+   {
+    "quote": "299"
+   },
+   {
+    "quote": "5.99 a month"
+   }
+  ],
+  "approved_output": "Quick sanity check before I order a sleep ring. The blog I read says adults need 7 to 9 hours, and the NHS page says about the same. My plan is lights out at 22:30 and alarm at 6:45, which is 8 hours 15 minutes, right? Or do I lose the time it takes to fall asleep, maybe 20 minutes, no, more like 30? The ring costs 299 and the app subscription is 5.99 a month, so I want the first-year cost too. I mostly just want to stop scrolling in bed.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-h2",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-h2",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-h2",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-h2",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-h2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short script I can read to the pharmacist that confirms the dose and the allergy and says the order should be delivered rather than collected.",
+  "text": "Forwarding my brother's message in case it helps with the pharmacy call, which I'm making at lunch. I never remember what the label actually says, so I'd like a proper script rather than winging it:\n\n\"Mum's repeat prescription is ready (Gulnara Sadykova on the label). It's the 20 mg tablets, one in the morning, not two - the label says two on the first line but the doctor said one. Deliver to Flat 4, 18 Olive Row, Ashford, or I'll collect it myself. She has a penicillin allergy, so mention it again. Tariq\"",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "gul",
+    "quote": "Gulnara Sadykova",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "dose",
+    "quote": "20 mg tablets, one in the morning, not two",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m3",
+    "entity_id": "label",
+    "quote": "the label says two on the first line but the doctor said one",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "addr",
+    "quote": "Flat 4, 18 Olive Row, Ashford",
+    "label": "ADDRESS"
+   },
+   {
+    "id": "m5",
+    "entity_id": "allergy",
+    "quote": "a penicillin allergy",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "tariq",
+    "quote": "Tariq",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "gul",
+    "quote": "Gulnara Sadykova",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "dose",
+    "quote": "20 mg tablets, one in the morning, not two",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "label",
+    "quote": "the label says two on the first line but the doctor said one",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "addr",
+    "quote": "Flat 4, 18 Olive Row, Ashford",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "allergy",
+    "quote": "a penicillin allergy",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "tariq",
+    "quote": "Tariq",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my brother's message"
+   },
+   {
+    "quote": "one in the morning, not two"
+   },
+   {
+    "quote": "the doctor said one"
+   },
+   {
+    "quote": "penicillin allergy"
+   },
+   {
+    "quote": "20 mg"
+   }
+  ],
+  "approved_output": "Forwarding my brother's message in case it helps with the pharmacy call, which I'm making at lunch. I never remember what the label actually says, so I'd like a proper script rather than winging it:\n\n\"Mum's repeat prescription is ready ([PERSON_1] on the label). It's the 20 mg tablets, one in the morning, not two - the label says two on the first line but the doctor said one. Deliver to [ADDRESS], or I'll collect it myself. She has a penicillin allergy, so mention it again. [PERSON_2]\"",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-h3",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-h3",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-h3",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-h3",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-h3",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these into a one-page note for the GP covering symptoms and medicines only.",
+  "text": "Things for the GP on Monday (Shirin's idea to write them down):\n- Headaches: about 3 a week since the start of October, mostly afternoons, worse with screens\n- Paracetamol 500 mg, up to 4 times a day, helps within an hour; I've not tried anything stronger\n- No nausea, no vision changes, no head injury\n- Sleep is fine, about 7 hours, though I wake at 5 some days\n- Landlord wants the deposit paperwork back by Friday, don't forget to scan it\n- Questions: is it worth an eye test first? Should I keep a diary?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "mon",
+    "quote": "Monday",
+    "label": "DATE"
+   },
+   {
+    "id": "m2",
+    "entity_id": "shirin",
+    "quote": "Shirin",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "h1",
+    "quote": "Headaches: about 3 a week",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "oct",
+    "quote": "the start of October",
+    "label": "DATE"
+   },
+   {
+    "id": "m5",
+    "entity_id": "h2",
+    "quote": "mostly afternoons, worse with screens",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "h3",
+    "quote": "Paracetamol 500 mg, up to 4 times a day, helps within an hour",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m7",
+    "entity_id": "h4",
+    "quote": "I've not tried anything stronger",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m8",
+    "entity_id": "h5",
+    "quote": "No nausea, no vision changes, no head injury",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m9",
+    "entity_id": "h6",
+    "quote": "Sleep is fine, about 7 hours, though I wake at 5 some days",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m10",
+    "entity_id": "fri",
+    "quote": "Friday",
+    "label": "DATE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "mon",
+    "quote": "Monday",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "shirin",
+    "quote": "Shirin",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "h1",
+    "quote": "Headaches: about 3 a week",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "oct",
+    "quote": "the start of October",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "h2",
+    "quote": "mostly afternoons, worse with screens",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "h3",
+    "quote": "Paracetamol 500 mg, up to 4 times a day, helps within an hour",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "h4",
+    "quote": "I've not tried anything stronger",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "h5",
+    "quote": "No nausea, no vision changes, no head injury",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "h6",
+    "quote": "Sleep is fine, about 7 hours, though I wake at 5 some days",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Landlord wants the deposit paperwork back by Friday, don't forget to scan it",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The landlord deposit paperwork is an unrelated errand and the GP note covers only symptoms and medicines."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "about 3 a week"
+   },
+   {
+    "quote": "Paracetamol 500 mg, up to 4 times a day"
+   },
+   {
+    "quote": "No nausea, no vision changes, no head injury"
+   },
+   {
+    "quote": "about 7 hours"
+   },
+   {
+    "quote": "I've not tried anything stronger"
+   }
+  ],
+  "approved_output": "Things for the GP on [DATE] ([PERSON_1]'s idea to write them down):\n- Headaches: about 3 a week since the start of October, mostly afternoons, worse with screens\n- Paracetamol 500 mg, up to 4 times a day, helps within an hour; I've not tried anything stronger\n- No nausea, no vision changes, no head injury\n- Sleep is fine, about 7 hours, though I wake at 5 some days\n- Questions: is it worth an eye test first? Should I keep a diary?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-f1",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-f1",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-f1",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-f1",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-f1",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my working and show the gross margin step by step, using the corrected flour price.",
+  "text": "Practice question from my accounting module, can you check my working? A cafe buys 40 kg of flour at 1.10 per kg, no wait, 1.15 per kg, and 12 dozen eggs at 3.40 a dozen. It makes loaves that each use 0.5 kg of flour and 2 eggs, and sells them at 3.75 each. The wholesaler, something like Costco, sells in bulk only. If it bakes 60 loaves, what is the gross margin? I got revenue as 60 x 3.75 = 225 but I'm not sure how to cost the eggs per loaf. Please don't round until the end.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "1.10 per kg, no wait, 1.15 per kg"
+   },
+   {
+    "quote": "3.40 a dozen"
+   },
+   {
+    "quote": "0.5 kg of flour and 2 eggs"
+   },
+   {
+    "quote": "60 x 3.75 = 225"
+   },
+   {
+    "quote": "don't round until the end"
+   }
+  ],
+  "approved_output": "Practice question from my accounting module, can you check my working? A cafe buys 40 kg of flour at 1.10 per kg, no wait, 1.15 per kg, and 12 dozen eggs at 3.40 a dozen. It makes loaves that each use 0.5 kg of flour and 2 eggs, and sells them at 3.75 each. The wholesaler, something like Costco, sells in bulk only. If it bakes 60 loaves, what is the gross margin? I got revenue as 60 x 3.75 = 225 but I'm not sure how to cost the eggs per loaf. Please don't round until the end.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-f2",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-f2",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-f2",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-f2",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-f2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tighten this into a polite two- or three-sentence payment reminder that keeps the invoice number, the amount, the due timing and the bank details.",
+  "text": "Hi Farid,\n\nA gentle nudge about invoice 2207, the brochure layout (850, no, 920 with the extra revision round). It was due 30 days after delivery, which was in early September, and I haven't seen it land yet. Just to be safe, the IBAN is still GB00 TEST 0000 0000 0000 00. If the money has already gone out and I've missed it, ignore this! I know it's a busy quarter on your side, so there's no rush on the exact day. Reply to bahar.ozkan@example.invalid if my usual inbox bounces.\n\nThanks,\nBahar",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "farid",
+    "quote": "Farid",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "amt",
+    "quote": "850, no, 920 with the extra revision round",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m3",
+    "entity_id": "sep",
+    "quote": "early September",
+    "label": "DATE"
+   },
+   {
+    "id": "m4",
+    "entity_id": "iban",
+    "quote": "GB00 TEST 0000 0000 0000 00",
+    "label": "IBAN"
+   },
+   {
+    "id": "m5",
+    "entity_id": "mail",
+    "quote": "bahar.ozkan@example.invalid",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "bahar",
+    "quote": "Bahar",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "farid",
+    "quote": "Farid",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "amt",
+    "quote": "850, no, 920 with the extra revision round",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "sep",
+    "quote": "early September",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "iban",
+    "quote": "GB00 TEST 0000 0000 0000 00",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "mail",
+    "quote": "bahar.ozkan@example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "bahar",
+    "quote": "Bahar",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "invoice 2207"
+   },
+   {
+    "quote": "850, no, 920"
+   },
+   {
+    "quote": "30 days after delivery"
+   },
+   {
+    "quote": "I haven't seen it land yet"
+   },
+   {
+    "quote": "ignore this"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nA gentle nudge about invoice 2207, the brochure layout (850, no, 920 with the extra revision round). It was due 30 days after delivery, which was in early September, and I haven't seen it land yet. Just to be safe, the IBAN is still [IBAN]. If the money has already gone out and I've missed it, ignore this! I know it's a busy quarter on your side, so there's no rush on the exact day. Reply to [EMAIL] if my usual inbox bounces.\n\nThanks,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-f3",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-f3",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-f3",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-f3",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-f3",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out how much I'm owed and how many days late the refund is, then list the points to make on the phone.",
+  "text": "Gym keeps double-billing me, so here are my notes before I call them. Membership is 34.99 a month. They took it on the 1st and again on the 3rd, both on the card 4242 4242 4242 4242. I'm not disputing the first charge, only the second. I cancelled in writing on the 28th of last month, no, the 27th, and the advisor, Omar, said I'd be refunded within 5 working days. That was 8 days ago. They have my number as 07700 900123 but nobody has rung.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "fee",
+    "quote": "34.99 a month",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m2",
+    "entity_id": "d1",
+    "quote": "the 1st",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "d2",
+    "quote": "the 3rd",
+    "label": "DATE"
+   },
+   {
+    "id": "m4",
+    "entity_id": "card",
+    "quote": "4242 4242 4242 4242",
+    "label": "PAYMENT_CARD"
+   },
+   {
+    "id": "m5",
+    "entity_id": "d3",
+    "quote": "the 28th of last month, no, the 27th",
+    "label": "DATE"
+   },
+   {
+    "id": "m6",
+    "entity_id": "omar",
+    "quote": "Omar",
+    "label": "PERSON"
+   },
+   {
+    "id": "m7",
+    "entity_id": "ph",
+    "quote": "07700 900123",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "fee",
+    "quote": "34.99 a month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "d1",
+    "quote": "the 1st",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "d2",
+    "quote": "the 3rd",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "card",
+    "quote": "4242 4242 4242 4242",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "d3",
+    "quote": "the 28th of last month, no, the 27th",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "omar",
+    "quote": "Omar",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "ph",
+    "quote": "07700 900123",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "34.99 a month"
+   },
+   {
+    "quote": "not disputing the first charge, only the second"
+   },
+   {
+    "quote": "within 5 working days"
+   },
+   {
+    "quote": "8 days ago"
+   },
+   {
+    "quote": "the 28th of last month, no, the 27th"
+   }
+  ],
+  "approved_output": "Gym keeps double-billing me, so here are my notes before I call them. Membership is 34.99 a month. They took it on the 1st and again on the 3rd, both on the card [PAYMENT_CARD]. I'm not disputing the first charge, only the second. I cancelled in writing on the 28th of last month, no, the 27th, and the advisor, [PERSON_1], said I'd be refunded within 5 working days. That was 8 days ago. They have my number as [PHONE] but nobody has rung.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "2aab7b50187e4da5bf0dcdc376b45d08",
+  "id": "2aab7b50187e4da5bf0dcdc376b45d08:w4-w1",
+  "family_id": "2aab7b50187e4da5bf0dcdc376b45d08:fam-w1",
+  "persona_id": "2aab7b50187e4da5bf0dcdc376b45d08:persona-w1",
+  "source_id": "2aab7b50187e4da5bf0dcdc376b45d08:src-w1",
+  "template_id": "2aab7b50187e4da5bf0dcdc376b45d08:tpl-w1",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a short agenda with time allocations and flag anything I still need to verify.",
+  "text": "Can you turn this into an agenda? Weekly sync, 45 minutes max, on Zoom. Items: Jira board cleanup (10 min, maybe 15 if the backlog is as bad as last time), the Q3 roadmap review (20 min), and the Slack channel rename (5 min). The Gartner report we all read says 62% of teams skip retros, no, 26% - I need to check which before we quote it. We should also decide whether to keep the morning slot or move to afternoons, whichever has fewer clashes. Total so far is 10 + 20 + 5 = 35, so there is slack.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "45 minutes max"
+   },
+   {
+    "quote": "10 min, maybe 15"
+   },
+   {
+    "quote": "62% of teams skip retros, no, 26%"
+   },
+   {
+    "quote": "10 + 20 + 5 = 35"
+   }
+  ],
+  "approved_output": "Can you turn this into an agenda? Weekly sync, 45 minutes max, on Zoom. Items: Jira board cleanup (10 min, maybe 15 if the backlog is as bad as last time), the Q3 roadmap review (20 min), and the Slack channel rename (5 min). The Gartner report we all read says 62% of teams skip retros, no, 26% - I need to check which before we quote it. We should also decide whether to keep the morning slot or move to afternoons, whichever has fewer clashes. Total so far is 10 + 20 + 5 = 35, so there is slack.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "2aab7b50187e4da5bf0dcdc376b45d08:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W4 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

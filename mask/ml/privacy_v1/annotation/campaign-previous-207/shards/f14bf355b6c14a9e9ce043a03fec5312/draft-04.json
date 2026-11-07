@@ -1,0 +1,160 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "f14bf355b6c14a9e9ce043a03fec5312",
+  "id": "f14bf355b6c14a9e9ce043a03fec5312:ops-sync-checklist-v4",
+  "family_id": "f14bf355b6c14a9e9ce043a03fec5312:ops-notes",
+  "persona_id": "f14bf355b6c14a9e9ce043a03fec5312:ops-notes-persona",
+  "source_id": "f14bf355b6c14a9e9ce043a03fec5312:ops-notes-source",
+  "template_id": "f14bf355b6c14a9e9ce043a03fec5312:ops-notes-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into a tidy checklist for the ops sync.",
+  "text": "Notes for the Monday ops sync, please turn into a checklist:\n\n- Replace the label printer on the packing line; the supplier quote is 340, approved up to 400\n- Oluwaseun Adeyemi to confirm the new shift rota by Wednesday, with no more than 4 people on nights\n- Oluwaseun mentioned in passing that his mother is in hospital after a fall on the 3rd, so he may need cover next week\n- Reorder gloves (size M and L only, not S)\n- Ask facilities to look at the loading-bay door, which still sticks when it is cold",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "monday",
+    "label": "DATE",
+    "quote": "Monday"
+   },
+   {
+    "id": "m2",
+    "entity_id": "oluwaseun",
+    "label": "PERSON",
+    "quote": "Oluwaseun Adeyemi"
+   },
+   {
+    "id": "m3",
+    "entity_id": "wed",
+    "label": "DATE",
+    "quote": "Wednesday"
+   },
+   {
+    "id": "m4",
+    "entity_id": "oluwaseun",
+    "label": "PERSON",
+    "quote": "Oluwaseun",
+    "occurrence": 2
+   },
+   {
+    "id": "m5",
+    "entity_id": "hospital",
+    "label": "HEALTH",
+    "quote": "in hospital after a fall"
+   },
+   {
+    "id": "m6",
+    "entity_id": "fall-date",
+    "label": "DATE",
+    "quote": "the 3rd"
+   },
+   {
+    "id": "m7",
+    "entity_id": "cover",
+    "label": "DATE",
+    "quote": "next week"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "monday",
+    "quote": "Monday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "oluwaseun",
+    "quote": "Oluwaseun Adeyemi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "wed",
+    "quote": "Wednesday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "oluwaseun",
+    "quote": "Oluwaseun",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "hospital",
+    "quote": "in hospital after a fall",
+    "label": "HEALTH",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "fall-date",
+    "quote": "the 3rd",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "cover",
+    "quote": "next week",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Replace the label printer on the packing line"
+   },
+   {
+    "quote": "the supplier quote is 340, approved up to 400"
+   },
+   {
+    "quote": "to confirm the new shift rota by Wednesday"
+   },
+   {
+    "quote": "no more than 4 people on nights"
+   },
+   {
+    "quote": "he may need cover next week"
+   },
+   {
+    "quote": "Reorder gloves (size M and L only, not S)"
+   },
+   {
+    "quote": "Ask facilities to look at the loading-bay door, which still sticks when it is cold"
+   }
+  ],
+  "approved_output": "Notes for the Monday ops sync, please turn into a checklist:\n\n- Replace the label printer on the packing line; the supplier quote is 340, approved up to 400\n- [PERSON_1] to confirm the new shift rota by Wednesday, with no more than 4 people on nights\n- [PERSON_1] mentioned in passing that his mother is [HEALTH] on [DATE], so he may need cover next week\n- Reorder gloves (size M and L only, not S)\n- Ask facilities to look at the loading-bay door, which still sticks when it is cold",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "f14bf355b6c14a9e9ce043a03fec5312:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer, writer A wave 1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

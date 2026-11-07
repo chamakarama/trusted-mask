@@ -1,0 +1,173 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:health-ankle-timeline-v3",
+  "family_id": "8302f652e20d4da48a3491160897bff5:health-ankle-v2",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-health-ankle-v2",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-health-ankle-v2",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-health-ankle-v2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short dated timeline for my pharmacist: when the swelling was noticed and how many doses I missed.",
+  "text": "Question for the pharmacist. My sister, Thandiwe Mokoena, saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Thandiwe Mokoena"
+   },
+   {
+    "id": "a2",
+    "entity_id": "visit-date",
+    "label": "DATE",
+    "quote": "12 March"
+   },
+   {
+    "id": "a3",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "my left ankle looked swollen after the flight"
+   },
+   {
+    "id": "a4",
+    "entity_id": "dose",
+    "label": "HEALTH",
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "id": "a5",
+    "entity_id": "missed",
+    "label": "HEALTH",
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "id": "a6",
+    "entity_id": "no-pain",
+    "label": "HEALTH",
+    "quote": "no pain when I walk"
+   },
+   {
+    "id": "a7",
+    "entity_id": "tight",
+    "label": "HEALTH",
+    "quote": "tight by evening"
+   },
+   {
+    "id": "a8",
+    "entity_id": "carer",
+    "label": "FAMILY",
+    "quote": "main carer for our father"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "sister",
+    "quote": "Thandiwe Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "visit-date",
+    "quote": "12 March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a3",
+    "entity_id": "swelling",
+    "quote": "my left ankle looked swollen after the flight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a4",
+    "entity_id": "dose",
+    "quote": "20 mg of furosemide every morning",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a5",
+    "entity_id": "missed",
+    "quote": "skipped it twice last week, no wait, three times",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a6",
+    "entity_id": "no-pain",
+    "quote": "no pain when I walk",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a7",
+    "entity_id": "tight",
+    "quote": "tight by evening",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a8",
+    "entity_id": "carer",
+    "quote": "main carer for our father",
+    "label": "FAMILY",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": "12 March"
+   },
+   {
+    "quote": "my left ankle looked swollen after the flight"
+   },
+   {
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "quote": "no pain when I walk"
+   },
+   {
+    "quote": "tight by evening"
+   }
+  ],
+  "approved_output": "Question for the pharmacist. My sister, [PERSON_1], saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

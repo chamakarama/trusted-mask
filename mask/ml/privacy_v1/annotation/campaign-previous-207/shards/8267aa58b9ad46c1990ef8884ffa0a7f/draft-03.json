@@ -1,0 +1,188 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "8267aa58b9ad46c1990ef8884ffa0a7f",
+  "id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-gp-v3",
+  "family_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle",
+  "persona_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-persona",
+  "source_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-source",
+  "template_id": "8267aa58b9ad46c1990ef8884ffa0a7f:health-ankle-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short update for my GP covering the diagnosis, the ibuprofen dose and timing, and what I have not taken.",
+  "text": "Quick summary before I forget. I went to urgent care after my ankle swelled up on the hike. The doctor there said it was a mild sprain, not a fracture, and the X-ray showed no break. They prescribed ibuprofen 400 mg, one tablet every 8 hours, for 5 days. I think I'd been taking it for 3 days, no wait, 4, before the swelling started to go down. I have not taken any aspirin. The swelling is now roughly 2 cm larger than my other ankle. My sister, Aigerim Bekova, drove me there and has stayed with me this week to help.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "onset",
+    "label": "HEALTH",
+    "quote": "ankle swelled up"
+   },
+   {
+    "id": "m2",
+    "entity_id": "sprain",
+    "label": "HEALTH",
+    "quote": "mild sprain"
+   },
+   {
+    "id": "m3",
+    "entity_id": "nofrac",
+    "label": "HEALTH",
+    "quote": "not a fracture"
+   },
+   {
+    "id": "m4",
+    "entity_id": "xray",
+    "label": "HEALTH",
+    "quote": "X-ray showed no break"
+   },
+   {
+    "id": "m5",
+    "entity_id": "rx",
+    "label": "HEALTH",
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days"
+   },
+   {
+    "id": "m6",
+    "entity_id": "duration",
+    "label": "HEALTH",
+    "quote": "taking it for 3 days, no wait, 4"
+   },
+   {
+    "id": "m7",
+    "entity_id": "noaspirin",
+    "label": "HEALTH",
+    "quote": "aspirin"
+   },
+   {
+    "id": "m8",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "swelling is now roughly 2 cm larger than my other ankle"
+   },
+   {
+    "id": "m9",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Aigerim Bekova"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "onset",
+    "quote": "ankle swelled up",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "sprain",
+    "quote": "mild sprain",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "nofrac",
+    "quote": "not a fracture",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "xray",
+    "quote": "X-ray showed no break",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "rx",
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "duration",
+    "quote": "taking it for 3 days, no wait, 4",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "noaspirin",
+    "quote": "aspirin",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "swelling",
+    "quote": "swelling is now roughly 2 cm larger than my other ankle",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "sister",
+    "quote": "Aigerim Bekova",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "mild sprain"
+   },
+   {
+    "quote": "not a fracture"
+   },
+   {
+    "quote": "showed no break"
+   },
+   {
+    "quote": "ibuprofen 400 mg, one tablet every 8 hours, for 5 days"
+   },
+   {
+    "quote": "3 days, no wait, 4"
+   },
+   {
+    "quote": "have not taken any aspirin"
+   },
+   {
+    "quote": "roughly 2 cm larger than my other ankle"
+   }
+  ],
+  "approved_output": "Quick summary before I forget. I went to urgent care after my ankle swelled up on the hike. The doctor there said it was a mild sprain, not a fracture, and the X-ray showed no break. They prescribed ibuprofen 400 mg, one tablet every 8 hours, for 5 days. I think I'd been taking it for 3 days, no wait, 4, before the swelling started to go down. I have not taken any aspirin. The swelling is now roughly 2 cm larger than my other ankle. My sister, [PERSON_1], drove me there and has stayed with me this week to help.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8267aa58b9ad46c1990ef8884ffa0a7f:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer B wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

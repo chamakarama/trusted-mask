@@ -1,0 +1,1129 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:health-ankle-timeline",
+  "family_id": "8302f652e20d4da48a3491160897bff5:health-ankle",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-health-ankle",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-health-ankle",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-health-ankle",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short dated timeline for my pharmacist: when the swelling was noticed and how many doses I missed.",
+  "text": "Question for the pharmacist. My sister, Thandiwe Mokoena, saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Thandiwe Mokoena"
+   },
+   {
+    "id": "a2",
+    "entity_id": "visit-date",
+    "label": "DATE",
+    "quote": "12 March"
+   },
+   {
+    "id": "a3",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "my left ankle looked swollen after the flight"
+   },
+   {
+    "id": "a4",
+    "entity_id": "meds",
+    "label": "HEALTH",
+    "quote": "I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times."
+   },
+   {
+    "id": "a5",
+    "entity_id": "tightness",
+    "label": "HEALTH",
+    "quote": "There is no pain when I walk, but it feels tight by evening."
+   },
+   {
+    "id": "a6",
+    "entity_id": "carer",
+    "label": "FAMILY",
+    "quote": "I am also the main carer for our father"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "sister",
+    "quote": "Thandiwe Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "visit-date",
+    "quote": "12 March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a3",
+    "entity_id": "swelling",
+    "quote": "my left ankle looked swollen after the flight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a4",
+    "entity_id": "meds",
+    "quote": "I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a5",
+    "entity_id": "tightness",
+    "quote": "There is no pain when I walk, but it feels tight by evening.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a6",
+    "entity_id": "carer",
+    "quote": "I am also the main carer for our father",
+    "label": "FAMILY",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "quote": "no pain when I walk"
+   },
+   {
+    "quote": "tight by evening"
+   },
+   {
+    "quote": "12 March"
+   }
+  ],
+  "approved_output": "Question for the pharmacist. My sister, [PERSON_1], saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:health-ankle-questions",
+  "family_id": "8302f652e20d4da48a3491160897bff5:health-ankle",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-health-ankle",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-health-ankle",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-health-ankle",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "List the questions I should ask my pharmacist about the timing and dose of my morning tablet, given the doses I missed.",
+  "text": "Question for the pharmacist. My sister, Thandiwe Mokoena, saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Thandiwe Mokoena"
+   },
+   {
+    "id": "a2",
+    "entity_id": "visit-date",
+    "label": "DATE",
+    "quote": "12 March"
+   },
+   {
+    "id": "a3",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "my left ankle looked swollen after the flight"
+   },
+   {
+    "id": "a4",
+    "entity_id": "meds",
+    "label": "HEALTH",
+    "quote": "I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times."
+   },
+   {
+    "id": "a5",
+    "entity_id": "tightness",
+    "label": "HEALTH",
+    "quote": "There is no pain when I walk, but it feels tight by evening."
+   },
+   {
+    "id": "a6",
+    "entity_id": "carer",
+    "label": "FAMILY",
+    "quote": "I am also the main carer for our father"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "sister",
+    "quote": "Thandiwe Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "visit-date",
+    "quote": "12 March",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a3",
+    "entity_id": "swelling",
+    "quote": "my left ankle looked swollen after the flight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a4",
+    "entity_id": "meds",
+    "quote": "I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a5",
+    "entity_id": "tightness",
+    "quote": "There is no pain when I walk, but it feels tight by evening.",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a6",
+    "entity_id": "carer",
+    "quote": "I am also the main carer for our father",
+    "label": "FAMILY",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "quote": "no pain when I walk"
+   },
+   {
+    "quote": "tight by evening"
+   }
+  ],
+  "approved_output": "Question for the pharmacist. My sister, [PERSON_1], saw me on [DATE] and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:budget-move-affordability",
+  "family_id": "8302f652e20d4da48a3491160897bff5:budget-move",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-budget-move",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-budget-move",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-budget-move",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic: what percentage of my take-home pay would go on my half of the rent, my half of the groceries and the car loan? Show each step.",
+  "text": "We are thinking of moving. I work as a dental hygienist at Brightwell Dental Group and earn 3,100 a month after tax. My partner, Kwabena Mensah, pays half of the 1,450 rent and we spend roughly 400 on groceries, no, closer to 450, split the same way. My car loan is 180 a month. The new flat is a two-bedroom and the lease would start in the new year, so I want to be sure before signing.",
+  "entities": [
+   {
+    "id": "b1",
+    "entity_id": "job",
+    "label": "EMPLOYMENT",
+    "quote": "I work as a dental hygienist"
+   },
+   {
+    "id": "b2",
+    "entity_id": "employer",
+    "label": "ORG",
+    "quote": "Brightwell Dental Group"
+   },
+   {
+    "id": "b3",
+    "entity_id": "pay",
+    "label": "FINANCIAL",
+    "quote": "earn 3,100 a month after tax"
+   },
+   {
+    "id": "b4",
+    "entity_id": "partner",
+    "label": "PERSON",
+    "quote": "Kwabena Mensah"
+   },
+   {
+    "id": "b5",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "pays half of the 1,450 rent"
+   },
+   {
+    "id": "b6",
+    "entity_id": "loan",
+    "label": "FINANCIAL",
+    "quote": "My car loan is 180 a month"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "b1",
+    "entity_id": "job",
+    "quote": "I work as a dental hygienist",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b2",
+    "entity_id": "employer",
+    "quote": "Brightwell Dental Group",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b3",
+    "entity_id": "pay",
+    "quote": "earn 3,100 a month after tax",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b4",
+    "entity_id": "partner",
+    "quote": "Kwabena Mensah",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b5",
+    "entity_id": "rent",
+    "quote": "pays half of the 1,450 rent",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b6",
+    "entity_id": "loan",
+    "quote": "My car loan is 180 a month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "earn 3,100 a month after tax"
+   },
+   {
+    "quote": "My partner,"
+   },
+   {
+    "quote": "pays half of the 1,450 rent"
+   },
+   {
+    "quote": "roughly 400 on groceries, no, closer to 450"
+   },
+   {
+    "quote": "My car loan is 180 a month"
+   }
+  ],
+  "approved_output": "We are thinking of moving. I work as a dental hygienist at [ORG] and earn 3,100 a month after tax. My partner, [PERSON_1], pays half of the 1,450 rent and we spend roughly 400 on groceries, no, closer to 450, split the same way. My car loan is 180 a month. The new flat is a two-bedroom and the lease would start in the new year, so I want to be sure before signing.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:budget-worksheet-split",
+  "family_id": "8302f652e20d4da48a3491160897bff5:budget-worksheet",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-budget-worksheet",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-budget-worksheet",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-budget-worksheet",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Recalculate the split with 15 percent savings and needs still at 50 percent, then show all three totals and check that they add up to 2,400.",
+  "text": "I'm putting together a worksheet for a budgeting workshop and want to check my example before printing. The example household takes home 2,400 a month. Using a 50/30/20 split, that gives 1,200 for needs, 720 for wants and 480 for savings. One participant last time asked about Vanguard index funds, and another mentioned Kahneman's loss aversion, so I'll add a short note on both. I'd like a second version where savings are 15 percent instead of 20, with needs staying at 50 percent.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "takes home 2,400 a month"
+   },
+   {
+    "quote": "1,200 for needs, 720 for wants and 480 for savings"
+   },
+   {
+    "quote": "15 percent instead of 20"
+   },
+   {
+    "quote": "needs staying at 50 percent"
+   }
+  ],
+  "approved_output": "I'm putting together a worksheet for a budgeting workshop and want to check my example before printing. The example household takes home 2,400 a month. Using a 50/30/20 split, that gives 1,200 for needs, 720 for wants and 480 for savings. One participant last time asked about Vanguard index funds, and another mentioned Kahneman's loss aversion, so I'll add a short note on both. I'd like a second version where savings are 15 percent instead of 20, with needs staying at 50 percent.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:work-forwarded-inventory",
+  "family_id": "8302f652e20d4da48a3491160897bff5:work-inventory",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-work-inventory",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-work-inventory",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-work-inventory",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn the forwarded instructions into a short checklist for building the shift schedule.",
+  "text": "FYI, forwarding what Mikael Lindqvist sent the warehouse team this morning:\n\n> Hi all, the Q3 inventory count will run Thursday 12 and Friday 13 November, so please do not schedule any deliveries on those days. We need two people per aisle, and the warehouse closes at 4 pm both days. Anything that cannot be moved needs my approval first. My daughter has her school play on the 20th, so I will be offline that evening. Please send me your availability by end of Monday. Thanks, Mikael",
+  "entities": [
+   {
+    "id": "d1",
+    "entity_id": "mikael",
+    "label": "PERSON",
+    "quote": "Mikael Lindqvist"
+   },
+   {
+    "id": "d2",
+    "entity_id": "mikael",
+    "label": "PERSON",
+    "quote": "Mikael",
+    "occurrence": 2
+   },
+   {
+    "id": "d3",
+    "entity_id": "date-count",
+    "label": "DATE",
+    "quote": "Thursday 12 and Friday 13 November"
+   },
+   {
+    "id": "d4",
+    "entity_id": "daughter-play",
+    "label": "FAMILY",
+    "quote": "My daughter has her school play on the 20th"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "d1",
+    "entity_id": "mikael",
+    "quote": "Mikael Lindqvist",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d3",
+    "entity_id": "date-count",
+    "quote": "Thursday 12 and Friday 13 November",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " My daughter has her school play on the 20th, so I will be offline that evening.",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The manager's personal remark about his daughter's school play has no bearing on the shift-schedule checklist and holds no required scheduling facts."
+   },
+   {
+    "kind": "entity",
+    "target_id": "d2",
+    "entity_id": "mikael",
+    "quote": "Mikael",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Thursday 12 and Friday 13 November"
+   },
+   {
+    "quote": "do not schedule any deliveries"
+   },
+   {
+    "quote": "two people per aisle"
+   },
+   {
+    "quote": "closes at 4 pm both days"
+   },
+   {
+    "quote": "send me your availability by end of Monday"
+   }
+  ],
+  "approved_output": "FYI, forwarding what [PERSON_1] sent the warehouse team this morning:\n\n> Hi all, the Q3 inventory count will run Thursday 12 and Friday 13 November, so please do not schedule any deliveries on those days. We need two people per aisle, and the warehouse closes at 4 pm both days. Anything that cannot be moved needs my approval first. Please send me your availability by end of Monday. Thanks, [PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:work-review-prep",
+  "family_id": "8302f652e20d4da48a3491160897bff5:work-review",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-work-review",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-work-review",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-work-review",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn these notes into three talking points I can say out loud, keeping every number as written.",
+  "text": "Prep notes for my 1:1 with my manager, Jun-seo Baek:\n\n- Shipped the invoice-export fix two weeks ahead of the 30 September target\n- Covered the support rota for two colleagues in August, about 40 hours in total (I think 40, maybe 45)\n- Asked for the senior analyst title, currently on grade 4\n- Side note: my landlord is raising my rent to 1,150 from January and I am stressed about it\n- Want to raise the training budget, around 600 for the SQL course\n\nPlease turn these into three talking points I can say out loud, and keep the numbers exactly as written.",
+  "entities": [
+   {
+    "id": "e1",
+    "entity_id": "manager",
+    "label": "PERSON",
+    "quote": "Jun-seo Baek"
+   },
+   {
+    "id": "e2",
+    "entity_id": "ship-date",
+    "label": "DATE",
+    "quote": "30 September"
+   },
+   {
+    "id": "e3",
+    "entity_id": "cover-month",
+    "label": "DATE",
+    "quote": "August"
+   },
+   {
+    "id": "e4",
+    "entity_id": "title",
+    "label": "EMPLOYMENT",
+    "quote": "Asked for the senior analyst title, currently on grade 4"
+   },
+   {
+    "id": "e5",
+    "entity_id": "rent-news",
+    "label": "FINANCIAL",
+    "quote": "my landlord is raising my rent to 1,150 from January"
+   },
+   {
+    "id": "e6",
+    "entity_id": "training",
+    "label": "FINANCIAL",
+    "quote": "around 600 for the SQL course"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "e1",
+    "entity_id": "manager",
+    "quote": "Jun-seo Baek",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e2",
+    "entity_id": "ship-date",
+    "quote": "30 September",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e3",
+    "entity_id": "cover-month",
+    "quote": "August",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "e4",
+    "entity_id": "title",
+    "quote": "Asked for the senior analyst title, currently on grade 4",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Side note: my landlord is raising my rent to 1,150 from January and I am stressed about it",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The bullet about a landlord's rent increase is a personal housing matter unrelated to the performance conversation and contains no required facts."
+   },
+   {
+    "kind": "entity",
+    "target_id": "e6",
+    "entity_id": "training",
+    "quote": "around 600 for the SQL course",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my manager,"
+   },
+   {
+    "quote": "two weeks ahead of the 30 September target"
+   },
+   {
+    "quote": "about 40 hours in total (I think 40, maybe 45)"
+   },
+   {
+    "quote": "currently on grade 4"
+   },
+   {
+    "quote": "around 600 for the SQL course"
+   }
+  ],
+  "approved_output": "Prep notes for my 1:1 with my manager, [PERSON_1]:\n\n- Shipped the invoice-export fix two weeks ahead of the 30 September target\n- Covered the support rota for two colleagues in August, about 40 hours in total (I think 40, maybe 45)\n- Asked for the senior analyst title, currently on grade 4\n- Want to raise the training budget, around 600 for the SQL course\n\nPlease turn these into three talking points I can say out loud, and keep the numbers exactly as written.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:support-missing-desk",
+  "family_id": "8302f652e20d4da48a3491160897bff5:support-desk",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-support-desk",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-support-desk",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-support-desk",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a firm but polite complaint to the retailer asking for a replacement or a refund, and mention the shipping charge.",
+  "text": "Hi, I'm writing about order 48213, which still has not arrived. I ordered a standing desk on 3 November and the tracking page says delivered, but nothing was left at my door. My account username is rosalind_a_77 and the delivery address was 14 Linden Row, Apt 6. You can reach me at rosalind.achterberg@example.invalid or on +44 7700 900123. The desk cost 349.00, and I was also charged 12.50 for shipping even though your site said free over 300. Thanks, Rosalind Achterberg",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "order",
+    "label": "ACCOUNT_ID",
+    "quote": "48213"
+   },
+   {
+    "id": "f2",
+    "entity_id": "order-date",
+    "label": "DATE",
+    "quote": "3 November"
+   },
+   {
+    "id": "f3",
+    "entity_id": "user",
+    "label": "USERNAME",
+    "quote": "rosalind_a_77"
+   },
+   {
+    "id": "f4",
+    "entity_id": "addr",
+    "label": "ADDRESS",
+    "quote": "14 Linden Row, Apt 6"
+   },
+   {
+    "id": "f5",
+    "entity_id": "mail",
+    "label": "EMAIL",
+    "quote": "rosalind.achterberg@example.invalid"
+   },
+   {
+    "id": "f6",
+    "entity_id": "tel",
+    "label": "PHONE",
+    "quote": "+44 7700 900123"
+   },
+   {
+    "id": "f7",
+    "entity_id": "customer",
+    "label": "PERSON",
+    "quote": "Rosalind Achterberg"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "order",
+    "quote": "48213",
+    "label": "ACCOUNT_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "order-date",
+    "quote": "3 November",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "user",
+    "quote": "rosalind_a_77",
+    "label": "USERNAME",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f4",
+    "entity_id": "addr",
+    "quote": "14 Linden Row, Apt 6",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f5",
+    "entity_id": "mail",
+    "quote": "rosalind.achterberg@example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f6",
+    "entity_id": "tel",
+    "quote": "+44 7700 900123",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f7",
+    "entity_id": "customer",
+    "quote": "Rosalind Achterberg",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "still has not arrived"
+   },
+   {
+    "quote": "3 November"
+   },
+   {
+    "quote": "tracking page says delivered, but nothing was left"
+   },
+   {
+    "quote": "The desk cost 349.00"
+   },
+   {
+    "quote": "12.50 for shipping"
+   },
+   {
+    "quote": "free over 300"
+   }
+  ],
+  "approved_output": "Hi, I'm writing about order [ACCOUNT_ID], which still has not arrived. I ordered a standing desk on 3 November and the tracking page says delivered, but nothing was left at my door. My account username is [USERNAME] and the delivery address was [ADDRESS]. You can reach me at [EMAIL] or on [PHONE]. The desk cost 349.00, and I was also charged 12.50 for shipping even though your site said free over 300. Thanks, [PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:support-wifi-dropouts",
+  "family_id": "8302f652e20d4da48a3491160897bff5:support-wifi",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-support-wifi",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-support-wifi",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-support-wifi",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Give me a numbered troubleshooting plan based on what I have already tried, starting with the least disruptive step.",
+  "text": "My laptop keeps dropping the Wi-Fi every 20 minutes or so, but only after it wakes from sleep. It runs Windows 11 and the adapter driver is version 22.150, which I updated last Tuesday. Other devices on the same 5 GHz network are fine, and the problem does not happen on the 2.4 GHz one. I tried restarting twice, not three times, and running the built-in troubleshooter, which just said no problem found. I would like a step-by-step plan to isolate whether it is the driver or the power settings, with the least disruptive steps first.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "every 20 minutes or so"
+   },
+   {
+    "quote": "only after it wakes from sleep"
+   },
+   {
+    "quote": "version 22.150"
+   },
+   {
+    "quote": "restarting twice, not three times"
+   },
+   {
+    "quote": "same 5 GHz network are fine"
+   }
+  ],
+  "approved_output": "My laptop keeps dropping the Wi-Fi every 20 minutes or so, but only after it wakes from sleep. It runs Windows 11 and the adapter driver is version 22.150, which I updated last Tuesday. Other devices on the same 5 GHz network are fine, and the problem does not happen on the 2.4 GHz one. I tried restarting twice, not three times, and running the built-in troubleshooter, which just said no problem found. I would like a step-by-step plan to isolate whether it is the driver or the power settings, with the least disruptive steps first.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:plan-trip-journal",
+  "family_id": "8302f652e20d4da48a3491160897bff5:plan-trip",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-plan-trip",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-plan-trip",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-plan-trip",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out the likely total cost for the two of us and tell me whether it stays under my cap.",
+  "text": "Saturday night, journal. Trying to settle this trip before I lose my mind. Sofía Valderrama and I agreed on 3 June to 10 June, not 2 June to 9 June like I first wrote, because her exam is on the 2nd. Flights are about 380 each and the hotel is 95 a night for 7 nights. Her brother, Chidi, might join for the last three nights, so I need to check whether the room allows a third person. My cap for everything is 1,600 and I honestly don't want to go over it.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "sofia",
+    "label": "PERSON",
+    "quote": "Sofía Valderrama"
+   },
+   {
+    "id": "h2",
+    "entity_id": "dates-final",
+    "label": "DATE",
+    "quote": "3 June to 10 June"
+   },
+   {
+    "id": "h3",
+    "entity_id": "dates-old",
+    "label": "DATE",
+    "quote": "2 June to 9 June"
+   },
+   {
+    "id": "h4",
+    "entity_id": "exam-day",
+    "label": "DATE",
+    "quote": "the 2nd"
+   },
+   {
+    "id": "h5",
+    "entity_id": "chidi",
+    "label": "PERSON",
+    "quote": "Chidi"
+   },
+   {
+    "id": "h6",
+    "entity_id": "cap",
+    "label": "FINANCIAL",
+    "quote": "My cap for everything is 1,600"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "sofia",
+    "quote": "Sofía Valderrama",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "dates-final",
+    "quote": "3 June to 10 June",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "dates-old",
+    "quote": "2 June to 9 June",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h4",
+    "entity_id": "exam-day",
+    "quote": "the 2nd",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h5",
+    "entity_id": "chidi",
+    "quote": "Chidi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h6",
+    "entity_id": "cap",
+    "quote": "My cap for everything is 1,600",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "3 June to 10 June, not 2 June to 9 June"
+   },
+   {
+    "quote": "380 each"
+   },
+   {
+    "quote": "95 a night for 7 nights"
+   },
+   {
+    "quote": "Her brother,"
+   },
+   {
+    "quote": "last three nights"
+   },
+   {
+    "quote": "1,600"
+   }
+  ],
+  "approved_output": "Saturday night, journal. Trying to settle this trip before I lose my mind. [PERSON_1] and I agreed on 3 June to 10 June, not 2 June to 9 June like I first wrote, because her exam is on the 2nd. Flights are about 380 each and the hotel is 95 a night for 7 nights. Her brother, [PERSON_2], might join for the last three nights, so I need to check whether the room allows a third person. My cap for everything is 1,600 and I honestly don't want to go over it.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:plan-party-vague",
+  "family_id": "8302f652e20d4da48a3491160897bff5:plan-party",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-plan-party",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-plan-party",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-plan-party",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Help me sort this out.",
+  "text": "We are hosting a party for my mother-in-law's 70th, probably on the 21st of March. The guest list so far includes me, my husband, my aunt, who needs step-free access because of her hip replacement, and four members of Anahit Grigoryan's family. Catering is 25 per head, and I think we have 14 people, no wait, 15 including the kids. The community hall lets us use the kitchen from 3 pm. I have not booked anything yet and I keep going back and forth on the order of things.",
+  "entities": [
+   {
+    "id": "i1",
+    "entity_id": "age",
+    "label": "AGE",
+    "quote": "70th"
+   },
+   {
+    "id": "i2",
+    "entity_id": "party-date",
+    "label": "DATE",
+    "quote": "the 21st of March"
+   },
+   {
+    "id": "i3",
+    "entity_id": "aunt-access",
+    "label": "HEALTH",
+    "quote": "who needs step-free access because of her hip replacement"
+   },
+   {
+    "id": "i4",
+    "entity_id": "anahit",
+    "label": "PERSON",
+    "quote": "Anahit Grigoryan"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "i1",
+    "entity_id": "age",
+    "quote": "70th",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "i2",
+    "entity_id": "party-date",
+    "quote": "the 21st of March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "i3",
+    "entity_id": "aunt-access",
+    "quote": "who needs step-free access because of her hip replacement",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "i4",
+    "entity_id": "anahit",
+    "quote": "Anahit Grigoryan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "my mother-in-law's 70th"
+   },
+   {
+    "quote": "25 per head"
+   },
+   {
+    "quote": "14 people, no wait, 15 including the kids"
+   },
+   {
+    "quote": "from 3 pm"
+   },
+   {
+    "quote": "step-free access"
+   }
+  ],
+  "approved_output": "We are hosting a party for my mother-in-law's 70th, probably on the 21st of March. The guest list so far includes me, my husband, my aunt, who needs step-free access because of her hip replacement, and four members of [PERSON_1]'s family. Catering is 25 per head, and I think we have 14 people, no wait, 15 including the kids. The community hall lets us use the kitchen from 3 pm. I have not booked anything yet and I keep going back and forth on the order of things.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

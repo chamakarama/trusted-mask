@@ -1,0 +1,760 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "e1cb8da791f049099b07f4ce8b26ae24",
+  "id": "e1cb8da791f049099b07f4ce8b26ae24:tax-worksheet-year-v3",
+  "family_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-tax-worksheet",
+  "persona_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-tax-worksheet-persona",
+  "source_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-tax-worksheet-source",
+  "template_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-tax-worksheet-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Work out which of these items belong in this tax year's return and which should move to next year's, using the dates I give.",
+  "text": "Notes for my self-assessment worksheet. Freelance income this tax year came to 18,400, though I think 650 of that was paid late, on 12 April, so it might belong to next year's return. Expenses: 1,150 for the co-working desk, 240 for software, and 90 for a training course I'm fairly sure was cancelled and refunded, so ignore that one. My accountant, Wei Jie Lim, wanted the figures split by quarter. I paid 2,000 towards tax in January, not 2,500 as I first wrote.",
+  "entities": [
+   {
+    "id": "f1",
+    "entity_id": "income",
+    "label": "FINANCIAL",
+    "quote": "Freelance income this tax year came to 18,400"
+   },
+   {
+    "id": "f2",
+    "entity_id": "late",
+    "label": "FINANCIAL",
+    "quote": "650 of that was paid late"
+   },
+   {
+    "id": "d1",
+    "entity_id": "d12apr",
+    "label": "DATE",
+    "quote": "12 April"
+   },
+   {
+    "id": "f3",
+    "entity_id": "exp",
+    "label": "FINANCIAL",
+    "quote": "1,150 for the co-working desk, 240 for software"
+   },
+   {
+    "id": "f4",
+    "entity_id": "course",
+    "label": "FINANCIAL",
+    "quote": "90 for a training course I'm fairly sure was cancelled and refunded"
+   },
+   {
+    "id": "p",
+    "entity_id": "accountant",
+    "label": "PERSON",
+    "quote": "Wei Jie Lim"
+   },
+   {
+    "id": "f5",
+    "entity_id": "taxpaid",
+    "label": "FINANCIAL",
+    "quote": "I paid 2,000 towards tax"
+   },
+   {
+    "id": "d2",
+    "entity_id": "jan",
+    "label": "DATE",
+    "quote": "January"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "f1",
+    "entity_id": "income",
+    "quote": "Freelance income this tax year came to 18,400",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f2",
+    "entity_id": "late",
+    "quote": "650 of that was paid late",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d1",
+    "entity_id": "d12apr",
+    "quote": "12 April",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f3",
+    "entity_id": "exp",
+    "quote": "1,150 for the co-working desk, 240 for software",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f4",
+    "entity_id": "course",
+    "quote": "90 for a training course I'm fairly sure was cancelled and refunded",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "p",
+    "entity_id": "accountant",
+    "quote": "Wei Jie Lim",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f5",
+    "entity_id": "taxpaid",
+    "quote": "I paid 2,000 towards tax",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "d2",
+    "entity_id": "jan",
+    "quote": "January",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "came to 18,400"
+   },
+   {
+    "quote": "though I think 650 of that was paid late"
+   },
+   {
+    "quote": "on 12 April"
+   },
+   {
+    "quote": "might belong to next year's return"
+   },
+   {
+    "quote": "in January, not 2,500 as I first wrote"
+   },
+   {
+    "quote": "1,150 for the co-working desk, 240 for software"
+   },
+   {
+    "quote": "90 for a training course I'm fairly sure was cancelled and refunded, so ignore that one"
+   },
+   {
+    "quote": "I paid 2,000 towards tax"
+   }
+  ],
+  "approved_output": "Notes for my self-assessment worksheet. Freelance income this tax year came to 18,400, though I think 650 of that was paid late, on 12 April, so it might belong to next year's return. Expenses: 1,150 for the co-working desk, 240 for software, and 90 for a training course I'm fairly sure was cancelled and refunded, so ignore that one. My accountant, [PERSON_1], wanted the figures split by quarter. I paid 2,000 towards tax in January, not 2,500 as I first wrote.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "e1cb8da791f049099b07f4ce8b26ae24:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W3 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "e1cb8da791f049099b07f4ce8b26ae24",
+  "id": "e1cb8da791f049099b07f4ce8b26ae24:allergy-diary-bullets-v3",
+  "family_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-allergy-diary",
+  "persona_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-allergy-diary-persona",
+  "source_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-allergy-diary-source",
+  "template_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-allergy-diary-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this into a clean day-by-day symptom and dose table for the allergy nurse.",
+  "text": "Antihistamine diary for the allergy nurse:\n- Mon: took cetirizine 10 mg at 08:00, sneezing eased by about 10:00\n- Tue: forgot the tablet, itchy eyes by lunchtime, used the eye drops twice\n- Wed: tablet at 08:00 again, no symptoms at all\n- Unrelated: my sister Mei-Ling wants me to babysit her two boys next Saturday, so I need to sort out a lift\n- Thu: ran out of tablets, sneezing most of the afternoon\n- Fri: tablet at 07:30, mild sneezing at 14:00, about a 3 out of 10\nNot sure about Monday's dose, it might have been 5 mg, not 10.",
+  "entities": [
+   {
+    "id": "h1",
+    "entity_id": "h1",
+    "label": "HEALTH",
+    "quote": "cetirizine 10 mg at 08:00"
+   },
+   {
+    "id": "h2",
+    "entity_id": "h2",
+    "label": "HEALTH",
+    "quote": "sneezing eased by about 10:00"
+   },
+   {
+    "id": "h3",
+    "entity_id": "h3",
+    "label": "HEALTH",
+    "quote": "forgot the tablet"
+   },
+   {
+    "id": "h4",
+    "entity_id": "h4",
+    "label": "HEALTH",
+    "quote": "itchy eyes by lunchtime"
+   },
+   {
+    "id": "h5",
+    "entity_id": "h5",
+    "label": "HEALTH",
+    "quote": "no symptoms at all"
+   },
+   {
+    "id": "p",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Mei-Ling"
+   },
+   {
+    "id": "h6",
+    "entity_id": "h6",
+    "label": "HEALTH",
+    "quote": "ran out of tablets"
+   },
+   {
+    "id": "h7",
+    "entity_id": "h7",
+    "label": "HEALTH",
+    "quote": "sneezing most of the afternoon"
+   },
+   {
+    "id": "h8",
+    "entity_id": "h8",
+    "label": "HEALTH",
+    "quote": "mild sneezing at 14:00, about a 3 out of 10"
+   },
+   {
+    "id": "hx0",
+    "entity_id": "hx0",
+    "label": "HEALTH",
+    "quote": "used the eye drops twice"
+   },
+   {
+    "id": "hx1",
+    "entity_id": "hx1",
+    "label": "HEALTH",
+    "quote": "tablet at 08:00 again"
+   },
+   {
+    "id": "hx2",
+    "entity_id": "hx2",
+    "label": "HEALTH",
+    "quote": "tablet at 07:30"
+   },
+   {
+    "id": "hx3",
+    "entity_id": "hx3",
+    "label": "HEALTH",
+    "quote": "might have been 5 mg, not 10"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "h1",
+    "entity_id": "h1",
+    "quote": "cetirizine 10 mg at 08:00",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h2",
+    "entity_id": "h2",
+    "quote": "sneezing eased by about 10:00",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h3",
+    "entity_id": "h3",
+    "quote": "forgot the tablet",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h4",
+    "entity_id": "h4",
+    "quote": "itchy eyes by lunchtime",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hx0",
+    "entity_id": "hx0",
+    "quote": "used the eye drops twice",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hx1",
+    "entity_id": "hx1",
+    "quote": "tablet at 08:00 again",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h5",
+    "entity_id": "h5",
+    "quote": "no symptoms at all",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Unrelated: my sister Mei-Ling wants me to babysit her two boys next Saturday, so I need to sort out a lift",
+    "label": "FAMILY",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "A babysitting favour for a sister is unrelated to the symptom and dose table and holds no dose, timing or symptom facts."
+   },
+   {
+    "kind": "entity",
+    "target_id": "h6",
+    "entity_id": "h6",
+    "quote": "ran out of tablets",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h7",
+    "entity_id": "h7",
+    "quote": "sneezing most of the afternoon",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hx2",
+    "entity_id": "hx2",
+    "quote": "tablet at 07:30",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "h8",
+    "entity_id": "h8",
+    "quote": "mild sneezing at 14:00, about a 3 out of 10",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "hx3",
+    "entity_id": "hx3",
+    "quote": "might have been 5 mg, not 10",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "cetirizine 10 mg at 08:00"
+   },
+   {
+    "quote": "forgot the tablet"
+   },
+   {
+    "quote": "used the eye drops twice"
+   },
+   {
+    "quote": "ran out of tablets"
+   },
+   {
+    "quote": "tablet at 07:30"
+   },
+   {
+    "quote": "mild sneezing at 14:00, about a 3 out of 10"
+   },
+   {
+    "quote": "might have been 5 mg, not 10"
+   },
+   {
+    "quote": "tablet at 08:00 again"
+   },
+   {
+    "quote": "no symptoms at all"
+   },
+   {
+    "quote": "sneezing eased by about 10:00"
+   },
+   {
+    "quote": "itchy eyes by lunchtime"
+   },
+   {
+    "quote": "sneezing most of the afternoon"
+   }
+  ],
+  "approved_output": "Antihistamine diary for the allergy nurse:\n- Mon: took cetirizine 10 mg at 08:00, sneezing eased by about 10:00\n- Tue: forgot the tablet, itchy eyes by lunchtime, used the eye drops twice\n- Wed: tablet at 08:00 again, no symptoms at all\n- Thu: ran out of tablets, sneezing most of the afternoon\n- Fri: tablet at 07:30, mild sneezing at 14:00, about a 3 out of 10\nNot sure about Monday's dose, it might have been 5 mg, not 10.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "e1cb8da791f049099b07f4ce8b26ae24:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W3 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "e1cb8da791f049099b07f4ce8b26ae24",
+  "id": "e1cb8da791f049099b07f4ce8b26ae24:invoice-chase-email-v3",
+  "family_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-invoice-chase",
+  "persona_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-invoice-chase-persona",
+  "source_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-invoice-chase-source",
+  "template_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-invoice-chase-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a firm but polite payment reminder to the client that states the amount, how overdue it is and where to pay.",
+  "text": "Hi Kenji,\n\nJust chasing the invoice for the logo work. It was 4,200 plus VAT, no, sorry, 4,250 after we added the extra revision, due 30 days from delivery, which makes it overdue by nine days. Payment goes to IBAN DE00 0000 0000 0000 0000 00, and if your finance team need anything else they can reach me at meiling.studio@example.invalid. I'm a self-employed designer, so late payment really hits my budget this month.\n\nBest,\nMei-Ling Zhou",
+  "entities": [
+   {
+    "id": "p1",
+    "entity_id": "kenji",
+    "label": "PERSON",
+    "quote": "Kenji"
+   },
+   {
+    "id": "f",
+    "entity_id": "amount",
+    "label": "FINANCIAL",
+    "quote": "4,200 plus VAT, no, sorry, 4,250 after we added the extra revision"
+   },
+   {
+    "id": "ib",
+    "entity_id": "iban",
+    "label": "IBAN",
+    "quote": "DE00 0000 0000 0000 0000 00"
+   },
+   {
+    "id": "em",
+    "entity_id": "email",
+    "label": "EMAIL",
+    "quote": "meiling.studio@example.invalid"
+   },
+   {
+    "id": "emp",
+    "entity_id": "job",
+    "label": "EMPLOYMENT",
+    "quote": "self-employed designer"
+   },
+   {
+    "id": "p2",
+    "entity_id": "sender",
+    "label": "PERSON",
+    "quote": "Mei-Ling Zhou"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "p1",
+    "entity_id": "kenji",
+    "quote": "Kenji",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "f",
+    "entity_id": "amount",
+    "quote": "4,200 plus VAT, no, sorry, 4,250 after we added the extra revision",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "ib",
+    "entity_id": "iban",
+    "quote": "DE00 0000 0000 0000 0000 00",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "em",
+    "entity_id": "email",
+    "quote": "meiling.studio@example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "emp",
+    "entity_id": "job",
+    "quote": "self-employed designer",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "p2",
+    "entity_id": "sender",
+    "quote": "Mei-Ling Zhou",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "the logo work"
+   },
+   {
+    "quote": "4,200 plus VAT, no, sorry, 4,250"
+   },
+   {
+    "quote": "due 30 days from delivery"
+   },
+   {
+    "quote": "overdue by nine days"
+   },
+   {
+    "quote": "Payment goes to IBAN"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nJust chasing the invoice for the logo work. It was 4,200 plus VAT, no, sorry, 4,250 after we added the extra revision, due 30 days from delivery, which makes it overdue by nine days. Payment goes to IBAN [IBAN], and if your finance team need anything else they can reach me at [EMAIL]. I'm a self-employed designer, so late payment really hits my budget this month.\n\nBest,\n[PERSON_2]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "e1cb8da791f049099b07f4ce8b26ae24:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W3 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "e1cb8da791f049099b07f4ce8b26ae24",
+  "id": "e1cb8da791f049099b07f4ce8b26ae24:choir-carpool-rota-v3",
+  "family_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-choir-carpool",
+  "persona_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-choir-carpool-persona",
+  "source_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-choir-carpool-source",
+  "template_id": "e1cb8da791f049099b07f4ce8b26ae24:fam-choir-carpool-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a simple rota: who drives which week, the pickup order, and the petrol split.",
+  "text": "Choir carpool plan, thinking aloud. Rehearsals are Wednesdays 19:30 to 21:15 at St Aldric's Hall, and Sakura can drive in the 1st and 3rd weeks, Takeshi in the 2nd, and I'll take the 4th if my shifts allow, which I think they do. Pickup order: me, then Sakura's flat on Orchard Row, wait, no, Takeshi first, he's closer, 10 minutes, not 15, and then Sakura. Petrol is 18 per trip, split three ways, so 6 each, unless Sakura takes her van, then it's 27 total, 9 each.",
+  "entities": [
+   {
+    "id": "loc",
+    "entity_id": "hall",
+    "label": "LOCATION",
+    "quote": "St Aldric's Hall"
+   },
+   {
+    "id": "s1",
+    "entity_id": "sakura",
+    "label": "PERSON",
+    "quote": "Sakura",
+    "occurrence": 1
+   },
+   {
+    "id": "t1",
+    "entity_id": "takeshi",
+    "label": "PERSON",
+    "quote": "Takeshi",
+    "occurrence": 1
+   },
+   {
+    "id": "s2",
+    "entity_id": "sakura",
+    "label": "PERSON",
+    "quote": "Sakura",
+    "occurrence": 2
+   },
+   {
+    "id": "ad",
+    "entity_id": "street",
+    "label": "ADDRESS",
+    "quote": "Orchard Row"
+   },
+   {
+    "id": "t2",
+    "entity_id": "takeshi",
+    "label": "PERSON",
+    "quote": "Takeshi",
+    "occurrence": 2
+   },
+   {
+    "id": "s3",
+    "entity_id": "sakura",
+    "label": "PERSON",
+    "quote": "Sakura",
+    "occurrence": 3
+   },
+   {
+    "id": "s4",
+    "entity_id": "sakura",
+    "label": "PERSON",
+    "quote": "Sakura",
+    "occurrence": 4
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "loc",
+    "entity_id": "hall",
+    "quote": "St Aldric's Hall",
+    "label": "LOCATION",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "s1",
+    "entity_id": "sakura",
+    "quote": "Sakura",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "t1",
+    "entity_id": "takeshi",
+    "quote": "Takeshi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "s2",
+    "entity_id": "sakura",
+    "quote": "Sakura",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "ad",
+    "entity_id": "street",
+    "quote": "Orchard Row",
+    "label": "ADDRESS",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "t2",
+    "entity_id": "takeshi",
+    "quote": "Takeshi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "s3",
+    "entity_id": "sakura",
+    "quote": "Sakura",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 3
+   },
+   {
+    "kind": "entity",
+    "target_id": "s4",
+    "entity_id": "sakura",
+    "quote": "Sakura",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 4
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Wednesdays 19:30 to 21:15"
+   },
+   {
+    "quote": "drive in the 1st and 3rd weeks"
+   },
+   {
+    "quote": "in the 2nd"
+   },
+   {
+    "quote": "I'll take the 4th if my shifts allow, which I think they do"
+   },
+   {
+    "quote": "18 per trip, split three ways, so 6 each"
+   },
+   {
+    "quote": "takes her van, then it's 27 total, 9 each"
+   },
+   {
+    "quote": "wait, no,"
+   },
+   {
+    "quote": "first, he's closer, 10 minutes, not 15, and then"
+   },
+   {
+    "quote": "Pickup order: me"
+   }
+  ],
+  "approved_output": "Choir carpool plan, thinking aloud. Rehearsals are Wednesdays 19:30 to 21:15 at St Aldric's Hall, and [PERSON_1] can drive in the 1st and 3rd weeks, [PERSON_2] in the 2nd, and I'll take the 4th if my shifts allow, which I think they do. Pickup order: me, then [PERSON_1]'s flat on [ADDRESS], wait, no, [PERSON_2] first, he's closer, 10 minutes, not 15, and then [PERSON_1]. Petrol is 18 per trip, split three ways, so 6 each, unless [PERSON_1] takes her van, then it's 27 total, 9 each.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "e1cb8da791f049099b07f4ce8b26ae24:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W3 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

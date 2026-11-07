@@ -1,0 +1,391 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "aac0d3a655be421ab0cb5bace7838538",
+  "id": "aac0d3a655be421ab0cb5bace7838538:work-walkthrough-reschedule-v2",
+  "family_id": "aac0d3a655be421ab0cb5bace7838538:work-walkthrough",
+  "persona_id": "aac0d3a655be421ab0cb5bace7838538:work-walkthrough-persona",
+  "source_id": "aac0d3a655be421ab0cb5bace7838538:work-walkthrough-source",
+  "template_id": "aac0d3a655be421ab0cb5bace7838538:work-walkthrough-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Rewrite this as a polite short notice to the team about the rescheduled walkthrough, with the time and place clear.",
+  "text": "Hi all, a quick change for next week. Elif Karaca has asked that the dock safety walkthrough move from Tuesday to Thursday at 9:30, still at the Rotterdam depot. Bjørn Aasgaard will lead it, and I'll be joining from my usual desk at Halvorsen Freight HQ by video. Please bring your own high-vis vests and wear closed shoes. If Thursday doesn't work, tell me by end of Monday, not Wednesday. I'd rather not cancel it again after what happened with the forklift audit.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "mgr",
+    "quote": "Elif Karaca",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "lead",
+    "quote": "Bjørn Aasgaard",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "when",
+    "quote": "Thursday at 9:30",
+    "label": "DATE"
+   },
+   {
+    "id": "m6",
+    "entity_id": "nextwk",
+    "quote": "next week",
+    "label": "DATE"
+   },
+   {
+    "id": "m7",
+    "entity_id": "tue",
+    "quote": "Tuesday",
+    "label": "DATE"
+   },
+   {
+    "id": "m8",
+    "entity_id": "thu2",
+    "quote": "Thursday",
+    "label": "DATE",
+    "occurrence": 2
+   },
+   {
+    "id": "m9",
+    "entity_id": "mon",
+    "quote": "end of Monday",
+    "label": "DATE"
+   },
+   {
+    "id": "m10",
+    "entity_id": "wed",
+    "quote": "Wednesday",
+    "label": "DATE"
+   },
+   {
+    "id": "m4",
+    "entity_id": "place",
+    "quote": "Rotterdam depot",
+    "label": "LOCATION"
+   },
+   {
+    "id": "m5",
+    "entity_id": "employer",
+    "quote": "Halvorsen Freight",
+    "label": "ORG"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "nextwk",
+    "quote": "next week",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "mgr",
+    "quote": "Elif Karaca",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "tue",
+    "quote": "Tuesday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "when",
+    "quote": "Thursday at 9:30",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "place",
+    "quote": "Rotterdam depot",
+    "label": "LOCATION",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "lead",
+    "quote": "Bjørn Aasgaard",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "employer",
+    "quote": "Halvorsen Freight",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "thu2",
+    "quote": "Thursday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "mon",
+    "quote": "end of Monday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m10",
+    "entity_id": "wed",
+    "quote": "Wednesday",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "move from Tuesday to Thursday at 9:30"
+   },
+   {
+    "quote": "still at the Rotterdam depot"
+   },
+   {
+    "quote": "high-vis vests"
+   },
+   {
+    "quote": "closed shoes"
+   },
+   {
+    "quote": "by video"
+   },
+   {
+    "quote": "tell me by end of Monday, not Wednesday"
+   },
+   {
+    "quote": "will lead it"
+   }
+  ],
+  "approved_output": "Hi all, a quick change for next week. [PERSON_1] has asked that the dock safety walkthrough move from Tuesday to Thursday at 9:30, still at the Rotterdam depot. [PERSON_2] will lead it, and I'll be joining from my usual desk at [ORG] HQ by video. Please bring your own high-vis vests and wear closed shoes. If Thursday doesn't work, tell me by end of Monday, not Wednesday. I'd rather not cancel it again after what happened with the forklift audit.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "aac0d3a655be421ab0cb5bace7838538:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer D wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "aac0d3a655be421ab0cb5bace7838538",
+  "id": "aac0d3a655be421ab0cb5bace7838538:plan-reunion-vague-v2",
+  "family_id": "aac0d3a655be421ab0cb5bace7838538:plan-reunion",
+  "persona_id": "aac0d3a655be421ab0cb5bace7838538:plan-reunion-persona",
+  "source_id": "aac0d3a655be421ab0cb5bace7838538:plan-reunion-source",
+  "template_id": "aac0d3a655be421ab0cb5bace7838538:plan-reunion-template",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Can you help with this?",
+  "text": "Family reunion planning, help! It's in Dunedin from 14 March for four days, and I haven't booked anything. My aunt, Nneka Obi, is 81 and uses a walker, so stairs are a problem. My cousin Henrik Vestergaard is flying in from Oslo and wants to share a room, though I think he mentioned a back injury, so maybe not a sofa bed. Budget is around 220 a night, maybe 250 if breakfast is included. Not sure if the rest of the group is eight or nine people. Can you help with this?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "reunion-place",
+    "quote": "Dunedin",
+    "label": "LOCATION"
+   },
+   {
+    "id": "m2",
+    "entity_id": "reunion-date",
+    "quote": "14 March",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "aunt",
+    "quote": "Nneka Obi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "aunt-age",
+    "quote": "81",
+    "label": "AGE"
+   },
+   {
+    "id": "m5",
+    "entity_id": "aunt-mobility",
+    "quote": "uses a walker, so stairs are a problem",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "cousin",
+    "quote": "Henrik Vestergaard",
+    "label": "PERSON"
+   },
+   {
+    "id": "m7",
+    "entity_id": "cousin-origin",
+    "quote": "Oslo",
+    "label": "LOCATION"
+   },
+   {
+    "id": "m8",
+    "entity_id": "cousin-back",
+    "quote": "a back injury",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m9",
+    "entity_id": "budget",
+    "quote": "Budget is around 220 a night, maybe 250 if breakfast is included",
+    "label": "FINANCIAL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "reunion-place",
+    "quote": "Dunedin",
+    "label": "LOCATION",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "reunion-date",
+    "quote": "14 March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "aunt",
+    "quote": "Nneka Obi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "aunt-age",
+    "quote": "81",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "aunt-mobility",
+    "quote": "uses a walker, so stairs are a problem",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "cousin",
+    "quote": "Henrik Vestergaard",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "cousin-origin",
+    "quote": "Oslo",
+    "label": "LOCATION",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "cousin-back",
+    "quote": "a back injury",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "budget",
+    "quote": "Budget is around 220 a night, maybe 250 if breakfast is included",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My aunt,"
+   },
+   {
+    "quote": "is 81"
+   },
+   {
+    "quote": "from 14 March for four days"
+   },
+   {
+    "quote": "flying in from Oslo"
+   },
+   {
+    "quote": "maybe 250 if breakfast is included"
+   },
+   {
+    "quote": "eight or nine people"
+   },
+   {
+    "quote": "I think he mentioned a back injury"
+   }
+  ],
+  "approved_output": "Family reunion planning, help! It's in Dunedin from 14 March for four days, and I haven't booked anything. My aunt, [PERSON_1], is 81 and uses a walker, so stairs are a problem. My cousin [PERSON_2] is flying in from Oslo and wants to share a room, though I think he mentioned a back injury, so maybe not a sofa bed. Budget is around 220 a night, maybe 250 if breakfast is included. Not sure if the rest of the group is eight or nine people. Can you help with this?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "aac0d3a655be421ab0cb5bace7838538:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer D wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

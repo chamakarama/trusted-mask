@@ -1,0 +1,1652 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-01-vaccine-a",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-vaccine-history",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-vaccine-history",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-vaccine-history",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-vaccine-history",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Lay out what is certain and what is only my memory about my vaccine history, including my age and my husband's record, so I can take it to a travel clinic.",
+  "text": "Hi, it's Farhana Siddiqui here. I'm 34 and trying to sort out my vaccine history before a trip, so bear with the muddle. I had a tetanus booster at work about eight years ago, I think. For hep B I had two doses of the three, and I never went back for the third. No reactions to either, apart from a sore arm for a day. My husband, Arvind, had all three and has the certificate, which isn't much help to me. My GP surgery says my record is incomplete, and I'd rather not guess. Could you help me lay out what's certain and what's only my memory?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "farhana",
+    "quote": "Farhana Siddiqui",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "tetanus",
+    "quote": "a tetanus booster at work about eight years ago, I think",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "hepb",
+    "quote": "two doses of the three, and I never went back for the third",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m5",
+    "entity_id": "reactions",
+    "quote": "No reactions to either, apart from a sore arm for a day",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "arvind",
+    "quote": "Arvind",
+    "label": "PERSON"
+   },
+   {
+    "id": "m7",
+    "entity_id": "husbandvax",
+    "quote": "had all three",
+    "label": "HEALTH"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "farhana",
+    "quote": "Farhana Siddiqui",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "tetanus",
+    "quote": "a tetanus booster at work about eight years ago, I think",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "hepb",
+    "quote": "two doses of the three, and I never went back for the third",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "reactions",
+    "quote": "No reactions to either, apart from a sore arm for a day",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "arvind",
+    "quote": "Arvind",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "husbandvax",
+    "quote": "had all three",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm 34"
+   },
+   {
+    "quote": "about eight years ago, I think"
+   },
+   {
+    "quote": "two doses of the three, and I never went back for the third"
+   },
+   {
+    "quote": "a sore arm for a day"
+   },
+   {
+    "quote": "My husband,"
+   },
+   {
+    "quote": "had all three"
+   }
+  ],
+  "approved_output": "Hi, it's [PERSON_1] here. I'm 34 and trying to sort out my vaccine history before a trip, so bear with the muddle. I had a tetanus booster at work about eight years ago, I think. For hep B I had two doses of the three, and I never went back for the third. No reactions to either, apart from a sore arm for a day. My husband, [PERSON_2], had all three and has the certificate, which isn't much help to me. My GP surgery says my record is incomplete, and I'd rather not guess. Could you help me lay out what's certain and what's only my memory?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-02-vaccine-b",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-vaccine-history",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-vaccine-history",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-vaccine-history",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-vaccine-history",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write me a short list of questions for my GP surgery about my own vaccine record. My age and my husband's records are not relevant to it.",
+  "text": "Hi, it's Farhana Siddiqui here. I'm 34 and trying to sort out my vaccine history before a trip, so bear with the muddle. I had a tetanus booster at work about eight years ago, I think. For hep B I had two doses of the three, and I never went back for the third. No reactions to either, apart from a sore arm for a day. My husband, Arvind, had all three and has the certificate, which isn't much help to me. My GP surgery says my record is incomplete, and I'd rather not guess. Could you help me lay out what's certain and what's only my memory?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "farhana",
+    "quote": "Farhana Siddiqui",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "tetanus",
+    "quote": "a tetanus booster at work about eight years ago, I think",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "hepb",
+    "quote": "two doses of the three, and I never went back for the third",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m5",
+    "entity_id": "reactions",
+    "quote": "No reactions to either, apart from a sore arm for a day",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "arvind",
+    "quote": "Arvind",
+    "label": "PERSON"
+   },
+   {
+    "id": "m7",
+    "entity_id": "husbandvax",
+    "quote": "had all three",
+    "label": "HEALTH"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "farhana",
+    "quote": "Farhana Siddiqui",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "age",
+    "quote": "34",
+    "label": "AGE",
+    "action": "GENERALISE",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "tetanus",
+    "quote": "a tetanus booster at work about eight years ago, I think",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "hepb",
+    "quote": "two doses of the three, and I never went back for the third",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "reactions",
+    "quote": "No reactions to either, apart from a sore arm for a day",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": " My husband, Arvind, had all three and has the certificate, which isn't much help to me.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The husband's own vaccination record is not needed for questions about the writer's record and holds no facts the task uses."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "about eight years ago, I think"
+   },
+   {
+    "quote": "two doses of the three, and I never went back for the third"
+   },
+   {
+    "quote": "a sore arm for a day"
+   },
+   {
+    "quote": "My GP surgery says my record is incomplete"
+   }
+  ],
+  "approved_output": "Hi, it's [PERSON_1] here. I'm 30–39 and trying to sort out my vaccine history before a trip, so bear with the muddle. I had a tetanus booster at work about eight years ago, I think. For hep B I had two doses of the three, and I never went back for the third. No reactions to either, apart from a sore arm for a day. My GP surgery says my record is incomplete, and I'd rather not guess. Could you help me lay out what's certain and what's only my memory?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-03-invoice-a",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-invoice-chase",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-invoice-chase",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-invoice-chase",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-invoice-chase",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a firm but polite follow-up that states the amount owed, the original due date, how late it is, and where to pay.",
+  "text": "Hi Tashi,\n\nJust chasing invoice 2024-117 for the website copy: 1,450 plus 6% VAT, so 1,537 in total (it shows as 1,537.00 on the PDF). It was due on 14 October and we're now three weeks over, which my accountant, Nusrat Chowdhury, says counts as late under our contract. Last month I also covered your 60 euro conference ticket, so net of that you owe 1,477.00. I'd rather not involve Nusrat's firm if we can sort this out this week. Pay into the usual account, IBAN DE00 0000 0000 0000 0000 00, quoting the invoice number.\n\nThanks,\nAyesha",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "tashi",
+    "quote": "Tashi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "due",
+    "quote": "14 October",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "nusrat",
+    "quote": "Nusrat Chowdhury",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "ticket",
+    "quote": "60 euro conference ticket",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "owed",
+    "quote": "net of that you owe 1,477.00",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "nusrat",
+    "quote": "Nusrat",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "iban",
+    "quote": "DE00 0000 0000 0000 0000 00",
+    "label": "IBAN"
+   },
+   {
+    "id": "m8",
+    "entity_id": "ayesha",
+    "quote": "Ayesha",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "tashi",
+    "quote": "Tashi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "due",
+    "quote": "14 October",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "nusrat",
+    "quote": "Nusrat Chowdhury",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "ticket",
+    "quote": "60 euro conference ticket",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "owed",
+    "quote": "net of that you owe 1,477.00",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "nusrat",
+    "quote": "Nusrat",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "iban",
+    "quote": "DE00 0000 0000 0000 0000 00",
+    "label": "IBAN",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "ayesha",
+    "quote": "Ayesha",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "1,450 plus 6% VAT"
+   },
+   {
+    "quote": "three weeks over"
+   },
+   {
+    "quote": "60 euro conference ticket"
+   },
+   {
+    "quote": "you owe 1,477.00"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nJust chasing invoice 2024-117 for the website copy: 1,450 plus 6% VAT, so 1,537 in total (it shows as 1,537.00 on the PDF). It was due on 14 October and we're now three weeks over, which my accountant, [PERSON_2], says counts as late under our contract. Last month I also covered your 60 euro conference ticket, so net of that you owe 1,477.00. I'd rather not involve [PERSON_2]'s firm if we can sort this out this week. Pay into the usual account, IBAN [IBAN], quoting the invoice number.\n\nThanks,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-04-invoice-b",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-invoice-chase",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-invoice-chase",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-invoice-chase",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-invoice-chase",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short summary of just the sums (invoice, VAT, the ticket offset and the net total) for my bookkeeping notes. The due date and payment details are not needed.",
+  "text": "Hi Tashi,\n\nJust chasing invoice 2024-117 for the website copy: 1,450 plus 6% VAT, so 1,537 in total (it shows as 1,537.00 on the PDF). It was due on 14 October and we're now three weeks over, which my accountant, Nusrat Chowdhury, says counts as late under our contract. Last month I also covered your 60 euro conference ticket, so net of that you owe 1,477.00. I'd rather not involve Nusrat's firm if we can sort this out this week. Pay into the usual account, IBAN DE00 0000 0000 0000 0000 00, quoting the invoice number.\n\nThanks,\nAyesha",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "tashi",
+    "quote": "Tashi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "due",
+    "quote": "14 October",
+    "label": "DATE"
+   },
+   {
+    "id": "m3",
+    "entity_id": "nusrat",
+    "quote": "Nusrat Chowdhury",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "ticket",
+    "quote": "60 euro conference ticket",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m5",
+    "entity_id": "owed",
+    "quote": "net of that you owe 1,477.00",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "nusrat",
+    "quote": "Nusrat",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m7",
+    "entity_id": "iban",
+    "quote": "DE00 0000 0000 0000 0000 00",
+    "label": "IBAN"
+   },
+   {
+    "id": "m8",
+    "entity_id": "ayesha",
+    "quote": "Ayesha",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "tashi",
+    "quote": "Tashi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "due",
+    "quote": "14 October",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "nusrat",
+    "quote": "Nusrat Chowdhury",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "ticket",
+    "quote": "60 euro conference ticket",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "owed",
+    "quote": "net of that you owe 1,477.00",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "nusrat",
+    "quote": "Nusrat",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "section",
+    "quote": " Pay into the usual account, IBAN DE00 0000 0000 0000 0000 00, quoting the invoice number.",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The bank payment instruction is not part of a sums-only bookkeeping summary and contains no figures the task uses."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "ayesha",
+    "quote": "Ayesha",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "1,450 plus 6% VAT"
+   },
+   {
+    "quote": "1,537 in total"
+   },
+   {
+    "quote": "60 euro conference ticket"
+   },
+   {
+    "quote": "net of that you owe 1,477.00"
+   }
+  ],
+  "approved_output": "Hi [PERSON_1],\n\nJust chasing invoice 2024-117 for the website copy: 1,450 plus 6% VAT, so 1,537 in total (it shows as 1,537.00 on the PDF). It was due on [DATE] and we're now three weeks over, which my accountant, [PERSON_2], says counts as late under our contract. Last month I also covered your 60 euro conference ticket, so net of that you owe 1,477.00. I'd rather not involve [PERSON_2]'s firm if we can sort this out this week.\n\nThanks,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-05-rota-a",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-rota-swap",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-rota-swap",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-rota-swap",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-rota-swap",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a short, clear rota update for the team channel: who works which shift next week, with times. Leave out anything that is not about the rota.",
+  "text": "Rota update for next week, team. Imran can't do Thursday's late, so Kavya has said she'll swap and take the 2 pm to 10 pm (no, 1 pm to 9 pm, I misread the sheet), and I'll cover Kavya's Friday early, 6 am to 2 pm. That keeps us at four on the floor Thursday and three Friday, one short, I know. Dilshan is still off sick and should be back the week after, so please don't ping him. Also, totally separate: I'm having a knee operation in a couple of weeks and will be out of the office for about three weeks after that. If anyone needs me on any of this before Wednesday, call me on 07700 900311.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "imran",
+    "quote": "Imran",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "dilshan",
+    "quote": "Dilshan",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "dilshan-sick",
+    "quote": "off sick",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "knee",
+    "quote": "a knee operation",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m7",
+    "entity_id": "phone",
+    "quote": "07700 900311",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "imran",
+    "quote": "Imran",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "dilshan",
+    "quote": "Dilshan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "dilshan-sick",
+    "quote": "off sick",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "section",
+    "quote": " Also, totally separate: I'm having a knee operation in a couple of weeks and will be out of the office for about three weeks after that.",
+    "label": "HEALTH",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The writer's own planned surgery and absence is unrelated to next week's rota and holds no rota facts."
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "phone",
+    "quote": "07700 900311",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "can't do Thursday's late"
+   },
+   {
+    "quote": "1 pm to 9 pm, I misread the sheet"
+   },
+   {
+    "quote": "6 am to 2 pm"
+   },
+   {
+    "quote": "four on the floor Thursday and three Friday"
+   }
+  ],
+  "approved_output": "Rota update for next week, team. [PERSON_1] can't do Thursday's late, so [PERSON_2] has said she'll swap and take the 2 pm to 10 pm (no, 1 pm to 9 pm, I misread the sheet), and I'll cover [PERSON_2]'s Friday early, 6 am to 2 pm. That keeps us at four on the floor Thursday and three Friday, one short, I know. [PERSON_3] is still off sick and should be back the week after, so please don't ping him. If anyone needs me on any of this before Wednesday, call me on [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-06-rota-b",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-rota-swap",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-rota-swap",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-rota-swap",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-rota-swap",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a handover note for my manager that covers the shift swaps and my own upcoming absence, including how long I will be out and how to reach me.",
+  "text": "Rota update for next week, team. Imran can't do Thursday's late, so Kavya has said she'll swap and take the 2 pm to 10 pm (no, 1 pm to 9 pm, I misread the sheet), and I'll cover Kavya's Friday early, 6 am to 2 pm. That keeps us at four on the floor Thursday and three Friday, one short, I know. Dilshan is still off sick and should be back the week after, so please don't ping him. Also, totally separate: I'm having a knee operation in a couple of weeks and will be out of the office for about three weeks after that. If anyone needs me on any of this before Wednesday, call me on 07700 900311.",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "imran",
+    "quote": "Imran",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "occurrence": 1
+   },
+   {
+    "id": "m3",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m4",
+    "entity_id": "dilshan",
+    "quote": "Dilshan",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "dilshan-sick",
+    "quote": "off sick",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m6",
+    "entity_id": "knee",
+    "quote": "a knee operation",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m7",
+    "entity_id": "phone",
+    "quote": "07700 900311",
+    "label": "PHONE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "imran",
+    "quote": "Imran",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "kavya",
+    "quote": "Kavya",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "dilshan",
+    "quote": "Dilshan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "dilshan-sick",
+    "quote": "off sick",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "knee",
+    "quote": "a knee operation",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "phone",
+    "quote": "07700 900311",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "no, 1 pm to 9 pm, I misread the sheet"
+   },
+   {
+    "quote": "about three weeks after that"
+   },
+   {
+    "quote": "operation in a couple of weeks"
+   },
+   {
+    "quote": "before Wednesday"
+   }
+  ],
+  "approved_output": "Rota update for next week, team. [PERSON_1] can't do Thursday's late, so [PERSON_2] has said she'll swap and take the 2 pm to 10 pm (no, 1 pm to 9 pm, I misread the sheet), and I'll cover [PERSON_2]'s Friday early, 6 am to 2 pm. That keeps us at four on the floor Thursday and three Friday, one short, I know. [PERSON_3] is still off sick and should be back the week after, so please don't ping him. Also, totally separate: I'm having a knee operation in a couple of weeks and will be out of the office for about three weeks after that. If anyone needs me on any of this before Wednesday, call me on [PHONE].",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-07-sleep-diary",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-sleep-diary",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-sleep-diary",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-sleep-diary",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-sleep-diary",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this diary into a short summary paragraph for my GP covering bedtimes, wake-ups, caffeine and melatonin. Skip anything unrelated to sleep.",
+  "text": "Sleep diary, week 2, for my GP follow-up:\n- Mon: in bed 23:00, asleep maybe 23:45, woke twice (3:10 and 5:30), up at 6:45\n- Tue: in bed 22:30, asleep by 23:00, no wake-ups, up at 6:30\n- Wed: caffeine after 4 pm (one coffee, no, two), asleep around 00:30, woke once\n- Thu: Anjali's birthday dinner, so bed at 1:15 am, up at 7:00\n- Fri: took the 3 mg melatonin as the GP suggested, asleep by 23:20, woke once\n- Side note, not for the GP: Rohan Chaudhary owes me 35 euros for the concert tickets, remind me\n- Weekend: skipped the diary, sorry",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "wake1",
+    "quote": "woke twice (3:10 and 5:30)",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m2",
+    "entity_id": "anjali",
+    "quote": "Anjali",
+    "label": "PERSON"
+   },
+   {
+    "id": "m3",
+    "entity_id": "melatonin",
+    "quote": "the 3 mg melatonin as the GP suggested",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "rohan",
+    "quote": "Rohan Chaudhary",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "debt",
+    "quote": "owes me 35 euros for the concert tickets",
+    "label": "FINANCIAL"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "wake1",
+    "quote": "woke twice (3:10 and 5:30)",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "anjali",
+    "quote": "Anjali",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "melatonin",
+    "quote": "the 3 mg melatonin as the GP suggested",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Side note, not for the GP: Rohan Chaudhary owes me 35 euros for the concert tickets, remind me",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The side note about money owed for concert tickets is unrelated to sleep and contains no sleep facts."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "woke twice (3:10 and 5:30)"
+   },
+   {
+    "quote": "one coffee, no, two"
+   },
+   {
+    "quote": "3 mg melatonin"
+   },
+   {
+    "quote": "asleep around 00:30"
+   },
+   {
+    "quote": "bed at 1:15 am"
+   }
+  ],
+  "approved_output": "Sleep diary, week 2, for my GP follow-up:\n- Mon: in bed 23:00, asleep maybe 23:45, woke twice (3:10 and 5:30), up at 6:45\n- Tue: in bed 22:30, asleep by 23:00, no wake-ups, up at 6:30\n- Wed: caffeine after 4 pm (one coffee, no, two), asleep around 00:30, woke once\n- Thu: [PERSON_1]'s birthday dinner, so bed at 1:15 am, up at 7:00\n- Fri: took the 3 mg melatonin as the GP suggested, asleep by 23:20, woke once\n- Weekend: skipped the diary, sorry",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-08-vitamin-negative",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-vitamin-figures",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-vitamin-figures",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-vitamin-figures",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-vitamin-figures",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Build the comparison table described, with a column marking which figures are unverified.",
+  "text": "Quick question for a blog post I'm drafting, not about me. Linus Pauling famously pushed 1,000 mg of vitamin C a day, but the current UK guidance for adults is closer to 40 mg, and the upper limit people usually quote is 2,000 mg (I think, please check). The tub I saw from Holland & Barrett lists 500 mg per tablet, two a day. Can you put these into one comparison table, flag which figures need a source, and keep every unit exactly as written? None of this is medical advice for any particular person.",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "1,000 mg of vitamin C a day"
+   },
+   {
+    "quote": "closer to 40 mg"
+   },
+   {
+    "quote": "2,000 mg (I think, please check)"
+   },
+   {
+    "quote": "500 mg per tablet, two a day"
+   }
+  ],
+  "approved_output": "Quick question for a blog post I'm drafting, not about me. Linus Pauling famously pushed 1,000 mg of vitamin C a day, but the current UK guidance for adults is closer to 40 mg, and the upper limit people usually quote is 2,000 mg (I think, please check). The tub I saw from Holland & Barrett lists 500 mg per tablet, two a day. Can you put these into one comparison table, flag which figures need a source, and keep every unit exactly as written? None of this is medical advice for any particular person.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-09-pharmacy-email",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-repeat-prescription",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-repeat-prescription",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-repeat-prescription",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-repeat-prescription",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Tidy this into a clear email to the pharmacy. Keep every dose, the allergy and the correction about the old dose exactly as stated.",
+  "text": "Subject: repeat prescription for my mum\n\nHello,\n\nI'm collecting for my mother, Meera Pillai, who can't get out this week. Her repeat is levothyroxine 75 mcg, one tablet each morning (not 100 mcg, that was the old dose, I think they changed it in the spring). She's allergic to penicillin, so please flag that. Imran Qureshi, your pharmacist, confirmed the dose on the phone last time. If anything is unclear, ring me, Dilshan, on 07700 900482, because mum's own phone is off. Meera also wondered if the new brand is the same as before; she had a bad headache the last time she switched.\n\nThanks,\nDilshan Perera",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "meera",
+    "quote": "Meera Pillai",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "levo",
+    "quote": "levothyroxine 75 mcg, one tablet each morning",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m3",
+    "entity_id": "allergy",
+    "quote": "allergic to penicillin",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m4",
+    "entity_id": "imran",
+    "quote": "Imran Qureshi",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "dilshan",
+    "quote": "Dilshan",
+    "label": "PERSON",
+    "occurrence": 1
+   },
+   {
+    "id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900482",
+    "label": "PHONE"
+   },
+   {
+    "id": "m7",
+    "entity_id": "meera",
+    "quote": "Meera",
+    "label": "PERSON",
+    "occurrence": 2
+   },
+   {
+    "id": "m8",
+    "entity_id": "headache",
+    "quote": "a bad headache the last time she switched",
+    "label": "HEALTH"
+   },
+   {
+    "id": "m9",
+    "entity_id": "dilshan",
+    "quote": "Dilshan Perera",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "meera",
+    "quote": "Meera Pillai",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "levo",
+    "quote": "levothyroxine 75 mcg, one tablet each morning",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "allergy",
+    "quote": "allergic to penicillin",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "imran",
+    "quote": "Imran Qureshi",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "dilshan",
+    "quote": "Dilshan",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 1
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "phone",
+    "quote": "07700 900482",
+    "label": "PHONE",
+    "action": "PLACEHOLDER",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m7",
+    "entity_id": "meera",
+    "quote": "Meera",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   },
+   {
+    "kind": "entity",
+    "target_id": "m8",
+    "entity_id": "headache",
+    "quote": "a bad headache the last time she switched",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m9",
+    "entity_id": "dilshan",
+    "quote": "Dilshan Perera",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I'm collecting for my mother,"
+   },
+   {
+    "quote": "levothyroxine 75 mcg, one tablet each morning"
+   },
+   {
+    "quote": "not 100 mcg, that was the old dose"
+   },
+   {
+    "quote": "allergic to penicillin"
+   },
+   {
+    "quote": "confirmed the dose on the phone last time"
+   }
+  ],
+  "approved_output": "Subject: repeat prescription for my mum\n\nHello,\n\nI'm collecting for my mother, [PERSON_1], who can't get out this week. Her repeat is levothyroxine 75 mcg, one tablet each morning (not 100 mcg, that was the old dose, I think they changed it in the spring). She's allergic to penicillin, so please flag that. [PERSON_2], your pharmacist, confirmed the dose on the phone last time. If anything is unclear, ring me, [PERSON_3], on [PHONE], because mum's own phone is off. [PERSON_1] also wondered if the new brand is the same as before; she had a bad headache the last time she switched.\n\nThanks,\n[PERSON_3]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-10-flight-refund",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-flight-refund",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-flight-refund",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-flight-refund",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-flight-refund",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Draft a calm email to the airline asking for the refund, with the amounts, how many days have passed, and a mention that I may dispute it with my bank.",
+  "text": "ok so the airline cancelled my Lisbon flight and I need to chase the refund. I paid 212 on the card, 4111 1111 1111 1111 (the old one, not the one I use now), and they said 7 to 10 working days. It's been 12, no wait, 13 now. I'm also out 38 for the Harbourlight Inn airport hotel that I couldn't use. Sunita sorted her own refund last year by asking for a chargeback if they didn't answer in 14 days. I'd prefer to write one calm email first and keep the chargeback as plan B. Can you draft it with the amounts and how many days have passed, and mention that I may dispute it with my bank?",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "lisbon",
+    "quote": "Lisbon",
+    "label": "LOCATION"
+   },
+   {
+    "id": "m2",
+    "entity_id": "card",
+    "quote": "4111 1111 1111 1111",
+    "label": "PAYMENT_CARD"
+   },
+   {
+    "id": "m3",
+    "entity_id": "hotel",
+    "quote": "Harbourlight Inn",
+    "label": "ORG"
+   },
+   {
+    "id": "m4",
+    "entity_id": "sunita",
+    "quote": "Sunita",
+    "label": "PERSON"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "lisbon",
+    "quote": "Lisbon",
+    "label": "LOCATION",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "card",
+    "quote": "4111 1111 1111 1111",
+    "label": "PAYMENT_CARD",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "hotel",
+    "quote": "Harbourlight Inn",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "sunita",
+    "quote": "Sunita",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "I paid 212"
+   },
+   {
+    "quote": "7 to 10 working days"
+   },
+   {
+    "quote": "12, no wait, 13 now"
+   },
+   {
+    "quote": "out 38"
+   },
+   {
+    "quote": "in 14 days"
+   }
+  ],
+  "approved_output": "ok so the airline cancelled my Lisbon flight and I need to chase the refund. I paid 212 on the card, [PAYMENT_CARD] (the old one, not the one I use now), and they said 7 to 10 working days. It's been 12, no wait, 13 now. I'm also out 38 for the [ORG] airport hotel that I couldn't use. [PERSON_1] sorted her own refund last year by asking for a chargeback if they didn't answer in 14 days. I'd prefer to write one calm email first and keep the chargeback as plan B. Can you draft it with the amounts and how many days have passed, and mention that I may dispute it with my bank?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-11-savings-negative",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-savings-sums",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-savings-sums",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-savings-sums",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-savings-sums",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check each step of the arithmetic and tell me whether the conclusion holds under both rates.",
+  "text": "Please check my arithmetic, this is for a maths class on simple interest. An example account from Nationwide pays 4.1% on balances up to 25,000, and Monzo's savings pot pays 3.7% on everything (I think, but it might be 3.75). With 30,000 in each: the first gives 25,000 x 4.1% = 1,025 and nothing on the other 5,000; the second gives 30,000 x 3.7% = 1,110. So the second wins by 85 over a year. If it's 3.75%, no wait, that would be 1,125, so by 100. Can you confirm each step?",
+  "entities": [],
+  "decisions": [],
+  "required_facts": [
+   {
+    "quote": "25,000 x 4.1% = 1,025"
+   },
+   {
+    "quote": "30,000 x 3.7% = 1,110"
+   },
+   {
+    "quote": "the second wins by 85"
+   },
+   {
+    "quote": "3.75%, no wait, that would be 1,125"
+   }
+  ],
+  "approved_output": "Please check my arithmetic, this is for a maths class on simple interest. An example account from Nationwide pays 4.1% on balances up to 25,000, and Monzo's savings pot pays 3.7% on everything (I think, but it might be 3.75). With 30,000 in each: the first gives 25,000 x 4.1% = 1,025 and nothing on the other 5,000; the second gives 30,000 x 3.7% = 1,110. So the second wins by 85 over a year. If it's 3.75%, no wait, that would be 1,125, so by 100. Can you confirm each step?",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-12-tax-checklist",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-tax-checklist",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-tax-checklist",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-tax-checklist",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-tax-checklist",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Turn this into a clean worksheet and flag which figures I still need to verify. I will add the ID number myself, and anything that is not part of the return can be left out.",
+  "text": "Tax return checklist (draft, 2025/26):\n- Name on the return: Harpreet Gill; national ID TEST-0000-4471 (they asked for it twice, ugh)\n- Employer income: 38,200 from the council job, tax paid 5,910 (or is it 5,190? check the P60)\n- Interest: 112 from savings, under the 1,000 allowance, I believe\n- Gift Aid: 240 to the hospice charity, hmm, or 420? check the receipts\n- Side note: Sunita is lending me 300 for the wedding photographer, repay by the 5th\n- Still to find: the pension statement",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "harpreet",
+    "quote": "Harpreet Gill",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "nid",
+    "quote": "TEST-0000-4471",
+    "label": "NATIONAL_ID"
+   },
+   {
+    "id": "m3",
+    "entity_id": "job",
+    "quote": "the council job",
+    "label": "EMPLOYMENT"
+   },
+   {
+    "id": "m4",
+    "entity_id": "sunita",
+    "quote": "Sunita",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "loan",
+    "quote": "lending me 300 for the wedding photographer",
+    "label": "FINANCIAL"
+   },
+   {
+    "id": "m6",
+    "entity_id": "repay",
+    "quote": "the 5th",
+    "label": "DATE"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "harpreet",
+    "quote": "Harpreet Gill",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "nid",
+    "quote": "TEST-0000-4471",
+    "label": "NATIONAL_ID",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "job",
+    "quote": "the council job",
+    "label": "EMPLOYMENT",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   },
+   {
+    "kind": "section",
+    "quote": "\n- Side note: Sunita is lending me 300 for the wedding photographer, repay by the 5th",
+    "label": "FINANCIAL",
+    "action": "DROP",
+    "relevance": "unnecessary",
+    "reason": "The personal loan for a wedding photographer is not part of the tax return and no return figures are inside it."
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Employer income: 38,200"
+   },
+   {
+    "quote": "tax paid 5,910 (or is it 5,190? check the P60)"
+   },
+   {
+    "quote": "Interest: 112 from savings"
+   },
+   {
+    "quote": "under the 1,000 allowance"
+   },
+   {
+    "quote": "240 to the hospice charity, hmm, or 420"
+   }
+  ],
+  "approved_output": "Tax return checklist (draft, 2025/26):\n- Name on the return: [PERSON_1]; national ID [NATIONAL_ID] (they asked for it twice, ugh)\n- Employer income: 38,200 from the council job, tax paid 5,910 (or is it 5,190? check the P60)\n- Interest: 112 from savings, under the 1,000 allowance, I believe\n- Gift Aid: 240 to the hospice charity, hmm, or 420? check the receipts\n- Still to find: the pension statement",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "1c1c10083c8a4019aabb8762635cea74",
+  "id": "1c1c10083c8a4019aabb8762635cea74:w2-13-vendor-forward",
+  "family_id": "1c1c10083c8a4019aabb8762635cea74:fam-vendor-forward",
+  "persona_id": "1c1c10083c8a4019aabb8762635cea74:per-vendor-forward",
+  "source_id": "1c1c10083c8a4019aabb8762635cea74:src-vendor-forward",
+  "template_id": "1c1c10083c8a4019aabb8762635cea74:tpl-vendor-forward",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Using the figures in this forwarded message, rework the vendor comparison on a like-for-like yearly basis and tell me which options need a second signature.",
+  "text": "---------- Forwarded message ----------\nFrom: Sanjay Iyengar <sanjay.iyengar@example.invalid>\nSubject: Re: vendor shortlist\n\nMeera, thanks for the numbers. Of the three vendors, Brightline came in at 18,400 a year and Corvane at 21,000 (that includes the 2,500 setup fee, I think), while the third declined to bid. Procurement says anything over 20,000 needs a second signature, so Corvane would need Ayesha's as well. Can you rework the comparison like-for-like, with the setup fee spread over three years? I'm in the Leeds office Tuesday if you want to talk it through.\nSanjay",
+  "entities": [
+   {
+    "id": "m1",
+    "entity_id": "sanjay",
+    "quote": "Sanjay Iyengar",
+    "label": "PERSON"
+   },
+   {
+    "id": "m2",
+    "entity_id": "email",
+    "quote": "sanjay.iyengar@example.invalid",
+    "label": "EMAIL"
+   },
+   {
+    "id": "m3",
+    "entity_id": "meera",
+    "quote": "Meera",
+    "label": "PERSON"
+   },
+   {
+    "id": "m4",
+    "entity_id": "ayesha",
+    "quote": "Ayesha",
+    "label": "PERSON"
+   },
+   {
+    "id": "m5",
+    "entity_id": "leeds",
+    "quote": "Leeds",
+    "label": "LOCATION"
+   },
+   {
+    "id": "m6",
+    "entity_id": "sanjay",
+    "quote": "Sanjay",
+    "label": "PERSON",
+    "occurrence": 2
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "m1",
+    "entity_id": "sanjay",
+    "quote": "Sanjay Iyengar",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m2",
+    "entity_id": "email",
+    "quote": "sanjay.iyengar@example.invalid",
+    "label": "EMAIL",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m3",
+    "entity_id": "meera",
+    "quote": "Meera",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m4",
+    "entity_id": "ayesha",
+    "quote": "Ayesha",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m5",
+    "entity_id": "leeds",
+    "quote": "Leeds",
+    "label": "LOCATION",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "m6",
+    "entity_id": "sanjay",
+    "quote": "Sanjay",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary",
+    "occurrence": 2
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "Brightline came in at 18,400 a year"
+   },
+   {
+    "quote": "Corvane at 21,000"
+   },
+   {
+    "quote": "includes the 2,500 setup fee, I think"
+   },
+   {
+    "quote": "over 20,000 needs a second signature"
+   },
+   {
+    "quote": "spread over three years"
+   }
+  ],
+  "approved_output": "---------- Forwarded message ----------\nFrom: [PERSON_1] <[EMAIL]>\nSubject: Re: vendor shortlist\n\n[PERSON_2], thanks for the numbers. Of the three vendors, Brightline came in at 18,400 a year and Corvane at 21,000 (that includes the 2,500 setup fee, I think), while the third declined to bid. Procurement says anything over 20,000 needs a second signature, so Corvane would need [PERSON_3]'s as well. Can you rework the comparison like-for-like, with the setup fee spread over three years? I'm in the [LOCATION] office Tuesday if you want to talk it through.\n[PERSON_1]",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "1c1c10083c8a4019aabb8762635cea74:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer W2 wave 2)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]

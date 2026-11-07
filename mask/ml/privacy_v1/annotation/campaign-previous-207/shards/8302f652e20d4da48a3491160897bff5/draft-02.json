@@ -1,0 +1,503 @@
+[
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:health-ankle-timeline-v2",
+  "family_id": "8302f652e20d4da48a3491160897bff5:health-ankle-v2",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-health-ankle-v2",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-health-ankle-v2",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-health-ankle-v2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Write a short dated timeline for my pharmacist: when the swelling was noticed and how many doses I missed.",
+  "text": "Question for the pharmacist. My sister, Thandiwe Mokoena, saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Thandiwe Mokoena"
+   },
+   {
+    "id": "a2",
+    "entity_id": "visit-date",
+    "label": "DATE",
+    "quote": "12 March"
+   },
+   {
+    "id": "a3",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "my left ankle looked swollen after the flight"
+   },
+   {
+    "id": "a4",
+    "entity_id": "dose",
+    "label": "HEALTH",
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "id": "a5",
+    "entity_id": "missed",
+    "label": "HEALTH",
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "id": "a6",
+    "entity_id": "no-pain",
+    "label": "HEALTH",
+    "quote": "no pain when I walk"
+   },
+   {
+    "id": "a7",
+    "entity_id": "tight",
+    "label": "HEALTH",
+    "quote": "tight by evening"
+   },
+   {
+    "id": "a8",
+    "entity_id": "carer",
+    "label": "FAMILY",
+    "quote": "main carer for our father"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "sister",
+    "quote": "Thandiwe Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "visit-date",
+    "quote": "12 March",
+    "label": "DATE",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a3",
+    "entity_id": "swelling",
+    "quote": "my left ankle looked swollen after the flight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a4",
+    "entity_id": "dose",
+    "quote": "20 mg of furosemide every morning",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a5",
+    "entity_id": "missed",
+    "quote": "skipped it twice last week, no wait, three times",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a6",
+    "entity_id": "no-pain",
+    "quote": "no pain when I walk",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a7",
+    "entity_id": "tight",
+    "quote": "tight by evening",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a8",
+    "entity_id": "carer",
+    "quote": "main carer for our father",
+    "label": "FAMILY",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "quote": "no pain when I walk"
+   },
+   {
+    "quote": "tight by evening"
+   },
+   {
+    "quote": "12 March"
+   }
+  ],
+  "approved_output": "Question for the pharmacist. My sister, [PERSON_1], saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:health-ankle-questions-v2",
+  "family_id": "8302f652e20d4da48a3491160897bff5:health-ankle-v2",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-health-ankle-v2",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-health-ankle-v2",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-health-ankle-v2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "List the questions I should ask my pharmacist about the timing and dose of my morning tablet, given the doses I missed.",
+  "text": "Question for the pharmacist. My sister, Thandiwe Mokoena, saw me on 12 March and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "entities": [
+   {
+    "id": "a1",
+    "entity_id": "sister",
+    "label": "PERSON",
+    "quote": "Thandiwe Mokoena"
+   },
+   {
+    "id": "a2",
+    "entity_id": "visit-date",
+    "label": "DATE",
+    "quote": "12 March"
+   },
+   {
+    "id": "a3",
+    "entity_id": "swelling",
+    "label": "HEALTH",
+    "quote": "my left ankle looked swollen after the flight"
+   },
+   {
+    "id": "a4",
+    "entity_id": "dose",
+    "label": "HEALTH",
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "id": "a5",
+    "entity_id": "missed",
+    "label": "HEALTH",
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "id": "a6",
+    "entity_id": "no-pain",
+    "label": "HEALTH",
+    "quote": "no pain when I walk"
+   },
+   {
+    "id": "a7",
+    "entity_id": "tight",
+    "label": "HEALTH",
+    "quote": "tight by evening"
+   },
+   {
+    "id": "a8",
+    "entity_id": "carer",
+    "label": "FAMILY",
+    "quote": "main carer for our father"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "a1",
+    "entity_id": "sister",
+    "quote": "Thandiwe Mokoena",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a2",
+    "entity_id": "visit-date",
+    "quote": "12 March",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a3",
+    "entity_id": "swelling",
+    "quote": "my left ankle looked swollen after the flight",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a4",
+    "entity_id": "dose",
+    "quote": "20 mg of furosemide every morning",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a5",
+    "entity_id": "missed",
+    "quote": "skipped it twice last week, no wait, three times",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a6",
+    "entity_id": "no-pain",
+    "quote": "no pain when I walk",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a7",
+    "entity_id": "tight",
+    "quote": "tight by evening",
+    "label": "HEALTH",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "a8",
+    "entity_id": "carer",
+    "quote": "main carer for our father",
+    "label": "FAMILY",
+    "action": "KEEP",
+    "relevance": "uncertain"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "My sister,"
+   },
+   {
+    "quote": "20 mg of furosemide every morning"
+   },
+   {
+    "quote": "skipped it twice last week, no wait, three times"
+   },
+   {
+    "quote": "no pain when I walk"
+   },
+   {
+    "quote": "tight by evening"
+   }
+  ],
+  "approved_output": "Question for the pharmacist. My sister, [PERSON_1], saw me on [DATE] and said my left ankle looked swollen after the flight. I take 20 mg of furosemide every morning, though I skipped it twice last week, no wait, three times. There is no pain when I walk, but it feels tight by evening. I am also the main carer for our father, so I am on my feet most of the day.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ },
+ {
+  "schema_version": 2,
+  "shard_id": "8302f652e20d4da48a3491160897bff5",
+  "id": "8302f652e20d4da48a3491160897bff5:budget-move-affordability-v2",
+  "family_id": "8302f652e20d4da48a3491160897bff5:budget-move-v2",
+  "persona_id": "8302f652e20d4da48a3491160897bff5:persona-budget-move-v2",
+  "source_id": "8302f652e20d4da48a3491160897bff5:source-budget-move-v2",
+  "template_id": "8302f652e20d4da48a3491160897bff5:template-budget-move-v2",
+  "split": "train",
+  "language": "en",
+  "input_kind": "message",
+  "task": "Check my arithmetic: what percentage of my take-home pay would go on my half of the rent, my half of the groceries and the car loan? Show each step.",
+  "text": "We are thinking of moving. I work as a dental hygienist at Brightwell Dental Group and earn 3,100 a month after tax. My partner, Kwabena Mensah, pays half of the 1,450 rent and we spend roughly 400 on groceries, no, closer to 450, split the same way. My car loan is 180 a month. The new flat is a two-bedroom and the lease would start in the new year, so I want to be sure before signing.",
+  "entities": [
+   {
+    "id": "b1",
+    "entity_id": "job",
+    "label": "EMPLOYMENT",
+    "quote": "dental hygienist"
+   },
+   {
+    "id": "b2",
+    "entity_id": "employer",
+    "label": "ORG",
+    "quote": "Brightwell Dental Group"
+   },
+   {
+    "id": "b3",
+    "entity_id": "pay",
+    "label": "FINANCIAL",
+    "quote": "earn 3,100 a month after tax"
+   },
+   {
+    "id": "b4",
+    "entity_id": "partner",
+    "label": "PERSON",
+    "quote": "Kwabena Mensah"
+   },
+   {
+    "id": "b5",
+    "entity_id": "rent",
+    "label": "FINANCIAL",
+    "quote": "pays half of the 1,450 rent"
+   },
+   {
+    "id": "b7",
+    "entity_id": "groceries",
+    "label": "FINANCIAL",
+    "quote": "roughly 400 on groceries, no, closer to 450"
+   },
+   {
+    "id": "b6",
+    "entity_id": "loan",
+    "label": "FINANCIAL",
+    "quote": "My car loan is 180 a month"
+   },
+   {
+    "id": "b8",
+    "entity_id": "lease",
+    "label": "DATE",
+    "quote": "the new year"
+   }
+  ],
+  "decisions": [
+   {
+    "kind": "entity",
+    "target_id": "b1",
+    "entity_id": "job",
+    "quote": "dental hygienist",
+    "label": "EMPLOYMENT",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b2",
+    "entity_id": "employer",
+    "quote": "Brightwell Dental Group",
+    "label": "ORG",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b3",
+    "entity_id": "pay",
+    "quote": "earn 3,100 a month after tax",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b4",
+    "entity_id": "partner",
+    "quote": "Kwabena Mensah",
+    "label": "PERSON",
+    "action": "ALIAS",
+    "relevance": "unnecessary"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b5",
+    "entity_id": "rent",
+    "quote": "pays half of the 1,450 rent",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b7",
+    "entity_id": "groceries",
+    "quote": "roughly 400 on groceries, no, closer to 450",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b6",
+    "entity_id": "loan",
+    "quote": "My car loan is 180 a month",
+    "label": "FINANCIAL",
+    "action": "KEEP",
+    "relevance": "essential"
+   },
+   {
+    "kind": "entity",
+    "target_id": "b8",
+    "entity_id": "lease",
+    "quote": "the new year",
+    "label": "DATE",
+    "action": "PLACEHOLDER",
+    "relevance": "unnecessary"
+   }
+  ],
+  "required_facts": [
+   {
+    "quote": "earn 3,100 a month after tax"
+   },
+   {
+    "quote": "My partner,"
+   },
+   {
+    "quote": "pays half of the 1,450 rent"
+   },
+   {
+    "quote": "roughly 400 on groceries, no, closer to 450"
+   },
+   {
+    "quote": "split the same way"
+   },
+   {
+    "quote": "My car loan is 180 a month"
+   }
+  ],
+  "approved_output": "We are thinking of moving. I work as a [EMPLOYMENT] at [ORG] and earn 3,100 a month after tax. My partner, [PERSON_1], pays half of the 1,450 rent and we spend roughly 400 on groceries, no, closer to 450, split the same way. My car loan is 180 a month. The new flat is a two-bedroom and the lease would start in [DATE], so I want to be sure before signing.",
+  "provenance": {
+   "synthetic": true,
+   "human_audited": false,
+   "generator_id": "8302f652e20d4da48a3491160897bff5:generator",
+   "generator_model": "claude-sonnet (Claude Code subagent writer C wave1)"
+  },
+  "review": {
+   "status": "pending"
+  }
+ }
+]
