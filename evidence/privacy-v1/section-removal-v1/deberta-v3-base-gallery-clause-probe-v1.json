@@ -1,0 +1,4950 @@
+{
+  "summary": {
+    "required_drops": 4,
+    "missed_drops": 4,
+    "required_facts": 24,
+    "retained_facts": 24,
+    "keep_characters_changed": 0,
+    "unannotated_characters_changed": 0,
+    "model": "deberta-v3-base",
+    "cohort": "gallery",
+    "mode": "clause-probe-v1",
+    "records": 6,
+    "unsupported": 0,
+    "seconds": 29.14
+  },
+  "records": [
+    {
+      "id": "c33e902d85e448c7a2be659edb432d41:video-health",
+      "split": "train",
+      "mode": "clause-probe-v1",
+      "keep_characters_changed": 0,
+      "unannotated_characters_changed": 0,
+      "required_drops": 2,
+      "missed_drops": 2,
+      "drop_failures": [
+        {
+          "start": 394,
+          "end": 582,
+          "reason": "proposed_but_not_fully_removed",
+          "candidate_reasons": [
+            "essential_fact",
+            "essential_fact",
+            "essential_fact",
+            "essential_fact"
+          ]
+        },
+        {
+          "start": 582,
+          "end": 712,
+          "reason": "proposed_but_not_fully_removed",
+          "candidate_reasons": [
+            "essential_fact",
+            "essential_fact",
+            "essential_fact",
+            "essential_fact"
+          ]
+        }
+      ],
+      "required_facts": 3,
+      "retained_facts": 3,
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Can you tell me about the medicine I was prescribed and explain why I was given it, based on the medical records below?\n\nPATIENT DETAILS\nName: [PERSON_1]\nDate of birth: 14 June 1995\nPatient number: [ACCOUNT_ID]\nEmail: [EMAIL]\n\nVISIT — 29 October 2026\nReason: Runny nose and frequent sneezing.\nMedication prescribed: Cetirizine.\nFollow-up: Contact the clinic if symptoms persist.\n\nVISIT — 14 September 2026\nReason: Persistent itching around the anus.\nPatient reports: “My ass is really itchy, especially at night.”\nExamination and follow-up notes recorded separately.\n\nVISIT — 20 May 2026\nReason: Left wrist pain after a fall while cycling.\nAssessment: Wrist sprain.\nFollow-up: Symptoms improving.\n",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 143,
+            "end": 155,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 200,
+            "end": 209,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 217,
+            "end": 241,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 0,
+            "end": 118,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 267,
+            "end": 307,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 309,
+            "end": 342,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 344,
+            "end": 393,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 422,
+            "end": 464,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 466,
+            "end": 529,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 530,
+            "end": 581,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 604,
+            "end": 654,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 656,
+            "end": 680,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 682,
+            "end": 711,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 713,
+          "total_characters": 713,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Can you tell me about the medicine I was prescribed and explain why I was given it, based on the medical records below?",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 26,
+            "end": 51,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 68,
+            "end": 82,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 171,
+            "end": 178,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 251,
+            "end": 266,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 404,
+            "end": 421,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 592,
+            "end": 598,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 26,
+                "end": 51,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 68,
+                "end": 82,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 119,
+              "total_characters": 119,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "clause-probe-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 118,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 0,
+                "end": 118,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9771322454606571,
+                "relevance": {
+                  "essential": 0.7497547268867493,
+                  "unnecessary": 0.03434531390666962,
+                  "uncertain": 0.21589989960193634
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 121,
+            "end": 136,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 121,
+                "end": 136,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9765501876878167,
+                "relevance": {
+                  "essential": 0.7314821481704712,
+                  "unnecessary": 0.035806335508823395,
+                  "uncertain": 0.23271143436431885
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 121,
+                "end": 136,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9756674480780403,
+                "relevance": {
+                  "essential": 0.7215428948402405,
+                  "unnecessary": 0.036831166595220566,
+                  "uncertain": 0.24162587523460388
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 121,
+                "end": 136,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9748201895713398,
+                "relevance": {
+                  "essential": 0.7164112329483032,
+                  "unnecessary": 0.03781197592616081,
+                  "uncertain": 0.24577684700489044
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 121,
+                "end": 136,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9757462007672736,
+                "relevance": {
+                  "essential": 0.719140350818634,
+                  "unnecessary": 0.03707268461585045,
+                  "uncertain": 0.24378705024719238
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 137,
+            "end": 155,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 137,
+                "end": 155,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.973880183702527,
+                "relevance": {
+                  "essential": 0.692452609539032,
+                  "unnecessary": 0.04175945743918419,
+                  "uncertain": 0.26578789949417114
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 137,
+                "end": 155,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9728675068049755,
+                "relevance": {
+                  "essential": 0.6815165877342224,
+                  "unnecessary": 0.04299726337194443,
+                  "uncertain": 0.2754860818386078
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 137,
+                "end": 155,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9717885694924231,
+                "relevance": {
+                  "essential": 0.6737778186798096,
+                  "unnecessary": 0.044624779373407364,
+                  "uncertain": 0.28159743547439575
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 137,
+                "end": 155,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9729868917810588,
+                "relevance": {
+                  "essential": 0.6791141629219055,
+                  "unnecessary": 0.043275393545627594,
+                  "uncertain": 0.27761051058769226
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 156,
+            "end": 183,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 156,
+                "end": 183,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9745608115774551,
+                "relevance": {
+                  "essential": 0.7027437090873718,
+                  "unnecessary": 0.037645626813173294,
+                  "uncertain": 0.2596106231212616
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 156,
+                "end": 183,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9736927968478455,
+                "relevance": {
+                  "essential": 0.6927017569541931,
+                  "unnecessary": 0.03864409029483795,
+                  "uncertain": 0.2686541974544525
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 156,
+                "end": 183,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9728628518236615,
+                "relevance": {
+                  "essential": 0.6874402761459351,
+                  "unnecessary": 0.03955041989684105,
+                  "uncertain": 0.27300935983657837
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 156,
+                "end": 183,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9737806440532792,
+                "relevance": {
+                  "essential": 0.6901826858520508,
+                  "unnecessary": 0.03890346363186836,
+                  "uncertain": 0.27091383934020996
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 184,
+            "end": 209,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 184,
+                "end": 209,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9740311459151545,
+                "relevance": {
+                  "essential": 0.685190737247467,
+                  "unnecessary": 0.043990667909383774,
+                  "uncertain": 0.2708186209201813
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 184,
+                "end": 209,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9730184903003889,
+                "relevance": {
+                  "essential": 0.6737901568412781,
+                  "unnecessary": 0.04525322839617729,
+                  "uncertain": 0.2809566855430603
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 184,
+                "end": 209,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9719639557790607,
+                "relevance": {
+                  "essential": 0.6680966019630432,
+                  "unnecessary": 0.04642406851053238,
+                  "uncertain": 0.285479336977005
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 184,
+                "end": 209,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9730910037102832,
+                "relevance": {
+                  "essential": 0.6711616516113281,
+                  "unnecessary": 0.04549187421798706,
+                  "uncertain": 0.28334638476371765
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 210,
+            "end": 241,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 210,
+                "end": 241,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.965124812979658,
+                "relevance": {
+                  "essential": 0.5769990086555481,
+                  "unnecessary": 0.0874108076095581,
+                  "uncertain": 0.3355901837348938
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 210,
+                "end": 241,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9631830147429419,
+                "relevance": {
+                  "essential": 0.5617203116416931,
+                  "unnecessary": 0.0906086191534996,
+                  "uncertain": 0.3476710617542267
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 210,
+                "end": 241,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9613323109175971,
+                "relevance": {
+                  "essential": 0.5548173189163208,
+                  "unnecessary": 0.09331398457288742,
+                  "uncertain": 0.35186874866485596
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 210,
+                "end": 241,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.963378106132544,
+                "relevance": {
+                  "essential": 0.5593159198760986,
+                  "unnecessary": 0.09079883992671967,
+                  "uncertain": 0.3498851954936981
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 243,
+            "end": 266,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 243,
+                "end": 266,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9717225955523267,
+                "relevance": {
+                  "essential": 0.647560715675354,
+                  "unnecessary": 0.06023947894573212,
+                  "uncertain": 0.2921997904777527
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 243,
+                "end": 266,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.970255836337194,
+                "relevance": {
+                  "essential": 0.6329522728919983,
+                  "unnecessary": 0.0626307800412178,
+                  "uncertain": 0.3044169247150421
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 243,
+                "end": 266,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9688075654113951,
+                "relevance": {
+                  "essential": 0.6254052519798279,
+                  "unnecessary": 0.06471793353557587,
+                  "uncertain": 0.30987682938575745
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 243,
+                "end": 266,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.970371793761335,
+                "relevance": {
+                  "essential": 0.630416989326477,
+                  "unnecessary": 0.06288880109786987,
+                  "uncertain": 0.30669429898262024
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 267,
+            "end": 307,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 267,
+                "end": 307,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9759368820021491,
+                "relevance": {
+                  "essential": 0.7083105444908142,
+                  "unnecessary": 0.04321519657969475,
+                  "uncertain": 0.24847427010536194
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 309,
+            "end": 342,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 309,
+                "end": 342,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.975476471356445,
+                "relevance": {
+                  "essential": 0.7027103900909424,
+                  "unnecessary": 0.04462356120347977,
+                  "uncertain": 0.25266608595848083
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 344,
+            "end": 393,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 344,
+                "end": 393,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9756407604587659,
+                "relevance": {
+                  "essential": 0.7113748788833618,
+                  "unnecessary": 0.04213567078113556,
+                  "uncertain": 0.2464895099401474
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 396,
+            "end": 421,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 396,
+                "end": 421,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9765236125329758,
+                "relevance": {
+                  "essential": 0.723513126373291,
+                  "unnecessary": 0.03946284204721451,
+                  "uncertain": 0.23702402412891388
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 396,
+                "end": 421,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9755551105146743,
+                "relevance": {
+                  "essential": 0.7120730876922607,
+                  "unnecessary": 0.040757112205028534,
+                  "uncertain": 0.2471698522567749
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 396,
+                "end": 421,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9745108182998439,
+                "relevance": {
+                  "essential": 0.7053382992744446,
+                  "unnecessary": 0.04208938404917717,
+                  "uncertain": 0.2525723874568939
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 396,
+                "end": 421,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.975643114142513,
+                "relevance": {
+                  "essential": 0.709671139717102,
+                  "unnecessary": 0.04097597673535347,
+                  "uncertain": 0.24935294687747955
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 422,
+            "end": 464,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 422,
+                "end": 464,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.977215273231161,
+                "relevance": {
+                  "essential": 0.7343394756317139,
+                  "unnecessary": 0.035261958837509155,
+                  "uncertain": 0.23039855062961578
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 466,
+            "end": 529,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 466,
+                "end": 529,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9743882590303514,
+                "relevance": {
+                  "essential": 0.6928248405456543,
+                  "unnecessary": 0.04672829434275627,
+                  "uncertain": 0.2604469358921051
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 530,
+            "end": 581,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 530,
+                "end": 581,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9759028258458101,
+                "relevance": {
+                  "essential": 0.7201154232025146,
+                  "unnecessary": 0.040442466735839844,
+                  "uncertain": 0.2394421398639679
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 584,
+            "end": 603,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 584,
+                "end": 603,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9766324986829864,
+                "relevance": {
+                  "essential": 0.7275995016098022,
+                  "unnecessary": 0.039069823920726776,
+                  "uncertain": 0.23333072662353516
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 584,
+                "end": 603,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9756949328942975,
+                "relevance": {
+                  "essential": 0.7166690230369568,
+                  "unnecessary": 0.04027744010090828,
+                  "uncertain": 0.2430535852909088
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 584,
+                "end": 603,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9748253947944561,
+                "relevance": {
+                  "essential": 0.712115466594696,
+                  "unnecessary": 0.04117906466126442,
+                  "uncertain": 0.24670538306236267
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 584,
+                "end": 603,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9757998045238643,
+                "relevance": {
+                  "essential": 0.7144656777381897,
+                  "unnecessary": 0.04046528786420822,
+                  "uncertain": 0.2450690120458603
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 604,
+            "end": 654,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 604,
+                "end": 654,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9775525873181151,
+                "relevance": {
+                  "essential": 0.7397348284721375,
+                  "unnecessary": 0.03485427796840668,
+                  "uncertain": 0.22541092336177826
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 656,
+            "end": 680,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 656,
+                "end": 680,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9766947612205982,
+                "relevance": {
+                  "essential": 0.7238937616348267,
+                  "unnecessary": 0.040639474987983704,
+                  "uncertain": 0.23546679317951202
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 682,
+            "end": 711,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 682,
+                "end": 711,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.975975848304378,
+                "relevance": {
+                  "essential": 0.714975893497467,
+                  "unnecessary": 0.04217405244708061,
+                  "uncertain": 0.24284997582435608
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "cohort": "gallery"
+    },
+    {
+      "id": "c33e902d85e448c7a2be659edb432d41:video-support",
+      "split": "train",
+      "mode": "clause-probe-v1",
+      "keep_characters_changed": 0,
+      "unannotated_characters_changed": 0,
+      "required_drops": 0,
+      "missed_drops": 0,
+      "drop_failures": [],
+      "required_facts": 6,
+      "retained_facts": 6,
+      "result": {
+        "status": "needs_review",
+        "protected_text": "What are the three main things our customers are complaining about in these support tickets? Count the tickets in each category and suggest one practical improvement for each.\n\nHere’s the export from our support system:\n\ncustomer_id,customer_name,email,complaint\n[ACCOUNT_ID],[PERSON_1],[EMAIL],\"I was charged twice for the same order. Please refund the extra payment.\"\n[ACCOUNT_ID],[PERSON_2],[EMAIL],\"I returned my order two weeks ago and still haven’t received my refund. Please send an update to [EMAIL].\"\n[ACCOUNT_ID],[PERSON_3],[EMAIL],\"The password-reset email never arrives, so I can’t get into my account.\"\n[ACCOUNT_ID],[PERSON_4],[EMAIL],\"My payment failed on screen, so I tried again. Now I can see two charges for one order.\"\n[ACCOUNT_ID],[PERSON_5],[EMAIL],\"Support confirmed my refund ten days ago, but the money still hasn’t arrived.\"\n[ACCOUNT_ID],[PERSON_6],[EMAIL],\"Hi, [PERSON_6] here. I’ve been billed twice for a single purchase and need the duplicate charge reversed.\"\n",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 263,
+            "end": 269,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 270,
+            "end": 281,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 282,
+            "end": 305,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 381,
+            "end": 387,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 388,
+            "end": 400,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 401,
+            "end": 425,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 524,
+            "end": 548,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 551,
+            "end": 557,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 558,
+            "end": 570,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 571,
+            "end": 595,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 670,
+            "end": 676,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 677,
+            "end": 688,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 689,
+            "end": 712,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 803,
+            "end": 809,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 810,
+            "end": 822,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_5]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 823,
+            "end": 847,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 928,
+            "end": 934,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 935,
+            "end": 947,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_6]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 948,
+            "end": 972,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 978,
+            "end": 990,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_6]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "section_requires_explicit_drop"
+        ],
+        "coverage": {
+          "scanned_characters": 1083,
+          "total_characters": 1083,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "What are the three main things our customers are complaining about in these support tickets? Count the tickets in each category and suggest one practical improvement for each.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 175,
+              "total_characters": 175,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "clause-probe-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 91,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 0,
+                "end": 91,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.840188371555669,
+                "relevance": {
+                  "essential": 0.036267541348934174,
+                  "unnecessary": 0.9554120898246765,
+                  "uncertain": 0.00832042284309864
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 0,
+                "end": 91,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8408508565995328,
+                "relevance": {
+                  "essential": 0.03614223748445511,
+                  "unnecessary": 0.9556313157081604,
+                  "uncertain": 0.008226495236158371
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 0,
+                "end": 91,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.839336931165342,
+                "relevance": {
+                  "essential": 0.037151727825403214,
+                  "unnecessary": 0.954474151134491,
+                  "uncertain": 0.008374185301363468
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 0,
+                "end": 91,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8476282074235237,
+                "relevance": {
+                  "essential": 0.03421647101640701,
+                  "unnecessary": 0.9575130343437195,
+                  "uncertain": 0.008270462974905968
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 93,
+            "end": 174,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 93,
+                "end": 174,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8302866493956093,
+                "relevance": {
+                  "essential": 0.03837113082408905,
+                  "unnecessary": 0.9520637392997742,
+                  "uncertain": 0.009565139189362526
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 93,
+                "end": 174,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.830181827653223,
+                "relevance": {
+                  "essential": 0.03842400386929512,
+                  "unnecessary": 0.9521036148071289,
+                  "uncertain": 0.009472310543060303
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 93,
+                "end": 174,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8328271944331304,
+                "relevance": {
+                  "essential": 0.03729330375790596,
+                  "unnecessary": 0.953080415725708,
+                  "uncertain": 0.009626206941902637
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 93,
+                "end": 174,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8448988397580186,
+                "relevance": {
+                  "essential": 0.03407023474574089,
+                  "unnecessary": 0.956633448600769,
+                  "uncertain": 0.009296255186200142
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 177,
+            "end": 219,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 177,
+                "end": 219,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8217883981180326,
+                "relevance": {
+                  "essential": 0.039179448038339615,
+                  "unnecessary": 0.9507787823677063,
+                  "uncertain": 0.010041683912277222
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 177,
+                "end": 219,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8208242559542045,
+                "relevance": {
+                  "essential": 0.039489250630140305,
+                  "unnecessary": 0.950525164604187,
+                  "uncertain": 0.009985528886318207
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 177,
+                "end": 219,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8242824477937903,
+                "relevance": {
+                  "essential": 0.03836895897984505,
+                  "unnecessary": 0.9515988826751709,
+                  "uncertain": 0.010032160207629204
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 177,
+                "end": 219,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8466970098118376,
+                "relevance": {
+                  "essential": 0.032507702708244324,
+                  "unnecessary": 0.9579468965530396,
+                  "uncertain": 0.009545375593006611
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 221,
+            "end": 262,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 221,
+                "end": 262,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8379221229068093,
+                "relevance": {
+                  "essential": 0.03155503794550896,
+                  "unnecessary": 0.9587578773498535,
+                  "uncertain": 0.009687128476798534
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 221,
+                "end": 262,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8364699023259214,
+                "relevance": {
+                  "essential": 0.03187573701143265,
+                  "unnecessary": 0.958492636680603,
+                  "uncertain": 0.009631681255996227
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 221,
+                "end": 262,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8367930538032884,
+                "relevance": {
+                  "essential": 0.033296141773462296,
+                  "unnecessary": 0.9574164152145386,
+                  "uncertain": 0.009287405759096146
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 221,
+                "end": 262,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8688689619382952,
+                "relevance": {
+                  "essential": 0.02445284277200699,
+                  "unnecessary": 0.9665367007255554,
+                  "uncertain": 0.009010477922856808
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 263,
+            "end": 345,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 263,
+                "end": 345,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8508334541698721,
+                "relevance": {
+                  "essential": 0.027907196432352066,
+                  "unnecessary": 0.9630303978919983,
+                  "uncertain": 0.009062431752681732
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 263,
+                "end": 345,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8488469357566185,
+                "relevance": {
+                  "essential": 0.028318416327238083,
+                  "unnecessary": 0.9626680016517639,
+                  "uncertain": 0.009013653732836246
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 263,
+                "end": 345,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8500962152483867,
+                "relevance": {
+                  "essential": 0.027590051293373108,
+                  "unnecessary": 0.9631033539772034,
+                  "uncertain": 0.009306575171649456
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 263,
+                "end": 345,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8878773996022494,
+                "relevance": {
+                  "essential": 0.01994049921631813,
+                  "unnecessary": 0.9718706011772156,
+                  "uncertain": 0.008188826031982899
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 347,
+            "end": 380,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 347,
+                "end": 380,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.865466266061471,
+                "relevance": {
+                  "essential": 0.022896751761436462,
+                  "unnecessary": 0.9684948921203613,
+                  "uncertain": 0.008608304895460606
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 347,
+                "end": 380,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.863255336389258,
+                "relevance": {
+                  "essential": 0.02329956367611885,
+                  "unnecessary": 0.9681339859962463,
+                  "uncertain": 0.008566498756408691
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 347,
+                "end": 380,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8646963647259692,
+                "relevance": {
+                  "essential": 0.023474333807826042,
+                  "unnecessary": 0.9679676294326782,
+                  "uncertain": 0.00855806190520525
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 347,
+                "end": 380,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9037455221068518,
+                "relevance": {
+                  "essential": 0.01567518338561058,
+                  "unnecessary": 0.9766998291015625,
+                  "uncertain": 0.0076250298880040646
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 381,
+            "end": 497,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 381,
+                "end": 497,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.847936642790531,
+                "relevance": {
+                  "essential": 0.026401301845908165,
+                  "unnecessary": 0.9635103344917297,
+                  "uncertain": 0.010088308714330196
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 381,
+                "end": 497,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8453337035640884,
+                "relevance": {
+                  "essential": 0.02685604989528656,
+                  "unnecessary": 0.9631236791610718,
+                  "uncertain": 0.010020231828093529
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 381,
+                "end": 497,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8448385315244802,
+                "relevance": {
+                  "essential": 0.027705669403076172,
+                  "unnecessary": 0.962214469909668,
+                  "uncertain": 0.010079815052449703
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 381,
+                "end": 497,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8887108846153431,
+                "relevance": {
+                  "essential": 0.018189897760748863,
+                  "unnecessary": 0.9727914333343506,
+                  "uncertain": 0.009018639102578163
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 499,
+            "end": 550,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 499,
+                "end": 550,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8690292386234048,
+                "relevance": {
+                  "essential": 0.02056082710623741,
+                  "unnecessary": 0.9707491993904114,
+                  "uncertain": 0.008689896203577518
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 499,
+                "end": 550,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8664560765308225,
+                "relevance": {
+                  "essential": 0.020947743207216263,
+                  "unnecessary": 0.97041916847229,
+                  "uncertain": 0.008633102290332317
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 499,
+                "end": 550,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8645365333580063,
+                "relevance": {
+                  "essential": 0.021796878427267075,
+                  "unnecessary": 0.9694381952285767,
+                  "uncertain": 0.008764887228608131
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 499,
+                "end": 550,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9104743964331687,
+                "relevance": {
+                  "essential": 0.013364680111408234,
+                  "unnecessary": 0.9790956974029541,
+                  "uncertain": 0.007539602927863598
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 551,
+            "end": 669,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 551,
+                "end": 669,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8525291331208353,
+                "relevance": {
+                  "essential": 0.023501839488744736,
+                  "unnecessary": 0.9668440818786621,
+                  "uncertain": 0.009654144756495953
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 551,
+                "end": 669,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8496260242448354,
+                "relevance": {
+                  "essential": 0.023979077115654945,
+                  "unnecessary": 0.9664211273193359,
+                  "uncertain": 0.00959975365549326
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 551,
+                "end": 669,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8477482184831442,
+                "relevance": {
+                  "essential": 0.02435576543211937,
+                  "unnecessary": 0.9656858444213867,
+                  "uncertain": 0.00995836965739727
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 551,
+                "end": 669,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8973350858723766,
+                "relevance": {
+                  "essential": 0.015346324071288109,
+                  "unnecessary": 0.9762358069419861,
+                  "uncertain": 0.008417901583015919
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 670,
+            "end": 759,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 670,
+                "end": 759,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8401973746643283,
+                "relevance": {
+                  "essential": 0.026032522320747375,
+                  "unnecessary": 0.9628826975822449,
+                  "uncertain": 0.011084788478910923
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 670,
+                "end": 759,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8370509565338947,
+                "relevance": {
+                  "essential": 0.026527201756834984,
+                  "unnecessary": 0.9624665379524231,
+                  "uncertain": 0.011006292887032032
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 670,
+                "end": 759,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.835762604536333,
+                "relevance": {
+                  "essential": 0.027329228818416595,
+                  "unnecessary": 0.9614543914794922,
+                  "uncertain": 0.01121634989976883
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 670,
+                "end": 759,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.888021451565775,
+                "relevance": {
+                  "essential": 0.016912437975406647,
+                  "unnecessary": 0.9734199643135071,
+                  "uncertain": 0.00966757070273161
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 761,
+            "end": 802,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 761,
+                "end": 802,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8367754038611688,
+                "relevance": {
+                  "essential": 0.02693469636142254,
+                  "unnecessary": 0.9621330499649048,
+                  "uncertain": 0.010932323522865772
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 761,
+                "end": 802,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8335611238572429,
+                "relevance": {
+                  "essential": 0.027472971007227898,
+                  "unnecessary": 0.9616588950157166,
+                  "uncertain": 0.01086818054318428
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 761,
+                "end": 802,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8298419914142842,
+                "relevance": {
+                  "essential": 0.02851445972919464,
+                  "unnecessary": 0.9601313471794128,
+                  "uncertain": 0.011354172602295876
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 761,
+                "end": 802,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8835284803178816,
+                "relevance": {
+                  "essential": 0.017848437651991844,
+                  "unnecessary": 0.9725721478462219,
+                  "uncertain": 0.009579339995980263
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 803,
+            "end": 927,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 803,
+                "end": 927,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8491329112980741,
+                "relevance": {
+                  "essential": 0.023595139384269714,
+                  "unnecessary": 0.9666517972946167,
+                  "uncertain": 0.00975304190069437
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 803,
+                "end": 927,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8460578194025458,
+                "relevance": {
+                  "essential": 0.024077532812952995,
+                  "unnecessary": 0.9662359356880188,
+                  "uncertain": 0.009686503559350967
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 803,
+                "end": 927,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8437667240526865,
+                "relevance": {
+                  "essential": 0.024970052763819695,
+                  "unnecessary": 0.9650593996047974,
+                  "uncertain": 0.009970576502382755
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 803,
+                "end": 927,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.893003435135137,
+                "relevance": {
+                  "essential": 0.0156342051923275,
+                  "unnecessary": 0.9758397340774536,
+                  "uncertain": 0.008526080287992954
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 928,
+            "end": 995,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 928,
+                "end": 995,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8518036454879699,
+                "relevance": {
+                  "essential": 0.02254941686987877,
+                  "unnecessary": 0.9680078625679016,
+                  "uncertain": 0.00944266002625227
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 928,
+                "end": 995,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8486816304374825,
+                "relevance": {
+                  "essential": 0.023022711277008057,
+                  "unnecessary": 0.9676063656806946,
+                  "uncertain": 0.009370905347168446
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 928,
+                "end": 995,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8474058247785469,
+                "relevance": {
+                  "essential": 0.023799950256943703,
+                  "unnecessary": 0.9665731191635132,
+                  "uncertain": 0.009626835584640503
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 928,
+                "end": 995,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8974531795290992,
+                "relevance": {
+                  "essential": 0.01452954113483429,
+                  "unnecessary": 0.9772793054580688,
+                  "uncertain": 0.008191208355128765
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 997,
+            "end": 1082,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 997,
+                "end": 1082,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.844295131579257,
+                "relevance": {
+                  "essential": 0.0242441575974226,
+                  "unnecessary": 0.9658693075180054,
+                  "uncertain": 0.009886544197797775
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 997,
+                "end": 1082,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8406115068621202,
+                "relevance": {
+                  "essential": 0.024830417707562447,
+                  "unnecessary": 0.9653371572494507,
+                  "uncertain": 0.009832395240664482
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 997,
+                "end": 1082,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8404823706479672,
+                "relevance": {
+                  "essential": 0.02557322196662426,
+                  "unnecessary": 0.9643574357032776,
+                  "uncertain": 0.010069224052131176
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 997,
+                "end": 1082,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8963804129276777,
+                "relevance": {
+                  "essential": 0.014905259013175964,
+                  "unnecessary": 0.9766884446144104,
+                  "uncertain": 0.008406220935285091
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "cohort": "gallery"
+    },
+    {
+      "id": "c33e902d85e448c7a2be659edb432d41:attic-prescription",
+      "split": "train",
+      "mode": "clause-probe-v1",
+      "keep_characters_changed": 0,
+      "unannotated_characters_changed": 0,
+      "required_drops": 1,
+      "missed_drops": 1,
+      "drop_failures": [
+        {
+          "start": 528,
+          "end": 650,
+          "reason": "proposed_but_not_fully_removed",
+          "candidate_reasons": [
+            "essential_fact",
+            "essential_fact"
+          ]
+        }
+      ],
+      "required_facts": 3,
+      "retained_facts": 3,
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I copied the appointment summary below because I want to understand what the new prescription is for, not share my entire chart. Please stick to what the record actually says and distinguish that from general background information.\n\nPatient: [PERSON_1]. Portal ID: [ACCOUNT_ID]. Email: [EMAIL].\nCurrent visit: I reported sneezing and watery eyes after cleaning the attic. The clinician prescribed cetirizine; the note does not give a confirmed diagnosis. I was told to contact the clinic if the symptoms continue.\n\nArchived visit: I discussed a painful anal fissure last year. The problem resolved and no current treatment is recorded.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 243,
+            "end": 253,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 266,
+            "end": 273,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 282,
+            "end": 308,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 310,
+            "end": 385,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 387,
+            "end": 422,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 424,
+            "end": 468,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 470,
+            "end": 527,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 530,
+            "end": 590,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 592,
+            "end": 649,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 650,
+          "total_characters": 650,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Explain the current prescription and prepare questions for the pharmacist.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 325,
+            "end": 650,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 74,
+              "total_characters": 74,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "clause-probe-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 127,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 0,
+                "end": 127,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985456559522451,
+                "relevance": {
+                  "essential": 0.9970380067825317,
+                  "unnecessary": 0.0021168061066418886,
+                  "uncertain": 0.0008451713947579265
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 127,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984703552983497,
+                "relevance": {
+                  "essential": 0.9968596696853638,
+                  "unnecessary": 0.002241607289761305,
+                  "uncertain": 0.0008987887413240969
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 127,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984044400292506,
+                "relevance": {
+                  "essential": 0.9966186285018921,
+                  "unnecessary": 0.0024480950087308884,
+                  "uncertain": 0.0009332639165222645
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 127,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984545016572385,
+                "relevance": {
+                  "essential": 0.9967358708381653,
+                  "unnecessary": 0.0023438576608896255,
+                  "uncertain": 0.0009202177170664072
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 129,
+            "end": 231,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 129,
+                "end": 231,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985352934332659,
+                "relevance": {
+                  "essential": 0.9967946410179138,
+                  "unnecessary": 0.00231631426140666,
+                  "uncertain": 0.0008890308090485632
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 129,
+                "end": 231,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984441073786849,
+                "relevance": {
+                  "essential": 0.9965294003486633,
+                  "unnecessary": 0.0025187174323946238,
+                  "uncertain": 0.0009518670849502087
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 129,
+                "end": 231,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983835732654044,
+                "relevance": {
+                  "essential": 0.9962525367736816,
+                  "unnecessary": 0.002757058944553137,
+                  "uncertain": 0.0009904112666845322
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 129,
+                "end": 231,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984313197998336,
+                "relevance": {
+                  "essential": 0.9964019060134888,
+                  "unnecessary": 0.0026234323158860207,
+                  "uncertain": 0.000974765163846314
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 234,
+            "end": 253,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 234,
+                "end": 253,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984448280328836,
+                "relevance": {
+                  "essential": 0.9962887763977051,
+                  "unnecessary": 0.002689575543627143,
+                  "uncertain": 0.0010215771617367864
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 234,
+                "end": 253,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.998338039939403,
+                "relevance": {
+                  "essential": 0.9959281086921692,
+                  "unnecessary": 0.0029683492612093687,
+                  "uncertain": 0.0011035393690690398
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 234,
+                "end": 253,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9982753952432838,
+                "relevance": {
+                  "essential": 0.9956274032592773,
+                  "unnecessary": 0.0032266986090689898,
+                  "uncertain": 0.001145914662629366
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 234,
+                "end": 253,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983243471100696,
+                "relevance": {
+                  "essential": 0.9957971572875977,
+                  "unnecessary": 0.0030756087508052588,
+                  "uncertain": 0.0011271957773715258
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 255,
+            "end": 273,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 255,
+                "end": 273,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.998362474685779,
+                "relevance": {
+                  "essential": 0.9940692186355591,
+                  "unnecessary": 0.004824810661375523,
+                  "uncertain": 0.0011059314711019397
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 255,
+                "end": 273,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9982146504197817,
+                "relevance": {
+                  "essential": 0.9932706952095032,
+                  "unnecessary": 0.0055103846825659275,
+                  "uncertain": 0.0012188907712697983
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 255,
+                "end": 273,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9981038465354956,
+                "relevance": {
+                  "essential": 0.9924880266189575,
+                  "unnecessary": 0.00621587922796607,
+                  "uncertain": 0.0012960961321368814
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 255,
+                "end": 273,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9981820838029114,
+                "relevance": {
+                  "essential": 0.9929496049880981,
+                  "unnecessary": 0.005790332332253456,
+                  "uncertain": 0.0012600134359672666
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 308,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 275,
+                "end": 308,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.998272272000902,
+                "relevance": {
+                  "essential": 0.9927721619606018,
+                  "unnecessary": 0.006043535657227039,
+                  "uncertain": 0.0011842778185382485
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 275,
+                "end": 308,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9981037679443039,
+                "relevance": {
+                  "essential": 0.9917134046554565,
+                  "unnecessary": 0.006971977651119232,
+                  "uncertain": 0.0013146181590855122
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 275,
+                "end": 308,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9979837996260673,
+                "relevance": {
+                  "essential": 0.9907974004745483,
+                  "unnecessary": 0.007802256383001804,
+                  "uncertain": 0.0014003183459863067
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 275,
+                "end": 308,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9980631867049805,
+                "relevance": {
+                  "essential": 0.9912832975387573,
+                  "unnecessary": 0.007354419678449631,
+                  "uncertain": 0.0013623108388856053
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 310,
+            "end": 385,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 310,
+                "end": 385,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983892338605109,
+                "relevance": {
+                  "essential": 0.9951357245445251,
+                  "unnecessary": 0.003799472004175186,
+                  "uncertain": 0.00106481509283185
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 387,
+            "end": 422,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 387,
+                "end": 422,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983954690231998,
+                "relevance": {
+                  "essential": 0.9953691363334656,
+                  "unnecessary": 0.0035393396392464638,
+                  "uncertain": 0.00109153485391289
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 424,
+            "end": 468,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 424,
+                "end": 468,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983714660180142,
+                "relevance": {
+                  "essential": 0.9955537915229797,
+                  "unnecessary": 0.00331796333193779,
+                  "uncertain": 0.001128302188590169
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 470,
+            "end": 527,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 470,
+                "end": 527,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984054467430143,
+                "relevance": {
+                  "essential": 0.9957430958747864,
+                  "unnecessary": 0.0031927304808050394,
+                  "uncertain": 0.0010641028638929129
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 530,
+            "end": 590,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 530,
+                "end": 590,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984251180045114,
+                "relevance": {
+                  "essential": 0.9957167506217957,
+                  "unnecessary": 0.003210384864360094,
+                  "uncertain": 0.0010727691696956754
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 592,
+            "end": 649,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 592,
+                "end": 649,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984138990729856,
+                "relevance": {
+                  "essential": 0.9955652356147766,
+                  "unnecessary": 0.0033493326045572758,
+                  "uncertain": 0.0010854596039280295
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "cohort": "gallery"
+    },
+    {
+      "id": "c33e902d85e448c7a2be659edb432d41:sick-day",
+      "split": "train",
+      "mode": "clause-probe-v1",
+      "keep_characters_changed": 0,
+      "unannotated_characters_changed": 0,
+      "required_drops": 1,
+      "missed_drops": 1,
+      "drop_failures": [
+        {
+          "start": 383,
+          "end": 541,
+          "reason": "proposed_but_not_fully_removed",
+          "candidate_reasons": [
+            "essential_fact",
+            "essential_fact"
+          ]
+        }
+      ],
+      "required_facts": 3,
+      "retained_facts": 3,
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I need a polite sick-day message for my manager. I am not asking for a medical explanation in the email. My name is [PERSON_1], and I will miss work today but can send a short update tomorrow morning. Please say I am unwell without promising that I will definitely return tomorrow. I can hand over the meeting notes now, and the team should use the existing shared folder for those.\n\nPrivate clinic detail: I have persistent itching around the anus and have arranged a consultation. I would rather not disclose that symptom to my workplace.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 116,
+            "end": 127,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 202,
+            "end": 281,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 385,
+            "end": 482,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 484,
+            "end": 540,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 541,
+          "total_characters": 541,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Draft a brief absence email; omit the private clinical explanation.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 215,
+            "end": 224,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 408,
+            "end": 541,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 67,
+              "total_characters": 67,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "clause-probe-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 47,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 0,
+                "end": 47,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.99854776601132,
+                "relevance": {
+                  "essential": 0.9975221753120422,
+                  "unnecessary": 0.0015465174801647663,
+                  "uncertain": 0.00093133031623438
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 47,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984777373646837,
+                "relevance": {
+                  "essential": 0.9974365830421448,
+                  "unnecessary": 0.001581283169798553,
+                  "uncertain": 0.000982117373496294
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 47,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984326624863162,
+                "relevance": {
+                  "essential": 0.9973082542419434,
+                  "unnecessary": 0.0016942907823249698,
+                  "uncertain": 0.0009974522981792688
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 47,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984705653346996,
+                "relevance": {
+                  "essential": 0.997350811958313,
+                  "unnecessary": 0.0016579377697780728,
+                  "uncertain": 0.0009911821689456701
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 49,
+            "end": 103,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 49,
+                "end": 103,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985435470717786,
+                "relevance": {
+                  "essential": 0.9975032210350037,
+                  "unnecessary": 0.0015616361051797867,
+                  "uncertain": 0.0009351636399514973
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 49,
+                "end": 103,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984658466526268,
+                "relevance": {
+                  "essential": 0.9973785877227783,
+                  "unnecessary": 0.0016296498943120241,
+                  "uncertain": 0.000991784268990159
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 49,
+                "end": 103,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984203544532252,
+                "relevance": {
+                  "essential": 0.9972289204597473,
+                  "unnecessary": 0.0017530852928757668,
+                  "uncertain": 0.0010179404634982347
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 49,
+                "end": 103,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984547088763864,
+                "relevance": {
+                  "essential": 0.9972866773605347,
+                  "unnecessary": 0.001707170158624649,
+                  "uncertain": 0.001006110105663538
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 105,
+            "end": 200,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 105,
+                "end": 200,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985036423993161,
+                "relevance": {
+                  "essential": 0.9973975419998169,
+                  "unnecessary": 0.001633531996048987,
+                  "uncertain": 0.0009688566206023097
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 105,
+                "end": 200,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984274486726232,
+                "relevance": {
+                  "essential": 0.9972647428512573,
+                  "unnecessary": 0.0017073361668735743,
+                  "uncertain": 0.0010280124843120575
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 105,
+                "end": 200,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983816985749411,
+                "relevance": {
+                  "essential": 0.9971129894256592,
+                  "unnecessary": 0.0018325262935832143,
+                  "uncertain": 0.001054454012773931
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 105,
+                "end": 200,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984170666220307,
+                "relevance": {
+                  "essential": 0.9971777200698853,
+                  "unnecessary": 0.001779202139005065,
+                  "uncertain": 0.001043077209033072
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 202,
+            "end": 281,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 202,
+                "end": 281,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985115511566514,
+                "relevance": {
+                  "essential": 0.9972876310348511,
+                  "unnecessary": 0.0017159379785880446,
+                  "uncertain": 0.0009965074714273214
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 283,
+            "end": 382,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 283,
+                "end": 382,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985104104154037,
+                "relevance": {
+                  "essential": 0.9971326589584351,
+                  "unnecessary": 0.0018322828691452742,
+                  "uncertain": 0.0010349958902224898
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 283,
+                "end": 382,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.998449242066738,
+                "relevance": {
+                  "essential": 0.9969760179519653,
+                  "unnecessary": 0.0019266732269898057,
+                  "uncertain": 0.001097274012863636
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 283,
+                "end": 382,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9983997909064359,
+                "relevance": {
+                  "essential": 0.9968030452728271,
+                  "unnecessary": 0.0020702483598142862,
+                  "uncertain": 0.0011267064837738872
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 283,
+                "end": 382,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984339546899185,
+                "relevance": {
+                  "essential": 0.9968679547309875,
+                  "unnecessary": 0.002013368299230933,
+                  "uncertain": 0.0011187352938577533
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 385,
+            "end": 482,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 385,
+                "end": 482,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985043467478987,
+                "relevance": {
+                  "essential": 0.9969466328620911,
+                  "unnecessary": 0.0019903897773474455,
+                  "uncertain": 0.0010629188036546111
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 484,
+            "end": 540,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 484,
+                "end": 540,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9985140438335544,
+                "relevance": {
+                  "essential": 0.996821403503418,
+                  "unnecessary": 0.002109677065163851,
+                  "uncertain": 0.0010688814800232649
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "cohort": "gallery"
+    },
+    {
+      "id": "c33e902d85e448c7a2be659edb432d41:budget",
+      "split": "train",
+      "mode": "clause-probe-v1",
+      "keep_characters_changed": 0,
+      "unannotated_characters_changed": 0,
+      "required_drops": 0,
+      "missed_drops": 0,
+      "drop_failures": [],
+      "required_facts": 4,
+      "retained_facts": 4,
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Can you turn these notes into a monthly budget? I am [PERSON_1]. My take-home income is about 2,450 euros a month, although overtime varies. Rent costs 910 euros, transport costs 65 euros and groceries are roughly 300 euros. I want to save at least 150 euros if possible without pretending the overtime is guaranteed. My bank account is [IBAN]; that was copied accidentally and is not needed for the calculation. Please show the amount left after these listed costs and clearly state that other expenses may still need to be added.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 53,
+            "end": 63,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 337,
+            "end": 364,
+            "label": "IBAN",
+            "action": "PLACEHOLDER",
+            "replacement": "[IBAN]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 65,
+            "end": 139,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 65,
+            "end": 139,
+            "label": "FINANCIAL",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 141,
+            "end": 223,
+            "label": "FINANCIAL",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 225,
+            "end": 316,
+            "label": "FINANCIAL",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 552,
+          "total_characters": 552,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Calculate a provisional budget from the listed amounts and preserve uncertainty.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 68,
+            "end": 77,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 124,
+            "end": 140,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 240,
+            "end": 258,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 80,
+              "total_characters": 80,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "clause-probe-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 46,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 0,
+                "end": 46,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9971876445353098,
+                "relevance": {
+                  "essential": 0.9952728152275085,
+                  "unnecessary": 0.003174085635691881,
+                  "uncertain": 0.0015531142707914114
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 46,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9969822437834971,
+                "relevance": {
+                  "essential": 0.9949944019317627,
+                  "unnecessary": 0.0033554313704371452,
+                  "uncertain": 0.001650167629122734
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 46,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9967332450128648,
+                "relevance": {
+                  "essential": 0.9944251775741577,
+                  "unnecessary": 0.0038387987297028303,
+                  "uncertain": 0.0017359851626679301
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 0,
+                "end": 46,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9969599251767903,
+                "relevance": {
+                  "essential": 0.9947869777679443,
+                  "unnecessary": 0.003503735875710845,
+                  "uncertain": 0.001709270873107016
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 48,
+            "end": 63,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 48,
+                "end": 63,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9971768026741225,
+                "relevance": {
+                  "essential": 0.9948399662971497,
+                  "unnecessary": 0.0035051358863711357,
+                  "uncertain": 0.0016548485727980733
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 48,
+                "end": 63,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9969559783494398,
+                "relevance": {
+                  "essential": 0.9944828748703003,
+                  "unnecessary": 0.003751433687284589,
+                  "uncertain": 0.0017657055286690593
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 48,
+                "end": 63,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9966590527925886,
+                "relevance": {
+                  "essential": 0.9937631487846375,
+                  "unnecessary": 0.004344626795500517,
+                  "uncertain": 0.0018922705203294754
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 48,
+                "end": 63,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.996907553595686,
+                "relevance": {
+                  "essential": 0.9942193031311035,
+                  "unnecessary": 0.003943613264709711,
+                  "uncertain": 0.001837095944210887
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 65,
+            "end": 139,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 65,
+                "end": 139,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9972685392768006,
+                "relevance": {
+                  "essential": 0.9947994947433472,
+                  "unnecessary": 0.0034622265957295895,
+                  "uncertain": 0.0017383371014147997
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 65,
+                "end": 139,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9970661049372888,
+                "relevance": {
+                  "essential": 0.9944419264793396,
+                  "unnecessary": 0.003702129004523158,
+                  "uncertain": 0.0018560034222900867
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 141,
+            "end": 223,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 141,
+                "end": 223,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9970262786813254,
+                "relevance": {
+                  "essential": 0.9941509366035461,
+                  "unnecessary": 0.003917459864169359,
+                  "uncertain": 0.001931637991219759
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 225,
+            "end": 316,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 225,
+                "end": 316,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9969266906463461,
+                "relevance": {
+                  "essential": 0.993776798248291,
+                  "unnecessary": 0.004227409139275551,
+                  "uncertain": 0.001995793776586652
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 318,
+            "end": 364,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 318,
+                "end": 364,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9966612782288679,
+                "relevance": {
+                  "essential": 0.9893593788146973,
+                  "unnecessary": 0.00832653883844614,
+                  "uncertain": 0.00231416174210608
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 318,
+                "end": 364,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9963858633267711,
+                "relevance": {
+                  "essential": 0.9885957837104797,
+                  "unnecessary": 0.008934280835092068,
+                  "uncertain": 0.00246992614120245
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 318,
+                "end": 364,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9959315523198486,
+                "relevance": {
+                  "essential": 0.9866353869438171,
+                  "unnecessary": 0.010641013272106647,
+                  "uncertain": 0.002723656129091978
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 318,
+                "end": 364,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9962857280499873,
+                "relevance": {
+                  "essential": 0.9878959655761719,
+                  "unnecessary": 0.009505568072199821,
+                  "uncertain": 0.0025984595995396376
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 366,
+            "end": 432,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 366,
+                "end": 432,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.99620498559732,
+                "relevance": {
+                  "essential": 0.9856460690498352,
+                  "unnecessary": 0.011645601131021976,
+                  "uncertain": 0.0027082941960543394
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 366,
+                "end": 432,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9959160990773875,
+                "relevance": {
+                  "essential": 0.9846372008323669,
+                  "unnecessary": 0.012484374456107616,
+                  "uncertain": 0.0028782899025827646
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 366,
+                "end": 432,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9953880684416,
+                "relevance": {
+                  "essential": 0.9820700883865356,
+                  "unnecessary": 0.014756725169718266,
+                  "uncertain": 0.003173273289576173
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 366,
+                "end": 432,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9958269269787939,
+                "relevance": {
+                  "essential": 0.9839102029800415,
+                  "unnecessary": 0.013096701353788376,
+                  "uncertain": 0.002993019763380289
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 434,
+            "end": 551,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 434,
+                "end": 551,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9970842805760299,
+                "relevance": {
+                  "essential": 0.9933497309684753,
+                  "unnecessary": 0.00473647378385067,
+                  "uncertain": 0.0019138653296977282
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 434,
+                "end": 551,
+                "label": "FINANCIAL",
+                "proposed_action": "KEEP",
+                "action_score": 0.9968762206684173,
+                "relevance": {
+                  "essential": 0.9929192662239075,
+                  "unnecessary": 0.005049724131822586,
+                  "uncertain": 0.0020310261752456427
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 434,
+                "end": 551,
+                "label": "EMPLOYMENT",
+                "proposed_action": "KEEP",
+                "action_score": 0.9965551306748112,
+                "relevance": {
+                  "essential": 0.9919265508651733,
+                  "unnecessary": 0.005863559432327747,
+                  "uncertain": 0.0022099295165389776
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              },
+              {
+                "start": 434,
+                "end": 551,
+                "label": "FAMILY",
+                "proposed_action": "KEEP",
+                "action_score": 0.9968017676987565,
+                "relevance": {
+                  "essential": 0.9924840331077576,
+                  "unnecessary": 0.005381056573241949,
+                  "uncertain": 0.002134958514943719
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "cohort": "gallery"
+    },
+    {
+      "id": "c33e902d85e448c7a2be659edb432d41:support-csv",
+      "split": "train",
+      "mode": "clause-probe-v1",
+      "keep_characters_changed": 0,
+      "unannotated_characters_changed": 0,
+      "required_drops": 0,
+      "missed_drops": 0,
+      "drop_failures": [],
+      "required_facts": 5,
+      "retained_facts": 5,
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please group these four support tickets by issue and count each ticket once. This is a pasted CSV export; do not count the repeated email as another customer complaint. Suggest one improvement per issue without inventing resolution times.\n\ncustomer_id,name,email,complaint\nS-811,[PERSON_1],[EMAIL],\"Two charges appeared for one order.\"\nS-812,[PERSON_2],[EMAIL],\"My refund is still missing after twelve days.\"\nS-813,[PERSON_3],[EMAIL],\"I paid twice for a single order. Reply to [EMAIL].\"\nS-814,[PERSON_4],[EMAIL],\"The password-reset link never arrives.\"\n\nAll four tickets are open. The issue counts matter; customer identities do not.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 279,
+            "end": 289,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 290,
+            "end": 316,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 361,
+            "end": 371,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 372,
+            "end": 398,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 453,
+            "end": 462,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 463,
+            "end": 488,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 532,
+            "end": 557,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 566,
+            "end": 575,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 576,
+            "end": 601,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "section_requires_explicit_drop",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Count ticket categories and suggest one improvement per category.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 273,
+            "end": 278,
+            "label": "ACCOUNT_ID",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 355,
+            "end": 360,
+            "label": "ACCOUNT_ID",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 447,
+            "end": 452,
+            "label": "ACCOUNT_ID",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 560,
+            "end": 565,
+            "label": "ACCOUNT_ID",
+            "reason": "unconfirmed_entity_shape"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 65,
+              "total_characters": 65,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "clause-probe-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 75,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 0,
+                "end": 75,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8784477175895329,
+                "relevance": {
+                  "essential": 0.02520977146923542,
+                  "unnecessary": 0.968509316444397,
+                  "uncertain": 0.006280873436480761
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 0,
+                "end": 75,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8767448393122192,
+                "relevance": {
+                  "essential": 0.0254861731082201,
+                  "unnecessary": 0.9682803750038147,
+                  "uncertain": 0.006233419291675091
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 0,
+                "end": 75,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8722897595700575,
+                "relevance": {
+                  "essential": 0.02815239317715168,
+                  "unnecessary": 0.9655478000640869,
+                  "uncertain": 0.006299726665019989
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 0,
+                "end": 75,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9236608799794447,
+                "relevance": {
+                  "essential": 0.015156793408095837,
+                  "unnecessary": 0.9798190593719482,
+                  "uncertain": 0.005024218466132879
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 77,
+            "end": 104,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 77,
+                "end": 104,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8617076232156449,
+                "relevance": {
+                  "essential": 0.03154943883419037,
+                  "unnecessary": 0.9614121913909912,
+                  "uncertain": 0.007038377225399017
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 77,
+                "end": 104,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.859188409361534,
+                "relevance": {
+                  "essential": 0.03215210139751434,
+                  "unnecessary": 0.9608264565467834,
+                  "uncertain": 0.0070213922299444675
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 77,
+                "end": 104,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8544210532602042,
+                "relevance": {
+                  "essential": 0.03431081026792526,
+                  "unnecessary": 0.9584010243415833,
+                  "uncertain": 0.007288084831088781
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 77,
+                "end": 104,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9763452865932158,
+                "relevance": {
+                  "essential": 0.005392569117248058,
+                  "unnecessary": 0.9919044375419617,
+                  "uncertain": 0.002703010803088546
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 106,
+            "end": 167,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 106,
+                "end": 167,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8612829019060075,
+                "relevance": {
+                  "essential": 0.03108539618551731,
+                  "unnecessary": 0.9615916013717651,
+                  "uncertain": 0.007322920486330986
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 106,
+                "end": 167,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8579310781815768,
+                "relevance": {
+                  "essential": 0.03188006579875946,
+                  "unnecessary": 0.9608058929443359,
+                  "uncertain": 0.007313968148082495
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 106,
+                "end": 167,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8542694150255162,
+                "relevance": {
+                  "essential": 0.033389706164598465,
+                  "unnecessary": 0.9590204954147339,
+                  "uncertain": 0.007589740213006735
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 106,
+                "end": 167,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9872937653775682,
+                "relevance": {
+                  "essential": 0.002989797620102763,
+                  "unnecessary": 0.9950494170188904,
+                  "uncertain": 0.0019607271533459425
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 169,
+            "end": 237,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 169,
+                "end": 237,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.855054359406121,
+                "relevance": {
+                  "essential": 0.032411400228738785,
+                  "unnecessary": 0.9596973657608032,
+                  "uncertain": 0.007891318760812283
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 169,
+                "end": 237,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8505161577654532,
+                "relevance": {
+                  "essential": 0.03350120782852173,
+                  "unnecessary": 0.9586045145988464,
+                  "uncertain": 0.007894286885857582
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 169,
+                "end": 237,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8489705565509629,
+                "relevance": {
+                  "essential": 0.03416155278682709,
+                  "unnecessary": 0.9577962160110474,
+                  "uncertain": 0.008042225614190102
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 169,
+                "end": 237,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9916239092881882,
+                "relevance": {
+                  "essential": 0.0020271611865609884,
+                  "unnecessary": 0.9964039325714111,
+                  "uncertain": 0.0015689750434830785
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 240,
+            "end": 272,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 240,
+                "end": 272,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8655365044843579,
+                "relevance": {
+                  "essential": 0.026663491502404213,
+                  "unnecessary": 0.9660235047340393,
+                  "uncertain": 0.007313105743378401
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 240,
+                "end": 272,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8608307383920624,
+                "relevance": {
+                  "essential": 0.027656884863972664,
+                  "unnecessary": 0.9650083184242249,
+                  "uncertain": 0.0073347860015928745
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 240,
+                "end": 272,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8583417637386554,
+                "relevance": {
+                  "essential": 0.02817693166434765,
+                  "unnecessary": 0.9642210006713867,
+                  "uncertain": 0.007602038327604532
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 240,
+                "end": 272,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9928292247559405,
+                "relevance": {
+                  "essential": 0.001675397390499711,
+                  "unnecessary": 0.9969350099563599,
+                  "uncertain": 0.0013896216405555606
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 273,
+            "end": 354,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 273,
+                "end": 354,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8850461827983462,
+                "relevance": {
+                  "essential": 0.0198518093675375,
+                  "unnecessary": 0.9738081097602844,
+                  "uncertain": 0.006340053863823414
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 273,
+                "end": 354,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8804983706950894,
+                "relevance": {
+                  "essential": 0.020659739151597023,
+                  "unnecessary": 0.9729762077331543,
+                  "uncertain": 0.006364023312926292
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 273,
+                "end": 354,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.878226829255089,
+                "relevance": {
+                  "essential": 0.021270016208291054,
+                  "unnecessary": 0.9721806049346924,
+                  "uncertain": 0.00654932064935565
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 273,
+                "end": 354,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9938064874243507,
+                "relevance": {
+                  "essential": 0.0013788155047222972,
+                  "unnecessary": 0.9973834156990051,
+                  "uncertain": 0.001237677875906229
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 355,
+            "end": 446,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 355,
+                "end": 446,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8867097872256342,
+                "relevance": {
+                  "essential": 0.01835465431213379,
+                  "unnecessary": 0.9752349257469177,
+                  "uncertain": 0.006410426460206509
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 355,
+                "end": 446,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8816252899025856,
+                "relevance": {
+                  "essential": 0.019187306985259056,
+                  "unnecessary": 0.9743692278862,
+                  "uncertain": 0.006443399470299482
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 355,
+                "end": 446,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8782203887194502,
+                "relevance": {
+                  "essential": 0.02011078968644142,
+                  "unnecessary": 0.9732064008712769,
+                  "uncertain": 0.0066828131675720215
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 355,
+                "end": 446,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9941965482109475,
+                "relevance": {
+                  "essential": 0.001238398370333016,
+                  "unnecessary": 0.9975782036781311,
+                  "uncertain": 0.0011833695461973548
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 447,
+            "end": 521,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 447,
+                "end": 521,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8868254068929456,
+                "relevance": {
+                  "essential": 0.017904000356793404,
+                  "unnecessary": 0.9755772352218628,
+                  "uncertain": 0.006518710404634476
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 447,
+                "end": 521,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8811712628893075,
+                "relevance": {
+                  "essential": 0.018809551373124123,
+                  "unnecessary": 0.9746432304382324,
+                  "uncertain": 0.006547236815094948
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 447,
+                "end": 521,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8768572989970975,
+                "relevance": {
+                  "essential": 0.01988201029598713,
+                  "unnecessary": 0.9733290076255798,
+                  "uncertain": 0.006788910832256079
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 447,
+                "end": 521,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9942574859860891,
+                "relevance": {
+                  "essential": 0.0011912751942873001,
+                  "unnecessary": 0.9976181387901306,
+                  "uncertain": 0.001190513139590621
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 523,
+            "end": 559,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 523,
+                "end": 559,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8870637960215935,
+                "relevance": {
+                  "essential": 0.01751815155148506,
+                  "unnecessary": 0.9759097695350647,
+                  "uncertain": 0.006572130136191845
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 523,
+                "end": 559,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8812938575373284,
+                "relevance": {
+                  "essential": 0.01844802126288414,
+                  "unnecessary": 0.9749379754066467,
+                  "uncertain": 0.0066140200942754745
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 523,
+                "end": 559,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8773882028290221,
+                "relevance": {
+                  "essential": 0.019463617354631424,
+                  "unnecessary": 0.9737140536308289,
+                  "uncertain": 0.006822408642619848
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 523,
+                "end": 559,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9942760912580524,
+                "relevance": {
+                  "essential": 0.0011726911179721355,
+                  "unnecessary": 0.9976571798324585,
+                  "uncertain": 0.0011701635085046291
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 560,
+            "end": 642,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 560,
+                "end": 642,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.886929517473896,
+                "relevance": {
+                  "essential": 0.017055043950676918,
+                  "unnecessary": 0.9764040112495422,
+                  "uncertain": 0.00654103746637702
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 560,
+                "end": 642,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8809404468772167,
+                "relevance": {
+                  "essential": 0.017993971705436707,
+                  "unnecessary": 0.9754206538200378,
+                  "uncertain": 0.006585354451090097
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 560,
+                "end": 642,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8783023093746146,
+                "relevance": {
+                  "essential": 0.018814802169799805,
+                  "unnecessary": 0.9744622111320496,
+                  "uncertain": 0.006723048165440559
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 560,
+                "end": 642,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9943177355731994,
+                "relevance": {
+                  "essential": 0.0011401067022234201,
+                  "unnecessary": 0.9977013468742371,
+                  "uncertain": 0.0011585949687287211
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 644,
+            "end": 669,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 644,
+                "end": 669,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8792333303302844,
+                "relevance": {
+                  "essential": 0.018355313688516617,
+                  "unnecessary": 0.974607527256012,
+                  "uncertain": 0.007037167903035879
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 644,
+                "end": 669,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8721594969099086,
+                "relevance": {
+                  "essential": 0.019485853612422943,
+                  "unnecessary": 0.9734225273132324,
+                  "uncertain": 0.0070916698314249516
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 644,
+                "end": 669,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8699789084457543,
+                "relevance": {
+                  "essential": 0.020296147093176842,
+                  "unnecessary": 0.9724709391593933,
+                  "uncertain": 0.007232902105897665
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 644,
+                "end": 669,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9941175979791167,
+                "relevance": {
+                  "essential": 0.0011541974963620305,
+                  "unnecessary": 0.9976376295089722,
+                  "uncertain": 0.001208190224133432
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 671,
+            "end": 694,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 671,
+                "end": 694,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.877451862720711,
+                "relevance": {
+                  "essential": 0.018828649073839188,
+                  "unnecessary": 0.9739755392074585,
+                  "uncertain": 0.007195811718702316
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 671,
+                "end": 694,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8703539174352172,
+                "relevance": {
+                  "essential": 0.01998220756649971,
+                  "unnecessary": 0.9727660417556763,
+                  "uncertain": 0.007251769304275513
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 671,
+                "end": 694,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8668463214731844,
+                "relevance": {
+                  "essential": 0.02089851163327694,
+                  "unnecessary": 0.9716794490814209,
+                  "uncertain": 0.007422002498060465
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 671,
+                "end": 694,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9942076173921278,
+                "relevance": {
+                  "essential": 0.0011426334967836738,
+                  "unnecessary": 0.9976625442504883,
+                  "uncertain": 0.0011947284219786525
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          },
+          {
+            "start": 696,
+            "end": 722,
+            "candidate_mode": "clause-probe-v1",
+            "probes": [
+              {
+                "start": 696,
+                "end": 722,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8819176771198323,
+                "relevance": {
+                  "essential": 0.01774812676012516,
+                  "unnecessary": 0.9753063321113586,
+                  "uncertain": 0.006945482455193996
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 696,
+                "end": 722,
+                "label": "FINANCIAL",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8752232637622052,
+                "relevance": {
+                  "essential": 0.01879204995930195,
+                  "unnecessary": 0.9742170572280884,
+                  "uncertain": 0.006990944966673851
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 696,
+                "end": 722,
+                "label": "EMPLOYMENT",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8700539942969884,
+                "relevance": {
+                  "essential": 0.019975250586867332,
+                  "unnecessary": 0.9727698564529419,
+                  "uncertain": 0.0072549451142549515
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              },
+              {
+                "start": 696,
+                "end": 722,
+                "label": "FAMILY",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9945134594304956,
+                "relevance": {
+                  "essential": 0.001084615709260106,
+                  "unnecessary": 0.997772753238678,
+                  "uncertain": 0.001142561319284141
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "cohort": "gallery"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Focused task-dependent removal data
+
+Use `TRAINING_DATA_PROMPT.md` for the exact authoring schema, validation, independent review and acceptance process. This brief changes the coverage, not the contract. Work in a unique private run directory; never overwrite another agent's files or automatically push unreviewed records into canonical training.
+
+Produce 100 source families, each with two intended-use variants (200 records). Keep the exact source text and all source/family/persona/template grouping IDs consistent within each family; use different record IDs. All family variants must remain in one split. Use 70 consumer families and 30 corporate families. This is an expansion proposal, not a claim that 200 records guarantees quality.
+
+Each source should be a realistic 100–180 word pasted message, document excerpt, email, or spreadsheet-cell narrative. Include naturally co-located relevant and irrelevant information. Do not write artificial lines such as “my bank account was copied accidentally and isn't needed.” The intended use belongs in the task field. At least one complete section must be needed for task A and unnecessary for task B; write both decisions independently.
+
+Consumer examples: a clinic note used for a work-absence email versus a translation of the complete note; an invoice used for expense totals versus drafting a dispute; a school thread used for a schedule versus a support-plan summary. Corporate examples: a customer ticket used for troubleshooting versus billing review; meeting notes used for public release notes versus an internal decision summary; a contract excerpt used for scheduling versus payment terms. Avoid assuming that medical history is irrelevant to a clinical question; prefer clear administrative tasks where that judgment is justified.
+
+Vary blank-line paragraphs, single-paragraph mixed clauses and multi-line cells. Include a smaller set of blank/vague tasks where sensitive context is uncertain and remains reviewable. Include easy false-removal traps: negation, changed dates, corrections, medication names required by an explicit translation task, and constraints needed for the requested calculation.
+
+Identify what the answer depends on before choosing required_facts. Quotes must be minimal complete claims, preserving subject/action, hedge, negation and conditions; stop at an aliased-name boundary. For each DROP state why the complete clause or paragraph is irrelevant to that specific task. Never DROP a mixed section that contains a required fact; select the smaller complete unit. Names and identifiers should remain stable placeholders where appropriate, not be deleted merely because a whole-section DROP is the focus.
+
+Independent review must check both variants side by side: does the task justify the change, are all necessary facts preserved, and would a real user paste this source? Replay and structural validation must pass. Report accepted/rejected counts and paired-task coverage. Do not use demo similarity or model predictions as evidence that the label is correct. Preserve rejects and disagreements. Do not invent final-test results or call synthetic labels human audited.

@@ -72,6 +72,7 @@ class Result:
     pending_reviews: list[dict] = field(default_factory=list)
     context_reports: list[dict] = field(default_factory=list)
     runtime_versions: dict = field(default_factory=dict)
+    section_diagnostics: list[dict] = field(default_factory=list)
     receiving_ai_instruction: str = RECEIVING_AI_INSTRUCTION
 
     def as_dict(self):
