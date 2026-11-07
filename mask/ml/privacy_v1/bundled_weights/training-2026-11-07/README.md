@@ -10,7 +10,7 @@ These Git LFS archives contain the three selected models trained only on the can
 
 All bundles passed offline CPU inference and export/reload parity. DeBERTa is the recommended reviewed demo candidate; none reliably removes unrelated medical sections. The live demo and historical pilot models remain unchanged. See the [full comparison](../../../../../evidence/privacy-v1/training-2026-11-07/COMPARISON.md).
 
-From the repository root on `codex/mask-training-2026-11-07`, install Git LFS and download the actual archives:
+From the repository root on `main` (or `codex/mask-training-2026-11-07`), install Git LFS and download the actual archives:
 
 ```sh
 git lfs install

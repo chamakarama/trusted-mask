@@ -368,9 +368,20 @@ def make_server(service, port=8787):
     return server
 
 
+ARTIFACTS = MASK / "ml/privacy_v1/artifacts"
+DEMO_MODEL = ARTIFACTS / "reviewed-2026-11-07/deberta-v3-base"   # team choice for the demo (see training COMPARISON.md)
+PILOT_MODEL = ARTIFACTS / "encoder-b-pilot"
+
+
+def default_model():
+    """DeBERTa once it has been downloaded and unpacked; otherwise the bundled pilot so the demo still starts."""
+    return DEMO_MODEL if DEMO_MODEL.is_dir() else PILOT_MODEL
+
+
 def main():
     parser = argparse.ArgumentParser(description="Mask local message preview")
-    parser.add_argument("--model", type=Path, default=MASK / "ml/privacy_v1/artifacts/encoder-b-pilot")
+    parser.add_argument("--model", type=Path, default=None,
+                        help="model bundle directory (default: reviewed DeBERTa if unpacked, else the pilot MiniLM)")
     parser.add_argument("--port", type=int, default=8787)
     args = parser.parse_args()
     if not 1 <= args.port <= 65535:
@@ -379,7 +390,12 @@ def main():
     os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
     from mask.ml.privacy_v1.bundle import load_model
     from mask.ml.privacy_v1.engine import Protector
-    print("Loading the local privacy model…", flush=True)
+    if args.model is None:
+        args.model = default_model()
+        if args.model == PILOT_MODEL:
+            print("DeBERTa not unpacked yet; using the pilot model. See mask/ml/privacy_v1/bundled_weights/"
+                  "training-2026-11-07/README.md to download it.", flush=True)
+    print(f"Loading the local privacy model ({args.model.name})…", flush=True)
     provider, info = configured_provider()
     service = ModelService(Protector(load_model(args.model)), provider, info)
     label = (f"{info['provider']} ({info['model']})" + (" - MOCK, no AI is called" if info.get("mock") else "")
