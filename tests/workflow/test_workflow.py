@@ -134,3 +134,18 @@ def test_bundled_city_reused_in_fresh_runtime_without_draw(tmp_path,monkeypatch)
     action(other,'select',dataset_id='city');action(other,'validate');action(other,'review',acknowledged=True);action(other,'purpose',purpose='aggregate_transport_planning');action(other,'publish')
     assert other.state['candidate']['reused'] is True
     assert not (other.runtime/'city-ledger.sqlite').exists()
+
+
+def test_recipient_preview_has_only_actual_release_rows(tmp_path,monkeypatch):
+    w,_=ready(tmp_path,monkeypatch)
+    assert w.state['private_preview']['rows'][0]['card_id']=='c1'
+    with pytest.raises(ValueError,match='STEP_INCOMPLETE'):w.recipient_preview()
+    action(w,'publish');preview=w.recipient_preview()
+    stats=json.loads((w.source()/'statistics.json').read_text())
+    assert all(row in stats['od'] for row in preview['records'])
+    assert preview['manifest_sha256']==w.state['candidate']['manifest_sha256']
+    assert set(preview)=={'release_id','manifest_sha256','source_file','measurement','records'}
+    assert 'card_id' not in json.dumps(preview) and 'c1' not in json.dumps(preview['records'])
+    assert 'private_preview' not in preview and 'inventory' not in preview
+    (w.source()/'statistics.json').write_text('{}')
+    with pytest.raises(ValueError):w.recipient_preview()

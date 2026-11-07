@@ -5,6 +5,8 @@ Serves only dist-operator; planner is a separate dist-only server.
 """
 from __future__ import annotations
 import argparse
+import csv
+import itertools
 import hashlib
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -26,6 +28,7 @@ from pipeline.inventory import HANDLING
 from pipeline.mobility import load, validate, prepare, STOP_COLS, CAPS, EPS, COLUMNS, VALUES
 from pipeline.public import sync_release
 from pipeline.snapshot import snapshot, fingerprint
+from pipeline.planning_task import evaluate_areas
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLED_CITY = ROOT/'releases/city-turku-v1'
@@ -70,7 +73,7 @@ class Workflow:
         return self.runtime/'inputs'/self.state['fingerprint']
 
     def evaluation_identity(self):
-        return {'input_fingerprint':self.state['fingerprint'], 'manifest_sha256':self.state['candidate']['manifest_sha256'], 'evaluator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+        return {'input_fingerprint':self.state['fingerprint'], 'manifest_sha256':self.state['candidate']['manifest_sha256'], 'evaluator_sha256':hashlib.sha256(Path(__file__).read_bytes()+(ROOT/'pipeline/planning_task.py').read_bytes()).hexdigest()}
 
     def require(self, step):
         if self.state.get('completed', 0) < step:
@@ -118,6 +121,9 @@ class Workflow:
                 field['handling'] = HANDLING.get(field['column'], 'omit') if field['table']=='taps' else 'public_reference_lookup' if field['table']=='stops' and field['column'] in STOP_COLS else 'omit'
             self.state = {k:v for k,v in self.state.items() if k in ('revision','run_id','dataset_id','dataset_name','data_class')}
             if self.fingerprint(ident) != digest or fingerprint(folder,names) != digest: raise ValueError('INPUT_CHANGED: retry validation')
+            with (folder/'taps.csv').open(newline='') as stream:
+                private_rows=[{k:r[k] for k in ('card_id','ts','stop_id','line')} for r in itertools.islice(csv.DictReader(stream),3)]
+            self.state.update(private_preview={'source':'taps.csv','rows':private_rows,'scope':'Private local view only; never included in the recipient artifact'})
             self.state.update(completed=1, fingerprint=digest, input_names=names, inventory=inventory, validation={'taps': len(taps), 'stops': len(stops), 'areas': int(stops.area.nunique()), 'period': '6 Oct – 2 Nov 2025', 'status': 'validated'})
         elif action == 'review':
             self.require(1)
@@ -187,7 +193,7 @@ class Workflow:
             denom = sum(int(raw['od'][i]) for i in best)
             self.require(4)
             if artifact.verify(source) != self.state['candidate']['manifest_sha256']: raise ValueError('ARTIFACT_CHANGED')
-            self.state['evaluation'] = {'identity':self.evaluation_identity(), 'metrics':metrics, 'morning_overlap':len(set(best)&set(selected)) if denom else None, 'draws':1, 'accuracy_target':0.2, 'accuracy_pass':metrics['od']['wape'] is not None and metrics['od']['wape']<=0.2, 'note':'Synthetic evaluation of this one artifact. Not destination truth, repeated-draw confirmation, or real-city validation.'}
+            self.state['evaluation'] = {'identity':self.evaluation_identity(), 'metrics':metrics, 'morning_overlap':len(set(best)&set(selected)) if denom else None, 'draws':1, 'accuracy_target':0.2, 'accuracy_pass':metrics['od']['wape'] is not None and metrics['od']['wape']<=0.2, 'area_task':evaluate_areas(raw['od'],np.array([r['noisy_value'] for r in stats['od']]),domains['od']), 'note':'Synthetic evaluation of this one artifact. Not destination truth, repeated-draw confirmation, or real-city validation.'}
         elif action == 'accept':
             self.require(4)
             if 'evaluation' not in self.state: raise ValueError('EVALUATION_INCOMPLETE')
@@ -216,6 +222,15 @@ class Workflow:
         self.state['revision'] += 1
         self.save()
         return self.public_state()
+
+    def recipient_preview(self):
+        self.require(4)
+        source=self.source()
+        digest=artifact.verify(source)
+        if digest!=self.state['candidate']['manifest_sha256']:raise ValueError('ARTIFACT_CHANGED')
+        stats=json.loads((source/'statistics.json').read_text())
+        rows=sorted(stats['od'],key=lambda r:(-r['trips'],r['origin_area'],r['destination_area'],r['hour_band']))[:3]
+        return {'release_id':self.state['candidate']['release_id'],'manifest_sha256':digest,'source_file':'statistics.json','measurement':'od','records':rows}
 
     def source(self):
         return ROOT/'releases/e1-aura-001' if self.state['dataset_id']=='aura' else self.runtime/'candidate/city-turku-v1'
@@ -258,6 +273,11 @@ def handler_for(workflow, port):
             if not self.valid_host(): return self.respond(403, {'error':'HOST_REFUSED'})
             path = urlparse(self.path).path
             if path == '/api/state': return self.respond(200, {**workflow.public_state(), 'csrf':token, 'busy':workflow.lock.locked()})
+            if path == '/api/recipient-preview':
+                if not workflow.lock.acquire(blocking=False):return self.respond(409,{'error':'JOB_RUNNING'})
+                try:return self.respond(200,workflow.recipient_preview())
+                except (ValueError,OSError):return self.respond(409,{'error':'PREVIEW_NOT_READY_OR_CHANGED'})
+                finally:workflow.lock.release()
             if path == '/api/package':
                 if not workflow.lock.acquire(blocking=False): return self.respond(409, {'error':'JOB_RUNNING'})
                 try:

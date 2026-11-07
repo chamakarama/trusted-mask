@@ -44,3 +44,17 @@ The artifact is for an exploratory local demonstration. Broad utility remains fa
 ## Route view correction
 
 The latest view replaces zone arcs with street-following demand over public Föli bus geometry and makes that the default. Analysis zones are an advanced view. See [route-network.md](route-network.md) for provenance, assumptions, 45 frontend checks and the 47-file public build check. [Current screenshot](street-routes.png). Earlier `travel-demand.png` records the superseded arc view. No actual route-choice or bus-capacity accuracy is claimed.
+
+## Narrower task and visible privacy boundary
+
+The prospective [protocol](../../planning/UTILITY_RECOVERY_PROTOCOL.md) was committed as `fe1f24c` before generating three new 20,000-card populations (7071101–7071103). [All results](planning-utility.json) retain every band and both directions. The morning destination-area shortlist met its declared criterion in **300/300** distribution draws: at least two of the exact top three and no more than 10% selection regret. Exact 3/3 agreement occurred in **256/300** draws. This varies populations within the same generator, not across real-world settings or different models.
+
+Absolute area counts still fail: median morning destination WAPE is 22.9–23.4% across these populations, with 0/300 draws meeting 20%. The actual immutable release retains 2/3 morning destinations with 0.19% selection regret and 22.6% area WAPE. Other tasks fail, including the actual midday destination top-three criterion. The earlier 31.2% fine-pair count failure and 600-draw study remain unchanged.
+
+The planner now exposes this specific task through **Morning priorities → inspect routes → save shortlist → export**. These priorities use released signed counts only. The owner workbench has five visible stages: Private input, Purpose, Protect, Check, Share. It shows three actual source rows beside actual protected recipient records and compares the private exact shortlist against the released shortlist. Private source rows and exact reference counts are never included in the static recipient build. The recipient-preview endpoint verifies the release before reading its output; stale or altered output is rejected. Evaluation approval now includes the task-scoring source identity.
+
+Verification for this change: **75 Python tests, 45 frontend tests**, both builds, and the 47-file public boundary check pass. The complete owner flow reused the original artifact; the deterministic package SHA remains `f55edee0a3e43a4180312719f1e9aec833db11f2faed726a83f5b9f0c9df38fe`. Browser checks covered the morning priorities and saving all three; a 390×844 viewport showed no horizontal overflow. This is a responsive smoke check, not a full accessibility or unfamiliar-user study. [Planner screenshot](morning-priorities.png).
+
+Reproduce the new study with `.venv/bin/python -m evaluation.planning_utility` and the frozen protocol. No production publication or ledger operation is performed by that evaluator.
+
+The browser also verified the owner’s actual recipient records and private exact-versus-protected task comparison. [Boundary screenshot](private-to-shared.png).

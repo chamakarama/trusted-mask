@@ -1,6 +1,6 @@
 # RouteSafe planner and private data-owner workflow
 
-The planner is a static recipient application. The owner workbench is a separate local Python service. Only verified release bundles cross that boundary. Both entries use the same seven-step story described in [the redesign plan](../planning/PLANNER_WORKFLOW_REDESIGN.md).
+The planner is a static recipient application. The owner workbench is a separate local Python service. Only verified release bundles cross that boundary. The owner exposes five stages (Private input → Purpose → Protect → Check → Share), backed by seven internal checkpoints described in [the redesign plan](../planning/PLANNER_WORKFLOW_REDESIGN.md).
 
 ## Run the complete local slice
 
@@ -64,3 +64,5 @@ The two schemas are `contracts/manifest.schema.json` (1.0 points) and `contracts
 Known product limits: external basemap tiles require network access; the area list remains usable on tile failure. The map renderer is loaded separately but remains a large chunk. Bounds are conservative, noise-only intervals around capped counts. Generated travel cannot establish real-city demand. City evaluation is complete and fails the broad utility target: 31.2% OD WAPE, with 0/600 distribution simulations meeting 20%. See `evidence/workflow-city/README.md`. Unfamiliar-user usability and fuller mobile/accessibility checks remain open. The optional AI tool is omitted from the core planner flow; legacy source remains available in the repository.
 
 Route geometry provenance and reproduction: [route-network.md](../evidence/workflow-city/route-network.md). The separate [ScamChorus specification](../planning/SCAMCHORUS_EXTENSION.md) documents a possible second application and concrete private-to-shared workflow improvements; it is not implemented.
+
+The recipient’s **Morning priorities** action ranks destination areas from released counts, fixes the task to 06–09, opens modelled inbound routes and saves the three areas to the existing exportable shortlist. The owner’s Check/Share stages show actual private-versus-protected comparisons. See the updated [task evidence](../evidence/workflow-city/README.md); successful shortlist preservation does not resolve the failed count-accuracy target.

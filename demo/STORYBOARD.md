@@ -40,3 +40,15 @@ Target a clear 100–115 second cut within the existing 120-second project limit
 Use [web/README.md](../web/README.md) to start the checked builds. Start the private workflow with the frozen generated input if demonstrating the complete owner flow. The public build already includes the immutable city artifact. Verify both URLs, the release name, all visible labels, the map tile connection and the downloaded summary. Capture a local backup. Human review of the finished cut and external submission remain outstanding.
 
 Optional second-application cut: see [ScamChorus and workflow improvements](../planning/SCAMCHORUS_EXTENSION.md). Do not show its proposed screens as a working system until the privacy-specific adapter and recipient artifact are built and tested.
+
+## Stronger privacy-to-decision cut (latest implementation)
+
+Use the owner **Share** stage to show actual private rows on the left and exact protected recipient records on the right. Then use **Check** to show which morning destinations survived protection. In the map, click **Morning priorities**, inspect the first destination's modelled inbound routes, save all three and export. Say: “Find places to investigate without sharing individual travel histories.” The narrower synthetic task passed 300/300 simulations under its declared overlap/regret criterion; this does not mean exact rankings or accurate absolute counts in all 300 draws.
+
+### Proposed visible demand-surge scenario — not implemented
+
+A fictional event or new workplace is a stronger demonstration than a hotspot at a house. Show a coherent increase across many fictional cards and origins, followed by a coarse destination-area increase and the modelled street routes serving it. The protected output deliberately reveals aggregate location patterns; it must not be described as hiding every location. Current input represents boarding stops, not home addresses; destinations remain inferred.
+
+Prepare and label a baseline and event scenario ahead of recording. Freeze the intervention, privacy accounting and evaluation criteria before generating either protected result. Each release for an overlapping protected population must compose in the same accounting scope; do not reset ledgers or redraw until the map looks good. Show absolute views on a shared scale. A difference view needs uncertainty for both releases, plus cap and inference limitations. Establish the expected effect against the private synthetic reference, and report whether the protected result actually preserves it. No house marker or raw person trace may enter the recipient build.
+
+The planner's present decision is “investigate service here.” To say “add buses,” implement a separate declared supply scenario (timetable, route assignment, usable capacity, period and assumptions) and validate the demand/supply comparison. Synthetic supply is acceptable if visibly labelled; it must not be presented as measured Föli service insufficiency. Do not fake a live spike by mutating released counts in the browser.
