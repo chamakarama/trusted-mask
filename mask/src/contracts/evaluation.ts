@@ -3,9 +3,10 @@
  * with explicit unsupported checks. Never a single "safe percentage".
  */
 import { z } from "zod";
+import { BenchmarkReportSchema, ThreatCoverageSchema } from "./benchmark";
 
 export const METRIC_KINDS = ["risk", "utility", "integrity"] as const;
-export const METRIC_STATUS = ["measured", "unsupported", "not_applicable", "error"] as const;
+export const METRIC_STATUS = ["evaluated", "not_applicable", "unsupported", "failed"] as const;
 
 export const MetricResultSchema = z.object({
   id: z.string(),
@@ -43,6 +44,10 @@ export const EvaluationSchema = z.object({
   hardFailures: z.array(z.string()),
   /** checks the goal asked for that Mask cannot measure */
   unsupported: z.array(z.string()),
+  /** threats implied by the sharing setting and whether anything evaluates them; uncovered threats are explicit */
+  coverage: z.array(ThreatCoverageSchema),
+  /** supplied adversarial/utility benchmark results, only when ground truth and attacker data exist (development) */
+  benchmark: BenchmarkReportSchema.optional(),
   createdAt: z.string(),
   durationMs: z.number(),
 });

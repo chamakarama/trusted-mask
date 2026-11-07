@@ -22,6 +22,7 @@ The pipeline worker (`src/worker`) owns session state; the app (`src/app`) talks
 | `src/core/goal/**` | goal agent | `GoalInterpreter`, `GoalEmbedder` |
 | `src/core/selector/features.ts`, `src/core/selector/learned.ts`, `ml/**`, `scripts/labels/**` | ML agent | feature spec, `LearnedSelector`, label pipeline, training |
 | `src/app/**`, `src/styles/**`, `index.html` | UX agent | the whole interface |
+| `bench/**`, `scripts/bench/**` | benchmark agent | private adversarial/utility benchmark adapter around the supplied `pets-eval` toolkit: executes candidate plans in Node, stages protected tables with private rowmaps, runs attacks/utility, writes `BenchmarkReport` JSON |
 
 Tests live next to the code (`*.test.ts`). Run `npm test` and `npm run typecheck` before handing off.
 Fixtures: `fixtures/customer_service_small` (synthetic, development only, with gold spans in `gold/`).
@@ -33,3 +34,5 @@ Fixtures: `fixtures/customer_service_small` (synthetic, development only, with g
 - Detection confidence, model preference and measured risk are three different numbers; never merge them into one score.
 - Unsupported is a state, not a silent fallback. If a check or recipe cannot run, say so in the output.
 - Fixture metrics are development measurements, never benchmark results.
+- Status vocabulary for every check and test: `evaluated`, `not_applicable`, `unsupported`, `failed`. Missing, skipped or failed tests are never zero risk; threat coverage is listed explicitly.
+- Benchmark truth, attacker knowledge and scoring rowmaps stay in private evaluation. They never become inference features and never enter an export.

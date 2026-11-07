@@ -37,6 +37,8 @@ export const SanitisedReportSchema = z.object({
   metrics: z.array(MetricResultSchema),
   hardFailures: z.array(z.string()),
   unsupported: z.array(z.string()),
+  /** threat coverage with statuses; benchmark details themselves stay private */
+  coverage: z.array(z.object({ threatId: z.string(), description: z.string(), status: z.string(), evaluatedBy: z.array(z.string()) })),
   limitations: z.array(z.string()),
   confirmedAt: z.string(),
 });
