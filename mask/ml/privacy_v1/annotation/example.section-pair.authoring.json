@@ -1,0 +1,356 @@
+[
+  {
+    "schema_version": 2,
+    "shard_id": "11112222333344445555666677778888",
+    "id": "11112222333344445555666677778888:fixture-manager",
+    "family_id": "11112222333344445555666677778888:fixture-family",
+    "source_id": "11112222333344445555666677778888:fixture-source",
+    "persona_id": "11112222333344445555666677778888:fixture-persona",
+    "template_id": "11112222333344445555666677778888:fixture-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+    "task": "Draft a short email to my manager explaining the temporary work restrictions.",
+    "entities": [
+      {
+        "id": "name",
+        "entity_id": "patient-name",
+        "label": "PERSON",
+        "quote": "Marta Lehto"
+      },
+      {
+        "id": "fact-0",
+        "entity_id": "fact-0",
+        "label": "EMPLOYMENT",
+        "quote": "The patient should avoid lifting more than 5 kg for six weeks."
+      },
+      {
+        "id": "fact-1",
+        "entity_id": "fact-1",
+        "label": "EMPLOYMENT",
+        "quote": "Desk duties are permitted, but lifting support is needed for stock checks."
+      },
+      {
+        "id": "fact-2",
+        "entity_id": "fact-2",
+        "label": "EMPLOYMENT",
+        "quote": "The restriction will be reviewed before normal duties resume."
+      },
+      {
+        "id": "fact-3",
+        "entity_id": "fact-3",
+        "label": "HEALTH",
+        "quote": "The patient reports persistent pain in the right wrist after a fall."
+      },
+      {
+        "id": "fact-4",
+        "entity_id": "fact-4",
+        "label": "HEALTH",
+        "quote": "The brace should remain on during activity."
+      },
+      {
+        "id": "fact-5",
+        "entity_id": "fact-5",
+        "label": "HEALTH",
+        "quote": "No numbness was reported."
+      },
+      {
+        "id": "fact-6",
+        "entity_id": "fact-6",
+        "label": "HEALTH",
+        "quote": "The follow-up is booked for Thursday."
+      },
+      {
+        "id": "fact-7",
+        "entity_id": "fact-7",
+        "label": "HEALTH",
+        "quote": "A review is needed earlier if the symptoms change."
+      },
+      {
+        "id": "email",
+        "entity_id": "patient-email",
+        "label": "EMAIL",
+        "quote": "marta.lehto@example.invalid"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "name",
+        "entity_id": "patient-name",
+        "label": "PERSON",
+        "quote": "Marta Lehto",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-0",
+        "entity_id": "fact-0",
+        "label": "EMPLOYMENT",
+        "quote": "The patient should avoid lifting more than 5 kg for six weeks.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-1",
+        "entity_id": "fact-1",
+        "label": "EMPLOYMENT",
+        "quote": "Desk duties are permitted, but lifting support is needed for stock checks.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-2",
+        "entity_id": "fact-2",
+        "label": "EMPLOYMENT",
+        "quote": "The restriction will be reviewed before normal duties resume.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "The manager email needs work restrictions, not symptoms or clinical care instructions; all restrictions are in the retained work note."
+      },
+      {
+        "kind": "section",
+        "quote": "\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Reception delivery administration and the contact address are not needed for this task."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The patient should avoid lifting more than 5 kg for six weeks."
+      },
+      {
+        "quote": "Desk duties are permitted, but lifting support is needed for stock checks."
+      },
+      {
+        "quote": "The restriction will be reviewed before normal duties resume."
+      }
+    ],
+    "approved_output": "Patient: [PERSON_1]\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "11112222333344445555666677778888:documentation-author",
+      "generator_model": "documentation-fixture"
+    },
+    "review": {
+      "status": "pending"
+    }
+  },
+  {
+    "schema_version": 2,
+    "shard_id": "11112222333344445555666677778888",
+    "id": "11112222333344445555666677778888:fixture-checklist",
+    "family_id": "11112222333344445555666677778888:fixture-family",
+    "source_id": "11112222333344445555666677778888:fixture-source",
+    "persona_id": "11112222333344445555666677778888:fixture-persona",
+    "template_id": "11112222333344445555666677778888:fixture-template",
+    "split": "train",
+    "language": "en",
+    "input_kind": "message",
+    "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+    "task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+    "entities": [
+      {
+        "id": "name",
+        "entity_id": "patient-name",
+        "label": "PERSON",
+        "quote": "Marta Lehto"
+      },
+      {
+        "id": "fact-0",
+        "entity_id": "fact-0",
+        "label": "EMPLOYMENT",
+        "quote": "The patient should avoid lifting more than 5 kg for six weeks."
+      },
+      {
+        "id": "fact-1",
+        "entity_id": "fact-1",
+        "label": "EMPLOYMENT",
+        "quote": "Desk duties are permitted, but lifting support is needed for stock checks."
+      },
+      {
+        "id": "fact-2",
+        "entity_id": "fact-2",
+        "label": "EMPLOYMENT",
+        "quote": "The restriction will be reviewed before normal duties resume."
+      },
+      {
+        "id": "fact-3",
+        "entity_id": "fact-3",
+        "label": "HEALTH",
+        "quote": "The patient reports persistent pain in the right wrist after a fall."
+      },
+      {
+        "id": "fact-4",
+        "entity_id": "fact-4",
+        "label": "HEALTH",
+        "quote": "The brace should remain on during activity."
+      },
+      {
+        "id": "fact-5",
+        "entity_id": "fact-5",
+        "label": "HEALTH",
+        "quote": "No numbness was reported."
+      },
+      {
+        "id": "fact-6",
+        "entity_id": "fact-6",
+        "label": "HEALTH",
+        "quote": "The follow-up is booked for Thursday."
+      },
+      {
+        "id": "fact-7",
+        "entity_id": "fact-7",
+        "label": "HEALTH",
+        "quote": "A review is needed earlier if the symptoms change."
+      },
+      {
+        "id": "email",
+        "entity_id": "patient-email",
+        "label": "EMAIL",
+        "quote": "marta.lehto@example.invalid"
+      }
+    ],
+    "decisions": [
+      {
+        "kind": "entity",
+        "target_id": "name",
+        "entity_id": "patient-name",
+        "label": "PERSON",
+        "quote": "Marta Lehto",
+        "action": "ALIAS",
+        "relevance": "unnecessary"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-0",
+        "entity_id": "fact-0",
+        "label": "EMPLOYMENT",
+        "quote": "The patient should avoid lifting more than 5 kg for six weeks.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-1",
+        "entity_id": "fact-1",
+        "label": "EMPLOYMENT",
+        "quote": "Desk duties are permitted, but lifting support is needed for stock checks.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-2",
+        "entity_id": "fact-2",
+        "label": "EMPLOYMENT",
+        "quote": "The restriction will be reviewed before normal duties resume.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-3",
+        "entity_id": "fact-3",
+        "label": "HEALTH",
+        "quote": "The patient reports persistent pain in the right wrist after a fall.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-4",
+        "entity_id": "fact-4",
+        "label": "HEALTH",
+        "quote": "The brace should remain on during activity.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-5",
+        "entity_id": "fact-5",
+        "label": "HEALTH",
+        "quote": "No numbness was reported.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-6",
+        "entity_id": "fact-6",
+        "label": "HEALTH",
+        "quote": "The follow-up is booked for Thursday.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "entity",
+        "target_id": "fact-7",
+        "entity_id": "fact-7",
+        "label": "HEALTH",
+        "quote": "A review is needed earlier if the symptoms change.",
+        "action": "KEEP",
+        "relevance": "essential"
+      },
+      {
+        "kind": "section",
+        "quote": "\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+        "label": "HEALTH",
+        "action": "DROP",
+        "relevance": "unnecessary",
+        "reason": "Reception delivery administration and the contact address are not needed for this task."
+      }
+    ],
+    "required_facts": [
+      {
+        "quote": "The patient should avoid lifting more than 5 kg for six weeks."
+      },
+      {
+        "quote": "Desk duties are permitted, but lifting support is needed for stock checks."
+      },
+      {
+        "quote": "The restriction will be reviewed before normal duties resume."
+      },
+      {
+        "quote": "The patient reports persistent pain in the right wrist after a fall."
+      },
+      {
+        "quote": "The brace should remain on during activity."
+      },
+      {
+        "quote": "No numbness was reported."
+      },
+      {
+        "quote": "The follow-up is booked for Thursday."
+      },
+      {
+        "quote": "A review is needed earlier if the symptoms change."
+      }
+    ],
+    "approved_output": "Patient: [PERSON_1]\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.",
+    "provenance": {
+      "synthetic": true,
+      "human_audited": false,
+      "generator_id": "11112222333344445555666677778888:documentation-author",
+      "generator_model": "documentation-fixture"
+    },
+    "review": {
+      "status": "pending"
+    }
+  }
+]

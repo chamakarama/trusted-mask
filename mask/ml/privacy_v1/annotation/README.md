@@ -1,5 +1,7 @@
 # Annotation and audit contract
 
+For the current section-removal campaign, start with [the new instructions](SECTION_DATA_INSTRUCTIONS.md) and [copy-paste agent prompt](SECTION_DATA_PROMPT.md). They override the older general campaign's quotas, length targets, output paths and no-push restriction; the schema and review integrity rules below still apply.
+
 Use [the copy-paste producer prompt](TRAINING_DATA_PROMPT.md) with repo-connected Opus, Astra or Sol. The workflow creates separate, auditable shards and never calls a remote model itself. It does not train or alter model weights.
 
 All writers and reviewers use the [shared review rubric](REVIEW_RUBRIC.md): complete required claims, relevance independent of disclosure, boundary conventions, renderer limitations, group identities and six common acceptance checks. New batches include writer-owned dependency notes and specific PLACEHOLDER reasons. Existing accepted records are preserved for targeted re-audit; changed annotations require fresh hash-bound review.
