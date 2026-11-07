@@ -1,371 +1,313 @@
-// Mask round trip: protect locally -> review -> send the approved protected message -> stream the reply ->
-// restore known names locally (the server does the restoring; this page only renders text, never HTML).
 const $ = (id) => document.getElementById(id);
-const message = $("message");
-const task = $("task");
-const protectedView = $("protected");
-const changeCount = $("change-count");
-const sendButton = $("send");
-const stopButton = $("stop");
-const retryButton = $("retry");
-const providerLabel = $("provider");
-const status = $("status");
-const steps = $("steps");
-const reply = $("view-reply");
-const raw = $("view-raw");
-const sentSystem = $("sent-system");
-const sentUser = $("sent-user");
-const mockBadge = $("mock-badge");
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-const reduceMotion = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const ORDER = ["protecting", "review", "sending", "receiving", "complete"];
-
-let revision = 0;
-let timer = null;
-let previewController = null;
-let sendController = null;
-let current = null;            // { id, request } of the reviewed preview
-let provider = { configured: false };
-let state = "idle";
-let stepIndex = -1;
-// Scopes previews to this page so another open tab cannot invalidate this one's approval or reply.
-const pageId = (window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 64);
+const message = $("message"), task = $("task"), output = $("output");
+const pageId = crypto.randomUUID();
+const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+let revision = 0, timer, previewController, sendController, current;
+let provider = { configured: false }, sending = false, inspecting = false;
+let rawReply = "", replyParts = [], showNames = false, complete = false;
+let mode = "inline", filterAnimating = false, filterTimers = [];
+let revealTimers = [], revealVersion = 0;
 
 function post(path, kind, body, signal) {
-  return fetch(path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Mask-Request": kind, "X-Mask-Client": pageId },
-    body: JSON.stringify(body),
-    cache: "no-store",
-    signal,
-  });
+  return fetch(path, { method: "POST", headers: { "Content-Type": "application/json", "X-Mask-Request": kind, "X-Mask-Client": pageId }, body: JSON.stringify(body), cache: "no-store", signal });
 }
-
-function setState(next, text = "", isError = false) {
-  state = next;
-  if (ORDER.includes(next)) stepIndex = ORDER.indexOf(next);
-  else if (next === "idle") stepIndex = -1;
-  else if (next === "unavailable") stepIndex = 0;
-  const failed = ["error", "cancelled", "unavailable"].includes(next);
-  [...steps.children].forEach((item, index) => {
-    item.classList.toggle("done", index < stepIndex);
-    item.classList.toggle("now", index === stepIndex);
-    item.classList.toggle("fail", failed && index === stepIndex);
-    if (index === stepIndex) item.setAttribute("aria-current", "step"); else item.removeAttribute("aria-current");
-  });
-  status.textContent = text;
-  status.classList.toggle("error", isError);
-  reply.classList.toggle("streaming", next === "sending" || next === "receiving");
-  updateButtons();
+function status(text = "", error = false) {
+  $("status").textContent = text;
+  $("status").classList.toggle("error", error);
 }
-
-function updateButtons() {
-  const streaming = state === "sending" || state === "receiving";
-  sendButton.disabled = !(state === "review" && current && provider.configured);
-  sendButton.textContent = provider.configured || !current ? "Send protected message" : "API not configured";
-  stopButton.hidden = !streaming;
-  retryButton.hidden = !((state === "error" || state === "cancelled") && current && provider.configured);
+function buttons() {
+  $("send").disabled = !current || !provider.configured || sending || complete || filterAnimating;
+  $("filter").disabled = !message.value.trim() || Boolean(previewController) || filterAnimating || sending;
+  $("stop").hidden = !sending;
+  $("workspace").classList.toggle("sending", sending);
 }
-
-function placeholder(text) {
-  const p = document.createElement("p");
-  p.className = "placeholder";
-  p.textContent = text;
-  return p;
-}
-
-const ACTION_CLASS = { ALIAS: "alias", PLACEHOLDER: "placeholder", GENERALISE: "generalise", DROP: "drop" };
-const ACTION_HINT = {
-  ALIAS: "name replaced with a label; restored on this computer when the reply arrives",
-  PLACEHOLDER: "replaced with a generic placeholder; never restored",
-  GENERALISE: "made less exact",
-  DROP: "removed before sending",
-};
-
-function chipNodes(parts, counter) {
-  return parts.map((part) => {
-    if (!part.label) return document.createTextNode(String(part.text ?? ""));
-    const chip = document.createElement("span");
-    const action = String(part.action || "PLACEHOLDER").toUpperCase();
-    const label = String(part.label);
-    chip.className = `chip ${ACTION_CLASS[action] || "placeholder"}`;
-    chip.textContent = action === "DROP" ? `${label.toLowerCase()} removed` : String(part.text ?? "");
-    chip.title = `${label}: ${ACTION_HINT[action] || "changed"}`;
-    chip.setAttribute("aria-label", `${chip.textContent} (${label}, ${ACTION_HINT[action] || "changed"})`);
-    chip.style.setProperty("--i", String(counter.n++));
-    return chip;
-  });
-}
-
-function renderProtected(view, request) {
-  const counter = { n: 0 };
-  const nodes = [];
-  if (Array.isArray(view?.task)) {
-    const line = document.createElement("span");
-    line.className = "task-line";
-    line.append("Task: ", ...chipNodes(view.task, counter));
-    nodes.push(line);
+function clearReveal() { revealVersion++; revealTimers.forEach(clearTimeout); revealTimers = []; }
+function tokens(container, text) {
+  const fragment = document.createDocumentFragment();
+  let end = 0;
+  for (const match of text.matchAll(/\[[A-Z]+(?:_\d+)?\]/g)) {
+    fragment.append(document.createTextNode(text.slice(end, match.index)));
+    const span = document.createElement("span"); span.className = "token"; span.textContent = match[0];
+    fragment.append(span); end = match.index + match[0].length;
   }
-  nodes.push(...(Array.isArray(view?.message) ? chipNodes(view.message, counter) : [document.createTextNode(request.user)]));
-  protectedView.classList.remove("animate");
-  protectedView.replaceChildren(...nodes);
-  if (!reduceMotion) {
-    void protectedView.offsetWidth;   // restart the chip animation
-    protectedView.classList.add("animate");
+  fragment.append(document.createTextNode(text.slice(end)));
+  container.append(fragment);
+}
+function visibleStream(text) {
+  const start = text.lastIndexOf("[");
+  if (start < 0) return text;
+  const suffix = text.slice(start);
+  return "[PERSON_".startsWith(suffix) || /^\[PERSON_\d*$/.test(suffix) ? text.slice(0, start) : text;
+}
+function renderProtected() {
+  output.replaceChildren();
+  if (!current) return;
+  if (inspecting) {
+    for (const [label, text] of [["SYSTEM", current.provider_request.system], ["MESSAGE", current.provider_request.user]]) {
+      if (!text) continue;
+      const heading = document.createElement("span"); heading.className = "request-label"; heading.textContent = label;
+      const body = document.createElement("span"); body.className = "request-body"; body.textContent = text + "\n\n";
+      output.append(heading, body);
+    }
+  } else {
+    if (current.context_mode === "explicit_task") {
+      const line = document.createElement("span"); line.className = "task-line";
+      tokens(line, current.protected_task); output.append(line);
+    }
+    tokens(output, current.protected_text);
   }
-  changeCount.textContent = counter.n === 0 ? "No changes needed" : `${counter.n} change${counter.n === 1 ? "" : "s"}`;
-  sentSystem.textContent = request.system ?? "(none)";
-  sentUser.textContent = request.user;
+  $("inspect").textContent = inspecting ? "Preview ↙" : "Request ↗";
+  $("inspect").setAttribute("aria-pressed", String(inspecting));
+  $("inspect-inline").textContent = inspecting ? "Preview ↙" : "Request ↗";
+  $("inline-output").replaceChildren(...Array.from(output.childNodes, (node) => node.cloneNode(true)));
 }
-
-function clearReply() {
-  reply.replaceChildren();
-  raw.textContent = "";
-  mockBadge.hidden = true;
+function clearFilterAnimation() {
+  filterTimers.forEach(clearTimeout); filterTimers = []; filterAnimating = false;
 }
-
-async function preview(currentRevision, attempt = 0) {
-  if (currentRevision !== revision || !message.value.trim()) return;
-  const controller = new AbortController();
-  previewController = controller;
-  setState("protecting", "Protecting on this computer…");
-  protectedView.classList.add("busy");
-  protectedView.setAttribute("aria-busy", "true");
+function showFiltered() {
+  message.hidden = mode === "inline";
+  $("inline-output").hidden = mode !== "inline";
+  $("filter").hidden = true; $("edit").hidden = false; $("inspect-inline").hidden = false;
+  $("workspace").classList.add("filtered");
+  $("panels").querySelector(".original-panel").classList.add("filtered");
+  $("inline-count").textContent = $("change-count").textContent;
+}
+function animateFilter(data, version) {
+  showFiltered();
+  const parts = data.protected_view?.message;
+  if (reducedMotion() || !Array.isArray(parts) || !parts.some((part) => Number.isInteger(part.start))) return;
+  filterAnimating = true; buttons();
+  const box = $("inline-output"), source = Array.from(message.value);
+  box.replaceChildren();
+  if (data.context_mode === "explicit_task") {
+    const line = document.createElement("span"); line.className = "task-line";
+    tokens(line, data.protected_task); box.append(line);
+  }
+  for (const part of parts) {
+    if (!Number.isInteger(part.start)) { box.append(document.createTextNode(part.text)); continue; }
+    const span = document.createElement("span");
+    const original = source.slice(part.start, part.end).join("");
+    span.textContent = original; span.className = "before-value"; box.append(span);
+    if (part.action === "DROP") {
+      span.replaceChildren(...Array.from(original, (letter) => {
+        const dust = document.createElement("span"); dust.className = "dust"; dust.textContent = letter; return dust;
+      }));
+    } else filterTimers.push(setTimeout(() => {
+      if (version !== revision) return;
+      span.textContent = part.text; span.className = "token inline-token-morph";
+    }, 260));
+  }
+  filterTimers.push(setTimeout(() => {
+    if (version !== revision) return;
+    filterAnimating = false; renderProtected(); buttons();
+  }, 800));
+}
+function setMode(next) {
+  if (mode === next) return;
+  mode = next;
+  $("workspace").classList.toggle("inline-mode", next === "inline");
+  $("workspace").classList.toggle("compare-mode", next === "compare");
+  $("mode-inline").setAttribute("aria-pressed", String(next === "inline"));
+  $("mode-compare").setAttribute("aria-pressed", String(next === "compare"));
+  clearFilterAnimation();
+  if (current) { renderProtected(); showFiltered(); buttons(); }
+  else invalidate();
+}
+function renderReply(animate = false) {
+  clearReveal();
+  const version = revealVersion;
+  const box = $("reply"), nearBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 60;
+  box.replaceChildren();
+  if (!complete || !showNames) tokens(box, sending ? visibleStream(rawReply) : rawReply);
+  else {
+    let index = 0;
+    for (const part of replyParts) {
+      if (!part.alias) { box.append(document.createTextNode(part.text)); continue; }
+      const span = document.createElement("span");
+      const motion = animate && !reducedMotion();
+      span.className = motion ? "token" : "restored";
+      span.textContent = motion ? part.alias : part.text;
+      span.title = "Restored locally from " + part.alias;
+      box.append(span);
+      if (motion) revealTimers.push(setTimeout(() => {
+        if (version !== revealVersion) return;
+        span.textContent = part.text; span.className = "restored morph";
+      }, 420 + Math.min(index++, 5) * 75));
+    }
+  }
+  if (nearBottom) box.scrollTop = box.scrollHeight;
+  $("names").textContent = showNames ? "Show placeholders" : "Restore names";
+  $("names").setAttribute("aria-pressed", String(showNames));
+}
+function resetReply() {
+  clearReveal(); rawReply = ""; replyParts = []; complete = false; showNames = false;
+  $("reply").replaceChildren();
+  $("reply-panel").hidden = true; $("reply-panel").classList.remove("error", "streaming");
+  $("workspace").classList.remove("has-reply");
+  $("names").hidden = true; $("retry").hidden = true;
+}
+async function preview(version, attempt = 0) {
+  if (version !== revision || !message.value.trim()) return;
+  const controller = new AbortController(); previewController = controller;
+  $("filter-label").textContent = "Filtering…";
+  $("panels").querySelector(".original-panel").classList.add("filtering"); buttons();
+  $("panels").querySelector(".protected-panel").classList.add("busy");
+  output.dataset.placeholder = "Protecting…"; output.setAttribute("aria-busy", "true");
+  status("Protecting on this device…");
   const timeout = setTimeout(() => controller.abort(), 60000);
   try {
-    const body = { text: message.value, ...(task.value.trim() ? { task: task.value.trim() } : {}) };
-    const response = await post("/api/preview", "preview", body, controller.signal);
+    const response = await post("/api/preview", "preview", { text: message.value, ...(task.value.trim() ? { task: task.value.trim() } : {}) }, controller.signal);
     const data = await response.json();
-    if (currentRevision !== revision) return;
-    if (response.status === 429 && attempt < 2) {
-      timer = setTimeout(() => void preview(currentRevision, attempt + 1), 750);
-      return;
-    }
-    if (!response.ok) throw new Error("Preview unavailable. Try again.");
-    if (!data.coverage?.complete || !["ready", "needs_review"].includes(data.status) || typeof data.payload !== "string"
-        || typeof data.preview_id !== "string" || typeof data.provider_request?.user !== "string") {
-      throw new Error("Try a shorter message.");
-    }
-    current = { id: data.preview_id, request: data.provider_request };
-    renderProtected(data.protected_view, data.provider_request);
-    let note = "Check what the AI will see, then send.";
-    if (data.context_mode === "message_only") note += " Intended use taken from your message.";
-    setState("review", note);
+    if (version !== revision) return;
+    if (response.status === 429 && attempt < 3) { timer = setTimeout(() => void preview(version, attempt + 1), 750); return; }
+    if (!response.ok || !data.coverage?.complete || !["ready", "needs_review"].includes(data.status)
+        || !data.preview_id || typeof data.provider_request?.user !== "string"
+        || typeof data.protected_text !== "string") throw new Error("No complete preview. Try a shorter message.");
+    current = data; renderProtected();
+    const panel = $("panels").querySelector(".protected-panel");
+    panel.classList.remove("reveal"); void panel.offsetWidth; panel.classList.add("ready", "reveal");
+    $("change-count").textContent = `${data.change_count ?? 0} change${data.change_count === 1 ? "" : "s"}`;
+    $("inspect").hidden = false;
+    if (mode === "inline") animateFilter(data, version);
+    status(provider.configured ? "Review, then send." : "Claude API not configured.");
   } catch (error) {
-    if (currentRevision !== revision) return;
-    current = null;
-    changeCount.textContent = "";
-    protectedView.replaceChildren(placeholder(error.name === "AbortError" ? "Try a shorter message."
-      : error instanceof TypeError ? "Local model unavailable." : error.message));
-    setState("unavailable", "No protected preview available.", true);
+    if (version !== revision) return;
+    current = null; output.replaceChildren(); output.dataset.placeholder = "What the AI gets";
+    status(error.name === "AbortError" ? "Preview timed out. Try a shorter message." : error instanceof TypeError ? "Local server unavailable." : error.message, true);
+    $("retry").hidden = false;
   } finally {
     clearTimeout(timeout);
-    if (currentRevision === revision) {
-      previewController = null;
-      protectedView.classList.remove("busy");
-      protectedView.setAttribute("aria-busy", "false");
+    if (version === revision) {
+      previewController = null; output.setAttribute("aria-busy", "false");
+      $("filter-label").textContent = "Filter";
+      $("panels").querySelector(".original-panel").classList.remove("filtering");
+      $("panels").querySelector(".protected-panel").classList.remove("busy"); buttons();
     }
   }
 }
-
-function abortStream() {
-  const controller = sendController;
-  sendController = null;
-  controller?.abort();
-}
-
 function invalidate() {
-  const currentRevision = ++revision;
-  clearTimeout(timer);
-  previewController?.abort();
-  previewController = null;
-  abortStream();
-  // The old preview and its approval die now, not when the next preview arrives.
-  if (current) void post("/api/reset", "preview", {}).catch(() => {});
-  current = null;
-  protectedView.classList.remove("animate");
-  protectedView.replaceChildren(placeholder("Your protected message appears here."));
-  changeCount.textContent = "";
-  sentSystem.textContent = "";
-  sentUser.textContent = "";
-  clearReply();
-  setState("idle");
-  if (message.value.trim()) timer = setTimeout(() => void preview(currentRevision), 450);
+  const version = ++revision;
+  clearFilterAnimation();
+  $("workspace").classList.remove("filtered");
+  $("panels").querySelector(".original-panel").classList.remove("filtered", "filtering");
+  message.hidden = false; $("inline-output").hidden = true; $("inline-output").replaceChildren();
+  $("filter").hidden = false; $("edit").hidden = true; $("inspect-inline").hidden = true;
+  $("inline-count").textContent = ""; $("filter-label").textContent = "Filter";
+  clearTimeout(timer); previewController?.abort(); previewController = null;
+  if (sendController && current) void post("/api/cancel", "send", { preview_id: current.preview_id }).catch(() => {});
+  sendController?.abort(); sendController = null; sending = false;
+  void post("/api/reset", "preview", {}).catch(() => {});
+  current = null; inspecting = false;
+  output.replaceChildren(); output.dataset.placeholder = "What the AI gets"; output.setAttribute("aria-busy", "false");
+  $("inspect").hidden = true; $("change-count").textContent = "";
+  $("panels").querySelector(".protected-panel").classList.remove("ready", "reveal", "sent", "busy");
+  $("send").classList.remove("sent"); resetReply(); status(); buttons();
+  if (mode === "compare" && message.value.trim()) timer = setTimeout(() => void preview(version), 450);
 }
-
-function appendText(container, text) {
-  if (!text) return;
-  const last = container.lastChild;
-  if (last && last.nodeType === 3) last.appendData(text);
-  else container.append(document.createTextNode(text));
-}
-
-function appendSegments(segments) {
-  for (const segment of Array.isArray(segments) ? segments : []) {
-    const text = String(segment?.text ?? "");
-    if (typeof segment?.alias === "string") {
-      const name = document.createElement("span");
-      name.className = reduceMotion ? "name settled" : "name reveal";
-      name.textContent = text;
-      name.title = `Restored on this computer from ${segment.alias}`;
-      reply.append(name);
-      if (!reduceMotion) setTimeout(() => name.classList.add("settled"), 1400);
-    } else {
-      appendText(reply, text);
-    }
-  }
-}
-
 function parseFrame(frame) {
-  let name = "message";
-  const data = [];
+  let name = "message"; const data = [];
   for (const line of frame.split("\n")) {
-    if (line.startsWith("event: ")) name = line.slice(7).trim();
-    else if (line.startsWith("data: ")) data.push(line.slice(6));
+    if (line.startsWith("event:")) name = line.slice(6).trim();
+    else if (line.startsWith("data:")) data.push(line.slice(5).trimStart());
   }
-  try {
-    return { name, data: JSON.parse(data.join("\n") || "{}") };
-  } catch {
-    return { name: "error", data: { message: "The reply could not be read." } };
-  }
+  return { name, data: JSON.parse(data.join("\n") || "{}") };
 }
-
-// Returns true for a terminal event.
-function handleEvent({ name, data }) {
-  if (name === "start") {
-    mockBadge.hidden = !data.mock;
-    return false;
-  }
-  if (name === "delta") {
-    if (state === "sending") setState("receiving", "Receiving — names are put back on this computer as they arrive.");
-    appendSegments(data.segments);
-    appendText(raw, typeof data.raw === "string" ? data.raw : "");
-    return false;
-  }
-  if (name === "done") {
-    const count = Number(data.names) || 0;
-    setState("complete", count ? `Done. ${count} name${count === 1 ? "" : "s"} put back on this computer — the AI never saw ${count === 1 ? "it" : "them"}.`
-      : "Done. No names needed putting back.");
-    return true;
-  }
-  if (name === "cancelled") {
-    setState("cancelled", data.reason === "stale" ? "Stopped because the message changed." : "Stopped. You can retry the same protected message.");
-    return true;
-  }
-  if (name === "error") {
-    setState("error", String(data.message || "The AI reply failed. Try again."), true);
-    return true;
-  }
-  return false;
-}
-
 async function send() {
-  if (!current || !provider.configured || sendController || !["review", "error", "cancelled"].includes(state)) return;
-  const currentRevision = revision;
-  const controller = new AbortController();
-  sendController = controller;
-  const preview_id = current.id;
-  clearReply();
-  selectTab(tabs[0], false);
-  setState("sending", `Sending the protected message to ${provider.mock ? "the mock provider" : "the AI"}…`);
-  const timeout = setTimeout(() => controller.abort(), 180000);
-  const live = () => currentRevision === revision && sendController === controller;
-  try {
-    const response = await post("/api/send", "send", { preview_id }, controller.signal);
+  if (!current || !provider.configured || sending || complete || filterAnimating) return;
+  const version = revision, approved = current;
+  const controller = new AbortController(); sendController = controller; sending = true;
+  rawReply = ""; replyParts = []; complete = false; showNames = false; clearReveal();
+  $("reply").replaceChildren(); $("names").hidden = true; $("retry").hidden = true;
+  $("reply-panel").hidden = false; $("reply-panel").classList.remove("error"); $("reply-panel").classList.add("streaming");
+  $("workspace").classList.add("has-reply");
+  $("panels").querySelector(".protected-panel").classList.add("sent");
+  $("reply-status").textContent = provider.mock ? "Mock · no AI called" : "Connecting to Claude…";
+  status(provider.mock ? "Mock provider · no AI is called." : "Sending the protected message…"); buttons();
+  const timeout = setTimeout(() => controller.abort(), 150000);
+  let finished = false, reader;
+  const live = () => version === revision && !controller.signal.aborted;
+  function handle({ name, data }) {
     if (!live()) return;
-    if (!response.ok) {
-      let data = {};
-      try { data = await response.json(); } catch { /* keep the generic message */ }
-      if (!live()) return;
-      if (data.code === "stale") {
-        // Expired on the server: protect the same text again; the user reviews before anything is sent.
-        sendController = null;
-        current = null;
-        setState("idle", "That preview expired. Protecting again — review before sending.");
-        void preview(++revision);
-        return;
-      }
-      if (data.code === "not_configured") provider = { configured: false };
-      setState("error", String(data.error || "The AI could not be reached. Try again."), true);
-      return;
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-    let finished = false;
+    if (name === "delta") {
+      if (typeof data.raw === "string") rawReply += data.raw;
+      if (Array.isArray(data.segments)) replyParts.push(...data.segments);
+      $("reply-status").textContent = provider.mock ? "Mock · no AI called" : "Claude is replying…";
+      status("Reply received with placeholders."); renderReply();
+    } else if (name === "done") {
+      complete = true; finished = true;
+      $("reply-panel").classList.remove("streaming");
+      const hasNames = replyParts.some((part) => part.alias);
+      $("names").hidden = !hasNames;
+      $("reply-status").textContent = provider.mock ? "Mock · no AI called" : data.stop_reason === "max_tokens" ? "Claude · length limit" : "Claude";
+      renderReply();
+      status(data.stop_reason === "max_tokens" ? "Reply reached the length limit." : "Reply received.");
+    } else if (name === "error") throw new Error(data.message || "Claude could not finish. Try again.");
+    else if (name === "cancelled") throw new Error("Reply stopped.");
+  }
+  try {
+    const response = await post("/api/send", "send", { preview_id: approved.preview_id }, controller.signal);
+    if (!live()) return;
+    if (!response.ok) { const data = await response.json(); throw new Error(data.error || "Could not send to Claude."); }
+    if (!response.body) throw new Error("Streaming is unavailable in this browser.");
+    reader = response.body.getReader(); const decoder = new TextDecoder(); let buffer = "";
     while (!finished) {
       const { value, done } = await reader.read();
-      if (!live()) { void reader.cancel?.().catch?.(() => {}); return; }
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
+      if (!live()) return;
+      buffer += (done ? decoder.decode() : decoder.decode(value, { stream: true })).replace(/\r\n/g, "\n");
       let cut;
       while (!finished && (cut = buffer.indexOf("\n\n")) >= 0) {
-        const frame = buffer.slice(0, cut);
-        buffer = buffer.slice(cut + 2);
-        finished = handleEvent(parseFrame(frame));
+        const frame = buffer.slice(0, cut); buffer = buffer.slice(cut + 2);
+        if (frame.trim()) handle(parseFrame(frame));
       }
+      if (done) break;
     }
-    if (!finished && live()) setState("error", "The reply ended unexpectedly. Try again.", true);
+    if (!finished) throw new Error("Reply interrupted. Try again.");
   } catch (error) {
-    if (!live()) return;
-    if (error.name === "AbortError") setState("error", "The AI took too long to reply. Try again.", true);
-    else setState("error", "Could not reach the local server. Try again.", true);
+    if (version !== revision) return;
+    complete = false; replyParts = []; clearReveal(); $("names").hidden = true;
+    $("reply-panel").classList.add("error");
+    $("reply-status").textContent = "Incomplete reply";
+    renderReply();
+    if (!rawReply) $("reply").dataset.placeholder = "No reply received.";
+    status(controller.signal.aborted ? "Reply stopped." : error.message, true);
+    $("retry").hidden = false;
+    void post("/api/cancel", "send", { preview_id: approved.preview_id }).catch(() => {});
   } finally {
     clearTimeout(timeout);
-    if (sendController === controller) sendController = null;
-    updateButtons();
+    if (!finished) { try { await reader?.cancel(); } catch {} }
+    if (version === revision) {
+      sending = false; sendController = null;
+      $("reply-panel").classList.remove("streaming"); $("send").classList.toggle("sent", complete); buttons();
+    }
   }
 }
-
-function stop() {
-  if (!sendController || !current) return;
-  void post("/api/cancel", "send", { preview_id: current.id }).catch(() => {});
-  abortStream();
-  setState("cancelled", "Stopped. You can retry the same protected message.");
-}
-
-function selectTab(tab, focus = true) {
-  for (const item of tabs) {
-    const selected = item === tab;
-    item.setAttribute("aria-selected", String(selected));
-    item.tabIndex = selected ? 0 : -1;
-    $(item.getAttribute("aria-controls")).hidden = !selected;
-  }
-  if (focus) tab.focus();
-}
-
-async function loadProvider() {
-  try {
-    const response = await fetch("/api/health", { cache: "no-store", headers: { "X-Mask-Request": "preview" } });
-    const data = await response.json();
-    const info = data.provider || {};
-    provider = { configured: data.provider_connected === true, mock: info.mock === true, model: info.model, name: info.provider };
-  } catch {
-    provider = { configured: false };
-  }
-  providerLabel.textContent = !provider.configured ? "API not configured"
-    : provider.mock ? "Mock provider — no AI is called"
-    : `${provider.name === "anthropic" ? "Claude" : String(provider.name)} · ${String(provider.model)}`;
-  updateButtons();
-}
-
-message.addEventListener("input", invalidate);
-task.addEventListener("input", invalidate);
-sendButton.addEventListener("click", () => void send());
-retryButton.addEventListener("click", () => void send());
-stopButton.addEventListener("click", stop);
-tabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => selectTab(tab));
-  tab.addEventListener("keydown", (event) => {
-    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-    event.preventDefault();
-    selectTab(tabs[(index + (event.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]);
-  });
+message.addEventListener("input", invalidate); task.addEventListener("input", invalidate);
+$("send").addEventListener("click", () => void send());
+$("stop").addEventListener("click", () => { sendController?.abort(); if (current) void post("/api/cancel", "send", { preview_id: current.preview_id }).catch(() => {}); });
+$("retry").addEventListener("click", () => { invalidate(); if (mode === "inline" && message.value.trim()) void preview(revision); });
+$("filter").addEventListener("click", () => { if (!$("filter").disabled) void preview(revision); });
+$("edit").addEventListener("click", () => { invalidate(); message.focus(); });
+$("mode-inline").addEventListener("click", () => setMode("inline"));
+$("mode-compare").addEventListener("click", () => setMode("compare"));
+$("inspect-inline").addEventListener("click", () => { inspecting = !inspecting; renderProtected(); });
+$("inspect").addEventListener("click", () => { inspecting = !inspecting; renderProtected(); });
+$("names").addEventListener("click", () => {
+  showNames = !showNames; renderReply(showNames);
+  status(showNames ? "Names restored on this device." : "Original reply from Claude.");
 });
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && (event.ctrlKey || event.metaKey) && state === "review") { event.preventDefault(); void send(); }
-  if (event.key === "Escape" && (state === "sending" || state === "receiving")) stop();
+  if (event.key === "Escape" && sending) $("stop").click();
+  if (event.key === "Enter" && (event.metaKey || event.ctrlKey) && !$("send").disabled) { event.preventDefault(); void send(); }
 });
-
-setState("idle");
-void loadProvider();
+window.addEventListener("pagehide", () => {
+  sendController?.abort();
+  void fetch("/api/reset", { method: "POST", headers: { "Content-Type": "application/json", "X-Mask-Request": "preview", "X-Mask-Client": pageId }, body: "{}", keepalive: true }).catch(() => {});
+});
+void fetch("/api/health", { cache: "no-store" }).then(async (response) => {
+  if (!response.ok) throw new Error();
+  const data = await response.json();
+  provider = { configured: data.provider_connected === true, mock: data.provider?.mock === true };
+  if (provider.mock) status("Mock provider · no AI is called.");
+  else if (!provider.configured) status("Claude API not configured.");
+  buttons();
+}).catch(() => status("Local server unavailable.", true));

@@ -62,7 +62,10 @@ def _chips(source, edits, protected):
                 raise ValueError
             if start > cursor:
                 parts.append({"text": source[cursor:start]})
-            parts.append({"text": replacement, "label": str(edit["label"]), "action": str(edit["action"])})
+            # Offsets let the local page animate the edit against its own source text.
+            # These are Unicode code-point offsets, never original values or a reverse map.
+            parts.append({"text": replacement, "label": str(edit["label"]), "action": str(edit["action"]),
+                          "start": start, "end": end})
             cursor = end
         if cursor < len(source):
             parts.append({"text": source[cursor:]})

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
     <title>Mask</title>
     <link rel="icon" href="data:," />
     <link rel="preload" href="/font.woff2" as="font" type="font/woff2" crossorigin />
@@ -11,59 +11,26 @@
     <script src="/app.js" type="module"></script>
   </head>
   <body>
-    <main>
-      <section class="compose" aria-label="Your message">
-        <label class="field" for="task">
-          <span>Intended use <span class="muted">(optional)</span></span>
-          <input id="task" type="text" placeholder="What should the AI do?" maxlength="4000" autocomplete="off" spellcheck="false" aria-describedby="purpose-hint" />
-          <small id="purpose-hint" class="muted">Leave blank if your message already says it.</small>
-        </label>
-        <label class="field grow" for="message">
-          <span>Your message <span class="muted">— stays on this computer</span></span>
-          <textarea id="message" placeholder="Paste or type a message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
-        </label>
-      </section>
-
-      <section class="flow" aria-label="Protected message and reply">
-        <ol class="steps" id="steps" aria-label="Progress">
-          <li data-step="protecting">Protect</li>
-          <li data-step="review">Review</li>
-          <li data-step="sending">Send</li>
-          <li data-step="receiving">Reply</li>
-          <li data-step="complete">Names restored</li>
-        </ol>
-
-        <div class="panel">
-          <div class="panel-head">
-            <span>What the AI will see</span>
-            <span id="change-count" class="muted"></span>
-          </div>
-          <div id="protected" class="protected" tabindex="0" aria-label="Protected message" aria-describedby="status"><p class="placeholder">Your protected message appears here.</p></div>
-        </div>
-
-        <div class="actions">
-          <button id="send" type="button" class="primary" disabled>Send protected message</button>
-          <button id="stop" type="button" hidden>Stop</button>
-          <button id="retry" type="button" hidden>Retry</button>
-          <span id="provider" class="provider muted"></span>
-        </div>
-        <p id="status" class="status" role="status" aria-live="polite"></p>
-
-        <div class="panel reply-panel">
-          <div class="tabs" role="tablist" aria-label="Reply views">
-            <button type="button" role="tab" id="tab-reply" aria-controls="view-reply" aria-selected="true">Reply</button>
-            <button type="button" role="tab" id="tab-sent" aria-controls="view-sent" aria-selected="false" tabindex="-1">What the AI saw</button>
-            <button type="button" role="tab" id="tab-raw" aria-controls="view-raw" aria-selected="false" tabindex="-1">Raw AI reply</button>
-            <span id="mock-badge" class="badge" hidden>Mock reply — no AI was called</span>
-          </div>
-          <div id="view-reply" class="view reply" role="tabpanel" aria-labelledby="tab-reply" tabindex="0"></div>
-          <div id="view-sent" class="view" role="tabpanel" aria-labelledby="tab-sent" tabindex="0" hidden>
-            <p class="view-label">Instruction</p><pre id="sent-system"></pre>
-            <p class="view-label">Message</p><pre id="sent-user"></pre>
-          </div>
-          <pre id="view-raw" class="view" role="tabpanel" aria-labelledby="tab-raw" tabindex="0" hidden></pre>
-        </div>
-      </section>
+    <main id="workspace" class="inline-mode">
+      <div class="mode-switch" role="group" aria-label="Layout"><button id="mode-inline" type="button" aria-pressed="true">Inline</button><span aria-hidden="true">/</span><button id="mode-compare" type="button" aria-pressed="false">Compare</button></div>
+      <input id="task" class="purpose" aria-label="Intended use (optional)" placeholder="Intended use (optional)" maxlength="4000" autocomplete="off" spellcheck="false" />
+      <div class="panels" id="panels">
+        <section class="panel original-panel" aria-label="Your message">
+          <textarea id="message" aria-label="Your message" placeholder="Your message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
+          <div id="inline-output" class="text-surface" role="textbox" aria-label="Filtered message" aria-readonly="true" tabindex="0" hidden></div>
+          <div class="filter-bar"><button id="edit" type="button" hidden>Edit</button><button id="filter" type="button" disabled><svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 4h14l-5.5 6.2V16l-3-1.5v-4.3L3 4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span id="filter-label">Filter</span></button><span id="inline-count"></span><button id="inspect-inline" type="button" hidden>Request ↗</button></div>
+        </section>
+        <section class="panel protected-panel" aria-label="Protected message">
+          <div id="output" class="text-surface" role="textbox" aria-label="What the AI gets" aria-readonly="true" aria-describedby="status" tabindex="0" data-placeholder="What the AI gets"></div>
+          <div class="panel-bottom"><span id="change-count"></span><button id="inspect" type="button" title="See the exact request to Claude" aria-pressed="false" hidden>Request ↗</button></div>
+        </section>
+        <div class="send-slot"><button id="send" type="button" aria-label="Send protected message to Claude" title="Send this reviewed preview to Claude" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="flight" aria-hidden="true"></span></div>
+        <section id="reply-panel" class="panel reply-panel" aria-label="Claude reply" hidden>
+          <div id="reply" class="text-surface" role="region" aria-label="Claude response" tabindex="0" data-placeholder="Claude is replying…"></div>
+          <div class="panel-bottom"><span id="reply-status">Claude</span><button id="names" type="button" title="Restore known person placeholders on this device" aria-pressed="false" hidden>Restore names</button><button id="stop" type="button" aria-label="Stop reply" hidden>Stop ■</button></div>
+        </section>
+      </div>
+      <div class="status-row"><p id="status" role="status" aria-live="polite"></p><button id="retry" type="button" hidden>Try again ↻</button></div>
     </main>
   </body>
 </html>

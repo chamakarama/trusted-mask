@@ -494,3 +494,17 @@ def test_anthropic_adapter_sends_only_the_given_payload():
     with pytest.raises(ProviderError) as error:
         list(adapter.stream("S", "U", threading.Event()))
     assert error.value.code == "network" and "anthropic.com" not in error.value.message
+
+
+def test_animation_ranges_are_codepoints_and_do_not_expose_original_values():
+    from mask.web.server import _chips
+    source = "😀 Emma. Secret."
+    edits = [
+        {"start": 2, "end": 6, "replacement": "[PERSON_1]", "label": "PERSON", "action": "ALIAS"},
+        {"start": 7, "end": 15, "replacement": "", "label": "HEALTH", "action": "DROP"},
+    ]
+    parts = _chips(source, edits, "😀 [PERSON_1].")
+    changes = [part for part in parts if "label" in part]
+    assert [(p["start"], p["end"]) for p in changes] == [(2, 6), (7, 15)]
+    assert "".join(p["text"] for p in parts) == "😀 [PERSON_1]."
+    assert "Emma" not in json.dumps(parts) and "Secret" not in json.dumps(parts)
