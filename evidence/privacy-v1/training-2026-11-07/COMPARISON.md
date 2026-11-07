@@ -49,7 +49,9 @@ Dev SHA-256: `f9ad0954b8904e8d8725095cfe2f409bef3992c8895bc11855ee163a1a0e857b`
 
 The branch is based on `fc94f9f`. Custom-a/MiniLM used training commit `739f5a7`; DeBERTa used `6067629` after the whitespace audit correction. Later changes distinguish reporting roles and add verification/publication tooling without changing trained weights. The initial 47 cloud checks passed; the final local suite has 48 passing checks. No candidate failed to produce a usable bundle; successful training does not resolve the quality limits above.
 
-**Retrieve the private artifacts** using an account with access to HUGO infrastructure:
+The three weight archives are also available directly from this repository through **Git LFS**, with identical SHA-256 hashes. Follow the [repository download instructions](../../../mask/ml/privacy_v1/bundled_weights/training-2026-11-07/README.md) to fetch, verify and extract them without Google Cloud access.
+
+Alternatively, **retrieve the private artifacts** using an account with access to HUGO infrastructure:
 
 ```sh
 mkdir -p out/mask-trained-2026-11-07
