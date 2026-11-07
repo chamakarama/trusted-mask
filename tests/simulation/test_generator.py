@@ -179,3 +179,11 @@ def test_frozen_declaration():
     assert config["period"] == {"start": "2025-10-06", "end": "2025-11-02", "timezone": "Europe/Helsinki"}
     # Locks the actual frozen assumptions independently of generator implementation.
     assert generator.sha256(generator.DEFAULT_CONFIG) == "f345edb769a2e3bdfd72961d54ea0c9a5739e04c711cd56794c0f6216917d7de"
+
+
+def test_canonical_configuration_copy_reproduces_population(population, private):
+    output = private / "canonical-config"
+    generator.generate(output, config_path=population / "configuration.json", seed=20251106, cards=240)
+    for path in population.rglob("*"):
+        if path.is_file():
+            assert path.read_bytes() == (output / path.relative_to(population)).read_bytes()

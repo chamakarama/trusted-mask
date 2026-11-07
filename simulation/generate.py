@@ -13,6 +13,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 VERSION = "1.0.0"
+SCENARIOS = ("commute", "comparable", "evening", "sparse", "within_zone", "diffuse")
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = Path(__file__).with_name("config") / "turku-grid-v1.json"
 PRIVATE_ROOT = Path(__file__).with_name("private")
@@ -56,6 +57,8 @@ def load_config(path=DEFAULT_CONFIG):
         raise ValueError("invalid bbox")
     if config["period"] != {"start": "2025-10-06", "end": "2025-11-02", "timezone": "Europe/Helsinki"}:
         raise ValueError("v1 period must match the existing production adapter")
+    if set(p["scenario_weights"]) != set(SCENARIOS):
+        raise ValueError("v1 requires its six declared scenarios")
     if not math.isclose(sum(p["scenario_weights"].values()), 1.0):
         raise ValueError("scenario weights must sum to one")
     if any(weight <= 0 for weight in p["scenario_weights"].values()):
@@ -102,7 +105,8 @@ def scenario_assignment(weights, count, rng):
     order = sorted(weights, key=lambda key: (-(count * weights[key] - counts[key]), key))
     for key in order[:count - sum(counts.values())]:
         counts[key] += 1
-    result = [key for key in weights for _ in range(counts[key])]
+    # JSON object key order is not part of the model, including canonical config copies.
+    result = [key for key in SCENARIOS for _ in range(counts[key])]
     rng.shuffle(result)
     return result
 
