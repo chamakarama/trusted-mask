@@ -1,0 +1,16 @@
+{
+ "taskId": "CYBER-S2::f:email_gateway.attachment_names",
+ "agrees": false,
+ "objections": [
+  "redact_text only transforms detected spans; employee names embedded in file names (e.g. underscore-joined payslip or medical-certificate names) are likely to go undetected and survive to a competitor community.",
+  "Medical-certificate file names reveal health-related absence even after name redaction, and the goal excludes special_category data.",
+  "The attachment names are mostly benign internal mail (payslips, certificates) with no IoC value; no listed utility task or required field uses this column, so the minimum-necessary choice is suppress."
+ ],
+ "counterChoice": {
+  "key": "suppress"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

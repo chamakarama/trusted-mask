@@ -1,0 +1,11 @@
+{
+  "taskId": "MOB-S3::f:taps.vehicle_id",
+  "agrees": false,
+  "objections": [
+    "No listed utility task (bike duration, bike zone x hour demand, bike distance, card-type mix) or required field uses the bus fleet number, so keeping it serves no purpose.",
+    "The catalog trap is co-traveller narrowing: vehicle + stop + hour band still sharply shrinks the set of people on the same bus as a known colleague (employer + arrival time is in the threat model); merging only vehicles under 5 taps leaves almost all 198 vehicles intact and does not address this.",
+    "Suppress removes that linkage at zero utility cost, so the rare-merge keeps more than the purpose needs."
+  ],
+  "counterChoice": { "key": "suppress" },
+  "challenger": { "model": "claude-opus-5-5", "promptVersion": "challenger-1" }
+}

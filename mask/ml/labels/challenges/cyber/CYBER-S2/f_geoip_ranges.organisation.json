@@ -1,0 +1,15 @@
+{
+ "taskId": "CYBER-S2::f:geoip_ranges.organisation",
+ "agrees": false,
+ "objections": [
+  "The geoip table includes Meridian's own ranges: 'Meridian Logistics Oy', 'Meridian Logistics Oy (warehouses)' and 'Meridian internal' (10.0.0.0/8). Keeping organisation verbatim tells competitors Meridian's corporate and warehouse address blocks, which is internal network layout the threat model puts out of scope.",
+  "No utility task needs the owner name: the required IoCs are the attacker IPs themselves, and community members can look up hosting/ISP ownership from their own geoIP/ASN data. Rare-merge is not a middle ground here because every value occurs at most twice, so it collapses the column anyway."
+ ],
+ "counterChoice": {
+  "key": "suppress"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "taskId": "HEALTH-S1::g:clinical_notes.visit_id+ed_visits.visit_id+lab_results.visit_id",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [],
+  "rationale": "Visit ids are sequential and reveal order and arrival time, but the lab join and clinical-note linkage need a consistent key across tables. A keyed token hides the real id and keeps joins.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

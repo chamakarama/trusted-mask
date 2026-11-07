@@ -1,0 +1,17 @@
+{
+  "taskId": "FIN-S3::s:transfers.message:ADDRESS",
+  "chosen": {
+    "key": "suppress"
+  },
+  "acceptable": [
+    {
+      "key": "redact_typed"
+    }
+  ],
+  "rationale": "Addresses and apartment numbers in messages are location identifiers beyond municipality resolution. Aggregate release needs no message content, so remove them; a typed placeholder is also fine.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

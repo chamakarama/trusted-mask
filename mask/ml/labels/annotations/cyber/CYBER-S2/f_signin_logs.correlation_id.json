@@ -1,0 +1,17 @@
+{
+ "taskId": "CYBER-S2::f:signin_logs.correlation_id",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "tokenize_keyed@format=token,scope=dataset"
+  }
+ ],
+ "rationale": "Random per-event GUID that does not link anything and no listed task needs it; removing it avoids disclosing internal telemetry ids.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

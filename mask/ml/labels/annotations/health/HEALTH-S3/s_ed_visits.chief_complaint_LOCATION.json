@@ -1,0 +1,20 @@
+{
+  "taskId": "HEALTH-S3::s:ed_visits.chief_complaint:LOCATION",
+  "chosen": {
+    "key": "redact_typed"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    },
+    {
+      "key": "redact_surrogate@consistency=conversation"
+    }
+  ],
+  "rationale": "Places in notes can reveal home or workplace and narrow identity. Not needed for the stated tasks; typed placeholder is the least disclosure.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

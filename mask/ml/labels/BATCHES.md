@@ -19,4 +19,4 @@ Task files: `ml/labels/tasks/<dataset>/<scenario>/<unit>.json`. Put each annotat
 Total: 1617 tasks. Team A: 882. Team B: 549. Test (customer_service): 186.
 
 Unit kinds: field 1332, field_group 36, span_class 249.
-Tasks with a single valid candidate (still annotate; they are easy checks): 74.
+Tasks with a single valid candidate (still annotate; they are easy checks): 78.

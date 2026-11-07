@@ -1,0 +1,17 @@
+{
+ "taskId": "CYBER-S1::f:email_gateway.message_id",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [
+  {
+   "key": "keep"
+  }
+ ],
+ "rationale": "Gateway row key; the recipient only needs it as a consistent join key, so a keyed token preserves that without exposing original ids. Keeping is low risk too.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S3::f:signin_logs.event_id",
+ "chosen": {
+  "key": "keep"
+ },
+ "acceptable": [
+  {
+   "key": "suppress"
+  }
+ ],
+ "rationale": "Synthetic per-row key needed to reference events and score detections; no person-level information. Removal would also be fine for the utility tasks if sequential order leaks nothing.",
+ "unresolved": [
+  "Does the id encode order or time that could leak timing?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

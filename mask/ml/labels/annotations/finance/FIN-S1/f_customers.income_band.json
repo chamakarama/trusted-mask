@@ -1,0 +1,22 @@
+{
+ "taskId": "FIN-S1::f:customers.income_band",
+ "chosen": {
+  "key": "generalize_category_rare@minGroup=10"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_category_rare@minGroup=5"
+  },
+  {
+   "key": "suppress"
+  }
+ ],
+ "rationale": "Income can contextualise AML rules, but the 90k+ band is small. Keep with rare bands merged: some utility, less outlier exposure.",
+ "unresolved": [
+  "Do the AML rules actually use declared income?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

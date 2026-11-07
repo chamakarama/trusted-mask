@@ -1,0 +1,20 @@
+{
+  "taskId": "HEALTH-S1::f:published_weekly_stats.municipality",
+  "chosen": {
+    "key": "generalize_category_rare@minGroup=5"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    },
+    {
+      "key": "generalize_category_rare@minGroup=10"
+    }
+  ],
+  "rationale": "Municipality is needed for the diagnosis mix by municipality, but it is a quasi-identifier for linkage. Merging rare places keeps the large ones for grouping while protecting small ones; keyed tokens would hide place names without need.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

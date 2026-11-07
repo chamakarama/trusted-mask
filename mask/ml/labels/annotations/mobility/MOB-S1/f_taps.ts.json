@@ -1,0 +1,19 @@
+{
+  "taskId": "MOB-S1::f:taps.ts",
+  "chosen": {
+    "key": "generalize_datetime@resolution=hour"
+  },
+  "acceptable": [
+    {
+      "key": "generalize_datetime@resolution=day"
+    }
+  ],
+  "rationale": "Public OD flows by hour band need hour resolution; exact seconds with stop single out a card. Hour keeps weekday-by-hour matrices and line-hour boardings and removes linkable precision. Day would lose hour bands, so it only serves the daily series.",
+  "unresolved": [
+    "Is any row-level data published, or only aggregates?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

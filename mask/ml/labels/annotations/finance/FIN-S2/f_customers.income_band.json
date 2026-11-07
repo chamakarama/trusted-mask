@@ -1,0 +1,20 @@
+{
+  "taskId": "FIN-S2::f:customers.income_band",
+  "chosen": {
+    "key": "generalize_category_rare@minGroup=5"
+  },
+  "acceptable": [
+    {
+      "key": "keep"
+    },
+    {
+      "key": "generalize_category_rare@minGroup=10"
+    }
+  ],
+  "rationale": "Income band is required for spend by income x age analysis. The small 90k+ band is an outlier risk, so merging groups under 5 keeps utility while reducing singling out.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

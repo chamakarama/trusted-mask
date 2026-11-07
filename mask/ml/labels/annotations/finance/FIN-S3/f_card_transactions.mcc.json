@@ -1,0 +1,20 @@
+{
+ "taskId": "FIN-S3::f:card_transactions.mcc",
+ "chosen": {
+  "key": "generalize_category_rare@minGroup=10"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_category_rare@minGroup=5"
+  },
+  {
+   "key": "generalize_numeric_bin@topCode=0,width=10"
+  }
+ ],
+ "rationale": "Category spending needs MCC, but sensitive codes (health, religion, politics, gambling) are rare and must be merged to protect special-category exclusion. Rare-category merging keeps common groups.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

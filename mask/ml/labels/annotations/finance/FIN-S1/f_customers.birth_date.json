@@ -1,0 +1,17 @@
+{
+ "taskId": "FIN-S1::f:customers.birth_date",
+ "chosen": {
+  "key": "generalize_datetime@resolution=year"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=month"
+  }
+ ],
+ "rationale": "Fraud and AML patterns may use age structure, not exact birth date. Year keeps age profile; exact date plus postcode is near-unique and redundant with hetu.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "taskId": "HEALTH-S2::f:clinical_notes.written_ts",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=week"
+  }
+ ],
+ "rationale": "Note write time is not needed since arrival_ts carries the timing for the utility tasks. Remove; coarsening to week is an acceptable fallback.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

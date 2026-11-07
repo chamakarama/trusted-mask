@@ -1,0 +1,16 @@
+{
+  "taskId": "CYBER-S1::f:proxy_logs.url",
+  "agrees": false,
+  "objections": [
+    "Redaction only transforms detected spans; this column has no span labels and the host plus health search terms survive (e.g. apteekki.example/haku?q=<antidepressant>, ajanvaraus.terveyspalvelu.example/varaa?palvelu=..., liitto.example, srk.example), exposing special-category browsing per keyed user, which the scenario excludes and the threat model targets.",
+    "Keeping the host in clear also defeats the keyed tokenisation chosen for proxy_logs.domain and the suppression of proxy_logs.category.",
+    "No listed utility task needs the URL: exfiltration, phishing-click and insider rules use domain, bytes, src_ip and time, so removal loses little while redaction leaves residual secrets if any query parameter is missed."
+  ],
+  "counterChoice": {
+    "key": "suppress"
+  },
+  "challenger": {
+    "model": "claude-opus-5-5",
+    "promptVersion": "challenger-1"
+  }
+}

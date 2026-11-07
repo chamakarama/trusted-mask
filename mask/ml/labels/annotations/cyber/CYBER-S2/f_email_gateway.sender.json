@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S2::f:email_gateway.sender",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "tokenize_keyed@format=token,scope=dataset"
+  }
+ ],
+ "rationale": "Mixes external attacker senders with internal staff addresses and insider webmail. Keeping exposes staff; tokenizing destroys blockable sender IoCs. Suppress is the safe minimum.",
+ "unresolved": [
+  "Can external attacker senders be separated from internal ones to keep only those?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

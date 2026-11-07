@@ -1,0 +1,17 @@
+{
+ "taskId": "HEALTH-S3::f:clinical_notes.note_id",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "tokenize_keyed@format=token,scope=dataset"
+  }
+ ],
+ "rationale": "Row key of a notes table whose text is not needed; no joins are required (linkage none). Drop it to avoid addressable records.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

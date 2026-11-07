@@ -1,0 +1,20 @@
+{
+ "taskId": "FIN-S2::s:transfers.message:ACCOUNT_NUMBER",
+ "chosen": {
+  "key": "redact_typed"
+ },
+ "acceptable": [
+  {
+   "key": "suppress"
+  },
+  {
+   "key": "redact_surrogate@consistency=conversation"
+  }
+ ],
+ "rationale": "Account numbers in messages are identifiers; the recipient has no text need. A typed placeholder removes the value and keeps the sentence shape.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

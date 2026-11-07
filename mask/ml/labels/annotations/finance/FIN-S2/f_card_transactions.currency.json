@@ -1,0 +1,23 @@
+{
+ "taskId": "FIN-S2::f:card_transactions.currency",
+ "chosen": {
+  "key": "generalize_category_rare@minGroup=5"
+ },
+ "acceptable": [
+  {
+   "key": "keep"
+  },
+  {
+   "key": "generalize_category_rare@minGroup=10"
+  },
+  {
+   "key": "suppress"
+  }
+ ],
+ "rationale": "Currency is largely redundant with merchant_country, which the model needs, and reveals travel. Merging rare values limits disclosure while keeping the common ones.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

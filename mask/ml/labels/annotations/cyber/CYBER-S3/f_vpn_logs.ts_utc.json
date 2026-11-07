@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S3::f:vpn_logs.ts_utc",
+ "chosen": {
+  "key": "generalize_datetime@resolution=15min"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=hour"
+  }
+ ],
+ "rationale": "Detection rules (30 min MFA windows, hourly spray, 24 h lateral movement) need sub-hour ordering. 15 minute rounding keeps them workable while blunting exact-time linkage.",
+ "unresolved": [
+  "Does impossible-travel F1 survive hourly rounding?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

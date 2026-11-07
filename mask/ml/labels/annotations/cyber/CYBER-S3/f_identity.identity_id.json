@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S3::f:identity.identity_id",
+ "chosen": {
+  "key": "keep"
+ },
+ "acceptable": [
+  {
+   "key": "suppress"
+  }
+ ],
+ "rationale": "Row key of the directory export; keyed tokens are not permitted here. Keeping preserves joins for cross-log consistency, assuming it is an opaque id.",
+ "unresolved": [
+  "Does identity_id embed name or UPN content?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

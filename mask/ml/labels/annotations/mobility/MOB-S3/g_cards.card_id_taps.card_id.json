@@ -1,0 +1,13 @@
+{
+  "taskId": "MOB-S3::g:cards.card_id+taps.card_id",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [],
+  "rationale": "Printed card number is a record key and persistent pseudonym. Researchers need the cards-taps join and per-card counts, but not the real number. A dataset-scoped keyed token preserves joins and removes the printed identifier; keep and suppress are worse.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

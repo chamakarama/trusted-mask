@@ -1,0 +1,20 @@
+{
+  "taskId": "HEALTH-S3::s:clinical_notes.note_text:PHONE",
+  "chosen": {
+    "key": "redact_typed"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    },
+    {
+      "key": "redact_surrogate@consistency=conversation"
+    }
+  ],
+  "rationale": "Phone numbers, often relatives', are direct identifiers. No valid keep option; typed placeholder avoids realistic fake numbers that may belong to real people.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

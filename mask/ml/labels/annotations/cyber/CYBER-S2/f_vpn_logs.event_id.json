@@ -1,0 +1,17 @@
+{
+ "taskId": "CYBER-S2::f:vpn_logs.event_id",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "keep"
+  }
+ ],
+ "rationale": "Event id is only a row key; no listed IoC or detection needs it, and CERT recipients gain nothing. Removing avoids needless internal record references. Keeping it would be harmless but unnecessary.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

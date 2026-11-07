@@ -1,0 +1,19 @@
+{
+  "taskId": "HEALTH-S2::f:ed_visits.patient_hetu",
+  "chosen": {
+    "key": "derive_hetu@ageBandYears=10,referenceDate=2025-12-31"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Direct identifier encoding birth date and sex. Only a 10-year age band is needed for ILI trends; the derived band drops the identifier. Suppression is equally safe for a public aggregate.",
+  "unresolved": [
+    "Does a separate age column already supply the band?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "taskId": "CYBER-S1::f:dns_logs.client_hostname",
+  "chosen": {
+    "key": "tokenize_keyed@format=token,scope=dataset"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Laptop hostnames embed user names, so a curious analyst with the staff page could identify people. A keyed token stays consistent across DNS, EDR and VPN joins.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

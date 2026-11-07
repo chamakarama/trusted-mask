@@ -1,0 +1,17 @@
+{
+  "taskId": "HEALTH-S3::s:clinical_notes.note_text:ADDRESS",
+  "chosen": {
+    "key": "redact_typed"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Home addresses are direct identifiers; the model needs no free text, so replace with a typed placeholder rather than a realistic surrogate that could be mistaken for a real record.",
+  "unresolved": [],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

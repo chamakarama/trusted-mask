@@ -1,0 +1,17 @@
+{
+ "taskId": "FIN-S3::f:card_transactions.ts",
+ "chosen": {
+  "key": "generalize_datetime@resolution=day"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=month"
+  }
+ ],
+ "rationale": "Payday effect needs day-of-month, and monthly series need the month. Day resolution removes seconds that match receipts, with aggregation and cell thresholds applied afterwards. Month alone loses the payday analysis.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

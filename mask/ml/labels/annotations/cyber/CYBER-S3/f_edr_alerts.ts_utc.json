@@ -1,0 +1,20 @@
+{
+ "taskId": "CYBER-S3::f:edr_alerts.ts_utc",
+ "chosen": {
+  "key": "generalize_datetime@resolution=hour"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_datetime@resolution=15min"
+  },
+  {
+   "key": "generalize_datetime@resolution=day"
+  }
+ ],
+ "rationale": "Lateral movement needs server alerts within 24h of VPN events, so hour resolution suffices and lowers timing linkage versus 15min. Exact times would aid re-identification by outsiders.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

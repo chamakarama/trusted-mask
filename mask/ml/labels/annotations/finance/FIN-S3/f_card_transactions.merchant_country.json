@@ -1,0 +1,20 @@
+{
+ "taskId": "FIN-S3::f:card_transactions.merchant_country",
+ "chosen": {
+  "key": "suppress"
+ },
+ "acceptable": [
+  {
+   "key": "generalize_category_rare@minGroup=10"
+  },
+  {
+   "key": "keep"
+  }
+ ],
+ "rationale": "Analysis is by municipality; country is not a required field. Dropping it avoids revealing foreign travel; rare merging would also be tolerable.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

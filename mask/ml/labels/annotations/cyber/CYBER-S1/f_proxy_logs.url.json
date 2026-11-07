@@ -1,0 +1,19 @@
+{
+  "taskId": "CYBER-S1::f:proxy_logs.url",
+  "chosen": {
+    "key": "redact_text"
+  },
+  "acceptable": [
+    {
+      "key": "suppress"
+    }
+  ],
+  "rationale": "Query strings leak e-mails, session ids, OAuth state, tokens and a live API key. Span redaction keeps path and host for investigation while removing secrets and identifiers; removal is the safe fallback.",
+  "unresolved": [
+    "Are all secret-bearing query parameters detected as spans?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

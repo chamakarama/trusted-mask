@@ -1,0 +1,15 @@
+{
+  "taskId": "FIN-S3::f:transfers.booking_ts",
+  "agrees": false,
+  "objections": [
+    "The payday (day-of-month) measure is computed from card transaction ts, not transfer booking time, so day resolution on transfers is not needed.",
+    "Day-level transfer timestamps pinpoint salary dates per employer and aid differencing between releases; month keeps seasonal context if transfers are used at all."
+  ],
+  "counterChoice": {
+    "key": "generalize_datetime@resolution=month"
+  },
+  "challenger": {
+    "model": "claude-opus-5-5",
+    "promptVersion": "challenger-1"
+  }
+}

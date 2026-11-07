@@ -1,0 +1,15 @@
+{
+ "taskId": "CYBER-S2::f:geoip_ranges.lon",
+ "agrees": false,
+ "objections": [
+  "Longitudes for Meridian's corporate and warehouse ranges are site-level coordinates, not city centroids, so keeping them exact discloses facility locations to competitors.",
+  "No utility task needs coordinates; a 10-degree bin keeps rough region context for attacker infrastructure and removes site precision."
+ ],
+ "counterChoice": {
+  "key": "generalize_numeric_bin@topCode=0,width=10"
+ },
+ "challenger": {
+  "model": "claude-opus-5-5",
+  "promptVersion": "challenger-1"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "taskId": "FIN-S2::g:cards.customer_id+customers.customer_id",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [
+  {
+   "key": "suppress"
+  }
+ ],
+ "rationale": "Customer id is a bank-wide linkage key but spending profiles need per-customer joins across cards and customers. Consistent keyed token preserves that while blocking re-identification via bank systems.",
+ "unresolved": [],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

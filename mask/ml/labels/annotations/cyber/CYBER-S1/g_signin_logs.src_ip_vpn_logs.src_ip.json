@@ -1,0 +1,19 @@
+{
+ "taskId": "CYBER-S1::g:signin_logs.src_ip+vpn_logs.src_ip",
+ "chosen": {
+  "key": "tokenize_keyed@format=token,scope=dataset"
+ },
+ "acceptable": [
+  {
+   "key": "keep"
+  }
+ ],
+ "rationale": "Home IPs are stable per user and link to a household, so a keyed token is the safer default and keeps same-IP correlation across sign-in and VPN. Note /24 spray grouping needs prefix preserved, which tokens lose.",
+ "unresolved": [
+  "Can spray detection (per /24) run on tokens, or is the prefix needed?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}

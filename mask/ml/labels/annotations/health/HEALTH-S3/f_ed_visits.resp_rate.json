@@ -1,0 +1,19 @@
+{
+  "taskId": "HEALTH-S3::f:ed_visits.resp_rate",
+  "chosen": {
+    "key": "keep"
+  },
+  "acceptable": [
+    {
+      "key": "generalize_category_rare@minGroup=5"
+    }
+  ],
+  "rationale": "Respiratory rate is a triage vital that helps admission prediction. Exact values are needed for model quality; identifiers are removed elsewhere. Rare extreme values are a modest risk.",
+  "unresolved": [
+    "Should extremes be top-coded?"
+  ],
+  "annotator": {
+    "model": "claude-sonnet-5-5",
+    "promptVersion": "annotator-1"
+  }
+}

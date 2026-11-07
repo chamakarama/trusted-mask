@@ -1,0 +1,22 @@
+{
+ "taskId": "CYBER-S3::f:identity.account_enabled",
+ "chosen": {
+  "key": "generalize_category_rare@minGroup=10"
+ },
+ "acceptable": [
+  {
+   "key": "suppress"
+  },
+  {
+   "key": "generalize_category_rare@minGroup=5"
+  }
+ ],
+ "rationale": "No utility task needs it, and a disabled account marks the compromised user. Merging the single rare disabled value hides that outlier while the common value stays.",
+ "unresolved": [
+  "Is the disabled flag a labelled attack artefact?"
+ ],
+ "annotator": {
+  "model": "claude-sonnet-5-5",
+  "promptVersion": "annotator-1"
+ }
+}
