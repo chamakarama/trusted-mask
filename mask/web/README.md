@@ -53,10 +53,10 @@ The mock is labelled on the page ("Mock provider - no AI is called") and its rep
 ## What is protected, and how
 
 - **Preview session.** One protection pass produces both the payload and a reverse map from generated `[PERSON_n]`
-  aliases (from the message and the intended use) to the original names. The server keeps both in memory under an
+  and `[EMAIL_n]` aliases (from the message and the intended use) to the original names and addresses. The server keeps both in memory under an
   opaque preview ID, for at most 15 minutes, at most 16 previews in total. Each open page has its own random page ID
   (`X-Mask-Client`), so a preview or reset in one tab never cancels another tab's approval or reply. The full map is never
-  put in an API response, export or log, and never sent to the provider. Only restored name segments actually
+  put in an API response, export or log, and never sent to the provider. Only restored name and email segments actually
   referenced in the reply are returned to this local page for display.
 - **Approval.** Any edit, a new preview, starting over (`/api/reset`) or expiry invalidates the old preview and its
   approval; a reply still streaming for it is stopped. A completed preview can be sent once. The UI prepares a fresh preview after an error or Stop;
@@ -64,10 +64,10 @@ The mock is labelled on the page ("Mock provider - no AI is called") and its rep
 - **Provider request.** System prompt: the engine's fixed receiving-AI instruction plus "Reply in plain text without
   Markdown formatting." (the page shows replies as plain text). User turn: `Task: <protected
   intended use>` (when given) plus the protected message. Nothing else: no raw input, no map, no history.
-- **Restoration.** One left-to-right pass restores only exact `[PERSON_n]` labels this preview generated. Labels split
-  across stream chunks are buffered. Unknown labels, generic placeholders (`[EMAIL]`, `[PERSON]`...), removed text and
-  generalised facts stay as the AI wrote them. Restored names are returned only to the local browser, for display, and never sent to the provider.
-  The frontend holds these segments until the reply completes, and animates the placeholder-to-name transition only after the user clicks Restore names.
+- **Restoration.** One left-to-right pass restores only exact `[PERSON_n]` and `[EMAIL_n]` labels this preview generated. Labels split
+  across stream chunks are buffered. Unknown labels, generic placeholders (`[PHONE]`, `[PERSON]`...), removed text and
+  generalised facts stay as the AI wrote them. Restored names and addresses are returned only to the local browser, for display, and never sent to the provider.
+  The frontend holds these segments until the reply completes, and animates the placeholder-to-name transition only after the user clicks Restore names and emails.
 - **Rendering.** All provider and model text is inserted as text, never HTML. Errors are sanitised: no provider
   message bodies, input or keys.
 - **Local server only.** Bound to 127.0.0.1, Host/Origin checks, a custom request header per action, request size

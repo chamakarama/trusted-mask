@@ -149,7 +149,7 @@ async function sendProtected() {
       if (!replyRaw.trim()) throw new Error("Claude returned no text. Try sending again.");
       finished = true; replyDone = true; renderRaw();
       revert.disabled = !replyParts.some(part => typeof part.alias === "string");
-      revert.title = data.stop_reason === "max_tokens" ? "The reply reached its length limit." : "Restore known person names on this device only.";
+      revert.title = data.stop_reason === "max_tokens" ? "The reply reached its length limit." : "Restore known names and email addresses on this device only.";
     } else if (name === "error") throw new Error(data.message || "Claude could not finish. Try sending again.");
     else if (name === "cancelled") throw new Error("Reply stopped. Try sending again.");
   }

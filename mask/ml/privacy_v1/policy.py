@@ -1,13 +1,13 @@
 """Policy masks and deterministic substitutions, shared by both tracks."""
 import re
-from .contracts import DIRECT, Span
+from .contracts import ALIASED, DIRECT, Span
 
-POLICY_VERSION = "consumer-v1-pilot.2"
-COMPATIBLE_TRAINING_POLICIES = ("consumer-v1-pilot.1", POLICY_VERSION)
+POLICY_VERSION = "consumer-v1-pilot.3"  # .3: email addresses get numbered aliases like names
+COMPATIBLE_TRAINING_POLICIES = ("consumer-v1-pilot.1", "consumer-v1-pilot.2", POLICY_VERSION)
 
 
 def allowed_actions(span: Span, value: str) -> tuple[str, ...]:
-    if span.label == "PERSON":
+    if span.label in ALIASED:
         return ("ALIAS", "PLACEHOLDER", "DROP")
     if span.label in DIRECT:
         return ("PLACEHOLDER", "DROP")
@@ -26,6 +26,9 @@ class Aliases:
 
     def get(self, label: str, value: str, entity_id=None) -> str:
         # Exact matching avoids silently merging distinct case-sensitive account identities.
+        # Email addresses are matched without case: Anna@Example.org and anna@example.org are one mailbox.
+        if label == "EMAIL":
+            value = value.casefold()
         key = (label, "id", entity_id) if entity_id is not None else (label, "value", value)
         if key not in self._values:
             while True:

@@ -5,7 +5,7 @@ import math
 
 VERSION = "privacy-v1-pilot.1"
 PIPELINE_VERSION = "privacy-edit-pipeline.2"
-RECEIVING_AI_INSTRUCTION = ("Privacy note: Labels such as [PERSON_1] represent redacted references. "
+RECEIVING_AI_INSTRUCTION = ("Privacy note: Labels such as [PERSON_1] or [EMAIL_1] represent redacted references. "
                           "You may use these labels verbatim in your reply. "
                           "Do not guess or invent the hidden values.")
 LABELS = ("PERSON", "EMAIL", "PHONE", "ADDRESS", "USERNAME", "ACCOUNT_ID",
@@ -20,6 +20,9 @@ RELEVANCE = ("essential", "unnecessary", "uncertain")
 RULE_ONLY_LABELS = ("IP_ADDRESS", "VAT_ID")
 ALL_LABELS = LABELS + RULE_ONLY_LABELS
 DIRECT = frozenset(LABELS[:10])
+# Direct identifiers that get a stable numbered alias ([EMAIL_1]) instead of a generic placeholder, so the
+# receiving AI can tell them apart and refer to them, and the reply can be restored locally.
+ALIASED = ("PERSON", "EMAIL")
 KEPT_FOR_REVIEW = "detected_kept_for_review"
 
 
