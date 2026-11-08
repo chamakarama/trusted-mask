@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mask pitch</title>
+<!-- Source of demo/mask-pitch-v2.pdf. Export: see demo/pitch-v2.md, "Editing the slides". -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 1456px 819px; margin: 0; }
+  :root {
+    --dark: #121214; --dark-card: #1d1d21; --dark-line: #2c2c31;
+    --light: #f3f2ee; --card: #faf9f6; --line: #d9d7d2; --row: #e4e2dc;
+    --ink: #18181b; --ink2: #3a3a3f; --muted: #6b6b70; --paper: #f3f2ee;
+    --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #777; }
+  body { font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { width: 1456px; height: 819px; position: relative; overflow: hidden; padding: 97px 97px 0; background: var(--light); color: var(--ink); page-break-after: always; break-after: page; margin: 0 auto 24px; }
+  @media print { .slide { margin: 0; } html, body { background: none; } }
+  .slide.dark { background: var(--dark); color: #f3f2ee; }
+  .kicker { font-family: var(--mono); font-size: 19px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 22px; }
+  .dark .kicker { color: #9a9aa0; }
+  h1 { font-size: 56px; font-weight: 700; letter-spacing: -.02em; line-height: 1.05; margin: 0 0 34px; }
+  h1.solo { margin-top: 12px; }
+  .foot { position: absolute; left: 97px; right: 97px; bottom: 50px; font-size: 17px; color: var(--muted); line-height: 1.35; }
+  .dark .foot { color: #8c8c92; }
+  .lead { font-size: 22px; line-height: 1.4; color: var(--ink2); max-width: 1140px; margin: 0; }
+  .dark .lead { color: #c9c9ce; }
+  b, strong { font-weight: 600; color: inherit; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 30px 30px; }
+  .dark .card { background: var(--dark-card); border-color: var(--dark-line); }
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  table { width: 100%; border-collapse: collapse; font-size: 22px; }
+  th { text-align: left; font-weight: 500; color: var(--muted); padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.35; }
+  .num th:not(:first-child), .num td:not(:first-child) { text-align: right; }
+  tr.hl td { background: var(--row); font-weight: 600; }
+
+  /* 1 cover */
+  .brand { display: flex; align-items: center; gap: 18px; font-size: 31px; font-weight: 600; }
+  .brand svg { width: 66px; height: 66px; }
+  .cover h1 { font-size: 92px; line-height: 1.04; letter-spacing: -.025em; margin: 118px 0 0; }
+  .rule { position: absolute; left: 97px; right: 97px; top: 575px; border-top: 1px solid #3a3a40; }
+  .stat { position: absolute; left: 97px; top: 608px; display: flex; align-items: center; gap: 28px; }
+  .stat .big { font-size: 92px; font-weight: 500; letter-spacing: -.05em; line-height: 1; }
+  .stat p { margin: 0; font-size: 24px; line-height: 1.35; color: #b9b9be; max-width: 600px; }
+
+  /* 2 output */
+  .term { padding: 0; }
+  .term section { padding: 24px 30px; }
+  .term section + section { border-top: 1px solid var(--line); }
+  .term h3 { font-size: 18px; font-weight: 600; letter-spacing: .06em; margin: 0 0 10px; color: var(--muted); }
+  .term section.out h3 { color: var(--ink); }
+  .term pre { margin: 0; font-family: var(--mono); font-size: 18.5px; line-height: 1.8; color: var(--muted); white-space: pre; }
+  .term .out pre { color: var(--ink); }
+  .term .out b { font-weight: 600; }
+  .s2 .lead { margin-top: 28px; }
+
+  /* 4 consumer */
+  .s4 .card { padding: 40px 36px; min-height: 330px; }
+  .s4 h3 { font-size: 18px; letter-spacing: .06em; color: #9a9aa0; margin: 0 0 18px; font-weight: 600; }
+  .s4 p { font-size: 24px; line-height: 1.42; margin: 0 0 22px; }
+  .s4 .gone { color: #77777d; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+  .s4 .tag { font-size: 21px; font-weight: 600; margin: 4px 0 0; }
+
+  /* 6 business */
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tier { padding: 32px 30px; min-height: 240px; }
+  .tier h3 { font-size: 18px; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; font-weight: 600; }
+  .tier .price { font-family: var(--mono); font-size: 31px; white-space: nowrap; font-weight: 600; margin: 0 0 12px; }
+  .tier p { font-size: 21px; line-height: 1.42; color: var(--ink2); margin: 0; }
+  .tier.inv { background: var(--dark); border-color: var(--dark); color: #f3f2ee; }
+  .tier.inv h3 { color: #b9b9be; } .tier.inv p { color: #c9c9ce; }
+  .s6 .why { position: absolute; left: 97px; top: 666px; font-size: 24px; margin: 0; }
+
+  /* 7 status */
+  .s7 .card { padding: 30px 30px; min-height: 305px; }
+  .s7 h3 { font-size: 23px; font-weight: 600; margin: 0 0 16px; }
+  .s7 .card p { font-size: 22px; line-height: 1.45; color: var(--ink2); margin: 0 0 16px; }
+  .fails { display: grid; grid-template-columns: 170px 1fr; row-gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .fails .n { font-family: var(--mono); font-size: 24px; font-weight: 600; }
+  .fails span:not(.n) { font-size: 22px; color: var(--ink2); }
+
+  /* 8 next */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 10px; }
+  .step { border-top: 2px solid #55555b; padding-top: 26px; }
+  .step:first-child { border-top-color: #f3f2ee; }
+  .step .i { font-family: var(--mono); font-size: 18px; color: #8c8c92; }
+  .step h3 { font-size: 32px; font-weight: 600; margin: 10px 0 12px; }
+  .step p { font-size: 21px; line-height: 1.42; color: #b9b9be; margin: 0; }
+  .s8 .close { position: absolute; left: 97px; top: 512px; font-size: 92px; font-weight: 700; letter-spacing: -.025em; line-height: 1.04; margin: 0; }
+
+  /* A1 flow */
+  .flow { display: flex; align-items: center; gap: 0; margin-top: 52px; }
+  .node { width: 199px; height: 118px; border-radius: 10px; padding: 18px; background: var(--card); border: 1px solid var(--line); }
+  .node.out { background: var(--dark); border-color: var(--dark); color: #f3f2ee; }
+  .node b { display: block; font-size: 21px; margin-bottom: 6px; }
+  .node span { font-size: 17.5px; line-height: 1.38; color: var(--muted); display: block; }
+  .node.out span { color: #b9b9be; }
+  .arrow { width: 67px; display: grid; place-items: center; }
+  .zones { display: flex; margin-top: 30px; font-size: 18px; font-weight: 600; letter-spacing: .06em; }
+  .zones .in { width: 730px; border-top: 3px solid var(--ink); padding-top: 14px; }
+  .zones .ex { margin-left: 67px; flex: 1; border-top: 2px dashed var(--ink); padding-top: 15px; }
+  .s9 .lead { margin-top: 84px; } .s9 .lead + .lead { margin-top: 26px; color: var(--ink); }
+
+  /* A3 */
+  .big2 { font-family: var(--mono); font-size: 92px; font-weight: 500; line-height: 1; margin: 14px 0 12px; }
+  .s11 .card { padding: 46px 36px; min-height: 252px; }
+  .s11 h3 { font-size: 20px; letter-spacing: .06em; font-weight: 600; color: var(--muted); margin: 0; }
+  .s11 .card p { font-size: 22px; margin: 0; color: var(--ink2); }
+  .s11 .card.inv { background: var(--dark); border-color: var(--dark); color: #f3f2ee; }
+  .s11 .card.inv h3 { color: #b9b9be; } .s11 .card.inv p { color: #c9c9ce; }
+  .s11 .lead { margin-top: 90px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Cover -->
+<div class="slide dark cover">
+  <div class="brand">
+    <svg viewBox="0 0 66 66" aria-hidden="true"><rect width="66" height="66" rx="14" fill="#2b2b30"/><ellipse cx="33" cy="33" rx="17" ry="20" fill="none" stroke="#9a9aa0" stroke-width="2.5"/><path d="M33 13C42 13 50 19 50 30C50 40 45 50 38 52C35.5 52.6 34.4 51.2 34.2 49.2L33.6 41.6C32.8 39.6 31.6 38.2 31.6 36.2C31.6 34.2 32.6 33 32.6 30.8Z" fill="#f3f2ee"/><path d="M36.6 29.4Q41.2 25.8 45.4 29Q41.2 32.8 36.6 29.4Z" fill="#2b2b30"/></svg>
+    Mask
+  </div>
+  <h1>Your AI doesn’t need<br>everything.</h1>
+  <div class="rule"></div>
+  <div class="stat"><div class="big">48%</div><p>of employees using AI at work say they have uploaded company information to public AI tools.</p></div>
+  <div class="foot">Source: University of Melbourne &amp; KPMG, Trust, attitudes and use of AI: a global study 2025, pp. 75–76. 47 countries. Self-reported.</div>
+</div>
+
+<!-- 2 · What Claude received -->
+<div class="slide s2">
+  <p class="kicker">Real output from our live site</p>
+  <h1>What Claude actually received</h1>
+  <div class="card term">
+    <section><h3>PASTED</h3><pre>Emma Wilson,C-1042,emma.wilson@example.com,"I was charged twice for the same order.…"
+Oliver Davis,C-2087,oliver.davis@example.com,"…still haven’t received my refund.…"
+Lucas Harris,C-6074,lucas.harris@example.com,"Hi, Lucas Harris here. I’ve been billed twice…"</pre></section>
+    <section class="out"><h3>CLAUDE RECEIVED</h3><pre><b>[PERSON_1]</b>,<b>[ACCOUNT_ID]</b>,<b>[EMAIL]</b>,"I was charged twice for the same order.…"
+<b>[PERSON_2]</b>,<b>[ACCOUNT_ID]</b>,<b>[EMAIL]</b>,"…still haven’t received my refund.…"
+<b>[PERSON_6]</b>,<b>[ACCOUNT_ID]</b>,<b>[EMAIL]</b>,"Hi, <b>[PERSON_6]</b> here. I’ve been billed twice…"</pre></section>
+  </div>
+  <p class="lead">Every name, customer ID and email hidden: 20 of 20 in the full export. The complaints are untouched.</p>
+  <div class="foot">3 of 6 rows shown, shortened. Mask2 on mask-local-demo.netlify.app, 8 Nov 2026. Fictional, rehearsed example from our training demos.</div>
+</div>
+
+<!-- 3 · One protection per data type -->
+<div class="slide">
+  <p class="kicker">Detect · select · transform</p>
+  <h1>One protection per data type</h1>
+  <table>
+    <tr><th style="width:28%">Data type</th><th style="width:44%">Protection</th><th>Example</th></tr>
+    <tr><td>Person names</td><td><b>Pseudonymised</b>: same person, same label. The key stays on your device.</td><td>Emma Wilson → [PERSON_1]</td></tr>
+    <tr><td>Emails, IDs, secrets</td><td><b>Typed placeholder</b>, checked by validator rules such as the IBAN checksum</td><td>emma.wilson@… → [EMAIL]</td></tr>
+    <tr><td>Passages the question doesn’t need</td><td><b>Removed</b></td><td>Next slide</td></tr>
+    <tr><td>Facts the question needs</td><td><b>Kept</b> word for word</td><td>“charged twice”</td></tr>
+  </table>
+  <div class="foot">No model rewrites your text: edits happen at exact character positions.</div>
+</div>
+
+<!-- 4 · The question decides what goes -->
+<div class="slide dark s4">
+  <p class="kicker">Same note, two requests</p>
+  <h1>The question decides what goes</h1>
+  <div class="cols2" style="margin-top:58px">
+    <div class="card">
+      <h3>EMAIL TO MY MANAGER</h3>
+      <p>Fit to return to desk duties from 18 November. No lifting over 5 kg …</p>
+      <p class="gone">Medical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine …</p>
+      <p class="tag">Mental-health history removed</p>
+    </div>
+    <div class="card">
+      <h3>SUMMARY FOR MY NEW GP</h3>
+      <p>Fit to return to desk duties from 18 November. No lifting over 5 kg …</p>
+      <p>Medical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine …</p>
+      <p class="tag">Kept: the GP needs it</p>
+    </div>
+  </div>
+  <div class="foot">Excerpts (…) of real Mask2 outputs from the local Python pipeline, not yet the browser. Synthetic note; the name is hidden in both.</div>
+</div>
+
+<!-- 5 · Since AI's own benchmark -->
+<div class="slide">
+  <p class="kicker">SafePrompt-Bench · 1,500 documents · original scorer</p>
+  <h1>Since AI’s own benchmark</h1>
+  <table class="num">
+    <tr><th>Detector</th><th>Identifiers F1</th><th>Names F1</th><th>Clean docs flagged</th></tr>
+    <tr><td>SafePrompt 0.1.0</td><td>98.3</td><td>0 (not supported)</td><td>1 / 299</td></tr>
+    <tr class="hl"><td>Mask1</td><td>98.9</td><td>100</td><td>15 / 299</td></tr>
+    <tr><td>Mask2 (newest, site default)</td><td>98.3</td><td>100</td><td>57 / 299</td></tr>
+  </table>
+  <p class="lead" style="margin-top:36px;color:var(--ink)"><b>The cost:</b> more false alerts. Mask1 flags 15 of 299 clean documents; SafePrompt flags one. Fewer is better.</p>
+  <div class="foot">Synthetic data. Detection scoring only. The benchmark’s names use a few fixed forms, so 100 is not real-world name detection.</div>
+</div>
+
+<!-- 6 · Business model -->
+<div class="slide s6">
+  <p class="kicker">How Mask makes money</p>
+  <h1>Business model</h1>
+  <div class="tiers">
+    <div class="card tier"><h3>INDIVIDUALS</h3><div class="price">Free</div><p>Browser extension for the chatbots people already use. This is how people find us.</p></div>
+    <div class="card tier inv"><h3>TEAMS</h3><div class="price">€5 / user / month</div><p>The company’s own data rules, an admin view, and a log of what was hidden.</p></div>
+    <div class="card tier"><h3>PLATFORMS</h3><div class="price">Licence</div><p>For AI vendors and contact-centre analytics that want to take in customer text safely.</p></div>
+  </div>
+  <p class="why"><b>Why the margins work:</b> filtering runs on the user’s own device, so we pay for almost no servers.</p>
+  <div class="foot">Proposed model and starting price, to be tested in a pilot. We have no customers yet.</div>
+</div>
+
+<!-- 7 · Built, and what still fails -->
+<div class="slide s7">
+  <p class="kicker">Honest status</p>
+  <h1>Built this weekend, and what still fails</h1>
+  <div class="cols2">
+    <div class="card">
+      <h3>Built</h3>
+      <p>Three privacy models, fine-tuned from pretrained encoders on our own synthetic data</p>
+      <p>Running in the browser, in a public demo anyone can try</p>
+      <p>Benchmark results and all evidence in our repository</p>
+    </div>
+    <div class="card">
+      <h3>Still fails, on our harder development set</h3>
+      <div class="fails">
+        <span class="n">20/58</span><span>unneeded clauses removed</span>
+        <span class="n">8/405</span><span>needed facts lost</span>
+        <span class="n">24/323</span><span>identifiers missed</span>
+      </div>
+      <p>English only. Synthetic data, no human audit yet.</p>
+    </div>
+  </div>
+  <div class="foot">Mask2 on 80 supplemental synthetic messages. We used them to choose models, so they are not an independent test. Pseudonymised text is still personal data: we promise less exposure, not anonymity.</div>
+</div>
+
+<!-- 8 · Next -->
+<div class="slide dark s8">
+  <p class="kicker">Next</p>
+  <div class="steps">
+    <div class="step"><div class="i">01</div><h3>Support-team pilot</h3><p>Measure whether answers on protected text stay as good</p></div>
+    <div class="step"><div class="i">02</div><h3>Company rules</h3><p>Integrations that apply each company’s own data rules</p></div>
+    <div class="step"><div class="i">03</div><h3>Every AI tool</h3><p>A browser extension that works inside the chatbot you already use. No separate tab.</p></div>
+  </div>
+  <p class="close">Your AI doesn’t need<br>everything.</p>
+  <div class="foot">Mask · mask-local-demo.netlify.app · Next steps are proposals; we have no customers or pilots yet.</div>
+</div>
+
+<!-- A1 · How the data flows -->
+<div class="slide s9">
+  <h1 class="solo">How the data flows</h1>
+  <div class="flow">
+    <div class="node"><b>Your message</b><span>original text and name map</span></div>
+    <div class="arrow"><svg width="44" height="22" viewBox="0 0 44 22"><path d="M0 7h28V0l16 11-16 11v-7H0z" fill="#18181b"/></svg></div>
+    <div class="node"><b>Mask filter</b><span>runs inside this browser tab</span></div>
+    <div class="arrow"><svg width="44" height="22" viewBox="0 0 44 22"><path d="M0 7h28V0l16 11-16 11v-7H0z" fill="#18181b"/></svg></div>
+    <div class="node"><b>Protected text</b><span>you review it, then press Send</span></div>
+    <div class="arrow"><svg width="44" height="22" viewBox="0 0 44 22"><path d="M0 7h28V0l16 11-16 11v-7H0z" fill="#18181b"/></svg></div>
+    <div class="node out"><b>Relay, Finland</b><span>adds the API key, keeps no messages</span></div>
+    <div class="arrow"><svg width="44" height="22" viewBox="0 0 44 22"><path d="M0 7h28V0l16 11-16 11v-7H0z" fill="#18181b"/></svg></div>
+    <div class="node out"><b>Claude</b><span>answers using the labels</span></div>
+  </div>
+  <div class="zones"><div class="in">STAYS IN YOUR BROWSER</div><div class="ex">LEAVES ONLY ON SEND</div></div>
+  <p class="lead">The reply comes back with [PERSON_n] labels. Real names are restored in your browser, on request. Emails and IDs stay as placeholders.</p>
+  <p class="lead"><b>Today</b> this is a separate demo page. <b>The final version</b> works inside the chatbot you already use, through a browser extension: no separate tab.</p>
+  <div class="foot">ONNX Runtime Web on CPU WebAssembly. The relay checks the site origin, rate-limits and rejects duplicate sends. Source: mask/browser/README.md.</div>
+</div>
+
+<!-- A2 · Full benchmark -->
+<div class="slide">
+  <h1 class="solo">SafePrompt-Bench, all four detectors</h1>
+  <table class="num">
+    <tr><th>Detector</th><th>Identifiers F1</th><th>Names F1</th><th>Secrets F1</th><th>Clean docs flagged</th></tr>
+    <tr><td>SafePrompt 0.1.0</td><td>98.3</td><td>0.0</td><td>100</td><td>1 / 299</td></tr>
+    <tr><td>Mask1 (DeBERTa base)</td><td>98.9</td><td>100</td><td>100</td><td>15 / 299</td></tr>
+    <tr><td>Mask2 (newest base)</td><td>98.3</td><td>100</td><td>100</td><td>57 / 299</td></tr>
+    <tr><td>MaskMini (MiniLM)</td><td>98.9</td><td>90.3</td><td>100</td><td>132 / 299</td></tr>
+  </table>
+  <p class="lead" style="margin-top:36px">Mask1 and MaskMini score identically on identifiers: that part comes mostly from our shared validator rules. The models add names. Unrounded, Mask2 is 98.28 against SafePrompt’s 98.34.</p>
+  <div class="foot">1,500 synthetic documents, unmodified scorer. Names use fixed forms; secrets follow known formats. Source: evidence/safeprompt-bench-2026-11-08.</div>
+</div>
+
+<!-- A3 · Why a model -->
+<div class="slide s11">
+  <h1 class="solo">Why a model, not just rules</h1>
+  <div class="cols2" style="margin-top:72px">
+    <div class="card"><h3>RULES ONLY</h3><div class="big2" style="color:#5e5e64">8/30</div><p>identifiers caught</p></div>
+    <div class="card inv"><h3>MASK1: MODEL AND RULES</h3><div class="big2">30/30</div><p>identifiers caught, and 182 of 182 needed facts kept</p></div>
+  </div>
+  <p class="lead">Rules handle anything with a checkable format: IBANs, cards, 25 national ID schemes. Names and relevance have no format, so they need a model.</p>
+  <div class="foot">Original development set, 50 synthetic messages. Source: evidence/privacy-v1/section-training-20261108/COMPARISON.md.</div>
+</div>
+
+</body>
+</html>

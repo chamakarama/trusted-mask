@@ -4,7 +4,7 @@
 
 Mask is a local privacy layer for messages sent to AI. It is designed to remove personal and confidential information that is unnecessary for a question while keeping the information needed for a useful answer.
 
-[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v1.pdf) · [Pitch notes](demo/pitch-v1.md) · [Two-minute video script](demo/script-v2.0.md)
+[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v2.pdf) · [Pitch notes](demo/pitch-v2.md) · [Two-minute video script](demo/script-v2.0.md)
 
 ## The problem
 
@@ -81,6 +81,6 @@ Mask is a prototype for data minimisation and pseudonymisation. It can miss sens
 - To run locally, follow the [Python setup](mask/web/README.md#setup-once). Model archives are stored in Git LFS; download and unpack the selected bundle before starting it. See the [Mask2 bundle instructions](mask/ml/privacy_v1/bundled_weights/section-training-20261108/README.md).
 - To rebuild the browser application, follow the [browser build instructions](mask/browser/README.md#local-build). They require Python 3.12, Node.js, Rust and Git LFS. The [commit mapping](evidence/COMMIT_IDS.md) preserves the exact pinned runtime despite the submission repository's rewritten history.
 - Training and development datasets are not distributed in this submission. Training code, dataset hashes and recorded results are included, but full training/development evaluation cannot be reproduced from this checkout alone. SafePrompt uses a separately available public benchmark dataset.
-- The optional Claude relay needs your own server-side API key. No key or recording footage is included. The PDF pitch is a visual export of the six-slide working deck; its narration and source references are in the accompanying pitch notes.
+- The optional Claude relay needs your own server-side API key. No key or recording footage is included. The PDF pitch has eight slides and three backup slides for questions; its script, speaker split and source references are in the pitch notes.
 
 Built for the TrustED PETs Transformer challenge at Since AI 2026. This working README reflects the repository and public demo reviewed on 8 November 2026.

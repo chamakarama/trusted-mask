@@ -1,5 +1,7 @@
 # Mask pitch — four minutes
 
+> Superseded by [pitch-v2](pitch-v2.md), the main pitch. Kept as the earlier draft; some claims here are out of date.
+
 Working draft, 8 November 2026. Six slides, with short passages of speech and time to show the product.
 
 [Six-slide PDF](mask-pitch-v1.pdf). This is a visual export of the working deck; the editable source remains in the original presentation. The notes below contain the narration and source references.

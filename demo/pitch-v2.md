@@ -1,6 +1,6 @@
 # Mask pitch v2: four minutes, then six minutes of Q&A
 
-Draft of 8 November 2026, for Vaishnav and Mark. It builds on [pitch-v1](pitch-v1.md), with fixes from a fact-check against the repository, the challenge brief and the original survey PDF.
+Draft of 8 November 2026, for Vaishnav and Mark. It builds on [pitch-v1](pitch-v1.md), with fixes from a fact-check against the repository, the challenge brief and the original survey PDF. This is the main pitch: the slides are [mask-pitch-v2.pdf](mask-pitch-v2.pdf), exported from [pitch-v2-slides.html](pitch-v2-slides.html).
 
 **Shape:** a skit opening, then 8 slides, all static (no live demo), plus 3 backup slides for the Q&A. About 470 spoken words: about 3:25 at 140 words per minute, plus pauses for the skit. Aim to finish at 3:45.
 
@@ -14,9 +14,8 @@ Draft of 8 November 2026, for Vaishnav and Mark. It builds on [pitch-v1](pitch-v
 |---|---|
 | **No live demo.** Slide 2 shows real output captured from the live site. | Filtering took about 30 s in our test, and Send needs venue Wi-Fi. Every output on the slides is real, so you can say so. The demo page stays open on the laptop in case a judge asks. |
 | A skit opens the pitch and closes it | A jury that sees five pitches back to back remembers a scene. It is the support-ticket scene, so it leads straight into slide 2. |
-| Business model slide | Judges will ask. It is clearly labelled as a proposal: no customers and no pricing yet. **Fill in the team price.** |
-| "Twenty identifiers masked" is gone | Checked live on 8 Nov: every name and email is masked, but customer IDs **C-2087 and C-5028 go through**. We show one of them on slide 2 and say so. If the rules get fixed, update slide 2. |
-| The Since AI joke is cut | The finals jury *is* Since AI. |
+| Business model slide | Judges will ask. It is clearly labelled as a proposal: no customers yet, and €5 per user per month is a starting price to test in a pilot. |
+| Slide 2 uses the current export | Rechecked live with Mask2 on 8 Nov: in the name-first export the site now uses, all 20 names, customer IDs and emails are masked. The older ID-first export leaked C-2087 and C-5028. Recheck after any model or rule change. |
 | "trained" became "fine-tuned"; "built this weekend" | Accuracy. The models are fine-tuned pretrained encoders. |
 
 ## Script
@@ -41,13 +40,13 @@ Draft of 8 November 2026, for Vaishnav and Mark. It builds on [pitch-v1](pitch-v
 
 ### 2. What Claude actually received · 0:30–1:05 · Mark
 
-**Slide:** three rows before and after, captured from the live site. Row 2 shows C-2087 going through.
+**Slide:** three rows before and after, captured from the live site with Mask2. Every identifier in them is masked.
 
 > Here's exactly what Claude received: real output from our live site.
 >
 > Every name became a consistent label: person one, person two. Every email became a placeholder. The complaints are untouched, so everything Claude needs to find the top complaints is still there.
 >
-> One customer ID slipped through: our rules weren't sure it was personal. That's a known gap.
+> Customer IDs too: all twenty identifiers in this export are hidden.
 >
 > And when Claude answers, the real names come back on my laptop, never on Claude's side.
 
@@ -67,7 +66,7 @@ Facts: the model runs in the browser tab. Only the protected text goes, via our 
 >
 > Same note, different purpose, different answer.
 
-Facts: real Mask2 outputs from the local Python pipeline (`demo/context-dependency-demo/`, 16/16 checks), not the browser.
+Facts: real Mask2 outputs from the local Python pipeline (`demo/context-dependency-demo/`, 16/16 checks), not the browser. The slide quotes exact excerpts, cut with “…”.
 
 ### 5. Since AI's own benchmark · 1:55–2:20 · Mark
 
@@ -93,11 +92,11 @@ If asked about the €5: it's a starting price we'd test in the pilot. For examp
 
 > Built this weekend: three privacy models, fine-tuned on our own synthetic data, live in a public browser demo.
 >
-> What still fails, on our harder test set: the newest model removes only a third of the passages it should, sometimes drops a needed fact, and misses about seven percent of identifiers. English only.
+> What still fails, on our harder development set: the newest model removes only a third of the passages it should, sometimes drops a needed fact, and misses about seven percent of identifiers. English only.
 >
 > And pseudonymised text is still personal data, so we promise less exposure, not anonymity.
 
-Facts: on the 80-message supplemental dev set, Mask2 removes 20/58 unneeded clauses, loses 8/405 facts and misses 24/323 identifiers (`evidence/privacy-v1/section-training-20261108/COMPARISON.md`).
+Facts: on the 80-message supplemental dev set, Mask2 removes 20/58 unneeded clauses, loses 8/405 facts and misses 24/323 identifiers (`evidence/privacy-v1/section-training-20261108/COMPARISON.md`). These messages helped choose the models, so never call them a held-out test.
 
 ### 8. Next, and the closing beat · 3:20–4:00 · Vaishnav and Mark
 
@@ -128,3 +127,14 @@ Facts: on the 80-message supplemental dev set, Mask2 removes 20/58 unneeded clau
 ## Words never to say
 
 "anonymised", "guaranteed", "zero leaks", "GDPR compliant", "trained from scratch", "WebGPU" (the demo runs on CPU WebAssembly), "customers" or "pilot" as if they exist, "endorsed by TrustED".
+
+## Editing the slides
+
+Edit [pitch-v2-slides.html](pitch-v2-slides.html), then export it from the repository root with Chrome:
+
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+  --virtual-time-budget=8000 --print-to-pdf=demo/mask-pitch-v2.pdf "file://$PWD/demo/pitch-v2-slides.html"
+```
+
+The page loads IBM Plex from Google Fonts, so export while online.
