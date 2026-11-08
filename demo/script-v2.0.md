@@ -26,7 +26,7 @@ This version uses the customer-complaints demo followed by the new context-depen
 >
 > The idea is simple: keep what the AI needs for your question. Filter out the personal and confidential details it doesn’t.
 
-### 0:32–1:05 · The corporate demonstration
+### 0:32–1:10 · The corporate demonstration
 
 *Click Filter. Hold on one row long enough to read it. Show the name, email and customer ID becoming placeholders, with the complaint unchanged. Then show the protected message going to Claude and its actual answer.*
 
@@ -42,7 +42,11 @@ This version uses the customer-complaints demo followed by the new context-depen
 
 *Allow several seconds without narration for the answer. Show the real result, not a prepared answer presented as live.*
 
-### 1:05–1:30 · The consumer demonstration
+*If the reply refers to customers as `[PERSON_1]` and so on, click **Restore names on this device** and hold while the names come back. If the button stays greyed out, the reply named no one: say the line over the reply and don't stage a restore.*
+
+> If the answer refers to a customer, Mask puts their real name back. Right here, on my device.
+
+### 1:10–1:35 · The consumer demonstration
 
 *Keep the same appointment note visible throughout. First show the manager-email task and its filtered output. Hold on the retained return date and work restrictions. Change only the task to a summary for a new GP: the medical-history paragraph returns, while the name remains masked. See `consumer-context-animation.md` for the 25-second shot sequence.*
 
@@ -54,7 +58,7 @@ This version uses the customer-complaints demo followed by the new context-depen
 >
 > Same notes. Different task. My name stays masked in both.
 
-### 1:30–1:54 · What we built and where it goes
+### 1:35–1:54 · What we built and where it goes
 
 *Back to camera. Briefly show the working browser demo, then remain on camera.*
 
@@ -71,8 +75,9 @@ This version uses the customer-complaints demo followed by the new context-depen
 ## Recording notes
 
 - Warm up the browser model before recording. First use downloads the model. Keep real processing footage, or label any edited wait.
-- Use `corporate-support-message.txt` and the exact source and separate tasks in `context-dependency-demo/`. Both examples are synthetic. The earlier public browser release protected all 20 targeted identifier occurrences in the corporate message; recheck with the model chosen for recording.
+- Use `browser-support-example.txt` and the exact source and separate tasks in `context-dependency-demo/`. Both examples are synthetic. The earlier public browser release protected all 20 targeted identifier occurrences in the corporate message; recheck with the model chosen for recording.
 - The 3/2/1 complaint counts are facts preserved in the filtered text. Check the actual chatbot response separately before recording. This review did not send either input to Claude.
+- Name restoration runs only in the browser and only after the click. It restores `[PERSON_n]` names, not emails or customer IDs, and the button is enabled only when Claude's reply contains one of this message's name placeholders. The complaints-summary task may not produce one, so check this in the same test run as the chatbot answer.
 - Recheck both exact messages after any model or policy change. Both newer section checkpoints currently leave `C-2087` and `C-5028` in their saved corporate-gallery outputs.
 - The appointment note was selected after testing alternative phrasings. It demonstrates a working behavior, not an independent accuracy result. Supply the task separately and use the saved wording.
 - An animation may replay the saved transformations. Label it as an illustration of recorded outputs; do not present animation timing as inference speed. Mask prepares the input for the chatbot; these outputs are not the final manager email or GP summary.

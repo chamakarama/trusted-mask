@@ -1,6 +1,6 @@
 # Consumer scene: same notes, different task
 
-Shot sequence for the 1:05–1:30 consumer scene in [script-v2.0.md](script-v2.0.md). It shows context-dependent filtering after the corporate scene has established basic identifier masking.
+Shot sequence for the 1:10–1:35 consumer scene in [script-v2.0.md](script-v2.0.md). It shows context-dependent filtering after the corporate scene has established basic identifier masking.
 
 The recording page is [context-animation/index.html](context-animation/index.html). Open it in a browser and use **Space** or **Right arrow** to advance through the three steps. **Left arrow** goes back, **R** restarts, **F** enters fullscreen, and **H** hides the controls. The page is a single chat-style message box: original message, filtered for the manager, then the task retyped and filtered for the GP with the caption. See [playback instructions](context-animation/README.md).
 
@@ -23,7 +23,7 @@ Use short shot labels “Email to my manager” and “Summary for my GP”, but
 
 - **Manager:** keeps the introduction, work-from-home days, return date, physical restrictions and review date. Removes “Recovering well after knee surgery.” and the entire final medical-history paragraph.
 - **GP:** keeps all the source content except the name, which becomes `[PERSON_1]`. It also keeps the work details; do not animate those disappearing.
-- **Both:** replace Emma Wilson with `[PERSON_1]`.
+- **Both:** replace Mark Markkunen with `[PERSON_1]`.
 
 The source is fictional. The recorded local application outputs are in `context-dependency-demo/*-protected.txt`. The scene illustrates those transformations, not medical advice or a generated downstream response. For an animated replay, use a small caption such as “Recorded Mask2 outputs · fictional example”. If recording the browser, first reproduce both exact results there using Mask2 and the separate intended-use field.
 

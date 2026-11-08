@@ -16,6 +16,14 @@ Download progress disappears once the model is ready. Model details and session
 controls live in the small toolbar menu; the exact outbound request remains
 available under “What the AI sees” after filtering.
 
+The first example is the corporate support export; the second is the appointment
+note. Filtering starts locally after a 600 ms pause in typing or immediately after
+loading an example. Filter reveals the matching finished result, or waits for it.
+Up to eight results are cached only in the tab's memory, keyed by exact text and
+selected model. Editing invalidates the sendable preview. Clear Session discards
+these results, and changing models clears them and terminates the old worker.
+Background filtering never sends a request to the Claude relay.
+
 ## Current release
 
 | Selector | Checkpoint | Model download | Storage |
@@ -109,6 +117,10 @@ first. Then:
 
 ```sh
 npm ci --prefix mask/browser
+git lfs pull --include="mask/ml/privacy_v1/bundled_weights/training-2026-11-07/*.tar.gz,mask/ml/privacy_v1/bundled_weights/section-training-20261108/deberta-v3-base.tar.gz"
+mkdir -p mask/browser/.cache/reference mask/ml/privacy_v1/artifacts/section-training-20261108
+tar xzf mask/ml/privacy_v1/bundled_weights/training-2026-11-07/encoder-b.tar.gz -C mask/browser/.cache/reference
+tar xzf mask/ml/privacy_v1/bundled_weights/section-training-20261108/deberta-v3-base.tar.gz -C mask/ml/privacy_v1/artifacts/section-training-20261108
 mask/ml/privacy_v1/.venv/bin/python -m pip install \
   --target mask/browser/.tools/python \
   -r mask/browser/scripts/export-requirements.txt
@@ -138,13 +150,24 @@ branding, fonts and synthetic example inputs and packages the current policy.
 Runtime/model assets must exist before a build; no missing model is silently
 replaced with a pilot or rules-only detector.
 
+The training and development datasets used for quality evaluation are withheld
+from this submission. `validate_model.py` uses those datasets and therefore needs
+them supplied separately; the recorded parity evidence is included. Building the
+application is distinct from rerunning the complete model-validation campaign.
+
 ## Verification
 
 ```sh
+npm ci --prefix mask  # jsdom for frontend and background-filter tests
 node --test mask/browser/tests/*.test.mjs
 node --test mask/browser/relay/server.test.mjs
 mask/ml/privacy_v1/.venv/bin/python mask/browser/scripts/check_policy.py
 ```
+
+The background-filter tests exercise stale-result rejection after edits, clearing
+a session while inference is running, model switching, and the requirement to
+click Filter before a result becomes sendable. They use a controlled worker and
+do not replace model parity or browser inference checks.
 
 Actual browser parity:
 

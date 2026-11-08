@@ -36,7 +36,9 @@ Use the new model with its section-removal pipeline and supply the intended task
 
 The example is synthetic and selected for presentation after testing four note formats with two task pairs. Two further introductions were tested for this wording revision; all four resulting outputs are in [revision-2/candidate-results.json](../../evidence/privacy-v1/context-demo-20261108/revision-2/candidate-results.json). The original 16 candidate outputs are retained in [candidate-results.json](../../evidence/privacy-v1/context-demo-20261108/candidate-results.json). This is a demonstrated example, not an independent accuracy benchmark; prior tests showed sensitivity to task wording.
 
-The [verification report](../../evidence/privacy-v1/context-demo-20261108/revision-2/preview/verification.json) records exact input, task, model-manifest hash, timings, checks and app previews. To replay, use the project ML environment and a new output directory:
+The patient name was changed from Emma Wilson to Mark Markkunen so the note fits the narrator's “my own medical notes”. Nothing else in the message or tasks changed. The rerun on 8 November 2026 with the same bundle (manifest SHA-256 `6b69155f…`) passed all checks, and both protected outputs are byte-identical to the saved files. See the [current verification report](../../evidence/privacy-v1/context-demo-20261108/revision-3-name/preview/verification.json). The [revision-2 report](../../evidence/privacy-v1/context-demo-20261108/revision-2/preview/verification.json), with the earlier name, is kept unchanged.
+
+Each report records exact input, task, model-manifest hash, timings, checks and app previews. To replay, use the project ML environment and a new output directory:
 
 ```sh
 python demo/context-dependency-demo/verify.py \
