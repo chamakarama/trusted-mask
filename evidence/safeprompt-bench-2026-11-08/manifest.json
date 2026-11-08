@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-08",
+  "safeprompt_commit": "64df85bae1677653ef5b6f070a1acf43e0580873",
+  "mask_commit": "0b3854dfb65eaffca6714595ae6daf961d3f421e",
+  "dataset_revision": "a3c1875a78953b2c603c874c9e3bc44a7d870e4a",
+  "dataset_url": "https://huggingface.co/datasets/sinceaihq/safeprompt-bench",
+  "dataset_sha256": "10baf58447a91326f44295760e345fcfc81a97262889811cb6e69e1e4eac5980",
+  "dataset_license": "CC-BY-4.0",
+  "documents": 1500,
+  "primary_labels": [
+    "EMAIL",
+    "PHONE",
+    "IBAN",
+    "PAYMENT_CARD",
+    "IP_ADDRESS",
+    "VAT_ID",
+    "NATIONAL_ID"
+  ],
+  "additional_scopes": {
+    "names": [
+      "PERSON"
+    ],
+    "secrets": [
+      "SECRET"
+    ],
+    "with_names": "primary + PERSON",
+    "all_labels": "primary + PERSON + SECRET"
+  },
+  "evaluation_kind": "Confirmed detector spans using unchanged upstream scorer. Not final redaction, relevance, or answer-utility evaluation.",
+  "files": {
+    "README.md": "5376c72fc944738622c14fa4469d451cd7c9cae3aa559172c5de295c8a5261e0",
+    "mask-base-epoch2.metadata.json": "378c97bada62fd841a6f4160a3e45cb98d9772e5d999ba239bb4cbd3b4e6cbf9",
+    "mask-mini.metadata.json": "13c7326a5ca57d150b6ef0cf44dbd2d239ba5dbcfceb7818cc86697c37889efe",
+    "mask-reviewed-base.metadata.json": "6d88288e6ba144f78e5799ac60b94d5ff557bf6bc97820f149f3643ee5e5f0b5",
+    "predict_mask.py": "92059c66d669a2682cf119d981d5d7d99abf1c50d7ad94cf7009e6e357174f13",
+    "predictions/mask-base-epoch2.jsonl": "52612d9a7e34dd1459934d6544d4a76a4a1629b1e9d3fd48be2e4f556a8f7e63",
+    "predictions/mask-mini.jsonl": "60e65d8cfa20e291c0e88ee732c7f05e724e5d64d45412c4a47da2c9ccbc8606",
+    "predictions/mask-reviewed-base.jsonl": "bd7639e0e05a62d7bc44a65636101b4d49fc064a9bd4c3c43efce1ae04f682ad",
+    "predictions/safeprompt.jsonl": "9f1e7701bc43f412da1c3c5543d8b1d673f401e02ade04ccfd411dffa1649453",
+    "score.py": "bce5c86148d6eb6662de06872a93677745ecd67cb253289c1c3eb01ebcf2af8a",
+    "scores/mask-base-epoch2_all_labels.json": "777d4959dffe320902c91e9818ffa3c7292a093e4788c31fbcf1b63660914f8d",
+    "scores/mask-base-epoch2_names.json": "0665d35488227557725ab7607b098783d41faa13fc9a8682e3510d7aeffaff85",
+    "scores/mask-base-epoch2_official.json": "717792f553e67108ff31ebedce8a0313bf27fe4eecf5787e70462e6d8beb2dbc",
+    "scores/mask-base-epoch2_secrets.json": "07a43c9172b14742fce06753b8dbf1cd009b329fa8d8cb2d8853e509346ef908",
+    "scores/mask-base-epoch2_with_names.json": "ee20c7a0903ddac94ee33814ab4272a4b9c973a5f7b847c2344b1262e51a2e08",
+    "scores/mask-mini_all_labels.json": "dc97e33bb8e5a138a40210d901b439cc30fb50aab75bff76fd6524b1570282c2",
+    "scores/mask-mini_names.json": "b6e11af05d78f0e9c9220b81204c1ebb8c3c7925afb26259d8e10c3fe52a72c6",
+    "scores/mask-mini_official.json": "1cefedab4538ac28931e9c90232051cd1d5d464d63d5fec1e822638cb9637215",
+    "scores/mask-mini_secrets.json": "07a43c9172b14742fce06753b8dbf1cd009b329fa8d8cb2d8853e509346ef908",
+    "scores/mask-mini_with_names.json": "7fbfa0a1022ce87f3d8f1f9c4cbccaa0e1f9855e49ae08b702d777580e47bccd",
+    "scores/mask-reviewed-base_all_labels.json": "3ebf72e151bef88b7823492c143d4984fc22a89d63a379713b67f61a993677d9",
+    "scores/mask-reviewed-base_names.json": "0665d35488227557725ab7607b098783d41faa13fc9a8682e3510d7aeffaff85",
+    "scores/mask-reviewed-base_official.json": "1cefedab4538ac28931e9c90232051cd1d5d464d63d5fec1e822638cb9637215",
+    "scores/mask-reviewed-base_secrets.json": "07a43c9172b14742fce06753b8dbf1cd009b329fa8d8cb2d8853e509346ef908",
+    "scores/mask-reviewed-base_with_names.json": "e864834d1a4482360423511ed6be2a05bd3ef87ff1b91ae578bfbc8c9150b9c5",
+    "scores/safeprompt_all_labels.json": "d26cdf35c818519303ed089a89339bc947c7d0c98cf58692e069238da13c19ac",
+    "scores/safeprompt_names.json": "3288264fb5308173191e2aaf100daba1e30abb701cfc20d135d3e28da481bbab",
+    "scores/safeprompt_official.json": "6fca7fa029f5384c8f0580b8c6f919b2c9e1f45e73150085af41eefc502ec099",
+    "scores/safeprompt_secrets.json": "07a43c9172b14742fce06753b8dbf1cd009b329fa8d8cb2d8853e509346ef908",
+    "scores/safeprompt_with_names.json": "a5a11d597a8a92351cd23ec3c1e5031a5790bb4c5fbf4008b6630a773aca749e",
+    "training-overlap-check.json": "75efd5b00d9b37132e1d25559195bb7c56353c4834fe52c621524ecd932038ea"
+  },
+  "model_names": {
+    "Mask1": "mask-reviewed-base",
+    "Mask2": "mask-base-epoch2",
+    "MaskMini": "mask-mini"
+  }
+}

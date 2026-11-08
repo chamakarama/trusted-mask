@@ -1,0 +1,154 @@
+{
+  "track": "deberta-v3-large",
+  "source": {
+    "repository": "microsoft/deberta-v3-large",
+    "revision": "64a8c8eab3e352a784c658aef62be1662607476f"
+  },
+  "architecture_version": "section-relevance-v1",
+  "split_manifest_sha256": "8ae5c1e67a83bb14128e81fc2199867a37aa6ba9e602636a2b838cb7784fb660",
+  "train_records": 1236,
+  "optimizer_train_sha256": "723fa4f2d0f6d3e829aa8a8566813ea1c2ba93662e6eced80f47be81ab0f86ba",
+  "seed": 17,
+  "evaluation_status": "pending",
+  "smoke_only": false,
+  "architecture": {
+    "model_type": "deberta-v2",
+    "layers": 24,
+    "hidden_size": 1024,
+    "tokenizer_size": 128005,
+    "embedding_rows": 128100,
+    "marker_ids": [
+      128001,
+      128002,
+      128003,
+      128004
+    ],
+    "section_head_shapes": {
+      "0.weight": [
+        2048
+      ],
+      "0.bias": [
+        2048
+      ],
+      "1.weight": [
+        1024,
+        2048
+      ],
+      "1.bias": [
+        1024
+      ],
+      "4.weight": [
+        3,
+        1024
+      ],
+      "4.bias": [
+        3
+      ]
+    }
+  },
+  "source_commit": "f122d941e313c593e68d73a801ee77fa39cbc803",
+  "training": [
+    {
+      "epoch": 1,
+      "steps": 3228,
+      "loss": {
+        "tag": 0.3137389823568878,
+        "action": 0.46233924964957335,
+        "section": 0.4364019028696548
+      },
+      "objective_steps": {
+        "tag": 1076,
+        "action": 1076,
+        "section": 1076
+      },
+      "unique_ids_seen": {
+        "tag": 998,
+        "action": 1082,
+        "section": 1236
+      },
+      "elapsed_seconds": 2236.2668092250824,
+      "learning_rate": 1e-05,
+      "head_learning_rate": 0.0002,
+      "warmup_steps": 100,
+      "effective_batch_size": 8,
+      "microbatch": 4,
+      "precision": "bf16_autocast_fp32_parameters"
+    },
+    {
+      "epoch": 2,
+      "steps": 6423,
+      "loss": {
+        "tag": 0.016204751628237757,
+        "action": 0.24881885000326412,
+        "section": 0.19206018224011728
+      },
+      "objective_steps": {
+        "tag": 1065,
+        "action": 1065,
+        "section": 1065
+      },
+      "unique_ids_seen": {
+        "tag": 998,
+        "action": 1082,
+        "section": 1236
+      },
+      "elapsed_seconds": 4531.101202011108,
+      "learning_rate": 1e-05,
+      "head_learning_rate": 0.0002,
+      "warmup_steps": 100,
+      "effective_batch_size": 8,
+      "microbatch": 4,
+      "precision": "bf16_autocast_fp32_parameters"
+    }
+  ],
+  "bundle_schema": 1,
+  "release_validated": false,
+  "contract_version": "privacy-v1-pilot.1",
+  "policy_version": "consumer-v1-pilot.2",
+  "label_order": [
+    "PERSON",
+    "EMAIL",
+    "PHONE",
+    "ADDRESS",
+    "USERNAME",
+    "ACCOUNT_ID",
+    "NATIONAL_ID",
+    "PAYMENT_CARD",
+    "IBAN",
+    "SECRET",
+    "DATE",
+    "AGE",
+    "LOCATION",
+    "ORG",
+    "HEALTH",
+    "FINANCIAL",
+    "EMPLOYMENT",
+    "FAMILY"
+  ],
+  "action_order": [
+    "KEEP",
+    "DROP",
+    "ALIAS",
+    "ROLE",
+    "GENERALISE",
+    "PLACEHOLDER"
+  ],
+  "relevance_order": [
+    "essential",
+    "unnecessary",
+    "uncertain"
+  ],
+  "files": {
+    "added_tokens.json": "4c21226566b87dc860d9a73190823f6b19f24dc646c8cf350ac1d8fd6292a0d6",
+    "config.json": "4a830a2d7f535a5ecdff0f6c04cfd4b7d42f7ef66a53064052ec480ffe6db2f6",
+    "model.safetensors": "6b96dde84a44e4a517b83dfd3cc2313ddc0e295b3f1cdf981bb0938f9e595b93",
+    "runtime.json": "f89a0639d7c8f377e90bafa9e5e24cd2a63178d7e9b2808778c128d4c46baf6d",
+    "source.json": "a627beef370321b7c54cf3f044490bcf5930d2f2d0fdd5d0d67813f64f04097f",
+    "special_tokens_map.json": "956b83ade0a71ed659fd67d30a16a4f1dd2ad8baedad707cecc9a2a1f924da8c",
+    "spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+    "third_party/LICENSE": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+    "third_party/UPSTREAM_MODEL_CARD.md": "f6a88d8dba8986495c8274f7bc142c72919307982bb6b200a81fcf2acd509d17",
+    "tokenizer.json": "002c22f589cb3156047bfc52a943a95bb89c50c66b7c39cdc8de07f250b2887e",
+    "tokenizer_config.json": "393953835c390658ea1173e0f879e602a60c49809c73b7f7d1aa814804a4dfac"
+  }
+}

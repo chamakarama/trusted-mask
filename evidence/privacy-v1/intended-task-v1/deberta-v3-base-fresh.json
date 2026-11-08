@@ -1,0 +1,4133 @@
+{
+  "summaries": [
+    {
+      "records": 6,
+      "unsupported": 0,
+      "direct_targets": 12,
+      "direct_protected": 12,
+      "section_targets": 4,
+      "sections_removed": 0,
+      "facts": 18,
+      "facts_retained": 18,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 6,
+      "alias_edits": 6,
+      "model": "deberta-v3-base",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 6,
+      "unsupported": 0,
+      "direct_targets": 12,
+      "direct_protected": 12,
+      "section_targets": 4,
+      "sections_removed": 0,
+      "facts": 18,
+      "facts_retained": 18,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 6,
+      "alias_edits": 6,
+      "model": "deberta-v3-base",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 6,
+      "unsupported": 0,
+      "direct_targets": 12,
+      "direct_protected": 12,
+      "section_targets": 4,
+      "sections_removed": 0,
+      "facts": 18,
+      "facts_retained": 18,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 6,
+      "alias_edits": 6,
+      "model": "deberta-v3-base",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 6,
+      "unsupported": 0,
+      "direct_targets": 12,
+      "direct_protected": 12,
+      "section_targets": 4,
+      "sections_removed": 0,
+      "facts": 18,
+      "facts_retained": 18,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 6,
+      "alias_edits": 6,
+      "model": "deberta-v3-base",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 6,
+      "unsupported": 0,
+      "direct_targets": 12,
+      "direct_protected": 12,
+      "section_targets": 4,
+      "sections_removed": 0,
+      "facts": 18,
+      "facts_retained": 18,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 6,
+      "alias_edits": 6,
+      "model": "deberta-v3-base",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_outputs_different_from_explicit": 0
+    }
+  ],
+  "elapsed_seconds": 5.961,
+  "records": [
+    {
+      "id": "fresh-rehab-0",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+      "supplied_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 73,
+              "total_characters": 73,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.998802115036423,
+                "relevance": {
+                  "essential": 0.9979089498519897,
+                  "unnecessary": 0.0012984569184482098,
+                  "uncertain": 0.0007926445105113089
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988983409107182,
+                "relevance": {
+                  "essential": 0.9975820779800415,
+                  "unnecessary": 0.0016461885534226894,
+                  "uncertain": 0.0007716891705058515
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-0",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+      "supplied_task": "Help me with this information.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9986748164317417,
+                "relevance": {
+                  "essential": 0.9960493445396423,
+                  "unnecessary": 0.0019994911272078753,
+                  "uncertain": 0.0019511948339641094
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987196851415158,
+                "relevance": {
+                  "essential": 0.9946078062057495,
+                  "unnecessary": 0.0029285955242812634,
+                  "uncertain": 0.0024635258596390486
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-0",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+      "supplied_task": "",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987899577243189,
+                "relevance": {
+                  "essential": 0.9978489875793457,
+                  "unnecessary": 0.0013205010909587145,
+                  "uncertain": 0.0008304895018227398
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988971946211024,
+                "relevance": {
+                  "essential": 0.9974440336227417,
+                  "unnecessary": 0.0017249692464247346,
+                  "uncertain": 0.0008310261182487011
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-0",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+      "supplied_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 56,
+                "end": 81,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 215,
+              "total_characters": 215,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987906997829192,
+                "relevance": {
+                  "essential": 0.9976239800453186,
+                  "unnecessary": 0.0015352815389633179,
+                  "uncertain": 0.0008406622218899429
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988424463297427,
+                "relevance": {
+                  "essential": 0.9971862435340881,
+                  "unnecessary": 0.0019364788895472884,
+                  "uncertain": 0.0008773451554588974
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-0",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_task": "Draft a shoulder progress note. Remove the unrelated counselling history.",
+      "supplied_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 228,
+                "end": 238,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 247,
+                "end": 273,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              },
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 56,
+                "end": 81,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 698,
+                "end": 699,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 699,
+              "total_characters": 699,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988706211361066,
+                "relevance": {
+                  "essential": 0.9971717000007629,
+                  "unnecessary": 0.001955136889591813,
+                  "uncertain": 0.0008732529240660369
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988990988877717,
+                "relevance": {
+                  "essential": 0.9964313507080078,
+                  "unnecessary": 0.0026609653141349554,
+                  "uncertain": 0.0009076538844965398
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-1",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_task": "Summarise both the shoulder symptoms and the past counselling history.",
+      "supplied_task": "Summarise both the shoulder symptoms and the past counselling history.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Summarise both the shoulder symptoms and the past counselling history.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [
+              {
+                "start": 0,
+                "end": 69,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 70,
+              "total_characters": 70,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.998829878830366,
+                "relevance": {
+                  "essential": 0.9979333877563477,
+                  "unnecessary": 0.0013185219140723348,
+                  "uncertain": 0.0007482101791538298
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9989046656573534,
+                "relevance": {
+                  "essential": 0.9976118803024292,
+                  "unnecessary": 0.0016232287744060159,
+                  "uncertain": 0.0007649327162653208
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-1",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_task": "Summarise both the shoulder symptoms and the past counselling history.",
+      "supplied_task": "Help me with this information.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9986748164317417,
+                "relevance": {
+                  "essential": 0.9960493445396423,
+                  "unnecessary": 0.0019994911272078753,
+                  "uncertain": 0.0019511948339641094
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987196851415158,
+                "relevance": {
+                  "essential": 0.9946078062057495,
+                  "unnecessary": 0.0029285955242812634,
+                  "uncertain": 0.0024635258596390486
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-1",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_task": "Summarise both the shoulder symptoms and the past counselling history.",
+      "supplied_task": "",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987899577243189,
+                "relevance": {
+                  "essential": 0.9978489875793457,
+                  "unnecessary": 0.0013205010909587145,
+                  "uncertain": 0.0008304895018227398
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988971946211024,
+                "relevance": {
+                  "essential": 0.9974440336227417,
+                  "unnecessary": 0.0017249692464247346,
+                  "uncertain": 0.0008310261182487011
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-1",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_task": "Summarise both the shoulder symptoms and the past counselling history.",
+      "supplied_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 56,
+                "end": 81,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 215,
+              "total_characters": 215,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987906997829192,
+                "relevance": {
+                  "essential": 0.9976239800453186,
+                  "unnecessary": 0.0015352815389633179,
+                  "uncertain": 0.0008406622218899429
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988424463297427,
+                "relevance": {
+                  "essential": 0.9971862435340881,
+                  "unnecessary": 0.0019364788895472884,
+                  "uncertain": 0.0008773451554588974
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-rehab-1",
+      "family_id": "fresh-rehab",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_task": "Summarise both the shoulder symptoms and the past counselling history.",
+      "supplied_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is Nadia Vale. Email: nadia.vale@example.invalid. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 228,
+            "end": 238,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 247,
+            "end": 273,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 134,
+            "end": 214,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 699,
+          "total_characters": 699,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I would like help drafting a short progress note for my physiotherapy appointment, using only the current shoulder information below. Please preserve the uncertainty and do not infer a diagnosis from a few symptoms.\n\nMy name is [PERSON_1]. Email: [EMAIL]. Current issue: My right shoulder aches after lifting grocery bags, but the pain settles when I rest. I can reach a low shelf comfortably and have not noticed numbness. The exercises started five days ago, so it is too early to judge whether they help.\n\nUnrelated history: Last winter I discussed recurring nightmares with a counsellor. Those appointments ended months ago and there is no current treatment plan in this note.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 56,
+            "end": 81,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 698,
+            "end": 699,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 228,
+                "end": 238,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 247,
+                "end": 273,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              },
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 56,
+                "end": 81,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 698,
+                "end": 699,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 699,
+              "total_characters": 699,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 134,
+            "end": 214,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 134,
+                "end": 214,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988706211361066,
+                "relevance": {
+                  "essential": 0.9971717000007629,
+                  "unnecessary": 0.001955136889591813,
+                  "uncertain": 0.0008732529240660369
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          },
+          {
+            "start": 275,
+            "end": 374,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 275,
+                "end": 374,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9988990988877717,
+                "relevance": {
+                  "essential": 0.9964313507080078,
+                  "unnecessary": 0.0026609653141349554,
+                  "uncertain": 0.0009076538844965398
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-0",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+      "supplied_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 75,
+              "total_characters": 75,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-0",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+      "supplied_task": "Help me with this information.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-0",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+      "supplied_task": "",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-0",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+      "supplied_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 289,
+              "total_characters": 289,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-0",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_task": "Compare the monthly travel expenses only. Remove the unrelated health note.",
+      "supplied_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 307,
+                "end": 318,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 327,
+                "end": 354,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 400,
+                "end": 408,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 467,
+                "end": 472,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 566,
+                "end": 577,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 579,
+                "end": 722,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 723,
+              "total_characters": 723,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-1",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+      "supplied_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 25,
+                "end": 34,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 90,
+              "total_characters": 90,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-1",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+      "supplied_task": "Help me with this information.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-1",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+      "supplied_task": "",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-1",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+      "supplied_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 289,
+              "total_characters": 289,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-budget-1",
+      "family_id": "fresh-budget",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_task": "Prepare a summary of the migraines for an appointment. Remove the unrelated travel budget.",
+      "supplied_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: Julian Reed. Email: julian.reed@example.invalid.\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 307,
+            "end": 318,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 327,
+            "end": 354,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 723,
+          "total_characters": 723,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Please help me prepare a clear comparison for our household planning meeting. I copied two different topics into this message so that you can use the intended purpose to decide what belongs in the answer. Do not treat estimates as confirmed bills or assume that an omitted expense is zero.\n\nAccount holder: [PERSON_1]. Email: [EMAIL].\n\nMonthly travel budget: The rail pass costs 84 euros per month and occasional bicycle repairs average about 16 euros per month. The repairs vary and the average comes from only three months of notes.\n\nPersonal health note: I have been tracking recurring migraines after long shifts. I have not established what causes them, and a routine appointment is still pending.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 400,
+            "end": 408,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 467,
+            "end": 472,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 566,
+            "end": 577,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 579,
+            "end": 722,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 307,
+                "end": 318,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 327,
+                "end": 354,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 400,
+                "end": 408,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 467,
+                "end": 472,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 566,
+                "end": 577,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 579,
+                "end": 722,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 723,
+              "total_characters": 723,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-0",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_task": "Write a workshop logistics update; remove the unrelated private family note.",
+      "supplied_task": "Write a workshop logistics update; remove the unrelated private family note.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 4,
+        "facts_retained": 4,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Write a workshop logistics update; remove the unrelated private family note.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 76,
+              "total_characters": 76,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-0",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_task": "Write a workshop logistics update; remove the unrelated private family note.",
+      "supplied_task": "Help me with this information.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 4,
+        "facts_retained": 4,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-0",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_task": "Write a workshop logistics update; remove the unrelated private family note.",
+      "supplied_task": "",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 4,
+        "facts_retained": 4,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-0",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_task": "Write a workshop logistics update; remove the unrelated private family note.",
+      "supplied_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 4,
+        "facts_retained": 4,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 353,
+              "total_characters": 353,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-0",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_task": "Write a workshop logistics update; remove the unrelated private family note.",
+      "supplied_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 4,
+        "facts_retained": 4,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 368,
+                "end": 378,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 387,
+                "end": 413,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 684,
+                "end": 723,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 790,
+              "total_characters": 790,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-1",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "explicit",
+      "source_task": "Summarise the family situation only; the workshop details are not needed.",
+      "supplied_task": "Summarise the family situation only; the workshop details are not needed.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 2,
+        "facts_retained": 2,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Summarise the family situation only; the workshop details are not needed.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 73,
+              "total_characters": 73,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-1",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "vague",
+      "source_task": "Summarise the family situation only; the workshop details are not needed.",
+      "supplied_task": "Help me with this information.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 2,
+        "facts_retained": 2,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-1",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "empty_engine_task",
+      "source_task": "Summarise the family situation only; the workshop details are not needed.",
+      "supplied_task": "",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 2,
+        "facts_retained": 2,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-1",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "ui_first_line",
+      "source_task": "Summarise the family situation only; the workshop details are not needed.",
+      "supplied_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 2,
+        "facts_retained": 2,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 353,
+              "total_characters": 353,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "fresh-workshop-1",
+      "family_id": "fresh-workshop",
+      "cohort": "fresh",
+      "condition": "web_message_only",
+      "source_task": "Summarise the family situation only; the workshop details are not needed.",
+      "supplied_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: Keira Moss. Email: keira.moss@example.invalid. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 2,
+        "direct_protected": 2,
+        "section_targets": 0,
+        "sections_removed": 0,
+        "facts": 2,
+        "facts_retained": 2,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 368,
+            "end": 378,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 387,
+            "end": 413,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 790,
+          "total_characters": 790,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "I am assembling a practical update for a volunteer workshop and want the useful operational details to remain readable. Some personal information was pasted from a separate conversation, so please keep the answer focused on the intended use. Avoid turning tentative arrangements into promises or assigning responsibility that the notes do not establish.\n\nCoordinator: [PERSON_1]. Email: [EMAIL]. The workshop has twelve confirmed participants and room for four more. Two borrowed sewing machines have not arrived yet. We can begin with hand stitching if the delivery is late, but the organiser still needs to confirm that fallback.\n\nPrivate family note: My brother is going through a difficult separation. He asked me not to discuss the situation with the workshop group.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 684,
+            "end": 723,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 368,
+                "end": 378,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 387,
+                "end": 413,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 684,
+                "end": 723,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 790,
+              "total_characters": 790,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    }
+  ]
+}

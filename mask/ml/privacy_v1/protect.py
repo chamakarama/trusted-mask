@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 from .bundle import load_model
+from .sections import SECTION_MODES
 from .engine import MAX_CONTEXT_CHARS, MAX_TEXT_CHARS, Protector
 from .tables import UnsupportedFile, protect_table, publish_bytes, read_bounded
 
@@ -15,13 +16,14 @@ def main():
     parser.add_argument("--task-file", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--table", action="store_true")
+    parser.add_argument("--section-mode", choices=("legacy", *SECTION_MODES), default="legacy")
     args = parser.parse_args()
     try:
         # Byte and character limits are both enforced, preserving original line endings.
         task = read_bounded(args.task_file, MAX_CONTEXT_CHARS * 4 + 3).decode("utf-8-sig")
         if len(task) > MAX_CONTEXT_CHARS:
             raise UnsupportedFile("task_size_limit")
-        engine = Protector(load_model(args.model) if args.model else None)
+        engine = Protector(load_model(args.model) if args.model else None, section_mode=args.section_mode)
         if args.table:
             result = protect_table(engine, args.input, args.output, task)
             print(json.dumps(result, ensure_ascii=False))

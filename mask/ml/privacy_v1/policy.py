@@ -23,9 +23,29 @@ class Aliases:
         self._values = {}
         self._reserved = reserved_text
         self._counters = {}
+        self._person_links = {}
+
+    def register_people(self, values):
+        """Link short forms only when exactly one detected full name supports them.
+
+        No gold identity IDs or unsourced name guesses enter this resolver.
+        Ambiguous shared first/surnames keep their own separate alias.
+        """
+        full = {v for v in values if len(v.split()) >= 2}
+        candidates = {}
+        for value in full:
+            for short in (value.split()[0], value.split()[-1]):
+                candidates.setdefault(short, set()).add(value)
+        for value in full:
+            self._person_links[value] = value
+        for short, matches in candidates.items():
+            self._person_links[short] = next(iter(matches)) if len(matches) == 1 else short
+        return {short:next(iter(matches)) for short,matches in candidates.items() if len(matches)==1}
 
     def get(self, label: str, value: str, entity_id=None) -> str:
         # Exact matching avoids silently merging distinct case-sensitive account identities.
+        if label == 'PERSON' and entity_id is None:
+            value = self._person_links.get(value, value)
         # Email addresses are matched without case: Anna@Example.org and anna@example.org are one mailbox.
         if label == "EMAIL":
             value = value.casefold()

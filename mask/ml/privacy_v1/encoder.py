@@ -14,48 +14,104 @@ LIMIT = 512
 
 
 class Network(nn.Module):
-    def __init__(self, backbone):
+    def __init__(self, backbone, section_head=False):
         super().__init__()
         self.backbone = backbone
         width = backbone.config.hidden_size
         self.tag = nn.Linear(width, len(TAGS))
         self.action = nn.Linear(width, len(ACTIONS))
         self.relevance = nn.Linear(width, len(RELEVANCE))
+        if section_head:
+            self.section = nn.Sequential(nn.LayerNorm(width * 2), nn.Linear(width * 2, width),
+                                         nn.GELU(), nn.Dropout(.1), nn.Linear(width, len(RELEVANCE)))
 
     def forward(self, batch, mode):
+        batch = dict(batch)
+        section_mask = batch.pop('section_mask', None)
         hidden = self.backbone(**batch).last_hidden_state
+        if mode == 'section':
+            if section_mask is None:
+                raise ValueError('Section inference requires exact marked-unit mask')
+            weights = section_mask.unsqueeze(-1).to(hidden.dtype)
+            pooled = (hidden * weights).sum(1) / weights.sum(1).clamp_min(1)
+            return self.section(torch.cat((hidden[:, 0], pooled), -1))
         return self.tag(hidden) if mode == "tag" else (self.action(hidden[:, 0]), self.relevance(hidden[:, 0]))
 
 
 class EncoderModel:
     model_id = "encoder-b-pilot"
 
-    def __init__(self, net, tokenizer, source, device="cpu"):
+    def __init__(self, net, tokenizer, source, device="cpu", runtime=None):
         self.net, self.tokenizer, self.source = net.to(device), tokenizer, source
         self.device = device
-        self.model_id = "deberta-v3-base" if source.get("repository") == "microsoft/deberta-v3-base" else "encoder-b-pilot"
+        repository = source.get('repository', '')
+        self.model_id = repository.split('/')[-1] if repository.startswith('microsoft/deberta-v3-') else 'encoder-b-pilot'
+        self.runtime = runtime or {}
+        self.default_section_mode = self.runtime.get('section_mode', 'legacy')
+        self.entity_semantics = self.runtime.get('entity_semantics', 'legacy')
+        if self.runtime:
+            if self.runtime.get('architecture_version') != 'section-relevance-v1' or not hasattr(net, 'section'):
+                raise ValueError('Unsupported section architecture')
+            self.model_id += '-section-v1'
         if not tokenizer.is_fast:
             raise ValueError("Fast tokenizer required for lossless offsets")
         marker_ids = tokenizer.convert_tokens_to_ids(["[unused0]", "[unused1]"])
         if len(set(marker_ids)) != 2 or tokenizer.unk_token_id in marker_ids:
             raise ValueError("Span markers must be distinct known tokens")
+        if self.runtime:
+            all_markers = tokenizer.convert_tokens_to_ids(['[unused0]','[unused1]','[unused2]','[unused3]'])
+            if len(set(all_markers)) != 4 or tokenizer.unk_token_id in all_markers:
+                raise ValueError('All entity/section markers must be distinct known tokens')
+            if self.runtime.get('section_labels') != list(RELEVANCE):
+                raise ValueError('Section label order mismatch')
         if max(tokenizer.get_vocab().values()) >= net.backbone.get_input_embeddings().num_embeddings:
             raise ValueError("Tokenizer exceeds backbone embedding size")
         self.net.eval()
 
     @classmethod
-    def from_pretrained(cls, directory, device="cpu"):
+    def from_pretrained(cls, directory, device="cpu", runtime=None):
         torch.manual_seed(17)
         directory = Path(directory)
         source = json.loads((directory / "source.json").read_text())
         tokenizer = AutoTokenizer.from_pretrained(directory, local_files_only=True, trust_remote_code=False)
         if not tokenizer.is_fast:
             raise ValueError("Fast tokenizer required for lossless offsets")
-        tokenizer.add_special_tokens({"additional_special_tokens": ["[unused0]", "[unused1]"]})
+        markers = ['[unused0]', '[unused1]'] + (['[unused2]', '[unused3]'] if runtime else [])
+        tokenizer.add_special_tokens({"additional_special_tokens": markers})
         backbone = AutoModel.from_pretrained(directory, local_files_only=True, trust_remote_code=False)
         if len(tokenizer) > backbone.get_input_embeddings().num_embeddings:
             backbone.resize_token_embeddings(len(tokenizer), mean_resizing=False)
-        return cls(Network(backbone), tokenizer, source, device)
+        return cls(Network(backbone, section_head=bool(runtime)), tokenizer, source, device, runtime)
+
+    def section_input(self, text, start, end, task, context=''):
+        if not 0 <= start < end <= len(text):
+            raise ValueError('Invalid section offsets')
+        source = text[:start] + ' [unused2] ' + text[start:end] + ' [unused3] ' + text[end:]
+        encoded = self.tokenizer('Intended task: ' + task + '\nContext: ' + context, source)
+        ids = encoded['input_ids']
+        a, b = self.tokenizer.convert_tokens_to_ids(['[unused2]', '[unused3]'])
+        if len(ids) > LIMIT or ids.count(a) != 1 or ids.count(b) != 1:
+            raise ValueError('Section task/source exceeds window or contains ambiguous markers')
+        left, right = ids.index(a), ids.index(b)
+        if left >= right - 1:
+            raise ValueError('Empty or reversed section markers')
+        encoded['section_mask'] = [int(left < i < right) for i in range(len(ids))]
+        return encoded
+
+    @torch.inference_mode()
+    def predict_sections(self, text, units, task, context=''):
+        if not hasattr(self.net, 'section'):
+            raise ValueError('Bundle has no dedicated section head')
+        results = []
+        for offset in range(0, len(units), 8):
+            items = [self.section_input(text, a, b, task, context) for a,b in units[offset:offset+8]]
+            masks = [r.pop('section_mask') for r in items]
+            batch = self.tokenizer.pad(items, return_tensors='pt')
+            width = batch['input_ids'].shape[1]
+            batch['section_mask'] = torch.tensor([m + [0]*(width-len(m)) for m in masks])
+            values = self.net({k:v.to(self.device) for k,v in batch.items()}, 'section').softmax(-1).cpu().tolist()
+            results.extend(dict(zip(RELEVANCE, row, strict=True)) for row in values)
+        return results
 
     @staticmethod
     def _offset(text, a, b):
@@ -182,12 +238,15 @@ class EncoderModel:
         self.tokenizer.save_pretrained(directory)
         save_file({k: v.detach().cpu().contiguous() for k, v in self.net.state_dict().items()}, directory / "model.safetensors")
         (directory / "source.json").write_text(json.dumps(self.source, indent=2))
+        if self.runtime:
+            (directory / 'runtime.json').write_text(json.dumps(self.runtime, indent=2) + '\n')
 
     @classmethod
     def load(cls, directory, device="cpu"):
         directory = Path(directory)
         config = AutoConfig.from_pretrained(directory, local_files_only=True, trust_remote_code=False)
-        net = Network(AutoModel.from_config(config, trust_remote_code=False))
+        runtime = json.loads((directory/'runtime.json').read_text()) if (directory/'runtime.json').exists() else None
+        net = Network(AutoModel.from_config(config, trust_remote_code=False), section_head=bool(runtime))
         net.load_state_dict(load_file(directory / "model.safetensors"), strict=True)
         tokenizer = AutoTokenizer.from_pretrained(directory, local_files_only=True, trust_remote_code=False)
-        return cls(net, tokenizer, json.loads((directory / "source.json").read_text()), device)
+        return cls(net, tokenizer, json.loads((directory / "source.json").read_text()), device, runtime)

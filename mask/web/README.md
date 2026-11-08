@@ -18,9 +18,23 @@ Provider failures appear inside the reply box and allow retry with the same send
 request and ignores obsolete responses. Reduced-motion preferences skip animations and smooth scrolling. The initial
 page has no headings, context field, mode selector, or other controls.
 
+## Setup (once)
+
+Requires Python 3.12 and Git LFS. From the repository root:
+
+```sh
+git lfs install
+git lfs pull --include="mask/ml/privacy_v1/artifacts/**,mask/ml/privacy_v1/bundled_weights/**"
+python3.12 -m venv mask/ml/privacy_v1/.venv
+mask/ml/privacy_v1/.venv/bin/python -m pip install -r mask/ml/privacy_v1/requirements.lock anthropic
+mask/ml/privacy_v1/.venv/bin/python -m mask.ml.privacy_v1.restore_bundles
+```
+
+With only these steps the server loads the encoder B pilot (MiniLM). To run the reviewed DeBERTa (Mask1), extract it as described in [training-2026-11-07](../ml/privacy_v1/bundled_weights/training-2026-11-07/README.md); the server then loads it by default. Any bundle can be chosen with `--model`.
+
 ## Run
 
-Install the official provider SDK in your Python environment (`python -m pip install anthropic`). From the repository root, with a key in your environment (never commit it):
+From the repository root, with a key in your environment (never commit it):
 
 ```sh
 export MASK_ANTHROPIC_KEY_FILE=mask/web/.env.local  # ignored file with ANTHROPIC_API_KEY=...
@@ -29,7 +43,7 @@ mask/ml/privacy_v1/.venv/bin/python -m mask.web.server
 ```
 
 Windows (Git Bash) uses `mask/ml/privacy_v1/.venv/Scripts/python.exe`. Open http://127.0.0.1:8787 (use `--port 8788` if
-8787 is taken, e.g. by the RouteSafe assistant). The startup line says which cloud AI is in use. The local model loads once at startup.
+8787 is taken). The startup line says which cloud AI is in use. The local model loads once at startup.
 
 Without a key the page works up to review and shows **API not configured**. For a rehearsal with no AI at all:
 
@@ -107,6 +121,6 @@ mask/ml/privacy_v1/.venv/bin/python -m pytest mask/web/tests -q
 node --test mask/web/tests/test_frontend.mjs
 ```
 
-The frontend tests use the existing app's jsdom (`cd mask && npm ci`). The table demo in `mask/src/` is unchanged.
+The frontend tests need jsdom: run `npm install --prefix mask` once first.
 
 The frontend has no stored conversation history, localStorage, telemetry, or automatic cloud sends. Both the source and provider reply are always rendered as text. Animation wrappers use text nodes only, including removed text. The privacy model is unchanged and still requires review. The UI tests cover split UTF-8/SSE, stale replies, cancellation, raw-versus-restored text, HTML-like names, incomplete streams, and missing provider configuration.

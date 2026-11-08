@@ -1,6 +1,8 @@
 # Mask three-candidate training campaign
 
-Base: `fc94f9f1f3000f22e94d07fc9990c35e4a877973`. Dedicated branch: `codex/mask-training-2026-11-07`.
+> Data availability: the training and development data are not published in this repository. The commands below record what was run; the dataset hash files identify the exact data.
+
+Base: `fc94f9f1f3000f22e94d07fc9990c35e4a877973`.
 
 Only `mask/ml/privacy_v1/data/training-2026-11-07/train.jsonl` (516 records) is used for fitting. Its companion `dev.jsonl` (50 records) is evaluation-only. `dataset.json` records exact hashes, enforced by the experiment runner alongside cross-split validation. No authored copies, shards or old pilot are training inputs.
 

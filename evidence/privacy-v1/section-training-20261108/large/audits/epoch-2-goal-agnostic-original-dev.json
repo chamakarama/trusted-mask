@@ -1,0 +1,95 @@
+{
+  "counts": {
+    "placeholder_targets": 13,
+    "exact_placeholder_type_correct": 12,
+    "essential_nondirect_placeholder_targets": 4,
+    "essential_nondirect_placeholder_correct": 3,
+    "predicted_drop_regions": 2,
+    "drop_regions_within_gold_drop": 1,
+    "drop_regions_outside_gold_drop": 1
+  },
+  "failures": [
+    {
+      "id": "4f59e31d4a9e4e1cad4146f077417b7d:invoice-v2",
+      "task": "Explain what an external assistant cannot calculate about the rebate without disclosing its value.",
+      "text": "Our coordinator, Mina Vosk, confirmed that the supplier sent the replacement parts. The delivery is due next week, although the carrier has not provided a tracking update. Ask the supplier to confirm the dispatch date and whether the parts ship together. Do not promise a date to our customer until the carrier responds.\n\nThe confidential supplier rebate is 8,450 euros for this order.",
+      "protected_text": "Our coordinator, [PERSON_1], confirmed that the supplier sent the replacement parts. The delivery is due next week, although the carrier has not provided a tracking update. Ask the supplier to confirm the dispatch date and whether the parts ship together. Do not promise a date to our customer until the carrier responds.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "The confidential supplier rebate is",
+          "overlapping_edits": [
+            {
+              "start": 320,
+              "end": 385,
+              "label": "FINANCIAL",
+              "action": "DROP",
+              "replacement": "",
+              "reason": "learned_unnecessary_clause",
+              "score": 0.9610220789909363
+            }
+          ]
+        },
+        {
+          "quote": "for this order.",
+          "overlapping_edits": [
+            {
+              "start": 320,
+              "end": 385,
+              "label": "FINANCIAL",
+              "action": "DROP",
+              "replacement": "",
+              "reason": "learned_unnecessary_clause",
+              "score": 0.9610220789909363
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [
+        {
+          "start": 322,
+          "end": 384,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        }
+      ],
+      "placeholder_errors": [
+        {
+          "quote": "8,450 euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "e2",
+            "quote": "8,450 euros",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The unapproved supplier rebate is confidential commercial information; its removal prevents exact rebate calculations.",
+            "start": 358,
+            "end": 369
+          },
+          "overlapping_edits": [
+            {
+              "start": 320,
+              "end": 385,
+              "label": "FINANCIAL",
+              "action": "DROP",
+              "replacement": "",
+              "reason": "learned_unnecessary_clause",
+              "score": 0.9610220789909363
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 358,
+          "end": 369,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    }
+  ],
+  "scope": "Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage. Drop-region precision requires every removed non-whitespace/non-delimiter character to lie in a gold DROP span; whole-section recall is scored separately in the evaluation report."
+}

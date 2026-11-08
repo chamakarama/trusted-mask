@@ -1,0 +1,1726 @@
+{
+  "evaluation_role": "fresh_agent_authored_diagnostics_not_training_or_selection",
+  "outputs": [
+    {
+      "id": "fresh-delivery",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "Draft a factual delivery complaint asking the seller to investigate the missing desk. The medical notes are unrelated to this request.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-large-section-v1",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 389,
+            "end": 622,
+            "label": "HEALTH",
+            "action": "DROP",
+            "replacement": "",
+            "reason": "learned_unnecessary_clause",
+            "score": 0.9999886751174927
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Draft a factual delivery complaint asking the seller to investigate the missing desk. The medical notes are unrelated to this request.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 134,
+              "total_characters": 134,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "91ae1c54330823dce51ee8f1e6e39208929caaeb29362293805c5ceffaa394bb"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 74,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999655485153198,
+              "unnecessary": 7.197265858849278e-06,
+              "uncertain": 2.734744339250028e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 76,
+            "end": 170,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999828338623047,
+              "unnecessary": 3.8006185150152305e-06,
+              "uncertain": 1.3318830497155432e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 172,
+            "end": 276,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999912977218628,
+              "unnecessary": 2.3915808924357407e-06,
+              "uncertain": 6.2979484027891885e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 278,
+            "end": 317,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999868869781494,
+              "unnecessary": 4.297262876207242e-06,
+              "uncertain": 8.829250873532146e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 319,
+            "end": 386,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9998761415481567,
+              "unnecessary": 5.3052903240313753e-05,
+              "uncertain": 7.076955807860941e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 9.873835551843513e-06,
+              "unnecessary": 0.9999886751174927,
+              "uncertain": 1.4333617173178936e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [
+              {
+                "start": 389,
+                "end": 438,
+                "label": "HEALTH",
+                "action": "DROP",
+                "relevance": {
+                  "essential": 0.0002527048345655203,
+                  "unnecessary": 0.9995982050895691,
+                  "uncertain": 0.00014908889716025442
+                }
+              }
+            ],
+            "edit_start": 389,
+            "edit_end": 439,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 439,
+            "end": 514,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 1.2810222870029975e-05,
+              "unnecessary": 0.9999850988388062,
+              "uncertain": 2.1075325093988795e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [
+              {
+                "start": 439,
+                "end": 515,
+                "label": "HEALTH",
+                "action": "DROP",
+                "relevance": {
+                  "essential": 0.00022979990171734244,
+                  "unnecessary": 0.9996204376220703,
+                  "uncertain": 0.00014979670231696218
+                }
+              }
+            ],
+            "edit_start": 439,
+            "edit_end": 516,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 516,
+            "end": 619,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 1.0436365300847683e-05,
+              "unnecessary": 0.9999881982803345,
+              "uncertain": 1.317703890890698e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [
+              {
+                "start": 516,
+                "end": 620,
+                "label": "HEALTH",
+                "action": "DROP",
+                "relevance": {
+                  "essential": 0.00016807827341835946,
+                  "unnecessary": 0.9996951818466187,
+                  "uncertain": 0.0001368043158436194
+                }
+              }
+            ],
+            "edit_start": 516,
+            "edit_end": 622,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 622,
+            "end": 651,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999457597732544,
+              "unnecessary": 1.553269976284355e-05,
+              "uncertain": 3.874543108395301e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 653,
+            "end": 718,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.8170766234397888,
+              "unnecessary": 0.0004609657044056803,
+              "uncertain": 0.18246236443519592
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 720,
+            "end": 762,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999785423278809,
+              "unnecessary": 4.5818096623406745e-06,
+              "uncertain": 1.694182719802484e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]"
+        ],
+        [
+          "[PERSON_2]"
+        ]
+      ],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-clinician",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "Prepare a symptom timeline for a clinician. Preserve the absence of fever, the exertion limit and the uncertainty about the dust. Leave out the delivery dispute.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid [FINANCIAL], and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-large-section-v1",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "replacement": "[FINANCIAL]",
+            "reason": "value_substitution_independent_of_relevance",
+            "score": 0.986757479058683
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Prepare a symptom timeline for a clinician. Preserve the absence of fever, the exertion limit and the uncertainty about the dust. Leave out the delivery dispute.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 57,
+                "end": 73,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 79,
+                "end": 87,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 161,
+              "total_characters": 161,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "91ae1c54330823dce51ee8f1e6e39208929caaeb29362293805c5ceffaa394bb"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 74,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9996256828308105,
+              "unnecessary": 0.00010735078831203282,
+              "uncertain": 0.0002668939414434135
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 76,
+            "end": 170,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9852812886238098,
+              "unnecessary": 0.012981102801859379,
+              "uncertain": 0.001737607759423554
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 172,
+            "end": 276,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997014403343201,
+              "unnecessary": 0.00019811461970675737,
+              "uncertain": 0.00010041282075690106
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 278,
+            "end": 317,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997140765190125,
+              "unnecessary": 0.00018609447579365224,
+              "uncertain": 9.978812886402011e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 319,
+            "end": 386,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.6541849374771118,
+              "unnecessary": 0.3419371545314789,
+              "uncertain": 0.003877972951158881
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999951958656311,
+              "unnecessary": 2.092048634949606e-05,
+              "uncertain": 2.711071829253342e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 439,
+            "end": 514,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999910593032837,
+              "unnecessary": 3.6512763017526595e-06,
+              "uncertain": 5.292943569656927e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 516,
+            "end": 619,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999953508377075,
+              "unnecessary": 1.5320680404329323e-06,
+              "uncertain": 3.1556714930047747e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 622,
+            "end": 651,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999897480010986,
+              "unnecessary": 3.6691262721433304e-06,
+              "uncertain": 6.549325917148963e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 653,
+            "end": 718,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9257774949073792,
+              "unnecessary": 0.00026808856637217104,
+              "uncertain": 0.07395444810390472
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 720,
+            "end": 762,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999947547912598,
+              "unnecessary": 9.501379167886626e-07,
+              "uncertain": 4.268953034625156e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [
+        "I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday"
+      ],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]"
+        ],
+        [
+          "[PERSON_2]"
+        ]
+      ],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid [FINANCIAL], and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-vague",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "Can you help me make sense of this?",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-large-section-v1",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Can you help me make sense of this?",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 35,
+              "total_characters": 35,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "91ae1c54330823dce51ee8f1e6e39208929caaeb29362293805c5ceffaa394bb"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 74,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.8569474220275879,
+              "unnecessary": 1.535109731776174e-05,
+              "uncertain": 0.14303725957870483
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 76,
+            "end": 170,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9968107342720032,
+              "unnecessary": 4.931745024805423e-06,
+              "uncertain": 0.0031842275056988
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 172,
+            "end": 276,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9993791580200195,
+              "unnecessary": 2.8873212158941897e-06,
+              "uncertain": 0.0006179151823744178
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 278,
+            "end": 317,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9991470575332642,
+              "unnecessary": 4.300239652366145e-06,
+              "uncertain": 0.0008486534934490919
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 319,
+            "end": 386,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999396800994873,
+              "unnecessary": 6.149525233922759e-06,
+              "uncertain": 0.0005970459314994514
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.00927758775651455,
+              "unnecessary": 0.014237075112760067,
+              "uncertain": 0.9764853715896606
+            },
+            "raw_class": "uncertain",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 439,
+            "end": 514,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.014487999491393566,
+              "unnecessary": 0.0097220903262496,
+              "uncertain": 0.9757899045944214
+            },
+            "raw_class": "uncertain",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 516,
+            "end": 619,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.00530141731724143,
+              "unnecessary": 0.0035878880880773067,
+              "uncertain": 0.9911108016967773
+            },
+            "raw_class": "uncertain",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 622,
+            "end": 651,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9969289898872375,
+              "unnecessary": 4.222447842039401e-06,
+              "uncertain": 0.0030667155515402555
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 653,
+            "end": 718,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.00012715709453914315,
+              "unnecessary": 3.451226859851886e-08,
+              "uncertain": 0.9998728036880493
+            },
+            "raw_class": "uncertain",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 720,
+            "end": 762,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9974912405014038,
+              "unnecessary": 5.6926810430013575e-06,
+              "uncertain": 0.002503042807802558
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]"
+        ],
+        [
+          "[PERSON_2]"
+        ]
+      ],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-missing-task",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-large-section-v1",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "91ae1c54330823dce51ee8f1e6e39208929caaeb29362293805c5ceffaa394bb"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 74,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997519850730896,
+              "unnecessary": 2.5234501663362607e-05,
+              "uncertain": 0.00022275475203059614
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 76,
+            "end": 170,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9998481273651123,
+              "unnecessary": 2.013573976000771e-05,
+              "uncertain": 0.0001316834968747571
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 172,
+            "end": 276,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999220371246338,
+              "unnecessary": 1.2065427654306404e-05,
+              "uncertain": 6.593153375433758e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 278,
+            "end": 317,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9998774528503418,
+              "unnecessary": 2.1690928406314924e-05,
+              "uncertain": 0.00010089725401485339
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 319,
+            "end": 386,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997041821479797,
+              "unnecessary": 5.0248432671651244e-05,
+              "uncertain": 0.00024545611813664436
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 3.0854425858706236e-05,
+              "unnecessary": 0.9999638795852661,
+              "uncertain": 5.238530775386607e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 439,
+            "end": 514,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 5.288108150125481e-05,
+              "unnecessary": 0.9999376535415649,
+              "uncertain": 9.419752132089343e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 516,
+            "end": 619,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 3.7418703868752345e-05,
+              "unnecessary": 0.9999547004699707,
+              "uncertain": 7.832832125131972e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 622,
+            "end": 651,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997621178627014,
+              "unnecessary": 2.5519944756524637e-05,
+              "uncertain": 0.00021237324108369648
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 653,
+            "end": 718,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.35981833934783936,
+              "unnecessary": 0.00010863810166483745,
+              "uncertain": 0.6400730609893799
+            },
+            "raw_class": "uncertain",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          },
+          {
+            "start": 720,
+            "end": 762,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9993553757667542,
+              "unnecessary": 6.568524258909747e-05,
+              "uncertain": 0.0005789666320197284
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "missing_or_vague_task"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]"
+        ],
+        [
+          "[PERSON_2]"
+        ]
+      ],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_2] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_1] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-distinct-people",
+      "word_count": 140,
+      "text": "My colleague, Alex Marin, will prepare the warehouse count on Tuesday, while Alex Koskinen will review the totals on Wednesday. Alex Marin said the first delivery contains 24 sealed boxes, but two labels are unreadable, so those boxes must remain unchecked until the supplier confirms their contents. Alex Koskinen agreed that an unreadable label does not prove a box is missing.\n\nThe shared note then says that Alex will telephone the supplier. I cannot tell which colleague wrote that line, and I do not want the summary to invent an assignment. Both colleagues will attend the review, and Alex Marin will bring the original packing list. The team should approve the count only after the two labels are resolved. Please contact the coordinator at warehouse.team@example.invalid if a clarification is needed. Keep the distinction between unchecked boxes and missing boxes clear.",
+      "task": "Summarise the warehouse-count plan, preserving the unresolved assignment and the approval condition.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My colleague, [PERSON_1], will prepare the warehouse count on Tuesday, while [PERSON_2] will review the totals on Wednesday. [PERSON_1] said the first delivery contains 24 sealed boxes, but two labels are unreadable, so those boxes must remain unchecked until the supplier confirms their contents. [PERSON_2] agreed that an unreadable label does not prove a box is missing.\n\nThe shared note then says that [PERSON_3] will telephone the supplier. I cannot tell which colleague wrote that line, and I do not want the summary to invent an assignment. Both colleagues will attend the review, and [PERSON_1] will bring the original packing list. The team should approve the count only after the two labels are resolved. Please contact the coordinator at [EMAIL] if a clarification is needed. Keep the distinction between unchecked boxes and missing boxes clear.",
+        "model_version": "deberta-v3-large-section-v1",
+        "edits": [
+          {
+            "start": 14,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 77,
+            "end": 90,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 128,
+            "end": 138,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 301,
+            "end": 314,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 412,
+            "end": 416,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 592,
+            "end": 602,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 749,
+            "end": 779,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 879,
+          "total_characters": 879,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Summarise the warehouse-count plan, preserving the unresolved assignment and the approval condition.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 100,
+              "total_characters": 100,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "91ae1c54330823dce51ee8f1e6e39208929caaeb29362293805c5ceffaa394bb"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 126,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999929666519165,
+              "unnecessary": 2.9389095743681537e-06,
+              "uncertain": 4.037364760733908e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 128,
+            "end": 299,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999985694885254,
+              "unnecessary": 6.433733119592944e-07,
+              "uncertain": 8.289115385196055e-07
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 301,
+            "end": 378,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999972581863403,
+              "unnecessary": 1.32129844132578e-06,
+              "uncertain": 1.3842719681633753e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 381,
+            "end": 444,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999980926513672,
+              "unnecessary": 9.17251611554093e-07,
+              "uncertain": 1.0121146942765336e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 446,
+            "end": 546,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999979734420776,
+              "unnecessary": 8.217469940063893e-07,
+              "uncertain": 1.195704385281715e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 548,
+            "end": 639,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999997615814209,
+              "unnecessary": 1.1108905937362579e-06,
+              "uncertain": 1.2829780189349549e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 641,
+            "end": 713,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999998927116394,
+              "unnecessary": 4.1362810065947997e-07,
+              "uncertain": 7.12235134869843e-07
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 715,
+            "end": 808,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9998713731765747,
+              "unnecessary": 2.605148074508179e-05,
+              "uncertain": 0.00010246100282529369
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 810,
+            "end": 878,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999980926513672,
+              "unnecessary": 5.636372293338354e-07,
+              "uncertain": 1.284184349970019e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]"
+        ],
+        [
+          "[PERSON_2]"
+        ]
+      ],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My colleague, [PERSON_1], will prepare the warehouse count on Tuesday, while [PERSON_2] will review the totals on Wednesday. [PERSON_1] said the first delivery contains 24 sealed boxes, but two labels are unreadable, so those boxes must remain unchecked until the supplier confirms their contents. [PERSON_2] agreed that an unreadable label does not prove a box is missing.\n\nThe shared note then says that [PERSON_3] will telephone the supplier. I cannot tell which colleague wrote that line, and I do not want the summary to invent an assignment. Both colleagues will attend the review, and [PERSON_1] will bring the original packing list. The team should approve the count only after the two labels are resolved. Please contact the coordinator at [EMAIL] if a clarification is needed. Keep the distinction between unchecked boxes and missing boxes clear.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_3] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Alex Marin Alex Koskinen Alex [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-benign",
+      "word_count": 119,
+      "text": "Our reading club is planning three public sessions for next month. The first session will discuss a short story, the second will compare two poems, and the third will be an open discussion about choosing books. Each session has room for twenty participants, but the room has only sixteen chairs, so four additional chairs must be borrowed before registration opens. We have already reserved the room for the first two sessions. The third reservation is still pending, and it should not be described as confirmed. The organiser wants a clear summary of these practical points without invented dates, names, prices or promises. Please preserve the difference between capacity, available seating and confirmed reservations, and keep the pending decision visible.",
+      "task": "Rewrite these planning notes clearly without changing or omitting any facts.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Our reading club is planning three public sessions for next month. The first session will discuss a short story, the second will compare two poems, and the third will be an open discussion about choosing books. Each session has room for twenty participants, but the room has only sixteen chairs, so four additional chairs must be borrowed before registration opens. We have already reserved the room for the first two sessions. The third reservation is still pending, and it should not be described as confirmed. The organiser wants a clear summary of these practical points without invented dates, names, prices or promises. Please preserve the difference between capacity, available seating and confirmed reservations, and keep the pending decision visible.",
+        "model_version": "deberta-v3-large-section-v1",
+        "edits": [],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 759,
+          "total_characters": 759,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Rewrite these planning notes clearly without changing or omitting any facts.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 76,
+              "total_characters": 76,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "91ae1c54330823dce51ee8f1e6e39208929caaeb29362293805c5ceffaa394bb"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 65,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999920129776001,
+              "unnecessary": 2.1940620626992313e-06,
+              "uncertain": 5.806999979540706e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 67,
+            "end": 209,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999963045120239,
+              "unnecessary": 1.5113120070964214e-06,
+              "uncertain": 2.170146217395086e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 211,
+            "end": 364,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999970197677612,
+              "unnecessary": 1.3210700444687973e-06,
+              "uncertain": 1.6917689436013461e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 366,
+            "end": 426,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999972581863403,
+              "unnecessary": 1.2194553846711642e-06,
+              "uncertain": 1.603117993909109e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 428,
+            "end": 511,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999970197677612,
+              "unnecessary": 1.3684731356988777e-06,
+              "uncertain": 1.7257958688787767e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 513,
+            "end": 624,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999943971633911,
+              "unnecessary": 1.9972389964095782e-06,
+              "uncertain": 3.6140777410764713e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 626,
+            "end": 758,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999996542930603,
+              "unnecessary": 1.3285629165693535e-06,
+              "uncertain": 2.1014052435930353e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": true,
+      "no_edit": true,
+      "real_app_supported": true,
+      "real_app_protected_text": "Our reading club is planning three public sessions for next month. The first session will discuss a short story, the second will compare two poems, and the third will be an open discussion about choosing books. Each session has room for twenty participants, but the room has only sixteen chairs, so four additional chairs must be borrowed before registration opens. We have already reserved the room for the first two sessions. The third reservation is still pending, and it should not be described as confirmed. The organiser wants a clear summary of these practical points without invented dates, names, prices or promises. Please preserve the difference between capacity, available seating and confirmed reservations, and keep the pending decision visible.",
+      "local_mock_reply": " [PERSON_999] [EMAIL]",
+      "locally_restored_reply": " [PERSON_999] [EMAIL]"
+    }
+  ],
+  "counts": {
+    "cases": 6,
+    "identifier_misses": 0,
+    "lost_expected_facts": 0,
+    "missed_expected_sections": 1,
+    "inconsistent_person_groups": 0,
+    "erroneous_person_merges": 0
+  }
+}

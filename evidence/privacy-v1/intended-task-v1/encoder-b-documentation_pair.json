@@ -1,0 +1,1769 @@
+{
+  "summaries": [
+    {
+      "records": 2,
+      "unsupported": 0,
+      "direct_targets": 2,
+      "direct_protected": 2,
+      "section_targets": 3,
+      "sections_removed": 0,
+      "facts": 11,
+      "facts_retained": 11,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 2,
+      "alias_edits": 2,
+      "model": "encoder-b",
+      "cohort": "documentation_pair",
+      "condition": "explicit",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 2,
+      "unsupported": 0,
+      "direct_targets": 2,
+      "direct_protected": 2,
+      "section_targets": 3,
+      "sections_removed": 0,
+      "facts": 11,
+      "facts_retained": 11,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 2,
+      "alias_edits": 2,
+      "model": "encoder-b",
+      "cohort": "documentation_pair",
+      "condition": "vague",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 2,
+      "unsupported": 0,
+      "direct_targets": 2,
+      "direct_protected": 2,
+      "section_targets": 3,
+      "sections_removed": 0,
+      "facts": 11,
+      "facts_retained": 11,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 2,
+      "alias_edits": 2,
+      "model": "encoder-b",
+      "cohort": "documentation_pair",
+      "condition": "empty_engine_task",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 2,
+      "unsupported": 0,
+      "direct_targets": 2,
+      "direct_protected": 2,
+      "section_targets": 3,
+      "sections_removed": 0,
+      "facts": 11,
+      "facts_retained": 11,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 2,
+      "alias_edits": 2,
+      "model": "encoder-b",
+      "cohort": "documentation_pair",
+      "condition": "ui_first_line",
+      "source_outputs_different_from_explicit": 0
+    },
+    {
+      "records": 2,
+      "unsupported": 0,
+      "direct_targets": 2,
+      "direct_protected": 2,
+      "section_targets": 3,
+      "sections_removed": 0,
+      "facts": 11,
+      "facts_retained": 11,
+      "keep_characters_changed": 0,
+      "drop_edits": 0,
+      "placeholder_edits": 2,
+      "alias_edits": 2,
+      "model": "encoder-b",
+      "cohort": "documentation_pair",
+      "condition": "web_message_only",
+      "source_outputs_different_from_explicit": 0
+    }
+  ],
+  "elapsed_seconds": 0.481,
+  "records": [
+    {
+      "id": "11112222333344445555666677778888:fixture-manager",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "explicit",
+      "source_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+      "supplied_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 2,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 77,
+              "total_characters": 77,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9880239733759004,
+                "relevance": {
+                  "essential": 0.9791577458381653,
+                  "unnecessary": 0.010335567407310009,
+                  "uncertain": 0.010506661608815193
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-manager",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "vague",
+      "source_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+      "supplied_task": "Help me with this information.",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 2,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9878020934985401,
+                "relevance": {
+                  "essential": 0.9791098833084106,
+                  "unnecessary": 0.01022929698228836,
+                  "uncertain": 0.01066085509955883
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-manager",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "empty_engine_task",
+      "source_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+      "supplied_task": "",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 2,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9879809062263089,
+                "relevance": {
+                  "essential": 0.9794468879699707,
+                  "unnecessary": 0.009921969845890999,
+                  "uncertain": 0.010631212033331394
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-manager",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "ui_first_line",
+      "source_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+      "supplied_task": "Patient: Marta Lehto",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 2,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Patient: [PERSON_2]",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 9,
+                "end": 20,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_2]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 20,
+              "total_characters": 20,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9878062351565277,
+                "relevance": {
+                  "essential": 0.9788907170295715,
+                  "unnecessary": 0.010402355343103409,
+                  "uncertain": 0.010706870816648006
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-manager",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "web_message_only",
+      "source_task": "Draft a short email to my manager explaining the temporary work restrictions.",
+      "supplied_task": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 2,
+        "sections_removed": 0,
+        "facts": 3,
+        "facts_retained": 3,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "section_requires_explicit_drop"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "section_requires_explicit_drop",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 9,
+                "end": 26,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 544,
+                "end": 571,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "reason": "section_requires_explicit_drop"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 51,
+                "end": 93,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 210,
+                "end": 216,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 249,
+                "end": 383,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 388,
+                "end": 397,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 401,
+                "end": 420,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 572,
+              "total_characters": 572,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8944731037519024,
+                "relevance": {
+                  "essential": 0.005346143618226051,
+                  "unnecessary": 0.991838276386261,
+                  "uncertain": 0.0028155087493360043
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-checklist",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "explicit",
+      "source_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+      "supplied_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 8,
+        "facts_retained": 8,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "section_requires_explicit_drop"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "section_requires_explicit_drop",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [
+              {
+                "start": 0,
+                "end": 107,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 108,
+              "total_characters": 108,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.9014830031581754,
+                "relevance": {
+                  "essential": 0.005851276684552431,
+                  "unnecessary": 0.9910507202148438,
+                  "uncertain": 0.003098072949796915
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-checklist",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "vague",
+      "source_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+      "supplied_task": "Help me with this information.",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 8,
+        "facts_retained": 8,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Help me with this information.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 30,
+              "total_characters": 30,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9878020934985401,
+                "relevance": {
+                  "essential": 0.9791098833084106,
+                  "unnecessary": 0.01022929698228836,
+                  "uncertain": 0.01066085509955883
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-checklist",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "empty_engine_task",
+      "source_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+      "supplied_task": "",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 8,
+        "facts_retained": 8,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9879809062263089,
+                "relevance": {
+                  "essential": 0.9794468879699707,
+                  "unnecessary": 0.009921969845890999,
+                  "uncertain": 0.010631212033331394
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-checklist",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "ui_first_line",
+      "source_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+      "supplied_task": "Patient: Marta Lehto",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 8,
+        "facts_retained": 8,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Patient: [PERSON_2]",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 9,
+                "end": 20,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_2]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 20,
+              "total_characters": 20,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9878062351565277,
+                "relevance": {
+                  "essential": 0.9788907170295715,
+                  "unnecessary": 0.010402355343103409,
+                  "uncertain": 0.010706870816648006
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    },
+    {
+      "id": "11112222333344445555666677778888:fixture-checklist",
+      "family_id": "11112222333344445555666677778888:fixture-family",
+      "cohort": "documentation_pair",
+      "condition": "web_message_only",
+      "source_task": "Make a checklist of my symptoms, care instructions, follow-up and work restrictions for my next appointment.",
+      "supplied_task": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "text": "Patient: Marta Lehto\n\nWork note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: marta.lehto@example.invalid.",
+      "metrics": {
+        "records": 1,
+        "unsupported": 0,
+        "direct_targets": 1,
+        "direct_protected": 1,
+        "section_targets": 1,
+        "sections_removed": 0,
+        "facts": 8,
+        "facts_retained": 8,
+        "keep_characters_changed": 0,
+        "drop_edits": 0,
+        "placeholder_edits": 1,
+        "alias_edits": 1
+      },
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "model_version": "encoder-b-pilot",
+        "edits": [
+          {
+            "start": 9,
+            "end": 26,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 544,
+            "end": 571,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 422,
+            "end": 471,
+            "label": "HEALTH",
+            "reason": "section_requires_explicit_drop"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "message_used_as_intended_use",
+          "section_requires_explicit_drop",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 572,
+          "total_characters": 572,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Patient: [PERSON_1] note\nThe patient should avoid lifting more than 5 kg for six weeks. Desk duties are permitted, but lifting support is needed for stock checks. The restriction will be reviewed before normal duties resume.\n\nClinic note\nThe patient reports persistent pain in the right wrist after a fall. The brace should remain on during activity. No numbness was reported. The follow-up is booked for Thursday. A review is needed earlier if the symptoms change.\n\nReception\nThe patient asked for the work note to be emailed. Contact: [EMAIL].",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 51,
+            "end": 93,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 210,
+            "end": 216,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 249,
+            "end": 383,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 388,
+            "end": 397,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 401,
+            "end": 420,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [
+              {
+                "start": 9,
+                "end": 26,
+                "label": "PERSON",
+                "action": "ALIAS",
+                "replacement": "[PERSON_1]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              },
+              {
+                "start": 544,
+                "end": 571,
+                "label": "EMAIL",
+                "action": "PLACEHOLDER",
+                "replacement": "[EMAIL]",
+                "reason": "direct_identifier_policy",
+                "score": null
+              }
+            ],
+            "retained_sensitive": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "reason": "section_requires_explicit_drop"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 51,
+                "end": 93,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 210,
+                "end": 216,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 249,
+                "end": 383,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 388,
+                "end": 397,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 401,
+                "end": 420,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 572,
+              "total_characters": 572,
+              "complete": true,
+              "offset_unit": "unicode_code_point",
+              "history_messages_scanned": 0,
+              "task_scanned": true
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+        },
+        "section_diagnostics": [
+          {
+            "start": 422,
+            "end": 471,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 422,
+                "end": 471,
+                "label": "HEALTH",
+                "proposed_action": "PLACEHOLDER",
+                "action_score": 0.8944731037519024,
+                "relevance": {
+                  "essential": 0.005346143618226051,
+                  "unnecessary": 0.991838276386261,
+                  "uncertain": 0.0028155087493360043
+                },
+                "scores_calibrated": false,
+                "applied_action": "PLACEHOLDER",
+                "gate_reason": "model_proposal_with_policy_mask"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "model_did_not_authorise_drop"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "source_output_matches_explicit": true
+    }
+  ]
+}

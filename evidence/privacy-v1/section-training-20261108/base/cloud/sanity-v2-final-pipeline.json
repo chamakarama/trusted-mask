@@ -1,0 +1,2255 @@
+{
+  "counts": {
+    "records": 8,
+    "unsupported": 0,
+    "direct_identifiers": 18,
+    "required_facts": 41,
+    "retained_person_mentions": 11,
+    "inconsistent_identity_aliases": 0,
+    "erroneous_identity_merges": 0,
+    "unnecessary_changed_characters": 1,
+    "predicted_removed_clauses": 5,
+    "records_with_identifier_misses": 1,
+    "records_with_lost_required_facts": 0,
+    "records_with_false_clause_removals": 0,
+    "gate_section_not_confidently_unnecessary": 62,
+    "required_whole_sections": 3,
+    "whole_sections_removed": 3,
+    "required_clause_removals": 5,
+    "correct_clause_removals": 5,
+    "raw_unnecessary_on_unnecessary": 5,
+    "gate_dedicated_head_and_safeguards_authorise_drop": 5,
+    "benign_no_edit_controls": 2,
+    "benign_controls_changed": 0,
+    "identifier_misses": 1,
+    "task_pair_groups": 2,
+    "gold_task_conditioned_switches": 5,
+    "correct_task_conditioned_switches": 5,
+    "fully_correct_task_pairs": 2,
+    "lost_required_facts": 0,
+    "false_clause_removals": 0
+  },
+  "outputs": [
+    {
+      "id": "04606b9ed7334fc7a19563cadd83f956:budget-plan",
+      "source_id": "04606b9ed7334fc7a19563cadd83f956:budget-source",
+      "task": "Build me a simple monthly budget from these numbers with a sensible savings target. Use the income as corrected and keep the uncertainty about the loan end year visible.",
+      "text": "Notes for myself, pasted in a hurry.\n\nI think my monthly take-home pay is 2,310 euros, not 2,130 euros, because the payslip folds the bonus in and it confuses me.\n\nRent is 840 euros and it is due on the 3rd. Last month it landed on the 9th instead because my salary arrived late, and my landlord, Dariusz Wieczorek, has been patient about it so far. Dariusz replies quickly, so I would rather be upfront.\n\nThe student loan payment is 215 euros every month until roughly 2031, I believe, but I'm not sure about the end year. Groceries run about 260 and transport about 55.\n\nOh, and I accidentally pasted this from my banking app: DE89 3704 0044 0532 0130 00. Please ignore that. I want to stop paying late and still put something into savings.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Notes for myself, pasted in a hurry.\n\nI think my monthly take-home pay is 2,310 euros, not 2,130 euros, because the payslip folds the bonus in and it confuses me.\n\nRent is 840 euros and it is due on the 3rd. Last month it landed on the 9th instead because my salary arrived late, and my landlord, [PERSON_1], has been patient about it so far. [PERSON_1] replies quickly, so I would rather be upfront.\n\nThe student loan payment is 215 euros every month until roughly 2031, I believe, but I'm not sure about the end year. Groceries run about 260 and transport about 55.\n\nOh, and I accidentally pasted this from my banking app: [IBAN]. Please ignore that. I want to stop paying late and still put something into savings.",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [
+          {
+            "start": 297,
+            "end": 314,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 350,
+            "end": 357,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 629,
+            "end": 656,
+            "label": "IBAN",
+            "action": "PLACEHOLDER",
+            "replacement": "[IBAN]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 742,
+          "total_characters": 742,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Build me a simple monthly budget from these numbers with a sensible savings target. Use the income as corrected and keep the uncertainty about the loan end year visible.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 38,
+            "end": 102,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 169,
+              "total_characters": 169,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 35,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999866485595703,
+              "unnecessary": 5.317012437444646e-06,
+              "uncertain": 8.003284165170044e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 38,
+            "end": 161,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999760389328003,
+              "unnecessary": 1.9843124391627498e-05,
+              "uncertain": 4.186740625300445e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 164,
+            "end": 206,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999872446060181,
+              "unnecessary": 7.031780114630237e-06,
+              "uncertain": 5.676718956237892e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 208,
+            "end": 348,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999798536300659,
+              "unnecessary": 1.6208432498387992e-05,
+              "uncertain": 3.874532922054641e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 350,
+            "end": 403,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999908208847046,
+              "unnecessary": 7.921112228359561e-06,
+              "uncertain": 1.3415099147096043e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 406,
+            "end": 522,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999639987945557,
+              "unnecessary": 2.6602112484397367e-05,
+              "uncertain": 9.424978998140432e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 524,
+            "end": 570,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999513626098633,
+              "unnecessary": 3.1127361580729485e-05,
+              "uncertain": 1.7510110410512425e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 573,
+            "end": 656,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999760389328003,
+              "unnecessary": 9.70881046669092e-06,
+              "uncertain": 1.4319916772365104e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 658,
+            "end": 676,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999932050704956,
+              "unnecessary": 2.580616410341463e-06,
+              "uncertain": 4.227505087328609e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 678,
+            "end": 741,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999945163726807,
+              "unnecessary": 2.3317070372286253e-06,
+              "uncertain": 3.0868425255903276e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 35,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 38,
+          "end": 161,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 164,
+          "end": 206,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 208,
+          "end": 348,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 350,
+          "end": 403,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 406,
+          "end": 522,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 524,
+          "end": 570,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 573,
+          "end": 656,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 658,
+          "end": 676,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 678,
+          "end": 741,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        }
+      ],
+      "latency_seconds": 0.8402371430001949
+    },
+    {
+      "id": "04606b9ed7334fc7a19563cadd83f956:budget-landlord",
+      "source_id": "04606b9ed7334fc7a19563cadd83f956:budget-source",
+      "task": "Write a short, polite message to my landlord explaining that last month's rent was late because my salary arrived late, and that I will pay on time going forward. My income and student loan details are not needed for the message.",
+      "text": "Notes for myself, pasted in a hurry.\n\nI think my monthly take-home pay is 2,310 euros, not 2,130 euros, because the payslip folds the bonus in and it confuses me.\n\nRent is 840 euros and it is due on the 3rd. Last month it landed on the 9th instead because my salary arrived late, and my landlord, Dariusz Wieczorek, has been patient about it so far. Dariusz replies quickly, so I would rather be upfront.\n\nThe student loan payment is 215 euros every month until roughly 2031, I believe, but I'm not sure about the end year. Groceries run about 260 and transport about 55.\n\nOh, and I accidentally pasted this from my banking app: DE89 3704 0044 0532 0130 00. Please ignore that. I want to stop paying late and still put something into savings.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Notes for myself, pasted in a hurry.\n\nRent is 840 euros and it is due on the 3rd. Last month it landed on the 9th instead because my salary arrived late, and my landlord, [PERSON_1], has been patient about it so far. [PERSON_1] replies quickly, so I would rather be upfront.\n\nOh, and I accidentally pasted this from my banking app: [IBAN]. Please ignore that. I want to stop paying late and still put something into savings.",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [
+          {
+            "start": 38,
+            "end": 164,
+            "label": "FINANCIAL",
+            "action": "DROP",
+            "replacement": "",
+            "reason": "learned_unnecessary_clause",
+            "score": 0.9999850988388062
+          },
+          {
+            "start": 297,
+            "end": 314,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 350,
+            "end": 357,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 406,
+            "end": 573,
+            "label": "FINANCIAL",
+            "action": "DROP",
+            "replacement": "",
+            "reason": "learned_unnecessary_clause",
+            "score": 0.9999868869781494
+          },
+          {
+            "start": 629,
+            "end": 656,
+            "label": "IBAN",
+            "action": "PLACEHOLDER",
+            "replacement": "[IBAN]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 742,
+          "total_characters": 742,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Write a short, polite message to my landlord explaining that last month's rent was late because my salary arrived late, and that I will pay on time going forward. My income and student loan details are not needed for the message.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 38,
+            "end": 102,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 154,
+                "end": 161,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 173,
+                "end": 176,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 229,
+              "total_characters": 229,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 35,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9310044646263123,
+              "unnecessary": 0.06883982568979263,
+              "uncertain": 0.00015570942196063697
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 38,
+            "end": 161,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 8.19882370706182e-06,
+              "unnecessary": 0.9999850988388062,
+              "uncertain": 6.6824632085626945e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [
+              {
+                "start": 38,
+                "end": 102,
+                "label": "FINANCIAL",
+                "action": "DROP",
+                "relevance": {
+                  "essential": 0.000193287298316136,
+                  "unnecessary": 0.9997249245643616,
+                  "uncertain": 8.181582961697131e-05
+                }
+              }
+            ],
+            "edit_start": 38,
+            "edit_end": 164,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 164,
+            "end": 206,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9862464666366577,
+              "unnecessary": 0.013638153672218323,
+              "uncertain": 0.00011530717165442184
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 208,
+            "end": 348,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9952855706214905,
+              "unnecessary": 0.004544497933238745,
+              "uncertain": 0.00016991191660054028
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 350,
+            "end": 403,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999854564666748,
+              "unnecessary": 0.00013253677752800286,
+              "uncertain": 1.291907210543286e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 406,
+            "end": 522,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 6.332025350275217e-06,
+              "unnecessary": 0.9999868869781494,
+              "uncertain": 6.837795353931142e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [],
+            "edit_start": 406,
+            "edit_end": 524,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 524,
+            "end": 570,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 1.082292237697402e-05,
+              "unnecessary": 0.9999803304672241,
+              "uncertain": 8.88683098310139e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [],
+            "edit_start": 524,
+            "edit_end": 573,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 573,
+            "end": 656,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9971941709518433,
+              "unnecessary": 0.002649692352861166,
+              "uncertain": 0.0001560755626996979
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 658,
+            "end": 676,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999397993087769,
+              "unnecessary": 3.417315747356042e-05,
+              "uncertain": 2.599771505629178e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 678,
+            "end": 741,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999406337738037,
+              "unnecessary": 3.777713209274225e-05,
+              "uncertain": 2.1521333110285923e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 35,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 38,
+          "end": 161,
+          "target": "unnecessary",
+          "reason": "fully_covered_by_reviewed_drop"
+        },
+        {
+          "start": 164,
+          "end": 206,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 208,
+          "end": 348,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 350,
+          "end": 403,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 406,
+          "end": 522,
+          "target": "unnecessary",
+          "reason": "fully_covered_by_reviewed_drop"
+        },
+        {
+          "start": 524,
+          "end": 570,
+          "target": "unnecessary",
+          "reason": "fully_covered_by_reviewed_drop"
+        },
+        {
+          "start": 573,
+          "end": 656,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 658,
+          "end": 676,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 678,
+          "end": 741,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        }
+      ],
+      "latency_seconds": 0.32497250400001576
+    },
+    {
+      "id": "04606b9ed7334fc7a19563cadd83f956:bike-claim",
+      "source_id": "04606b9ed7334fc7a19563cadd83f956:bike-source",
+      "task": "Turn this into a clear, well-structured claim letter to my insurer. Keep the sequence of events, the bike's value and the witness's uncertainty exactly as stated. I will add any identifiers myself before sending.",
+      "text": "Dear claims team,\n\nI am making a claim under my home contents policy for a bicycle stolen from the shared bike store at Kuusitie 14 B 6, 33100 Tampere, sometime between the evening of 12 March and the morning of 13 March. It is a dark green commuter bike, bought two years ago for about 780 euros, and the D-lock was cut through. I reported it to the police the same morning and the report number is PR-2025-087431. My neighbour, Selma Okonkwo, saw two men near the store around 11 pm and is willing to give a statement, but she was not sure whether they carried bolt cutters. I do not have the original receipt, only a bank statement showing the payment. Please tell me which documents you still need.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Dear claims team,\n\nI am making a claim under my home contents policy for a bicycle stolen from the shared bike store at [ADDRESS], sometime between the evening of 12 March and the morning of 13 March. It is a dark green commuter bike, bought two years ago for about 780 euros, and the D-lock was cut through. I reported it to the police the same morning and the report number is [ACCOUNT_ID]. My neighbour, [PERSON_1], saw two men near the store around 11 pm and is willing to give a statement, but she was not sure whether they carried bolt cutters. I do not have the original receipt, only a bank statement showing the payment. Please tell me which documents you still need.",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [
+          {
+            "start": 120,
+            "end": 150,
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "replacement": "[ADDRESS]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 400,
+            "end": 414,
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "replacement": "[ACCOUNT_ID]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 430,
+            "end": 443,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 702,
+          "total_characters": 702,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Turn this into a clear, well-structured claim letter to my insurer. Keep the sequence of events, the bike's value and the witness's uncertainty exactly as stated. I will add any identifiers myself before sending.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 281,
+            "end": 296,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 212,
+              "total_characters": 212,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 17,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9998390674591064,
+              "unnecessary": 9.809333278099075e-05,
+              "uncertain": 6.284880510065705e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 19,
+            "end": 220,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9995306730270386,
+              "unnecessary": 0.00042895693331956863,
+              "uncertain": 4.0444345358991995e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 222,
+            "end": 328,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9995170831680298,
+              "unnecessary": 0.00045460285036824644,
+              "uncertain": 2.8321506761130877e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 330,
+            "end": 414,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999556541442871,
+              "unnecessary": 3.546920561348088e-05,
+              "uncertain": 8.795904250291642e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 416,
+            "end": 575,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9998471736907959,
+              "unnecessary": 0.00013309615314938128,
+              "uncertain": 1.9684193830471486e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 577,
+            "end": 654,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997362494468689,
+              "unnecessary": 0.0002578332496341318,
+              "uncertain": 5.954069365543546e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 656,
+            "end": 701,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999561309814453,
+              "unnecessary": 2.5554345484124497e-05,
+              "uncertain": 1.8321778043173254e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 17,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 19,
+          "end": 220,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 222,
+          "end": 328,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 330,
+          "end": 414,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 416,
+          "end": 575,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 577,
+          "end": 654,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 656,
+          "end": 701,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        }
+      ],
+      "latency_seconds": 0.1282734450001044
+    },
+    {
+      "id": "04606b9ed7334fc7a19563cadd83f956:compound-interest",
+      "source_id": "04606b9ed7334fc7a19563cadd83f956:compound-source",
+      "task": "Explain step by step how compound interest works using the textbook example numbers, show how it differs from simple interest, and answer the monthly compounding question.",
+      "text": "Hi, I'm studying for a basic finance quiz and one worked example in my textbook confuses me.\n\nThe example starts with 1,000 euros at 5 percent annual interest, compounded once a year, over 3 years. The book says the balance becomes about 1,157.63 euros, while simple interest on the same amount would give 1,150 euros. I can follow the first year, which adds 50 euros, but I don't see why the second year adds 52.50 euros instead of another 50.\n\nCould someone explain it in plain words, and tell me whether compounding monthly would change the result a lot?",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Hi, I'm studying for a basic finance quiz and one worked example in my textbook confuses me.\n\nThe example starts with 1,000 euros at 5 percent annual interest, compounded once a year, over 3 years. The book says the balance becomes about 1,157.63 euros, while simple interest on the same amount would give 1,150 euros. I can follow the first year, which adds 50 euros, but I don't see why the second year adds 52.50 euros instead of another 50.\n\nCould someone explain it in plain words, and tell me whether compounding monthly would change the result a lot?",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 557,
+          "total_characters": 557,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Explain step by step how compound interest works using the textbook example numbers, show how it differs from simple interest, and answer the monthly compounding question.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 171,
+              "total_characters": 171,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 91,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999921321868896,
+              "unnecessary": 6.485546236945083e-06,
+              "uncertain": 1.4465289268628112e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 94,
+            "end": 196,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999802112579346,
+              "unnecessary": 1.6581834643147886e-05,
+              "uncertain": 3.255893489040318e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 198,
+            "end": 317,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999732971191406,
+              "unnecessary": 2.1367750377976336e-05,
+              "uncertain": 5.3498856686928775e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 319,
+            "end": 443,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999897480010986,
+              "unnecessary": 8.19050819700351e-06,
+              "uncertain": 1.973656253539957e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 446,
+            "end": 556,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999948740005493,
+              "unnecessary": 3.858230684272712e-06,
+              "uncertain": 1.2717938489004155e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 91,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 94,
+          "end": 196,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 198,
+          "end": 317,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 319,
+          "end": 443,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 446,
+          "end": 556,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        }
+      ],
+      "latency_seconds": 0.078851966000002
+    },
+    {
+      "id": "04606b9ed7334fc7a19563cadd83f956:refund-earbuds",
+      "source_id": "04606b9ed7334fc7a19563cadd83f956:refund-source",
+      "task": "Write a concise refund request to the company's support team. Keep the order timeline, what I already tried and that I want a refund rather than a replacement. Leave out the portal login details.",
+      "text": "hey, I need to write to Lumora Audio support because the Aurora Pro earbuds I ordered on 2 October stopped charging after 9 days. Order number is LM-7782019 and I paid 129 euros by card. I tried the reset steps from their help page twice and the left bud still shows no light. When I logged into their portal to upload photos (my password is plum-Kettle-47-demo, I'll change it later) it kept timing out, so I couldn't attach anything. Their policy says 30 days for returns, so I think I'm within it. I want a full refund and a prepaid return label, not a replacement, since the replacement pair I got last year failed the same way. You can reach me at nikos.vlahakis@example.invalid if needed.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "hey, I need to write to Lumora Audio support because the Aurora Pro earbuds I ordered on 2 October stopped charging after 9 days. Order number is LM-7782019 and I paid 129 euros by card. I tried the reset steps from their help page twice and the left bud still shows no light. When I logged into their portal to upload photos (my password is [SECRET], I'll change it later) it kept timing out, so I couldn't attach anything. Their policy says 30 days for returns, so I think I'm within it. I want a full refund and a prepaid return label, not a replacement, since the replacement pair I got last year failed the same way. You can reach me at [EMAIL] if needed.",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [
+          {
+            "start": 342,
+            "end": 361,
+            "label": "SECRET",
+            "action": "PLACEHOLDER",
+            "replacement": "[SECRET]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 653,
+            "end": 683,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 694,
+          "total_characters": 694,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Write a concise refund request to the company's support team. Keep the order timeline, what I already tried and that I want a refund rather than a replacement. Leave out the portal login details.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 146,
+            "end": 156,
+            "label": "ACCOUNT_ID",
+            "reason": "business_number_context"
+          },
+          {
+            "start": 168,
+            "end": 177,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 195,
+              "total_characters": 195,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 128,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999830722808838,
+              "unnecessary": 1.0434182513563428e-05,
+              "uncertain": 6.378341822710354e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 130,
+            "end": 185,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999932050704956,
+              "unnecessary": 3.653023668448441e-05,
+              "uncertain": 3.1485506042372435e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 187,
+            "end": 275,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999927282333374,
+              "unnecessary": 4.576978881232208e-06,
+              "uncertain": 2.7429352940089302e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 277,
+            "end": 434,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999613761901855,
+              "unnecessary": 1.787525434338022e-05,
+              "uncertain": 2.078432407870423e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 436,
+            "end": 499,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999818801879883,
+              "unnecessary": 8.875096682459116e-06,
+              "uncertain": 9.28477766137803e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 501,
+            "end": 631,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999983549118042,
+              "unnecessary": 8.584065653849393e-06,
+              "uncertain": 7.90734793554293e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 633,
+            "end": 693,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.00035768249654211104,
+              "unnecessary": 3.026598642463796e-05,
+              "uncertain": 0.999612033367157
+            },
+            "raw_class": "uncertain",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m1",
+          "entity_id": "order-number",
+          "quote": "LM-7782019",
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "Support needs the order number, but it is an account-linked identifier; the user re-inserts it, so the draft shows a placeholder.",
+          "start": 146,
+          "end": 156
+        }
+      ],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 128,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 130,
+          "end": 185,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 187,
+          "end": 275,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 277,
+          "end": 434,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 436,
+          "end": 499,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 501,
+          "end": 631,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 633,
+          "end": 693,
+          "target": "uncertain",
+          "reason": "explicit_uncertain_annotation"
+        }
+      ],
+      "latency_seconds": 0.12876650399994105
+    },
+    {
+      "id": "05f8f4b084544563babce1d668cdfeaf:f04-hrt-letter",
+      "source_id": "05f8f4b084544563babce1d668cdfeaf:f04-hrt-letter",
+      "task": "Rewrite this letter so it stays firm but polite, and keep all four of my questions in it.",
+      "text": "Dear Patient Information Team,\n\nI am writing because I am thoroughly fed up. For months I have been handed three different leaflets, and none of them agree about whether HRT is safe, how long people usually take it, or whether patches work better than tablets. Whenever I ask a question I am told to \"go online\", which is exactly how I ended up more confused. I would like a plain explanation, not a sales pitch. Please tell me what the main types of HRT are, what the general risks and benefits are, which questions are worth asking at an appointment, and whether hot flushes ever stop on their own. If the honest answer is that it depends, then say what it depends on. I would rather read a straight answer than another vague reassurance.\n\nYours sincerely,\nA very frustrated reader",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Dear Patient Information Team,\n\nI am writing because I am thoroughly fed up. For months I have been handed three different leaflets, and none of them agree about whether HRT is safe, how long people usually take it, or whether patches work better than tablets. Whenever I ask a question I am told to \"go online\", which is exactly how I ended up more confused. I would like a plain explanation, not a sales pitch. Please tell me what the main types of HRT are, what the general risks and benefits are, which questions are worth asking at an appointment, and whether hot flushes ever stop on their own. If the honest answer is that it depends, then say what it depends on. I would rather read a straight answer than another vague reassurance.\n\nYours sincerely,\nA very frustrated reader",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 783,
+          "total_characters": 783,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Rewrite this letter so it stays firm but polite, and keep all four of my questions in it.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 89,
+              "total_characters": 89,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 30,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999836683273315,
+              "unnecessary": 8.86160705704242e-06,
+              "uncertain": 7.453998478013091e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 32,
+            "end": 75,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999805688858032,
+              "unnecessary": 1.238938875758322e-05,
+              "uncertain": 7.005982752161799e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 77,
+            "end": 259,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999880790710449,
+              "unnecessary": 9.560173566569574e-06,
+              "uncertain": 2.415961944279843e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 261,
+            "end": 358,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999877214431763,
+              "unnecessary": 1.0310041943739634e-05,
+              "uncertain": 2.0673739982157713e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 360,
+            "end": 411,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999987006187439,
+              "unnecessary": 1.053355481417384e-05,
+              "uncertain": 2.4878481781343e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 413,
+            "end": 599,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999890327453613,
+              "unnecessary": 9.54993174673291e-06,
+              "uncertain": 1.4630161331297131e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 601,
+            "end": 669,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999709129333496,
+              "unnecessary": 2.1301937522366643e-05,
+              "uncertain": 7.777919563523028e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 671,
+            "end": 739,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999850988388062,
+              "unnecessary": 1.086853717424674e-05,
+              "uncertain": 4.112484475626843e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 742,
+            "end": 758,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9995993971824646,
+              "unnecessary": 4.3867024942301214e-05,
+              "uncertain": 0.00035675507388077676
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 759,
+            "end": 783,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999700784683228,
+              "unnecessary": 9.034867616719566e-06,
+              "uncertain": 2.0891478925477713e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 30,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 32,
+          "end": 75,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 77,
+          "end": 259,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 261,
+          "end": 358,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 360,
+          "end": 411,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 413,
+          "end": 599,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 601,
+          "end": 669,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 671,
+          "end": 739,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 742,
+          "end": 758,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 759,
+          "end": 783,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        }
+      ],
+      "latency_seconds": 0.12874025299970526
+    },
+    {
+      "id": "05f8f4b084544563babce1d668cdfeaf:f07-custody-diary-a",
+      "source_id": "05f8f4b084544563babce1d668cdfeaf:f07-custody-diary",
+      "task": "Can you help me organise this diary entry?",
+      "text": "Tuesday night, late. Writing this down so I remember how the handover went.\n\nRania collected Leo at 5:30 for the midweek overnight, as agreed, and then texted me: \"I'm keeping him all weekend because your Saturday plans were never confirmed. Don't argue, it's in the order.\" That is not what the schedule says. Our arrangement is alternate weekends, this one is mine, and I have that in writing from the mediator. Leo has his inhaler for asthma, morning and evening, and I'm worried she'll forget it. I told her I'd call the solicitor, Carmen Ekstr\u00f6m, tomorrow morning. I'm exhausted by this. The next handover is Friday at 6 at the school gate.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Tuesday night, late. Writing this down so I remember how the handover went.\n\n[PERSON_1] collected [PERSON_2] at 5:30 for the midweek overnight, as agreed, and then texted me: \"I'm keeping him all weekend because your Saturday plans were never confirmed. Don't argue, it's in the order.\" That is not what the schedule says. Our arrangement is alternate weekends, this one is mine, and I have that in writing from the mediator. [PERSON_2] has his inhaler for asthma, morning and evening, and I'm worried she'll forget it. I told her I'd call the solicitor, [PERSON_3], tomorrow morning. I'm exhausted by this. The next handover is Friday at 6 at the school gate.",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [
+          {
+            "start": 77,
+            "end": 82,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 93,
+            "end": 96,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 414,
+            "end": 417,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 536,
+            "end": 550,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 645,
+          "total_characters": 645,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Can you help me organise this diary entry?",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 42,
+              "total_characters": 42,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 19,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999983310699463,
+              "unnecessary": 9.871901056612842e-07,
+              "uncertain": 6.892755664011929e-07
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 21,
+            "end": 74,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999986886978149,
+              "unnecessary": 8.161803748407692e-07,
+              "uncertain": 4.219212428324681e-07
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 77,
+            "end": 240,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999998927116394,
+              "unnecessary": 7.451194505847525e-07,
+              "uncertain": 3.672115838071477e-07
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 242,
+            "end": 309,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999998927116394,
+              "unnecessary": 7.725033128735959e-07,
+              "uncertain": 4.102617197077052e-07
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 311,
+            "end": 412,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999963045120239,
+              "unnecessary": 1.7445082676204038e-06,
+              "uncertain": 1.9639546735561453e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 414,
+            "end": 499,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9995763897895813,
+              "unnecessary": 0.0004138435178902,
+              "uncertain": 9.736746505950578e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 501,
+            "end": 568,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999195337295532,
+              "unnecessary": 7.434470171574503e-05,
+              "uncertain": 6.121995738794794e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 570,
+            "end": 591,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999927282333374,
+              "unnecessary": 2.220720489276573e-06,
+              "uncertain": 4.963693299941951e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 593,
+            "end": 644,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999964237213135,
+              "unnecessary": 1.5352260334111634e-06,
+              "uncertain": 1.969405047930195e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 19,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 21,
+          "end": 74,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 77,
+          "end": 240,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 242,
+          "end": 309,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 311,
+          "end": 412,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 414,
+          "end": 499,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 501,
+          "end": 568,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 570,
+          "end": 591,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 593,
+          "end": 644,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        }
+      ],
+      "latency_seconds": 0.14817904099982115
+    },
+    {
+      "id": "05f8f4b084544563babce1d668cdfeaf:f07-custody-diary-b",
+      "source_id": "05f8f4b084544563babce1d668cdfeaf:f07-custody-diary",
+      "task": "Draft a short, neutral reply to the other parent that confirms the Friday handover and that this weekend follows the alternate-weekend schedule. Leave out the medical details and the plan to contact a solicitor.",
+      "text": "Tuesday night, late. Writing this down so I remember how the handover went.\n\nRania collected Leo at 5:30 for the midweek overnight, as agreed, and then texted me: \"I'm keeping him all weekend because your Saturday plans were never confirmed. Don't argue, it's in the order.\" That is not what the schedule says. Our arrangement is alternate weekends, this one is mine, and I have that in writing from the mediator. Leo has his inhaler for asthma, morning and evening, and I'm worried she'll forget it. I told her I'd call the solicitor, Carmen Ekstr\u00f6m, tomorrow morning. I'm exhausted by this. The next handover is Friday at 6 at the school gate.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Tuesday night, late. Writing this down so I remember how the handover went.\n\n[PERSON_1] collected [PERSON_2] at 5:30 for the midweek overnight, as agreed, and then texted me: \"I'm keeping him all weekend because your Saturday plans were never confirmed. Don't argue, it's in the order.\" That is not what the schedule says. Our arrangement is alternate weekends, this one is mine, and I have that in writing from the mediator. I'm exhausted by this. The next handover is Friday at 6 at the school gate.",
+        "model_version": "deberta-v3-base-section-v1",
+        "edits": [
+          {
+            "start": 77,
+            "end": 82,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 93,
+            "end": 96,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 414,
+            "end": 570,
+            "label": "HEALTH",
+            "action": "DROP",
+            "replacement": "",
+            "reason": "learned_unnecessary_clause",
+            "score": 0.9999836683273315
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 645,
+          "total_characters": 645,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Draft a short, neutral reply to the other parent that confirms the Friday handover and that this weekend follows the alternate-weekend schedule. Leave out the medical details and the plan to contact a solicitor.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [
+              {
+                "start": 42,
+                "end": 48,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 63,
+                "end": 66,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 67,
+                "end": 73,
+                "label": "FAMILY",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 74,
+                "end": 82,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 92,
+                "end": 143,
+                "label": "FAMILY",
+                "reason": "unconfirmed_context_boundary"
+              },
+              {
+                "start": 155,
+                "end": 210,
+                "label": "FINANCIAL",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 211,
+              "total_characters": 211,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+        },
+        "section_diagnostics": [
+          {
+            "start": 0,
+            "end": 19,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.99979168176651,
+              "unnecessary": 0.00018542719772085547,
+              "uncertain": 2.2870824977871962e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 21,
+            "end": 74,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999510049819946,
+              "unnecessary": 4.4243333832127973e-05,
+              "uncertain": 4.745808837469667e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 77,
+            "end": 240,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999915361404419,
+              "unnecessary": 7.817729783710092e-05,
+              "uncertain": 6.411029517039424e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 242,
+            "end": 309,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9999151229858398,
+              "unnecessary": 7.802400068612769e-05,
+              "uncertain": 6.7643277361639775e-06
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 311,
+            "end": 412,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9994211196899414,
+              "unnecessary": 0.000539330008905381,
+              "uncertain": 3.954006024287082e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 414,
+            "end": 499,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 8.353896191692911e-06,
+              "unnecessary": 0.9999836683273315,
+              "uncertain": 7.949570317578036e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [
+              {
+                "start": 418,
+                "end": 465,
+                "label": "HEALTH",
+                "action": "DROP",
+                "relevance": {
+                  "essential": 0.00019279967818874866,
+                  "unnecessary": 0.9997205138206482,
+                  "uncertain": 8.670262468513101e-05
+                }
+              }
+            ],
+            "edit_start": 414,
+            "edit_end": 501,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 501,
+            "end": 568,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 7.036820534267463e-06,
+              "unnecessary": 0.9999856948852539,
+              "uncertain": 7.237552836159011e-06
+            },
+            "raw_class": "unnecessary",
+            "threshold": 0.9,
+            "outcome": "DROP",
+            "scores_calibrated": false,
+            "nested_evidence": [],
+            "edit_start": 501,
+            "edit_end": 570,
+            "reason": "dedicated_head_and_safeguards_authorise_drop"
+          },
+          {
+            "start": 570,
+            "end": 591,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.9997672438621521,
+              "unnecessary": 0.00017839745851233602,
+              "uncertain": 5.4401047236751765e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          },
+          {
+            "start": 593,
+            "end": 644,
+            "candidate_mode": "section-head-v1",
+            "raw_relevance": {
+              "essential": 0.999901533126831,
+              "unnecessary": 7.63699208619073e-05,
+              "uncertain": 2.2041469492251053e-05
+            },
+            "raw_class": "essential",
+            "threshold": 0.9,
+            "outcome": "KEEP",
+            "scores_calibrated": false,
+            "reason": "section_not_confidently_unnecessary"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_removals": [],
+      "section_targets": [
+        {
+          "start": 0,
+          "end": 19,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 21,
+          "end": 74,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 77,
+          "end": 240,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 242,
+          "end": 309,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 311,
+          "end": 412,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        },
+        {
+          "start": 414,
+          "end": 499,
+          "target": "unnecessary",
+          "reason": "fully_covered_by_reviewed_drop"
+        },
+        {
+          "start": 501,
+          "end": 568,
+          "target": "unnecessary",
+          "reason": "fully_covered_by_reviewed_drop"
+        },
+        {
+          "start": 570,
+          "end": 591,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        },
+        {
+          "start": 593,
+          "end": 644,
+          "target": "essential",
+          "reason": "explicit_required_or_keep_fact"
+        }
+      ],
+      "latency_seconds": 0.3061202109997794
+    }
+  ],
+  "latency_seconds": {
+    "median": 0.14817904099982115,
+    "max": 0.8402371430001949
+  },
+  "runtime_versions": {
+    "pipeline": "privacy-edit-pipeline.2",
+    "section_mode": "section-head-v1",
+    "policy": "consumer-v1-pilot.2",
+    "model_training_policy": "consumer-v1-pilot.2",
+    "model_bundle_sha256": "a57b5031d0a087793b0424dd01e7a2a6d4013c5d9317848cbe7882ac43bf2606"
+  },
+  "independent_final_test": false,
+  "limitations": [
+    "Synthetic model-reviewed development evidence, not human-audited final testing.",
+    "Exact fact quotes and gold identity IDs are used only for scoring; runtime gets text and task only.",
+    "Unlabelled-clause deletion is counted as false removal conservatively."
+  ],
+  "evaluation_role": "training_only_sanity",
+  "raw_correct_switches": 5,
+  "raw_switches": 5,
+  "documented_business_number_review_misses": 1,
+  "sanity_gate_scope": "Correct raw and pipeline task switches, no lost facts/false drops, and no unexplained identifier misses; business-number review exceptions remain counted and reported.",
+  "passed": true
+}

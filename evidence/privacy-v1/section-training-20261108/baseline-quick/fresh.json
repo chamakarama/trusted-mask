@@ -1,0 +1,946 @@
+{
+  "evaluation_role": "fresh_agent_authored_diagnostics_not_training_or_selection",
+  "outputs": [
+    {
+      "id": "fresh-delivery",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "Draft a factual delivery complaint asking the seller to investigate the missing desk. The medical notes are unrelated to this request.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 389,
+            "end": 437,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Draft a factual delivery complaint asking the seller to investigate the missing desk. The medical notes are unrelated to this request.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 108,
+            "end": 118,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 574,
+            "end": 619,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 134,
+              "total_characters": 134,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 389,
+                "end": 437,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9980218796635315,
+                "relevance": {
+                  "essential": 0.9948871731758118,
+                  "unnecessary": 0.003882029326632619,
+                  "uncertain": 0.0012308781733736396
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [
+        "Separately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse."
+      ],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]",
+          "[PERSON_4]"
+        ],
+        [
+          "[PERSON_2]",
+          "[PERSON_3]"
+        ]
+      ],
+      "inconsistent_person_groups": 2,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_3] [PERSON_4] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek Tomas Nora [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-clinician",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "Prepare a symptom timeline for a clinician. Preserve the absence of fever, the exertion limit and the uncertainty about the dust. Leave out the delivery dispute.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 389,
+            "end": 437,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Prepare a symptom timeline for a clinician. Preserve the absence of fever, the exertion limit and the uncertainty about the dust. Leave out the delivery dispute.",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 108,
+            "end": 118,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 574,
+            "end": 619,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [
+              {
+                "start": 0,
+                "end": 42,
+                "label": "HEALTH",
+                "reason": "essential_fact"
+              }
+            ],
+            "pending_reviews": [
+              {
+                "start": 53,
+                "end": 128,
+                "label": "HEALTH",
+                "reason": "unconfirmed_context_boundary"
+              }
+            ],
+            "coverage": {
+              "scanned_characters": 161,
+              "total_characters": 161,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 389,
+                "end": 437,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9987155352910588,
+                "relevance": {
+                  "essential": 0.9968785047531128,
+                  "unnecessary": 0.002242435235530138,
+                  "uncertain": 0.0008790338761173189
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [
+        "I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday"
+      ],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]",
+          "[PERSON_4]"
+        ],
+        [
+          "[PERSON_2]",
+          "[PERSON_3]"
+        ]
+      ],
+      "inconsistent_person_groups": 2,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_3] [PERSON_4] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek Tomas Nora [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-vague",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "Can you help me make sense of this?",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 389,
+            "end": 437,
+            "label": "HEALTH",
+            "reason": "uncertain_treatment"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "uncertain_treatment",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Can you help me make sense of this?",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 108,
+            "end": 118,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 574,
+            "end": 619,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 35,
+              "total_characters": 35,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 389,
+                "end": 437,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9453184836979409,
+                "relevance": {
+                  "essential": 0.4334806799888611,
+                  "unnecessary": 0.062263373285532,
+                  "uncertain": 0.504256010055542
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "uncertain_treatment"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "uncertain_treatment"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]",
+          "[PERSON_4]"
+        ],
+        [
+          "[PERSON_2]",
+          "[PERSON_3]"
+        ]
+      ],
+      "inconsistent_person_groups": 2,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_3] [PERSON_4] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek Tomas Nora [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-missing-task",
+      "word_count": 134,
+      "text": "My name is Nora Lindholm, and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, Tomas Ek, received a parcel. Tomas checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\nNora is available after 16:00. Please use nora.lindholm@example.invalid or call +358 40 123 4567. I want the dates and uncertainty preserved.",
+      "task": "",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 11,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 249,
+            "end": 257,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 278,
+            "end": 283,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 622,
+            "end": 626,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_4]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 664,
+            "end": 693,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 702,
+            "end": 718,
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "replacement": "[PHONE]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [
+          {
+            "start": 389,
+            "end": 437,
+            "label": "HEALTH",
+            "reason": "essential_fact"
+          }
+        ],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "missing_task",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 763,
+          "total_characters": 763,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "",
+        "protected_history": [],
+        "pending_reviews": [
+          {
+            "start": 108,
+            "end": 118,
+            "label": "DATE",
+            "reason": "unconfirmed_entity_shape"
+          },
+          {
+            "start": 125,
+            "end": 134,
+            "label": "FINANCIAL",
+            "reason": "unconfirmed_context_boundary"
+          },
+          {
+            "start": 574,
+            "end": 619,
+            "label": "HEALTH",
+            "reason": "unconfirmed_context_boundary"
+          }
+        ],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 0,
+              "total_characters": 0,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [
+          {
+            "start": 389,
+            "end": 437,
+            "candidate_mode": "legacy",
+            "probes": [
+              {
+                "start": 389,
+                "end": 437,
+                "label": "HEALTH",
+                "proposed_action": "KEEP",
+                "action_score": 0.9984145558848813,
+                "relevance": {
+                  "essential": 0.9956204295158386,
+                  "unnecessary": 0.0031789301428943872,
+                  "uncertain": 0.0012006628094241023
+                },
+                "scores_calibrated": false,
+                "applied_action": "KEEP",
+                "gate_reason": "essential_fact"
+              }
+            ],
+            "outcome": "KEEP",
+            "reason": "essential_fact"
+          }
+        ],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]",
+          "[PERSON_4]"
+        ],
+        [
+          "[PERSON_2]",
+          "[PERSON_3]"
+        ]
+      ],
+      "inconsistent_person_groups": 2,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My name is [PERSON_1], and I am asking for help with a delivery problem. I ordered a replacement desk on 3 November, paid 184 euros, and was promised arrival by Friday. The carrier marked it delivered on Thursday, but neither I nor my neighbour, [PERSON_2], received a parcel. [PERSON_3] checked the shared entrance twice. The seller asked me to wait until Monday before requesting a refund.\n\nSeparately, I have had a dry cough for four days. I have no fever, and I become short of breath only when climbing the stairs. The cough began before I cleaned the dusty spare room, so I am uncertain whether the dust made it worse.\n\n[PERSON_4] is available after 16:00. Please use [EMAIL] or call [PHONE]. I want the dates and uncertainty preserved.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_3] [PERSON_4] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Nora Lindholm Tomas Ek Tomas Nora [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-distinct-people",
+      "word_count": 140,
+      "text": "My colleague, Alex Marin, will prepare the warehouse count on Tuesday, while Alex Koskinen will review the totals on Wednesday. Alex Marin said the first delivery contains 24 sealed boxes, but two labels are unreadable, so those boxes must remain unchecked until the supplier confirms their contents. Alex Koskinen agreed that an unreadable label does not prove a box is missing.\n\nThe shared note then says that Alex will telephone the supplier. I cannot tell which colleague wrote that line, and I do not want the summary to invent an assignment. Both colleagues will attend the review, and Alex Marin will bring the original packing list. The team should approve the count only after the two labels are resolved. Please contact the coordinator at warehouse.team@example.invalid if a clarification is needed. Keep the distinction between unchecked boxes and missing boxes clear.",
+      "task": "Summarise the warehouse-count plan, preserving the unresolved assignment and the approval condition.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "My colleague, [PERSON_1], will prepare the warehouse count on Tuesday, while [PERSON_2] will review the totals on Wednesday. [PERSON_1] said the first delivery contains 24 sealed boxes, but two labels are unreadable, so those boxes must remain unchecked until the supplier confirms their contents. [PERSON_2] agreed that an unreadable label does not prove a box is missing.\n\nThe shared note then says that [PERSON_3] will telephone the supplier. I cannot tell which colleague wrote that line, and I do not want the summary to invent an assignment. Both colleagues will attend the review, and [PERSON_1] will bring the original packing list. The team should approve the count only after the two labels are resolved. Please contact the coordinator at [EMAIL] if a clarification is needed. Keep the distinction between unchecked boxes and missing boxes clear.",
+        "model_version": "deberta-v3-base",
+        "edits": [
+          {
+            "start": 14,
+            "end": 24,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 77,
+            "end": 90,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 128,
+            "end": 138,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 301,
+            "end": 314,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_2]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 412,
+            "end": 416,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_3]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 592,
+            "end": 602,
+            "label": "PERSON",
+            "action": "ALIAS",
+            "replacement": "[PERSON_1]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          },
+          {
+            "start": 749,
+            "end": 779,
+            "label": "EMAIL",
+            "action": "PLACEHOLDER",
+            "replacement": "[EMAIL]",
+            "reason": "direct_identifier_policy",
+            "score": null
+          }
+        ],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 879,
+          "total_characters": 879,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Summarise the warehouse-count plan, preserving the unresolved assignment and the approval condition.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 100,
+              "total_characters": 100,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [
+        [
+          "[PERSON_1]"
+        ],
+        [
+          "[PERSON_2]"
+        ]
+      ],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": false,
+      "no_edit": false,
+      "real_app_supported": true,
+      "real_app_protected_text": "My colleague, [PERSON_1], will prepare the warehouse count on Tuesday, while [PERSON_2] will review the totals on Wednesday. [PERSON_1] said the first delivery contains 24 sealed boxes, but two labels are unreadable, so those boxes must remain unchecked until the supplier confirms their contents. [PERSON_2] agreed that an unreadable label does not prove a box is missing.\n\nThe shared note then says that [PERSON_3] will telephone the supplier. I cannot tell which colleague wrote that line, and I do not want the summary to invent an assignment. Both colleagues will attend the review, and [PERSON_1] will bring the original packing list. The team should approve the count only after the two labels are resolved. Please contact the coordinator at [EMAIL] if a clarification is needed. Keep the distinction between unchecked boxes and missing boxes clear.",
+      "local_mock_reply": "[PERSON_1] [PERSON_2] [PERSON_3] [PERSON_999] [EMAIL]",
+      "locally_restored_reply": "Alex Marin Alex Koskinen Alex [PERSON_999] [EMAIL]"
+    },
+    {
+      "id": "fresh-benign",
+      "word_count": 119,
+      "text": "Our reading club is planning three public sessions for next month. The first session will discuss a short story, the second will compare two poems, and the third will be an open discussion about choosing books. Each session has room for twenty participants, but the room has only sixteen chairs, so four additional chairs must be borrowed before registration opens. We have already reserved the room for the first two sessions. The third reservation is still pending, and it should not be described as confirmed. The organiser wants a clear summary of these practical points without invented dates, names, prices or promises. Please preserve the difference between capacity, available seating and confirmed reservations, and keep the pending decision visible.",
+      "task": "Rewrite these planning notes clearly without changing or omitting any facts.",
+      "result": {
+        "status": "needs_review",
+        "protected_text": "Our reading club is planning three public sessions for next month. The first session will discuss a short story, the second will compare two poems, and the third will be an open discussion about choosing books. Each session has room for twenty participants, but the room has only sixteen chairs, so four additional chairs must be borrowed before registration opens. We have already reserved the room for the first two sessions. The third reservation is still pending, and it should not be described as confirmed. The organiser wants a clear summary of these practical points without invented dates, names, prices or promises. Please preserve the difference between capacity, available seating and confirmed reservations, and keep the pending decision visible.",
+        "model_version": "deberta-v3-base",
+        "edits": [],
+        "retained_sensitive": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated"
+        ],
+        "coverage": {
+          "scanned_characters": 759,
+          "total_characters": 759,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        },
+        "protected_task": "Rewrite these planning notes clearly without changing or omitting any facts.",
+        "protected_history": [],
+        "pending_reviews": [],
+        "context_reports": [
+          {
+            "component": "task",
+            "index": null,
+            "edits": [],
+            "retained_sensitive": [],
+            "pending_reviews": [],
+            "coverage": {
+              "scanned_characters": 76,
+              "total_characters": 76,
+              "complete": true,
+              "offset_unit": "unicode_code_point"
+            }
+          }
+        ],
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "legacy",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+        },
+        "section_diagnostics": [],
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values."
+      },
+      "identifier_misses": [],
+      "lost_expected_facts": [],
+      "missed_expected_sections": [],
+      "person_group_aliases": [],
+      "inconsistent_person_groups": 0,
+      "erroneous_person_merge": false,
+      "expected_no_edit": true,
+      "no_edit": true,
+      "real_app_supported": true,
+      "real_app_protected_text": "Our reading club is planning three public sessions for next month. The first session will discuss a short story, the second will compare two poems, and the third will be an open discussion about choosing books. Each session has room for twenty participants, but the room has only sixteen chairs, so four additional chairs must be borrowed before registration opens. We have already reserved the room for the first two sessions. The third reservation is still pending, and it should not be described as confirmed. The organiser wants a clear summary of these practical points without invented dates, names, prices or promises. Please preserve the difference between capacity, available seating and confirmed reservations, and keep the pending decision visible.",
+      "local_mock_reply": " [PERSON_999] [EMAIL]",
+      "locally_restored_reply": " [PERSON_999] [EMAIL]"
+    }
+  ],
+  "counts": {
+    "cases": 6,
+    "identifier_misses": 0,
+    "lost_expected_facts": 0,
+    "missed_expected_sections": 2,
+    "inconsistent_person_groups": 8,
+    "erroneous_person_merges": 0
+  }
+}

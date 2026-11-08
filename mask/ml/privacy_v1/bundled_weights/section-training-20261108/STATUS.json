@@ -1,0 +1,63 @@
+{
+  "architecture_version": "section-relevance-v1",
+  "models": {
+    "deberta-v3-base": {
+      "sha256": "356bae562b723b84aa18880676db2fda0283b0cce8d37a6db37ab2703238459d",
+      "bytes": 597907864,
+      "epoch": 2,
+      "publication": "GitHub LFS uploaded",
+      "evaluation_status": "complete_prototype_acceptance_failed",
+      "saved_at_unix": 1794095819.026486,
+      "uploaded_at_unix": 1794095894.5292373,
+      "default_demo_changed": false,
+      "public_download_verified": true,
+      "offline_cpu_app_verified": true,
+      "cpu_export_reload_parity": true,
+      "checkpoint_selection": "epoch 2 dominates epoch 1 on both dev sets",
+      "demo_default_recommendation": "retain existing baseline: new required-fact losses and false deletions remain",
+      "evidence": "evidence/privacy-v1/section-training-20261108/base/cloud",
+      "inference_code_commit": "2ff08b1"
+    },
+    "deberta-v3-large": {
+      "sha256": "7ec3f9cc6f5ce44de1fb418de0c46a48f415f3e7c5e425a8fd2ba5ccb642f8c2",
+      "bytes": 1502208643,
+      "epoch": 2,
+      "publication": "GitHub LFS uploaded",
+      "evaluation_status": "complete_prototype_acceptance_failed",
+      "saved_at_unix": 1794099245.9577823,
+      "uploaded_at_unix": 1794100752.641879,
+      "default_demo_changed": false,
+      "public_download_verified": true,
+      "offline_cpu_app_verified": true,
+      "cpu_export_reload_parity": true,
+      "public_download_url": "https://media.githubusercontent.com/media/Chintufp/Since-AI-hackathon---WAWS/cce29181bfcc87710c4c1e5ad2cdd26d14739543/mask/ml/privacy_v1/bundled_weights/section-training-20261108/deberta-v3-large.tar.gz",
+      "inference_code_commit": "2ff08b1",
+      "evidence": "evidence/privacy-v1/section-training-20261108/large/cloud"
+    }
+  },
+  "selected_checkpoints": {
+    "deberta-v3-base": {
+      "epoch": 2,
+      "artifact": "deberta-v3-base.tar.gz",
+      "evaluation_status": "complete_prototype_acceptance_failed"
+    },
+    "deberta-v3-large": {
+      "epoch": 1,
+      "artifact": "selected-epoch-1/deberta-v3-large.tar.gz",
+      "sha256": "e41dc608b2dcedcc47c88787a795056dae5827cad583c466e88e12fa12fabc00",
+      "bytes": 1502174470,
+      "evaluation_status": "complete_prototype_acceptance_failed",
+      "saved_at_unix": 1794101292.3809428,
+      "uploaded_at_unix": 1794101413.6569874,
+      "public_download_verified": true,
+      "offline_cpu_app_verified": true,
+      "cpu_export_reload_parity": true,
+      "public_download_url": "https://media.githubusercontent.com/media/Chintufp/Since-AI-hackathon---WAWS/2bde86c040cc166bc316d8eada4bd8c921f5ba80/mask/ml/privacy_v1/bundled_weights/section-training-20261108/selected-epoch-1/deberta-v3-large.tar.gz",
+      "inference_code_commit": "2ff08b1",
+      "default_demo_changed": false,
+      "evidence": "evidence/privacy-v1/section-training-20261108/large/cloud",
+      "checkpoint_selection": "epoch 1: fewer lost required facts and false removals than epoch 2; still fails quality acceptance"
+    }
+  },
+  "recommendation": "Base epoch 2 for a supervised experimental demo; retain existing working default because both new candidates introduce fact-loss regressions."
+}

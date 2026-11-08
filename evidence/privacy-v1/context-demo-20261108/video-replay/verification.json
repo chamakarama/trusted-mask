@@ -1,0 +1,260 @@
+{
+  "model_id": "deberta-v3-base-section-v1",
+  "model_manifest_sha256": "6b69155f87c06e4c4fac9d6f3a20acb50ef000c83a889a50023bb89dced66112",
+  "source_commit": "77ea2fec6cd9c1a444827516d2855b7328dda6bc",
+  "message_sha256": "48dfac0e053b550af5a677a1e67bbbae241ec4164a80d303f1f2f874bfba7d2a",
+  "source": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: Emma Wilson\nRecovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\nMedical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes.",
+  "word_count": 80,
+  "device": "cpu",
+  "threads": 4,
+  "switch_back_reproduces_manager_output": true,
+  "limitations": [
+    "Synthetic demo revised after testing two more natural introductions with both tasks.",
+    "Complete local Python application preview; no live browser or provider request.",
+    "No model weights, thresholds or production defaults changed."
+  ],
+  "outputs": [
+    {
+      "context": "manager",
+      "task": "Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.",
+      "seconds": 1.1494919579708949,
+      "checks": {
+        "supported_preview": true,
+        "name_aliased": true,
+        "work_facts_preserved": true,
+        "protected_provider_payload": true,
+        "psychiatric_details_removed": true
+      },
+      "preview": {
+        "preview_id": "6WEnnjIAPDiw0nnGMqZoemBP",
+        "provider_request": {
+          "system": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nReply in plain text without Markdown formatting.",
+          "user": "Task: Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.\n\nHere's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nFit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n"
+        },
+        "protected_view": {
+          "task": [
+            {
+              "text": "Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days."
+            }
+          ],
+          "message": [
+            {
+              "text": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: "
+            },
+            {
+              "text": "[PERSON_1]",
+              "label": "PERSON",
+              "action": "ALIAS",
+              "start": 128,
+              "end": 139
+            },
+            {
+              "text": "\n"
+            },
+            {
+              "text": "",
+              "label": "HEALTH",
+              "action": "DROP",
+              "start": 140,
+              "end": 176
+            },
+            {
+              "text": "Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n"
+            },
+            {
+              "text": "",
+              "label": "HEALTH",
+              "action": "DROP",
+              "start": 314,
+              "end": 485
+            }
+          ]
+        },
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nTask: Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.\n\nHere's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nFit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n",
+        "protected_text": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nFit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n",
+        "protected_task": "Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.",
+        "model_version": "deberta-v3-base-section-v1",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "6b69155f87c06e4c4fac9d6f3a20acb50ef000c83a889a50023bb89dced66112"
+        },
+        "context_mode": "explicit_task",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 3,
+        "retained_types": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 485,
+          "total_characters": 485,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      }
+    },
+    {
+      "context": "clinician",
+      "task": "Summarise my health, medication and recent symptoms for my new GP.",
+      "seconds": 0.7782322919811122,
+      "checks": {
+        "supported_preview": true,
+        "name_aliased": true,
+        "work_facts_preserved": true,
+        "protected_provider_payload": true,
+        "medical_details_preserved": true,
+        "only_name_changes": true
+      },
+      "preview": {
+        "preview_id": "2lNs2n30W3gdDuiQpkm7mFfb",
+        "provider_request": {
+          "system": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nReply in plain text without Markdown formatting.",
+          "user": "Task: Summarise my health, medication and recent symptoms for my new GP.\n\nHere's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nRecovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\nMedical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes."
+        },
+        "protected_view": {
+          "task": [
+            {
+              "text": "Summarise my health, medication and recent symptoms for my new GP."
+            }
+          ],
+          "message": [
+            {
+              "text": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: "
+            },
+            {
+              "text": "[PERSON_1]",
+              "label": "PERSON",
+              "action": "ALIAS",
+              "start": 128,
+              "end": 139
+            },
+            {
+              "text": "\nRecovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\nMedical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes."
+            }
+          ]
+        },
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nTask: Summarise my health, medication and recent symptoms for my new GP.\n\nHere's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nRecovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\nMedical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes.",
+        "protected_text": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nRecovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\nMedical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes.",
+        "protected_task": "Summarise my health, medication and recent symptoms for my new GP.",
+        "model_version": "deberta-v3-base-section-v1",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "6b69155f87c06e4c4fac9d6f3a20acb50ef000c83a889a50023bb89dced66112"
+        },
+        "context_mode": "explicit_task",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 1,
+        "retained_types": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 485,
+          "total_characters": 485,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      }
+    },
+    {
+      "context": "manager",
+      "task": "Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.",
+      "seconds": 1.1685346250305884,
+      "checks": {
+        "supported_preview": true,
+        "name_aliased": true,
+        "work_facts_preserved": true,
+        "protected_provider_payload": true,
+        "psychiatric_details_removed": true
+      },
+      "preview": {
+        "preview_id": "q0XdfggFPSdPy-NZfnqrlxou",
+        "provider_request": {
+          "system": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nReply in plain text without Markdown formatting.",
+          "user": "Task: Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.\n\nHere's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nFit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n"
+        },
+        "protected_view": {
+          "task": [
+            {
+              "text": "Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days."
+            }
+          ],
+          "message": [
+            {
+              "text": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: "
+            },
+            {
+              "text": "[PERSON_1]",
+              "label": "PERSON",
+              "action": "ALIAS",
+              "start": 128,
+              "end": 139
+            },
+            {
+              "text": "\n"
+            },
+            {
+              "text": "",
+              "label": "HEALTH",
+              "action": "DROP",
+              "start": 140,
+              "end": 176
+            },
+            {
+              "text": "Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n"
+            },
+            {
+              "text": "",
+              "label": "HEALTH",
+              "action": "DROP",
+              "start": 314,
+              "end": 485
+            }
+          ]
+        },
+        "status": "needs_review",
+        "payload": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.\n\nTask: Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.\n\nHere's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nFit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n",
+        "protected_text": "Here's the summary from my GP appointment. My manager said working from home on Tuesdays and Thursdays would be fine.\n\nPatient: [PERSON_1]\nFit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.\n\n",
+        "protected_task": "Write an email to my manager requesting temporary desk duties. Include my return date, restrictions and work-from-home days.",
+        "model_version": "deberta-v3-base-section-v1",
+        "runtime_versions": {
+          "pipeline": "privacy-edit-pipeline.2",
+          "section_mode": "section-head-v1",
+          "policy": "consumer-v1-pilot.2",
+          "model_training_policy": "consumer-v1-pilot.2",
+          "model_bundle_sha256": "6b69155f87c06e4c4fac9d6f3a20acb50ef000c83a889a50023bb89dced66112"
+        },
+        "context_mode": "explicit_task",
+        "receiving_ai_instruction": "Privacy note: Labels such as [PERSON_1] represent redacted references. You may use these labels verbatim in your reply. Do not guess or invent the hidden values.",
+        "change_count": 3,
+        "retained_types": [],
+        "review_reasons": [
+          "experimental_model_not_release_validated",
+          "unconfirmed_detection_requires_review"
+        ],
+        "coverage": {
+          "scanned_characters": 485,
+          "total_characters": 485,
+          "complete": true,
+          "offset_unit": "unicode_code_point",
+          "history_messages_scanned": 0,
+          "task_scanned": true
+        }
+      }
+    }
+  ]
+}

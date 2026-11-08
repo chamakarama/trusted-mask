@@ -1,5 +1,9 @@
 # Mask training data producer prompt
 
+> Historical record: this is the brief given to the LLM writer and reviewer sessions that produced Mask's synthetic training data. The generated data and the branches it names are not included in this repository.
+
+For the current section-removal campaign, start with [the new instructions](SECTION_DATA_INSTRUCTIONS.md) and [copy-paste agent prompt](SECTION_DATA_PROMPT.md). They override the older general campaign's quotas, length targets, output paths and no-push restriction; the schema and review integrity rules below still apply.
+
 Paste the following prompt into each repo-connected Claude Opus or ChatGPT Astra/Sol coordinator. Each coordinator claims its own UUID directory, so several models can work at once. Keep model-generated review distinct from human audit. Start with the first wave; inspect its quality before requesting thousands of records.
 
 ---

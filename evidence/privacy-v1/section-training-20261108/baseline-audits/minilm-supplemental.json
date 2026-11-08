@@ -1,0 +1,3528 @@
+{
+  "counts": {
+    "placeholder_targets": 117,
+    "exact_placeholder_type_correct": 63,
+    "essential_nondirect_placeholder_targets": 5,
+    "essential_nondirect_placeholder_correct": 0
+  },
+  "failures": [
+    {
+      "id": "4bb67ed080b844c9a99a4061abf1790c:id-004",
+      "task": "Help me write a short first email to the therapy service to book my first session.",
+      "text": "Hi, could you help me write to Thornbury Talking Therapies? My GP, Dr Eilidh MacAskill, referred me on 3 November for anxiety and panic attacks that started in August. My insurer has approved eight sessions, not twelve as the GP letter says, and the approval code only works if the first session happens before 31 January. I was told the therapist would be Nguyen Thi Lan. I'd like to stay with Lan if possible because a friend saw her and found her easy to talk to, but I'm open to someone else if the wait is long. I can do Tuesday or Wednesday evenings after 6pm, not mornings. My NHS number is 999 123 4567, insurer membership AXM-30027716, mobile 07700 900871, email jo.bramwell@example.net, and my address is 7 Linden Close, Thornbury BS35 2XX.",
+      "protected_text": "Hi, could you help me write to [PERSON_1] Talking Therapies? My GP, Dr [PERSON_2], referred me on 3 November for anxiety and panic attacks that started in August. My insurer has approved eight sessions, not twelve as the GP letter says, and the approval code only works if the first session happens before 31 January. I was told the therapist would be [PERSON_3]. I'd like to stay with [PERSON_4] if possible because a friend saw her and found her easy to talk to, but I'm open to someone else if the wait is long. I can do Tuesday or Wednesday evenings after 6pm, not mornings. My NHS number is [ACCOUNT_ID], insurer membership [ACCOUNT_ID], mobile [PHONE], email [EMAIL], and my address is [ADDRESS], [PERSON_1] BS35 2XX.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m9",
+          "entity_id": "home-address",
+          "quote": "7 Linden Close, Thornbury BS35 2XX",
+          "label": "ADDRESS",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "The home address is a direct location identifier and a first booking email does not need it.",
+          "start": 715,
+          "end": 749
+        }
+      ],
+      "lost_required_facts": [
+        {
+          "quote": "could you help me write to Thornbury Talking Therapies?",
+          "overlapping_edits": [
+            {
+              "start": 31,
+              "end": 40,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "999 123 4567",
+          "target": {
+            "kind": "entity",
+            "target_id": "m5",
+            "entity_id": "nhs-no",
+            "quote": "999 123 4567",
+            "label": "NATIONAL_ID",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "A national health number is a government identifier; a first booking email can be drafted without it.",
+            "start": 598,
+            "end": 610
+          },
+          "overlapping_edits": [
+            {
+              "start": 598,
+              "end": 610,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "7 Linden Close, Thornbury BS35 2XX",
+          "target": {
+            "kind": "entity",
+            "target_id": "m9",
+            "entity_id": "home-address",
+            "quote": "7 Linden Close, Thornbury BS35 2XX",
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The home address is a direct location identifier and a first booking email does not need it.",
+            "start": 715,
+            "end": 749
+          },
+          "overlapping_edits": [
+            {
+              "start": 715,
+              "end": 729,
+              "label": "ADDRESS",
+              "action": "PLACEHOLDER",
+              "replacement": "[ADDRESS]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            },
+            {
+              "start": 731,
+              "end": 740,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 97,
+          "end": 102,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 114,
+          "end": 166,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 631,
+          "end": 643,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 631,
+          "end": 643,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 645,
+          "end": 651,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 729,
+          "end": 730,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 731,
+          "end": 749,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "4f82c80c5e1d45e0ad885e2c8484ba72:id-004",
+      "task": "Turn these notes into a short message to the tutor agreeing the new day and asking about the extra session.",
+      "text": "Notes for sorting out Nguyen Thi Lan's tutoring before half term:\n- Tutor: Mr Adebayo Oyelaran, GCSE maths, Tuesdays 4:30-5:30 at our flat (14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX).\n- He wants to move to Wednesdays from 19 November because of his own college timetable. Wednesdays only work for Lan if it starts at 5:00, not 4:30, because of netball.\n- Rate stays £32 per hour; he confirmed no increase until January.\n- Booking and payment go through the TutorLink app. His handle is @ade_oyelaran_maths, ours is @lanfamily_hf3.\n- Lan's mock exam is 3 December. She's working at a grade 5 and aiming for a 6; she says algebra and ratio are the weak spots.\n- Mr Oyelaran mentioned he could add a 30-minute top-up session the week before the mock if we book by 26 November.",
+      "protected_text": "Notes for sorting out [PERSON_1] tutoring before half term:\n- Tutor: Mr [PERSON_2], GCSE maths, Tuesdays 4:30-5:30 at our flat ([ADDRESS], Mill Lane, [PERSON_3] HF3 9QX).\n- He wants to move to Wednesdays from 19 November because of his own college timetable. Wednesdays only work for Lan if it starts at 5:00, not 4:30, because of netball.\n- Rate stays £32 per hour; he confirmed no increase until January.\n- Booking and payment go through the TutorLink app. His handle is @ade_oyelaran_maths, ours is @lanfamily_hf3.\n- [PERSON_4] mock exam is 3 December. She's working at a grade 5 and aiming for a 6; she says algebra and ratio are the weak spots.\n- Mr [PERSON_5] mentioned he could add a 30-minute top-up session the week before the mock if we book by 26 November.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m3",
+          "entity_id": "home",
+          "quote": "14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX",
+          "label": "ADDRESS",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "The family's home address is a direct identifier; the tutor already knows where sessions happen and the message does not need it.",
+          "start": 140,
+          "end": 190
+        },
+        {
+          "kind": "entity",
+          "target_id": "m4",
+          "entity_id": "student",
+          "quote": "Lan",
+          "label": "PERSON",
+          "action": "ALIAS",
+          "relevance": "unnecessary",
+          "start": 306,
+          "end": 309
+        },
+        {
+          "kind": "entity",
+          "target_id": "m5",
+          "entity_id": "tutor-handle",
+          "quote": "@ade_oyelaran_maths",
+          "label": "USERNAME",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "The tutor's app handle links to his real profile and is not needed to agree a new day.",
+          "start": 495,
+          "end": 514
+        },
+        {
+          "kind": "entity",
+          "target_id": "m6",
+          "entity_id": "family-handle",
+          "quote": "@lanfamily_hf3",
+          "label": "USERNAME",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "The family's app handle embeds the child's name and postcode area; the message does not need it.",
+          "start": 524,
+          "end": 538
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX",
+          "target": {
+            "kind": "entity",
+            "target_id": "m3",
+            "entity_id": "home",
+            "quote": "14B Larkspur Court, Mill Lane, Hollinsford HF3 9QX",
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The family's home address is a direct identifier; the tutor already knows where sessions happen and the message does not need it.",
+            "start": 140,
+            "end": 190
+          },
+          "overlapping_edits": [
+            {
+              "start": 140,
+              "end": 158,
+              "label": "ADDRESS",
+              "action": "PLACEHOLDER",
+              "replacement": "[ADDRESS]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            },
+            {
+              "start": 171,
+              "end": 182,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_3]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "@ade_oyelaran_maths",
+          "target": {
+            "kind": "entity",
+            "target_id": "m5",
+            "entity_id": "tutor-handle",
+            "quote": "@ade_oyelaran_maths",
+            "label": "USERNAME",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The tutor's app handle links to his real profile and is not needed to agree a new day.",
+            "start": 495,
+            "end": 514
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "@lanfamily_hf3",
+          "target": {
+            "kind": "entity",
+            "target_id": "m6",
+            "entity_id": "family-handle",
+            "quote": "@lanfamily_hf3",
+            "label": "USERNAME",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The family's app handle embeds the child's name and postcode area; the message does not need it.",
+            "start": 524,
+            "end": 538
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 96,
+          "end": 106,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 160,
+          "end": 169,
+          "label": "ADDRESS",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 171,
+          "end": 182,
+          "label": "ADDRESS",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 183,
+          "end": 186,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 183,
+          "end": 190,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 187,
+          "end": 190,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 495,
+          "end": 514,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 524,
+          "end": 539,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 598,
+          "end": 599,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 604,
+          "end": 610,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 615,
+          "end": 618,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 629,
+          "end": 636,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 641,
+          "end": 646,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "1ac4217be1cb4ce1baaa910e177cda02:id-004",
+      "task": "Can you polish this reference request so it sounds warm but professional, keeping the deadline and details accurate?",
+      "text": "Hi Funmilayo,\n\nI hope things are calmer at Hartwell Logistics since the restructure. I'm applying for an operations coordinator role at a freight company and they've asked for two references by Friday 13 November. Would you be willing to be one of them? You managed me for just over four years, from January 2022 until I left in March this year.\n\nThe recruiter, Saoirse Nic Giolla, will email you from saoirse.ng@recruit.example. Saoirse said the reference is a short form plus possibly a ten-minute call, and they won't contact you until you agree.\n\nIf it helps, I'd be grateful if you could mention the warehouse scheduling project, which cut late dispatches from about 9% to under 4%. Please don't feel obliged if you're too busy; I completely understand.\n\nYou can reach me on 07700 900275.\n\nThanks,\nTomás Ferreira-Ilunga",
+      "protected_text": "Hi [PERSON_1],\n\nI hope things are calmer at [PERSON_2] since the restructure. I'm applying for an operations coordinator role at a freight company and they've asked for two references by Friday 13 November. Would you be willing to be one of them? You managed me for just over four years, from January 2022 until I left in March this year.\n\nThe recruiter, [PERSON_3], will email you from [EMAIL]. [PERSON_4] said the reference is a short form plus possibly a ten-minute call, and they won't contact you until you agree.\n\nIf it helps, I'd be grateful if you could mention the warehouse scheduling project, which cut late dispatches from about 9% to under 4%. Please don't feel obliged if you're too busy; I completely understand.\n\nYou can reach me on [ACCOUNT_ID].\n\nThanks,\n[PERSON_5]",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Hartwell Logistics",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "former-employer",
+            "quote": "Hartwell Logistics",
+            "label": "ORG",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Naming the former employer links the writer and manager to a specific workplace; the polished request only needs the shared-employer context.",
+            "start": 43,
+            "end": 61
+          },
+          "overlapping_edits": [
+            {
+              "start": 43,
+              "end": 61,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "07700 900275",
+          "target": {
+            "kind": "entity",
+            "target_id": "m7",
+            "entity_id": "candidate-phone",
+            "quote": "07700 900275",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Candidate's mobile number is a direct contact identifier and not needed to improve the tone.",
+            "start": 780,
+            "end": 792
+          },
+          "overlapping_edits": [
+            {
+              "start": 780,
+              "end": 792,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": []
+    },
+    {
+      "id": "1ac4217be1cb4ce1baaa910e177cda02:id-005",
+      "task": "Write a clear timeline for the marketplace's support team and tell me what else I should report.",
+      "text": "Pasting the chat from the marketplace app so you can see what happened:\n\n[Sat 10:14] quietfox_1987: is the bike still available? can do 260 cash\n[Sat 10:20] me: Listed at 300 but 280 is fine, collection only\n[Sat 10:31] quietfox_1987: ok 280. my name is Nguyen Van Duc, I'll come at 4pm, address?\n[Sat 10:33] me: Flat 3, 41 Quarry Road, Ellesby. Ring twice\n[Sat 16:52] quietfox_1987: sent 280 by bank transfer instead, ref BIKE, check screenshot\n\nThe screenshot showed a transfer, but nothing has arrived and my banking app shows no pending payment. He's not answering messages. Duc took the bike, and my neighbour Lauren Okonkwo saw him load it into a grey van. His number from the listing is 555-0147.\n\nMarketplace support asked for the buyer's username and a summary of the timeline.",
+      "protected_text": "Pasting the chat from the marketplace app so you can see what happened:\n\n[Sat 10:14] quietfox_1987: is the bike still available? can do 260 cash\n[Sat 10:20] me: Listed at 300 but 280 is fine, collection only\n[Sat 10:31] quietfox_1987: ok 280. my name is [PERSON_1], I'll come at 4pm, address?\n[Sat 10:33] me: Flat 3, [ADDRESS], [PERSON_2]. Ring twice\n[Sat 16:52] quietfox_1987: sent 280 by bank transfer instead, ref BIKE, check screenshot\n\nThe screenshot showed a transfer, but nothing has arrived and my banking app shows no pending payment. He's not answering messages. [PERSON_3] took the bike, and my neighbour [PERSON_4] saw him load it into a grey van. His number from the listing is 555-0147.\n\nMarketplace support asked for the buyer's username and a summary of the timeline.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m1",
+          "entity_id": "buyer-handle",
+          "quote": "quietfox_1987",
+          "label": "USERNAME",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "Support needs the exact buyer handle, but it is a direct account identifier; the user re-inserts it, and the timeline only needs to show one account sent every message.",
+          "start": 85,
+          "end": 98
+        },
+        {
+          "kind": "entity",
+          "target_id": "m2",
+          "entity_id": "buyer-handle",
+          "quote": "quietfox_1987",
+          "label": "USERNAME",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "Same buyer handle as the first message; protected for the same reason, the user re-inserts it for support.",
+          "start": 220,
+          "end": 233
+        },
+        {
+          "kind": "entity",
+          "target_id": "m4",
+          "entity_id": "seller-address",
+          "quote": "Flat 3, 41 Quarry Road, Ellesby",
+          "label": "ADDRESS",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "Seller's home address is a direct identifier; the timeline only needs that the buyer collected in person.",
+          "start": 313,
+          "end": 344
+        },
+        {
+          "kind": "entity",
+          "target_id": "m5",
+          "entity_id": "buyer-handle",
+          "quote": "quietfox_1987",
+          "label": "USERNAME",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "Same buyer handle as the earlier messages; protected for the same reason, the user re-inserts it for support.",
+          "start": 369,
+          "end": 382
+        },
+        {
+          "kind": "entity",
+          "target_id": "m8",
+          "entity_id": "buyer-phone",
+          "quote": "555-0147",
+          "label": "PHONE",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "Buyer's listed phone number is a direct contact identifier; support can trace the account from the handle without the assistant seeing it.",
+          "start": 694,
+          "end": 702
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "quietfox_1987",
+          "target": {
+            "kind": "entity",
+            "target_id": "m1",
+            "entity_id": "buyer-handle",
+            "quote": "quietfox_1987",
+            "label": "USERNAME",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "Support needs the exact buyer handle, but it is a direct account identifier; the user re-inserts it, and the timeline only needs to show one account sent every message.",
+            "start": 85,
+            "end": 98
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "quietfox_1987",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "buyer-handle",
+            "quote": "quietfox_1987",
+            "label": "USERNAME",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "Same buyer handle as the first message; protected for the same reason, the user re-inserts it for support.",
+            "start": 220,
+            "end": 233
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "Flat 3, 41 Quarry Road, Ellesby",
+          "target": {
+            "kind": "entity",
+            "target_id": "m4",
+            "entity_id": "seller-address",
+            "quote": "Flat 3, 41 Quarry Road, Ellesby",
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Seller's home address is a direct identifier; the timeline only needs that the buyer collected in person.",
+            "start": 313,
+            "end": 344
+          },
+          "overlapping_edits": [
+            {
+              "start": 321,
+              "end": 335,
+              "label": "ADDRESS",
+              "action": "PLACEHOLDER",
+              "replacement": "[ADDRESS]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            },
+            {
+              "start": 337,
+              "end": 344,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "quietfox_1987",
+          "target": {
+            "kind": "entity",
+            "target_id": "m5",
+            "entity_id": "buyer-handle",
+            "quote": "quietfox_1987",
+            "label": "USERNAME",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "Same buyer handle as the earlier messages; protected for the same reason, the user re-inserts it for support.",
+            "start": 369,
+            "end": 382
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "555-0147",
+          "target": {
+            "kind": "entity",
+            "target_id": "m8",
+            "entity_id": "buyer-phone",
+            "quote": "555-0147",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Buyer's listed phone number is a direct contact identifier; support can trace the account from the handle without the assistant seeing it.",
+            "start": 694,
+            "end": 702
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 85,
+          "end": 98,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 85,
+          "end": 98,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 220,
+          "end": 233,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 220,
+          "end": 233,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 337,
+          "end": 344,
+          "label": "ADDRESS",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 369,
+          "end": 382,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 369,
+          "end": 382,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 369,
+          "end": 382,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 369,
+          "end": 382,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 694,
+          "end": 702,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 694,
+          "end": 702,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "1ac4217be1cb4ce1baaa910e177cda02:pres-002",
+      "task": "Write a short follow-up email to the wider team summarising the decisions, open questions and owners from this sync.",
+      "text": "Offsite planning sync – notes\n\nAttendees: Lindiwe Mabaso (events), Joaquín Etxeberria (finance ops), Petra Hollander (IT)\n\n- Venue capacity is 140 seated, not 180 as in last week's notes; 180 is the standing figure.\n- Lindiwe confirmed catering will hold the 12 December date only if we confirm final headcount by 20 November.\n- Joaquín approved the AV hire but not the photographer; he'll revisit the photographer if we come in under budget.\n- Petra thinks the venue Wi-Fi probably can't handle 140 laptops and suggested a rented 5G router as backup. She hasn't tested it yet.\n- Correction from Lindiwe after the call: the coach leaves at 08:15, not 08:45.\n- Dietary forms go out Friday; anyone who doesn't reply by 27 November gets the standard menu.\n\nActions: Lindiwe – headcount chase; Joaquín – AV purchase order; Petra – Wi-Fi test on site visit.",
+      "protected_text": "Offsite planning sync – notes\n\nAttendees: [PERSON_1] (events), [PERSON_2] (finance ops), [PERSON_3] (IT)\n\n- Venue capacity is 140 seated, not 180 as in last week's notes; 180 is the standing figure.\n- [PERSON_4] confirmed catering will hold the 12 December date only if we confirm final headcount by 20 November.\n- [PERSON_5] approved the AV hire but not the photographer; he'll revisit the photographer if we come in under budget.\n- [PERSON_6] thinks the venue Wi-Fi probably can't handle 140 laptops and suggested a rented 5G router as backup. She hasn't tested it yet.\n- Correction from [PERSON_4] after the call: the coach leaves at 08:15, not 08:45.\n- Dietary forms go out Friday; anyone who doesn't reply by 27 November gets the standard menu.\n\nActions: [PERSON_4] – headcount chase; Joaquín – AV purchase order; Petra – Wi-Fi test on site visit.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m9",
+          "entity_id": "finance-ops",
+          "quote": "Joaquín",
+          "label": "PERSON",
+          "action": "ALIAS",
+          "relevance": "unnecessary",
+          "start": 790,
+          "end": 797
+        },
+        {
+          "kind": "entity",
+          "target_id": "m10",
+          "entity_id": "it-lead",
+          "quote": "Petra",
+          "label": "PERSON",
+          "action": "ALIAS",
+          "relevance": "unnecessary",
+          "start": 819,
+          "end": 824
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 773,
+          "end": 788,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 790,
+          "end": 802,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 819,
+          "end": 826,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 827,
+          "end": 837,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "800f1d8865bf4f60ba2bb43072800844:id-012",
+      "task": "Write a neutral debrief summary showing each panelist's view and the proposed next step, keeping the scores and requirements.",
+      "text": "Interview feedback, Product Designer, round two. Candidate Mihaela Ionescu was strong on portfolio walkthrough (4 out of 5) but weaker on the stakeholder case study (2 out of 5). Panel: Tavita Leota thought she should move forward, Jonas Meier is a no because she has only 2 years of experience against our 4-year requirement, and I'm undecided. She mentioned her current employer, Kestrel Print Works, is a small studio of about 12 people, so she may take a counter-offer. If we proceed, the next step is a 60-minute whiteboard session with Tavita and the VP, not Jonas. Please keep scoring consistent: nobody should rate her above 4 on communication. You can reach her on 07700 900705 after 6 pm.",
+      "protected_text": "Interview feedback, Product Designer, round two. Candidate [PERSON_1] was strong on portfolio walkthrough (4 out of 5) but weaker on the stakeholder case study (2 out of 5). Panel: [PERSON_2] thought she should move forward, [PERSON_3] is a no because she has only 2 years of experience against our 4-year requirement, and I'm undecided. She mentioned her current employer, [PERSON_4] Print Works, is a small studio of about 12 people, so she may take a counter-offer. If we proceed, the next step is a 60-minute whiteboard session with [PERSON_5] and the VP, not [PERSON_6]. Please keep scoring consistent: nobody should rate her above 4 on communication. You can reach her on [ACCOUNT_ID] after 6 pm.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Kestrel Print Works",
+          "target": {
+            "kind": "entity",
+            "target_id": "m5",
+            "entity_id": "employer",
+            "quote": "Kestrel Print Works",
+            "label": "ORG",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The employer name could identify the candidate; the debrief only needs that it is a small studio of about 12 people.",
+            "start": 382,
+            "end": 401
+          },
+          "overlapping_edits": [
+            {
+              "start": 382,
+              "end": 389,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_4]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "07700 900705",
+          "target": {
+            "kind": "entity",
+            "target_id": "m8",
+            "entity_id": "phone",
+            "quote": "07700 900705",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The debrief summary does not need the candidate's phone number.",
+            "start": 674,
+            "end": 686
+          },
+          "overlapping_edits": [
+            {
+              "start": 674,
+              "end": 686,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 390,
+          "end": 401,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 674,
+          "end": 679,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "6f3a54fde3954d9588ca4a07a8d12a3d:id-006",
+      "task": "Turn these notes into a short script for my phone call, keeping the waiting time, the symptoms and the question about the list.",
+      "text": "Notes for CAMHS call:\n- Son: Obinna Okafor, age 14, referred by school nurse Gwen Pritchard on 3 October\n- Waiting 11 weeks so far; letter said the first appointment would be within 12 weeks\n- He has had panic attacks about twice a week and missed 6 days of school in October\n- School says it will send an attendance letter if the clinic asks for one\n- Ask: is he still on the 12-week list, or was it reset because we changed address?\n- Referral ref: CAMHS/R/80412\n- Parent: Chidinma Okafor, mobile 07700 900662, email chidinma.o@example.net\n- New address: 9 Kestrel Close, Bristol BS8 1TT",
+      "protected_text": "Notes for [PERSON_1] call:\n- Son: [PERSON_2], age 14, referred by school nurse [PERSON_3] on 3 October\n- Waiting 11 weeks so far; letter said the first appointment would be within 12 weeks\n- He has had panic attacks about twice a week and missed 6 days of school in October\n- School says it will send an attendance letter if the clinic asks for one\n- Ask: is he still on the 12-week list, or was it reset because we changed address?\n- Referral ref: CAMHS/R/80412\n- Parent: [PERSON_4], mobile [PHONE], email [EMAIL]\n- New address: [ADDRESS] Close, [PERSON_5] BS8 1TT",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m5",
+          "entity_id": "referral-ref",
+          "quote": "CAMHS/R/80412",
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "The service looks up the referral by this exact reference; the user re-inserts it, so the script cannot verify it.",
+          "start": 451,
+          "end": 464
+        },
+        {
+          "kind": "entity",
+          "target_id": "m9",
+          "entity_id": "new-address",
+          "quote": "9 Kestrel Close, Bristol BS8 1TT",
+          "label": "ADDRESS",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "Full new home address; the question only needs to say the family changed address.",
+          "start": 557,
+          "end": 589
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "CAMHS/R/80412",
+          "target": {
+            "kind": "entity",
+            "target_id": "m5",
+            "entity_id": "referral-ref",
+            "quote": "CAMHS/R/80412",
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The service looks up the referral by this exact reference; the user re-inserts it, so the script cannot verify it.",
+            "start": 451,
+            "end": 464
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "9 Kestrel Close, Bristol BS8 1TT",
+          "target": {
+            "kind": "entity",
+            "target_id": "m9",
+            "entity_id": "new-address",
+            "quote": "9 Kestrel Close, Bristol BS8 1TT",
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Full new home address; the question only needs to say the family changed address.",
+            "start": 557,
+            "end": 589
+          },
+          "overlapping_edits": [
+            {
+              "start": 557,
+              "end": 566,
+              "label": "ADDRESS",
+              "action": "PLACEHOLDER",
+              "replacement": "[ADDRESS]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            },
+            {
+              "start": 574,
+              "end": 581,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 144,
+          "end": 275,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 377,
+          "end": 384,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 451,
+          "end": 457,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 457,
+          "end": 458,
+          "label": "SECRET",
+          "reason": "business_number_context"
+        },
+        {
+          "start": 458,
+          "end": 464,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        },
+        {
+          "start": 465,
+          "end": 466,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 567,
+          "end": 572,
+          "label": "ADDRESS",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 582,
+          "end": 589,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "6f3a54fde3954d9588ca4a07a8d12a3d:pres-001",
+      "task": "Turn this into a weekly rota table that shows who does which day, and what is still conditional or uncertain.",
+      "text": "Update on Dad's care rota, because I got it wrong last time. My sister, Adaeze Nwosu, will take Tuesdays and Fridays, not Wednesdays as I said. My brother-in-law, Kristof Szabo, will only do Sundays if Adaeze can't, and he said he might manage Thursday evenings too, but he is not sure. Our neighbour, Mrs Glenys Halloran, has offered to sit with Dad for two hours on Wednesdays unless her own hospital appointment moves; she will let us know by 20 November. The carer's allowance claim is in my name only, not Adaeze's, so the 81.90 pounds a week is mine. Mrs Halloran would also like a key, but I have not agreed to that yet.",
+      "protected_text": "Update on Dad's care rota, because I got it wrong last time. My sister, [PERSON_1], will take Tuesdays and Fridays, not Wednesdays as I said. My brother-in-law, [PERSON_2], will only do Sundays if [PERSON_3] can't, and he said he might manage Thursday evenings too, but he is not sure. Our neighbour, Mrs [PERSON_4], has offered to sit with Dad for two hours on Wednesdays unless her own hospital appointment moves; she will let us know by 20 November. The carer's allowance claim is in my name only, not [PERSON_5], so the 81.90 pounds a week is mine. Mrs [PERSON_6] would also like a key, but I have not agreed to that yet.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "'s, so the 81.90 pounds a week is mine.",
+          "overlapping_edits": [
+            {
+              "start": 511,
+              "end": 519,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 355,
+          "end": 364,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 394,
+          "end": 402,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 528,
+          "end": 547,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-001",
+      "task": "Draft a calm but firm email to the builder about the delay and the withheld payment, keeping the amounts and conditions exactly as I stated them.",
+      "text": "Hi, I need help writing a firm but polite message to my builder. Our kitchen extension was due to finish on 14 March but the roof is still not on. Tadeusz Wrona quoted 18,500 pounds and I have already paid 12,000 pounds in two instalments. Tadeusz says the delay is because his bricklayer, Ayodele Fashola, fell ill for two weeks, which I accept, but I won't pay the next 3,000-pound stage until the roof is on. You can reach me on 07700 900314 or at imani.reyes@example.com. My job reference with his firm is JOB-55291. Please keep the tone calm and say that I'm happy to meet on site on Friday.",
+      "protected_text": "Hi, I need help writing a firm but polite message to my builder. Our kitchen extension was due to finish on 14 March but the roof is still not on. [PERSON_1] quoted 18,500 pounds and I have already paid 12,000 pounds in two instalments. [PERSON_2] says the delay is because his bricklayer, [PERSON_3], fell ill for two weeks, which I accept, but I won't pay the next 3,000-pound stage until the roof is on. You can reach me on [ACCOUNT_ID] or at [EMAIL]. My job reference with his firm is JOB-55291. Please keep the tone calm and say that I'm happy to meet on site on Friday.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m6",
+          "entity_id": "jobref",
+          "quote": "JOB-55291",
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "The draft should cite the job reference but the exact value is not needed to write it; the user re-inserts it.",
+          "start": 510,
+          "end": 519
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "07700 900314",
+          "target": {
+            "kind": "entity",
+            "target_id": "m4",
+            "entity_id": "phone",
+            "quote": "07700 900314",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The builder already has the customer's phone number; the email only needs the tone and payment terms, so no utility is lost.",
+            "start": 432,
+            "end": 444
+          },
+          "overlapping_edits": [
+            {
+              "start": 432,
+              "end": 444,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "JOB-55291",
+          "target": {
+            "kind": "entity",
+            "target_id": "m6",
+            "entity_id": "jobref",
+            "quote": "JOB-55291",
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The draft should cite the job reference but the exact value is not needed to write it; the user re-inserts it.",
+            "start": 510,
+            "end": 519
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 168,
+          "end": 181,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 201,
+          "end": 226,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 307,
+          "end": 329,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 372,
+          "end": 383,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 374,
+          "end": 383,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 510,
+          "end": 519,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 510,
+          "end": 519,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        }
+      ]
+    },
+    {
+      "id": "0c26f67397fc4b31b58a0ebe0286d1d6:id-006",
+      "task": "Write a formal complaint letter to the energy supplier setting out the billing error, the promised reissue that never came and what I want done by the deadline.",
+      "text": "Please help me turn this into a complaint to my old energy supplier. I closed account number 30-884-217 on 9 September when I moved out, but they sent a final bill for 312.40 pounds that includes 41 days after I left. The adviser I spoke to, Gwenllian Pugh, agreed on the phone that the closing reading was 21,904 and said she would reissue the bill within five working days. That was three weeks ago and nothing has arrived. My new address is Flat 3, 22 Henshaw Road, Cardiff and my email is tegan.morris@example.net. I want the bill recalculated and a written apology, and I will go to the ombudsman if it is not fixed by 30 October.",
+      "protected_text": "Please help me turn this into a complaint to my old energy supplier. I closed account number [ACCOUNT_ID] on 9 September when I moved out, but they sent a final bill for 312.40 pounds that includes 41 days after I left. The adviser I spoke to, [PERSON_1], agreed on the phone that the closing reading was 21,904 and said she would reissue the bill within five working days. That was three weeks ago and nothing has arrived. My new address is Flat 3, [ADDRESS], Cardiff and my email is [EMAIL]. I want the bill recalculated and a written apology, and I will go to the ombudsman if it is not fixed by 30 October.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m3",
+          "entity_id": "addr",
+          "quote": "Flat 3, 22 Henshaw Road, Cardiff",
+          "label": "ADDRESS",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "The complaint needs a postal address for the reply, but the exact address is not needed to word it; the user re-inserts it.",
+          "start": 444,
+          "end": 476
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Flat 3, 22 Henshaw Road, Cardiff",
+          "target": {
+            "kind": "entity",
+            "target_id": "m3",
+            "entity_id": "addr",
+            "quote": "Flat 3, 22 Henshaw Road, Cardiff",
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The complaint needs a postal address for the reply, but the exact address is not needed to word it; the user re-inserts it.",
+            "start": 444,
+            "end": 476
+          },
+          "overlapping_edits": [
+            {
+              "start": 452,
+              "end": 467,
+              "label": "ADDRESS",
+              "action": "PLACEHOLDER",
+              "replacement": "[ADDRESS]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 168,
+          "end": 181,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 307,
+          "end": 313,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "c2b0867cf3e543c9b2125f9bf9910b03:id-001",
+      "task": "Draft a firm but polite written dispute to my bank about this card charge.",
+      "text": "Hi, I need help writing a dispute to my bank. On 14 October my debit card, 5555 0100 4821 7730, was charged 289.99 pounds by a shop called Brightwave Audio, but I never ordered anything from them and my card was in my wallet the whole time. My account number is 40817263. My adviser at the branch, Folasade Adeyemi, told me on the phone that I should put the dispute in writing within 30 days. She also said the 289.99 pounds would be refunded temporarily while they investigate, but only if I confirm the card is blocked. I blocked it that same evening. You can reach me at tobias.lindqvist@example.com or on 07700 900342. Please mention the 30-day deadline. Thanks, Tobias Lindqvist",
+      "protected_text": "Hi, I need help writing a dispute to my bank. On 14 October my debit card, [ACCOUNT_ID], was charged 289.99 pounds by a shop called Brightwave Audio, but I never ordered anything from them and my card was in my wallet the whole time. My account number is [ACCOUNT_ID]. My adviser at the branch, [PERSON_1], told me on the phone that I should put the dispute in writing within 30 days. She also said the 289.99 pounds would be refunded temporarily while they investigate, but only if I confirm the card is blocked. I blocked it that same evening. You can reach me at [EMAIL] or on [ACCOUNT_ID]. Please mention the 30-day deadline. Thanks, [PERSON_2]",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "5555 0100 4821 7730",
+          "target": {
+            "kind": "entity",
+            "target_id": "m1",
+            "entity_id": "card",
+            "quote": "5555 0100 4821 7730",
+            "label": "PAYMENT_CARD",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The full card number is not needed to draft the dispute; the user can add it when sending, so only the reference to the card is lost.",
+            "start": 75,
+            "end": 94
+          },
+          "overlapping_edits": [
+            {
+              "start": 75,
+              "end": 94,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "07700 900342",
+          "target": {
+            "kind": "entity",
+            "target_id": "m5",
+            "entity_id": "phone",
+            "quote": "07700 900342",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The sender's phone number is not needed to draft the dispute.",
+            "start": 610,
+            "end": 622
+          },
+          "overlapping_edits": [
+            {
+              "start": 610,
+              "end": 622,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 108,
+          "end": 121,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "c2b0867cf3e543c9b2125f9bf9910b03:id-010",
+      "task": "Write a short variance explanation and an open-items list from these notes for an internal finance review.",
+      "text": "Notes for the Q3 forecast review before it goes into the CFO pack. The EMEA revenue forecast is 4.2 million euros, unchanged, but Cristina Barbosa flagged that the Lyon renewal slips from Q3 to Q4, not cancelled, which explains the 6 percent miss against the Q3 target. Dmitri Volkov-Reyes will approve the extra contractor spend only if the forecast variance stays under 5 percent. Open item: Cristina says the FX assumption is 1.08, but Dmitri used 1.10 in his sheet, so one of them must update before Thursday's review. Questions go to fp-analyst@example.com. Please keep who owns each open point.",
+      "protected_text": "Notes for the Q3 forecast review before it goes into the CFO pack. The EMEA revenue forecast is 4.2 million euros, unchanged, but [PERSON_1] flagged that the Lyon renewal slips from Q3 to Q4, not cancelled, which explains the 6 percent miss against the Q3 target. [PERSON_2] will approve the extra contractor spend only if the forecast variance stays under 5 percent. Open item: [PERSON_3] says the FX assumption is 1.08, but [PERSON_4] used 1.10 in his sheet, so one of them must update before Thursday's review. Questions go to [EMAIL]. Please keep who owns each open point.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "4.2 million euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "m1",
+            "entity_id": "rev",
+            "quote": "4.2 million euros",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The unreleased forecast value is company-confidential; the explanation can still use the percentage miss, but the absolute figure cannot be stated.",
+            "start": 96,
+            "end": 113
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 96,
+          "end": 113,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "98f72cc5b065445da5f5e4d9e335df70:id-011",
+      "task": "Explain how to check whether a VAT number was valid on the invoice date, what to do if it wasn't, and draft a short message asking for a corrected invoice.",
+      "text": "Quick VAT query for the month-end close. Noémie Girard at the supplier emailed invoice INV-30571 for 8,400 euros net plus 1,680 euros VAT, which is 20 percent. The supplier's VAT number on the invoice is FR41 123456789, but I think it was issued after they de-registered. The invoice is dated 14 October, and a notice I found online says their registration ended on 1 October. Our tax manager, Rashid Qureshi, says we can only reclaim the VAT if the invoice shows a valid number, and I'm not sure it does. Noémie is at n.girard@supplier.example.net if we need her. I have to post the return by Friday.",
+      "protected_text": "Quick VAT query for the month-end close. [PERSON_1] at the supplier emailed invoice INV-30571 for 8,400 euros net plus 1,680 euros VAT, which is 20 percent. The supplier's VAT number on the invoice is FR41 123456789, but I think it was issued after they de-registered. The invoice is dated 14 October, and a notice I found online says their registration ended on 1 October. Our tax manager, [PERSON_2], says we can only reclaim the VAT if the invoice shows a valid number, and I'm not sure it does. [PERSON_3] is at [EMAIL] if we need her. I have to post the return by Friday.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m2",
+          "entity_id": "vat",
+          "quote": "FR41 123456789",
+          "label": "ACCOUNT_ID",
+          "action": "PLACEHOLDER",
+          "relevance": "essential",
+          "reason": "The message must cite this exact value, the AI cannot verify it and the user re-inserts it before sending.",
+          "start": 204,
+          "end": 218
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "FR41 123456789",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "vat",
+            "quote": "FR41 123456789",
+            "label": "ACCOUNT_ID",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The message must cite this exact value, the AI cannot verify it and the user re-inserts it before sending.",
+            "start": 204,
+            "end": 218
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 87,
+          "end": 96,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        },
+        {
+          "start": 101,
+          "end": 137,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 148,
+          "end": 158,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 204,
+          "end": 218,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        }
+      ]
+    },
+    {
+      "id": "edb79ce33dab4721814675c087183792:id-001",
+      "task": "Draft a polite reply to the claims handler about the receipts and the extra-night cover.",
+      "text": "Hi, I'm writing about my travel insurance claim after my flight to Lisbon was cancelled. My name is Tomasz Wieczorek and the policy number is TRV-4471-0928-PL. The insurer's handler, Ms Carla Mendonça, told me by phone that I must send the original hotel receipts within 14 days. I paid 386.50 euros for two extra nights, and the airline refused any compensation. You can reach me at tomasz.wieczorek@example.org or on 07700 900314. Carla also said the claim form needs my signature on page 3, which I have not done yet. Please draft a polite reply to Carla confirming the receipts will arrive before the deadline and asking whether the two extra nights are covered in full.",
+      "protected_text": "Hi, I'm writing about my travel insurance claim after my flight to [PERSON_1] was cancelled. My name is [PERSON_2] and the policy number is [ACCOUNT_ID]. The insurer's handler, Ms [PERSON_3], told me by phone that I must send the original hotel receipts within 14 days. I paid 386.50 euros for two extra nights, and the airline refused any compensation. You can reach me at [EMAIL] or on [ACCOUNT_ID]. [PERSON_4] also said the claim form needs my signature on page 3, which I have not done yet. Please draft a polite reply to [PERSON_4] confirming the receipts will arrive before the deadline and asking whether the two extra nights are covered in full.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "07700 900314",
+          "target": {
+            "kind": "entity",
+            "target_id": "m7",
+            "entity_id": "phone",
+            "quote": "07700 900314",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "A phone number is not needed in the reply to the handler; nothing is lost.",
+            "start": 419,
+            "end": 431
+          },
+          "overlapping_edits": [
+            {
+              "start": 419,
+              "end": 431,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 142,
+          "end": 158,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 142,
+          "end": 158,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 282,
+          "end": 320,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "edb79ce33dab4721814675c087183792:cred-002",
+      "task": "Turn this into a clean handover for the next engineer.",
+      "text": "On-call handover, week 46. For the CDN vendor's support portal use the shared login oncall-shared with password Harbor-Lamp-5521; do not change it, because the vendor ties our support contract to it. A Sev-1 for Brightwell Logistics (our largest customer, under NDA) must reach the account manager within 15 minutes. Their contract has a 99.95% uptime clause, with credits of 4% of the 212,000-euro annual fee per breach. Two incidents this week, both resolved: INC-5521 (cache purge failure, 22 minutes) and INC-5530 (TLS renewal alert, false positive). Open item: Selim Aydin is waiting on vendor ticket 88213. If the CDN dashboard shows 5xx above 1%, page the secondary. Please turn this into a clean handover for the next engineer.",
+      "protected_text": "On-call handover, week 46. For the CDN vendor's support portal use the shared login oncall-shared with password [SECRET]; do not change it, because the vendor ties our support contract to it. A Sev-1 for [PERSON_1] Logistics (our largest customer, under NDA) must reach the account manager within 15 minutes. Their contract has a 99.95% uptime clause, with credits of 4% of the 212,000-euro annual fee per breach. Two incidents this week, both resolved: INC-5521 (cache purge failure, 22 minutes) and INC-5530 (TLS renewal alert, false positive). Open item: [PERSON_2] is waiting on vendor ticket 88213. If the CDN dashboard shows 5xx above 1%, page the secondary. Please turn this into a clean handover for the next engineer.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Brightwell Logistics",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "client",
+            "quote": "Brightwell Logistics",
+            "label": "ORG",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The customer is under NDA; the next engineer needs to know which customer, so the user must re-insert the name privately.",
+            "start": 212,
+            "end": 232
+          },
+          "overlapping_edits": [
+            {
+              "start": 212,
+              "end": 222,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "212,000-euro",
+          "target": {
+            "kind": "entity",
+            "target_id": "m3",
+            "entity_id": "fee",
+            "quote": "212,000-euro",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The confidential annual fee is not needed for the handover; the credit percentage is enough.",
+            "start": 386,
+            "end": 398
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 212,
+          "end": 232,
+          "label": "ADDRESS",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 386,
+          "end": 398,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 462,
+          "end": 470,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 509,
+          "end": 517,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        }
+      ]
+    },
+    {
+      "id": "6aee5db7e0b14b99b2d4bc9b2de9f98c:id-002",
+      "task": "Turn this into a short, clear booking confirmation message for the dog walker.",
+      "text": "Hi Kalani, it's Ruairi Gallagher about Monday's walks. Mochi, my cocker spaniel, should go out with Pippa from number 9 only if Pippa's owner, Mrs Ioana Marinescu, has agreed to the group slot; if she hasn't, please do Mochi solo at 12:30 and charge the solo rate of 18 pounds, not the group rate of 12. My neighbour Lucas Ferreira has a spare key, but please don't ask him unless the lockbox at 14 Alder Close is stuck. Reach me on 07700 900427 if anything changes, or email ruairi.g@example.net. I'll settle the 18 pounds on Friday. Mochi pulls on the lead, so please use the harness, and text me a photo after the walk. Thanks, Ruairi",
+      "protected_text": "Hi [PERSON_1], it's [PERSON_2] about Monday's walks. [PERSON_3], my cocker spaniel, should go out with [PERSON_4] from number 9 only if [PERSON_5] owner, Mrs [PERSON_6], has agreed to the group slot; if she hasn't, please do Mochi solo at 12:30 and charge the solo rate of 18 pounds, not the group rate of 12. My neighbour [PERSON_7] has a spare key, but please don't ask him unless the lockbox at [ADDRESS] is stuck. Reach me on [ACCOUNT_ID] if anything changes, or email [EMAIL]. I'll settle the 18 pounds on Friday. [PERSON_3] pulls on the lead, so please use the harness, and text me a photo after the walk. Thanks, [PERSON_8]",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "should go out with Pippa from number 9 only if Pippa's owner, Mrs",
+          "overlapping_edits": [
+            {
+              "start": 100,
+              "end": 105,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_4]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            },
+            {
+              "start": 128,
+              "end": 135,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "07700 900427",
+          "target": {
+            "kind": "entity",
+            "target_id": "m7",
+            "entity_id": "phone",
+            "quote": "07700 900427",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Personal phone number; the confirmation does not need the exact digits.",
+            "start": 433,
+            "end": 445
+          },
+          "overlapping_edits": [
+            {
+              "start": 433,
+              "end": 445,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 65,
+          "end": 79,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 219,
+          "end": 229,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 267,
+          "end": 276,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 439,
+          "end": 445,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "6aee5db7e0b14b99b2d4bc9b2de9f98c:id-003",
+      "task": "Turn these notes into a clear daily checklist for the sitter.",
+      "text": "Pet sitting notes for Whiskers (cat, 14 years old)\n- Owner: Siobhán Brennan, away 3 to 17 August, mobile 07700 900558.\n- Sitter: Wanjiru Kamau, visiting twice daily at 8am and 6pm.\n- Feed half a pouch of the renal diet food morning and evening; no treats at all, because the vet said Whiskers' kidney values were borderline in June.\n- No insulin is needed. Only give the 2.5 ml of liquid supplement if he skips a meal.\n- Vet: Millbrook Veterinary Centre, ask for Dr Chinedu Okafor. Account no. PV-30771.\n- Home address for the vet's emergency pickup form: 22 Quarry Lane, Leeds.\n- If Whiskers stops eating for more than a day, ring the vet first, then Siobhán's brother, Declan Brennan, on 07700 900612.",
+      "protected_text": "Pet sitting notes for Whiskers (cat, [AGE] years old)\n- Owner: [PERSON_1], away 3 to 17 August, mobile [PHONE].\n- Sitter: [PERSON_2], visiting twice daily at 8am and 6pm.\n- Feed half a pouch of the renal diet food morning and evening; no treats at all, because the vet said Whiskers' kidney values were borderline in June.\n- No insulin is needed. Only give the 2.5 ml of liquid supplement if he skips a meal.\n- Vet: [PERSON_3] Centre, ask for Dr [PERSON_4]. Account no. [ACCOUNT_ID].\n- Home address for the vet's emergency pickup form: [ADDRESS], Leeds.\n- If Whiskers stops eating for more than a day, ring the vet first, then [PERSON_5] brother, [PERSON_6], on [ACCOUNT_ID].",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "m8",
+          "entity_id": "addr",
+          "quote": "22 Quarry Lane, Leeds",
+          "label": "ADDRESS",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "Home address; the checklist only needs to refer to the pickup form.",
+          "start": 556,
+          "end": 577
+        }
+      ],
+      "lost_required_facts": [
+        {
+          "quote": "'s brother,",
+          "overlapping_edits": [
+            {
+              "start": 652,
+              "end": 661,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "22 Quarry Lane, Leeds",
+          "target": {
+            "kind": "entity",
+            "target_id": "m8",
+            "entity_id": "addr",
+            "quote": "22 Quarry Lane, Leeds",
+            "label": "ADDRESS",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Home address; the checklist only needs to refer to the pickup form.",
+            "start": 556,
+            "end": 577
+          },
+          "overlapping_edits": [
+            {
+              "start": 556,
+              "end": 570,
+              "label": "ADDRESS",
+              "action": "PLACEHOLDER",
+              "replacement": "[ADDRESS]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "07700 900612",
+          "target": {
+            "kind": "entity",
+            "target_id": "m9",
+            "entity_id": "brother-ph",
+            "quote": "07700 900612",
+            "label": "PHONE",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Relative's personal phone; the owner's mobile and this number remain distinguishable by their labels.",
+            "start": 690,
+            "end": 702
+          },
+          "overlapping_edits": [
+            {
+              "start": 690,
+              "end": 702,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 22,
+          "end": 30,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 98,
+          "end": 104,
+          "label": "ADDRESS",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 121,
+          "end": 127,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 142,
+          "end": 332,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 584,
+          "end": 625,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 690,
+          "end": 695,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "6aee5db7e0b14b99b2d4bc9b2de9f98c:id-009",
+      "task": "Work out how much Marisol owes Joon-ho and show the calculation step by step.",
+      "text": "Vet bill split for Pepper: total 486 pounds, which includes the 95-pound excess. Joon-ho Baek paid the whole bill on his card. Marisol Vega owes half of the excess but only 40 percent of the rest, because she agreed to that on 3 March. Dariusz Kowal, the third housemate, owes nothing because he moved out before the surgery. Marisol said she'll pay by bank transfer to Joon-ho's account, number 55501234, and she'll send it by the 20th only if the refund from the insurer hasn't arrived. If the transfer fails, Joon-ho's mobile is 07700 900188. I have kept the vet's itemised receipt, so we can check the figures together before anyone pays.",
+      "protected_text": "Vet bill split for Pepper: total 486 pounds, which includes the 95-pound excess. [PERSON_1] paid the whole bill on his card. [PERSON_2] owes half of the excess but only 40 percent of the rest, because she agreed to that on 3 March. [PERSON_3], the third housemate, owes nothing because he moved out before the surgery. [PERSON_4] said she'll pay by bank transfer to [PERSON_5] account, [ACCOUNT_ID], and she'll send it by the 20th only if the refund from the insurer hasn't arrived. If the transfer fails, [PERSON_5] mobile is [PHONE]. I have kept the vet's itemised receipt, so we can check the figures together before anyone pays.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "'s account, number",
+          "overlapping_edits": [
+            {
+              "start": 370,
+              "end": 379,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            },
+            {
+              "start": 389,
+              "end": 404,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 33,
+          "end": 36,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 176,
+          "end": 183,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 306,
+          "end": 324,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "6aee5db7e0b14b99b2d4bc9b2de9f98c:pres-003",
+      "task": "Write a clear summary of who looks after the cats and when, and what is still uncertain.",
+      "text": "Recap of the cat-sitting arrangement for 5 to 12 July. Ngozi Eze is not feeding them; I've changed that. Ngozi's brother, Emeka Eze, is doing it instead, mornings only, and I'll pay him 20 pounds a day. Harriet Pell is on call for evenings but only if her own sitting job in Harlow finishes early. If it doesn't, nobody does evenings and the cats get the automatic feeder. I told Harriet 7 days maximum, not 10. Emeka may bring his dog, though I'm not sure the cats will like that. Everyone should message me if the plan changes, and nobody should give the cats anything except the usual dry food.",
+      "protected_text": "Recap of the cat-sitting arrangement for 5 to 12 July. [PERSON_1] is not feeding them; I've changed that. [PERSON_2] brother, [PERSON_3], is doing it instead, mornings only, and I'll pay him 20 pounds a day. [PERSON_4] is on call for evenings but only if her own sitting job in [PERSON_5] finishes early. If it doesn't, nobody does evenings and the cats get the automatic feeder. I told [PERSON_6] 7 days maximum, not 10. [PERSON_7] may bring his dog, though I'm not sure the cats will like that. Everyone should message me if the plan changes, and nobody should give the cats anything except the usual dry food.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "'s brother,",
+          "overlapping_edits": [
+            {
+              "start": 105,
+              "end": 112,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "is on call for evenings but only if her own sitting job in Harlow finishes early.",
+          "overlapping_edits": [
+            {
+              "start": 275,
+              "end": 281,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 186,
+          "end": 201,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "4bb6073dce9e4393aa836b1b7befda75:sales-presses-followup",
+      "task": "Write a short follow-up email to the customer answering their questions and confirming what we can promise on delivery. Don't mention anything that isn't approved for release.",
+      "text": "Follow-up with the customer after Tuesday's meeting. Brannfjell Verktøy wants the 40 hydraulic presses delivered in two batches, 25 before 15 January and 15 by 28 February, and they asked us to hold the unit price at the level in the draft quote of 31,200 kroner. The draft quote is not yet approved for external release, so it must not appear in anything we send them. They also asked who their service contact will be and whether training is included in the price.\n\nFor my own commission claim: under the 2026 plan I earn 3.5 percent of net invoiced value up to 1.2 million kroner and 5 percent above that, paid the month after the customer pays. If the second batch slips past 28 February it falls into the next quarter, which would push my payout to April. I have already used my 8,000 kroner advance for this quarter.\n\nThe procurement officer at Brannfjell, Torunn Haga, is on holiday until 5 January, so any answers go to her colleague Jostein Rød.",
+      "protected_text": "Follow-up with the customer after Tuesday's meeting. [PERSON_1] wants the 40 hydraulic presses delivered in two batches, 25 before 15 January and 15 by 28 February, and they asked us to hold the unit price at the level in the draft quote of 31,200 kroner. The draft quote is not yet approved for external release, so it must not appear in anything we send them. They also asked who their service contact will be and whether training is included in the price.\n\nFor my own commission claim: under the 2026 plan I earn 3.5 percent of net invoiced value up to 1.2 million kroner and 5 percent above that, paid the month after the customer pays. If the second batch slips past 28 February it falls into the next quarter, which would push my payout to April. I have already used my 8,000 kroner advance for this quarter.\n\nThe procurement officer at [PERSON_2], [PERSON_3], is on holiday until 5 January, so any answers go to her colleague [PERSON_4].",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Brannfjell Verktøy",
+          "target": {
+            "kind": "entity",
+            "target_id": "org1",
+            "entity_id": "customer",
+            "label": "ORG",
+            "quote": "Brannfjell Verktøy",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The customer is a named client and its identity is not needed; the generic wording keeps the delivery facts.",
+            "start": 53,
+            "end": 71
+          },
+          "overlapping_edits": [
+            {
+              "start": 53,
+              "end": 71,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "31,200 kroner",
+          "target": {
+            "kind": "entity",
+            "target_id": "q",
+            "entity_id": "draft-quote",
+            "label": "FINANCIAL",
+            "quote": "31,200 kroner",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The draft quote is stated as not approved for external release and the follow-up must not repeat it; the answer can refer to holding the price without the figure.",
+            "start": 249,
+            "end": 262
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "Brannfjell",
+          "target": {
+            "kind": "entity",
+            "target_id": "org2",
+            "entity_id": "customer",
+            "label": "ORG",
+            "quote": "Brannfjell",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The customer is a named client and its identity is not needed; the generic wording keeps the delivery facts.",
+            "start": 851,
+            "end": 861
+          },
+          "overlapping_edits": [
+            {
+              "start": 851,
+              "end": 861,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 249,
+          "end": 262,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 784,
+          "end": 804,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "4bb6073dce9e4393aa836b1b7befda75:sales-presses-payout",
+      "task": "Work out roughly when I would be paid for this order and what could delay it, so I can plan my own spending.",
+      "text": "Follow-up with the customer after Tuesday's meeting. Brannfjell Verktøy wants the 40 hydraulic presses delivered in two batches, 25 before 15 January and 15 by 28 February, and they asked us to hold the unit price at the level in the draft quote of 31,200 kroner. The draft quote is not yet approved for external release, so it must not appear in anything we send them. They also asked who their service contact will be and whether training is included in the price.\n\nFor my own commission claim: under the 2026 plan I earn 3.5 percent of net invoiced value up to 1.2 million kroner and 5 percent above that, paid the month after the customer pays. If the second batch slips past 28 February it falls into the next quarter, which would push my payout to April. I have already used my 8,000 kroner advance for this quarter.\n\nThe procurement officer at Brannfjell, Torunn Haga, is on holiday until 5 January, so any answers go to her colleague Jostein Rød.",
+      "protected_text": "Follow-up with the customer after Tuesday's meeting. [PERSON_1] wants the 40 hydraulic presses delivered in two batches, 25 before 15 January and 15 by 28 February, and they asked us to hold the unit price at the level in the draft quote of 31,200 kroner. The draft quote is not yet approved for external release, so it must not appear in anything we send them. They also asked who their service contact will be and whether training is included in the price.\n\nFor my own commission claim: under the 2026 plan I earn 3.5 percent of net invoiced value up to 1.2 million kroner and 5 percent above that, paid the month after the customer pays. If the second batch slips past 28 February it falls into the next quarter, which would push my payout to April. I have already used my 8,000 kroner advance for this quarter.\n\nThe procurement officer at [PERSON_2], [PERSON_3], is on holiday until 5 January, so any answers go to her colleague [PERSON_4].",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Brannfjell Verktøy",
+          "target": {
+            "kind": "entity",
+            "target_id": "org1",
+            "entity_id": "customer",
+            "label": "ORG",
+            "quote": "Brannfjell Verktøy",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The customer is a named client and its identity is not needed to plan my payout; the delivery timing survives.",
+            "start": 53,
+            "end": 71
+          },
+          "overlapping_edits": [
+            {
+              "start": 53,
+              "end": 71,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "31,200 kroner",
+          "target": {
+            "kind": "entity",
+            "target_id": "q",
+            "entity_id": "draft-quote",
+            "label": "FINANCIAL",
+            "quote": "31,200 kroner",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The draft quote is not approved for external release and the payout timing question does not depend on it; exact commission size cannot be computed from the placeholder.",
+            "start": 249,
+            "end": 262
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "Brannfjell",
+          "target": {
+            "kind": "entity",
+            "target_id": "org2",
+            "entity_id": "customer",
+            "label": "ORG",
+            "quote": "Brannfjell",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The customer is a named client and its identity is not needed to plan my payout; the delivery timing survives.",
+            "start": 851,
+            "end": 861
+          },
+          "overlapping_edits": [
+            {
+              "start": 851,
+              "end": 861,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 249,
+          "end": 262,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 784,
+          "end": 804,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "dc8166171bae4731b05e165f0d96af35:mobile-custody-line-keep",
+      "task": "Help me write to the carrier about what has to change on this account.",
+      "text": "I have a family plan with Selvatel for four lines at 1,020 pesos a month, and I am the account holder. Last month the bill showed 640 pesos of roaming charges on the line used by my daughter Camila, even though she stayed in Querétaro the whole time. I phoned the call centre, and the agent, Ricardo Zambrano, said the charge came from a network test that the company would review within ten business days.\n\nMy daughter has lived with her father since June under a custody arrangement agreed in court, and she is staying with him through the end of the school year. I would like her line, the one that carries the 160-peso child-safety add-on, to be moved onto his account without cancelling the number she has had since she was nine. Her father, Santiago, has said he is willing to take over the payments, and he will go to a store with his own ID.\n\nThe bill is due on the 20th and I normally pay on the 18th, always from the same debit card.",
+      "protected_text": "I have a family plan with [PERSON_1] for four lines at 1,020 pesos a month, and I am the account holder. Last month the bill showed 640 pesos of roaming charges on the line used by my daughter [PERSON_2], even though she stayed in [PERSON_3] the whole time. I phoned the call centre, and the agent, [PERSON_4], said the charge came from a network test that the company would review within ten business days.\n\nMy daughter has lived with her father since June under a custody arrangement agreed in court, and she is staying with him through the end of the school year. I would like her line, the one that carries the 160-peso child-safety add-on, to be moved onto his account without cancelling the number she has had since she was nine. Her father, [PERSON_5], has said he is willing to take over the payments, and he will go to a store with his own ID.\n\nThe bill is due on the 20th and I normally pay on the 18th, always from the same debit card.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "I have a family plan with Selvatel for four lines at 1,020 pesos a month, and I am the account holder.",
+          "overlapping_edits": [
+            {
+              "start": 26,
+              "end": 34,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 53,
+          "end": 72,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 130,
+          "end": 139,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "dc8166171bae4731b05e165f0d96af35:mobile-custody-line-drop",
+      "task": "Draft a complaint asking the carrier to remove the unexpected roaming charge from last month's bill.",
+      "text": "I have a family plan with Selvatel for four lines at 1,020 pesos a month, and I am the account holder. Last month the bill showed 640 pesos of roaming charges on the line used by my daughter Camila, even though she stayed in Querétaro the whole time. I phoned the call centre, and the agent, Ricardo Zambrano, said the charge came from a network test that the company would review within ten business days.\n\nMy daughter has lived with her father since June under a custody arrangement agreed in court, and she is staying with him through the end of the school year. I would like her line, the one that carries the 160-peso child-safety add-on, to be moved onto his account without cancelling the number she has had since she was nine. Her father, Santiago, has said he is willing to take over the payments, and he will go to a store with his own ID.\n\nThe bill is due on the 20th and I normally pay on the 18th, always from the same debit card.",
+      "protected_text": "I have a family plan with [PERSON_1] for four lines at 1,020 pesos a month, and I am the account holder. Last month the bill showed 640 pesos of roaming charges on the line used by my daughter [PERSON_2], even though she stayed in [PERSON_3] the whole time. I phoned the call centre, and the agent, [PERSON_4], said the charge came from a network test that the company would review within ten business days.\n\nMy daughter has lived with her father since June under a custody arrangement agreed in court, and she is staying with him through the end of the school year. I would like her line, the one that carries the 160-peso child-safety add-on, to be moved onto his account without cancelling the number she has had since she was nine. Her father, [PERSON_5], has said he is willing to take over the payments, and he will go to a store with his own ID.\n\nThe bill is due on the 20th and I normally pay on the 18th, always from the same debit card.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "I have a family plan with Selvatel for four lines at 1,020 pesos a month, and I am the account holder.",
+          "overlapping_edits": [
+            {
+              "start": 26,
+              "end": 34,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "even though she stayed in Querétaro the whole time.",
+          "overlapping_edits": [
+            {
+              "start": 225,
+              "end": 234,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_3]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 53,
+          "end": 72,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 130,
+          "end": 139,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "740353f682384058be438df52fb4378e:c1-burst-pipe-townhouse-keep",
+      "task": "Draft a letter to our insurer asking them to approve temporary accommodation for the family until the downstairs room can be used again.",
+      "text": "The burst pipe under the kitchen sink at our townhouse in Nonthaburi was found on the morning of 3 September, and the plumber, Wichai Saetang, thinks it had been leaking for about two days. The floor boards in the kitchen and hallway are swollen, and the lower cabinets have started to grow black mould along the back panels. My husband Kittipong says the insurer's policy covers sudden bursts but not gradual seepage, so how we describe the timing matters.\n\nSince the mould started, my daughter's asthma has been worse. Her paediatrician, Dr Nattaya Prasert, wrote that she should not sleep in the downstairs room until the mould is professionally removed, and we are staying with my mother in the meantime. She has used her reliever inhaler twice a night since Monday.\n\nThe loss adjuster, Anucha Thongdee, is coming on Thursday at 2 pm. He asked for photos, the plumber's invoice for 4,800 baht, and the date we first noticed the damp. Please reach me on 081-555-0142 if he needs to change the visit.",
+      "protected_text": "The burst pipe under the kitchen sink at our townhouse in [PERSON_1] was found on the morning of 3 September, and the plumber, [PERSON_2], thinks it had been leaking for about two days. The floor boards in the kitchen and hallway are swollen, and the lower cabinets have started to grow black mould along the back panels. My husband [PERSON_3] says the insurer's policy covers sudden bursts but not gradual seepage, so how we describe the timing matters.\n\nSince the mould started, my daughter's asthma has been worse. Her paediatrician, Dr [PERSON_4], wrote that she should not sleep in the downstairs room until the mould is professionally removed, and we are staying with my mother in the meantime. She has used her reliever inhaler twice a night since Monday.\n\nThe loss adjuster, [PERSON_5], is coming on Thursday at 2 pm. He asked for photos, the plumber's invoice for 4,800 baht, and the date we first noticed the damp. Please reach me on 081-555-0142 if he needs to change the visit.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "phone",
+          "entity_id": "phone",
+          "label": "PHONE",
+          "quote": "081-555-0142",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "A direct phone number is not needed for this task and could identify the writer; the placeholder loses no utility.",
+          "start": 957,
+          "end": 969
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "081-555-0142",
+          "target": {
+            "kind": "entity",
+            "target_id": "phone",
+            "entity_id": "phone",
+            "label": "PHONE",
+            "quote": "081-555-0142",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "A direct phone number is not needed for this task and could identify the writer; the placeholder loses no utility.",
+            "start": 957,
+            "end": 969
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 170,
+          "end": 188,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 238,
+          "end": 245,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 525,
+          "end": 538,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 525,
+          "end": 538,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 540,
+          "end": 542,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 582,
+          "end": 591,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 886,
+          "end": 887,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 887,
+          "end": 891,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 892,
+          "end": 896,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 957,
+          "end": 969,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 957,
+          "end": 969,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "740353f682384058be438df52fb4378e:c1-burst-pipe-townhouse-drop",
+      "task": "Make me a checklist of everything to have ready for the adjuster's visit, plus a two-sentence description of when the leak was found and how long it ran.",
+      "text": "The burst pipe under the kitchen sink at our townhouse in Nonthaburi was found on the morning of 3 September, and the plumber, Wichai Saetang, thinks it had been leaking for about two days. The floor boards in the kitchen and hallway are swollen, and the lower cabinets have started to grow black mould along the back panels. My husband Kittipong says the insurer's policy covers sudden bursts but not gradual seepage, so how we describe the timing matters.\n\nSince the mould started, my daughter's asthma has been worse. Her paediatrician, Dr Nattaya Prasert, wrote that she should not sleep in the downstairs room until the mould is professionally removed, and we are staying with my mother in the meantime. She has used her reliever inhaler twice a night since Monday.\n\nThe loss adjuster, Anucha Thongdee, is coming on Thursday at 2 pm. He asked for photos, the plumber's invoice for 4,800 baht, and the date we first noticed the damp. Please reach me on 081-555-0142 if he needs to change the visit.",
+      "protected_text": "The burst pipe under the kitchen sink at our townhouse in [PERSON_1] was found on the morning of 3 September, and the plumber, [PERSON_2], thinks it had been leaking for about two days. The floor boards in the kitchen and hallway are swollen, and the lower cabinets have started to grow black mould along the back panels. My husband [PERSON_3] says the insurer's policy covers sudden bursts but not gradual seepage, so how we describe the timing matters.\n\nSince the mould started, my daughter's asthma has been worse. Her paediatrician, Dr [PERSON_4], wrote that she should not sleep in the downstairs room until the mould is professionally removed, and we are staying with my mother in the meantime. She has used her reliever inhaler twice a night since Monday.\n\nThe loss adjuster, [PERSON_5], is coming on Thursday at 2 pm. He asked for photos, the plumber's invoice for 4,800 baht, and the date we first noticed the damp. Please reach me on 081-555-0142 if he needs to change the visit.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "phone",
+          "entity_id": "phone",
+          "label": "PHONE",
+          "quote": "081-555-0142",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "A direct phone number is not needed for this task and could identify the writer; the placeholder loses no utility.",
+          "start": 957,
+          "end": 969
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "081-555-0142",
+          "target": {
+            "kind": "entity",
+            "target_id": "phone",
+            "entity_id": "phone",
+            "label": "PHONE",
+            "quote": "081-555-0142",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "A direct phone number is not needed for this task and could identify the writer; the placeholder loses no utility.",
+            "start": 957,
+            "end": 969
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 170,
+          "end": 188,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 238,
+          "end": 245,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 525,
+          "end": 538,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 525,
+          "end": 538,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 540,
+          "end": 542,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 582,
+          "end": 591,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 886,
+          "end": 887,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 887,
+          "end": 891,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 892,
+          "end": 896,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 957,
+          "end": 969,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 957,
+          "end": 969,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "740353f682384058be438df52fb4378e:k2-october-close-note-keep",
+      "task": "Write a short note to the accounts payable team saying who can release and who can approve this week's payment batch.",
+      "text": "For the October close, the freight accrual for Ormeley Logistics is still 31,200 baht higher than the supplier statement because Thanakorn Rattanawong booked two pallets twice. I have asked him to reverse the duplicate entry before Wednesday. Wanida Chotikul in treasury will be out until the 18th and cannot release the weekly payment batch, so Pimchanok Srisuk has agreed to approve it instead. The petty cash count showed a shortfall of 450 baht, which Wanida reimbursed from her own pocket without being asked. The bank reconciliation for the operating account matches except for one transfer of 120,000 baht that cleared on 1 November rather than 31 October.",
+      "protected_text": "For the October close, the freight accrual for [PERSON_1] Logistics is still 31,200 baht higher than the supplier statement because [PERSON_2] booked two pallets twice. I have asked him to reverse the duplicate entry before Wednesday. [PERSON_3] in treasury will be out until the 18th and cannot release the weekly payment batch, so [PERSON_4] has agreed to approve it instead. The petty cash count showed a shortfall of 450 baht, which [PERSON_5] reimbursed from her own pocket without being asked. The bank reconciliation for the operating account matches except for one transfer of 120,000 baht that cleared on 1 November rather than 31 October.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Ormeley Logistics",
+          "target": {
+            "kind": "entity",
+            "target_id": "org",
+            "entity_id": "org",
+            "label": "ORG",
+            "quote": "Ormeley Logistics",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "An organisation name identifies a customer or supplier and is not needed for this task; the placeholder loses no utility.",
+            "start": 47,
+            "end": 64
+          },
+          "overlapping_edits": [
+            {
+              "start": 47,
+              "end": 54,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 74,
+          "end": 85,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 440,
+          "end": 448,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 600,
+          "end": 612,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "740353f682384058be438df52fb4378e:k2-october-close-note-drop",
+      "task": "Draft the explanation for the October close file of why the freight accrual and the bank reconciliation do not fully tie, with the amounts.",
+      "text": "For the October close, the freight accrual for Ormeley Logistics is still 31,200 baht higher than the supplier statement because Thanakorn Rattanawong booked two pallets twice. I have asked him to reverse the duplicate entry before Wednesday. Wanida Chotikul in treasury will be out until the 18th and cannot release the weekly payment batch, so Pimchanok Srisuk has agreed to approve it instead. The petty cash count showed a shortfall of 450 baht, which Wanida reimbursed from her own pocket without being asked. The bank reconciliation for the operating account matches except for one transfer of 120,000 baht that cleared on 1 November rather than 31 October.",
+      "protected_text": "For the October close, the freight accrual for [PERSON_1] Logistics is still 31,200 baht higher than the supplier statement because [PERSON_2] booked two pallets twice. I have asked him to reverse the duplicate entry before Wednesday. [PERSON_3] in treasury will be out until the 18th and cannot release the weekly payment batch, so [PERSON_4] has agreed to approve it instead. The petty cash count showed a shortfall of 450 baht, which [PERSON_5] reimbursed from her own pocket without being asked. The bank reconciliation for the operating account matches except for one transfer of 120,000 baht that cleared on 1 November rather than 31 October.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Ormeley Logistics",
+          "target": {
+            "kind": "entity",
+            "target_id": "org",
+            "entity_id": "org",
+            "label": "ORG",
+            "quote": "Ormeley Logistics",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "An organisation name identifies a customer or supplier and is not needed for this task; the placeholder loses no utility.",
+            "start": 47,
+            "end": 64
+          },
+          "overlapping_edits": [
+            {
+              "start": 47,
+              "end": 54,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 74,
+          "end": 85,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 440,
+          "end": 448,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 600,
+          "end": 612,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "7d2a33058e7546b6b66be709394da98b:p8-f5-midwife-request",
+      "task": "Write an email to my midwife's office asking for whatever the airline needs from them before 22 August.",
+      "text": "We fly from Manchester to Erbil on Friday 22 August, leaving at 06:50, and come back on 7 September. My brother, Rebwar Sofi, has booked the airport transfer for 03:30, but the minibus only seats six and there will be seven of us, so someone needs a second car.\n\nThe luggage is the other problem, because Cresthaven Air allows one free checked bag each and we are bringing a folded cot for my cousin's baby, which counts as an extra bag. Zhiar Talabani at the travel desk said they can add an extra bag for 40 pounds.\n\nBy then I will be 31 weeks pregnant and the airline wants a doctor's letter confirming I am fit to fly after 28 weeks. My midwife said the scan on 5 August should show whether the baby is growing normally, and she will only sign the letter if it does. If the letter is delayed we may have to move the flight, which would cost a 90-pound change fee per passenger.",
+      "protected_text": "We fly from Manchester to [PERSON_1] on Friday 22 August, leaving at 06:50, and come back on 7 September. My brother, [PERSON_2], has booked the airport transfer for 03:30, but the minibus only seats six and there will be seven of us, so someone needs a second car.\n\nThe luggage is the other problem, because [PERSON_3] Air allows one free checked bag each and we are bringing a folded cot for my cousin's baby, which counts as an extra bag. [PERSON_4] at the travel desk said they can add an extra bag for 40 pounds.\n\nBy then I will be 31 weeks pregnant and the airline wants a doctor's letter confirming I am fit to fly after 28 weeks. My midwife said the scan on 5 August should show whether the baby is growing normally, and she will only sign the letter if it does. If the letter is delayed we may have to move the flight, which would cost a 90-pound change fee per passenger.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "We fly from Manchester to Erbil on Friday 22 August",
+          "overlapping_edits": [
+            {
+              "start": 26,
+              "end": 31,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 402,
+          "end": 406,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 507,
+          "end": 516,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 527,
+          "end": 558,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 611,
+          "end": 636,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 707,
+          "end": 723,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 847,
+          "end": 855,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 847,
+          "end": 855,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "7d2a33058e7546b6b66be709394da98b:p8-f5-trip-logistics",
+      "task": "Sort out the logistics for the whole group: who goes in which car, what luggage we have to pay for, and what time we have to leave.",
+      "text": "We fly from Manchester to Erbil on Friday 22 August, leaving at 06:50, and come back on 7 September. My brother, Rebwar Sofi, has booked the airport transfer for 03:30, but the minibus only seats six and there will be seven of us, so someone needs a second car.\n\nThe luggage is the other problem, because Cresthaven Air allows one free checked bag each and we are bringing a folded cot for my cousin's baby, which counts as an extra bag. Zhiar Talabani at the travel desk said they can add an extra bag for 40 pounds.\n\nBy then I will be 31 weeks pregnant and the airline wants a doctor's letter confirming I am fit to fly after 28 weeks. My midwife said the scan on 5 August should show whether the baby is growing normally, and she will only sign the letter if it does. If the letter is delayed we may have to move the flight, which would cost a 90-pound change fee per passenger.",
+      "protected_text": "We fly from Manchester to [PERSON_1] on Friday 22 August, leaving at 06:50, and come back on 7 September. My brother, [PERSON_2], has booked the airport transfer for 03:30, but the minibus only seats six and there will be seven of us, so someone needs a second car.\n\nThe luggage is the other problem, because [PERSON_3] Air allows one free checked bag each and we are bringing a folded cot for my cousin's baby, which counts as an extra bag. [PERSON_4] at the travel desk said they can add an extra bag for 40 pounds.\n\nBy then I will be 31 weeks pregnant and the airline wants a doctor's letter confirming I am fit to fly after 28 weeks. My midwife said the scan on 5 August should show whether the baby is growing normally, and she will only sign the letter if it does. If the letter is delayed we may have to move the flight, which would cost a 90-pound change fee per passenger.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "We fly from Manchester to Erbil on Friday 22 August, leaving at 06:50, and come back on 7 September.",
+          "overlapping_edits": [
+            {
+              "start": 26,
+              "end": 31,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "The luggage is the other problem, because Cresthaven Air allows one free checked bag each and we are bringing a folded cot for my cousin's baby, which counts as an extra bag.",
+          "overlapping_edits": [
+            {
+              "start": 305,
+              "end": 315,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_3]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 402,
+          "end": 406,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 507,
+          "end": 516,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 527,
+          "end": 558,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 611,
+          "end": 636,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 707,
+          "end": 723,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 847,
+          "end": 855,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 847,
+          "end": 855,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-f05-drop",
+      "task": "Write a short note to the budget owner saying whether this invoice is ready to be scheduled for payment and when.",
+      "text": "The stationery invoice from Rongsheng Paper Supplies is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November. Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees.\n\nZhan Yi-Ting's claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days. The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.\n\nUnder the framework agreement the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars. Please keep that rate out of anything shared outside finance.\n\nQuestions go to the payables desk at ap-desk@fenghuang-parts.example.invalid.",
+      "protected_text": "The stationery invoice from [PERSON_1] Paper Supplies is 63,400 NT dollars including tax, matched to the purchase order and received in full on 4 November. Payment terms are net 30, so it can be scheduled for the 4 December run if the budget owner agrees.\n\n[PERSON_2] claim for the Penghu site visit lists two nights at the hotel at 2,100 NT dollars a night, a ferry ticket for 640 NT dollars, and meals of 1,150 NT dollars over three days. The travel policy caps hotels at 1,800 NT dollars a night unless the line manager signs off, and no sign-off is attached.\n\nUnder the framework agreement the supplier gives us a 12 percent rebate on annual volume above 500,000 NT dollars. Please keep that rate out of anything shared outside finance.\n\nQuestions go to the payables desk at [EMAIL].",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Rongsheng Paper Supplies",
+          "target": {
+            "kind": "entity",
+            "target_id": "supplier",
+            "entity_id": "supplier",
+            "label": "ORG",
+            "quote": "Rongsheng Paper Supplies",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name.",
+            "start": 28,
+            "end": 52
+          },
+          "overlapping_edits": [
+            {
+              "start": 28,
+              "end": 37,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 56,
+          "end": 73,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 173,
+          "end": 179,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 336,
+          "end": 360,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 381,
+          "end": 395,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 410,
+          "end": 426,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 477,
+          "end": 495,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 662,
+          "end": 680,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "7686eba46340443fb5f6b9fac2e111ec:pack10-c3-relevant-sensitive",
+      "task": "Draft a reply that explains why the orders endpoint returns 401, how they can get a working key, and what we will do about the invoice.",
+      "text": "Ticket 51207 from Yongfu Bicycle Parts: their developer, Ma Zhi-Qiang, reports 401 errors on the orders endpoint since 5 November. He pasted the key he is calling with, k7q-4091-zv88-ptw3, and says it worked until the key rotation on 31 October.\n\nOur records show that the old key expired at 23:59 on 31 October and that the new key was never emailed because the contact address on file bounced. Mr Ma says their monthly invoice of 28,000 NT dollars was also charged twice on 1 November, and he wants the duplicate refunded.",
+      "protected_text": "Ticket 51207 from [PERSON_1] Bicycle Parts: their developer, [PERSON_2], reports 401 errors on the orders endpoint since 5 November. He pasted the key he is calling with, [ACCOUNT_ID], and says it worked until the key rotation on 31 October.\n\nOur records show that the old key expired at 23:59 on 31 October and that the new key was never emailed because the contact address on file bounced. Mr [PERSON_3] says their monthly invoice of 28,000 NT dollars was also charged twice on 1 November, and he wants the duplicate refunded.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Yongfu Bicycle Parts",
+          "target": {
+            "kind": "entity",
+            "target_id": "cust",
+            "entity_id": "cust",
+            "label": "ORG",
+            "quote": "Yongfu Bicycle Parts",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Named organisation is a protected identifier; replaced by a placeholder and the task does not need the exact name.",
+            "start": 18,
+            "end": 38
+          },
+          "overlapping_edits": [
+            {
+              "start": 18,
+              "end": 24,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "k7q-4091-zv88-ptw3",
+          "target": {
+            "kind": "entity",
+            "target_id": "key",
+            "entity_id": "key",
+            "label": "SECRET",
+            "quote": "k7q-4091-zv88-ptw3",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "A live-style API key is a credential and must not reach an external AI; the exact value cannot be compared with the expired key, which is a utility loss.",
+            "start": 169,
+            "end": 187
+          },
+          "overlapping_edits": [
+            {
+              "start": 169,
+              "end": 187,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 7,
+          "end": 12,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        },
+        {
+          "start": 169,
+          "end": 187,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 169,
+          "end": 187,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 432,
+          "end": 449,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "be1dbe5d01cd4ed9a3e53f7bc8b2770d:licence-ixelles-drop",
+      "task": "Plan my Wednesday trip to the commune: what to bring and how I get there.",
+      "text": "Dr Odile Vandenberghe examined me on Monday for the medical certificate that the commune requires for my licence renewal, and she signed it for three years only. She wrote that I must wear my glasses when driving and that I should not drive at night until the cataract in my right eye is operated on. The operation is booked for 4 February with Dr Maurice Gilson at the Clinique Saint-Hubert.\n\nMy current licence expires on 19 March. The commune of Ixelles wants the new photo, the signed medical certificate and the old card, and the counter is open Wednesday from 8:30 to 12:00.\n\nThe commune fee is 30 euros and the doctor charged 55 euros, which I paid by transfer from my savings account because my pension payment is late this month.\n\nMy daughter, Chloé Hanquet, will drive me to the commune on Wednesday morning because the bus strike starts that day.",
+      "protected_text": "Dr [PERSON_1] examined me on Monday for the medical certificate that the commune requires for my licence renewal, and she signed it for three years only. She wrote that I must wear my glasses when driving and that I should not drive at night until the cataract in my right eye is operated on. The operation is booked for 4 February with Dr [PERSON_2] at the Clinique Saint-Hubert.\n\nMy current licence expires on 19 March. The commune of [PERSON_3] wants the new photo, the signed medical certificate and the old card, and the counter is open Wednesday from 8:30 to 12:00.\n\nThe commune fee is 30 euros and the doctor charged 55 euros, which I paid by transfer from my savings account because my pension payment is late this month.\n\nMy daughter, [PERSON_4], will drive me to the commune on Wednesday morning because the bus strike starts that day.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "The commune of Ixelles wants the new photo, the signed medical certificate and the old card, and the counter is open Wednesday from 8:30 to 12:00.",
+          "overlapping_edits": [
+            {
+              "start": 449,
+              "end": 456,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_3]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 177,
+          "end": 299,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 370,
+          "end": 391,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 601,
+          "end": 609,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 633,
+          "end": 641,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "be1dbe5d01cd4ed9a3e53f7bc8b2770d:school-vision-nivelles-keep",
+      "task": "Help the two of us work out who can take him to the ophthalmologist within the month, and how we book it.",
+      "text": "Noé Peeters (class 3B) was seen by the school health nurse on Tuesday. His distance vision measured 5/10 in the right eye and 9/10 in the left, so we recommend an appointment with an ophthalmologist within a month. We think this explains why he often squints at the board.\n\nThe school file says the pupil lives with his mother during the week and with his father every second weekend, so please agree between you who takes him to the appointment.\n\nIn class he currently sits in the fourth row by the window. Madame Dubois, his teacher, can move him to the front row from Monday if you confirm in writing.\n\nFor the clinic booking you can reach the secretariat on 02 555 01 47 until 16:00.",
+      "protected_text": "[PERSON_1] (class 3B) was seen by the school health nurse on Tuesday. His distance vision measured 5/10 in the right eye and 9/10 in the left, so we recommend an appointment with an ophthalmologist within a month. We think this explains why he often squints at the board.\n\nThe school file says the pupil lives with his mother during the week and with his father every second weekend, so please agree between you who takes him to the appointment.\n\nIn class he currently sits in the fourth row by the window. [PERSON_2], his teacher, can move him to the front row from Monday if you confirm in writing.\n\nFor the clinic booking you can reach the secretariat on 02 555 01 47 until 16:00.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "ph",
+          "entity_id": "secretariat-phone",
+          "label": "PHONE",
+          "quote": "02 555 01 47",
+          "action": "PLACEHOLDER",
+          "relevance": "uncertain",
+          "reason": "The booking number is a direct contact detail; the user can add it back when calling, so only the exact number is lost.",
+          "start": 662,
+          "end": 674
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "02 555 01 47",
+          "target": {
+            "kind": "entity",
+            "target_id": "ph",
+            "entity_id": "secretariat-phone",
+            "label": "PHONE",
+            "quote": "02 555 01 47",
+            "action": "PLACEHOLDER",
+            "relevance": "uncertain",
+            "reason": "The booking number is a direct contact detail; the user can add it back when calling, so only the exact number is lost.",
+            "start": 662,
+            "end": 674
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 71,
+          "end": 146,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 160,
+          "end": 213,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 242,
+          "end": 261,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 311,
+          "end": 315,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 327,
+          "end": 346,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 363,
+          "end": 383,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 662,
+          "end": 664,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 665,
+          "end": 674,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        }
+      ]
+    },
+    {
+      "id": "be1dbe5d01cd4ed9a3e53f7bc8b2770d:school-vision-nivelles-drop",
+      "task": "Write a short message to his teacher confirming that he should move to the front row on Monday.",
+      "text": "Noé Peeters (class 3B) was seen by the school health nurse on Tuesday. His distance vision measured 5/10 in the right eye and 9/10 in the left, so we recommend an appointment with an ophthalmologist within a month. We think this explains why he often squints at the board.\n\nThe school file says the pupil lives with his mother during the week and with his father every second weekend, so please agree between you who takes him to the appointment.\n\nIn class he currently sits in the fourth row by the window. Madame Dubois, his teacher, can move him to the front row from Monday if you confirm in writing.\n\nFor the clinic booking you can reach the secretariat on 02 555 01 47 until 16:00.",
+      "protected_text": "[PERSON_1] (class 3B) was seen by the school health nurse on Tuesday. His distance vision measured 5/10 in the right eye and 9/10 in the left, so we recommend an appointment with an ophthalmologist within a month. We think this explains why he often squints at the board.\n\nThe school file says the pupil lives with his mother during the week and with his father every second weekend, so please agree between you who takes him to the appointment.\n\nIn class he currently sits in the fourth row by the window. [PERSON_2], his teacher, can move him to the front row from Monday if you confirm in writing.\n\nFor the clinic booking you can reach the secretariat on 02 555 01 47 until 16:00.",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "ph",
+          "entity_id": "secretariat-phone",
+          "label": "PHONE",
+          "quote": "02 555 01 47",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "The secretariat number is a direct contact detail and is not needed in a message to the teacher.",
+          "start": 662,
+          "end": 674
+        }
+      ],
+      "lost_required_facts": [
+        {
+          "quote": "Madame",
+          "overlapping_edits": [
+            {
+              "start": 508,
+              "end": 521,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "02 555 01 47",
+          "target": {
+            "kind": "entity",
+            "target_id": "ph",
+            "entity_id": "secretariat-phone",
+            "label": "PHONE",
+            "quote": "02 555 01 47",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The secretariat number is a direct contact detail and is not needed in a message to the teacher.",
+            "start": 662,
+            "end": 674
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 71,
+          "end": 146,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 160,
+          "end": 213,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 242,
+          "end": 261,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 311,
+          "end": 315,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 327,
+          "end": 346,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 363,
+          "end": 383,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 662,
+          "end": 664,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 665,
+          "end": 674,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        }
+      ]
+    },
+    {
+      "id": "e2148caf36a041f4aa22289f03848dcc:k3-a",
+      "task": "Work out how many seats to put on the renewal request and what to tell procurement.",
+      "text": "Hi Stelios,\n\nNotes from today's call with the Aspendos Data Systems reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: Alkis Anagnos and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user ops-vault, password Plume-902-Harbor.\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\nKyriaki",
+      "protected_text": "Hi [PERSON_1],\n\nNotes from today's call with the Aspendos Data Systems reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: [PERSON_2] and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user ops-vault, password [SECRET].\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\n[PERSON_3]",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "usr",
+          "entity_id": "usr",
+          "label": "USERNAME",
+          "quote": "ops-vault",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "A shared portal username is a credential component and is not needed for seat planning; nothing task-relevant is lost.",
+          "start": 477,
+          "end": 486
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Aspendos Data Systems",
+          "target": {
+            "kind": "entity",
+            "target_id": "aspo",
+            "entity_id": "aspo",
+            "label": "ORG",
+            "quote": "Aspendos Data Systems",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "The reseller's name is protected from external AI and the plan can say 'the reseller'; nothing task-relevant is lost.",
+            "start": 46,
+            "end": 67
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "ops-vault",
+          "target": {
+            "kind": "entity",
+            "target_id": "usr",
+            "entity_id": "usr",
+            "label": "USERNAME",
+            "quote": "ops-vault",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "A shared portal username is a credential component and is not needed for seat planning; nothing task-relevant is lost.",
+            "start": 477,
+            "end": 486
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 139,
+          "end": 151,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 497,
+          "end": 513,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 497,
+          "end": 513,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "e2148caf36a041f4aa22289f03848dcc:k3-b",
+      "task": "Draft a short reply to the reseller asking them to hold the quote until the 30th and confirm the free training days.",
+      "text": "Hi Stelios,\n\nNotes from today's call with the Aspendos Data Systems reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: Alkis Anagnos and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user ops-vault, password Plume-902-Harbor.\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\nKyriaki",
+      "protected_text": "Hi [PERSON_1],\n\nNotes from today's call with the Aspendos Data Systems reseller:\n- Licence renewal for the monitoring suite: 120 seats, quote 38,600 euros, valid until the 30th, unchanged scope.\n- They will add two on-site training days free if we sign this month.\n- Our headcount plan: [PERSON_2] and two contractors leave at the end of the quarter, so three seats can go, and his role will not be backfilled.\n- Their support portal login for us is still the shared one, user ops-vault, password [SECRET].\n- Next step: you send the PO request to procurement by Friday; I will confirm the seat count first.\n\nRegards,\n[PERSON_3]",
+      "identifier_misses": [
+        {
+          "kind": "entity",
+          "target_id": "usr",
+          "entity_id": "usr",
+          "label": "USERNAME",
+          "quote": "ops-vault",
+          "action": "PLACEHOLDER",
+          "relevance": "unnecessary",
+          "reason": "A shared portal username is a credential component and is not needed in the reply; nothing task-relevant is lost.",
+          "start": 477,
+          "end": 486
+        }
+      ],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Aspendos Data Systems",
+          "target": {
+            "kind": "entity",
+            "target_id": "aspo",
+            "entity_id": "aspo",
+            "label": "ORG",
+            "quote": "Aspendos Data Systems",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The reseller is the addressee, but its name is protected from external AI; the reply can only say 'the reseller', so naming it is lost.",
+            "start": 46,
+            "end": 67
+          },
+          "overlapping_edits": []
+        },
+        {
+          "quote": "ops-vault",
+          "target": {
+            "kind": "entity",
+            "target_id": "usr",
+            "entity_id": "usr",
+            "label": "USERNAME",
+            "quote": "ops-vault",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "A shared portal username is a credential component and is not needed in the reply; nothing task-relevant is lost.",
+            "start": 477,
+            "end": 486
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 139,
+          "end": 151,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 497,
+          "end": 513,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 497,
+          "end": 513,
+          "label": "EMAIL",
+          "reason": "unconfirmed_entity_shape"
+        }
+      ]
+    },
+    {
+      "id": "e2148caf36a041f4aa22289f03848dcc:r3",
+      "task": "Check this contractor invoice against the timesheet and tell me which days should not be billed.",
+      "text": "Invoice check for the platform migration. The contractor Vasilis Mavros, from Zephyr Cloudworks, billed 18 days for October at the agreed day rate of 540 euros, which the vendor agreement says must not be disclosed outside the company. Our timesheet shows he logged 16 days. The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email. The cost centre owner, Rodoula Pantazi, approved up to 17 days only. Please do not approve the invoice until the difference is explained.",
+      "protected_text": "Invoice check for the platform migration. The contractor [PERSON_1], from [PERSON_2], billed 18 days for October at the agreed day rate of 540 euros, which the vendor agreement says must not be disclosed outside the company. Our timesheet shows he logged 16 days. The two missing days, the 9th and the 10th, were his approved leave days, confirmed by his agency by email. The cost centre owner, [PERSON_3], approved up to 17 days only. Please do not approve the invoice until the difference is explained.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Zephyr Cloudworks",
+          "target": {
+            "kind": "entity",
+            "target_id": "org",
+            "entity_id": "org",
+            "label": "ORG",
+            "quote": "Zephyr Cloudworks",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The vendor name is protected from external AI; the answer can refer to 'the vendor', so naming it is lost.",
+            "start": 78,
+            "end": 95
+          },
+          "overlapping_edits": [
+            {
+              "start": 78,
+              "end": 95,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        },
+        {
+          "quote": "540 euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "rate",
+            "entity_id": "rate",
+            "label": "FINANCIAL",
+            "quote": "540 euros",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The agreed day rate is marked as not for disclosure outside the company; the day counts still allow the check but the exact amount owed cannot be computed.",
+            "start": 150,
+            "end": 159
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 150,
+          "end": 159,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "3343c6d267bd49509fe0ac816ee94580:bergblick-notes",
+      "task": "Help me organise this note.",
+      "text": "Notes from the call with the Pension Bergblick in Bad Ischl: they can hold 14 rooms until 28 March for our wedding weekend, 10 to 12 July, at 89 euros a night with breakfast. Frau Edeltraud Ranner at the booking desk said the price stays if we pay 20 percent upfront and the rest at check-in. Still to ask: whether dogs are allowed, because my brother Matthias Sturm comes with his, and whether the lift works, since our grandmother, Gertrud, might not manage the stairs after her hip operation in April. Phone for the booking desk: +43 6132 555 0147. Mum thinks 14 rooms are too many; Dad thinks they are too few. We haven't decided.",
+      "protected_text": "Notes from the call with the Pension Bergblick in [PERSON_1]: they can hold 14 rooms until 28 March for our wedding weekend, 10 to 12 July, at 89 euros a night with breakfast. [PERSON_2] at the booking desk said the price stays if we pay 20 percent upfront and the rest at check-in. Still to ask: whether dogs are allowed, because my brother [PERSON_3] comes with his, and whether the lift works, since our grandmother, [PERSON_4], might not manage the stairs after her hip operation in April. Phone for the booking desk: [PHONE]. [PERSON_5] thinks 14 rooms are too many; Dad thinks they are too few. We haven't decided.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "Mum thinks 14 rooms are too many; Dad thinks they are too few. We haven't decided.",
+          "overlapping_edits": [
+            {
+              "start": 552,
+              "end": 555,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_5]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 142,
+          "end": 152,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 441,
+          "end": 442,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 449,
+          "end": 503,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "37c5816d6d2e494ebb4089246811884e:ct2-cardiff-affordability-ctl",
+      "task": "Help us work out whether we can afford this move and what monthly budget we would need.",
+      "text": "My partner, Nasra Warfaa, and I are thinking of moving from Nottingham to Cardiff in August so she can take a nursing post. Her salary there would be 34,200 pounds, and my freelance income averages about 1,900 pounds a month but has dropped in two of the last six months. We currently pay 780 pounds in rent, and the Cardiff flats we like cost between 950 and 1,100. I also still owe 4,300 pounds on a car loan with 14 payments left. We have 6,500 pounds saved, and I don't want to go below 3,000 pounds as a safety cushion. Please be realistic rather than reassuring.",
+      "protected_text": "My partner, [PERSON_1], and I are thinking of moving from Nottingham to [PERSON_2] in August so she can take a nursing post. Her salary there would be 34,200 pounds, and my freelance income averages about 1,900 pounds a month but has dropped in two of the last six months. We currently pay 780 pounds in rent, and the Cardiff flats we like cost between 950 and 1,100. I also still owe 4,300 pounds on a car loan with 14 payments left. We have 6,500 pounds saved, and I don't want to go below 3,000 pounds as a safety cushion. Please be realistic rather than reassuring.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "and I are thinking of moving from Nottingham to Cardiff in August so she can take a nursing post.",
+          "overlapping_edits": [
+            {
+              "start": 74,
+              "end": 81,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_2]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 380,
+          "end": 401,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 406,
+          "end": 410,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 416,
+          "end": 418,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 442,
+          "end": 460,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 491,
+          "end": 503,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09b-credit",
+      "task": "Draft the note to finance asking them to approve what we promised the customer after the outage.",
+      "text": "Ticket 51207, customer Brinkhorst Kassen BV, priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Utrecht region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAccount note from the sales team: Brinkhorst renews in January at 38,900 euros a year for the Plus plan, and their buyer, Ilse Brouwer, hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with Ilse on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a flat service credit of 250 euros on the next invoice. The credit has not been applied yet and needs approval from finance.",
+      "protected_text": "Ticket 51207, customer [PERSON_1], priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Utrecht region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAccount note from the sales team: Brinkhorst renews in January at 38,900 euros a year for the Plus plan, and their buyer, [PERSON_2], hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with [PERSON_3] on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a flat service credit of 250 euros on the next invoice. The credit has not been applied yet and needs approval from finance.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Brinkhorst Kassen BV",
+          "target": {
+            "kind": "entity",
+            "target_id": "org1",
+            "entity_id": "o-veld",
+            "label": "ORG",
+            "quote": "Brinkhorst Kassen BV",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Customer organisation name is a confidential client identity; the task does not need it, no utility lost.",
+            "start": 23,
+            "end": 43
+          },
+          "overlapping_edits": [
+            {
+              "start": 23,
+              "end": 43,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 7,
+          "end": 12,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        },
+        {
+          "start": 481,
+          "end": 498,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 513,
+          "end": 532,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 846,
+          "end": 855,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "6c5266a7fc554e4ab41c0ab2e89e3604:f09b-postmortem",
+      "task": "Write the post-incident summary for the support team covering what happened, the cause and how it was fixed.",
+      "text": "Ticket 51207, customer Brinkhorst Kassen BV, priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Utrecht region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAccount note from the sales team: Brinkhorst renews in January at 38,900 euros a year for the Plus plan, and their buyer, Ilse Brouwer, hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with Ilse on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a flat service credit of 250 euros on the next invoice. The credit has not been applied yet and needs approval from finance.",
+      "protected_text": "Ticket 51207, customer [PERSON_1], priority 2. The customer's order portal showed a blank page for all 14 of their users from 09:05 until 11:50 on Wednesday. Cause: a cache node in the Utrecht region had been restarted without warming, and the portal timed out while rebuilding the product index. The cache was warmed manually at 11:42 and the pages loaded again at 11:50. The customer confirmed on the phone that checkout works again.\n\nAccount note from the sales team: Brinkhorst renews in January at 38,900 euros a year for the Plus plan, and their buyer, [PERSON_2], hinted that they will compare us with a rival if there are more outages this quarter.\n\nAgreed with [PERSON_3] on the call: because the outage lasted 2 hours 45 minutes, which is beyond the 99.5 percent monthly uptime promise, the customer gets a flat service credit of 250 euros on the next invoice. The credit has not been applied yet and needs approval from finance.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Brinkhorst Kassen BV",
+          "target": {
+            "kind": "entity",
+            "target_id": "org1",
+            "entity_id": "o-veld",
+            "label": "ORG",
+            "quote": "Brinkhorst Kassen BV",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Customer organisation name is a confidential client identity; the task does not need it, no utility lost.",
+            "start": 23,
+            "end": 43
+          },
+          "overlapping_edits": [
+            {
+              "start": 23,
+              "end": 43,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 7,
+          "end": 12,
+          "label": "ACCOUNT_ID",
+          "reason": "business_number_context"
+        },
+        {
+          "start": 481,
+          "end": 498,
+          "label": "PERSON",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 513,
+          "end": 532,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 846,
+          "end": 855,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "d28488bc79944fd8ab07033a8b7f84d5:p4-ebike-parking-keep",
+      "task": "Write a request to facilities for a reserved parking bay for the days I drive.",
+      "text": "I ride the e-bike from Maipú to the office three days a week and drive on the other two, mostly because the bike lane ends at the Costanera. Gonzalo Vidal in facilities said the bike shed is full until March, and Paula Ríos from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit. My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible. The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November. I will not be driving at all in January because the car goes in for repairs. You can reach me at emi.dominguez@example.invalid if anything is unclear.",
+      "protected_text": "I ride the e-bike from [PERSON_1] to the office three days a week and drive on the other two, mostly because the bike lane ends at the Costanera. [PERSON_2] in facilities said the bike shed is full until March, and [PERSON_3] from safety says the stairwell is not an acceptable place to leave the bike, so I need a decision before the audit. My multiple sclerosis makes the walk from the visitor car park, about 400 metres, impossible on days with fatigue, and the neurologist wrote that I should park as near the lift as possible. The e-bike cost 1,280,000 pesos, and the company scheme repays it over ten months if I submit the invoice by 30 November. I will not be driving at all in January because the car goes in for repairs. You can reach me at [EMAIL] if anything is unclear.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "I ride the e-bike from Maipú to the office three days a week and drive on the other two",
+          "overlapping_edits": [
+            {
+              "start": 23,
+              "end": 28,
+              "label": "PERSON",
+              "action": "ALIAS",
+              "replacement": "[PERSON_1]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 340,
+          "end": 381,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 402,
+          "end": 453,
+          "label": "HEALTH",
+          "reason": "unconfirmed_context_boundary"
+        },
+        {
+          "start": 546,
+          "end": 561,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-supplier-owes",
+      "task": "Work out what the supplier owes us for this delivery and what I still have to check before accounts will process it.",
+      "text": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from Orbitrade Supplies reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and Pema Sherpa counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\nSabina Tamang in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the Janakpur site until Thursday, so message me on +977 9812 340 771 rather than calling the office.",
+      "protected_text": "Credit note [ACCOUNT_ID] covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from Orbitrade Supplies reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and [PERSON_1] counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\n[PERSON_2] in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the [PERSON_3] site until Thursday, so message me on [PHONE] rather than calling the office.",
+      "identifier_misses": [],
+      "lost_required_facts": [
+        {
+          "quote": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out.",
+          "overlapping_edits": [
+            {
+              "start": 12,
+              "end": 19,
+              "label": "ACCOUNT_ID",
+              "action": "PLACEHOLDER",
+              "replacement": "[ACCOUNT_ID]",
+              "reason": "direct_identifier_policy",
+              "score": null
+            }
+          ]
+        }
+      ],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Orbitrade Supplies",
+          "target": {
+            "kind": "entity",
+            "target_id": "org",
+            "entity_id": "supplier",
+            "label": "ORG",
+            "quote": "Orbitrade Supplies",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Supplier name could reveal a commercial relationship and the reconciliation does not need it, so it is replaced with no utility loss.",
+            "start": 442,
+            "end": 460
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 77,
+          "end": 90,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "b637b739b8da442d839931343340edb3:thermal-paper-delivery-memo-warehouse-instructions",
+      "task": "Write the instructions for the warehouse team about the damaged cartons and what they need to upload before Friday noon.",
+      "text": "Credit note CN-7714 covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from Orbitrade Supplies reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and Pema Sherpa counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\nSabina Tamang in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the Janakpur site until Thursday, so message me on +977 9812 340 771 rather than calling the office.",
+      "protected_text": "Credit note [ACCOUNT_ID] covers the 40 cartons that were short on delivery, worth 18,400 rupees in total, and it will be offset against the next invoice rather than paid out. Accounts will only release the offset if the receiving report is signed by Friday. I have not checked whether the same credit also covers the damaged pallet or whether that needs a separate claim.\n\nReceiving report: the delivery of 500 cartons of thermal paper rolls from Orbitrade Supplies reached bay 3 at 14:10 on Tuesday, not Monday as the delivery note says, and [PERSON_1] counted 460 cartons on the pallets. One pallet had a crushed corner and about a dozen cartons were wet, so those were set aside in the cage by the loading door rather than shelved.\n\n[PERSON_2] in accounts needs the signed report by Friday noon. Please put the pallet count, the damage photos and your signature in the shared folder, and tell me if the cage needs to be locked for the weekend. I am at the [PERSON_3] site until Thursday, so message me on [PHONE] rather than calling the office.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "Orbitrade Supplies",
+          "target": {
+            "kind": "entity",
+            "target_id": "org",
+            "entity_id": "supplier",
+            "label": "ORG",
+            "quote": "Orbitrade Supplies",
+            "action": "PLACEHOLDER",
+            "relevance": "unnecessary",
+            "reason": "Supplier name could reveal a commercial relationship and the warehouse instructions do not need it, so it is replaced with no utility loss.",
+            "start": 442,
+            "end": 460
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 77,
+          "end": 90,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    }
+  ],
+  "scope": "Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage. Drop-region precision requires every removed non-whitespace/non-delimiter character to lie in a gold DROP span; whole-section recall is scored separately in the evaluation report."
+}

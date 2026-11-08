@@ -1,0 +1,151 @@
+{
+  "counts": {
+    "placeholder_targets": 13,
+    "exact_placeholder_type_correct": 9,
+    "essential_nondirect_placeholder_targets": 4,
+    "essential_nondirect_placeholder_correct": 0
+  },
+  "failures": [
+    {
+      "id": "4f59e31d4a9e4e1cad4146f077417b7d:finance",
+      "task": "Summarise the budget variance for an external assistant without disclosing the confidential amount.",
+      "text": "Our internal finance note says the confidential projected shortfall is 18,750 euros for the quarter. The estimate assumes the planned shipment arrives in March; it does not include a possible refund. Please outline what additional information we need before discussing the variance with management. The exact amount is not approved for external disclosure, even though it would help quantify the variance.",
+      "protected_text": "Our internal finance note says the confidential projected shortfall is 18,750 euros for the quarter. The estimate assumes the planned shipment arrives in March; it does not include a possible refund. Please outline what additional information we need before discussing the variance with management. The exact amount is not approved for external disclosure, even though it would help quantify the variance.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "18,750 euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "m1",
+            "entity_id": "e1",
+            "quote": "18,750 euros",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The exact internal shortfall is confidential financial information; its removal prevents exact numerical variance analysis.",
+            "start": 71,
+            "end": 83
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 71,
+          "end": 83,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "4f59e31d4a9e4e1cad4146f077417b7d:sales-2",
+      "task": "Explain the limitations of assessing the confidential draft price using an external assistant, without revealing the value.",
+      "text": "Our account manager, Leda Fenn, met the prospective customer yesterday. The customer requested a shorter onboarding checklist and asked whether training can be remote. We should respond professionally, but must not promise a delivery date before operations confirms capacity.\n\nThe confidential draft price is 64,800 euros and the quote has not been approved for external disclosure.",
+      "protected_text": "Our account manager, [PERSON_1], met the prospective customer yesterday. The customer requested a shorter onboarding checklist and asked whether training can be remote. We should respond professionally, but must not promise a delivery date before operations confirms capacity.\n\nThe confidential draft price is 64,800 euros and the quote has not been approved for external disclosure.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "64,800 euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "sensitive",
+            "quote": "64,800 euros",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The exact internal amount is confidential; numerical analysis is unavailable after protection.",
+            "start": 309,
+            "end": 321
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 309,
+          "end": 321,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "4f59e31d4a9e4e1cad4146f077417b7d:ops-2",
+      "task": "Describe the limits of analysing the confidential budget with an external assistant, without revealing the amount.",
+      "text": "Our coordinator, Fenna Rusk, reported that the sample delivery arrived one day late. Two cartons were intact, but the third had a torn seal. Ask the supplier for inspection instructions before anyone uses the contents, and do not state that the contents were damaged.\n\nA confidential internal budget allocation is 23,400 euros for this delivery programme.",
+      "protected_text": "Our coordinator, [PERSON_1], reported that the sample delivery arrived one day late. Two cartons were intact, but the third had a torn seal. Ask the supplier for inspection instructions before anyone uses the contents, and do not state that the contents were damaged.\n\nA confidential internal budget allocation is 23,400 euros for this delivery programme.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "23,400 euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "sensitive",
+            "quote": "23,400 euros",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The exact internal amount is confidential; numerical analysis is unavailable after protection.",
+            "start": 314,
+            "end": 326
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 314,
+          "end": 354,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    },
+    {
+      "id": "4f59e31d4a9e4e1cad4146f077417b7d:invoice-v2",
+      "task": "Explain what an external assistant cannot calculate about the rebate without disclosing its value.",
+      "text": "Our coordinator, Mina Vosk, confirmed that the supplier sent the replacement parts. The delivery is due next week, although the carrier has not provided a tracking update. Ask the supplier to confirm the dispatch date and whether the parts ship together. Do not promise a date to our customer until the carrier responds.\n\nThe confidential supplier rebate is 8,450 euros for this order.",
+      "protected_text": "Our coordinator, [PERSON_1], confirmed that the supplier sent the replacement parts. The delivery is due next week, although the carrier has not provided a tracking update. Ask the supplier to confirm the dispatch date and whether the parts ship together. Do not promise a date to our customer until the carrier responds.\n\nThe confidential supplier rebate is 8,450 euros for this order.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [],
+      "placeholder_errors": [
+        {
+          "quote": "8,450 euros",
+          "target": {
+            "kind": "entity",
+            "target_id": "m2",
+            "entity_id": "e2",
+            "quote": "8,450 euros",
+            "label": "FINANCIAL",
+            "action": "PLACEHOLDER",
+            "relevance": "essential",
+            "reason": "The unapproved supplier rebate is confidential commercial information; its removal prevents exact rebate calculations.",
+            "start": 358,
+            "end": 369
+          },
+          "overlapping_edits": []
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 358,
+          "end": 384,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    }
+  ],
+  "scope": "Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage. Drop-region precision requires every removed non-whitespace/non-delimiter character to lie in a gold DROP span; whole-section recall is scored separately in the evaluation report."
+}

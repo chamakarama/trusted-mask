@@ -1,0 +1,42 @@
+{
+  "source_commit": "7f2a1b3db3e71a2b4e281ee7016f0d3e14dd33e2",
+  "script_sha256": "199f0e60e7a03a15d438fac820d1fc591a5e06d8fdf8152efd804a1ea61c5e8e",
+  "source_hashes": {
+    "mask/ml/privacy_v1/data/training-2026-11-07/dev.jsonl": "f9ad0954b8904e8d8725095cfe2f409bef3992c8895bc11855ee163a1a0e857b",
+    "mask/ml/privacy_v1/data/training-2026-11-07/train.jsonl": "df1c63afaea9fefd4193459e7ae4cdbeb05db2897d59f44b92d2d7bfcdaac1d9",
+    "demo/web-examples.json": "685d58ab30d8898a44293d5982405ee009da5b4f4492917a2f99cb35ca8ba027",
+    "evidence/privacy-v1/training-2026-11-07/fresh-long-messages.json": "b42193ebebc40b4d78da21f8c6319c7dcf0c871e3778f060e1ed749b827e3d86",
+    "mask/ml/privacy_v1/annotation/example.section-pair.authoring.json": "a3b1fecb813561bf3a32f4627f9bff5d209462f101ec8376dd55a8196ea26406"
+  },
+  "conditions": [
+    "explicit",
+    "vague",
+    "empty_engine_task",
+    "ui_first_line",
+    "web_message_only"
+  ],
+  "section_mode": "legacy",
+  "device": "cpu",
+  "torch_threads": 4,
+  "models": {
+    "deberta-v3-base": {
+      "manifest_sha256": "2cb1fb04e9cda1701deecaeb68391c45bafe910fdbfad80b3611ef41c5c8bc42"
+    },
+    "encoder-b": {
+      "manifest_sha256": "a0d2196b442752fd50ac0f21ac98965dc91bf2daf701823c2a83f60486f63020"
+    },
+    "custom-a": {
+      "manifest_sha256": "d176c5bc71b7e65b2fe739dce0fd84cf0ff131bea847b1f907c570693fbbb132"
+    }
+  },
+  "limitations": [
+    "Same source and gold intent held constant; conditions vary only information supplied as task context.",
+    "Vague/empty conditions cannot be expected to recover an undisclosed intended task.",
+    "UI first-line task and backend whole-message fallback are distinct from an actually empty engine task.",
+    "Dev was used for checkpoint selection; gallery is training data; fresh cases are prior diagnostics.",
+    "Documentation pair was authored after training but is pending model review, not an independent final test.",
+    "Some source texts already state a task, so removing the separate task does not remove all intent clues.",
+    "Metrics assess draft text edits and exact quote retention, not downstream AI answer quality or inference attacks.",
+    "No threshold tuning, weight updates, external model calls or UI changes."
+  ]
+}
