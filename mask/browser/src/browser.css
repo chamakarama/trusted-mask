@@ -1,0 +1,50 @@
+/* The main layout and controls use the original local demo's styles.css. */
+.model-state{padding:2px 1px 14px}
+.model-line{display:flex;align-items:center;gap:8px;min-height:20px;font-size:11px;color:#92929c}
+.status-dot{height:5px;width:5px;background:#92929c;border-radius:50%;flex-shrink:0}
+.status-dot.error{background:#dcab77}
+#model-progress{display:block;width:100%;height:2px;margin:8px 0 0;accent-color:#89aee3}
+#retry{margin-left:auto;border:0;background:none;color:#aec5e9;padding:4px;white-space:nowrap}
+#stop{border:1px solid #414148;background:#242426;color:#c3c3cd;border-radius:8px;padding:12px}
+.notice{font-size:11px;line-height:1.6;color:#e4b890;margin:11px 0 0}
+#output{cursor:text}
+#settings{position:relative}
+#settings>summary{display:grid;place-items:center;list-style:none;width:22px;height:24px;color:#74747c;font-size:18px;cursor:pointer;line-height:1}
+#settings>summary::-webkit-details-marker{display:none}
+#settings>summary:hover{color:#c3c3cc}
+summary:focus-visible{outline:1px solid #8399bc;outline-offset:4px}
+.settings-panel{position:absolute;top:32px;right:0;z-index:2;width:252px;max-width:calc(100vw - 36px);padding:16px;border:1px solid #404040;border-radius:12px;background:#252525;box-shadow:0 8px 24px #0004;color:#92929c;font-size:11px;line-height:1.6}
+.settings-panel p{margin:0 0 12px}
+.settings-panel button{display:block;padding:6px 0;border:0;background:none;color:#c3c3cd;font-size:11px;text-align:left}
+.settings-panel button:hover{color:#fff}
+#review{align-self:flex-end;margin-top:9px;max-width:100%;color:#92929c;font-size:11px}
+#review>summary{cursor:pointer;text-align:right}
+#review pre{white-space:pre-wrap;overflow-wrap:anywhere;font:400 12px/1.65 Inter,sans-serif;color:#c9c9d2;max-height:330px;overflow:auto;border:1px solid #37373d;border-radius:10px;padding:14px}
+[data-theme="light"] .model-line,[data-theme="light"] #review,[data-theme="light"] #settings>summary{color:#737b87}
+[data-theme="light"] .settings-panel{background:#fff;border-color:#dce0e6;color:#737b87}
+[data-theme="light"] .settings-panel button,[data-theme="light"] #review pre{color:#444d5c}
+[data-theme="light"] #review pre{border-color:#dce0e6}
+[data-theme="light"] #stop{background:#fff;color:#444d5c;border-color:#dce0e6}
+[data-theme="light"] .notice{color:#945b2c}
+@media(max-width:640px){.toolbar-actions{gap:10px}}
+
+.brand-group{display:flex;align-items:center;gap:10px}
+#model-select{max-width:86px;border:1px solid #38383d;border-radius:6px;background:#202022;color:#aaaab5;padding:3px 5px;font:400 11px Inter,sans-serif;cursor:pointer}
+#model-select:focus-visible{outline:1px solid #8399bc;outline-offset:3px}
+[data-theme="light"] #model-select{background:#fff;color:#59616d;border-color:#dce0e6}
+@media(max-width:400px){.brand-group{gap:6px}.toolbar-actions{gap:6px}#model-select{max-width:76px;font-size:10px}.brand{gap:5px}}
+
+/* First visit: make the model download wait impossible to miss. */
+.model-line{font-size:12px;color:#aaaab5}
+#model-progress{height:3px}
+.model-wait{margin:12px 0 0;padding:12px 14px;border:1px solid #2b3c56;border-radius:10px;background:#172030;color:#aec5e9;font-size:12px;line-height:1.6}
+.model-wait strong{color:#e3ecfb;font-weight:600}
+[data-theme="light"] .model-wait{background:#eef4ff;border-color:#d3e1f9;color:#365f99}
+[data-theme="light"] .model-wait strong{color:#1f3f6e}
+
+/* Empty input: "try an example" glows like the Filter button does once it is ready. */
+.toolbar #example{border:1px solid transparent;border-radius:7px;padding:4px 9px}
+.toolbar #example.nudge{color:#c3c3cd;border-color:#4a83d0;animation:next-action 2.4s ease-in-out infinite}
+.toolbar #example.nudge:hover{color:#fff;border-color:#78aaff}
+[data-theme="light"] .toolbar #example.nudge{color:#365f99}
+[data-theme="light"] .toolbar #example.nudge:hover{color:#1f3f6e}

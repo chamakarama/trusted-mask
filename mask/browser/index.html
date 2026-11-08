@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Filter private details on your device before sharing a message with AI. No installation. Review every result." />
+  <title>Mask — private filtering on your device</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#181818" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/src/app.js" type="module"></script>
+</head>
+<body>
+  <main>
+    <div class="toolbar">
+      <span class="brand-group"><span class="brand"><svg class="logo-mark" width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo-bg" width="32" height="32" rx="8"/><ellipse cx="16" cy="15.6" rx="8.6" ry="10" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="1.7"/><path d="M16 6.2C20.6 6.2 24.6 9 24.6 14.4C24.6 19 22.4 23.6 18.8 24.6C17.6 24.9 17 24.2 16.9 23.2L16.6 19.6C16.2 18.6 15.6 17.9 15.6 16.9C15.6 15.9 16.1 15.3 16.1 14.2Z" fill="#fff"/><path class="logo-bg" d="M18 13.6Q20.3 11.8 22.4 13.4Q20.3 15.3 18 13.6Z"/></svg><span class="wordmark">Mask</span></span><select id="model-select" aria-label="Filtering model" title="Choose filtering model" disabled><option value="mask1">mask1</option><option value="mask2" selected>mask2</option><option value="maskmini">maskmini</option></select></span>
+      <span class="toolbar-actions"><button id="theme" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button><button id="example" type="button">try an example</button><details id="settings"><summary aria-label="Model and session settings" title="Model and session settings">···</summary><div class="settings-panel"><p id="model-version">Local filtering · English messages</p><p>Experimental model. Review the filtered message before sharing.</p><button id="clear" type="button">Clear session</button><button id="forget-model" type="button">Remove downloaded model</button></div></details></span>
+    </div>
+    <section class="model-state" id="model-state" aria-label="Local model status">
+      <div class="model-line"><span class="status-dot" id="status-dot"></span><span id="model-status" role="status">Preparing local filtering…</span><button id="retry" type="button" hidden>Retry loading</button></div>
+      <progress id="model-progress" max="100" aria-label="Model download progress"></progress>
+      <p id="model-wait" class="model-wait" hidden></p>
+    </section>
+    <div class="box input-box">
+      <textarea id="message" aria-label="Your message" placeholder="Your message" maxlength="4000" spellcheck="false" autocomplete="off"></textarea>
+      <div id="output" role="textbox" aria-label="Filtered message" aria-readonly="true" tabindex="0" title="Click to edit" hidden></div>
+    </div>
+    <div class="actions">
+      <button id="filter" class="action-button" type="button" disabled>Filter</button>
+      <button id="stop" type="button" hidden>Stop</button>
+      <button id="send" type="button" aria-label="Send to Claude" title="Send this protected message to Claude" hidden><span>Send to Claude</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <p id="notice" class="notice" role="status" hidden></p>
+    <details id="review" hidden><summary>What the AI sees</summary><pre id="payload"></pre></details>
+    <section id="reply-section" aria-label="Chatbot reply" hidden>
+      <p id="reply-label">Claude’s reply</p>
+      <div class="box"><div id="reply" role="region" aria-label="Chatbot response" tabindex="0"></div></div>
+      <button id="revert" class="action-button" type="button" disabled>Restore names on this device</button>
+    </section>
+  </main>
+</body>
+</html>

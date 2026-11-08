@@ -1,0 +1,137 @@
+[
+  {
+    "id": "structured-sql",
+    "reference": {
+      "status": "needs_review",
+      "protected_text": "INSERT INTO customers (id, full_name, personnummer, iban) VALUES (456677939764, '[PERSON_1]', '811228-9874', '[IBAN]');\nLog: 2026-03-03T06:17:00Z login from 203.0.113.89 req=844e78fa-1b47-4696-a3f1-258572fbb060",
+      "protected_task": "Explain why this SQL insert fails.",
+      "review_reasons": [
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [
+        {
+          "start": 177,
+          "end": 189,
+          "label": "IP_ADDRESS",
+          "reason": "detected_kept_for_review"
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 66,
+          "end": 78,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 99,
+          "end": 110,
+          "label": "NATIONAL_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 99,
+          "end": 110,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 145,
+          "end": 158,
+          "label": "DATE",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 190,
+          "end": 193,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 194,
+          "end": 230,
+          "label": "IBAN",
+          "reason": "lookalike_identifier_shape"
+        },
+        {
+          "start": 194,
+          "end": 230,
+          "label": "IBAN",
+          "reason": "lookalike_identifier_shape"
+        }
+      ],
+      "coverage": {
+        "scanned_characters": 230,
+        "total_characters": 230,
+        "complete": true,
+        "offset_unit": "unicode_code_point",
+        "history_messages_scanned": 0,
+        "task_scanned": true
+      }
+    },
+    "optimized": {
+      "status": "needs_review",
+      "protected_text": "INSERT INTO customers (id, full_name, personnummer, iban) VALUES (456677939764, '[PERSON_1]', '811228-9874', '[IBAN]');\nLog: 2026-03-03T06:17:00Z login from 203.0.113.89 req=844e78fa-1b47-4696-a3f1-258572fbb060",
+      "protected_task": "Explain why this SQL insert fails.",
+      "review_reasons": [
+        "experimental_model_not_release_validated",
+        "unconfirmed_detection_requires_review"
+      ],
+      "retained_sensitive": [
+        {
+          "start": 177,
+          "end": 189,
+          "label": "IP_ADDRESS",
+          "reason": "detected_kept_for_review"
+        }
+      ],
+      "pending_reviews": [
+        {
+          "start": 66,
+          "end": 78,
+          "label": "ACCOUNT_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 99,
+          "end": 110,
+          "label": "NATIONAL_ID",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 145,
+          "end": 158,
+          "label": "DATE",
+          "reason": "unconfirmed_entity_shape"
+        },
+        {
+          "start": 190,
+          "end": 193,
+          "label": "SECRET",
+          "reason": "unconfirmed_secret_shape"
+        },
+        {
+          "start": 194,
+          "end": 230,
+          "label": "IBAN",
+          "reason": "lookalike_identifier_shape"
+        },
+        {
+          "start": 194,
+          "end": 230,
+          "label": "IBAN",
+          "reason": "lookalike_identifier_shape"
+        }
+      ],
+      "coverage": {
+        "scanned_characters": 230,
+        "total_characters": 230,
+        "complete": true,
+        "offset_unit": "unicode_code_point",
+        "history_messages_scanned": 0,
+        "task_scanned": true
+      }
+    }
+  }
+]
