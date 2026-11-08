@@ -1,6 +1,9 @@
 # DeBERTa section-head bundles — 8 November 2026
 
-Separate base and large archives are published immediately after training. See
+Base and large were both trained and their final archives published before full evaluation.
+The **selected large checkpoint is epoch 1**, available with its exact demo command
+in [selected-epoch-1](selected-epoch-1/README.md). The parent large archive preserves
+epoch 2 for comparison. Base selects epoch 2. See
 `STATUS.json` for publication and evaluation status. A manifest's `pending`
 status describes the instant of packaging; subsequent tests are recorded in
 STATUS and the linked evidence without modifying the immutable archive.
