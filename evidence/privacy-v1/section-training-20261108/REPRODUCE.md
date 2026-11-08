@@ -123,3 +123,20 @@ CSV/XLSX fixtures are training demonstrations. Fresh inputs are synthetic agent-
 authored diagnostics: 119–140 words, three distinct sources, a task swap, vague
 and missing-task controls, ambiguous same-first-name people and a benign case.
 Local restoration uses a labelled mock reply, not an external AI response.
+
+## Tokenizer compatibility
+
+`tokenizer-probe.json` records four Unicode/decimal/whitespace probes, four
+distinct special markers and embedding bounds. Large and the published base have
+byte-identical `tokenizer.json` files (SHA256
+`002c22f589cb3156047bfc52a943a95bb89c50c66b7c39cdc8de07f250b2887e`).
+The actual backend is DeBERTaV2TokenizerFast / Unigram / Metaspace, with 128,005
+tokens inside 128,100 embedding rows. Transformers 4.57.6 emits an unrelated
+Mistral warning for these local 4.57.6 configs because of its version guard; no
+Mistral regex change was applied. The warning is preserved in logs.
+
+```sh
+HF_HUB_OFFLINE=1 python -m mask.ml.privacy_v1.cloud.tokenizer_probe \
+  --bundle mask/ml/privacy_v1/artifacts/section-training-20261108/deberta-v3-large \
+  --output /tmp/large-tokenizer-probe.json
+```
