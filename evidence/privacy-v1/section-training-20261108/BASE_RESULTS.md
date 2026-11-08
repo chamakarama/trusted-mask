@@ -36,6 +36,9 @@ terminal delimiters ignored); original dev is 3/3. Whole-section recall remains
 8/33 and 3/9 respectively, so partial removals are not credited as whole sections. All 18 original and
 three supplemental approved-no-edit controls remain unchanged. Unnecessary changed
 characters on supplemental: old DeBERTa 621, new base 714 (not a token metric).
+The five relevant-sensitive and three vague-task supplemental controls have no
+false removal or lost fact; the relevant-sensitive group still has one identifier
+miss. Both explicitly benign controls remain unchanged. See `cohort-summary.json`.
 
 The old baseline has 47 inconsistent gold identities and two erroneous identity
 merges on supplemental; new base has zero of either. Reusing new weights under the

@@ -9,7 +9,7 @@ handoff plus that upstream main. No web UI/default model was changed.
 Only `training-2026-11-07c` is the canonical pool. Its 1,316 records already
 contain all three releases; authored/compiled files are two views of each row.
 The frozen `section-split-20261108-v1/split-manifest.json` records source and
-derived SHA256, seed, linked family membership and exact IDs. There are **1,236
+derived SHA256, seed, connected-group counts and exact IDs. There are **1,236
 optimizer records, 80 supplemental dev records, and 50 unchanged original dev
 records**. The split was frozen and committed before either full fit.
 
