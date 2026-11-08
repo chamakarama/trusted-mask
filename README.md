@@ -4,7 +4,7 @@
 
 Mask is a local privacy layer for messages sent to AI. It is designed to remove personal and confidential information that is unnecessary for a question while keeping the information needed for a useful answer.
 
-[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v2.pdf) · [Pitch notes](demo/pitch-v2.md) · [Two-minute video script](demo/script-v2.0.md)
+[Try the web demo](https://mask-local-demo.netlify.app/) · [Watch the video demo](https://youtu.be/41sEQwuITEo?si=MZ1dGezMFcS5qY2v) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v2.pdf) · [Pitch notes](demo/pitch-v2.md) · [Two-minute video script](demo/script-v2.0.md)
 
 ## The problem
 
