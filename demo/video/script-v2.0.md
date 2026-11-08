@@ -75,7 +75,7 @@ This version uses the customer-complaints demo followed by the new context-depen
 ## Recording notes
 
 - Warm up the browser model before recording. First use downloads the model. Keep real processing footage, or label any edited wait.
-- Use `../corporate-support-message.txt` and the exact source and separate tasks in `../context-dependency-demo/`. Both examples are synthetic. The earlier public browser release protected all 20 targeted identifier occurrences in the corporate message; recheck with the model chosen for recording.
+- Use `../browser-support-example.txt` and the exact source and separate tasks in `../context-dependency-demo/`. Both examples are synthetic. The earlier public browser release protected all 20 targeted identifier occurrences in the corporate message; recheck with the model chosen for recording.
 - The 3/2/1 complaint counts are facts preserved in the filtered text. Check the actual chatbot response separately before recording. This review did not send either input to Claude.
 - Name restoration runs only in the browser and only after the click. It restores `[PERSON_n]` names, not emails or customer IDs, and the button is enabled only when Claude's reply contains one of this message's name placeholders. The complaints-summary task may not produce one, so check this in the same test run as the chatbot answer.
 - Recheck both exact messages after any model or policy change. Both newer section checkpoints currently leave `C-2087` and `C-5028` in their saved corporate-gallery outputs.

@@ -33,7 +33,7 @@ The output contains baseline and experimental results, missed DROP spans, change
 
 ## Training next
 
-First export aligned targets using the same command without `--model`, separately for train and dev. The committed exports in `data/training-2026-11-07/section-targets/` preserve original record IDs, families and splits. They are auxiliary section-head supervision, not extra independent records and not input to the current BIO/action trainer.
+First export aligned targets using the same command without `--model`, separately for train and dev. The exports in `data/training-2026-11-07/section-targets/` (not included in this repository) preserve original record IDs, families and splits. They are auxiliary section-head supervision, not extra independent records and not input to the current BIO/action trainer.
 
 The current training set yields 177 unnecessary, 2,250 essential and 42 uncertain clause targets; 1,465 clauses are unlabelled. Whole paragraphs yield only 46 unnecessary targets. Unlabelled does **not** mean safe to remove. A required fact or explicit essential KEEP annotation vetoes a DROP target. Preserve required claims including qualifiers, negation and conditions.
 

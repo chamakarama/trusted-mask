@@ -151,8 +151,9 @@ Runtime/model assets must exist before a build; no missing model is silently
 replaced with a pilot or rules-only detector.
 
 The training and development datasets used for quality evaluation are withheld
-from this submission. `validate_model.py` uses those datasets and therefore needs
-them supplied separately; the recorded parity evidence is included. Building the
+from this submission. Without them, `validate_model.py` checks only the gallery,
+fresh, unicode and integration cases included here; full dev-set parity needs the
+datasets supplied separately. The recorded parity evidence is included. Building the
 application is distinct from rerunning the complete model-validation campaign.
 
 ## Verification
