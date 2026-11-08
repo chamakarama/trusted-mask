@@ -32,6 +32,8 @@ for split in ['original-dev','supplemental']:
         paths[size+'-legacy-pipeline']=folder/f'epoch-2-legacy-pipeline-{split}.json'
         for threshold in ['0.999','0.9999']:
             paths[size+'-threshold-'+threshold]=ROOT/size/'cloud/evaluation'/(size+'-thresholds')/(threshold+'-'+split+'.json')
+    for variant in ['conditioned','goal-agnostic','legacy-pipeline']:
+        paths['large-selected-'+variant]=ROOT/'large/cloud/evaluation/large-selected'/f'epoch-1-{variant}-{split}.json'
     out['splits'][split]={name:metrics(json.loads(path.read_text()),baseline) for name,path in paths.items() if path.exists()}
 (ROOT/'comparison.json').write_text(json.dumps(out,indent=2)+'\n')
 for split,models in out['splits'].items():

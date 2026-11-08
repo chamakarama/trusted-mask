@@ -9,7 +9,8 @@ cohort={}
 for i,r in enumerate(rows):
  cohort[r['id']]=('original-connected' if i<516 else 'placeholder-preservation' if i<816 else 'task-pair' if len(tasks[r['text']])>1 else 'benign' if not r['decisions'] else 'vague-task' if any(d['relevance']=='uncertain' for d in r['decisions']) else 'relevant-sensitive')
 paths={'old-deberta':root/'baselines/deberta-original-supplemental.json','base':root/'base/cloud/evaluation/base/epoch-2-conditioned-supplemental.json'}
-if (root/'large/cloud/evaluation/large/epoch-2-conditioned-supplemental.json').exists():paths['large']=root/'large/cloud/evaluation/large/epoch-2-conditioned-supplemental.json'
+if (root/'large/cloud/evaluation/large/epoch-2-conditioned-supplemental.json').exists():paths['large-epoch-2']=root/'large/cloud/evaluation/large/epoch-2-conditioned-supplemental.json'
+if (root/'large/cloud/evaluation/large/epoch-1-conditioned-supplemental.json').exists():paths['large-selected-epoch-1']=root/'large/cloud/evaluation/large/epoch-1-conditioned-supplemental.json'
 out={}
 for name,path in paths.items():
  c=defaultdict(Counter)

@@ -140,3 +140,26 @@ HF_HUB_OFFLINE=1 python -m mask.ml.privacy_v1.cloud.tokenizer_probe \
   --bundle mask/ml/privacy_v1/artifacts/section-training-20261108/deberta-v3-large \
   --output /tmp/large-tokenizer-probe.json
 ```
+
+## Dev-selected large checkpoint
+
+Large epoch 1 loses 12 supplemental required facts, versus 24 for epoch 2,
+and makes 11 false clause removals versus 16. It was therefore selected after
+the bounded comparison and published in a separate `selected-epoch-1` artifact
+path. Both candidates were trained for the same two-epoch maximum. No extra
+training or new data was used for selection. Base selects epoch 2.
+
+```sh
+python -m mask.ml.privacy_v1.cloud.select_checkpoint \
+  --run runs/deberta-large-v2 --epoch 1 --pretrained pretrained-large \
+  --output runs/deberta-large-selected-epoch1
+HF_HUB_OFFLINE=1 python -m mask.ml.privacy_v1.cloud.evaluate_saved \
+  --run runs/deberta-large-selected-epoch1 --track deberta-v3-large \
+  --output evaluation/large-selected --published-only
+```
+
+The selected artifact receives a new public-download CPU parity check and fresh,
+adapter, dev, goal-agnostic and legacy-pipeline checks after publication.
+The initial large final-epoch upload was delayed about 25 minutes when an
+interruption terminated the local publication monitor; it was resumed and
+published before evaluation. Base uploaded about 75 seconds after packaging.

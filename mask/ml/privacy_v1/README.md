@@ -1,5 +1,7 @@
 # Mask Local — executable A/B pilot
 
+The **8 November 2026 section-head comparison** trains both DeBERTa-v3-base and DeBERTa-v3-large on the frozen `training-2026-11-07c` split. See the [comparison](../../../evidence/privacy-v1/section-training-20261108/COMPARISON.md) and [reproduction commands](../../../evidence/privacy-v1/section-training-20261108/REPRODUCE.md) for selected Git LFS bundles, measured failures and exact demo commands. The existing demo default remains unchanged; the older commands below reproduce historical runs.
+
 The **7 November 2026 reviewed-data training comparison** adds a DeBERTa challenger alongside custom-a and pinned MiniLM. See the [campaign report](../../../evidence/privacy-v1/training-2026-11-07/COMPARISON.md) for selected bundles, reproducible commands, dataset hashes, measured failures and artifact retrieval. These experiments do not replace the live demo or the historical pilot bundles described below.
 
 This package implements the first engineering milestone of [the local model plan](../../../planning/LOCAL_MODEL_PLAN.md): **two trained local prototypes sharing policy, exact-offset edits, message handling and basic table adapters**. It is not a validated privacy release. All draft outputs remain `needs_review`; unsupported inputs return no protected text/file. Raw softmax scores are not calibrated certainty.

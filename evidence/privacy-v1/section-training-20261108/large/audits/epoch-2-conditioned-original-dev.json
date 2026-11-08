@@ -1,0 +1,39 @@
+{
+  "counts": {
+    "placeholder_targets": 13,
+    "exact_placeholder_type_correct": 13,
+    "essential_nondirect_placeholder_targets": 4,
+    "essential_nondirect_placeholder_correct": 4,
+    "predicted_drop_regions": 7,
+    "drop_regions_within_gold_drop": 6,
+    "drop_regions_outside_gold_drop": 1
+  },
+  "failures": [
+    {
+      "id": "4f59e31d4a9e4e1cad4146f077417b7d:dent-v2",
+      "task": "Summarise the electricity expense for my budget; omit the dental observations.",
+      "text": "My brother, Casen Yule, offered to accompany me to the dentist. One tooth has been sensitive to cold drinks for five days, but I have not noticed any swelling. The discomfort stops within a minute after the drink. I want to describe those observations clearly without guessing the cause.\n\nMy monthly electricity bill is 76 euros and I want to compare plans.",
+      "protected_text": "I want to describe those observations clearly without guessing the cause.\n\nMy monthly electricity bill is 76 euros and I want to compare plans.",
+      "identifier_misses": [],
+      "lost_required_facts": [],
+      "false_clause_removals": [
+        {
+          "start": 0,
+          "end": 62,
+          "target": null,
+          "reason": "insufficient_section_supervision"
+        }
+      ],
+      "placeholder_errors": [],
+      "pending_reviews": [
+        {
+          "start": 289,
+          "end": 328,
+          "label": "FINANCIAL",
+          "reason": "unconfirmed_context_boundary"
+        }
+      ]
+    }
+  ],
+  "scope": "Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage. Drop-region precision requires every removed non-whitespace/non-delimiter character to lie in a gold DROP span; whole-section recall is scored separately in the evaluation report."
+}

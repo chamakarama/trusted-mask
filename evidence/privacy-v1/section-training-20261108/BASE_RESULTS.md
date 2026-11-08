@@ -113,4 +113,4 @@ not a dedicated benchmark. Local restoration was tested with an explicitly mock
 reply; no external AI service was called.
 
 The base GPU VM and its 150GB disk were deleted after all evidence was retrieved.
-The large run remains separate and will receive the same evaluation protocol.
+Both large checkpoints have now completed the same protocol; see COMPARISON.md.
