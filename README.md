@@ -22,7 +22,9 @@ The browser demo starts filtering locally after a pause in typing or when an exa
 
 ## What we built
 
-We developed models for privacy detection and relevance decisions using pretrained DeBERTa encoders, trained them on our own synthetic data, and built the system that turns predictions into controlled edits.
+We trained DeBERTa and MiniLM transformer models on our own annotated synthetic data, with separate prediction heads for sensitive-span detection, task relevance and editing actions. Mask2 adds a section-relevance head for task-dependent passage removal. Deterministic validation and editing rules turn these predictions into exact changes to the source text.
+
+We also built and evaluated a lightweight custom architecture without pretrained embeddings: a sparse logistic token classifier with separate relevance and action classifiers. We selected DeBERTa for the demo after it removed identifiers more reliably in our checks and avoided a surname leak seen with the custom model. The [training comparison](evidence/privacy-v1/training-2026-11-07/COMPARISON.md) records the tradeoffs and remaining failures.
 
 The project includes a working browser application, local inference, deterministic edit rules, an optional Claude connection and local reply restoration. The Python engine also supports CSV and values-only XLSX. Direct integration into other chatbot websites is the next product step.
 
