@@ -1,6 +1,6 @@
 """Local inference boundary: proposals -> coherent policy plan -> exact edits."""
 from collections import defaultdict
-from .contracts import (ACTIONS, DIRECT, KEPT_FOR_REVIEW, RELEVANCE, RULE_ONLY_LABELS, Edit, Prediction, Result,
+from .contracts import (ACTIONS, ALIASED, DIRECT, KEPT_FOR_REVIEW, RELEVANCE, RULE_ONLY_LABELS, Edit, Prediction, Result,
                         PIPELINE_VERSION)
 from .policy import Aliases, POLICY_VERSION, allowed_actions, replacement
 from .candidates import build_candidates
@@ -18,7 +18,7 @@ class RulesModel:
         return []
 
     def predict(self, text, span, task, context=""):
-        action = "ALIAS" if span.label == "PERSON" else "PLACEHOLDER"
+        action = "ALIAS" if span.label in ALIASED else "PLACEHOLDER"
         return Prediction({x: float(x == action) for x in ACTIONS},
                           {x: float(x == "uncertain") for x in RELEVANCE})
 
@@ -171,7 +171,7 @@ class Protector:
                 continue
             value = text[span.start:span.end]
             if span.label in DIRECT:
-                action = "ALIAS" if span.label == "PERSON" else "PLACEHOLDER"
+                action = "ALIAS" if span.label in ALIASED else "PLACEHOLDER"
                 score, reason = None, "direct_identifier_policy"
             else:
                 if any(a <= span.start and span.end <= b for a, b in essential_sections):

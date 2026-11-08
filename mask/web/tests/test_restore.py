@@ -83,3 +83,15 @@ def test_counts_distinct_aliases():
     r = Restorer(MAP)
     r.feed("[PERSON_1] [PERSON_1] [PERSON_2]"); r.flush()
     assert r.restored_count == 3 and r.restored_aliases == {"[PERSON_1]", "[PERSON_2]"}
+
+
+EMAILS = {**MAP, "[EMAIL_1]": "maria@example.org", "[EMAIL_2]": "jonas@example.org"}
+
+
+def test_email_aliases_are_restored_across_every_split():
+    text = "Send it to [EMAIL_1], cc [EMAIL_2]; [EMAIL_3] and [EMAIL] stay. [PERSON_1] signs."
+    expected = ("Send it to maria@example.org, cc jonas@example.org; [EMAIL_3] and [EMAIL] stay. "
+                "Maria Virtanen signs.")
+    assert restore_text(text, EMAILS) == expected
+    for i in range(len(text) + 1):
+        assert stream([text[:i], text[i:]], EMAILS)[0] == expected

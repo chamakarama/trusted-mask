@@ -64,7 +64,7 @@ def test_uncertainty_does_not_authorise_deletion():
 def test_identifiers_in_kept_section_still_protected_and_traces_have_no_raw_text():
     text = "Current patient name: Imani Hart. Email: imani@example.invalid."
     r = Protector(Model(text), section_mode=SECTION_MODE).protect_text(text, "Explain current note")
-    assert "[PERSON_1]" in r.protected_text and "[EMAIL]" in r.protected_text
+    assert "[PERSON_1]" in r.protected_text and "[EMAIL_1]" in r.protected_text
     trace = json.dumps(r.section_diagnostics)
     assert "Imani" not in trace and "imani@example" not in trace
     assert r.runtime_versions["section_mode"] == SECTION_MODE

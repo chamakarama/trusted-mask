@@ -86,11 +86,11 @@ def test_invalid_section_scores_fail_closed():
 
 
 def test_local_restoration_uses_generated_aliases_only():
-    from mask.web.server import _person_map
+    from mask.web.server import _alias_map
     from mask.web.restore import restore_text
     text='Alina Birch met Marek Wolf. Alina thanked Marek.'
     result=Protector(SectionModel()).protect_text(text,'Draft the shipping request')
-    mapping=_person_map(text,[vars(e) for e in result.edits],result.protected_text)
+    mapping=_alias_map(text,[vars(e) for e in result.edits],result.protected_text)
     restored=restore_text('[PERSON_1] thanked [PERSON_2]. [PERSON_99]',mapping)
     assert 'Alina Birch' in str(restored) and 'Marek Wolf' in str(restored)
     assert '[PERSON_99]' in str(restored)

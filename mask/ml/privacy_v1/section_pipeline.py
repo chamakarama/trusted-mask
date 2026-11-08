@@ -5,7 +5,7 @@ objects are deliberately absent from this interface.
 """
 import re
 import math
-from .contracts import DIRECT, RULE_ONLY_LABELS, Span, Edit, Result
+from .contracts import ALIASED, DIRECT, RULE_ONLY_LABELS, Span, Edit, Result
 from .candidates import NON_NAMES, plausible_person
 from .sections import section_units, section_drop_bounds, CLAUSE_MODE, MAX_SECTIONS, SECTION_LABELS
 from .policy import replacement
@@ -102,7 +102,7 @@ def protect_segment(protector, text, task, context, aliases, learned, entities, 
             continue
         value = text[span.start:span.end]
         if span.label in DIRECT:
-            action = 'ALIAS' if span.label=='PERSON' else 'PLACEHOLDER'
+            action = 'ALIAS' if span.label in ALIASED else 'PLACEHOLDER'
             score,reason = None,'direct_identifier_policy'
         else:
             action,score,reason,_ = value_decisions.get((span.start,span.end,span.label)) or protector._decision(text,span,task,context)

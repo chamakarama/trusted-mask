@@ -15,7 +15,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from .provider import ProviderError, configured_provider
-from .restore import TOKEN, Restorer
+from .restore import ALIASED, TOKEN, Restorer
 from .session import PreviewStore, SessionError
 
 ROOT = Path(__file__).resolve().parent
@@ -44,12 +44,12 @@ class Busy(Exception):
     pass
 
 
-def _person_map(source, edits, payload_user):
-    """Reverse map for PERSON aliases this pass generated and that actually occur in the outbound content."""
+def _alias_map(source, edits, payload_user):
+    """Reverse map for name and email aliases this pass generated and that actually occur in the outbound content."""
     mapping = {}
     for edit in edits or []:
         try:
-            if edit.get("label") != "PERSON" or edit.get("action") != "ALIAS":
+            if edit.get("label") not in ALIASED or edit.get("action") != "ALIAS":
                 continue
             alias, start, end = edit["replacement"], edit["start"], edit["end"]
         except (AttributeError, KeyError, TypeError):
@@ -133,9 +133,9 @@ class ModelService:
                 user = protected_text if message_only else f"Task: {protected_task.strip()}\n\n{protected_text}"
                 task_edits = next((r.get("edits", []) for r in result.get("context_reports", [])
                                    if isinstance(r, dict) and r.get("component") == "task"), [])
-                reverse_map = _person_map(text, result.get("edits"), user)
+                reverse_map = _alias_map(text, result.get("edits"), user)
                 if not message_only:
-                    for alias, name in _person_map(task, task_edits, user).items():
+                    for alias, name in _alias_map(task, task_edits, user).items():
                         reverse_map.setdefault(alias, name)
                 session = self.store.create(system, user, reverse_map, client)
             return {

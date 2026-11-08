@@ -107,7 +107,7 @@ def test_ip_and_vat_are_detected_but_kept_for_review():
     text = "Why is 203.0.113.89 blocked? Our VAT number is FI20774740, email ops@example.org."
     result = Protector().protect_text(text, text)
     assert "203.0.113.89" in result.protected_text and "FI20774740" in result.protected_text
-    assert "[EMAIL]" in result.protected_text
+    assert "[EMAIL_1]" in result.protected_text
     kept = {(x["label"], x["reason"]) for x in result.retained_sensitive}
     assert ("IP_ADDRESS", "detected_kept_for_review") in kept and ("VAT_ID", "detected_kept_for_review") in kept
     assert "detected_kept_for_review" in result.review_reasons
@@ -118,3 +118,12 @@ def test_code_references_are_not_secrets():
     out = Protector().protect_text(text, text).protected_text
     assert 'os.environ["DB_PASSWORD"]' in out and "process.env.API_KEY" in out
     assert "Summer4285!" not in out
+
+
+def test_email_addresses_get_stable_numbered_aliases():
+    task = "Draft a reply to anna@example.org and copy Ben@Example.org."
+    text = "From: Anna@Example.org\nCc: ben@example.org\nCan we move the meeting? Reply to anna@example.org."
+    result = Protector().protect_text(text, task)
+    assert result.protected_text == ("From: [EMAIL_1]\nCc: [EMAIL_2]\n"
+                                     "Can we move the meeting? Reply to [EMAIL_1].")
+    assert result.protected_task == "Draft a reply to [EMAIL_1] and copy [EMAIL_2]."

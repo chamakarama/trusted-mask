@@ -1,20 +1,21 @@
-"""Deterministic local restoration of generated PERSON aliases in a streamed reply.
+"""Deterministic local restoration of generated name and email aliases in a streamed reply.
 
-Only exact `[PERSON_n]` tokens that this request generated are restored; unknown tokens, generic placeholders
-(`[EMAIL]`, `[SECRET]`...), dropped sections and generalised facts are left exactly as the AI wrote them.
+Only exact `[PERSON_n]` and `[EMAIL_n]` tokens that this request generated are restored; unknown tokens, generic
+placeholders (`[PHONE]`, `[SECRET]`...), dropped sections and generalised facts are left exactly as the AI wrote them.
 One left-to-right pass over the provider's text: restored names are never re-scanned, so a name that itself looks
 like a token cannot trigger a second substitution. Tokens split across stream chunks are buffered until complete.
 """
 import re
 
-TOKEN = re.compile(r"\[PERSON_(\d{1,6})\]")
-# A suffix that could still grow into a token: "[", "[P", ..., "[PERSON_", "[PERSON_12"
-PARTIAL = re.compile(r"\[(?:P(?:E(?:R(?:S(?:O(?:N(?:_\d{0,6})?)?)?)?)?)?)?$")
+ALIASED = ("PERSON", "EMAIL")  # same as ALIASED in mask.ml.privacy_v1.contracts
+TOKEN = re.compile(r"\[(?:PERSON|EMAIL)_(\d{1,6})\]")
+# A suffix that could still grow into a token: "[", "[P", ..., "[PERSON_", "[PERSON_12", "[E", ..., "[EMAIL_3"
+PARTIAL = re.compile(r"\[(?:P(?:E(?:R(?:S(?:O(?:N(?:_\d{0,6})?)?)?)?)?)?|E(?:M(?:A(?:I(?:L(?:_\d{0,6})?)?)?)?)?)?$")
 
 
 class Restorer:
     def __init__(self, mapping):
-        # alias ("[PERSON_1]") -> original name; only well-formed PERSON aliases are accepted
+        # alias ("[PERSON_1]", "[EMAIL_1]") -> original value; only well-formed aliases are accepted
         self.mapping = {k: v for k, v in dict(mapping).items() if TOKEN.fullmatch(k) and isinstance(v, str)}
         self.buffer = ""
         self.restored_count = 0

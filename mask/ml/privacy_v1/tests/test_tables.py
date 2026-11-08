@@ -57,7 +57,7 @@ def test_xlsx_reconstructed_no_hidden_metadata_and_types(tmp_path):
     assert result.sheetnames == ["Sheet1"]
     assert result.active["B2"].value == 12.5
     assert result.active["C2"].value == dt.datetime(2020, 5, 6)
-    assert result.active["A2"].value == "[EMAIL]"
+    assert result.active["A2"].value == "[EMAIL_1]"
     assert report["coverage"]["hidden_sheets_omitted"] == 1
     assert report["coverage"]["hidden_rows_omitted"] == 1
     with zipfile.ZipFile(output) as archive:
