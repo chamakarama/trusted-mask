@@ -48,6 +48,10 @@ See the [8 November model comparison](evidence/privacy-v1/section-training-20261
 
 While building Mask, we discovered that Since AI has its own tool for this problem: SafePrompt, which detects sensitive information before a prompt reaches an AI model. Since it comes with a public benchmark, we decided to see how the two compare.
 
+**The difference is what each system decides to remove.** [SafePrompt 0.1.0](https://github.com/sinceaihq/safeprompt/tree/64df85bae1677653ef5b6f070a1acf43e0580873) uses patterns, checksum validation and nearby labels to detect structured identifiers and secrets, then lets the user choose which values to replace. Mask combines detection rules with models trained on our own data to detect names and make task-dependent decisions about sensitive passages: the same medical detail may be relevant to a question for a doctor but unnecessary in a message to a manager.
+
+Both process sensitive text locally and support reversible placeholders. Mask's distinction is filtering according to what the user is asking, beyond recognising sensitive values. **The benchmark below compares detection only; it does not test that context-dependent filtering or the quality of the AI's answer.** SafePrompt also produces fewer false alerts on this test, as shown below.
+
 We ran Mask1, Mask2 and MaskMini on [SafePrompt-Bench](https://huggingface.co/datasets/sinceaihq/safeprompt-bench): **1,500 synthetic test documents**, scored with Since AI's own scorer. Our reproduction of SafePrompt's headline score matches its published result.
 
 | Detector | Structured identifiers F1 | Names F1 | Secrets F1 | Clean documents flagged |
