@@ -2,6 +2,9 @@
   "counts": {
     "placeholder_targets": 117,
     "exact_placeholder_type_correct": 89,
+    "predicted_drop_regions": 18,
+    "drop_regions_within_gold_drop": 14,
+    "drop_regions_outside_gold_drop": 4,
     "essential_nondirect_placeholder_targets": 5,
     "essential_nondirect_placeholder_correct": 3
   },
@@ -1838,5 +1841,5 @@
       ]
     }
   ],
-  "scope": "Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage."
+  "scope": "Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage. Drop-region precision requires every removed non-whitespace/non-delimiter character to lie in a gold DROP span; whole-section recall is scored separately in the evaluation report."
 }

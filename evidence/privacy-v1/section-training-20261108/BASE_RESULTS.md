@@ -30,7 +30,10 @@ checkpoint available and unchanged. This is dev evidence, not independent testin
 | Epoch 2 weights, old pipeline | 24 | 10 | 8 | 6 | 5 |
 
 Epoch 2 removes 3/9 original and 8/33 supplemental whole gold sections. Its
-supplemental clause-removal precision is 20/25, recall 20/58. All 18 original and
+supplemental clause-removal precision is 20/25, recall 20/58. At the coalesced
+edit-region level, 14/18 removals contain only gold DROP content (whitespace and
+terminal delimiters ignored); original dev is 3/3. Whole-section recall remains
+8/33 and 3/9 respectively, so partial removals are not credited as whole sections. All 18 original and
 three supplemental approved-no-edit controls remain unchanged. Unnecessary changed
 characters on supplemental: old DeBERTa 621, new base 714 (not a token metric).
 

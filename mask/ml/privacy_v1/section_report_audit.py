@@ -14,6 +14,14 @@ def audit(report,records):
     for output in report['outputs']:
         row=rows[output['id']];text=row['text'];result=output['result']
         edits=[SimpleNamespace(**e) for e in result['edits']]
+        gold_drop={i for d in row['decisions'] if d['action']=='DROP' for i in range(d['start'],d['end'])}
+        for edit in edits:
+            if edit.action!='DROP':continue
+            counts['predicted_drop_regions']+=1
+            valid=all(i in gold_drop or text[i].isspace() or text[i] in '.!?;'
+                      for i in range(edit.start,edit.end))
+            counts['drop_regions_within_gold_drop']+=valid
+            counts['drop_regions_outside_gold_drop']+=not valid
         placeholders=[]
         for target in row['decisions']:
             if target['action']!='PLACEHOLDER':continue
@@ -36,7 +44,7 @@ def audit(report,records):
                 'false_clause_removals':output['false_removals'],'placeholder_errors':placeholders,
                 'pending_reviews':result['pending_reviews']})
     return {'counts':dict(counts),'failures':failures,
-            'scope':'Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage.'}
+            'scope':'Post-hoc scoring only; annotations never enter inference. Type-exact placeholder scoring is stricter than identifier coverage. Drop-region precision requires every removed non-whitespace/non-delimiter character to lie in a gold DROP span; whole-section recall is scored separately in the evaluation report.'}
 
 
 def main():
