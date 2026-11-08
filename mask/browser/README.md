@@ -212,7 +212,7 @@ gcloud run deploy mask-demo-relay --source=mask/browser/relay \
   --project=cleveland-464404-m0 --region=europe-north1 \
   --service-account=mask-demo-relay@cleveland-464404-m0.iam.gserviceaccount.com \
   --set-secrets=ANTHROPIC_API_KEY=mask-demo-anthropic-key:1 \
-  --set-env-vars=MASK_MODEL=claude-sonnet-5-5,MASK_ORIGIN=https://mask-local-demo.netlify.app \
+  --set-env-vars=MASK_MODEL=claude-haiku-5-5,MASK_ORIGIN=https://mask-local-demo.netlify.app \
   --timeout=90 --memory=256Mi --cpu=1 --concurrency=4 \
   --min-instances=0 --max-instances=1 --allow-unauthenticated
 ```

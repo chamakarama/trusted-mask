@@ -4,7 +4,9 @@
 
 Mask is a local privacy layer for messages sent to AI. It is designed to remove personal and confidential information that is unnecessary for a question while keeping the information needed for a useful answer.
 
-[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Two-minute video script](demo/script-v2.0.md)
+Mask takes context directly from the message, without a separate intent field. The intended product works across cloud AI providers; this demo uses Claude.
+
+[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v1.pdf) · [Pitch notes](demo/pitch-v1.md) · [Video script — recording in progress](demo/script-v2.0.md)
 
 ## The problem
 
@@ -16,9 +18,19 @@ A [2025 University of Melbourne and KPMG study, pp. 75–76](https://mbs.edu/-/m
 
 Mask processes the question and its source material on the user's device. Its model identifies sensitive information and proposes transformations. The filtering system applies exact edits: consistent aliases for names, placeholders for detected identifiers, and removal of unrelated sensitive passages when the model and policy permit it.
 
-The question matters. Analysing complaints needs the problems customers describe. Making a budget needs income and expenses. Both tasks can preserve useful information while sharing fewer identifying details.
+The question matters. An email to a manager needs a return-to-work date and physical restrictions. A summary for a doctor also needs the medical history and medication. Mask can treat the same passage differently depending on the request.
 
-The browser demo filters locally, then sends the protected message to Claude when the user chooses Send. The name-to-alias map stays on the device, and names can be restored locally in the reply. Filtering itself makes no cloud inference request.
+The browser demo starts filtering locally after a pause in typing or when an example is loaded. Filter reveals the completed result, or waits for it to finish. Only the separate Send action sends the protected message to Claude. The name-to-alias map stays on the device, and names can be restored locally in the reply. Filtering itself makes no cloud inference request.
+
+### Privacy-enhancing techniques and why we use them
+
+| Detected information | PET | Why it fits the use case |
+|---|---|---|
+| Person names | **Pseudonymisation:** consistent aliases such as `[PERSON_1]` | Preserves references to the same person without sending their name; the local map enables reply restoration |
+| Contact details and account identifiers | **Masking / redaction:** typed placeholders | Removes identifying values that are unnecessary for the analysis while keeping their type recognisable |
+| Sensitive passages unrelated to the request | **Suppression:** remove the passage | Reduces disclosure beyond identifiers, while retaining facts needed for the question |
+
+Model predictions use the message context; explicit policy rules constrain which edits can be applied. Facts relevant to the request can remain sensitive, and detection or relevance errors still require user review. The complaint analysis preserves individual complaint facts and exact counts, so it does not need statistical noise or aggregation as a protection step.
 
 ## What we built
 
@@ -26,15 +38,33 @@ We developed models for privacy detection and relevance decisions using pretrain
 
 The project includes a working browser application, local inference, deterministic edit rules, an optional Claude connection and local reply restoration. The Python engine also supports CSV and values-only XLSX. Direct integration into other chatbot websites is the next product step.
 
-The public browser release uses ONNX Runtime Web and WebAssembly. It requires an initial model download of approximately 370 MB, then runs on the device without a GPU. See the [browser implementation and setup](mask/browser/README.md) and [Python demo instructions](mask/web/README.md).
+The browser uses ONNX Runtime Web and CPU WebAssembly, without requiring a GPU. Its selector offers **Mask1** (the earlier DeBERTa Base, approximately 369 MB), **Mask2** (the new DeBERTa Base with a section-relevance head, approximately 371 MB and the default), and **MaskMini** (MiniLM, approximately 67 MB). Only the selected model downloads; verified assets are cached when browser storage permits. These are model-transfer sizes, not peak memory requirements. See the [browser implementation and setup](mask/browser/README.md) and [Python demo instructions](mask/web/README.md).
 
 ## Demonstrated today
 
-In the six-ticket corporate example, the current public browser release masks **20 identifier occurrences** while preserving the complaint text. The protected text still contains three duplicate-charge complaints, two delayed-refund complaints and one password-reset complaint.
+**Corporate:** the [six-ticket support export](demo/browser-support-example.txt) asks AI to identify the main complaint categories. Mask replaces customer names, emails and IDs while retaining the complaint facts: three duplicate charges, two delayed refunds and one password-reset problem. This version puts the customer name before the ID. The earlier ID-first variant exposed a context-sensitive identifier-rule failure; the retained example is a selected demonstration, not proof of general coverage.
 
-In the consumer budget example, it masks the person's name and bank account while keeping the income, expenses and uncertainty about overtime.
+**Consumer:** the [appointment-note example](demo/context-dependency-demo/README.md) holds the source text constant and changes the request. For a manager email, Mask2 removes the surgery sentence and psychiatric-history paragraph while retaining the return date, work restrictions and work-from-home days. For a GP summary, it retains the medical details. The name becomes `[PERSON_1]` in both. The [verification report](evidence/privacy-v1/context-demo-20261108/revision-3-name/preview/verification.json) records the local application results; the [animation](demo/video/context-animation/index.html) illustrates them without running inference.
 
-These are synthetic, rehearsed examples included in training. They demonstrate the workflow, not performance on unseen data or a guarantee of unchanged chatbot answer quality.
+**Before — excerpt from the fictional appointment note:**
+
+```text
+Patient: Mark Markkunen
+Recovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.
+
+Medical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes.
+```
+
+**After — recorded Mask2 output for the manager-email request, same excerpt:**
+
+```text
+Patient: [PERSON_1]
+Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.
+```
+
+The return date, 5 kg lifting limit, twenty-minute standing limit and review date survive exactly. The work-from-home agreement in the preceding paragraph also remains. For the GP request, the same medical-history paragraph stays intact and only the name changes. Compare the complete recorded [manager output](demo/context-dependency-demo/manager-protected.txt) and [GP output](demo/context-dependency-demo/clinician-protected.txt).
+
+Both examples are fictional and rehearsed. The support example derives from training demonstrations; the consumer wording was selected after testing alternatives. The consumer verification supplies the task separately, whereas the browser derives it from the opening line. Recheck the exact message in the interface used for a live demonstration. These examples are not an independent accuracy benchmark or a guarantee of unchanged chatbot answer quality.
 
 ## New models and the remaining challenge
 
@@ -70,5 +100,13 @@ We will improve relevance decisions and test them on independently reviewed, uns
 The ambition is an everyday privacy layer across AI tools: protection at the moment information is about to leave a device, with local processing and controls suited to the organisation using it.
 
 Mask is a prototype for data minimisation and pseudonymisation. It can miss sensitive information or remove useful facts, and retained context can still identify someone. It does not guarantee anonymity or legal compliance.
+
+## Run and inspect
+
+- Use the [hosted demo](https://mask-local-demo.netlify.app/) without installing Python. The first model load can take time.
+- To run locally, follow the [Mask2 bundle and Python setup instructions](mask/ml/privacy_v1/bundled_weights/section-training-20261108/README.md). Model archives are stored in Git LFS; download and unpack the selected bundle before starting it. The [Python demo documentation](mask/web/README.md#run) covers the optional provider connection.
+- To rebuild the browser application, follow the [browser build instructions](mask/browser/README.md#local-build). They require Python 3.12, Node.js, Rust and Git LFS. The [runtime source pin](mask/browser/runtime-source.json) identifies the exact inference source used by the browser build.
+- Training code, dataset hashes and recorded results are included. Full training/development reproduction also requires the matching datasets, weights and environment specified in the [reproduction instructions](evidence/privacy-v1/section-training-20261108/REPRODUCE.md); a submission without those datasets cannot reproduce those evaluations. The benchmark comparison uses a separately available public dataset.
+- The optional Claude relay needs your own server-side API key. The PDF pitch is a visual export of the six-slide working deck; its narration and source references are in the accompanying pitch notes. The demo video is still being recorded; the linked script is not a finished video.
 
 Built for the TrustED PETs Transformer challenge at Since AI 2026. This working README reflects the repository and public demo reviewed on 8 November 2026.

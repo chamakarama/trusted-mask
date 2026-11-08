@@ -6,7 +6,45 @@ const $=id=>document.getElementById(id);
 const message=$('message'),output=$('output'),filter=$('filter');
 const modelNames={mask1:'Original DeBERTa Base',mask2:'New DeBERTa Base · experimental',maskmini:'MiniLM'};
 let selectedModel='mask2';
-let worker,ready=false,working=false,revision=0,sequence=0,preview=null,sendController=null,replyRaw='',replyDone=false,examples=[],exampleIndex=0,config,filterId=null,timer=null;
+let worker,ready=false,working=false,revision=0,sequence=0,preview=null,sendController=null,replyRaw='',replyDone=false,examples=[],exampleIndex=0,config;
+// Background filtering: the text in the box is filtered on this device while the user reads or types,
+// so Filter usually only reveals a finished result. The worker runs one message at a time; finished
+// results stay in memory, keyed by model and exact text, and never leave the page.
+let inflight=null,waiting=null,debounce=null;
+const results=new Map(),TIME_LIMIT=180000,TYPING_PAUSE=600;
+const keyOf=text=>`${selectedModel}\u0000${text}`;
+function remember(key,entry){results.delete(key);results.set(key,entry);while(results.size>8)results.delete(results.keys().next().value);}
+function schedule(delay){clearTimeout(debounce);debounce=setTimeout(()=>{debounce=null;pump();},delay);}
+function pump(){
+  if(!ready||inflight||debounce)return;
+  const text=message.value,key=keyOf(text);
+  if(!validText(text)||results.has(key))return;
+  const id=++sequence,task=text.split('\n')[0].trim()||text;
+  const timer=setTimeout(()=>{
+    if(inflight?.id!==id)return;
+    const wasWaiting=waiting===key,error='Filtering exceeded the time limit. Try a shorter message. Nothing was sent.';
+    remember(key,{error});startWorker();
+    if(wasWaiting)notice(error,true);
+  },TIME_LIMIT);
+  inflight={id,key,text,task,timer,discard:false};
+  worker.postMessage({id,type:'protect',text,task});
+}
+function reveal(key){
+  const entry=results.get(key);
+  invalidate();notice('');
+  if(entry.error){notice(entry.error,true);return;}
+  try{
+    preview=makePreview(entry.text,entry.task,entry.result,revision);
+    message.hidden=true;output.hidden=false;renderTokens(entry.result.protected_text,output);
+    if(motion())output.animate([{opacity:.4},{opacity:1}],{duration:350});
+    $('review').hidden=!config.relayURL;
+    $('send').hidden=!config.relayURL;$('send').disabled=false;
+    $('payload').textContent=`System instruction\n${preview.request.system}\n\nMessage\n${preview.request.user}`;
+    filter.title=`${entry.result.edits.length} edits in ${(entry.elapsed/1000).toFixed(1)} seconds, processed on this device.`;
+    if(!config.relayURL)notice('Claude is not connected. You can copy the filtered text.',true);
+  }catch{preview=null;notice('The model could not produce a complete preview. Try a shorter message. Nothing was sent.',true);}
+  controls();
+}
 const motion=()=>!matchMedia('(prefers-reduced-motion: reduce)').matches;
 function notice(text,error=false){$('notice').textContent=error?text:'';$('notice').hidden=!error;$('notice').classList.toggle('error',error);}
 function controls(){
@@ -39,13 +77,12 @@ function renderTokens(text,target){
 function invalidate(){
   revision++;preview=null;replyRaw='';replyDone=false;
   sendController?.abort();sendController=null;
-  clearTimeout(timer);
   for(const id of ['output','send','review','reply-section'])$(id).hidden=true;
   message.hidden=false;output.replaceChildren();$('payload').textContent='';$('reply').replaceChildren();$('revert').disabled=true;
   controls();
 }
 function startWorker(){
-  worker?.terminate();ready=false;working=false;filterId=null;
+  worker?.terminate();ready=false;working=false;waiting=null;clearTimeout(inflight?.timer);inflight=null;
   notice('');
   $('model-select').title=modelNames[selectedModel];
   $('model-state').hidden=false;
@@ -69,57 +106,54 @@ function startWorker(){
       else if(data.phase==='ready'){
         ready=true;$('model-progress').hidden=true;$('model-wait').hidden=true;$('status-dot').className='status-dot ready';$('model-status').textContent='Ready · filtering stays on your device';
         $('model-state').hidden=true;
-        $('model-version').textContent=`${modelNames[selectedModel]} · English · ${data.modelId.slice(-12)}`;controls();
+        $('model-version').textContent=`${modelNames[selectedModel]} · English · ${data.modelId.slice(-12)}`;controls();pump();
       }
-    }else if(data.type==='result'&&data.id===filterId){
-      working=false;filterId=null;clearTimeout(timer);
-      const snapshot=activeFilter;
-      if(snapshot.revision!==revision){controls();return;}
-      try{
-        preview=makePreview(snapshot.text,snapshot.task,data.result,revision);
-        message.hidden=true;output.hidden=false;renderTokens(data.result.protected_text,output);
-        if(motion())output.animate([{opacity:.4},{opacity:1}],{duration:350});
-        $('review').hidden=!config.relayURL;
-        $('send').hidden=!config.relayURL;$('send').disabled=false;
-        $('payload').textContent=`System instruction\n${preview.request.system}\n\nMessage\n${preview.request.user}`;
-        filter.title=`${data.result.edits.length} edits in ${(data.elapsed/1000).toFixed(1)} seconds, processed on this device.`;
-        if(!config.relayURL)notice('Claude is not connected. You can copy the filtered text.',true);
-      }catch{preview=null;notice('The model could not produce a complete preview. Try a shorter message. Nothing was sent.',true);}
-      controls();
+    }else if((data.type==='result'||data.type==='error')&&inflight&&data.id===inflight.id){
+      const run=inflight;clearTimeout(run.timer);inflight=null;
+      if(!run.discard)remember(run.key,data.type==='result'?{text:run.text,task:run.task,result:data.result,elapsed:data.elapsed}:{error:data.message});
+      if(waiting===run.key){waiting=null;working=false;reveal(run.key);}
+      pump();controls();
     }else if(data.type==='error'){
-      if(data.id===filterId){working=false;filterId=null;clearTimeout(timer);if(activeFilter.revision===revision)notice(data.message,true);controls();}
-      else if(!ready){$('model-state').hidden=false;$('model-status').textContent=data.message;$('model-progress').hidden=true;$('model-wait').hidden=true;$('retry').hidden=false;$('status-dot').className='status-dot error';}
+      if(!ready){$('model-state').hidden=false;$('model-status').textContent=data.message;$('model-progress').hidden=true;$('model-wait').hidden=true;$('retry').hidden=false;$('status-dot').className='status-dot error';}
     }
   };
-  worker.onerror=()=>{if(worker!==currentWorker)return;ready=false;working=false;clearTimeout(timer);$('model-state').hidden=false;$('model-wait').hidden=true;$('model-status').textContent='This browser could not start the local model.';$('retry').hidden=false;$('model-progress').hidden=true;notice('Nothing was sent. Close unused tabs and retry, or try another current desktop browser.',true);controls();};
+  worker.onerror=()=>{if(worker!==currentWorker)return;ready=false;working=false;waiting=null;clearTimeout(inflight?.timer);inflight=null;$('model-state').hidden=false;$('model-wait').hidden=true;$('model-status').textContent='This browser could not start the local model.';$('retry').hidden=false;$('model-progress').hidden=true;notice('Nothing was sent. Close unused tabs and retry, or try another current desktop browser.',true);controls();};
   worker.postMessage({id:++sequence,type:'init',pointer:config.models[selectedModel]});controls();
 }
-let activeFilter;
 function protect(){
   if(filter.disabled)return;
-  invalidate();working=true;const text=message.value,task=text.split('\n')[0].trim()||text;
-  activeFilter={text,task,revision};filterId=++sequence;controls();notice('Filtering locally. Your message is not being uploaded.');
-  worker.postMessage({id:filterId,type:'protect',text,task});
-  timer=setTimeout(()=>{if(working){invalidate();startWorker();notice('Filtering exceeded the time limit. Try a shorter message. Nothing was sent.',true);}},180000);
+  const key=keyOf(message.value);
+  clearTimeout(debounce);debounce=null;
+  if(results.get(key)?.stopped)results.delete(key);
+  if(results.has(key)){reveal(key);return;}  // already filtered in the background
+  waiting=key;working=true;notice('');controls();pump();  // reveal as soon as the run for this text finishes
 }
-message.addEventListener('input',()=>{invalidate();notice('Experimental privacy model. Review the result before sharing.');});
+message.addEventListener('input',()=>{waiting=null;working=false;invalidate();notice('');schedule(TYPING_PAUSE);});
 filter.addEventListener('click',protect);
 $('retry').addEventListener('click',()=>{invalidate();startWorker();});
-$('example').addEventListener('click',()=>{if(!examples.length)return;invalidate();message.value=examples[exampleIndex++%examples.length].text;message.scrollTop=0;controls();notice('Synthetic example used in training. Filter runs the actual model.');});
+$('example').addEventListener('click',()=>{if(!examples.length)return;waiting=null;working=false;invalidate();message.value=examples[exampleIndex++%examples.length].text;message.scrollTop=0;controls();notice('');schedule(0);});
 function edit(){if(working)return;invalidate();message.focus();}
 output.addEventListener('click',edit);
 output.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();edit();}});
-$('clear').addEventListener('click',()=>{invalidate();message.value='';if(working)startWorker();$('settings').open=false;controls();notice('');});
-$('stop').addEventListener('click',()=>{const wasWorking=working;invalidate();if(wasWorking)startWorker();notice('Stopped. Nothing further will be sent.');});
+$('clear').addEventListener('click',()=>{
+  clearTimeout(debounce);debounce=null;waiting=null;working=false;
+  if(inflight)inflight.discard=true;results.clear();
+  invalidate();message.value='';$('settings').open=false;controls();notice('');
+});
+$('stop').addEventListener('click',()=>{
+  const stopped=working&&waiting;invalidate();
+  if(stopped){startWorker();remember(stopped,{stopped:true});}  // no automatic re-run; Filter starts it again
+  notice('Stopped. Nothing further will be sent.');
+});
 $('forget-model').addEventListener('click',async()=>{
-  invalidate();worker?.terminate();ready=false;working=false;filterId=null;
+  invalidate();worker?.terminate();ready=false;working=false;waiting=null;clearTimeout(inflight?.timer);inflight=null;results.clear();
   $('settings').open=false;
   $('model-state').hidden=false;$('model-progress').hidden=true;$('model-wait').hidden=true;
   try{await caches.delete(CACHE_NAME);$('model-status').textContent='Downloaded model removed.';}catch{$('model-status').textContent='Browser storage could not be cleared.';}
   $('retry').textContent='Load model';$('retry').hidden=false;controls();
 });
 $('model-select').addEventListener('change',()=>{
-  selectedModel=$('model-select').value;
+  selectedModel=$('model-select').value;results.clear();
   invalidate();filter.removeAttribute('title');startWorker();
 });
 $('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='light'?'dark':'light';});

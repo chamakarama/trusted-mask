@@ -17,14 +17,14 @@ The three steps are:
 
 Each step waits for your keypress. Quick repeated presses are ignored during a transition. The page shows no chatbot reply.
 
-The original source and output text come from the verified files in `../context-dependency-demo/`. Only paragraph layout changes for readability. The request is shown as the first paragraph of the message; in the verified model run, it was supplied through the separate intended-use field.
+The original source and output text come from the verified files in `../../context-dependency-demo/`. Only paragraph layout changes for readability. The request is shown as the first paragraph of the message; in the verified model run, it was supplied through the separate intended-use field.
 
 This page replays recorded local Mask2 results on a fictional example. It does not run the model or send anything to an AI service. The source caption under the message box remains visible when controls are hidden. `comparison.png` is a screenshot of the earlier side-by-side version.
 
 For a local HTTP preview, run from the repository root:
 
 ```sh
-python3 -m http.server 8793 --bind 127.0.0.1 --directory demo/context-animation
+python3 -m http.server 8793 --bind 127.0.0.1 --directory demo/video/context-animation
 ```
 
 Then open `http://127.0.0.1:8793/`.

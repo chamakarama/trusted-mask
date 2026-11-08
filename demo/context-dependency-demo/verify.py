@@ -38,6 +38,7 @@ def main():
         'My manager said working from home on Tuesdays and Thursdays would be fine.',
     )
     medical = text.split('\n\n')[-1]
+    patient = next(line.removeprefix('Patient: ') for line in text.splitlines() if line.startswith('Patient: '))
     outputs = []
     with patch.object(socket, 'socket', side_effect=AssertionError('Offline inference only')):
         model = load_model(args.model, 'cpu')
@@ -50,16 +51,16 @@ def main():
             assert isinstance(output, str), preview['status']
             checks = {
                 'supported_preview': preview['status'] in ('ready', 'needs_review'),
-                'name_aliased': 'Emma Wilson' not in output and 'Patient: [PERSON_1]' in output,
+                'name_aliased': patient not in output and 'Patient: [PERSON_1]' in output,
                 'work_facts_preserved': all(quote in output for quote in required),
-                'protected_provider_payload': 'Emma Wilson' not in preview['provider_request']['user'],
+                'protected_provider_payload': patient not in preview['provider_request']['user'],
             }
             if name == 'manager':
                 checks['psychiatric_details_removed'] = all(
                     quote not in output for quote in ('bipolar', 'lamotrigine', 'sleep', 'dose'))
             else:
                 checks['medical_details_preserved'] = medical in output
-                checks['only_name_changes'] = output == text.replace('Emma Wilson', '[PERSON_1]')
+                checks['only_name_changes'] = output == text.replace(patient, '[PERSON_1]')
             assert all(checks.values()), checks
             outputs.append({'context': name, 'task': tasks[name], 'seconds': elapsed,
                             'checks': checks, 'preview': preview})
