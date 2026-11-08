@@ -15,9 +15,8 @@ From the repository root, with Git LFS installed:
 git lfs pull --include='mask/ml/privacy_v1/bundled_weights/section-training-20261108/*.tar.gz'
 (cd mask/ml/privacy_v1/bundled_weights/section-training-20261108 && shasum -a 256 -c SHA256SUMS)
 mkdir -p mask/ml/privacy_v1/artifacts/section-training-20261108
-for model in deberta-v3-base deberta-v3-large; do
-  tar xzf "mask/ml/privacy_v1/bundled_weights/section-training-20261108/$model.tar.gz" \
-    -C mask/ml/privacy_v1/artifacts/section-training-20261108
+for archive in mask/ml/privacy_v1/bundled_weights/section-training-20261108/*.tar.gz; do
+  tar xzf "$archive" -C mask/ml/privacy_v1/artifacts/section-training-20261108
 done
 ```
 
