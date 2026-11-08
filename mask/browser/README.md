@@ -29,7 +29,7 @@ worker and any active reply, clears its preview and local alias map, and keeps
 the original input ready to filter again. Cached assets are reused after integrity
 verification. All three choices use the same updated deterministic identifier rules.
 
-`runtime-source.json` pins Python inference to committed source `0b3854d`.
+`runtime-source.json` pins Python inference to committed source `0b3854d` (`6e4853e` in this repository, with identical Python files; see [commit IDs](../../evidence/COMMIT_IDS.md)).
 Builds extract that source with `git show`; unrelated working-tree edits cannot
 silently change the deployed policy. The new identifier validators distinguish
 validated personal IDs, cards and IBANs from order numbers, UUIDs, hashes and code
