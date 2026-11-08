@@ -4,9 +4,7 @@
 
 Mask is a local privacy layer for messages sent to AI. It is designed to remove personal and confidential information that is unnecessary for a question while keeping the information needed for a useful answer.
 
-Mask takes context directly from the message, without a separate intent field. The intended product works across cloud AI providers; this demo uses Claude.
-
-[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v1.pdf) · [Pitch notes](demo/pitch-v1.md) · [Video script — recording in progress](demo/script-v2.0.md)
+[Try the web demo](https://mask-local-demo.netlify.app/) · [About the project](demo/about-the-project.md) · [Pitch slides](demo/mask-pitch-v1.pdf) · [Pitch notes](demo/pitch-v1.md) · [Two-minute video script](demo/script-v2.0.md)
 
 ## The problem
 
@@ -22,16 +20,6 @@ The question matters. An email to a manager needs a return-to-work date and phys
 
 The browser demo starts filtering locally after a pause in typing or when an example is loaded. Filter reveals the completed result, or waits for it to finish. Only the separate Send action sends the protected message to Claude. The name-to-alias map stays on the device, and names can be restored locally in the reply. Filtering itself makes no cloud inference request.
 
-### Privacy-enhancing techniques and why we use them
-
-| Detected information | PET | Why it fits the use case |
-|---|---|---|
-| Person names | **Pseudonymisation:** consistent aliases such as `[PERSON_1]` | Preserves references to the same person without sending their name; the local map enables reply restoration |
-| Contact details and account identifiers | **Masking / redaction:** typed placeholders | Removes identifying values that are unnecessary for the analysis while keeping their type recognisable |
-| Sensitive passages unrelated to the request | **Suppression:** remove the passage | Reduces disclosure beyond identifiers, while retaining facts needed for the question |
-
-Model predictions use the message context; explicit policy rules constrain which edits can be applied. Facts relevant to the request can remain sensitive, and detection or relevance errors still require user review. The complaint analysis preserves individual complaint facts and exact counts, so it does not need statistical noise or aggregation as a protection step.
-
 ## What we built
 
 We developed models for privacy detection and relevance decisions using pretrained DeBERTa encoders, trained them on our own synthetic data, and built the system that turns predictions into controlled edits.
@@ -46,24 +34,6 @@ The browser uses ONNX Runtime Web and CPU WebAssembly, without requiring a GPU. 
 
 **Consumer:** the [appointment-note example](demo/context-dependency-demo/README.md) holds the source text constant and changes the request. For a manager email, Mask2 removes the surgery sentence and psychiatric-history paragraph while retaining the return date, work restrictions and work-from-home days. For a GP summary, it retains the medical details. The name becomes `[PERSON_1]` in both. The [verification report](evidence/privacy-v1/context-demo-20261108/revision-3-name/preview/verification.json) records the local application results; the [animation](demo/video/context-animation/index.html) illustrates them without running inference.
 
-**Before — excerpt from the fictional appointment note:**
-
-```text
-Patient: Mark Markkunen
-Recovering well after knee surgery. Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.
-
-Medical history: bipolar II, diagnosed in 2021. Current medication: lamotrigine 100 mg each evening. Reports poor sleep over the last three nights. No recent dose changes.
-```
-
-**After — recorded Mask2 output for the manager-email request, same excerpt:**
-
-```text
-Patient: [PERSON_1]
-Fit to return to desk duties from 18 November. No lifting over 5 kg or standing for more than twenty minutes until review on 9 December.
-```
-
-The return date, 5 kg lifting limit, twenty-minute standing limit and review date survive exactly. The work-from-home agreement in the preceding paragraph also remains. For the GP request, the same medical-history paragraph stays intact and only the name changes. Compare the complete recorded [manager output](demo/context-dependency-demo/manager-protected.txt) and [GP output](demo/context-dependency-demo/clinician-protected.txt).
-
 Both examples are fictional and rehearsed. The support example derives from training demonstrations; the consumer wording was selected after testing alternatives. The consumer verification supplies the task separately, whereas the browser derives it from the opening line. Recheck the exact message in the interface used for a live demonstration. These examples are not an independent accuracy benchmark or a guarantee of unchanged chatbot answer quality.
 
 ## New models and the remaining challenge
@@ -77,6 +47,10 @@ See the [8 November model comparison](evidence/privacy-v1/section-training-20261
 ## How Mask compares with Since AI's SafePrompt
 
 While building Mask, we discovered that Since AI has its own tool for this problem: SafePrompt, which detects sensitive information before a prompt reaches an AI model. Since it comes with a public benchmark, we decided to see how the two compare.
+
+**The difference is what each system decides to remove.** [SafePrompt 0.1.0](https://github.com/sinceaihq/safeprompt/tree/64df85bae1677653ef5b6f070a1acf43e0580873) uses patterns, checksum validation and nearby labels to detect structured identifiers and secrets, then lets the user choose which values to replace. Mask combines detection rules with models trained on our own data to detect names and make task-dependent decisions about sensitive passages: the same medical detail may be relevant to a question for a doctor but unnecessary in a message to a manager.
+
+Both process sensitive text locally and support reversible placeholders. Mask's distinction is filtering according to what the user is asking, beyond recognising sensitive values. **The benchmark below compares detection only; it does not test that context-dependent filtering or the quality of the AI's answer.** SafePrompt also produces fewer false alerts on this test, as shown below.
 
 We ran Mask1, Mask2 and MaskMini on [SafePrompt-Bench](https://huggingface.co/datasets/sinceaihq/safeprompt-bench): **1,500 synthetic test documents**, scored with Since AI's own scorer. Our reproduction of SafePrompt's headline score matches its published result.
 
@@ -104,9 +78,9 @@ Mask is a prototype for data minimisation and pseudonymisation. It can miss sens
 ## Run and inspect
 
 - Use the [hosted demo](https://mask-local-demo.netlify.app/) without installing Python. The first model load can take time.
-- To run locally, follow the [Mask2 bundle and Python setup instructions](mask/ml/privacy_v1/bundled_weights/section-training-20261108/README.md). Model archives are stored in Git LFS; download and unpack the selected bundle before starting it. The [Python demo documentation](mask/web/README.md#run) covers the optional provider connection.
-- To rebuild the browser application, follow the [browser build instructions](mask/browser/README.md#local-build). They require Python 3.12, Node.js, Rust and Git LFS. The [runtime source pin](mask/browser/runtime-source.json) identifies the exact inference source used by the browser build.
-- Training code, dataset hashes and recorded results are included. Full training/development reproduction also requires the matching datasets, weights and environment specified in the [reproduction instructions](evidence/privacy-v1/section-training-20261108/REPRODUCE.md); a submission without those datasets cannot reproduce those evaluations. The benchmark comparison uses a separately available public dataset.
-- The optional Claude relay needs your own server-side API key. The PDF pitch is a visual export of the six-slide working deck; its narration and source references are in the accompanying pitch notes. The demo video is still being recorded; the linked script is not a finished video.
+- To run locally, follow the [Python setup](mask/web/README.md#setup-once). Model archives are stored in Git LFS; download and unpack the selected bundle before starting it. See the [Mask2 bundle instructions](mask/ml/privacy_v1/bundled_weights/section-training-20261108/README.md).
+- To rebuild the browser application, follow the [browser build instructions](mask/browser/README.md#local-build). They require Python 3.12, Node.js, Rust and Git LFS. The [commit mapping](evidence/COMMIT_IDS.md) preserves the exact pinned runtime despite the submission repository's rewritten history.
+- Training and development datasets are not distributed in this submission. Training code, dataset hashes and recorded results are included, but full training/development evaluation cannot be reproduced from this checkout alone. SafePrompt uses a separately available public benchmark dataset.
+- The optional Claude relay needs your own server-side API key. No key or recording footage is included. The PDF pitch is a visual export of the six-slide working deck; its narration and source references are in the accompanying pitch notes.
 
 Built for the TrustED PETs Transformer challenge at Since AI 2026. This working README reflects the repository and public demo reviewed on 8 November 2026.

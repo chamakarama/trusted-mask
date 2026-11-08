@@ -2,6 +2,8 @@
 
 Working draft, 8 November 2026. Six slides, with short passages of speech and time to show the product.
 
+[Six-slide PDF](mask-pitch-v1.pdf). This is a visual export of the working deck; the editable source remains in the original presentation. The notes below contain the narration and source references.
+
 ## 1. Mask · 0:00–0:20
 
 Slide: **Your AI doesn’t need everything.**
